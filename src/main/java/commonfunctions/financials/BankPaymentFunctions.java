@@ -6712,4 +6712,32 @@ public class BankPaymentFunctions {
 		}
 		assertTrue(flag);
 	}
+	/**
+	 * This Method Is Used To Add the Bank Payment Line Details
+	 * 
+	 * @author Vimal - RMITS
+	 * @param GLAccount
+	 * @param CPCcode
+	 */
+	public void addBankPaymentLineDetailsGlaactAndCPC(String GLAccount, String CPCcode) {
+		flag = webDB.waitForElement(BankPaymentLocators.BankLineGLAccountField, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(BankPaymentLocators.BankLineGLAccountField, ElementType.Xpath);
+			commonFunc.searchAndSelectValueInFilters(BankPaymentLocators.BankLineGLAccountLovButton, GLAccount);
+			webDB.pressTabKey();
+//			commonFunc.hardWait(500);
+//			commonFunc.checkRefreshCellsDisappear();
+			flag = webDB.waitForElement(BankPaymentLocators.BankLineCPCField, ElementType.Xpath);
+			if (flag) {
+//				String GetTextCPC = webDB.getTextFromElement(BankPaymentLocators.BankLineCPCField, ElementType.Xpath);
+//				if (!GetTextCPC.equals(CPCcode)) {
+				webDB.clickAnElement(BankPaymentLocators.BankLineCPCField, ElementType.Xpath);
+				commonFunc.searchAndSelectValueInFilters(BankPaymentLocators.BankLineCPCLovButton, CPCcode);
+//				}
+//				commonFunc.checkRefreshCellsDisappear();
+				webDB.pressTabKey();
+			}
+		}
+		assertTrue(flag);
+	}
 }

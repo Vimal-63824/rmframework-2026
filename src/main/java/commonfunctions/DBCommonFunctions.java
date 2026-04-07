@@ -2284,4 +2284,17 @@ public class DBCommonFunctions {
 				VariableHandler.getProductionCompletionOrderNo(), DBHeaderColumnValue);
 		return value;
 	}
+	/**
+	 * Supplier GL Acct Query
+	 * 
+	 * @author Vimal -RMITS
+	 * @param SUPNO
+	 * @param DBHeaderColumnValue
+	 * @return String Value
+	 */
+	public String SupplierGLaccountQuery(String SUPNO, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery(getDataFromDBTestDataSheet("SupplierGLaccountQuery"),
+				commonFunc.getDataFromTestDataSheet("SUPNO"), SUPNO, DBHeaderColumnValue);
+		return value;
+	}
 }
