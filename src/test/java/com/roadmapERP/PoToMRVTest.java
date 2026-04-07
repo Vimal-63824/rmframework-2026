@@ -1013,6 +1013,28 @@ public class PoToMRVTest extends RoadMapERPTest {
 	}
 
 	/**
+	 * Po Closure With Accept Quantity
+	 * 
+	 * @author Deepan-GWL
+	 */
+	@Author("Deepan-GWL")
+	@Test(priority = 68, groups = { "PoToGrn" }, description = "Po Closure With Accept Quantity")
+	public void VerifyPoclosureWithAcceptQuantity() {
+		grnPageFunc.verifyPoClosureAcceptQtyFromPrToMRV();
+	}
+
+	/**
+	 * Po Closure With Receipt Quantity
+	 * 
+	 * @author Deepan-GWL
+	 */
+	@Author("Deepan-GWL")
+	@Test(priority = 69, groups = { "PoToGrn" }, description = "Po Closure With Receipt Quantity")
+	public void VerifyPoclosureWithReceiptQuantity() {
+		grnPageFunc.verifyPoClosureReceiptQtyFromPrToMRV();
+	}
+
+	/**
 	 * Verify After Method
 	 * 
 	 * @author Deepan-GWL
