@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.1" name="TestSuite" time="407.956" tests="10" errors="0" skipped="0" failures="0">
+  <properties>
+    <property name="SelvaUsername" value="TVSPURUSR"/>
+    <property name="java.specification.version" value="21"/>
+    <property name="sun.cpu.isalist" value="amd64"/>
+    <property name="sun.jnu.encoding" value="Cp1252"/>
+    <property name="java.class.path" value="C:\Users\Kishore.R\Documents\GitHub\roadmap\target\test-classes;C:\Users\Kishore.R\Documents\GitHub\roadmap\target\classes;C:\Users\Kishore.R\.m2\repository\com\oracle\database\jdbc\ojdbc11\23.7.0.25.01\ojdbc11-23.7.0.25.01.jar;C:\Users\Kishore.R\.m2\repository\com\galaxy\EzyAutomate\1.26.0\EzyAutomate-1.26.0.jar;C:\Users\Kishore.R\.m2\repository\org\apache\poi\poi-ooxml\5.2.5\poi-ooxml-5.2.5.jar;C:\Users\Kishore.R\.m2\repository\org\apache\poi\poi\5.2.5\poi-5.2.5.jar;C:\Users\Kishore.R\.m2\repository\commons-codec\commons-codec\1.16.0\commons-codec-1.16.0.jar;C:\Users\Kishore.R\.m2\repository\org\apache\commons\commons-math3\3.6.1\commons-math3-3.6.1.jar;C:\Users\Kishore.R\.m2\repository\com\zaxxer\SparseBitSet\1.3\SparseBitSet-1.3.jar;C:\Users\Kishore.R\.m2\repository\org\apache\poi\poi-ooxml-lite\5.2.5\poi-ooxml-lite-5.2.5.jar;C:\Users\Kishore.R\.m2\repository\org\apache\xmlbeans\xmlbeans\5.2.0\xmlbeans-5.2.0.jar;C:\Users\Kishore.R\.m2\repository\org\apache\commons\commons-compress\1.25.0\commons-compress-1.25.0.jar;C:\Users\Kishore.R\.m2\repository\commons-io\commons-io\2.15.0\commons-io-2.15.0.jar;C:\Users\Kishore.R\.m2\repository\com\github\virtuald\curvesapi\1.08\curvesapi-1.08.jar;C:\Users\Kishore.R\.m2\repository\org\apache\commons\commons-collections4\4.4\commons-collections4-4.4.jar;C:\Users\Kishore.R\.m2\repository\io\rest-assured\rest-assured\5.4.0\rest-assured-5.4.0.jar;C:\Users\Kishore.R\.m2\repository\org\apache\groovy\groovy\4.0.16\groovy-4.0.16.jar;C:\Users\Kishore.R\.m2\repository\org\apache\groovy\groovy-xml\4.0.16\groovy-xml-4.0.16.jar;C:\Users\Kishore.R\.m2\repository\org\apache\httpcomponents\httpclient\4.5.13\httpclient-4.5.13.jar;C:\Users\Kishore.R\.m2\repository\org\apache\httpcomponents\httpcore\4.4.13\httpcore-4.4.13.jar;C:\Users\Kishore.R\.m2\repository\commons-logging\commons-logging\1.2\commons-logging-1.2.jar;C:\Users\Kishore.R\.m2\repository\org\apache\httpcomponents\httpmime\4.5.13\httpmime-4.5.13.jar;C:\Users\Kishore.R\.m2\repository\org\hamcrest\hamcrest\2.2\hamcrest-2.2.jar;C:\Users\Kishore.R\.m2\repository\org\ccil\cowan\tagsoup\tagsoup\1.2.1\tagsoup-1.2.1.jar;C:\Users\Kishore.R\.m2\repository\io\rest-assured\json-path\5.4.0\json-path-5.4.0.jar;C:\Users\Kishore.R\.m2\repository\org\apache\groovy\groovy-json\4.0.16\groovy-json-4.0.16.jar;C:\Users\Kishore.R\.m2\repository\io\rest-assured\rest-assured-common\5.4.0\rest-assured-common-5.4.0.jar;C:\Users\Kishore.R\.m2\repository\io\rest-assured\xml-path\5.4.0\xml-path-5.4.0.jar;C:\Users\Kishore.R\.m2\repository\org\apache\commons\commons-lang3\3.11\commons-lang3-3.11.jar;C:\Users\Kishore.R\.m2\repository\com\googlecode\json-simple\json-simple\1.1.1\json-simple-1.1.1.jar;C:\Users\Kishore.R\.m2\repository\junit\junit\4.10\junit-4.10.jar;C:\Users\Kishore.R\.m2\repository\org\hamcrest\hamcrest-core\1.1\hamcrest-core-1.1.jar;C:\Users\Kishore.R\.m2\repository\org\seleniumhq\selenium\selenium-java\4.41.0\selenium-java-4.41.0.jar;C:\Users\Kishore.R\.m2\repository\org\seleniumhq\selenium\selenium-api\4.41.0\selenium-api-4.41.0.jar;C:\Users\Kishore.R\.m2\repository\org\jspecify\jspecify\1.0.0\jspecify-1.0.0.jar;C:\Users\Kishore.R\.m2\repository\org\seleniumhq\selenium\selenium-chrome-driver\4.41.0\selenium-chrome-driver-4.41.0.jar;C:\Users\Kishore.R\.m2\repository\com\google\auto\service\auto-service-annotations\1.1.1\auto-service-annotations-1.1.1.jar;C:\Users\Kishore.R\.m2\repository\org\seleniumhq\selenium\selenium-chromium-driver\4.41.0\selenium-chromium-driver-4.41.0.jar;C:\Users\Kishore.R\.m2\repository\org\seleniumhq\selenium\selenium-json\4.41.0\selenium-json-4.41.0.jar;C:\Users\Kishore.R\.m2\repository\org\seleniumhq\selenium\selenium-manager\4.41.0\selenium-manager-4.41.0.jar;C:\Users\Kishore.R\.m2\repository\org\seleniumhq\selenium\selenium-devtools-v143\4.41.0\selenium-devtools-v143-4.41.0.jar;C:\Users\Kishore.R\.m2\repository\org\seleniumhq\selenium\selenium-devtools-v144\4.41.0\selenium-devtools-v144-4.41.0.jar;C:\Users\Kishore.R\.m2\repository\org\seleniumhq\selenium\selenium-devtools-v145\4.41.0\selenium-devtools-v145-4.41.0.jar;C:\Users\Kishore.R\.m2\repository\org\seleniumhq\selenium\selenium-edge-driver\4.41.0\selenium-edge-driver-4.41.0.jar;C:\Users\Kishore.R\.m2\repository\org\seleniumhq\selenium\selenium-firefox-driver\4.41.0\selenium-firefox-driver-4.41.0.jar;C:\Users\Kishore.R\.m2\repository\org\seleniumhq\selenium\selenium-http\4.41.0\selenium-http-4.41.0.jar;C:\Users\Kishore.R\.m2\repository\org\seleniumhq\selenium\selenium-ie-driver\4.41.0\selenium-ie-driver-4.41.0.jar;C:\Users\Kishore.R\.m2\repository\org\seleniumhq\selenium\selenium-remote-driver\4.41.0\selenium-remote-driver-4.41.0.jar;C:\Users\Kishore.R\.m2\repository\com\google\guava\guava\33.5.0-jre\guava-33.5.0-jre.jar;C:\Users\Kishore.R\.m2\repository\com\google\guava\failureaccess\1.0.3\failureaccess-1.0.3.jar;C:\Users\Kishore.R\.m2\repository\com\google\guava\listenablefuture\9999.0-empty-to-avoid-conflict-with-guava\listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar;C:\Users\Kishore.R\.m2\repository\com\google\errorprone\error_prone_annotations\2.41.0\error_prone_annotations-2.41.0.jar;C:\Users\Kishore.R\.m2\repository\com\google\j2objc\j2objc-annotations\3.1\j2objc-annotations-3.1.jar;C:\Users\Kishore.R\.m2\repository\io\opentelemetry\opentelemetry-api\1.59.0\opentelemetry-api-1.59.0.jar;C:\Users\Kishore.R\.m2\repository\io\opentelemetry\opentelemetry-context\1.59.0\opentelemetry-context-1.59.0.jar;C:\Users\Kishore.R\.m2\repository\io\opentelemetry\opentelemetry-common\1.59.0\opentelemetry-common-1.59.0.jar;C:\Users\Kishore.R\.m2\repository\io\opentelemetry\opentelemetry-exporter-logging\1.59.0\opentelemetry-exporter-logging-1.59.0.jar;C:\Users\Kishore.R\.m2\repository\io\opentelemetry\opentelemetry-sdk-common\1.59.0\opentelemetry-sdk-common-1.59.0.jar;C:\Users\Kishore.R\.m2\repository\io\opentelemetry\opentelemetry-sdk-extension-autoconfigure-spi\1.59.0\opentelemetry-sdk-extension-autoconfigure-spi-1.59.0.jar;C:\Users\Kishore.R\.m2\repository\io\opentelemetry\opentelemetry-sdk-extension-autoconfigure\1.59.0\opentelemetry-sdk-extension-autoconfigure-1.59.0.jar;C:\Users\Kishore.R\.m2\repository\io\opentelemetry\opentelemetry-sdk-trace\1.59.0\opentelemetry-sdk-trace-1.59.0.jar;C:\Users\Kishore.R\.m2\repository\io\opentelemetry\opentelemetry-sdk\1.59.0\opentelemetry-sdk-1.59.0.jar;C:\Users\Kishore.R\.m2\repository\io\opentelemetry\opentelemetry-sdk-metrics\1.59.0\opentelemetry-sdk-metrics-1.59.0.jar;C:\Users\Kishore.R\.m2\repository\io\opentelemetry\opentelemetry-sdk-logs\1.59.0\opentelemetry-sdk-logs-1.59.0.jar;C:\Users\Kishore.R\.m2\repository\net\bytebuddy\byte-buddy\1.18.5\byte-buddy-1.18.5.jar;C:\Users\Kishore.R\.m2\repository\org\seleniumhq\selenium\selenium-os\4.41.0\selenium-os-4.41.0.jar;C:\Users\Kishore.R\.m2\repository\org\seleniumhq\selenium\selenium-safari-driver\4.41.0\selenium-safari-driver-4.41.0.jar;C:\Users\Kishore.R\.m2\repository\org\seleniumhq\selenium\selenium-support\4.41.0\selenium-support-4.41.0.jar;C:\Users\Kishore.R\.m2\repository\org\projectlombok\lombok\1.18.32\lombok-1.18.32.jar;C:\Users\Kishore.R\.m2\repository\com\aventstack\extentreports\5.1.1\extentreports-5.1.1.jar;C:\Users\Kishore.R\.m2\repository\io\reactivex\rxjava3\rxjava\3.1.6\rxjava-3.1.6.jar;C:\Users\Kishore.R\.m2\repository\org\reactivestreams\reactive-streams\1.0.4\reactive-streams-1.0.4.jar;C:\Users\Kishore.R\.m2\repository\org\freemarker\freemarker\2.3.32\freemarker-2.3.32.jar;C:\Users\Kishore.R\.m2\repository\com\google\code\gson\gson\2.10.1\gson-2.10.1.jar;C:\Users\Kishore.R\.m2\repository\org\testng\testng\7.11.0\testng-7.11.0.jar;C:\Users\Kishore.R\.m2\repository\org\slf4j\slf4j-api\2.0.16\slf4j-api-2.0.16.jar;C:\Users\Kishore.R\.m2\repository\org\jcommander\jcommander\1.83\jcommander-1.83.jar;C:\Users\Kishore.R\.m2\repository\org\webjars\jquery\3.7.1\jquery-3.7.1.jar;C:\Users\Kishore.R\.m2\repository\com\sun\mail\jakarta.mail\2.0.1\jakarta.mail-2.0.1.jar;C:\Users\Kishore.R\.m2\repository\com\sun\activation\jakarta.activation\2.0.1\jakarta.activation-2.0.1.jar;C:\Users\Kishore.R\.m2\repository\org\apache\logging\log4j\log4j-core\2.23.1\log4j-core-2.23.1.jar;C:\Users\Kishore.R\.m2\repository\org\apache\logging\log4j\log4j-api\2.23.1\log4j-api-2.23.1.jar;"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="user.variant" value=""/>
+    <property name="java.vendor.url" value="https://java.oracle.com/"/>
+    <property name="user.timezone" value="Asia/Calcutta"/>
+    <property name="java.vm.specification.version" value="21"/>
+    <property name="os.name" value="Windows 10"/>
+    <property name="SelvaPassword" value="TvsA@2024"/>
+    <property name="HRMSelfApproveUser" value="KSRADMIN"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="user.country" value="US"/>
+    <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-21\bin"/>
+    <property name="sun.java.command" value="C:\Users\Kishore.R\AppData\Local\Temp\surefire18286934509483531004\surefirebooter-20260325112459052_3.jar C:\Users\Kishore.R\AppData\Local\Temp\surefire18286934509483531004 2026-03-25T11-24-58_743-jvmRun1 surefire-20260325112459052_1tmp surefire_0-20260325112459052_2tmp"/>
+    <property name="TvsUsername" value="TVSAADMIN"/>
+    <property name="jdk.debug" value="release"/>
+    <property name="surefire.test.class.path" value="C:\Users\Kishore.R\Documents\GitHub\roadmap\target\test-classes;C:\Users\Kishore.R\Documents\GitHub\roadmap\target\classes;C:\Users\Kishore.R\.m2\repository\com\oracle\database\jdbc\ojdbc11\23.7.0.25.01\ojdbc11-23.7.0.25.01.jar;C:\Users\Kishore.R\.m2\repository\com\galaxy\EzyAutomate\1.26.0\EzyAutomate-1.26.0.jar;C:\Users\Kishore.R\.m2\repository\org\apache\poi\poi-ooxml\5.2.5\poi-ooxml-5.2.5.jar;C:\Users\Kishore.R\.m2\repository\org\apache\poi\poi\5.2.5\poi-5.2.5.jar;C:\Users\Kishore.R\.m2\repository\commons-codec\commons-codec\1.16.0\commons-codec-1.16.0.jar;C:\Users\Kishore.R\.m2\repository\org\apache\commons\commons-math3\3.6.1\commons-math3-3.6.1.jar;C:\Users\Kishore.R\.m2\repository\com\zaxxer\SparseBitSet\1.3\SparseBitSet-1.3.jar;C:\Users\Kishore.R\.m2\repository\org\apache\poi\poi-ooxml-lite\5.2.5\poi-ooxml-lite-5.2.5.jar;C:\Users\Kishore.R\.m2\repository\org\apache\xmlbeans\xmlbeans\5.2.0\xmlbeans-5.2.0.jar;C:\Users\Kishore.R\.m2\repository\org\apache\commons\commons-compress\1.25.0\commons-compress-1.25.0.jar;C:\Users\Kishore.R\.m2\repository\commons-io\commons-io\2.15.0\commons-io-2.15.0.jar;C:\Users\Kishore.R\.m2\repository\com\github\virtuald\curvesapi\1.08\curvesapi-1.08.jar;C:\Users\Kishore.R\.m2\repository\org\apache\commons\commons-collections4\4.4\commons-collections4-4.4.jar;C:\Users\Kishore.R\.m2\repository\io\rest-assured\rest-assured\5.4.0\rest-assured-5.4.0.jar;C:\Users\Kishore.R\.m2\repository\org\apache\groovy\groovy\4.0.16\groovy-4.0.16.jar;C:\Users\Kishore.R\.m2\repository\org\apache\groovy\groovy-xml\4.0.16\groovy-xml-4.0.16.jar;C:\Users\Kishore.R\.m2\repository\org\apache\httpcomponents\httpclient\4.5.13\httpclient-4.5.13.jar;C:\Users\Kishore.R\.m2\repository\org\apache\httpcomponents\httpcore\4.4.13\httpcore-4.4.13.jar;C:\Users\Kishore.R\.m2\repository\commons-logging\commons-logging\1.2\commons-logging-1.2.jar;C:\Users\Kishore.R\.m2\repository\org\apache\httpcomponents\httpmime\4.5.13\httpmime-4.5.13.jar;C:\Users\Kishore.R\.m2\repository\org\hamcrest\hamcrest\2.2\hamcrest-2.2.jar;C:\Users\Kishore.R\.m2\repository\org\ccil\cowan\tagsoup\tagsoup\1.2.1\tagsoup-1.2.1.jar;C:\Users\Kishore.R\.m2\repository\io\rest-assured\json-path\5.4.0\json-path-5.4.0.jar;C:\Users\Kishore.R\.m2\repository\org\apache\groovy\groovy-json\4.0.16\groovy-json-4.0.16.jar;C:\Users\Kishore.R\.m2\repository\io\rest-assured\rest-assured-common\5.4.0\rest-assured-common-5.4.0.jar;C:\Users\Kishore.R\.m2\repository\io\rest-assured\xml-path\5.4.0\xml-path-5.4.0.jar;C:\Users\Kishore.R\.m2\repository\org\apache\commons\commons-lang3\3.11\commons-lang3-3.11.jar;C:\Users\Kishore.R\.m2\repository\com\googlecode\json-simple\json-simple\1.1.1\json-simple-1.1.1.jar;C:\Users\Kishore.R\.m2\repository\junit\junit\4.10\junit-4.10.jar;C:\Users\Kishore.R\.m2\repository\org\hamcrest\hamcrest-core\1.1\hamcrest-core-1.1.jar;C:\Users\Kishore.R\.m2\repository\org\seleniumhq\selenium\selenium-java\4.41.0\selenium-java-4.41.0.jar;C:\Users\Kishore.R\.m2\repository\org\seleniumhq\selenium\selenium-api\4.41.0\selenium-api-4.41.0.jar;C:\Users\Kishore.R\.m2\repository\org\jspecify\jspecify\1.0.0\jspecify-1.0.0.jar;C:\Users\Kishore.R\.m2\repository\org\seleniumhq\selenium\selenium-chrome-driver\4.41.0\selenium-chrome-driver-4.41.0.jar;C:\Users\Kishore.R\.m2\repository\com\google\auto\service\auto-service-annotations\1.1.1\auto-service-annotations-1.1.1.jar;C:\Users\Kishore.R\.m2\repository\org\seleniumhq\selenium\selenium-chromium-driver\4.41.0\selenium-chromium-driver-4.41.0.jar;C:\Users\Kishore.R\.m2\repository\org\seleniumhq\selenium\selenium-json\4.41.0\selenium-json-4.41.0.jar;C:\Users\Kishore.R\.m2\repository\org\seleniumhq\selenium\selenium-manager\4.41.0\selenium-manager-4.41.0.jar;C:\Users\Kishore.R\.m2\repository\org\seleniumhq\selenium\selenium-devtools-v143\4.41.0\selenium-devtools-v143-4.41.0.jar;C:\Users\Kishore.R\.m2\repository\org\seleniumhq\selenium\selenium-devtools-v144\4.41.0\selenium-devtools-v144-4.41.0.jar;C:\Users\Kishore.R\.m2\repository\org\seleniumhq\selenium\selenium-devtools-v145\4.41.0\selenium-devtools-v145-4.41.0.jar;C:\Users\Kishore.R\.m2\repository\org\seleniumhq\selenium\selenium-edge-driver\4.41.0\selenium-edge-driver-4.41.0.jar;C:\Users\Kishore.R\.m2\repository\org\seleniumhq\selenium\selenium-firefox-driver\4.41.0\selenium-firefox-driver-4.41.0.jar;C:\Users\Kishore.R\.m2\repository\org\seleniumhq\selenium\selenium-http\4.41.0\selenium-http-4.41.0.jar;C:\Users\Kishore.R\.m2\repository\org\seleniumhq\selenium\selenium-ie-driver\4.41.0\selenium-ie-driver-4.41.0.jar;C:\Users\Kishore.R\.m2\repository\org\seleniumhq\selenium\selenium-remote-driver\4.41.0\selenium-remote-driver-4.41.0.jar;C:\Users\Kishore.R\.m2\repository\com\google\guava\guava\33.5.0-jre\guava-33.5.0-jre.jar;C:\Users\Kishore.R\.m2\repository\com\google\guava\failureaccess\1.0.3\failureaccess-1.0.3.jar;C:\Users\Kishore.R\.m2\repository\com\google\guava\listenablefuture\9999.0-empty-to-avoid-conflict-with-guava\listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar;C:\Users\Kishore.R\.m2\repository\com\google\errorprone\error_prone_annotations\2.41.0\error_prone_annotations-2.41.0.jar;C:\Users\Kishore.R\.m2\repository\com\google\j2objc\j2objc-annotations\3.1\j2objc-annotations-3.1.jar;C:\Users\Kishore.R\.m2\repository\io\opentelemetry\opentelemetry-api\1.59.0\opentelemetry-api-1.59.0.jar;C:\Users\Kishore.R\.m2\repository\io\opentelemetry\opentelemetry-context\1.59.0\opentelemetry-context-1.59.0.jar;C:\Users\Kishore.R\.m2\repository\io\opentelemetry\opentelemetry-common\1.59.0\opentelemetry-common-1.59.0.jar;C:\Users\Kishore.R\.m2\repository\io\opentelemetry\opentelemetry-exporter-logging\1.59.0\opentelemetry-exporter-logging-1.59.0.jar;C:\Users\Kishore.R\.m2\repository\io\opentelemetry\opentelemetry-sdk-common\1.59.0\opentelemetry-sdk-common-1.59.0.jar;C:\Users\Kishore.R\.m2\repository\io\opentelemetry\opentelemetry-sdk-extension-autoconfigure-spi\1.59.0\opentelemetry-sdk-extension-autoconfigure-spi-1.59.0.jar;C:\Users\Kishore.R\.m2\repository\io\opentelemetry\opentelemetry-sdk-extension-autoconfigure\1.59.0\opentelemetry-sdk-extension-autoconfigure-1.59.0.jar;C:\Users\Kishore.R\.m2\repository\io\opentelemetry\opentelemetry-sdk-trace\1.59.0\opentelemetry-sdk-trace-1.59.0.jar;C:\Users\Kishore.R\.m2\repository\io\opentelemetry\opentelemetry-sdk\1.59.0\opentelemetry-sdk-1.59.0.jar;C:\Users\Kishore.R\.m2\repository\io\opentelemetry\opentelemetry-sdk-metrics\1.59.0\opentelemetry-sdk-metrics-1.59.0.jar;C:\Users\Kishore.R\.m2\repository\io\opentelemetry\opentelemetry-sdk-logs\1.59.0\opentelemetry-sdk-logs-1.59.0.jar;C:\Users\Kishore.R\.m2\repository\net\bytebuddy\byte-buddy\1.18.5\byte-buddy-1.18.5.jar;C:\Users\Kishore.R\.m2\repository\org\seleniumhq\selenium\selenium-os\4.41.0\selenium-os-4.41.0.jar;C:\Users\Kishore.R\.m2\repository\org\seleniumhq\selenium\selenium-safari-driver\4.41.0\selenium-safari-driver-4.41.0.jar;C:\Users\Kishore.R\.m2\repository\org\seleniumhq\selenium\selenium-support\4.41.0\selenium-support-4.41.0.jar;C:\Users\Kishore.R\.m2\repository\org\projectlombok\lombok\1.18.32\lombok-1.18.32.jar;C:\Users\Kishore.R\.m2\repository\com\aventstack\extentreports\5.1.1\extentreports-5.1.1.jar;C:\Users\Kishore.R\.m2\repository\io\reactivex\rxjava3\rxjava\3.1.6\rxjava-3.1.6.jar;C:\Users\Kishore.R\.m2\repository\org\reactivestreams\reactive-streams\1.0.4\reactive-streams-1.0.4.jar;C:\Users\Kishore.R\.m2\repository\org\freemarker\freemarker\2.3.32\freemarker-2.3.32.jar;C:\Users\Kishore.R\.m2\repository\com\google\code\gson\gson\2.10.1\gson-2.10.1.jar;C:\Users\Kishore.R\.m2\repository\org\testng\testng\7.11.0\testng-7.11.0.jar;C:\Users\Kishore.R\.m2\repository\org\slf4j\slf4j-api\2.0.16\slf4j-api-2.0.16.jar;C:\Users\Kishore.R\.m2\repository\org\jcommander\jcommander\1.83\jcommander-1.83.jar;C:\Users\Kishore.R\.m2\repository\org\webjars\jquery\3.7.1\jquery-3.7.1.jar;C:\Users\Kishore.R\.m2\repository\com\sun\mail\jakarta.mail\2.0.1\jakarta.mail-2.0.1.jar;C:\Users\Kishore.R\.m2\repository\com\sun\activation\jakarta.activation\2.0.1\jakarta.activation-2.0.1.jar;C:\Users\Kishore.R\.m2\repository\org\apache\logging\log4j\log4j-core\2.23.1\log4j-core-2.23.1.jar;C:\Users\Kishore.R\.m2\repository\org\apache\logging\log4j\log4j-api\2.23.1\log4j-api-2.23.1.jar;"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="user.home" value="C:\Users\Kishore.R"/>
+    <property name="HrRqtUsername" value="HRUSER"/>
+    <property name="user.language" value="en"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.version.date" value="2025-10-21"/>
+    <property name="java.home" value="C:\Program Files\Java\jdk-21"/>
+    <property name="file.separator" value="\"/>
+    <property name="basedir" value="C:\Users\Kishore.R\Documents\GitHub\roadmap"/>
+    <property name="style.color" value="always"/>
+    <property name="java.vm.compressedOopsMode" value="Zero based"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="DBPassword" value="AUTOJEN27"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="AshokPassword" value="TvsA@2024"/>
+    <property name="surefire.real.class.path" value="C:\Users\Kishore.R\AppData\Local\Temp\surefire18286934509483531004\surefirebooter-20260325112459052_3.jar"/>
+    <property name="user.script" value=""/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="java.runtime.version" value="21.0.9+7-LTS-338"/>
+    <property name="user.name" value="Kishore.R"/>
+    <property name="HRMRequestUser" value="THILADMIN"/>
+    <property name="TvsPassword" value="RoaU@2025"/>
+    <property name="stdout.encoding" value="Cp1252"/>
+    <property name="path.separator" value=";"/>
+    <property name="os.version" value="10.0"/>
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="AshokUsername" value="TVSPURMGR"/>
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
+    <property name="platformName" value="Chrome"/>
+    <property name="DBUsername" value="AUTOJEN27"/>
+    <property name="suiteXmlFiles" value="testsuites/RoadMapSuite.xml"/>
+    <property name="LoginPassword" value="RoaU@2025"/>
+    <property name="localRepository" value="C:\Users\Kishore.R\.m2\repository"/>
+    <property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/"/>
+    <property name="java.io.tmpdir" value="C:\Users\Kishore.R\AppData\Local\Temp\"/>
+    <property name="java.version" value="21.0.9"/>
+    <property name="user.dir" value="C:\Users\Kishore.R\Documents\GitHub\roadmap"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="GaneshPassword" value="KarE@2025"/>
+    <property name="HRMSelfApprovePassword" value="KsrA@2024"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="sun.os.patch.level" value=""/>
+    <property name="HariUsername" value="ROAUMGR"/>
+    <property name="url" value="https://autojen.roadmaperp.com:8449/ords/r/autojen27/loginpage/login"/>
+    <property name="native.encoding" value="Cp1252"/>
+    <property name="java.library.path" value="C:\Program Files\Java\jdk-21\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:/Users/Kishore.R/.p2/pool/plugins/org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_17.0.10.v20240120-1143/jre/bin/server;C:/Users/Kishore.R/.p2/pool/plugins/org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_17.0.10.v20240120-1143/jre/bin;C:\Program Files\Common Files\Oracle\Java\javapath;C:\ProgramData\Oracle\Java\javapath;C:\Oracle\Middleware\Oracle_FRHome1\bin;C:\DevSuiteHome_1\jdk\jre\bin\classic;C:\DevSuiteHome_1\jdk\jre\bin;C:\DevSuiteHome_1\jdk\jre\bin\client;C:\DevSuiteHome_1\jlib;C:\DevSuiteHome_1\bin;C:\DevSuiteHome_1\jre\1.4.2\bin\client;C:\DevSuiteHome_1\jre\1.4.2\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Oracle\Middleware\Oracle_FRHome1\opmn\bin;C:\Oracle\Middleware\Oracle_FRHome1\opmn\lib;C:\Oracle\Middleware\Oracle_FRHome1\perl\bin;C:\Program Files (x86)\AOMEI Backupper;C:\Windows\System32\OpenSSH\;C:\Users\Kishore.R\AppData\Local\Microsoft\WindowsApps;C:\Users\Kishore.R\AppData\Local\GitHubDesktop\bin;C:\Windows\system32;;."/>
+    <property name="java.vm.info" value="mixed mode, sharing"/>
+    <property name="stderr.encoding" value="Cp1252"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="java.vm.version" value="21.0.9+7-LTS-338"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="HRMRequestPassword" value="ThiL@2024"/>
+    <property name="java.class.version" value="65.0"/>
+    <property name="GanesUsername" value="KAREADMIN"/>
+  </properties>
+  <testcase name="VerifyCheckPermissionEntrWithEmployeeData" classname="com.roadmapERP.EmployeePermissionTest" time="88.623">
+    <system-out><![CDATA[Extend Manager Instance Started!
+Project Name: roadmap
+Directory already exists: C:\Users\Kishore.R\Documents\GitHub\roadmap\test-output\Extentreport
+ExtentReport Path for WINDOWS: C:\Users\Kishore.R\Documents\GitHub\roadmap\test-output\Extentreport
+
+Extend Manager Instance Created!
+&amp#27;[1m&amp#27;[35m Your System UUID : E68506CC-26C3-11B2-A85C-B60F511D16D0&amp#27;[0m&amp#27;[0m
+25-03-2026 11:25:09 ReportLoger INFO  [main] - Rows: 20, Columns: 10
+25-03-2026 11:25:09 ReportLoger INFO  [main] - Read all data from sheet: PR Details successfully.
+25-03-2026 11:25:09 ReportLoger INFO  [main] - Rows: 10, Columns: 20
+25-03-2026 11:25:09 ReportLoger INFO  [main] - Read all data from sheet: PO Details successfully.
+25-03-2026 11:25:09 ReportLoger INFO  [main] - Rows: 3, Columns: 20
+25-03-2026 11:25:09 ReportLoger INFO  [main] - Read all data from sheet: POA Details successfully.
+25-03-2026 11:25:09 ReportLoger INFO  [main] - Rows: 3, Columns: 20
+25-03-2026 11:25:09 ReportLoger INFO  [main] - Read all data from sheet: PO _ITEM_MATERIAL successfully.
+25-03-2026 11:25:10 ReportLoger INFO  [main] - Rows: 17, Columns: 20
+25-03-2026 11:25:10 ReportLoger INFO  [main] - Read all data from sheet: SO Details successfully.
+25-03-2026 11:25:10 ReportLoger INFO  [main] - Rows: 6, Columns: 20
+25-03-2026 11:25:10 ReportLoger INFO  [main] - Read all data from sheet: Customer SO Details successfully.
+25-03-2026 11:25:10 ReportLoger INFO  [main] - Rows: 4, Columns: 20
+25-03-2026 11:25:10 ReportLoger INFO  [main] - Read all data from sheet: Open Sales successfully.
+25-03-2026 11:25:10 ReportLoger INFO  [main] - Rows: 4, Columns: 20
+25-03-2026 11:25:10 ReportLoger INFO  [main] - Read all data from sheet: Open Sales successfully.
+25-03-2026 11:25:10 ReportLoger INFO  [main] - Rows: 14, Columns: 20
+25-03-2026 11:25:10 ReportLoger INFO  [main] - Read all data from sheet: SI Details successfully.
+Extent Report started!
+RetryListener is NOT PRESENT in xml
+License Key Validated Successfully with your System UUID
+Launching Chrome in headful Mode
+VerifyCheckPermissionEntrWithEmployeeData started!
+25-03-2026 11:25:15 Listener INFO  [main] - VerifyCheckPermissionEntrWithEmployeeData started!
+25-03-2026 11:25:23 ReportLoger INFO  [main] - [commonfunctions.CommonFunctions:205] - HRUSER User Logged In Successfully
+25-03-2026 11:25:28 ReportLoger INFO  [main] - [commonfunctions.CommonFunctions:2445] - Navigated To LEAVE/ENCASH./PERMISSION/COMP.OFF REQUEST
+25-03-2026 11:25:32 ReportLoger INFO  [main] - [commonfunctions.payroll.AttendanceLeaveFunctions:628] - Permission Button Is Clicked
+25-03-2026 11:25:33 ReportLoger INFO  [main] - [commonfunctions.payroll.AttendanceLeaveFunctions:633] - Permission Add Button Is Clicked
+25-03-2026 11:25:44 ReportLoger INFO  [main] - [commonfunctions.CommonFunctions:358] - Searched and selected 'LIYA' in Filter
+25-03-2026 11:25:45 ReportLoger INFO  [main] - [commonfunctions.payroll.AttendanceLeaveFunctions:692] - Permission From Date is Entered
+25-03-2026 11:25:46 ReportLoger INFO  [main] - [commonfunctions.payroll.AttendanceLeaveFunctions:714] - Permission Time From is Entered
+25-03-2026 11:25:46 ReportLoger INFO  [main] - [commonfunctions.payroll.AttendanceLeaveFunctions:719] - Permission Time To is Entered
+25-03-2026 11:25:51 ReportLoger INFO  [main] - [commonfunctions.payroll.AttendanceLeaveFunctions:839] - Permssion No is:PRMN-2526-00568
+25-03-2026 11:25:51 ReportLoger INFO  [main] - [commonfunctions.payroll.AttendanceLeaveFunctions:841] - Permission Entry is Saved
+25-03-2026 11:25:54 ReportLoger INFO  [main] - [commonfunctions.payroll.AttendanceLeaveFunctions:845] - Post Button Is Clicked Sucessfully
+25-03-2026 11:26:06 ReportLoger INFO  [main] - [commonfunctions.CommonFunctions:358] - Searched and selected 'HARIKRISHNA' in Filter
+25-03-2026 11:26:06 ReportLoger INFO  [main] - [commonfunctions.payroll.AttendanceLeaveFunctions:877] - Forward User is Selected
+25-03-2026 11:26:06 ReportLoger INFO  [main] - [commonfunctions.payroll.AttendanceLeaveFunctions:882] - Ok Button Is Clicked
+25-03-2026 11:26:12 ReportLoger INFO  [main] - [utils.RestUtils:50] - API Execution started !!!
+25-03-2026 11:26:13 ReportLoger INFO  [main] - [utils.RestUtils:54] - Setting Base https://autojen.roadmaperp.com:8449/ords/autojen27/automation_testing/wf_doc_aprove URI in API as ---> https://autojen.roadmaperp.com:8449/ords/autojen27/automation_testing/wf_doc_aprove
+25-03-2026 11:26:13 ReportLoger INFO  [main] - [utils.RestUtils:100] - Adding Query param Key(p_bu) with Value(ROAU)
+25-03-2026 11:26:13 ReportLoger INFO  [main] - [utils.RestUtils:100] - Adding Query param Key(p_doc_no) with Value(PRMN-2526-00568)
+25-03-2026 11:26:13 ReportLoger INFO  [main] - [utils.RestUtils:100] - Adding Query param Key(p_from_empid) with Value(EMP0001)
+25-03-2026 11:26:13 ReportLoger INFO  [main] - [utils.RestUtils:100] - Adding Query param Key(p_plnt) with Value(U1)
+25-03-2026 11:26:13 ReportLoger INFO  [main] - [utils.RestUtils:100] - Adding Query param Key(p_user) with Value(ROAUMGR)
+25-03-2026 11:26:13 ReportLoger INFO  [main] - [utils.RestUtils:100] - Adding Query param Key(p_wfdc_act) with Value(A)
+Request method:	POST
+Request URI:	https://autojen.roadmaperp.com:8449/ords/autojen27/automation_testing/wf_doc_aprove?p_bu=ROAU&p_doc_no=PRMN-2526-00568&p_from_empid=EMP0001&p_plnt=U1&p_user=ROAUMGR&p_wfdc_act=A
+Proxy:			<none>
+Request params:	<none>
+Query params:	p_bu=ROAU
+				p_doc_no=PRMN-2526-00568
+				p_from_empid=EMP0001
+				p_plnt=U1
+				p_user=ROAUMGR
+				p_wfdc_act=A
+Form params:	<none>
+Path params:	<none>
+Headers:		Accept=*/*
+				Content-Type=*/*; charset=ISO-8859-1
+Cookies:		<none>
+Multiparts:		<none>
+Body:			<none>
+25-03-2026 11:26:14 ReportLoger INFO  [main] - [utils.RestUtils:142] - Status Code 200
+
+25-03-2026 11:26:14 ReportLoger INFO  [main] - [utils.RestUtils:143] - response is 
+25-03-2026 11:26:14 ReportLoger INFO  [main] - [commonfunctions.CommonFunctions:2626] - Displayed Approval Response Header: EMPLOYEE PERMISSION Document is Approved.
+25-03-2026 11:26:14 ReportLoger INFO  [main] - [commonfunctions.CommonFunctions:2627] - Displayed Approval Response Status Code: 200
+25-03-2026 11:26:14 ReportLoger INFO  [main] - [commonfunctions.CommonFunctions:2630] - Verified Approval Response Header
+25-03-2026 11:26:14 ReportLoger INFO  [main] - [commonfunctions.CommonFunctions:2633] - Verified Approval Response Status Code
+25-03-2026 11:26:18 ReportLoger INFO  [main] - [commonfunctions.CommonFunctions:2445] - Navigated To LEAVE/ENCASH./PERMISSION/COMP.OFF REQUEST
+25-03-2026 11:26:22 ReportLoger INFO  [main] - [commonfunctions.payroll.AttendanceLeaveFunctions:518] - Permission Button Is Clicked
+25-03-2026 11:26:32 ReportLoger INFO  [main] - [commonfunctions.CommonFunctions:358] - Searched and selected 'LIYA' in Filter
+25-03-2026 11:26:33 ReportLoger INFO  [main] - [commonfunctions.payroll.AttendanceLeaveFunctions:529] - Permission Type isPermission
+25-03-2026 11:26:38 ReportLoger INFO  [main] - [commonfunctions.payroll.AttendanceLeaveFunctions:537] - Permission Document Is Clicked
+25-03-2026 11:26:41 ReportLoger INFO  [main] - [commonfunctions.payroll.AttendanceLeaveFunctions:542] - Permission Document is Reversed
+25-03-2026 11:26:43 ReportLoger INFO  [main] - [commonfunctions.CommonFunctions:146] - Logout Successfully
+VerifyCheckPermissionEntrWithEmployeeData passed!
+25-03-2026 11:26:44 Listener INFO  [main] - VerifyCheckPermissionEntrWithEmployeeData passed!
+25-03-2026 11:26:44 Listener INFO  [main] - methodName VerifyCheckPermissionEntrWithEmployeeData
+]]></system-out>
+    <system-err><![CDATA[SLF4J(W): No SLF4J providers were found.
+SLF4J(W): Defaulting to no-operation (NOP) logger implementation
+SLF4J(W): See https://www.slf4j.org/codes.html#noProviders for further details.
+Mar 25, 2026 11:25:13 AM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+WARNING: Unable to find an exact match for CDP version 146, returning the closest version; found: 145; Please update to a Selenium version that supports CDP version 146
+]]></system-err>
+  </testcase>
+  <testcase name="VerifyBasedOnTimeAndHoursCheckPermission" classname="com.roadmapERP.EmployeePermissionTest" time="0.005">
+    <system-out><![CDATA[VerifyBasedOnTimeAndHoursCheckPermission started!
+25-03-2026 11:26:44 Listener INFO  [main] - VerifyBasedOnTimeAndHoursCheckPermission started!
+VerifyBasedOnTimeAndHoursCheckPermission passed!
+25-03-2026 11:26:44 Listener INFO  [main] - VerifyBasedOnTimeAndHoursCheckPermission passed!
+25-03-2026 11:26:44 Listener INFO  [main] - methodName VerifyBasedOnTimeAndHoursCheckPermission
+]]></system-out>
+  </testcase>
+  <testcase name="VerifyFetchValuesOfCheckPermission" classname="com.roadmapERP.EmployeePermissionTest" time="0.009">
+    <system-out><![CDATA[VerifyFetchValuesOfCheckPermission started!
+25-03-2026 11:26:44 Listener INFO  [main] - VerifyFetchValuesOfCheckPermission started!
+VerifyFetchValuesOfCheckPermission passed!
+25-03-2026 11:26:44 Listener INFO  [main] - VerifyFetchValuesOfCheckPermission passed!
+25-03-2026 11:26:44 Listener INFO  [main] - methodName VerifyFetchValuesOfCheckPermission
+]]></system-out>
+  </testcase>
+  <testcase name="VerifyCheckOnDutyEntryWithEmployeeData" classname="com.roadmapERP.EmployeePermissionTest" time="85.203">
+    <system-out><![CDATA[VerifyCheckOnDutyEntryWithEmployeeData started!
+25-03-2026 11:26:44 Listener INFO  [main] - VerifyCheckOnDutyEntryWithEmployeeData started!
+25-03-2026 11:26:49 ReportLoger INFO  [main] - [commonfunctions.CommonFunctions:205] - HRUSER User Logged In Successfully
+25-03-2026 11:26:54 ReportLoger INFO  [main] - [commonfunctions.CommonFunctions:2445] - Navigated To LEAVE/ENCASH./PERMISSION/COMP.OFF REQUEST
+25-03-2026 11:26:57 ReportLoger INFO  [main] - [commonfunctions.payroll.AttendanceLeaveFunctions:628] - Permission Button Is Clicked
+25-03-2026 11:26:58 ReportLoger INFO  [main] - [commonfunctions.payroll.AttendanceLeaveFunctions:633] - Permission Add Button Is Clicked
+25-03-2026 11:27:09 ReportLoger INFO  [main] - [commonfunctions.CommonFunctions:358] - Searched and selected 'LIYA' in Filter
+25-03-2026 11:27:11 ReportLoger INFO  [main] - [commonfunctions.payroll.AttendanceLeaveFunctions:778] - permission typeOn-Duty (Day)is selected
+25-03-2026 11:27:12 ReportLoger INFO  [main] - [commonfunctions.payroll.AttendanceLeaveFunctions:797] - On Duty from date is entered
+25-03-2026 11:27:13 ReportLoger INFO  [main] - [commonfunctions.payroll.AttendanceLeaveFunctions:817] - On Duty Reference is entered
+25-03-2026 11:27:18 ReportLoger INFO  [main] - [commonfunctions.payroll.AttendanceLeaveFunctions:839] - Permssion No is:PRMN-2526-00569
+25-03-2026 11:27:18 ReportLoger INFO  [main] - [commonfunctions.payroll.AttendanceLeaveFunctions:841] - Permission Entry is Saved
+25-03-2026 11:27:21 ReportLoger INFO  [main] - [commonfunctions.payroll.AttendanceLeaveFunctions:845] - Post Button Is Clicked Sucessfully
+25-03-2026 11:27:33 ReportLoger INFO  [main] - [commonfunctions.CommonFunctions:358] - Searched and selected 'HARIKRISHNA' in Filter
+25-03-2026 11:27:33 ReportLoger INFO  [main] - [commonfunctions.payroll.AttendanceLeaveFunctions:877] - Forward User is Selected
+25-03-2026 11:27:33 ReportLoger INFO  [main] - [commonfunctions.payroll.AttendanceLeaveFunctions:882] - Ok Button Is Clicked
+25-03-2026 11:27:39 ReportLoger INFO  [main] - [utils.RestUtils:50] - API Execution started !!!
+25-03-2026 11:27:39 ReportLoger INFO  [main] - [utils.RestUtils:54] - Setting Base https://autojen.roadmaperp.com:8449/ords/autojen27/automation_testing/wf_doc_aprove URI in API as ---> https://autojen.roadmaperp.com:8449/ords/autojen27/automation_testing/wf_doc_aprove
+25-03-2026 11:27:39 ReportLoger INFO  [main] - [utils.RestUtils:100] - Adding Query param Key(p_bu) with Value(ROAU)
+25-03-2026 11:27:39 ReportLoger INFO  [main] - [utils.RestUtils:100] - Adding Query param Key(p_doc_no) with Value(PRMN-2526-00569)
+25-03-2026 11:27:39 ReportLoger INFO  [main] - [utils.RestUtils:100] - Adding Query param Key(p_from_empid) with Value(EMP0001)
+25-03-2026 11:27:39 ReportLoger INFO  [main] - [utils.RestUtils:100] - Adding Query param Key(p_plnt) with Value(U1)
+25-03-2026 11:27:39 ReportLoger INFO  [main] - [utils.RestUtils:100] - Adding Query param Key(p_user) with Value(ROAUMGR)
+25-03-2026 11:27:39 ReportLoger INFO  [main] - [utils.RestUtils:100] - Adding Query param Key(p_wfdc_act) with Value(A)
+Request method:	POST
+Request URI:	https://autojen.roadmaperp.com:8449/ords/autojen27/automation_testing/wf_doc_aprove?p_bu=ROAU&p_doc_no=PRMN-2526-00569&p_from_empid=EMP0001&p_plnt=U1&p_user=ROAUMGR&p_wfdc_act=A
+Proxy:			<none>
+Request params:	<none>
+Query params:	p_bu=ROAU
+				p_doc_no=PRMN-2526-00569
+				p_from_empid=EMP0001
+				p_plnt=U1
+				p_user=ROAUMGR
+				p_wfdc_act=A
+Form params:	<none>
+Path params:	<none>
+Headers:		Accept=*/*
+				Content-Type=*/*; charset=ISO-8859-1
+Cookies:		<none>
+Multiparts:		<none>
+Body:			<none>
+25-03-2026 11:27:39 ReportLoger INFO  [main] - [utils.RestUtils:142] - Status Code 200
+
+25-03-2026 11:27:39 ReportLoger INFO  [main] - [utils.RestUtils:143] - response is 
+25-03-2026 11:27:39 ReportLoger INFO  [main] - [commonfunctions.CommonFunctions:2626] - Displayed Approval Response Header: EMPLOYEE PERMISSION Document is Approved.
+25-03-2026 11:27:39 ReportLoger INFO  [main] - [commonfunctions.CommonFunctions:2627] - Displayed Approval Response Status Code: 200
+25-03-2026 11:27:39 ReportLoger INFO  [main] - [commonfunctions.CommonFunctions:2630] - Verified Approval Response Header
+25-03-2026 11:27:39 ReportLoger INFO  [main] - [commonfunctions.CommonFunctions:2633] - Verified Approval Response Status Code
+25-03-2026 11:27:43 ReportLoger INFO  [main] - [commonfunctions.CommonFunctions:2445] - Navigated To LEAVE/ENCASH./PERMISSION/COMP.OFF REQUEST
+25-03-2026 11:27:47 ReportLoger INFO  [main] - [commonfunctions.payroll.AttendanceLeaveFunctions:518] - Permission Button Is Clicked
+25-03-2026 11:27:57 ReportLoger INFO  [main] - [commonfunctions.CommonFunctions:358] - Searched and selected 'LIYA' in Filter
+25-03-2026 11:27:59 ReportLoger INFO  [main] - [commonfunctions.payroll.AttendanceLeaveFunctions:529] - Permission Type isOn - Duty(Day)
+25-03-2026 11:28:03 ReportLoger INFO  [main] - [commonfunctions.payroll.AttendanceLeaveFunctions:537] - Permission Document Is Clicked
+25-03-2026 11:28:06 ReportLoger INFO  [main] - [commonfunctions.payroll.AttendanceLeaveFunctions:542] - Permission Document is Reversed
+25-03-2026 11:28:08 ReportLoger INFO  [main] - [commonfunctions.CommonFunctions:146] - Logout Successfully
+VerifyCheckOnDutyEntryWithEmployeeData passed!
+25-03-2026 11:28:09 Listener INFO  [main] - VerifyCheckOnDutyEntryWithEmployeeData passed!
+25-03-2026 11:28:09 Listener INFO  [main] - methodName VerifyCheckOnDutyEntryWithEmployeeData
+]]></system-out>
+  </testcase>
+  <testcase name="VerifyDateWiseCheckOnDutyEntryWithEmployeeData" classname="com.roadmapERP.EmployeePermissionTest" time="0.006">
+    <system-out><![CDATA[VerifyDateWiseCheckOnDutyEntryWithEmployeeData started!
+25-03-2026 11:28:09 Listener INFO  [main] - VerifyDateWiseCheckOnDutyEntryWithEmployeeData started!
+VerifyDateWiseCheckOnDutyEntryWithEmployeeData passed!
+25-03-2026 11:28:09 Listener INFO  [main] - VerifyDateWiseCheckOnDutyEntryWithEmployeeData passed!
+25-03-2026 11:28:09 Listener INFO  [main] - methodName VerifyDateWiseCheckOnDutyEntryWithEmployeeData
+]]></system-out>
+  </testcase>
+  <testcase name="VerifyFetchValuesOfCheckOnDutyEntryWithEmployeeData" classname="com.roadmapERP.EmployeePermissionTest" time="0.001">
+    <system-out><![CDATA[VerifyFetchValuesOfCheckOnDutyEntryWithEmployeeData started!
+25-03-2026 11:28:09 Listener INFO  [main] - VerifyFetchValuesOfCheckOnDutyEntryWithEmployeeData started!
+VerifyFetchValuesOfCheckOnDutyEntryWithEmployeeData passed!
+25-03-2026 11:28:09 Listener INFO  [main] - VerifyFetchValuesOfCheckOnDutyEntryWithEmployeeData passed!
+25-03-2026 11:28:09 Listener INFO  [main] - methodName VerifyFetchValuesOfCheckOnDutyEntryWithEmployeeData
+]]></system-out>
+  </testcase>
+  <testcase name="CheckPermissionOnDutybasedonFowardtoAprovalReord" classname="com.roadmapERP.EmployeePermissionTest" time="142.968">
+    <system-out><![CDATA[CheckPermissionOnDutybasedonFowardtoAprovalReord started!
+25-03-2026 11:28:09 Listener INFO  [main] - CheckPermissionOnDutybasedonFowardtoAprovalReord started!
+25-03-2026 11:28:14 ReportLoger INFO  [main] - [commonfunctions.CommonFunctions:205] - HRUSER User Logged In Successfully
+25-03-2026 11:28:18 ReportLoger INFO  [main] - [commonfunctions.CommonFunctions:2445] - Navigated To LEAVE/ENCASH./PERMISSION/COMP.OFF REQUEST
+25-03-2026 11:28:22 ReportLoger INFO  [main] - [commonfunctions.payroll.AttendanceLeaveFunctions:628] - Permission Button Is Clicked
+25-03-2026 11:28:23 ReportLoger INFO  [main] - [commonfunctions.payroll.AttendanceLeaveFunctions:633] - Permission Add Button Is Clicked
+25-03-2026 11:28:33 ReportLoger INFO  [main] - [commonfunctions.CommonFunctions:358] - Searched and selected 'LIYA' in Filter
+25-03-2026 11:28:35 ReportLoger INFO  [main] - [commonfunctions.payroll.AttendanceLeaveFunctions:692] - Permission From Date is Entered
+25-03-2026 11:28:35 ReportLoger INFO  [main] - [commonfunctions.payroll.AttendanceLeaveFunctions:714] - Permission Time From is Entered
+25-03-2026 11:28:35 ReportLoger INFO  [main] - [commonfunctions.payroll.AttendanceLeaveFunctions:719] - Permission Time To is Entered
+25-03-2026 11:28:40 ReportLoger INFO  [main] - [commonfunctions.payroll.AttendanceLeaveFunctions:839] - Permssion No is:PRMN-2526-00570
+25-03-2026 11:28:40 ReportLoger INFO  [main] - [commonfunctions.payroll.AttendanceLeaveFunctions:841] - Permission Entry is Saved
+25-03-2026 11:28:44 ReportLoger INFO  [main] - [commonfunctions.payroll.AttendanceLeaveFunctions:845] - Post Button Is Clicked Sucessfully
+25-03-2026 11:28:55 ReportLoger INFO  [main] - [commonfunctions.CommonFunctions:358] - Searched and selected 'HARIKRISHNA' in Filter
+25-03-2026 11:28:55 ReportLoger INFO  [main] - [commonfunctions.payroll.AttendanceLeaveFunctions:877] - Forward User is Selected
+25-03-2026 11:28:55 ReportLoger INFO  [main] - [commonfunctions.payroll.AttendanceLeaveFunctions:882] - Ok Button Is Clicked
+25-03-2026 11:29:01 ReportLoger INFO  [main] - [utils.RestUtils:50] - API Execution started !!!
+25-03-2026 11:29:01 ReportLoger INFO  [main] - [utils.RestUtils:54] - Setting Base https://autojen.roadmaperp.com:8449/ords/autojen27/automation_testing/wf_doc_aprove URI in API as ---> https://autojen.roadmaperp.com:8449/ords/autojen27/automation_testing/wf_doc_aprove
+25-03-2026 11:29:01 ReportLoger INFO  [main] - [utils.RestUtils:100] - Adding Query param Key(p_bu) with Value(ROAU)
+25-03-2026 11:29:01 ReportLoger INFO  [main] - [utils.RestUtils:100] - Adding Query param Key(p_doc_no) with Value(PRMN-2526-00570)
+25-03-2026 11:29:01 ReportLoger INFO  [main] - [utils.RestUtils:100] - Adding Query param Key(p_from_empid) with Value(EMP0001)
+25-03-2026 11:29:01 ReportLoger INFO  [main] - [utils.RestUtils:100] - Adding Query param Key(p_plnt) with Value(U1)
+25-03-2026 11:29:01 ReportLoger INFO  [main] - [utils.RestUtils:100] - Adding Query param Key(p_user) with Value(ROAUMGR)
+25-03-2026 11:29:01 ReportLoger INFO  [main] - [utils.RestUtils:100] - Adding Query param Key(p_wfdc_act) with Value(A)
+Request method:	POST
+Request URI:	https://autojen.roadmaperp.com:8449/ords/autojen27/automation_testing/wf_doc_aprove?p_bu=ROAU&p_doc_no=PRMN-2526-00570&p_from_empid=EMP0001&p_plnt=U1&p_user=ROAUMGR&p_wfdc_act=A
+Proxy:			<none>
+Request params:	<none>
+Query params:	p_bu=ROAU
+				p_doc_no=PRMN-2526-00570
+				p_from_empid=EMP0001
+				p_plnt=U1
+				p_user=ROAUMGR
+				p_wfdc_act=A
+Form params:	<none>
+Path params:	<none>
+Headers:		Accept=*/*
+				Content-Type=*/*; charset=ISO-8859-1
+Cookies:		<none>
+Multiparts:		<none>
+Body:			<none>
+25-03-2026 11:29:01 ReportLoger INFO  [main] - [utils.RestUtils:142] - Status Code 200
+
+25-03-2026 11:29:01 ReportLoger INFO  [main] - [utils.RestUtils:143] - response is 
+25-03-2026 11:29:01 ReportLoger INFO  [main] - [commonfunctions.CommonFunctions:2626] - Displayed Approval Response Header: EMPLOYEE PERMISSION Document is Approved.
+25-03-2026 11:29:01 ReportLoger INFO  [main] - [commonfunctions.CommonFunctions:2627] - Displayed Approval Response Status Code: 200
+25-03-2026 11:29:01 ReportLoger INFO  [main] - [commonfunctions.CommonFunctions:2630] - Verified Approval Response Header
+25-03-2026 11:29:01 ReportLoger INFO  [main] - [commonfunctions.CommonFunctions:2633] - Verified Approval Response Status Code
+25-03-2026 11:29:06 ReportLoger INFO  [main] - [commonfunctions.CommonFunctions:2445] - Navigated To LEAVE/ENCASH./PERMISSION/COMP.OFF REQUEST
+25-03-2026 11:29:10 ReportLoger INFO  [main] - [commonfunctions.payroll.AttendanceLeaveFunctions:518] - Permission Button Is Clicked
+25-03-2026 11:29:21 ReportLoger INFO  [main] - [commonfunctions.CommonFunctions:358] - Searched and selected 'LIYA' in Filter
+25-03-2026 11:29:22 ReportLoger INFO  [main] - [commonfunctions.payroll.AttendanceLeaveFunctions:529] - Permission Type isPermission
+25-03-2026 11:29:27 ReportLoger INFO  [main] - [commonfunctions.payroll.AttendanceLeaveFunctions:537] - Permission Document Is Clicked
+25-03-2026 11:29:30 ReportLoger INFO  [main] - [commonfunctions.payroll.AttendanceLeaveFunctions:542] - Permission Document is Reversed
+25-03-2026 11:30:01 ReportLoger INFO  [main] - [utils.WebDriverBase:826] - Element is not clickable in the page //span[@class='t-Icon fa fa-sign-out'] Exception org.openqa.selenium.TimeoutException: timeout: Timed out receiving message from renderer: 30.000
+  (Session info: chrome=146.0.7680.164)
+Build info: version: '4.41.0', revision: '9fc754f'
+System info: os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.9'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [807145ddd545134a2fd3d1b9691d0867, executeScript {script=arguments[0].click();, args=[{element-6066-11e4-a52e-4f735466cecf=f.8FAFEBDF4995A3F380760CE87335F50D.d.4FBF2C5FF155706B959F5DFDE77AC30D.e.2858}]}]
+Capabilities {acceptInsecureCerts: true, browserName: chrome, browserVersion: 146.0.7680.164, chrome: {chromedriverVersion: 146.0.7680.165 (4b989da09e1..., userDataDir: C:\Users\Kishore.R\AppData\...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:62943}, goog:processID: 10932, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:62943/devtoo..., se:cdpVersion: 146.0.7680.164, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 807145ddd545134a2fd3d1b9691d0867
+25-03-2026 11:30:31 ReportLoger INFO  [main] - [utils.WebDriverBase:1754] - Unable to locate the element: //div[contains(@class,'t-Login-region t-Form')], with the Exception: org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element found by By.xpath: //div[contains(@class,'t-Login-region t-Form')], but... org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"xpath","selector":"//div[contains(@class,'t-Login-region t-Form')]"}.
+(tried for 30 seconds with 500 milliseconds interval)
+Build info: version: '4.41.0', revision: '9fc754f'
+System info: os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.9'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: true, browserName: chrome, browserVersion: 146.0.7680.164, chrome: {chromedriverVersion: 146.0.7680.165 (4b989da09e1..., userDataDir: C:\Users\Kishore.R\AppData\...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:62943}, goog:processID: 10932, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:62943/devtoo..., se:cdpVersion: 146.0.7680.164, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 807145ddd545134a2fd3d1b9691d0867
+CheckPermissionOnDutybasedonFowardtoAprovalReord passed!
+25-03-2026 11:30:32 Listener INFO  [main] - CheckPermissionOnDutybasedonFowardtoAprovalReord passed!
+25-03-2026 11:30:32 Listener INFO  [main] - methodName CheckPermissionOnDutybasedonFowardtoAprovalReord
+]]></system-out>
+  </testcase>
+  <testcase name="VerifyFieldValidationsNoteAlertWithEmployeeData" classname="com.roadmapERP.EmployeePermissionTest" time="0.006">
+    <system-out><![CDATA[VerifyFieldValidationsNoteAlertWithEmployeeData started!
+25-03-2026 11:30:32 Listener INFO  [main] - VerifyFieldValidationsNoteAlertWithEmployeeData started!
+VerifyFieldValidationsNoteAlertWithEmployeeData passed!
+25-03-2026 11:30:32 Listener INFO  [main] - VerifyFieldValidationsNoteAlertWithEmployeeData passed!
+25-03-2026 11:30:32 Listener INFO  [main] - methodName VerifyFieldValidationsNoteAlertWithEmployeeData
+]]></system-out>
+  </testcase>
+  <testcase name="CheckPermissionOnDutyBasedOnReturnToRequestRecord" classname="com.roadmapERP.EmployeePermissionTest" time="68.403">
+    <system-out><![CDATA[CheckPermissionOnDutyBasedOnReturnToRequestRecord started!
+25-03-2026 11:30:32 Listener INFO  [main] - CheckPermissionOnDutyBasedOnReturnToRequestRecord started!
+25-03-2026 11:30:37 ReportLoger INFO  [main] - [commonfunctions.CommonFunctions:205] - HRUSER User Logged In Successfully
+25-03-2026 11:30:42 ReportLoger INFO  [main] - [commonfunctions.CommonFunctions:2445] - Navigated To LEAVE/ENCASH./PERMISSION/COMP.OFF REQUEST
+25-03-2026 11:30:46 ReportLoger INFO  [main] - [commonfunctions.payroll.AttendanceLeaveFunctions:628] - Permission Button Is Clicked
+25-03-2026 11:30:47 ReportLoger INFO  [main] - [commonfunctions.payroll.AttendanceLeaveFunctions:633] - Permission Add Button Is Clicked
+25-03-2026 11:30:57 ReportLoger INFO  [main] - [commonfunctions.CommonFunctions:358] - Searched and selected 'LIYA' in Filter
+25-03-2026 11:30:59 ReportLoger INFO  [main] - [commonfunctions.payroll.AttendanceLeaveFunctions:692] - Permission From Date is Entered
+25-03-2026 11:30:59 ReportLoger INFO  [main] - [commonfunctions.payroll.AttendanceLeaveFunctions:714] - Permission Time From is Entered
+25-03-2026 11:30:59 ReportLoger INFO  [main] - [commonfunctions.payroll.AttendanceLeaveFunctions:719] - Permission Time To is Entered
+25-03-2026 11:31:04 ReportLoger INFO  [main] - [commonfunctions.payroll.AttendanceLeaveFunctions:839] - Permssion No is:PRMN-2526-00571
+25-03-2026 11:31:04 ReportLoger INFO  [main] - [commonfunctions.payroll.AttendanceLeaveFunctions:841] - Permission Entry is Saved
+25-03-2026 11:31:07 ReportLoger INFO  [main] - [commonfunctions.payroll.AttendanceLeaveFunctions:845] - Post Button Is Clicked Sucessfully
+25-03-2026 11:31:08 ReportLoger INFO  [main] - [commonfunctions.supplychainmanagement.ApprovalPageFunctions:229] - Switched To Workflow Frame
+25-03-2026 11:31:08 ReportLoger INFO  [main] - [commonfunctions.supplychainmanagement.ApprovalPageFunctions:232] - Already Displayed Document Forwarder Person: EMP0001
+25-03-2026 11:31:10 ReportLoger INFO  [main] - [commonfunctions.supplychainmanagement.ApprovalPageFunctions:248] - Workflow Approval Ok Button Clicked
+25-03-2026 11:31:13 ReportLoger INFO  [main] - [utils.RestUtils:50] - API Execution started !!!
+25-03-2026 11:31:13 ReportLoger INFO  [main] - [utils.RestUtils:54] - Setting Base https://autojen.roadmaperp.com:8449/ords/autojen27/automation_testing/wf_doc_aprove URI in API as ---> https://autojen.roadmaperp.com:8449/ords/autojen27/automation_testing/wf_doc_aprove
+25-03-2026 11:31:13 ReportLoger INFO  [main] - [utils.RestUtils:100] - Adding Query param Key(p_bu) with Value(ROAU)
+25-03-2026 11:31:13 ReportLoger INFO  [main] - [utils.RestUtils:100] - Adding Query param Key(p_doc_no) with Value(PRMN-2526-00571)
+25-03-2026 11:31:13 ReportLoger INFO  [main] - [utils.RestUtils:100] - Adding Query param Key(p_from_empid) with Value(EMP0001)
+25-03-2026 11:31:13 ReportLoger INFO  [main] - [utils.RestUtils:100] - Adding Query param Key(p_plnt) with Value(U1)
+25-03-2026 11:31:13 ReportLoger INFO  [main] - [utils.RestUtils:100] - Adding Query param Key(p_user) with Value(ROAUMGR)
+25-03-2026 11:31:13 ReportLoger INFO  [main] - [utils.RestUtils:100] - Adding Query param Key(p_wfdc_act) with Value(R)
+25-03-2026 11:31:13 ReportLoger INFO  [main] - [utils.RestUtils:100] - Adding Query param Key(p_nxt_fwd_person) with Value(EMP0002)
+Request method:	POST
+Request URI:	https://autojen.roadmaperp.com:8449/ords/autojen27/automation_testing/wf_doc_aprove?p_bu=ROAU&p_doc_no=PRMN-2526-00571&p_from_empid=EMP0001&p_plnt=U1&p_user=ROAUMGR&p_wfdc_act=R&p_nxt_fwd_person=EMP0002
+Proxy:			<none>
+Request params:	<none>
+Query params:	p_bu=ROAU
+				p_doc_no=PRMN-2526-00571
+				p_from_empid=EMP0001
+				p_plnt=U1
+				p_user=ROAUMGR
+				p_wfdc_act=R
+				p_nxt_fwd_person=EMP0002
+Form params:	<none>
+Path params:	<none>
+Headers:		Accept=*/*
+				Content-Type=*/*; charset=ISO-8859-1
+Cookies:		<none>
+Multiparts:		<none>
+Body:			<none>
+25-03-2026 11:31:14 ReportLoger INFO  [main] - [utils.RestUtils:142] - Status Code 200
+
+25-03-2026 11:31:14 ReportLoger INFO  [main] - [utils.RestUtils:143] - response is 
+25-03-2026 11:31:14 ReportLoger INFO  [main] - [commonfunctions.CommonFunctions:2700] - Displayed Returned Response Header: EMPLOYEE PERMISSION Document is Returned.
+25-03-2026 11:31:14 ReportLoger INFO  [main] - [commonfunctions.CommonFunctions:2701] - Displayed Returned Response Status Code: 200
+25-03-2026 11:31:14 ReportLoger INFO  [main] - [commonfunctions.CommonFunctions:2704] - Verified Returned Response Header
+25-03-2026 11:31:14 ReportLoger INFO  [main] - [commonfunctions.CommonFunctions:2707] - Verified Returned Response Status Code
+25-03-2026 11:31:14 ReportLoger INFO  [main] - [utils.RestUtils:50] - API Execution started !!!
+25-03-2026 11:31:14 ReportLoger INFO  [main] - [utils.RestUtils:54] - Setting Base https://autojen.roadmaperp.com:8449/ords/autojen27/automation_testing/wf_doc_aprove URI in API as ---> https://autojen.roadmaperp.com:8449/ords/autojen27/automation_testing/wf_doc_aprove
+25-03-2026 11:31:14 ReportLoger INFO  [main] - [utils.RestUtils:100] - Adding Query param Key(p_bu) with Value(ROAU)
+25-03-2026 11:31:14 ReportLoger INFO  [main] - [utils.RestUtils:100] - Adding Query param Key(p_doc_no) with Value(PRMN-2526-00571)
+25-03-2026 11:31:14 ReportLoger INFO  [main] - [utils.RestUtils:100] - Adding Query param Key(p_from_empid) with Value(EMP0002)
+25-03-2026 11:31:14 ReportLoger INFO  [main] - [utils.RestUtils:100] - Adding Query param Key(p_plnt) with Value(U1)
+25-03-2026 11:31:14 ReportLoger INFO  [main] - [utils.RestUtils:100] - Adding Query param Key(p_user) with Value(HRUSER)
+25-03-2026 11:31:14 ReportLoger INFO  [main] - [utils.RestUtils:100] - Adding Query param Key(p_wfdc_act) with Value(R)
+25-03-2026 11:31:14 ReportLoger INFO  [main] - [utils.RestUtils:100] - Adding Query param Key(p_nxt_fwd_person) with Value(EMP0002)
+Request method:	POST
+Request URI:	https://autojen.roadmaperp.com:8449/ords/autojen27/automation_testing/wf_doc_aprove?p_bu=ROAU&p_doc_no=PRMN-2526-00571&p_from_empid=EMP0002&p_plnt=U1&p_user=HRUSER&p_wfdc_act=R&p_nxt_fwd_person=EMP0002
+Proxy:			<none>
+Request params:	<none>
+Query params:	p_bu=ROAU
+				p_doc_no=PRMN-2526-00571
+				p_from_empid=EMP0002
+				p_plnt=U1
+				p_user=HRUSER
+				p_wfdc_act=R
+				p_nxt_fwd_person=EMP0002
+Form params:	<none>
+Path params:	<none>
+Headers:		Accept=*/*
+				Content-Type=*/*; charset=ISO-8859-1
+Cookies:		<none>
+Multiparts:		<none>
+Body:			<none>
+25-03-2026 11:31:14 ReportLoger INFO  [main] - [utils.RestUtils:142] - Status Code 200
+
+25-03-2026 11:31:14 ReportLoger INFO  [main] - [utils.RestUtils:143] - response is 
+25-03-2026 11:31:14 ReportLoger INFO  [main] - [commonfunctions.CommonFunctions:2700] - Displayed Returned Response Header: EMPLOYEE PERMISSION Document is Returned.
+25-03-2026 11:31:14 ReportLoger INFO  [main] - [commonfunctions.CommonFunctions:2701] - Displayed Returned Response Status Code: 200
+25-03-2026 11:31:14 ReportLoger INFO  [main] - [commonfunctions.CommonFunctions:2704] - Verified Returned Response Header
+25-03-2026 11:31:14 ReportLoger INFO  [main] - [commonfunctions.CommonFunctions:2707] - Verified Returned Response Status Code
+25-03-2026 11:31:18 ReportLoger INFO  [main] - [commonfunctions.CommonFunctions:2445] - Navigated To LEAVE/ENCASH./PERMISSION/COMP.OFF REQUEST
+25-03-2026 11:31:22 ReportLoger INFO  [main] - [commonfunctions.payroll.AttendanceLeaveFunctions:575] - Permission Button Is Clicked
+25-03-2026 11:31:32 ReportLoger INFO  [main] - [commonfunctions.CommonFunctions:358] - Searched and selected 'LIYA' in Filter
+25-03-2026 11:31:34 ReportLoger INFO  [main] - [commonfunctions.payroll.AttendanceLeaveFunctions:589] - Permission Type isPermission
+25-03-2026 11:31:36 ReportLoger INFO  [main] - [commonfunctions.payroll.AttendanceLeaveFunctions:598] - Permission Document is Clicked
+25-03-2026 11:31:39 ReportLoger INFO  [main] - [commonfunctions.payroll.AttendanceLeaveFunctions:605] - Permission Document is Cancelled
+25-03-2026 11:31:39 ReportLoger INFO  [main] - [commonfunctions.CommonFunctions:146] - Logout Successfully
+CheckPermissionOnDutyBasedOnReturnToRequestRecord passed!
+25-03-2026 11:31:40 Listener INFO  [main] - CheckPermissionOnDutyBasedOnReturnToRequestRecord passed!
+25-03-2026 11:31:40 Listener INFO  [main] - methodName CheckPermissionOnDutyBasedOnReturnToRequestRecord
+]]></system-out>
+  </testcase>
+  <testcase name="VerifyPermissionFindPageWithAllLineWiseRecord" classname="com.roadmapERP.EmployeePermissionTest" time="0.004">
+    <system-out><![CDATA[VerifyPermissionFindPageWithAllLineWiseRecord started!
+25-03-2026 11:31:40 Listener INFO  [main] - VerifyPermissionFindPageWithAllLineWiseRecord started!
+VerifyPermissionFindPageWithAllLineWiseRecord passed!
+25-03-2026 11:31:40 Listener INFO  [main] - VerifyPermissionFindPageWithAllLineWiseRecord passed!
+25-03-2026 11:31:40 Listener INFO  [main] - methodName VerifyPermissionFindPageWithAllLineWiseRecord
+]]></system-out>
+  </testcase>
+</testsuite>
