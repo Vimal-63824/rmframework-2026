@@ -33,11 +33,11 @@ public class GrnScoLocators {
 	/** @locatorType Xpath */
 	public static final String ConsumptionFrame = "//iframe[@title='Subcontract GRN Consumption Details']";
 	/** @locatorType Xpath */
-	public static final String DCDetails = "//div[@id='R5313839762432057168_ig_grid_vc']/div[3]/div[@aria-label='No data found']";
+	public static final String DCDetails = "//div[@aria-label='DC Details']/div[3]/div[@aria-label='No data found']";
 	/** @locatorType Xpath */
 	public static final String ConsumptionDetails = "//div[@id='grn_cons_ig_grid_vc']/div[3]/div[@aria-label='No data found']";
 	/** @locatorType Xpath */
-	public static final String BatchDetails = "//div[@id='R5313782158628019919_ig_grid_vc']/div[3]/div[@aria-label='No data found']";
+	public static final String BatchDetails = "//div[@aria-label='Batch Details']/div[3]/div[@aria-label='No data found']";
 	/** @locatorType Xpath */
 	public static final String ConsumptionCloseButton = "//h1[text()='Subcontract GRN Consumption Details']/../button";
 	/** @locatorType Xpath */
@@ -81,7 +81,7 @@ public class GrnScoLocators {
 
 	/** @locatorType Xpath */
 	public static final String DCNumber(int i) {
-		return "//div[@id='R5313839762432057168_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[" + i + "]/td[3]";
+		return "//div[@aria-label='DC Details']/div[3]/div[3]/table/tbody/tr[" + i + "]/td[3]";
 	}
 
 	/** @locatorType Xpath */

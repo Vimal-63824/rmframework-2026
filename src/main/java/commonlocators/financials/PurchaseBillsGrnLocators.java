@@ -187,7 +187,6 @@ public class PurchaseBillsGrnLocators {
 	public static final String PBQty = "//*[@id=\"IN_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[9]";
 	/** @locatorType Xpath */
 	public static final String PBUnitCost = "//*[@id=\"IN_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[10]";
-	
-	
-	
+	/** @locatorType Xpath */
+	public static final String BankPaymentAmountField = "//*[@id=\"ig_line_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[7]";
 }

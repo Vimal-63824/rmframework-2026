@@ -286,6 +286,8 @@ public class AttendanceLeaveLocators {
 	/** @locatorType Xpath */
 	public static final String AttachmentIframeCloseIcon = "//*[text()='Attachment']/following-sibling::button";
 	/** @locatorType Xpath */
+	public static final String DocManagementIframeCloseIcon = "//*[text()='Document Management View']/following-sibling::button";
+	/** @locatorType Xpath */
 	public static final String LEAttachmentDocTypeLovBtn = "//input[contains(@id,'DOC_TYPE')]/following-sibling::button";
 	/** @locatorType Xpath */
 	public static final String LEAttachmentDocNoInput = "//input[@id='P37_DM_REQ_DOC_NO']";
@@ -537,44 +539,44 @@ public class AttendanceLeaveLocators {
 	/** @locatorType Xpath */
 	public static final String OvertimeReferenceField = "//input[@id='P16251310403_REFERENCE']";
 	/** @locatorType Xpath */
-	public static final String OvertimeDocSave = "//*[@id=\"B2337771585397160580\"]";
+	public static final String OvertimeDocSave = "//*[@id=\"B2556145348461640945\"]";
 	/** @locatorType Xpath */
-	public static final String OvertimeEntrySaveButton = "//*[@id=\"B4675548470654607261\"]";
+	public static final String OvertimeEntrySaveButton = "//*[@id=\"B4901864492088504169\"]";
 	/** @locatorType Xpath */
 	public static final String OvertimeDocNoField = "//span[@id='P16251310401_EOHD_DOC_NO_DISPLAY']";
 	/** @locatorType Xpath */
-	public static final String OvertimeEntryAddButton = "//button[@id='B4683490632469023803']";
+	public static final String OvertimeEntryAddButton = "//button[@id='B4901864395533504168']";
 	/** @locatorType Xpath */
 	public static final String OvertimeEntryEmpLOVField = "//*[@id='ig_line_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[2]";
 	/** @locatorType Xpath */
-	public static final String OvertimeLOVButton = "//button[@id='C5127144546682755940_lov_btn']";
+	public static final String OvertimeLOVButton = "//button[@id='C5345518309747236305_lov_btn']";
 	/** @locatorType Xpath */
-	public static final String OvertimeDateSelect = "//input[@id='C5127244650863758899_input']";
+	public static final String OvertimeDateSelect = "//input[@id='C5345618413928239264_input']";
 	/** @locatorType Xpath */
 	public static final String OvertimeDateField = "//*[@id=\"ig_line_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[7]";
 	/** @locatorType Xpath */
-	public static final String OvertimeHoursField = "//input[@id='C5127244722563758900']";
+	public static final String OvertimeHoursField = "//input[@id='C5345618485628239265']";
 	/** @locatorType Xpath */
-	public static final String OvertimeLineSaveButton = "//button[@id='B4683490729024023804']";
+	public static final String OvertimeLineSaveButton = "//button[@id='B4901864492088504169']";
 	/** @locatorType Xpath */
-	public static final String OvertimeSAVEButton = "//button[@id='B4675548470654607261']";
+	public static final String OvertimeSAVEButton = "//button[@id='B4893922233719087626']";
 	/** @locatorType Xpath */
-	public static final String OvertimeUploadAmtButton = "//*[@id=\"B4676161705751168916\"]/span[2]";
+	public static final String OvertimeUploadAmtButton = "//*[@id=\"B4894535468815649281\"]/span[2]";
 	/** @locatorType Xpath */
-	public static final String OvertimePostButton = "//button[@id='B4676161640135168915']";
+	public static final String OvertimePostButton = "//button[@id='B4894535403199649280']";
 	/** @locatorType Xpath */
 	public static final String OvertimeDocNoSelect = "//*[@id=\'3617691308132691817_orig\']/tbody/tr[2]/td[2]/a";
 	/** @locatorType Xpath */
 	public static final String OvertimeReverseButton = "//button[@id='B2669010986177427172']";
 	/** @locatorType Xpath */
-	public static final String OvertimeCancelButton = "//button[@id='B4676162998773168929']";
+	public static final String OvertimeCancelButton = "//button[@id='B4894536761837649294']";
 	/** @locatorType Xpath */
 	public static final String OvertimePrefixField = "//*[@id=\"ig_line_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[5]";
 	/** @locatorType Xpath */
-	public static final String OvertimePrefixSelect = "//select[@id='C5127244373465758897']";
+	public static final String OvertimePrefixSelect = "//select[@id='C5345618136530239262']";
 
 	/** @locatorType Xpath */
-	public static final String TravelRequestFindAddButton = "//*[@id=\"B3753397742352103665\"]";
+	public static final String TravelRequestFindAddButton = "//*[@id=\"B3971771505416584030\"]";
 	/** @locatorType Xpath */
 	public static final String TravelRequestEntryEmployeeLOV = "//button[@id='P818210001_HTRH_EMP_ID_lov_btn']";
 	/** @locatorType Xpath */
@@ -592,99 +594,102 @@ public class AttendanceLeaveLocators {
 	/** @locatorType Xpath */
 	public static final String TravelDestinationCity = "//button[@id='P818210001_HTRH_DESTN_CITY_lov_btn']";
 	/** @locatorType Xpath */
-	public static final String TravelRequestSaveButton = "//*[@id=\"B3757453346286854422\"]";
+	public static final String TravelRequestSaveButton = "//*[@id=\"B3975827109351334787\"]";
 	/** @locatorType Xpath */
-	public static final String TravelRequestExpensesButton = "//*[@id=\"B4110741903798523787\"]";
+	public static final String TravelRequestExpensesButton = "//*[@id=\"B4329115666863004152\"]";
 	/** @locatorType Xpath */
-	public static final String TravelExpenseAddButton = "//*[@id=\"B4110742666858523794\"]";
+	public static final String TravelExpenseAddButton = "//*[@id=\"B4329116429923004159\"]";
 	/** @locatorType Xpath */
-	public static final String TravelExpenseLOV = "//*[@id=\"C3757750506383206866_lov_btn\"]";
+	public static final String TravelExpenseLOV = "//*[@id=\"C3976124269447687231_lov_btn\"]";
 	/** @locatorType Xpath */
-	public static final String TravelExpenseAmount = "//*[@id=\"C3757750597816206867\"]";
+	public static final String TravelExpenseAmount = "//*[@id=\"C3976124360880687232\"]";
 	/** @locatorType Xpath */
-	public static final String TravelExpenseRefField = "//*[@id=\"C3757750706505206868\"]";
+	public static final String TravelExpenseRefField = "//*[@id=\"C3976124469569687233\"]";
 	/** @locatorType Xpath */
-	public static final String TravelExpenseSaveButton = "//*[@id=\"B4110742717780523795\"]";
+	public static final String TravelExpenseSaveButton = "//*[@id=\"B4329116480845004160\"]";
 	/** @locatorType Xpath */
 	public static final String TravelExpenseCloseButton = "//*[@id=\"wwvFlowForm\"]/div[4]/div[1]/button/span\r\n" + "";
 	/** @locatorType Xpath */
-	public static final String TravelAdditionalTravellersButton = "//button[@id='B4110742008264523788']";
+	public static final String TravelAdditionalTravellersButton = "//button[@id='B4329115771329004153']";
 	/** @locatorType Xpath */
-	public static final String TravelAttTraAddButton = "//button[@id='B4117262840574189452']";
+	public static final String TravelAttTraAddButton = "//button[@id='B4335636603638669817']";
 	/** @locatorType Xpath */
-	public static final String TravelAttTraEMPLOV = "//button[@id='C3759475808274487956_lov_btn']";
+	public static final String TravelAttTraEMPLOV = "//button[@id='C3977849571338968321_lov_btn']";
 	/** @locatorType Xpath */
-	public static final String TravelAttTraSaveButton = "//button[@id='B4117262913503189453']";
+	public static final String TravelAttTraSaveButton = "//button[@id='B4335636676567669818']";
 	/** @locatorType Xpath */
 	public static final String TravelAttTraCloseButton = "//*[@id=\"wwvFlowForm\"]/div[5]/div[1]/button/span";
 	/** @locatorType Xpath */
-	public static final String TravelRequestPostButton = "//button[@id='B4117263603578189460']";
+	public static final String TravelRequestPostButton = "//button[@id='B4335637366642669825']";
 	/** @locatorType Xpath */
 	public static final String TravelRequestDocNoField = "//*[@id=\"P818210001_HTRH_RQST_NO\"]";
 	/** @locatorType Xpath */
-	public static final String TravelRequestCancelButton = "//button[@id='B3618780304057481668']";
+	public static final String TravelRequestCancelButton = "//button[@id='B4337701482330939017']";
 
 	/** @locatorType Xpath */
-	public static final String TravelReimbFindSearchButton = "//button[@id='B4052715500357889395']";
+	public static final String TravelReimbFindSearchButton = "//button[@id='B4271089263422369760']";
 	/** @locatorType Xpath */
-	public static final String TravelReimbDocSelect = "#\\34 052716020219889400_orig > tbody > tr:nth-child(2) > td:nth-child(1) > a";
+	public static final String TravelReimbDocSelect = "#\\34 271089783284369765_orig > tbody > tr:nth-child(2) > td:nth-child(1) > a";
 	/** @locatorType Xpath */
-	public static final String TravelRePlaceOfVisitAddButton = "//button[@id='B4061533504073748159']";
+	public static final String TravelRePlaceOfVisitAddButton = "//button[@id='B4279907267138228524']";
 	/** @locatorType Xpath */
-	public static final String DateFromField = "//input[@id='C4059744124910163771_input']";
+	public static final String DateFromField = "//input[@id='C4278117887974644136_input']";
 	/** @locatorType Xpath */
-	public static final String DateToField = "//input[@id='C4059744272866163772_input']";
+	public static final String DateToField = "//input[@id='C4278118035930644137_input']";
 	/** @locatorType Xpath */
-	public static final String TravelReimCityLOV = "//button[@id='C4059744333625163773_lov_btn']";
+	public static final String TravelReimCityLOV = "//button[@id='C4278118096689644138_lov_btn']";
 	/** @locatorType Xpath */
-	public static final String PlaceOfVisitSaveButton = "//button[@id='B4101839465470897970']";
+	public static final String PlaceOfVisitSaveButton = "//button[@id='B4320213228535378335']";
 	/** @locatorType Xpath */
 	public static final String TravelReimSaveButton = "//button[@id='B3610192344281546781']";
 	/** @locatorType Xpath */
-	public static final String TravelReimExpensesButton = "//button[@id='B4101841238291897988']";
+	public static final String TravelReimExpensesButton = "//button[@id='B4320215001356378353']";
 	/** @locatorType Xpath */
 	public static final String ExpenseAmountField = "//*[@id=\"ig_expns_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[2]";
 	/** @locatorType Xpath */
-	public static final String ExpenseAmountInput = "//input[@id='C4169635530363535291']";
+	public static final String ExpenseAmountInput = "//input[@id='C4388009293428015656']";
 	/** @locatorType Xpath */
 	public static final String ExpenseFrame = "//*[@id=\"apex_dialog_1\"]/iframe";
 	/** @locatorType Xpath */
-	public static final String TravelReimExpenseSaveButton = "//button[@id='B1499939669738061676']";
+	public static final String TravelReimExpenseSaveButton = "//button[@id='B1718313432802542041']";
 	/** @locatorType Xpath */
 	public static final String TravelReimExpenseClose = "//*[@id=\"t_PageBody\"]/div[26]/div[1]/button/span\r\n" + "";
 	/** @locatorType Xpath */
-	public static final String TravelReimPostButton = "//button[@id='B4110739759490523765']";
+	public static final String TravelReimPostButton = "//button[@id='B4329113522555004130']";
 	/** @locatorType Xpath */
 	public static final String TravelReimDocNoField = "//*[@id=\"P818210021_HTEH_DOC_NO_DISPLAY\"]";
 
 	/** @locatorType Xpath */
-	public static final String GeneralExpFindAddButton = "//button[@id='B3902009160485069570']";
+	public static final String GeneralExpFindAddButton = "//button[@id='B4120382923549549935']";
 	/** @locatorType Xpath */
 	public static final String GeneralExpEmpLov = "//button[@id='P818210011_HGECH_EMP_ID_lov_btn']";
 	/** @locatorType Xpath */
 	public static final String GeneraalExpReference = "//input[@id='P818210011_HGECH_REF']";
 	/** @locatorType Xpath */
-	public static final String GeneralExpSaveButton = "//button[@id='B3915330308158440460']";
+	public static final String GeneralExpSaveButton = "//button[@id='B4133704071222920825']";
 	/** @locatorType Xpath */
-	public static final String GeneralExpLineAddButton = "//button[@id='B3916299901297304178']";
+	public static final String GeneralExpLineAddButton = "//button[@id='B4134673664361784543']";
 	/** @locatorType Xpath */
-	public static final String GeneralExpenseLOV = "//button[@id='C3915332357867440480_lov_btn']";
+	public static final String GeneralExpenseLOV = "//*[@id=\"C4133706120931920845_lov_btn\"]/span";
 	/** @locatorType Xpath */
-	public static final String GeneralExpDateField = "//input[@id='C3915332076223440477_input']";
+	public static final String GeneralExpenseLOVField = "//*[@id=\"ig_line_gen_exp_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[2]";
+	/** @locatorType Xpath */
+	public static final String GeneralExpDateField = "//input[@id='C4133705839287920842_input']";
 	/** @locatorType Xpath */
 	public static final String GeneralExpAmountField = "//*[@id=\"ig_line_gen_exp_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[4]";
 	/** @locatorType Xpath */
-	public static final String GeneralExpAmountInput = "//input[@id='C3915332103587440478']";
+	public static final String GeneralExpAmountInput = "//input[@id='C4133705866651920843']";
 	/** @locatorType Xpath */
-	public static final String GeneralExpRemarksField = "//input[@id='C3915332224393440479']";
+	public static final String GeneralExpRemarksField = "//input[@id='C4133705987457920844']";
 	/** @locatorType Xpath */
-	public static final String GeneralExpenseLineSaveButton = "//button[@id='B3943433461347166455']";
+	public static final String GeneralExpenseLineSaveButton = "//button[@id='B4161807224411646820']";
 	/** @locatorType Xpath */
-	public static final String GeneralExpensePostButton = "//button[@id='B3960885653613405762']";
+	public static final String GeneralExpensePostButton = "//button[@id='B4179259416677886127']";
 	/** @locatorType Xpath */
 	public static final String GeneralReimDocNoField = "//*[@id=\"P818210011_HGECH_DOC_NO_DISPLAY\"]";
 	/** @locatorType Xpath */
-	public static final String GeneralExpenseCancelButton = "//button[@id='B1520559629502955552']";
+	public static final String GeneralExpenseCancelButton = "//button[@id='B1738933392567435917']";
+
 	/** @locatorType Xpath */
 	public static final String ResigRequestFindAddButton = "//button[@id='B1592754182645032762']";
 	/** @locatorType Xpath */
