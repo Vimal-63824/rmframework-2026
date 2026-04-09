@@ -795,30 +795,30 @@ public class DirectGrnPageFunctions {
 //			flag = webDB.waitForElement(GrnLocators.LotserialItemSelect, ElementType.Xpath);
 //			if (flag) {
 //				webDB.clickAnElement(GrnLocators.LotserialItemSelect, ElementType.Xpath);
-				commonFunc.checkRefreshCellsDisappear();
-				logs.logging("INFO", "Item Successfully Added");
-				commonFunc.searchAndSelectValueInFilters(GrnLocators.LotSerialItemLov, ITEM_NAME);
-				webDB.switchToFrame(GrnLocators.LotSerialIframe, ElementType.Xpath);
-				commonFunc.verifyAddTableSpecs(GrnLocators.LotclickInput, GrnLocators.LotNumberInput, LOT_NUMBER);
-				logs.logging("INFO", "LOT_NUMBER Entered :" + LOT_NUMBER);
-				logs.logging("INFO", "Lot Number Insert Successfully");
-				flag = webDB.isElementEnabled(GrnLocators.SerialNumberInput, ElementType.Xpath);
-				if (!flag) {
-					logs.logging("info", "Verified Serial Is Disabled");
-				} else {
-					logs.logging("INFO", "Serial Is Enabled");
-				}
-				commonFunc.verifyAddTableSpecs(GrnLocators.LotSerialDate, GrnLocators.DateInput,
-						commonFunc.getDataFromTestDataSheet("LotSerialDate"));
-				logs.logging("INFO", "Lot Date Insert Successfully");
-				flag = webDB.waitForElement(GrnLocators.LotSerialSave, ElementType.Xpath);
-				if (flag) {
-					webDB.moveToElement(GrnLocators.LotSerialSave, ElementType.Xpath);
-					webDB.clickAnElement(GrnLocators.LotSerialSave, ElementType.Xpath);
-					commonFunc.checkRefreshCellsDisappear();
-					closeToastIfDisplayed();
-					closeToastIfDisplayed();
-				}
+		commonFunc.checkRefreshCellsDisappear();
+		logs.logging("INFO", "Item Successfully Added");
+		commonFunc.searchAndSelectValueInFilters(GrnLocators.LotSerialItemLov, ITEM_NAME);
+		webDB.switchToFrame(GrnLocators.LotSerialIframe, ElementType.Xpath);
+		commonFunc.verifyAddTableSpecs(GrnLocators.LotclickInput, GrnLocators.LotNumberInput, LOT_NUMBER);
+		logs.logging("INFO", "LOT_NUMBER Entered :" + LOT_NUMBER);
+		logs.logging("INFO", "Lot Number Insert Successfully");
+		flag = webDB.isElementEnabled(GrnLocators.SerialNumberInput, ElementType.Xpath);
+		if (!flag) {
+			logs.logging("info", "Verified Serial Is Disabled");
+		} else {
+			logs.logging("INFO", "Serial Is Enabled");
+		}
+		commonFunc.verifyAddTableSpecs(GrnLocators.LotSerialDate, GrnLocators.DateInput,
+				commonFunc.getDataFromTestDataSheet("LotSerialDate"));
+		logs.logging("INFO", "Lot Date Insert Successfully");
+		flag = webDB.waitForElement(GrnLocators.LotSerialSave, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(GrnLocators.LotSerialSave, ElementType.Xpath);
+			webDB.clickAnElement(GrnLocators.LotSerialSave, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
+			closeToastIfDisplayed();
+			closeToastIfDisplayed();
+		}
 //			}
 //		}
 		assertTrue(flag);
@@ -836,29 +836,28 @@ public class DirectGrnPageFunctions {
 //			flag = webDB.waitForElement(GrnLocators.LotserialItemSelect, ElementType.Xpath);
 //			if (flag) {
 //				webDB.clickAnElement(GrnLocators.LotserialItemSelect, ElementType.Xpath);
-				commonFunc.checkRefreshCellsDisappear();
-				logs.logging("INFO", "item Successfully Added");
-				commonFunc.searchAndSelectValueInFilters(GrnLocators.LotSerialItemLov, ITEM_NAME);
-				webDB.switchToFrame(GrnLocators.LotSerialIframe, ElementType.Xpath);
-				commonFunc.verifyAddTableSpecs(GrnLocators.SerialClickInput, GrnLocators.SerialNumberInput,
-						SERIAL_NUMBER);
-				logs.logging("INFO", "Serial Number Insert Successfully");
-				flag = webDB.isElementEnabled(GrnLocators.LotNumberInput, ElementType.Xpath);
-				if (!flag) {
-					logs.logging("info", "verified lot is disabled");
-				} else {
-					logs.logging("INFO", "lot Is Enabled");
-				}
-				commonFunc.verifyAddTableSpecs(GrnLocators.LotSerialDate, GrnLocators.DateInput,
-						commonFunc.getDataFromTestDataSheet("LotSerialDate"));
-				logs.logging("INFO", "Serial Date Insert Successfully");
-				flag = webDB.waitForElement(GrnLocators.LotSerialSave, ElementType.Xpath);
-				if (flag) {
-					webDB.clickAnElement(GrnLocators.LotSerialSave, ElementType.Xpath);
-					commonFunc.checkRefreshCellsDisappear();
-					closeToastIfDisplayed();
-					closeToastIfDisplayed();
-				}
+		commonFunc.checkRefreshCellsDisappear();
+		logs.logging("INFO", "item Successfully Added");
+		commonFunc.searchAndSelectValueInFilters(GrnLocators.LotSerialItemLov, ITEM_NAME);
+		webDB.switchToFrame(GrnLocators.LotSerialIframe, ElementType.Xpath);
+		commonFunc.verifyAddTableSpecs(GrnLocators.SerialClickInput, GrnLocators.SerialNumberInput, SERIAL_NUMBER);
+		logs.logging("INFO", "Serial Number Insert Successfully");
+		flag = webDB.isElementEnabled(GrnLocators.LotNumberInput, ElementType.Xpath);
+		if (!flag) {
+			logs.logging("info", "verified lot is disabled");
+		} else {
+			logs.logging("INFO", "lot Is Enabled");
+		}
+		commonFunc.verifyAddTableSpecs(GrnLocators.LotSerialDate, GrnLocators.DateInput,
+				commonFunc.getDataFromTestDataSheet("LotSerialDate"));
+		logs.logging("INFO", "Serial Date Insert Successfully");
+		flag = webDB.waitForElement(GrnLocators.LotSerialSave, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(GrnLocators.LotSerialSave, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
+			closeToastIfDisplayed();
+			closeToastIfDisplayed();
+		}
 //			}
 //		}
 		assertTrue(flag);
@@ -7208,6 +7207,40 @@ public class DirectGrnPageFunctions {
 							}
 						}
 					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Is Used To Verify Creation Of PR General RFQ
+	 * 
+	 * @author Deepan-GWL
+	 * @throws IOException
+	 */
+	public void verifyDirectGRNAddLineDetailsWithReverseDocPOA(String FileName, String SheetName) {
+		flag = webDB.waitForElement(GrnLocators.GrnDocNumber, ElementType.Xpath);
+		if (flag) {
+			commonFunc.hardWait(200);
+			String GrnNumber = webDB.getTextFromElement(GrnLocators.GrnDocNumber, ElementType.Xpath);
+			VariableHandler.setGrnDocNumber(GrnNumber);
+			logs.logging("INFO", "GrnNumber Is :" + VariableHandler.getGrnDocNumber());
+			MultiGRNDocs.add(VariableHandler.getGrnDocNumber());// TODO
+
+			String[][] GRNMultipleline = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+			ExcelUtils excelUtils = new ExcelUtils();
+			String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
+			GRNMultipleline = excelUtils.readAllDataInExcel(Filepath, SheetName);
+			for (int i = 6; i < GRNMultipleline.length; i++) {
+				String ITEM_NAME = GRNMultipleline[i][1];
+				String HSN = GRNMultipleline[i][19];
+				String QTY = GRNMultipleline[i][5];
+				String COST = GRNMultipleline[i][6];
+
+				if (!ITEM_NAME.equals("")) {
+					commonFunc.hardWait(200);
+					GRNFunc.ChangeLotSerialQty(QTY);
 				}
 			}
 		}

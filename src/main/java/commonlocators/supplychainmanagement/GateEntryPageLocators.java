@@ -239,5 +239,20 @@ public class GateEntryPageLocators {
 	public static final String QtyValue = "(//input[@type='number'])[1]";
 	/** @locatorType Xpath */
 	public static final String FirstCheckBox = "(//input[@type='number']/../../td[14]/input)[1]";
+	/** @locatorType Xpath */
+	public static final String GENO = "//span[contains(@data-testid,'GEHD_DOC_NO')]";
+	/** @locatorType Xpath */
+	public static final String GECorrection = "//button[@data-testid='Correction']";
+	/** @locatorType Xpath */
+	public static final String CancelButton = "//button[@data-testid='Cancel']";
+	/** @locatorType Xpath */
+	public static final String ReasonLovButton = "//button[contains(@id,'REASON_lov_btn')]";
+	/** @locatorType Xpath */
+	public static final String ReasonOkButton = "//button[@data-testid='OK']";
+
+	/** @locatorType Xpath */
+	public static final String GateEntryDocNo(String DocNo) {
+		return "(//a[text()='" + DocNo + "'])[last()]";
+	}
 
 }

@@ -51,6 +51,7 @@ public class PurchaseBillsFunctions {
 	static BankPaymentFunctions BPFunc = new BankPaymentFunctions();
 	static BankPaymentFunctions bankpaymntFunc = new BankPaymentFunctions();
 	static GrnPageFunctions grnFunc = new GrnPageFunctions();
+	static SubcontractPurchaseBills SubcontractPurchasebillFunc = new SubcontractPurchaseBills();
 	
 	LocalDate date = LocalDate.now();
 	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
@@ -8845,6 +8846,57 @@ public class PurchaseBillsFunctions {
 		verifyWaitingForApprovalForPurchaseBills();
 		commonFunc.logoutUser();
 	}
+	/**
+	 * Verify Purchase Bills Against For Adjustment
+	 * 
+	 * @author Vimal -RMITS
+	 * @param BankName
+	 * @param Currency
+	 * @param SheetName
+	 */
+	public void verifyPurchaseBillsAgainstPurchaseBillsForAdjustmentAndGetGLAcct(String BankName, String Currency,
+			String SheetName, String Supplier) {
 
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("AdminUsername"));
+		SubcontractPurchasebillFunc.getSupplierGLAcctFromDB(Supplier);
+		commonFunc.navigateToFinancialPaymentReceipt();
+		BPFunc.clickAddButtonInPaymentsRecipts();
+		BPFunc.createBankPaymentEntry(commonFunc.getDataFromTestDataSheet("BankDocMode"), BankName, Today,
+				commonFunc.getDataFromTestDataSheet("BankPayMode"),
+				commonFunc.getDataFromTestDataSheet("BankRefNumber"), Today,
+				commonFunc.getDataFromTestDataSheet("BankPrefix"), Currency);
+		BPFunc.getBankPaymentOrReceiptDocumentNumber();
+		BPFunc.checkBPDocumentStatusWithDB(commonFunc.getDataFromTestDataSheet("Draft"),
+				VariableHandler.getBankPaymentOrReceiptDocNumber());
+		BPFunc.verifyBankPaymentHeaderDetailsWithUI(BankName, commonFunc.getDataFromTestDataSheet("BankPrefix"), Today,
+				Today);
+		BPFunc.verifyBankPaymentDetailsWithDB(commonFunc.getDataFromTestDataSheet("BankName"),
+				commonFunc.getDataFromTestDataSheet("BankPrefix"), Currency);
+		BankPayments = excelUtils.readAllDataInExcel(KowshikFin, SheetName);
+		for (int i = 1; i < BankPayments.length; i++) {
+//			String GLAccountDesc = BankPayments[i][1];
+			String PartyName = BankPayments[i][3];
+			String EntityName = BankPayments[i][5];
+			String CPCCodeDesc = BankPayments[i][6];
+			String BillNumber = BankPayments[i][7];
+			String PayAmount = BankPayments[i][8];
+			String DRCR = BankPayments[i][9];
+			String CURCY = BankPayments[i][10];
+			String EXRate = BankPayments[i][11];
+			String TransCURCY = BankPayments[i][12];
+			String BaseCURCY = BankPayments[i][13];
+			String AssesableValue = BankPayments[i][16];
+			if (!PartyName.equals("")) {
+				BPFunc.clickBPLineAddButton();
+				BPFunc.addBankPaymentLineDetailsGlaactAndCPC(VariableHandler.getSupGlAccount(),CPCCodeDesc);
+				BPFunc.clickLineWiseSaveButton();
+				clickViewButton();
+
+			}
+
+		}
+
+	}
 
 }

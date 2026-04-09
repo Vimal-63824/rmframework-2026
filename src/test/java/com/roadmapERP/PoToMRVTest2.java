@@ -1245,6 +1245,76 @@ public class PoToMRVTest2 extends RoadMapERPTest {
 	}
 
 	/**
+	 * Verify Grn Reverse With Po Amendment
+	 * 
+	 * @author Deepan-GWL
+	 */
+	@Author("Deepan-GWL")
+	@Test(priority = 89, groups = { "PurchaseOrder" }, description = "Verify Grn Reverse With Po Amendment")
+	public void VerifyGrnReverseWithPOA() {
+		grnPageFunc.poToGrnGeneralUserDefinedSameStockAndSupplierUomWithFreePassWithGateEntryWithReentryPOA();
+	}
+
+	/**
+	 * Verify Grn Reverse With Po Amendment
+	 * 
+	 * @author Deepan-GWL
+	 */
+	@Author("Deepan-GWL")
+	@Test(priority = 90, groups = { "PurchaseOrder" }, description = "Verify Grn Reverse With Po Amendment")
+	public void VerifyGrnReverseWithPOAImport() {
+		grnPageFunc.poToGrnGeneralUserDefinedSameStockAndSupplierUomWithFreePassWithGateEntryWithReentryPOAWithImport();
+	}
+
+	/**
+	 * Verify Grn Reverse With Domestic Supplier WithOut Gate Entry
+	 * 
+	 * @author Deepan-GWL
+	 */
+	@Author("Deepan-GWL")
+	@Test(priority = 91, groups = {
+			"PurchaseOrder" }, description = "Verify Grn Reverse With Domestic Supplier WithOut Gate Entry")
+	public void VerifyGrnReverseWithDomesticSupplierWithOutGateEntry() {
+		grnPageFunc.poToGrnGeneralUserDefinedSameStockAndSupplierUomWithFreePassWithReverseWithoutGateEntry();
+	}
+
+	/**
+	 * Verify Grn Reverse With Import Supplier WithOut Gate Entry
+	 * 
+	 * @author Deepan-GWL
+	 */
+	@Author("Deepan-GWL")
+	@Test(priority = 92, groups = {
+			"PurchaseOrder" }, description = "Verify Grn Reverse With Import Supplier WithOut Gate Entry")
+	public void VerifyGrnReverseWithWithOutGateEntryImport() {
+		grnPageFunc.poToGrnGeneralUserDefinedSameStockAndSupplierUomWithFreePassWithReverseWithoutGateEntryImport();
+	}
+
+	/**
+	 * Verify Grn Reverse With Po Amendment Without Gate Entry
+	 * 
+	 * @author Deepan-GWL
+	 */
+	@Author("Deepan-GWL")
+	@Test(priority = 93, groups = {
+			"PurchaseOrder" }, description = "Verify Grn Reverse With Po Amendment Without Gate Entry")
+	public void VerifyGrnReverseWithPOAWithoutGateEntry() {
+		grnPageFunc.poToGrnGeneralUserDefinedSameStockAndSupplierUomWithFreePassWithOutGateEntryWithReentryPOA();
+	}
+
+	/**
+	 * Verify Grn Reverse With Po Amendment Without Gate Entry Import Supplier
+	 * 
+	 * @author Deepan-GWL
+	 */
+	@Author("Deepan-GWL")
+	@Test(priority = 94, groups = {
+			"PurchaseOrder" }, description = "Verify Grn Reverse With Po Amendment Without Gate Entry Import Supplier")
+	public void VerifyGrnReverseWithPOAWithoutGateEntryImp() {
+		grnPageFunc.poToGrnGeneralUserDefinedSameStockAndSupplierUomWithFreePassWithOutGateEntryWithReentryPOAImp();
+	}
+
+	/**
 	 * Verify After Method
 	 * 
 	 * @author Deepan-GWL

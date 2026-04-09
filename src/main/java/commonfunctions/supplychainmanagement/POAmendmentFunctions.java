@@ -1925,6 +1925,7 @@ public class POAmendmentFunctions {
 						logs.logging("INFO", "CheckBox IS Clicked");
 						webDB.clickAnElement(POAmendmentLocators.OKButton, ElementType.Xpath);
 						webDB.switchToDefaultContent();
+						commonFunc.hardWait(2000);
 						flag = webDB.waitForElement(POAmendmentLocators.AddPoLine, ElementType.Xpath);
 						if (flag) {
 							logs.logging("INFO", "Added Po Lines Successfully");
@@ -12692,5 +12693,55 @@ public class POAmendmentFunctions {
 			flag = commonFunc.logoutUser();
 		}
 
+	}
+
+	/**
+	 * This Method Is Used To Verify Create POA Document Creation
+	 * 
+	 * @author Deepan-GWL
+	 * 
+	 */
+	public void verifyCreatePoADocumentCreation() {
+		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+				+ "PoToMrv2.xlsx";
+		itemmultiple = excelUtils.readAllDataInExcel(Filepath,
+				webDB.getDataFromProperties("PoToMRVWFSUomWithReversePOASheet"));
+		for (int j = 3; j < itemmultiple.length; j++) {
+			if (itemmultiple[j][0].equals(commonFunc.getDataFromTestDataSheet("PurchaseOrderAmendment"))) {
+				for (int i = j + 2; i < itemmultiple.length; i++) {
+					String item = itemmultiple[i][1];
+					if (!(item.equals("") || item.equals(commonFunc.getDataFromTestDataSheet("Total")))) {
+						String Quantity = itemmultiple[i][5];
+						String UnitCost = itemmultiple[i][6];
+						String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
+
+						verifyAddItemInPOWithQuantityAndUnitCostWithItemName(Quantity, UnitCost, item);
+						verifyTickIconcreateItem();
+						navigateToLineDetailPage(item);
+						verifyLineDetailsUpdation(HsnCode);
+						webDB.switchToFrame(POAmendmentLocators.LineDetailsIframe, ElementType.Xpath);
+						navigateToPoaPage();
+					} else {
+						break;
+					}
+				}
+			}
+		}
+		verifyHeaderTickAndPost();
+		verifyWaitingForApproval();
+		commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		if (flag) {
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
+			commonFunc.navigatePoAmendmentPage();
+			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
+					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+			flag = commonFunc.logoutUser();
+		}
+		assertTrue(flag);
 	}
 }

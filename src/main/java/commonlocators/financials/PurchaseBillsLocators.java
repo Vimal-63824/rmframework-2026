@@ -303,7 +303,7 @@ public class PurchaseBillsLocators {
 	/** @locatorType Xpath */
 	public static final String LoadButton = "//button[@id='loadadj']";
 	/** @locatorType Xpath */
-	public static final String CheckBoxAdjTap = "//*[@id=\"3630600386710420466_orig\"]/tbody/tr[2]/td[11]";
+	public static final String CheckBoxAdjTap = "//*[@id=\"3632475644335763481_orig\"]/tbody/tr[2]/td[11]";
 	/**@locatorType Xpath*/
 	public static final String FrameAdjTap = "//iframe[@title='Advance Adjustment ']";
 	/**@locatorType Xpath*/
