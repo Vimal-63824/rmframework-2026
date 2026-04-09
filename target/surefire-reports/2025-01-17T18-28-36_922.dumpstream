@@ -1,5 +1,0 @@
-# Created at 2025-01-17T18:28:37.242
-Boot Manifest-JAR contains absolute paths in classpath 'F:\projects\RoadMap\20250117\RoadMapERP\target\test-classes'
-Hint: <argLine>-Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
-'other' has different root
-
