@@ -61,7 +61,7 @@ public class EmployeeAdjustmentFunctions {
 			searchAndClickEmpIdUsingEmpNameLovBtn(commonFunc.getDataFromTestDataSheet("Emp_GWP0001"));
 			clickAddIconInAdjustmentTable();
 			fillElementStartYearAndPeriodInAdjustment(commonFunc.getDataFromTestDataSheet("BonusText"),
-					commonFunc.getDataFromTestDataSheet("Year202526"), Month);
+					commonFunc.getDataFromTestDataSheet("Year202627"), Month);
 			fillTotalPeriodAndPeriodicAmountInAdjustment(TotalPeriod, RandomStringUtils.randomNumeric(4));
 			clickSaveIconInAdjustmentTable();
 			clickCancelIconForLastAddedAdjustment();
@@ -231,37 +231,46 @@ public class EmployeeAdjustmentFunctions {
 	 * @param Amount
 	 */
 	private void fillTotalPeriodAndPeriodicAmountInAdjustment(String TotalPeriod, String Amount) {
-		flag = webDB.waitForElement(EmployeeAdjustmentLocators.AdjustmentTableTotalPeriodData, ElementType.Xpath);
-		if (flag) {
-			webDB.doubleClickAnElement(EmployeeAdjustmentLocators.AdjustmentTableTotalPeriodData, ElementType.Xpath);
-			flag = webDB.waitForElement(EmployeeAdjustmentLocators.AdjustmentTableTotalPeriodInput, ElementType.Xpath);
-			if (flag) {
-				webDB.clearText(EmployeeAdjustmentLocators.AdjustmentTableTotalPeriodInput, ElementType.Xpath);
-				flag = webDB.sendTextToAnElement(EmployeeAdjustmentLocators.AdjustmentTableTotalPeriodInput,
-						TotalPeriod, ElementType.Xpath);
-				if (flag) {
-					logs.logging("INFO", "Total Period Entered in Adjustment: " + TotalPeriod);
-					flag = webDB.waitForElement(EmployeeAdjustmentLocators.AdjustmentTablePeriodicAmntData,
-							ElementType.Xpath);
-					if (flag) {
-						webDB.doubleClickAnElement(EmployeeAdjustmentLocators.AdjustmentTablePeriodicAmntData,
-								ElementType.Xpath);
-						flag = webDB.waitForElement(EmployeeAdjustmentLocators.AdjustmentTablePeriodicAmntInput,
-								ElementType.Xpath);
-						if (flag) {
-							webDB.clearText(EmployeeAdjustmentLocators.AdjustmentTablePeriodicAmntInput,
-									ElementType.Xpath);
-							flag = webDB.sendTextToAnElement(
-									EmployeeAdjustmentLocators.AdjustmentTablePeriodicAmntInput, Amount,
-									ElementType.Xpath);
-							if (flag) {
-								logs.logging("INFO", "Periodic Amount Entered in Adjustment: " + Amount);
-							}
-						}
-					}
-				}
-			}
-		}
+		commonPayrollFunctions.addDetailInTableWithoutLovButton(
+				EmployeeAdjustmentLocators.AdjustmentTableTotalPeriodData,
+				EmployeeAdjustmentLocators.AdjustmentTableTotalPeriodInput, TotalPeriod);
+		logs.logging("INFO", "Total Period Entered in Adjustment: " + TotalPeriod);
+		commonPayrollFunctions.addDetailInTableWithoutLovButton(
+				EmployeeAdjustmentLocators.AdjustmentTablePeriodicAmntData,
+				EmployeeAdjustmentLocators.AdjustmentTablePeriodicAmntInput, Amount);
+		logs.logging("INFO", "Periodic Amount Entered in Adjustment: " + Amount);
+		webDB.pressTabKey();
+//		flag = webDB.waitForElement(EmployeeAdjustmentLocators.AdjustmentTableTotalPeriodData, ElementType.Xpath);
+//		if (flag) {
+//			webDB.doubleClickAnElement(EmployeeAdjustmentLocators.AdjustmentTableTotalPeriodData, ElementType.Xpath);
+//			flag = webDB.waitForElement(EmployeeAdjustmentLocators.AdjustmentTableTotalPeriodInput, ElementType.Xpath);
+//			if (flag) {
+//				webDB.clearText(EmployeeAdjustmentLocators.AdjustmentTableTotalPeriodInput, ElementType.Xpath);
+//				flag = webDB.sendTextToAnElement(EmployeeAdjustmentLocators.AdjustmentTableTotalPeriodInput,
+//						TotalPeriod, ElementType.Xpath);
+//				if (flag) {
+//					logs.logging("INFO", "Total Period Entered in Adjustment: " + TotalPeriod);
+//					flag = webDB.waitForElement(EmployeeAdjustmentLocators.AdjustmentTablePeriodicAmntData,
+//							ElementType.Xpath);
+//					if (flag) {
+//						webDB.doubleClickAnElement(EmployeeAdjustmentLocators.AdjustmentTablePeriodicAmntData,
+//								ElementType.Xpath);
+//						flag = webDB.waitForElement(EmployeeAdjustmentLocators.AdjustmentTablePeriodicAmntInput,
+//								ElementType.Xpath);
+//						if (flag) {
+//							webDB.clearText(EmployeeAdjustmentLocators.AdjustmentTablePeriodicAmntInput,
+//									ElementType.Xpath);
+//							flag = webDB.sendTextToAnElement(
+//									EmployeeAdjustmentLocators.AdjustmentTablePeriodicAmntInput, Amount,
+//									ElementType.Xpath);
+//							if (flag) {
+//								logs.logging("INFO", "Periodic Amount Entered in Adjustment: " + Amount);
+//							}
+//						}
+//					}
+//				}
+//			}
+//		}
 		assertTrue(flag);
 	}
 
@@ -429,7 +438,7 @@ public class EmployeeAdjustmentFunctions {
 			webDB.scrollToAnElement(EmployeeAdjustmentLocators.AdjustmentSaveIcon, ElementType.Xpath);
 			webDB.moveToElement(EmployeeAdjustmentLocators.AdjustmentSaveIcon, ElementType.Xpath);
 			webDB.clickAnElement(EmployeeAdjustmentLocators.AdjustmentSaveIcon, ElementType.Xpath);
-			flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+			webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Adjustment table Save Icon Clicked Successfully");
 				if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {

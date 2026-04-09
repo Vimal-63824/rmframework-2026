@@ -33,7 +33,7 @@ public class EmployeeAdjustmentLocators {
 	/** @locatorType Xpath */
 	public static final String AdjustmentAddIcon = "//button[@data-testid='Add_btn']";
 	/** @locatorType Xpath */
-	public static final String AdjustmentSaveIcon = "//button[@data-testid='Save_btn']";
+	public static final String AdjustmentSaveIcon = "//button[@title='Save']";
 	/** @locatorType Xpath */
 	public static final String AdjustmentTableElementData = "(//div[@id='ig_line_ig_grid_vc']//table/tbody//tr/td[1])[1]";
 	/** @locatorType Xpath */
