@@ -160,7 +160,7 @@ public class CompletionProductionOrderLocators {
 
 	/** @locatorType XPATH */
 	public static final String MultipleProcessCreateCheckBox(String No) {
-		return "//table[@id='3358456827714383579_orig']/tbody//td[text()='" + No + "']/../td/input[@type='checkbox']";
+		return "//table[contains(@aria-label,'Process Details')]/tbody//td[text()='" + No + "']/../td/input[@type='checkbox']";
 	}
 
 	/** @locatorType XPATH */
