@@ -911,7 +911,7 @@ public class CommonFunctions {
 	 * @return Mail
 	 */
 	public String randomEmailIdGenerator() {
-		String Email = "testauto".concat(RandomStringUtils.randomNumeric(4)) + "@mail.com";
+		String Email = "testauto".concat(RandomStringUtils.randomAlphanumeric(4)) + "@mail.com";
 		return Email;
 	}
 

@@ -1514,7 +1514,7 @@ public class BillOfMaterialsFunctions {
 			validateLineDetailsWithDB("1", "1", commonFunc.getDataFromTestDataSheet("GwlProcess1"), RMItem1,
 					commonFunc.getDataFromTestDataSheet("FinishedGoodWH"), commonFunc.getDataFromTestDataSheet("Kgs"));
 			clickAddLineIconInMaterialTab();
-			fillProcessItemUOMInMaterial(commonFunc.getDataFromTestDataSheet("GwlProcess1"), RMItem2,
+			fillProcessItemUOMInMaterial(commonFunc.getDataFromTestDataSheet("GwlProcess1Desc"), RMItem2,
 					commonFunc.getDataFromTestDataSheet("Kgs"));
 			fillReqQntyConvFactorAndSourceWHInMaterial("3", "1", commonFunc.getDataFromTestDataSheet("FinishedGoodWH"));
 			clickSaveLineIconInMaterialTab();
