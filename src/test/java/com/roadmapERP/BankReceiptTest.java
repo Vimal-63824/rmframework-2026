@@ -40,7 +40,7 @@ public class BankReceiptTest extends RoadMapERPTest {
 	public void CreateBankReceiptSinglePartySingleInvoiceThroughAddButton() throws IOException {
 		bankReceiptFunc.BRSinglePartySingleInvoiceThroughAddButton(webDB.getDataFromProperties("BankReceipt"));
 	}
-
+//
 	/**
 	 * Receipt Against single Party, Single Invoice (Get document )
 	 * 
@@ -941,7 +941,7 @@ public class BankReceiptTest extends RoadMapERPTest {
 	public void CreateAdvanceBankReceiptSinglePartyMultiSOThroughPendingDocsUSD() throws IOException {
 		bankReceiptFunc.ABRSinglePartyMultiSOThroughPendingDocsUSD(webDB.getDataFromProperties("BankReceiptUSD"));
 	}
-	
+
 	/**
 	 * Receipt Against single Party, Single invoice(Through Add button)
 	 * 
@@ -975,12 +975,11 @@ public class BankReceiptTest extends RoadMapERPTest {
 	 * @throws IOException
 	 */
 	@Author("Harikrishna-RMITS")
-	@Test(priority = 68, groups = {
-			"Bank Receipt" }, description = "Advance against SO single Sales order (Pending)")
+	@Test(priority = 68, groups = { "Bank Receipt" }, description = "Advance against SO single Sales order (Pending)")
 	public void CreateAdvanceBankReceiptSinglePartySingleSOThroughPendingDocsBankUSD() throws IOException {
 		bankReceiptFunc.ABRSinglePartySingleSOThroughPendingDocsBankUSD(webDB.getDataFromProperties("BankReceiptAdv"));
 	}
-	
+
 	/**
 	 * Receipt Against single Party, Single invoice(Through Add button)
 	 * 
@@ -1018,6 +1017,47 @@ public class BankReceiptTest extends RoadMapERPTest {
 			"Bank Receipt" }, description = "Receipt Against single Party, Single Invoice (Pending )")
 	public void CreateAdvanceBankReceiptSinglePartyMultipleSOThroughPendingDocsBankUSD() throws IOException {
 		bankReceiptFunc.ABRSinglePartyMultiSOThroughPendingDocsBankUSD(webDB.getDataFromProperties("BankReceiptAdv"));
+	}
+
+	/**
+	 * Advance Against New Reference
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @throws IOException
+	 */
+	@Author("Harikrishna-RMITS")
+	@Test(priority = 72, groups = { "Bank Receipt" }, description = "Advance Against New Reference")
+	public void CreateAdvanceBankReceiptWithNewRef() throws IOException {
+		bankReceiptFunc.AdvBankReceiptWithNewRef(webDB.getDataFromProperties("BankReceiptNewRef"),
+				commonFunc.getDataFromTestDataSheet("BankTransCurcy"), commonFunc.getDataFromTestDataSheet("BankName"));
+	}
+
+	/**
+	 * Advance Against New Reference USD
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @throws IOException
+	 */
+	@Author("Harikrishna-RMITS")
+	@Test(priority = 73, groups = { "Bank Receipt" }, description = "Advance Against New Reference")
+	public void CreateAdvanceBankReceiptWithNewRefUSD() throws IOException {
+		bankReceiptFunc.AdvBankReceiptWithNewRef(webDB.getDataFromProperties("BRAdvUSDNR"),
+				commonFunc.getDataFromTestDataSheet("BankTransCurcyUSD"),
+				commonFunc.getDataFromTestDataSheet("BankName"));
+	}
+	
+	/**
+	 * Advance Against New Reference Bank Curcy USD
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @throws IOException
+	 */
+	@Author("Harikrishna-RMITS")
+	@Test(priority = 74, groups = { "Bank Receipt" }, description = "Advance Against New Reference Bank Curcy USD")
+	public void CreateAdvanceBankReceiptWithNewRefBankCurcyUSD() throws IOException {
+		bankReceiptFunc.AdvBankReceiptWithNewRef(webDB.getDataFromProperties("BankReceiptNewRef"),
+				commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
+				commonFunc.getDataFromTestDataSheet("BankNameUSD"));
 	}
 
 	/**

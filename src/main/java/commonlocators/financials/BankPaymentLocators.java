@@ -104,7 +104,7 @@ public class BankPaymentLocators {
 	/** @locatorType Xpath */
 	public static final String BankPendingPartyDocumentsPartyNameInputField = "//input[@data-testid='PartyName']";
 	/** @locatorType Xpath */
-	public static final String BankPendingPartyDocumentScreenOkButton = "//button[@id='B6']";
+	public static final String BankPendingPartyDocumentScreenOkButton = "//span[text()='OK']/ancestor::button";
 	/** @locatorType Xpath */
 	public static final String BankPaymentGetDocumentButton = "//button[@data-testid='GetDoc']";
 	/** @locatorType Xpath */
@@ -120,15 +120,15 @@ public class BankPaymentLocators {
 	/** @locatorType Xpath */
 	public static final String PendingPayablesDocNumberLovButton = "//input[@data-testid='P3413101001_DOC_NO']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String PendingPayablesDocumentNumberField = "//*[@id='3977600811749379322_orig']/tbody/tr[2]/td[21]";
+	public static final String PendingPayablesDocumentNumberField = "//*[@id='4197259402980598581_orig']/tbody/tr[2]/td[21]";
 	/** @locatorType Xpath */
-	public static final String PendingPayablesCreateButton = "//button[@data-testid='Create']";
+	public static final String PendingPayablesCreateButton = "//span[text()='Create']/ancestor::button";
 	/** @locatorType Xpath */
 	public static final String PendingPayablesPayModeDropDown = "//select[@id='P3413101001_SUPHD_PYMT_TYPE']";
 	/** @locatorType Xpath */
 	public static final String PendingPayablesBankNameLOVBUtton = "//button[@id='P3413101001_SUPHD_BANK_ID_lov_btn']";
 	/** @locatorType Xpath */
-	public static final String PendingPayablesOkButton = "//button[@data-testid='Ok']";
+	public static final String PendingPayablesOkButton = "//span[text()='Ok']/ancestor::button";
 	/** @locatorType Xpath */
 	public static final String PendingPayablesTypeDropDown = "//select[@id='P3413101001_SUPHD_TYPE']";
 	/** @locatorType Xpath */
@@ -204,7 +204,7 @@ public class BankPaymentLocators {
 	/** @locatorType Xpath */
 	public static final String BankReceiptLineWiseAddButton = "//button[@id='B1217119641398022948']";
 	/** @locatorType Xpath */
-	public static final String PendingPayablesMergeLabelInPending = "//label[@for='P3413101001_TYPE_1']";
+	public static final String PendingPayablesMergeLabelInPending = "//label[text()='Merge']";
 	/** @locatorType Xpath */
 	public static final String FrwdPersonField = "//input[@id='P236131090_FWD_PERSON']";
 	/** @locatorType Xpath */
@@ -230,9 +230,9 @@ public class BankPaymentLocators {
 	/** @locatorType Xpath */
 	public static final String BankPaymentTDSField = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[27]";
 	/** @locatorType Xpath */
-	public static final String BankPaymentTDSLovButton = "//button[@id='C2461812809976468788_lov_btn']";
+	public static final String BankPaymentTDSLovButton = "//button[@id='C2681471401207688047_lov_btn']";
 	/** @locatorType Xpath */
-	public static final String BankPaymentApplyDeduction = "//button[@data-testid='ApplyDeduction']";
+	public static final String BankPaymentApplyDeduction = "//BUTTON[@DATA-TESTID='ApplyDeduction']";
 	/** @locatorType Xpath */
 	public static final String BankPaymentSourcePartyField = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[35]";
 	/** @locatorType Xpath */
@@ -247,7 +247,34 @@ public class BankPaymentLocators {
 	public static final String PDCSearchButton = "//span[text()='Search']/ancestor::button";
 	/** @locatorType Xpath */
 	public static final String PDCPOstButton = "//span[text()='Post']/ancestor::button";
-	
+	/** @locatorType Xpath */
+	public static final String BankPaymentApplyDeductionCheckedButton = "//button[@id='APPLY_DEDUCTION_1']";
+	/** @locatorType Xpath */
+	public static final String BankPendingAdvPartyDocumentsButton = "//span[text()='Pending Payables - Advance']/ancestor::button";
+	/** @locatorType Xpath */
+	public static final String BankPendingAdvPartyDocumentsFrameName = "//iframe[@title='Pend. Payables Advance']";
+	/** @locatorType Xpath */
+	public static final String BankPartyAdvDocNumberLovButton = "//input[@data-testid='DocNo']/following-sibling::button";
+	/** @locatorType Xpath */
+	public static final String PendingAdvPayablesDocumentNumberField = "//*[@id='3229896933884208618_orig']/tbody/tr[2]/td[20]";
+	/** @locatorType Xpath */
+	public static final String BankPendingAdvPartyDocumentsPendingCRButton = "//span[text()='Pending  Payables - Advance']/ancestor::button";
+	/** @locatorType Xpath */
+	public static final String BankPaymentAdvPendingPartyDocumentSearchButton = "//button[@id='B3541963422209746679']";
+	/** @locatorType Xpath */
+	public static final String PendingAdvancePayablesDocumentNumberField = "//*[@id='3229896933884208618_orig']/tbody/tr[2]/td[20]";
+	/** @locatorType Xpath */
+	public static final String PendingAdvPayablesTypeField = "//label[@id='P34131022_BCV_DOC_TYPE_LABEL']";
+	/** @locatorType Xpath */
+	public static final String PendingAdvPayablesTypeDropDown = "//select[@id='P34131022_BCV_DOC_TYPE']";
+	/** @locatorType Xpath */
+	public static final String PendingAdvpayablesPaymodeField = "//label[@id='P34131022_BCV_PAY_TYPE_LABEL']";
+	/** @locatorType Xpath */
+	public static final String PendingAdvPayablesPayModeDropDown = "//select[@id='P34131022_BCV_PAY_TYPE']";
+	/** @locatorType Xpath */
+	public static final String PendingAdvPayablesBankNameLOVBUtton = "//button[@id='P34131022_BCV_BC_ID_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String OverAllSelectCheckBox = "//table[@id='4197259402980598581']/tr/th[13]/span/input";
 
 	/** @locatorType Xpath */
 	public static final String BPPendingPartyDocumentSelectCheckBox(String VoucherNumber) {
@@ -290,6 +317,11 @@ public class BankPaymentLocators {
 	/** @locatorType Xpath */
 	public static final String PDCSelectCheckBox(String PDCNo) {
 		return "//td[text()='" + PDCNo + "']/../td[10]";
+	}
+	
+	/** @locatorType Xpath */
+	public static final String LineWiseTDS(int i) {
+		return "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[" + i + "]/td[27]";
 	}
 
 }

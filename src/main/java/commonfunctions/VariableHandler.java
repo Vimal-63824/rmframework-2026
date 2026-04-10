@@ -262,6 +262,10 @@ public class VariableHandler {
 	private static ThreadLocal<String> PoAdvPaymentDocumentNO = new ThreadLocal<>();
 	private static ThreadLocal<String> BPAmount = new ThreadLocal<>();
 	private static ThreadLocal<String> SupGlAccount = new ThreadLocal<>();
+	private static ThreadLocal<String> AdvPaymentDocNumber = new ThreadLocal<>();
+	private static ThreadLocal<ArrayList<String>> MultiplePymtRecDocs = ThreadLocal.withInitial(() -> null);
+	private static ThreadLocal<ArrayList<String>> MultiplePODocs = ThreadLocal.withInitial(() -> null);
+	private static ThreadLocal<ArrayList<String>> MultipleBankDocs = ThreadLocal.withInitial(() -> null);
 	public static String getPONumber() {
 		return PONumber.get();
 	}
@@ -2247,5 +2251,37 @@ public class VariableHandler {
 
 	public static void setSupGlAccount(String Data) {
 		SupGlAccount.set(Data);
+	}
+	
+	public static String getAdvPaymentDocNumber() {
+		return AdvPaymentDocNumber.get();
+	}
+
+	public static void setAdvPaymentDocNumber(String data) {
+		AdvPaymentDocNumber.set(data);
+	}
+	
+	public static ArrayList<String> getMultipleAdvPymtDocs() {
+		return MultiplePymtRecDocs.get();
+	}
+
+	public static void setMultipleAdvPymtDocs(ArrayList<String> data) {
+		MultiplePymtRecDocs.set(data);
+	}
+	
+	public static ArrayList<String> getMultiplePODocs() {
+		return MultiplePODocs.get();
+	}
+
+	public static void setMultiplePODocs(ArrayList<String> data) {
+		MultiplePODocs.set(data);
+	}
+	
+	public static ArrayList<String> getMultipleBankDocs() {
+		return MultipleBankDocs.get();
+	}
+
+	public static void setMultipleBankDocs(ArrayList<String> data) {
+		MultipleBankDocs.set(data);
 	}
 }
