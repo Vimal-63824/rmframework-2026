@@ -412,10 +412,12 @@ public class SubcontractOrderLocators {
 	public static final String Pend_SerialWise_Prod_lovBtn = "//input[@data-testid='P19631108_SOSD_ORD_NO']/following-sibling::button";
 	/** @Locator XPATH */
 	public static final String Pend_SerialWise_SearchBtn = "//button[@data-testid='Find']";
+
 	/** @locatorType XPATH */
 	public static final String SerialCheckBox(String SCONumber) {
 		return "//a[text()='" + SCONumber + "']/../../td[17]";
 	}
+
 	/** @Locator XPATH */
 	public static final String Pend_SerialWise_CreateSCOBtn = "//button[@data-testid='Create_SCO']";
 	/** @Locator XPATH */
@@ -483,9 +485,9 @@ public class SubcontractOrderLocators {
 	/** @Locator XPATH */
 	public static final String SubcontractCS_ProcDetails_Iframe = "//iframe[@title='Details']";
 	/** @Locator XPATH */
-	public static final String  SubcontractCS_ProcDetails_BatchQty = "//input[@id='P61_SCOAP_NEW_BATCH_QTY']";
+	public static final String SubcontractCS_ProcDetails_BatchQty = "//input[@id='P61_SCOAP_NEW_BATCH_QTY']";
 	/** @Locator XPATH */
-	public static final String  SubcontractCS_ProcDetails_BatchCost = "//input[@id='P61_SCOAP_NEW_BATCH_COST']";
+	public static final String SubcontractCS_ProcDetails_BatchCost = "//input[@id='P61_SCOAP_NEW_BATCH_COST']";
 	/** @Locator XPATH */
 	public static final String SubcontractCS_ProcDetails_SaveIcon = "//button[@id='B1054370510727881854']";
 	/** @Locator XPATH */
@@ -493,9 +495,18 @@ public class SubcontractOrderLocators {
 	/** @Locator XPATH */
 	public static final String SubcontractCS_DocNO = "//input[@data-testid='P60_PAH_DOC_NO']";
 	/** @Locator XPATH */
-	public static final String  SubcontractCS_ProcDetails_SACLov = "//input[@id='P61_SCOAP_HSN_CODE']/following-sibling::button";
+	public static final String SubcontractCS_ProcDetails_SACLov = "//input[@id='P61_SCOAP_HSN_CODE']/following-sibling::button";
 	/** @Locator XPATH */
 	public static final String SubcontractCS_CloseshortButton = "//button[@id='B1']";
 	/** @Locator XPATH */
 	public static final String SubcontractCS_Closeshort_CancelButton = "//button[@id='B1045109078127619698']";
+	/** @Locator XPATH */
+	public static final String PendingSCOProcessDetailsIframe = "//iframe[@title='Process Details']";
+	/** @Locator XPATH */
+	public static final String PendingSCOProcessDetailSelectAllIcon = "//table[contains(@aria-label,'Process Details')]/tbody//td//input";
+
+	/** @Locator XPATH */
+	public static final String PendingSCOProcessDetailIcon(String prodNo) {
+		return "(//table/tbody//td/a[text()='" + prodNo + "']/../../td//span[@class='fa fa-gears'])[1]";
+	}
 }

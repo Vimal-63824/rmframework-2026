@@ -847,7 +847,9 @@ public class CompletionProductionOrderFunctions {
 		if (flag) {
 			webDB.moveToElement(CompletionProductionOrderLocators.PendingSearchBtn, ElementType.Xpath);
 			webDB.clickAnElement(CompletionProductionOrderLocators.PendingSearchBtn, ElementType.Xpath);
-			verifySelectProcessCheckBoxInProcessDetailsPage(ProdNo);
+//			verifySelectProcessCheckBoxInProcessDetailsPage(ProdNo);
+			webDB.waitForElement(CompletionProductionOrderLocators.PendingProdOrder_SelectCheckboxTableData(ProdNo),
+					ElementType.Xpath);
 			webDB.moveToElement(CompletionProductionOrderLocators.PendingProdOrder_SelectCheckboxTableData(ProdNo),
 					ElementType.Xpath);
 			webDB.clickAnElement(CompletionProductionOrderLocators.PendingProdOrder_SelectCheckboxTableData(ProdNo),

@@ -765,7 +765,9 @@ public class EmployeeMasterFunctions {
 			clickContactTabInUpdateEmployee();
 			selectContactTypeToUpdate("Add");
 			clickAddIconInUpdateContactDetails();
-			fillDetailsInUpdateContactDetails(commonFunc.getDataFromTestDataSheet("EmpDependentName"),
+			fillDetailsInUpdateContactDetails(
+					commonFunc.getDataFromTestDataSheet("EmpDependentName")
+							.concat(" " + commonFunc.getDataFromTestDataSheet("EmpDependentName")),
 					commonFunc.getDataFromTestDataSheet("EmpDependentRelation"),
 					commonFunc.randomMobileNumberGenerator(), commonFunc.getDataFromTestDataSheet("EmpAddress"),
 					commonFunc.getDataFromTestDataSheet("Emp_City"));
@@ -835,7 +837,7 @@ public class EmployeeMasterFunctions {
 			clickQualificationTabInUpdateEmployee();
 			selectQualificationTypeToUpdate("Add");
 			clickAddIconInUpdateQualificationDetails();
-			fillDetailsInUpdateQualificationDetails(commonFunc.getDataFromTestDataSheet("Emp_Qualification"),
+			fillDetailsInUpdateQualificationDetails(commonFunc.getDataFromTestDataSheet("Emp_QualificationBCOM"),
 					commonFunc.getDataFromTestDataSheet("Emp_BranchofStudy"),
 					commonFunc.getDataFromTestDataSheet("EmpInstitute"), String.valueOf(random.nextInt(4)),
 					commonFunc.getDataFromTestDataSheet("Emp_YearOfPassing"), RandomStringUtils.randomAlphabetic(1),
@@ -3312,10 +3314,21 @@ public class EmployeeMasterFunctions {
 				ElementType.Xpath);
 		if (flag) {
 			webDB.moveToElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityEffYearData, ElementType.Xpath);
-			webDB.moveToElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityActiveIcon(LeaveType), ElementType.Xpath);
+			webDB.scrollToAnElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityMinDaysData, ElementType.Xpath);
+			webDB.scrollToAnElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityActiveIcon(LeaveType),
+					ElementType.Xpath);
 			webDB.clickAnElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityActiveIcon(LeaveType),
 					ElementType.Xpath);
 			flag = webDB.waitForElement(CommonUiLocators.SuccessToastMessage, ElementType.Xpath);
+			if (!flag) {
+				webDB.moveToElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityEffYearData, ElementType.Xpath);
+				webDB.scrollToAnElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityMinDaysData, ElementType.Xpath);
+				webDB.scrollToAnElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityActiveIcon(LeaveType),
+						ElementType.Xpath);
+				webDB.javaScriptClickAnElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityActiveIcon(LeaveType),
+						ElementType.Xpath);
+				flag = webDB.waitForElement(CommonUiLocators.SuccessToastMessage, ElementType.Xpath);
+			}
 			if (flag) {
 				commonFunc.hardWait(3000);
 				if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {

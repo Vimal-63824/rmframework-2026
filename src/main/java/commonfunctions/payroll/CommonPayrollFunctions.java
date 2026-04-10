@@ -42,15 +42,22 @@ public class CommonPayrollFunctions {
 		if (flag) {
 			webDB.moveToElement(TableDataLocator, ElementType.Xpath);
 			webDB.doubleClickAnElement(TableDataLocator, ElementType.Xpath);
-			flag = webDB.waitForElement(InputBoxLocator, ElementType.Xpath);
+			webDB.waitForElement(InputBoxLocator, ElementType.Xpath);
+			webDB.clearText(InputBoxLocator, ElementType.Xpath);
+			flag = webDB.waitForElement(TableDataLocator, ElementType.Xpath);
 			if (flag) {
-				try {
-					JavascriptExecutor js = (JavascriptExecutor) webDB.getDriver();
-					WebElement InputElement = webDB.getDriver().findElement(By.xpath(InputBoxLocator));
-					js.executeScript("arguments[0].value='" + Value + "';", InputElement);
-					logs.logging("INFO", Value + " - Added in the Table Data");
-				} catch (Exception e) {
-					flag = false;
+				webDB.moveToElement(TableDataLocator, ElementType.Xpath);
+				webDB.doubleClickAnElement(TableDataLocator, ElementType.Xpath);
+				flag = webDB.waitForElement(InputBoxLocator, ElementType.Xpath);
+				if (flag) {
+					try {
+						JavascriptExecutor js = (JavascriptExecutor) webDB.getDriver();
+						WebElement InputElement = webDB.getDriver().findElement(By.xpath(InputBoxLocator));
+						js.executeScript("arguments[0].value='" + Value + "';", InputElement);
+						logs.logging("INFO", Value + " - Added in the Table Data");
+					} catch (Exception e) {
+						flag = false;
+					}
 				}
 			}
 		}
@@ -74,7 +81,7 @@ public class CommonPayrollFunctions {
 			logs.logging("INFO", "Leave And Loan Setup Page URL getted: " + LeaveLoanURL);
 			webDB.navigateToBack();
 			flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_LeaveDetailsSideNav, ElementType.Xpath);
-			if(!flag) {
+			if (!flag) {
 				webDB.navigateToBack();
 			}
 			flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_LeaveDetailsSideNav, ElementType.Xpath);
