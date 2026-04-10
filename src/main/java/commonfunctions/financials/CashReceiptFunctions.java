@@ -158,7 +158,7 @@ public class CashReceiptFunctions {
 	public void clickCRLineAddButton() {
 		flag = webDB.waitForElement(CashReceiptLocators.BankReceiptLineWiseAddButton, ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(CashReceiptLocators.BankReceiptLineWiseAddButton, ElementType.Xpath);
+			webDB.javaScriptClickAnElement(CashReceiptLocators.BankReceiptLineWiseAddButton, ElementType.Xpath);
 			flag = webDB.waitForElement(CashReceiptLocators.BankLineGLAccountField, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Bank Payment Line Wise Add Button Is Clicked Successfully");
@@ -1804,7 +1804,7 @@ public class CashReceiptFunctions {
 			flag = webDB.waitForElement(CashReceiptLocators.CashReceiptViewDeleteButton, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Cash View Save Button Is Clicked Successfully");
-				webDB.switchToDefaultContent();
+//				webDB.switchToDefaultContent();
 			}
 		}
 		assertTrue(flag);
@@ -1816,6 +1816,7 @@ public class CashReceiptFunctions {
 	 * @author Harikrishna - RMITS
 	 */
 	public void clickBankViewDetailsCloseButton() {
+		webDB.switchToDefaultContent();
 		flag = webDB.waitForElement(CashReceiptLocators.BankReceiptViewScreenCloseButton, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(CashReceiptLocators.BankReceiptViewScreenCloseButton, ElementType.Xpath);
@@ -3676,13 +3677,6 @@ public class CashReceiptFunctions {
 		}
 	}
 
-	/**
-	 * This Method Is Used To Create Advance Document Through Add Button
-	 * 
-	 * @author Harikrishna - RMITS
-	 * @param SheetName
-	 * @throws IOException
-	 */
 	public void CRAdvanceThroughAddButton(String SheetName) throws IOException {
 		salesOrdFunc.advanceSalesOrder();
 		VariableHandler.setMultipleAdvRecDocs(salesOrdFunc.MultiAdvReceiptDocumentNumber);
@@ -3720,13 +3714,6 @@ public class CashReceiptFunctions {
 				commonFunc.getDataFromTestDataSheet("CashierName"));
 	}
 
-	/**
-	 * This Method Is Used To Create Advance Document Through Add Button
-	 * 
-	 * @author Harikrishna - RMITS
-	 * @param SheetName
-	 * @throws IOException
-	 */
 	public void CRAdvanceMultiSOThroughAddButton(String SheetName) throws IOException {
 		for (int i = 1; i <= 2; i++) {
 			salesOrdFunc.advanceSalesOrder();
@@ -3768,6 +3755,159 @@ public class CashReceiptFunctions {
 		AdvCashReceiptThroughPendingDocs(commonFunc.getDataFromTestDataSheet("CreationTypeSingle"), SheetName,
 				commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
 				commonFunc.getDataFromTestDataSheet("CashierName"));
+	}
+
+	public void CRAdvanceWithNewRef(String SheetName) throws IOException {
+		AdvCashReceiptWithNewRef(SheetName, commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
+				commonFunc.getDataFromTestDataSheet("CashierName"));
+
+	}
+
+	public void CRAdvanceWithMultiRef(String SheetName) throws IOException {
+		AdvCashReceiptWithMultiRef(SheetName, commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
+				commonFunc.getDataFromTestDataSheet("CashierName"));
+
+	}
+
+	/**
+	 * This Method Is used To Add The Bank Receipt Through Add Button
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @param SheetName
+	 * @return
+	 */
+	public void AdvCashReceiptWithNewRef(String SheetName, String Currency, String CashierName) {
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("AdminUsername"));
+		commonFunc.navigateToFinancialPaymentReceipt();
+		bankpaymentfunc.clickAddButtonInPaymentsRecipts();
+		createCashReceiptEntry(commonFunc.getDataFromTestDataSheet("CashDocModeCR"), CashierName, Today,
+				commonFunc.getDataFromTestDataSheet("CashReceiptPrefix"));
+		getCashPaymentOrReceiptDocumentNumber();
+		bankpaymentfunc.checkBPDocumentStatusWithDB(commonFunc.getDataFromTestDataSheet("Draft"),
+				VariableHandler.getCashPaymentOrReceiptDocNumber());
+		verifyCashReceiptDetailsWithDB(CashierName, commonFunc.getDataFromTestDataSheet("CashReceiptPrefix"), Currency);
+		CashReceipts = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		for (int i = 1; i < CashReceipts.length; i++) {
+			String GLAccountDesc = CashReceipts[i][1];
+			String PartyName = CashReceipts[i][3];
+			String EntityName = CashReceipts[i][5];
+			String CPCCodeDesc = CashReceipts[i][6];
+			String BillNumber = CashReceipts[i][7];
+			String PayAmount = CashReceipts[i][8];
+			String DRCR = CashReceipts[i][9];
+			String CURCY = CashReceipts[i][10];
+			String EXRate = CashReceipts[i][11];
+			String TransCURCY = CashReceipts[i][12];
+			String BaseCURCY = CashReceipts[i][13];
+			String AssesableValue = CashReceipts[i][16];
+			if (!GLAccountDesc.equals("")) {
+				clickCRLineAddButton();
+				addCashReceiptLineDetails(GLAccountDesc, CPCCodeDesc);
+				clickCRLineWiseSaveButton();
+				clickLineWiseViewButton(i);
+				clickAddButtonInViewDetails();
+				addBillNumberAndPayAmount(BillNumber, PayAmount);
+				clickViewDetailsSaveButton();
+				clickBankViewDetailsCloseButton();
+				if (!Currency.equals("INR")) {
+					excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, dbCommonFunctions.ExchangeRateDetails(
+							Currency, commonFunc.getDataFromTestDataSheet("ExportSalesEXRateColumnName")));
+				} else {
+					excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, "1");
+				}
+				verifyCashReceiptLineDetailsWithDB(SheetName, i);
+			}
+		}
+		clickCreateJournalButtonInCR();
+		commonFunc.checkRefreshCellsDisappear();
+		bankreceiptfunc.verifyJournalAmountWithDB(webDB.getDataFromProperties("CRJournalNewRef"),
+				VariableHandler.getCashPaymentOrReceiptDocNumber());
+		clearDataInExcel(SheetName);
+		clickPostButton();
+		flag = bankpaymentfunc.forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
+		if (flag) {
+			commonFunc.logoutUser();
+			bankpaymentfunc.checkBPDocumentStatusWithDB(commonFunc.getDataFromTestDataSheet("EntryCompletedStatus"),
+					VariableHandler.getCashPaymentOrReceiptDocNumber());
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+					VariableHandler.getCashPaymentOrReceiptDocNumber(), webDB.getDataFromProperties("HodEmpId"),
+					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+			VerifyCRVDocumentStatus();
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is used To Add The Bank Receipt Through Add Button
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @param SheetName
+	 * @return
+	 */
+	public void AdvCashReceiptWithMultiRef(String SheetName, String Currency, String CashierName) {
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("AdminUsername"));
+		commonFunc.navigateToFinancialPaymentReceipt();
+		bankpaymentfunc.clickAddButtonInPaymentsRecipts();
+		createCashReceiptEntry(commonFunc.getDataFromTestDataSheet("CashDocModeCR"), CashierName, Today,
+				commonFunc.getDataFromTestDataSheet("CashReceiptPrefix"));
+		getCashPaymentOrReceiptDocumentNumber();
+		bankpaymentfunc.checkBPDocumentStatusWithDB(commonFunc.getDataFromTestDataSheet("Draft"),
+				VariableHandler.getCashPaymentOrReceiptDocNumber());
+		verifyCashReceiptDetailsWithDB(CashierName, commonFunc.getDataFromTestDataSheet("CashReceiptPrefix"), Currency);
+		CashReceipts = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		for (int i = 1; i < CashReceipts.length; i++) {
+			String GLAccountDesc = CashReceipts[i][1];
+			String PartyName = CashReceipts[i][3];
+			String EntityName = CashReceipts[i][5];
+			String CPCCodeDesc = CashReceipts[i][6];
+			String BillNumber = CashReceipts[i][7];
+			String PayAmount = CashReceipts[i][8];
+			String DRCR = CashReceipts[i][9];
+			String CURCY = CashReceipts[i][10];
+			String EXRate = CashReceipts[i][11];
+			String TransCURCY = CashReceipts[i][12];
+			String BaseCURCY = CashReceipts[i][13];
+			String AssesableValue = CashReceipts[i][16];
+			if (!GLAccountDesc.equals("")) {
+				clickCRLineAddButton();
+				addCashReceiptLineDetails(GLAccountDesc, CPCCodeDesc);
+				clickCRLineWiseSaveButton();
+				clickLineWiseViewButton(i);
+				for (int j = 0; j < 2; j++) {
+					clickAddButtonInViewDetails();
+					addBillNumberAndPayAmount(BillNumber, PayAmount);
+					clickViewDetailsSaveButton();
+					commonFunc.checkRefreshCellsDisappear();
+				}
+				clickBankViewDetailsCloseButton();
+				if (!Currency.equals("INR")) {
+					excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, dbCommonFunctions.ExchangeRateDetails(
+							Currency, commonFunc.getDataFromTestDataSheet("ExportSalesEXRateColumnName")));
+				} else {
+					excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, "1");
+				}
+				verifyCashReceiptLineDetailsWithDB(SheetName, i);
+			}
+		}
+		clickCreateJournalButtonInCR();
+		commonFunc.checkRefreshCellsDisappear();
+		bankreceiptfunc.verifyJournalAmountWithDB(webDB.getDataFromProperties("CRJournalMultiRef"),
+				VariableHandler.getCashPaymentOrReceiptDocNumber());
+//		clearDataInExcel(SheetName);
+		clickPostButton();
+		flag = bankpaymentfunc.forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
+		if (flag) {
+			commonFunc.logoutUser();
+			bankpaymentfunc.checkBPDocumentStatusWithDB(commonFunc.getDataFromTestDataSheet("EntryCompletedStatus"),
+					VariableHandler.getCashPaymentOrReceiptDocNumber());
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+					VariableHandler.getCashPaymentOrReceiptDocNumber(), webDB.getDataFromProperties("HodEmpId"),
+					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+			VerifyCRVDocumentStatus();
+		}
+		assertTrue(flag);
 	}
 
 	/**

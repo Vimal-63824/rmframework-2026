@@ -2297,4 +2297,18 @@ public class DBCommonFunctions {
 				commonFunc.getDataFromTestDataSheet("SUPNO"), SUPNO, DBHeaderColumnValue);
 		return value;
 	}
+	
+	/**
+	 * Bank Payment Header details
+	 * 
+	 * @author Harikrishna -RMITS
+	 * @param SONo
+	 * @param HeaderValue
+	 * @return String Value
+	 */
+	public String CashPaymentAdvancePendingPayablesDetails(String SONo, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery(getDataFromDBTestDataSheet("CashPaymentAdvancePendingQuery"),
+				commonFunc.getDataFromTestDataSheet("SONO"), SONo, DBHeaderColumnValue);
+		return value;
+	}
 }

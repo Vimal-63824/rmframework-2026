@@ -6120,13 +6120,8 @@ public class BankReceiptFunctions {
 		assertTrue(flag);
 	}
 
-	/**
-	 * This Method Is Used To Verify Customer Document After Sales Invoice
-	 * 
-	 * @author Harikrishna - RMITS
-	 * @param DocumentNumber
-	 */
 	public void verifyCustomerDocumentWithDBAfterSI(ArrayList<String> DocumentNumber) {
+
 		for (int i = 1; i <= DocumentNumber.size(); i++) {
 
 			salesOrdFunc.verifyAssertionBothValues(
@@ -6189,12 +6184,6 @@ public class BankReceiptFunctions {
 		}
 	}
 
-	/**
-	 * This Method Is Used To Verify Customer Document With DB After BRV
-	 * 
-	 * @author Harikrishna - RMITS
-	 * @param DocumentNumber
-	 */
 	public void verifyCustomerDocumentWithDBAfterBRV(String DocumentNumber) {
 
 		salesOrdFunc.verifyAssertionBothValues(
@@ -6371,6 +6360,99 @@ public class BankReceiptFunctions {
 		AdvanceBankReceiptThroughPendingDocsBankUSD(commonFunc.getDataFromTestDataSheet("CreationTypeSingle"),
 				SheetName, commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
 				commonFunc.getDataFromTestDataSheet("BankNameUSD"));
+	}
+
+	/**
+	 * This Method Is used To Add The Bank Receipt Through Add Button MPMI With New
+	 * Reference
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @param SheetName
+	 */
+	public void AdvBankReceiptWithNewRef(String SheetName, String Currency, String BankName) {
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("AdminUsername"));
+		commonFunc.navigateToFinancialPaymentReceipt();
+		bankpaymentfunc.clickAddButtonInPaymentsRecipts();
+		bankpaymentfunc.createBankPaymentEntry(commonFunc.getDataFromTestDataSheet("BankDocModeBR"), BankName, Today,
+				commonFunc.getDataFromTestDataSheet("BankPayMode"),
+				commonFunc.getDataFromTestDataSheet("BankRefNumber"), Today,
+				commonFunc.getDataFromTestDataSheet("BankReceiptPrefix"), Currency);
+		bankpaymentfunc.getBankPaymentOrReceiptDocumentNumber();
+		bankpaymentfunc.checkBPDocumentStatusWithDB(commonFunc.getDataFromTestDataSheet("Draft"),
+				VariableHandler.getBankPaymentOrReceiptDocNumber());
+		bankpaymentfunc.verifyBankPaymentDetailsWithDB(BankName,
+				commonFunc.getDataFromTestDataSheet("BankReceiptPrefix"), Currency);
+		BankReceipts = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		for (int i = 1; i < BankReceipts.length; i++) {
+			String GLAccountDesc = BankReceipts[i][1];
+			String PartyName = BankReceipts[i][3];
+			String EntityName = BankReceipts[i][5];
+			String CPCCodeDesc = BankReceipts[i][6];
+			String BillNumber = BankReceipts[i][7];
+			String PayAmount = BankReceipts[i][8];
+			String DRCR = BankReceipts[i][9];
+			String CURCY = BankReceipts[i][10];
+			String EXRate = BankReceipts[i][11];
+			String TransCURCY = BankReceipts[i][12];
+			String BaseCURCY = BankReceipts[i][13];
+			String AssesableValue = BankReceipts[i][16];
+			if (!GLAccountDesc.equals("")) {
+				clickBRLineAddButton();
+				addBankReceiptLineDetails(GLAccountDesc, CPCCodeDesc);
+				clickBRLineWiseSaveButton();
+//				clickBRLineWiseAddButton(i);
+//				clickPendingReceivablesInBR();
+//				selectSalesInvoiceDocumentInPendingBankReceiptMPMI(PartyName, VariableHandler.getMultipleSIDocs(), i);
+				clickLineWiseViewButton(i);
+				clickAddButtonInViewDetails();
+				addBillNumberAndPayAmount(BillNumber, PayAmount);
+				clickViewDetailsSaveButton();
+				clickBankViewDetailsCloseButton();
+				if (!Currency.equals("INR")) {
+					excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, dbCommonFunctions.ExchangeRateDetails(
+							Currency, commonFunc.getDataFromTestDataSheet("ExportSalesEXRateColumnName")));
+				} else {
+					excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, "1");
+				}
+				verifyBankReceiptLineDetailsWithDB(SheetName, i);
+			}
+			if (!Currency.equals("INR") || (BankName.equals("JP MORGAN CHASE"))) {
+				enterRealizedAmountInBRHeader(BaseCURCY);
+			}
+		}
+		checkARMControlBankNameRqrdFlag(BankName);
+		checkARMControlReceivedFromRqrdFlag();
+		clickCreateJournalButtonInBR();
+		if (Currency.equals("INR")) {
+			if (BankName.equals("JP MORGAN CHASE")) {
+				verifyJournalAmountWithDB(webDB.getDataFromProperties("JournalINRAdvNR"),
+						VariableHandler.getBankPaymentOrReceiptDocNumber());
+			} else {
+				verifyJournalAmountWithDB(webDB.getDataFromProperties("BRAdvJournalNR"),
+						VariableHandler.getBankPaymentOrReceiptDocNumber());
+			}
+		} else {
+			excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BRAdvJournalUSDNR"), 0, 10,
+					dbCommonFunctions.ExchangeRateDetails(Currency,
+							commonFunc.getDataFromTestDataSheet("ExportSalesEXRateColumnName")));
+			verifyJournalAmountWithDB(webDB.getDataFromProperties("BRAdvJournalUSDNR"),
+					VariableHandler.getBankPaymentOrReceiptDocNumber());
+		}
+		verifyOverallHeaderAmountWithDB(SheetName);
+		clearDataInExcel(SheetName);
+		clickPostButton();
+		flag = bankpaymentfunc.forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
+		if (flag) {
+			commonFunc.logoutUser();
+			bankpaymentfunc.checkBPDocumentStatusWithDB(commonFunc.getDataFromTestDataSheet("EntryCompletedStatus"),
+					VariableHandler.getBankPaymentOrReceiptDocNumber());
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+					VariableHandler.getBankPaymentOrReceiptDocNumber(), webDB.getDataFromProperties("HodEmpId"),
+					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+			checkGLMControlBRVAutoClearAndVerifyBRVDocumentStatus(Currency);
+		}
+		assertTrue(flag);
 	}
 
 	/**

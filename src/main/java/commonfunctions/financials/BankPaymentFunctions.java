@@ -23,11 +23,14 @@ import commonfunctions.DBCommonFunctions;
 import commonfunctions.VariableHandler;
 import commonfunctions.supplychainmanagement.ApprovalPageFunctions;
 import commonfunctions.supplychainmanagement.DirectGrnPageFunctions;
+import commonfunctions.supplychainmanagement.GrnPageFunctions;
+import commonfunctions.supplychainmanagement.PurchaseOrderFunctions;
 import commonfunctions.supplychainmanagement.SalesInvoiceFunctions;
 import commonfunctions.supplychainmanagement.SalesOrderFunctions;
 import commonlocators.CommonUiLocators;
 import commonlocators.financials.BankPaymentLocators;
 import commonlocators.financials.BankReceiptLocators;
+import commonlocators.financials.CashPaymentLocators;
 import commonlocators.financials.PaymentReceiptsLocators;
 import commonlocators.financials.PurchaseBillsLocators;
 import commonlocators.supplychainmanagement.MaterialIssuanceVoucherLocators;
@@ -49,6 +52,11 @@ public class BankPaymentFunctions {
 	static DirectGrnPageFunctions Grnfunc = new DirectGrnPageFunctions();
 	static SalesInvoiceFunctions salesInvoiceFunc = new SalesInvoiceFunctions();
 	static BankReceiptFunctions bankreceiptfunc = new BankReceiptFunctions();
+	static PurchaseOrderFunctions PurFunc = new PurchaseOrderFunctions();
+	static CashPaymentFunctions cashPymtFunc = new CashPaymentFunctions();
+	static GrnPageFunctions grnPageFunc = new GrnPageFunctions();
+	ArrayList<String> MultiBankDocumentNumber = new ArrayList<String>();
+	public ArrayList<String> MultiGRNDocs = new ArrayList<String>();
 
 	LocalDate date = LocalDate.now();
 	LocalDate previousdate = LocalDate.now().minusDays(1);
@@ -173,6 +181,7 @@ public class BankPaymentFunctions {
 			VariableHandler.setBankPaymentOrReceiptDocNumber(GetTextBankPaymentOrReceiptDocNumber);
 			logs.logging("INFO",
 					"Get Text Bank Payment Document Number Is " + VariableHandler.getBankPaymentOrReceiptDocNumber());
+			MultiBankDocumentNumber.add(VariableHandler.getBankPaymentOrReceiptDocNumber());
 		}
 		assertTrue(flag);
 	}
@@ -233,6 +242,7 @@ public class BankPaymentFunctions {
 	 * @author Harikrishna - RMITS
 	 */
 	public void clickBPLineAddButton() {
+		commonFunc.checkRefreshCellsDisappear();
 		flag = webDB.waitForElement(BankPaymentLocators.BankLineWiseAddButton, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(BankPaymentLocators.BankLineWiseAddButton, ElementType.Xpath);
@@ -521,7 +531,7 @@ public class BankPaymentFunctions {
 	 * 
 	 * @author Harikrishna - RMITS
 	 */
-	public void checkGLMControlBPVAutoClearAndVerifyBPVDocumentStatus(String BankName) {
+	public void checkGLMControlBPVAutoClearAndVerifyBPVDocumentStatus(String BankName, String Currency) {
 		String BPVAutoClearFlag = dbCommonFunctions.GLMControl(commonFunc.getDataFromTestDataSheet("DBBU"),
 				commonFunc.getDataFromTestDataSheet("GLMDBBankPaymentAutoClearFlagColumnName"));
 		logs.logging("INFO", "Bank Payment (RTGS / NEFT / TT ) Auto Clear Flag Is " + BPVAutoClearFlag);
@@ -529,8 +539,13 @@ public class BankPaymentFunctions {
 			checkBPDocumentStatusWithDB(commonFunc.getDataFromTestDataSheet("BPClearedStatus"),
 					VariableHandler.getBankPaymentOrReceiptDocNumber());
 		} else {
-			checkBPDocumentStatusWithDB(commonFunc.getDataFromTestDataSheet("BPIssuedStatus"),
-					VariableHandler.getBankPaymentOrReceiptDocNumber());
+			if (Currency.equals("USD")) {
+				checkBPDocumentStatusWithDB(commonFunc.getDataFromTestDataSheet("BPClearedStatus"),
+						VariableHandler.getBankPaymentOrReceiptDocNumber());
+			} else {
+				checkBPDocumentStatusWithDB(commonFunc.getDataFromTestDataSheet("BPIssuedStatus"),
+						VariableHandler.getBankPaymentOrReceiptDocNumber());
+			}
 		}
 	}
 
@@ -609,7 +624,8 @@ public class BankPaymentFunctions {
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
 					VariableHandler.getBankPaymentOrReceiptDocNumber(), webDB.getDataFromProperties("HodEmpId"),
 					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
-			checkGLMControlBPVAutoClearAndVerifyBPVDocumentStatus(commonFunc.getDataFromTestDataSheet("BankName"));
+			checkGLMControlBPVAutoClearAndVerifyBPVDocumentStatus(commonFunc.getDataFromTestDataSheet("BankName"),
+					commonFunc.getDataFromTestDataSheet("BankTransCurcy"));
 		}
 		return flag;
 	}
@@ -1482,7 +1498,7 @@ public class BankPaymentFunctions {
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
 					VariableHandler.getBankPaymentOrReceiptDocNumber(), webDB.getDataFromProperties("HodEmpId"),
 					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
-			checkGLMControlBPVAutoClearAndVerifyBPVDocumentStatus(BankName);
+			checkGLMControlBPVAutoClearAndVerifyBPVDocumentStatus(BankName, Currency);
 		}
 		assertTrue(flag);
 	}
@@ -1599,7 +1615,7 @@ public class BankPaymentFunctions {
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
 					VariableHandler.getBankPaymentOrReceiptDocNumber(), webDB.getDataFromProperties("HodEmpId"),
 					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
-			checkGLMControlBPVAutoClearAndVerifyBPVDocumentStatus(BankName);
+			checkGLMControlBPVAutoClearAndVerifyBPVDocumentStatus(BankName, Currency);
 		}
 		assertTrue(flag);
 	}
@@ -1706,7 +1722,7 @@ public class BankPaymentFunctions {
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
 					VariableHandler.getBankPaymentOrReceiptDocNumber(), webDB.getDataFromProperties("HodEmpId"),
 					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
-			checkGLMControlBPVAutoClearAndVerifyBPVDocumentStatus(BankName);
+			checkGLMControlBPVAutoClearAndVerifyBPVDocumentStatus(BankName, Currency);
 		}
 		assertTrue(flag);
 	}
@@ -1820,7 +1836,7 @@ public class BankPaymentFunctions {
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
 					VariableHandler.getBankPaymentOrReceiptDocNumber(), webDB.getDataFromProperties("HodEmpId"),
 					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
-			checkGLMControlBPVAutoClearAndVerifyBPVDocumentStatus(BankName);
+			checkGLMControlBPVAutoClearAndVerifyBPVDocumentStatus(BankName, Currency);
 		}
 	}
 
@@ -1923,7 +1939,7 @@ public class BankPaymentFunctions {
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
 					VariableHandler.getBankPaymentOrReceiptDocNumber(), webDB.getDataFromProperties("HodEmpId"),
 					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
-			checkGLMControlBPVAutoClearAndVerifyBPVDocumentStatus(BankName);
+			checkGLMControlBPVAutoClearAndVerifyBPVDocumentStatus(BankName, Currency);
 		}
 	}
 
@@ -2025,7 +2041,7 @@ public class BankPaymentFunctions {
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
 					VariableHandler.getBankPaymentOrReceiptDocNumber(), webDB.getDataFromProperties("HodEmpId"),
 					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
-			checkGLMControlBPVAutoClearAndVerifyBPVDocumentStatus(BankName);
+			checkGLMControlBPVAutoClearAndVerifyBPVDocumentStatus(BankName, Currency);
 		}
 		assertTrue(flag);
 	}
@@ -2125,7 +2141,7 @@ public class BankPaymentFunctions {
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
 					VariableHandler.getBankPaymentOrReceiptDocNumber(), webDB.getDataFromProperties("HodEmpId"),
 					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
-			checkGLMControlBPVAutoClearAndVerifyBPVDocumentStatus(BankName);
+			checkGLMControlBPVAutoClearAndVerifyBPVDocumentStatus(BankName, Currency);
 		}
 	}
 
@@ -2536,7 +2552,7 @@ public class BankPaymentFunctions {
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
 					VariableHandler.getBankPaymentOrReceiptDocNumber(), webDB.getDataFromProperties("HodEmpId"),
 					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
-			checkGLMControlBPVAutoClearAndVerifyBPVDocumentStatus(BankName);
+			checkGLMControlBPVAutoClearAndVerifyBPVDocumentStatus(BankName, Currency);
 		}
 		assertTrue(flag);
 	}
@@ -2722,7 +2738,7 @@ public class BankPaymentFunctions {
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
 					VariableHandler.getBankPaymentOrReceiptDocNumber(), webDB.getDataFromProperties("HodEmpId"),
 					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
-			checkGLMControlBPVAutoClearAndVerifyBPVDocumentStatus(BankName);
+			checkGLMControlBPVAutoClearAndVerifyBPVDocumentStatus(BankName, Currency);
 		}
 		assertTrue(flag);
 	}
@@ -3131,7 +3147,7 @@ public class BankPaymentFunctions {
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
 					VariableHandler.getBankPaymentOrReceiptDocNumber(), webDB.getDataFromProperties("HodEmpId"),
 					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
-			checkGLMControlBPVAutoClearAndVerifyBPVDocumentStatus(BankName);
+			checkGLMControlBPVAutoClearAndVerifyBPVDocumentStatus(BankName, Currency);
 		}
 		assertTrue(flag);
 	}
@@ -3256,7 +3272,7 @@ public class BankPaymentFunctions {
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
 					VariableHandler.getBankPaymentOrReceiptDocNumber(), webDB.getDataFromProperties("HodEmpId"),
 					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
-			checkGLMControlBPVAutoClearAndVerifyBPVDocumentStatus(BankName);
+			checkGLMControlBPVAutoClearAndVerifyBPVDocumentStatus(BankName, Currency);
 		}
 	}
 
@@ -3421,7 +3437,7 @@ public class BankPaymentFunctions {
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
 					VariableHandler.getBankPaymentOrReceiptDocNumber(), webDB.getDataFromProperties("HodEmpId"),
 					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
-			checkGLMControlBPVAutoClearAndVerifyBPVDocumentStatus(BankName);
+			checkGLMControlBPVAutoClearAndVerifyBPVDocumentStatus(BankName, Currency);
 		}
 		assertTrue(flag);
 	}
@@ -3497,8 +3513,10 @@ public class BankPaymentFunctions {
 	 * @author Harikrishna -RMITS
 	 */
 	public void verifyAfterMethod() {
+		cashPymtFunc.MultiAdvPaymentDocumentNumber.clear();
 		Grnfunc.MultiGRNDocs.clear();
 		PBDocumentNumber.clear();
+		MultiBankDocumentNumber.clear();
 		VariableHandler.setMultipleGRNDocs(null);
 		webDB.navigateToRefresh();
 		webDB.switchToDefaultContent();
@@ -3735,7 +3753,8 @@ public class BankPaymentFunctions {
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
 					VariableHandler.getBankPaymentOrReceiptDocNumber(), webDB.getDataFromProperties("HodEmpId"),
 					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
-			checkGLMControlBPVAutoClearAndVerifyBPVDocumentStatus(commonFunc.getDataFromTestDataSheet("BankName"));
+			checkGLMControlBPVAutoClearAndVerifyBPVDocumentStatus(commonFunc.getDataFromTestDataSheet("BankName"),
+					commonFunc.getDataFromTestDataSheet("BankTransCurcy"));
 		}
 		return flag;
 	}
@@ -4274,6 +4293,87 @@ public class BankPaymentFunctions {
 					logs.logging("INFO",
 							" Line Wise CESS Amount Is Matched With DataBase Values Against This Bank Receipt Document "
 									+ VariableHandler.getBankPaymentOrReceiptDocNumber());
+
+					if (SheetName.contains("TDS")) {
+						String POSheetName = BankPayments[i][4];
+						String TDS = BankPayments[i][29];
+						String TDSSourceAcc = BankPayments[i][30];
+						String TDSSourcePercentage = BankPayments[i][31];
+						String TDSSourceAssVal = BankPayments[i][32];
+						String TDSSourceAmt = BankPayments[i][33];
+
+						if (!POSheetName.equals("")) {
+							salesOrdFunc.verifyAssertionBothValues(dbCommonFunctions.BankPaymentLineDetails(
+									VariableHandler.getCashPaymentOrReceiptDocNumber(), SeqNo,
+									commonFunc.getDataFromTestDataSheet("TDSColumnName")), TDS);
+							logs.logging("INFO",
+									" Line Wise TDS ID Is Matched With DataBase Values Against This Cash Receipt Document "
+											+ VariableHandler.getCashPaymentOrReceiptDocNumber());
+
+							salesOrdFunc.verifyAssertionBothValues(
+									dbCommonFunctions.BankPaymentLineDetails(
+											VariableHandler.getCashPaymentOrReceiptDocNumber(), SeqNo,
+											commonFunc.getDataFromTestDataSheet("TDSSourceAccountColumnName")),
+									TDSSourceAcc);
+							logs.logging("INFO",
+									" Line Wise TDS Source Account Is Matched With DataBase Values Against This Cash Receipt Document "
+											+ VariableHandler.getCashPaymentOrReceiptDocNumber());
+
+							salesOrdFunc.verifyAssertionBothValues(
+									dbCommonFunctions.BankPaymentLineDetails(
+											VariableHandler.getCashPaymentOrReceiptDocNumber(), SeqNo,
+											commonFunc.getDataFromTestDataSheet("TDSSourcePctColumnName")),
+									TDSSourcePercentage);
+							logs.logging("INFO",
+									" Line Wise TDS Source Account Is Matched With DataBase Values Against This Cash Receipt Document "
+											+ VariableHandler.getCashPaymentOrReceiptDocNumber());
+
+							salesOrdFunc.verifyAssertionBothValues(
+									dbCommonFunctions.BankPaymentLineDetails(
+											VariableHandler.getCashPaymentOrReceiptDocNumber(), SeqNo,
+											commonFunc.getDataFromTestDataSheet("TDSSourceAssValueColumnName")),
+									TDSSourceAssVal);
+							logs.logging("INFO",
+									" Line Wise TDS Source Assesable Value Is Matched With DataBase Values Against This Cash Receipt Document "
+											+ VariableHandler.getCashPaymentOrReceiptDocNumber());
+
+							salesOrdFunc.verifyAssertionBothValues(
+									dbCommonFunctions.BankPaymentLineDetails(
+											VariableHandler.getCashPaymentOrReceiptDocNumber(), SeqNo,
+											commonFunc.getDataFromTestDataSheet("TDSSourceAmtColumnName")),
+									TDSSourceAmt);
+							logs.logging("INFO",
+									" Line Wise TDS Source Amount Value Is Matched With DataBase Values Against This Cash Receipt Document "
+											+ VariableHandler.getCashPaymentOrReceiptDocNumber());
+						} else {
+							salesOrdFunc.verifyAssertionBothValues(
+									dbCommonFunctions.BankPaymentLineDetails(
+											VariableHandler.getCashPaymentOrReceiptDocNumber(), SeqNo,
+											commonFunc.getDataFromTestDataSheet("TDSSourcePctColumnName")),
+									TDSSourcePercentage);
+							logs.logging("INFO",
+									" Line Wise TDS Source Account Is Matched With DataBase Values Against This Cash Receipt Document "
+											+ VariableHandler.getCashPaymentOrReceiptDocNumber());
+
+							salesOrdFunc.verifyAssertionBothValues(
+									dbCommonFunctions.BankPaymentLineDetails(
+											VariableHandler.getCashPaymentOrReceiptDocNumber(), SeqNo,
+											commonFunc.getDataFromTestDataSheet("TDSSourceAssValueColumnName")),
+									TDSSourceAssVal);
+							logs.logging("INFO",
+									" Line Wise TDS Source Assesable Value Is Matched With DataBase Values Against This Cash Receipt Document "
+											+ VariableHandler.getCashPaymentOrReceiptDocNumber());
+
+							salesOrdFunc.verifyAssertionBothValues(
+									dbCommonFunctions.BankPaymentLineDetails(
+											VariableHandler.getCashPaymentOrReceiptDocNumber(), SeqNo,
+											commonFunc.getDataFromTestDataSheet("TDSSourceAmtColumnName")),
+									TDSSourceAmt);
+							logs.logging("INFO",
+									" Line Wise TDS Source Amount Value Is Matched With DataBase Values Against This Cash Receipt Document "
+											+ VariableHandler.getCashPaymentOrReceiptDocNumber());
+						}
+					}
 				}
 			}
 		}
@@ -5327,7 +5427,7 @@ public class BankPaymentFunctions {
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
 					VariableHandler.getBankPaymentOrReceiptDocNumber(), webDB.getDataFromProperties("HodEmpId"),
 					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
-			verifyGLMCntrlPDCPaymentDate(commonFunc.getDataFromTestDataSheet("BankName"));
+			verifyGLMCntrlPDCPaymentDate(commonFunc.getDataFromTestDataSheet("BankName"), Currency);
 //			checkGLMControlBRVAutoClearAndVerifyBRVDocumentStatus(Currency);
 		}
 	}
@@ -5485,12 +5585,6 @@ public class BankPaymentFunctions {
 		webDB.pressTabKey();
 	}
 
-	/**
-	 * This Method Is Used To Cj=hoose Line Wise DR And CR In Bank Payment
-	 * 
-	 * @author Harikrishna - RMITS
-	 * @param DRCR
-	 */
 	public void chooseLineWiseDRCRInBP(String DRCR) {
 		flag = webDB.waitForElement(BankReceiptLocators.BanReceiptCRDRField, ElementType.Xpath);
 		if (flag) {
@@ -6658,14 +6752,14 @@ public class BankPaymentFunctions {
 	 * 
 	 * @author Harikrishna - RMITS
 	 */
-	public void verifyGLMCntrlPDCPaymentDate(String BankName) {
+	public void verifyGLMCntrlPDCPaymentDate(String BankName, String Currency) {
 
 		String PDCPaymentDate = dbCommonFunctions.GLMControl(commonFunc.getDataFromTestDataSheet("DBBU"),
 				commonFunc.getDataFromTestDataSheet("GLMPaymentPDCControlColumnName"));
 		logs.logging("INFO", "Post Dated Cheque Payment Date Control Is : " + PDCPaymentDate);
 
 		if (!PDCPaymentDate.equals("C")) {
-			checkGLMControlBPVAutoClearAndVerifyBPVDocumentStatus(BankName);
+			checkGLMControlBPVAutoClearAndVerifyBPVDocumentStatus(BankName, Currency);
 		} else {
 			checkBPDocumentStatusWithDB(commonFunc.getDataFromTestDataSheet("PostedStatus"),
 					VariableHandler.getBankPaymentOrReceiptDocNumber());
@@ -6704,7 +6798,7 @@ public class BankPaymentFunctions {
 							commonFunc.hardWait(500);
 							commonFunc.checkRefreshCellsDisappear();
 							commonFunc.hardWait(500);
-							checkGLMControlBPVAutoClearAndVerifyBPVDocumentStatus(BankName);
+							checkGLMControlBPVAutoClearAndVerifyBPVDocumentStatus(BankName, Currency);
 						}
 					}
 				}
@@ -6712,6 +6806,3255 @@ public class BankPaymentFunctions {
 		}
 		assertTrue(flag);
 	}
+
+	/**
+	 * This Method Is Used To Add The Bank Payment Through Add Button
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @param SheetName
+	 */
+	public void BPAdvNewRefWithAndWithoutTDS(String SheetName, String Currency, String BankName) {
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("AdminUsername"));
+		commonFunc.navigateToFinancialPaymentReceipt();
+		clickAddButtonInPaymentsRecipts();
+		createBankPaymentEntry(commonFunc.getDataFromTestDataSheet("BankDocMode"), BankName, Today,
+				commonFunc.getDataFromTestDataSheet("BankPayMode"),
+				commonFunc.getDataFromTestDataSheet("BankRefNumber"), Today,
+				commonFunc.getDataFromTestDataSheet("BankPrefix"), Currency);
+		getBankPaymentOrReceiptDocumentNumber();
+		checkBPDocumentStatusWithDB(commonFunc.getDataFromTestDataSheet("Draft"),
+				VariableHandler.getBankPaymentOrReceiptDocNumber());
+		verifyBankPaymentHeaderDetailsWithUI(BankName, commonFunc.getDataFromTestDataSheet("BankPrefix"), Today, Today);
+		verifyBankPaymentDetailsWithDB(BankName, commonFunc.getDataFromTestDataSheet("BankPrefix"), Currency);
+		BankPayments = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		for (int i = 1; i < BankPayments.length; i++) {
+			String GLAccountDesc = BankPayments[i][1];
+			String PartyName = BankPayments[i][3];
+			String EntityName = BankPayments[i][5];
+			String CPCCodeDesc = BankPayments[i][6];
+			String BillNumber = BankPayments[i][7];
+			String PayAmount = BankPayments[i][8];
+			String DRCR = BankPayments[i][9];
+			String CURCY = BankPayments[i][10];
+			String EXRate = BankPayments[i][11];
+			String TransCURCY = BankPayments[i][12];
+			String BaseCURCY = BankPayments[i][13];
+			String AssesableValue = BankPayments[i][16];
+			String TDS = BankPayments[i][29];
+			if (!TDS.equals("")) {
+				clickBPLineAddButton();
+				addBankPaymentLineDetails(GLAccountDesc, CPCCodeDesc);
+				clickLineWiseSaveButton();
+				clickLineWiseViewButton(i);
+				clickAddButtonInViewDetails();
+				addBillNumberAndPayAmount(BillNumber, PayAmount);
+				clickViewDetailsSaveButton();
+				clickBankViewDetailsCloseButton();
+				if (SheetName.contains("TDS")) {
+					chooseLineWiseTDS(TDS, i);
+					clickApplyDeductionButton();
+				}
+			}
+			verifyBankPaymentsLineDetailsWithDB(SheetName, i);
+		}
+		BankPayments = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		for (int j = 1; j < BankPayments.length; j++) {
+			String TDS = BankPayments[j][29];
+			String PayAmount = BankPayments[j][8];
+			if (!TDS.equals("")) {
+				if (SheetName.contains("TDS")) {
+					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("TDSBPJournalADVWithNewRef"), 1,
+							6, PayAmount);
+					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("TDSBPJournalADVWithNewRef"), 2,
+							6, PayAmount);
+				} else {
+					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalADVWithNewRef"), 1, 6,
+							PayAmount);
+					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalADVWithNewRef"), 2, 6,
+							PayAmount);
+				}
+			}
+		}
+		clickCreateJournalButton();
+		commonFunc.checkRefreshCellsDisappear();
+		if (SheetName.contains("TDS")) {
+			bankreceiptfunc.verifyJournalAmountWithDB(webDB.getDataFromProperties("TDSBPJournalADVWithNewRef"),
+					VariableHandler.getBankPaymentOrReceiptDocNumber());
+			excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("TDSBPJournalADVWithNewRef"), 1, 6, "0");
+			excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("TDSBPJournalADVWithNewRef"), 2, 6, "0");
+			clearDataInExcel(SheetName);
+		} else {
+			bankreceiptfunc.verifyJournalAmountWithDB(webDB.getDataFromProperties("BPJournalADVWithNewRef"),
+					VariableHandler.getBankPaymentOrReceiptDocNumber());
+			excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalADVWithNewRef"), 1, 6, "0");
+			excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalADVWithNewRef"), 2, 6, "0");
+			clearDataInExcel(SheetName);
+		}
+		verifyOverallHeaderAmountWithDB(SheetName);
+		clearDataInExcel(SheetName);
+		clickPostButton();
+		flag = forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
+		if (flag) {
+			commonFunc.logoutUser();
+			checkBPDocumentStatusWithDB(commonFunc.getDataFromTestDataSheet("EntryCompletedStatus"),
+					VariableHandler.getBankPaymentOrReceiptDocNumber());
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+					VariableHandler.getBankPaymentOrReceiptDocNumber(), webDB.getDataFromProperties("HodEmpId"),
+					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+			checkGLMControlBPVAutoClearAndVerifyBPVDocumentStatus(BankName, Currency);
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Add The Bank Payment Through Add Button
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @param SheetName
+	 */
+	public void BPAdvNewRefWithMultiTDS(String SheetName, String Currency, String BankName) {
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("AdminUsername"));
+		commonFunc.navigateToFinancialPaymentReceipt();
+		clickAddButtonInPaymentsRecipts();
+		createBankPaymentEntry(commonFunc.getDataFromTestDataSheet("BankDocMode"), BankName, Today,
+				commonFunc.getDataFromTestDataSheet("BankPayMode"),
+				commonFunc.getDataFromTestDataSheet("BankRefNumber"), Today,
+				commonFunc.getDataFromTestDataSheet("BankPrefix"), Currency);
+		getBankPaymentOrReceiptDocumentNumber();
+		checkBPDocumentStatusWithDB(commonFunc.getDataFromTestDataSheet("Draft"),
+				VariableHandler.getBankPaymentOrReceiptDocNumber());
+		verifyBankPaymentHeaderDetailsWithUI(BankName, commonFunc.getDataFromTestDataSheet("BankPrefix"), Today, Today);
+		verifyBankPaymentDetailsWithDB(BankName, commonFunc.getDataFromTestDataSheet("BankPrefix"), Currency);
+		BankPayments = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		for (int i = 1; i < BankPayments.length; i++) {
+			String GLAccountDesc = BankPayments[i][1];
+			String POSheetName = BankPayments[i][4];
+			String PartyName = BankPayments[i][3];
+			String EntityName = BankPayments[i][5];
+			String CPCCodeDesc = BankPayments[i][6];
+			String BillNumber = BankPayments[i][7];
+			String PayAmount = BankPayments[i][8];
+			String DRCR = BankPayments[i][9];
+			String CURCY = BankPayments[i][10];
+			String EXRate = BankPayments[i][11];
+			String TransCURCY = BankPayments[i][12];
+			String BaseCURCY = BankPayments[i][13];
+			String AssesableValue = BankPayments[i][16];
+			String TDS = BankPayments[i][29];
+			if (!POSheetName.equals("")) {
+				clickBPLineAddButton();
+				addBankPaymentLineDetails(GLAccountDesc, CPCCodeDesc);
+				clickLineWiseSaveButton();
+				clickLineWiseViewButton(i);
+				clickAddButtonInViewDetails();
+				addBillNumberAndPayAmount(BillNumber, PayAmount);
+				clickViewDetailsSaveButton();
+				clickBankViewDetailsCloseButton();
+				if (!Currency.equals("INR")) {
+					excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, dbCommonFunctions.ExchangeRateDetails(
+							Currency, commonFunc.getDataFromTestDataSheet("ImportPurchaseEXRateColumnName")));
+				} else {
+					excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, "1");
+				}
+				chooseLineWiseTDS(TDS, i);
+				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("TDSBPJournalADVMultiNewref"), i, 6,
+						PayAmount);
+			}
+		}
+		clickApplyDeductionButton();
+		for (int k = 1; k < BankPayments.length; k++) {
+			String GLAccountDesc1 = BankPayments[k][1];
+			String BaseCURCY1 = BankPayments[k][13];
+			if (!GLAccountDesc1.equals("")) {
+				verifyBankPaymentsLineDetailsWithDB(SheetName, k);
+			}
+		}
+		clickCreateJournalButton();
+		bankreceiptfunc.verifyJournalAmountWithDB(webDB.getDataFromProperties("TDSBPJournalADVMultiNewref"),
+				VariableHandler.getBankPaymentOrReceiptDocNumber());
+		excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("TDSBPJournalADVMultiNewref"), 1, 6, "0");
+		excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("TDSBPJournalADVMultiNewref"), 2, 6, "0");
+		verifyOverallHeaderAmountWithDB(SheetName);
+		clearDataInExcel(SheetName);
+		clickPostButton();
+		flag = forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
+		if (flag) {
+			commonFunc.logoutUser();
+			checkBPDocumentStatusWithDB(commonFunc.getDataFromTestDataSheet("EntryCompletedStatus"),
+					VariableHandler.getBankPaymentOrReceiptDocNumber());
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+					VariableHandler.getBankPaymentOrReceiptDocNumber(), webDB.getDataFromProperties("HodEmpId"),
+					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+			checkGLMControlBPVAutoClearAndVerifyBPVDocumentStatus(BankName, Currency);
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Methos Is Used To Click The The Line Wise TDS Field And Choose The TDS
+	 * Under Section
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @param TDS
+	 */
+	public void chooseLineWiseTDS(String TDS, int i) {
+		flag = webDB.waitForElement(BankPaymentLocators.LineWiseTDS(i), ElementType.Xpath);
+		if (flag) {
+			webDB.doubleClickAnElement(BankPaymentLocators.LineWiseTDS(i), ElementType.Xpath);
+			flag = webDB.waitForElement(BankPaymentLocators.BankPaymentTDSLovButton, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Line Wise TDS Field Is Clicked Sucessfully");
+				commonFunc.searchAndSelectValueInFilters(BankPaymentLocators.BankPaymentTDSLovButton, TDS);
+				webDB.pressTabKey();
+				flag = webDB.waitForElement(BankPaymentLocators.BankLineWiseSaveButton, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(BankPaymentLocators.BankLineWiseSaveButton, ElementType.Xpath);
+					logs.logging("INFO", "Bank Line Wise Save Button Is Clicked Successfully");
+					commonFunc.checkRefreshCellsDisappear();
+				}
+			}
+		}
+	}
+
+	/**
+	 * This Methos Is Used To Click The Apply Deduction Button In The Bank Payment
+	 * Header
+	 * 
+	 * @author Harikrishna - RMITS
+	 */
+	public void clickApplyDeductionButton() {
+		commonFunc.checkRefreshCellsDisappear();
+		flag = webDB.waitForElement(BankPaymentLocators.BankPaymentApplyDeduction, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(BankPaymentLocators.BankPaymentApplyDeduction, ElementType.Xpath);
+			flag = webDB.waitForElement(BankPaymentLocators.BankPaymentApplyDeductionCheckedButton, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "In Bank Payment Apply Deduction Button Is Clicked Successfully");
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Add The Bank Payment Through Add Button
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @param SheetName
+	 */
+	public void BPAdvWithNewRef(String SheetName, String Currency, String BankName) {
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("AdminUsername"));
+		commonFunc.navigateToFinancialPaymentReceipt();
+		clickAddButtonInPaymentsRecipts();
+		createBankPaymentEntry(commonFunc.getDataFromTestDataSheet("BankDocMode"), BankName, Today,
+				commonFunc.getDataFromTestDataSheet("BankPayMode"),
+				commonFunc.getDataFromTestDataSheet("BankRefNumber"), Today,
+				commonFunc.getDataFromTestDataSheet("BankPrefix"), Currency);
+		getBankPaymentOrReceiptDocumentNumber();
+		checkBPDocumentStatusWithDB(commonFunc.getDataFromTestDataSheet("Draft"),
+				VariableHandler.getBankPaymentOrReceiptDocNumber());
+		verifyBankPaymentHeaderDetailsWithUI(BankName, commonFunc.getDataFromTestDataSheet("BankPrefix"), Today, Today);
+		verifyBankPaymentDetailsWithDB(BankName, commonFunc.getDataFromTestDataSheet("BankPrefix"), Currency);
+		BankPayments = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		for (int i = 1; i < BankPayments.length; i++) {
+			String GLAccountDesc = BankPayments[i][1];
+			String PartyName = BankPayments[i][3];
+			String EntityName = BankPayments[i][5];
+			String CPCCodeDesc = BankPayments[i][6];
+			String BillNumber = BankPayments[i][7];
+			String PayAmount = BankPayments[i][8];
+			String DRCR = BankPayments[i][9];
+			String CURCY = BankPayments[i][10];
+			String EXRate = BankPayments[i][11];
+			String TransCURCY = BankPayments[i][12];
+			String BaseCURCY = BankPayments[i][13];
+			String AssesableValue = BankPayments[i][16];
+			if (!GLAccountDesc.equals("")) {
+				clickBPLineAddButton();
+				addBankPaymentLineDetails(GLAccountDesc, CPCCodeDesc);
+				clickLineWiseSaveButton();
+				clickLineWiseViewButton(i);
+				clickAddButtonInViewDetails();
+				addBillNumberAndPayAmount(BillNumber, PayAmount);
+				clickViewDetailsSaveButton();
+				clickBankViewDetailsCloseButton();
+				if (!Currency.equals("INR")) {
+					excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, dbCommonFunctions.ExchangeRateDetails(
+							Currency, commonFunc.getDataFromTestDataSheet("ImportPurchaseEXRateColumnName")));
+				} else {
+					excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, "1");
+				}
+				verifyBankPaymentsLineDetailsWithDB(SheetName, i);
+			}
+			if (!Currency.equals("INR") || (BankName.equals("JP MORGAN CHASE"))) {
+				enterRealizedAmountInBPHeader(BaseCURCY);
+			}
+		}
+		clickCreateJournalButton();
+		if (Currency.equals("INR")) {
+			if (BankName.equals("JP MORGAN CHASE")) {
+				bankreceiptfunc.verifyJournalAmountWithDB(webDB.getDataFromProperties("BPJournalINRAdvNR"),
+						VariableHandler.getBankPaymentOrReceiptDocNumber());
+			} else {
+				bankreceiptfunc.verifyJournalAmountWithDB(webDB.getDataFromProperties("BRAdvJournalNR"),
+						VariableHandler.getBankPaymentOrReceiptDocNumber());
+			}
+		} else {
+			excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPAdvJournalUSDNR"), 0, 10,
+					dbCommonFunctions.ExchangeRateDetails(Currency,
+							commonFunc.getDataFromTestDataSheet("ImportPurchaseEXRateColumnName")));
+			bankreceiptfunc.verifyJournalAmountWithDB(webDB.getDataFromProperties("BPAdvJournalUSDNR"),
+					VariableHandler.getBankPaymentOrReceiptDocNumber());
+		}
+		verifyOverallHeaderAmountWithDB(SheetName);
+		clearDataInExcel(SheetName);
+		clickPostButton();
+		flag = forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
+		if (flag) {
+			commonFunc.logoutUser();
+			checkBPDocumentStatusWithDB(commonFunc.getDataFromTestDataSheet("EntryCompletedStatus"),
+					VariableHandler.getBankPaymentOrReceiptDocNumber());
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+					VariableHandler.getBankPaymentOrReceiptDocNumber(), webDB.getDataFromProperties("HodEmpId"),
+					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+			checkGLMControlBPVAutoClearAndVerifyBPVDocumentStatus(BankName, Currency);
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Create Advance PO Through Add Button
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @param SheetName
+	 */
+	public void BPadvancePOThroughAddButton(String SheetName) {
+		PurFunc.verifyDirectPODomesticStockTransferSimilarUOMWithMultipleItemWithExcelSheetHK();
+		cashPymtFunc.getAdvPaymentDocumentFromDataBase();
+		VariableHandler.setMultipleAdvPymtDocs(cashPymtFunc.MultiAdvPaymentDocumentNumber);
+		excelUtils.writeDataInExcel(Filepath, SheetName, 1, 26, dbCommonFunctions.POAdvanceDetails(
+				VariableHandler.getPONumber(), commonFunc.getDataFromTestDataSheet("AdvancePOPayableColumnName")));
+		BPAdvThroughAddButton(SheetName, commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
+				commonFunc.getDataFromTestDataSheet("BankName"));
+	}
+
+	/**
+	 * This Method Is Used To Create Advance PO Through Get Document
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @param SheetName
+	 */
+	public void BPadvancePOThroughGetDocument(String SheetName) {
+		PurFunc.verifyDirectPODomesticStockTransferSimilarUOMWithMultipleItemWithExcelSheetHK();
+		cashPymtFunc.getAdvPaymentDocumentFromDataBase();
+		VariableHandler.setMultipleAdvPymtDocs(cashPymtFunc.MultiAdvPaymentDocumentNumber);
+		excelUtils.writeDataInExcel(Filepath, SheetName, 1, 26, dbCommonFunctions.POAdvanceDetails(
+				VariableHandler.getPONumber(), commonFunc.getDataFromTestDataSheet("AdvancePOPayableColumnName")));
+		BPAdvThroughGetDocument(SheetName, commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
+				commonFunc.getDataFromTestDataSheet("BankName"));
+	}
+
+	/**
+	 * This Method Is Used To Create Advance PO Through Pending Documents
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @param SheetName
+	 */
+	public void BPadvancePOThroughPendingDocument(String SheetName) {
+		PurFunc.verifyDirectPODomesticStockTransferSimilarUOMWithMultipleItemWithExcelSheetHK();
+		cashPymtFunc.getAdvPaymentDocumentFromDataBase();
+		VariableHandler.setMultipleAdvPymtDocs(cashPymtFunc.MultiAdvPaymentDocumentNumber);
+		excelUtils.writeDataInExcel(Filepath, SheetName, 1, 26, dbCommonFunctions.POAdvanceDetails(
+				VariableHandler.getPONumber(), commonFunc.getDataFromTestDataSheet("AdvancePOPayableColumnName")));
+		BPAdvThroughPendingDocs(commonFunc.getDataFromTestDataSheet("CreationTypeSingle"), SheetName,
+				commonFunc.getDataFromTestDataSheet("BankTransCurcy"), commonFunc.getDataFromTestDataSheet("BankName"));
+	}
+
+	/**
+	 * This Method Is Used To Create Multiple Advance PO Through Add Button
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @param SheetName
+	 */
+	public void BPadvancePOMultipleThroughAddButton(String SheetName) {
+		for (int i = 0; i < 2; i++) {
+			PurFunc.verifyDirectPODomesticStockTransferSimilarUOMWithMultipleItemWithExcelSheetHK();
+			cashPymtFunc.getAdvPaymentDocumentFromDataBase();
+			excelUtils.writeDataInExcel(Filepath, SheetName, 1, 25 + (i + 1),
+					dbCommonFunctions.POAdvanceDetails(VariableHandler.getMultiplePODocs().get(i),
+							commonFunc.getDataFromTestDataSheet("AdvancePOPayableColumnName")));
+		}
+		VariableHandler.setMultipleAdvPymtDocs(cashPymtFunc.MultiAdvPaymentDocumentNumber);
+		BPAdvThroughAddButton(SheetName, commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
+				commonFunc.getDataFromTestDataSheet("BankName"));
+	}
+
+	/**
+	 * This Method Is Used To Create Multiple Advance PO Through Get Document
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @param SheetName
+	 */
+	public void BPadvancePOMultipleThroughGetDocument(String SheetName) {
+		for (int i = 0; i < 2; i++) {
+			PurFunc.verifyDirectPODomesticStockTransferSimilarUOMWithMultipleItemWithExcelSheetHK();
+			cashPymtFunc.getAdvPaymentDocumentFromDataBase();
+			excelUtils.writeDataInExcel(Filepath, SheetName, 1, 25 + (i + 1),
+					dbCommonFunctions.POAdvanceDetails(VariableHandler.getMultiplePODocs().get(i),
+							commonFunc.getDataFromTestDataSheet("AdvancePOPayableColumnName")));
+		}
+		VariableHandler.setMultipleAdvPymtDocs(cashPymtFunc.MultiAdvPaymentDocumentNumber);
+		BPAdvThroughGetDocument(SheetName, commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
+				commonFunc.getDataFromTestDataSheet("BankName"));
+	}
+
+	/**
+	 * This Method Is Used To Create Multiple Advance PO Through Pending Documents
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @param SheetName
+	 */
+	public void BPadvancePOMultipleThroughPendingDocument(String SheetName) {
+		for (int i = 0; i < 2; i++) {
+			PurFunc.verifyDirectPODomesticStockTransferSimilarUOMWithMultipleItemWithExcelSheetHK();
+			cashPymtFunc.getAdvPaymentDocumentFromDataBase();
+			excelUtils.writeDataInExcel(Filepath, SheetName, 1, 25 + (i + 1),
+					dbCommonFunctions.POAdvanceDetails(VariableHandler.getMultiplePODocs().get(i),
+							commonFunc.getDataFromTestDataSheet("AdvancePOPayableColumnName")));
+		}
+		VariableHandler.setMultipleAdvPymtDocs(cashPymtFunc.MultiAdvPaymentDocumentNumber);
+		BPAdvThroughPendingDocs(commonFunc.getDataFromTestDataSheet("CreationTypeSingle"), SheetName,
+				commonFunc.getDataFromTestDataSheet("BankTransCurcy"), commonFunc.getDataFromTestDataSheet("BankName"));
+	}
+
+	/**
+	 * This Method Is Used To Create Multiple Advance PO Through Add Button
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @param SheetName
+	 */
+	public void BPadvancePOMultipleThroughAddButtonWithMultipleTDS(String SheetName) {
+		BankPayments = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		for (int i = 1; i < BankPayments.length; i++) {
+			String SupplierID = BankPayments[i][2];
+			String POSheetName = BankPayments[i][4];
+			if (!POSheetName.equals("")) {
+				PurFunc.verifyDirectPODomesticStockTransferSimilarUOMWithMultipleItemWithExcelSheetHK1(SupplierID,
+						POSheetName);
+				cashPymtFunc.getAdvPaymentDocumentFromDataBase();
+				excelUtils.writeDataInExcel(Filepath, SheetName, i, 26,
+						dbCommonFunctions.POAdvanceDetails(VariableHandler.getMultiplePODocs().get(i - 1),
+								commonFunc.getDataFromTestDataSheet("AdvancePOPayableColumnName")));
+			}
+		}
+		VariableHandler.setMultipleAdvPymtDocs(cashPymtFunc.MultiAdvPaymentDocumentNumber);
+		BPAdvThroughAddButtonWithMultiTDS(SheetName, commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
+				commonFunc.getDataFromTestDataSheet("BankName"));
+	}
+
+	/**
+	 * This Method Is Used To Create Multiple Advance PO Through Get Document
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @param SheetName
+	 */
+	public void BPadvancePOMultipleThroughGetDocumentWithMultipleTDS(String SheetName) {
+		BankPayments = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		for (int i = 1; i < BankPayments.length; i++) {
+			String SupplierID = BankPayments[i][2];
+			String POSheetName = BankPayments[i][4];
+			if (!POSheetName.equals("")) {
+				PurFunc.verifyDirectPODomesticStockTransferSimilarUOMWithMultipleItemWithExcelSheetHK1(SupplierID,
+						POSheetName);
+				cashPymtFunc.getAdvPaymentDocumentFromDataBase();
+				excelUtils.writeDataInExcel(Filepath, SheetName, i, 26,
+						dbCommonFunctions.POAdvanceDetails(VariableHandler.getMultiplePODocs().get(i - 1),
+								commonFunc.getDataFromTestDataSheet("AdvancePOPayableColumnName")));
+			}
+		}
+		VariableHandler.setMultipleAdvPymtDocs(cashPymtFunc.MultiAdvPaymentDocumentNumber);
+		BPAdvThroughGetDocumentWithMultiTDS(SheetName, commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
+				commonFunc.getDataFromTestDataSheet("BankName"));
+	}
+
+	/**
+	 * This Method Is Used To Create Multiple Advance PO Through Pending Documents
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @param SheetName
+	 */
+	public void BPadvancePOMultipleThroughPendingDocumentWithMultipleTDS(String SheetName) {
+		BankPayments = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		for (int i = 1; i < BankPayments.length; i++) {
+			String SupplierID = BankPayments[i][2];
+			String POSheetName = BankPayments[i][4];
+			if (!POSheetName.equals("")) {
+				PurFunc.verifyDirectPODomesticStockTransferSimilarUOMWithMultipleItemWithExcelSheetHK1(SupplierID,
+						POSheetName);
+				cashPymtFunc.getAdvPaymentDocumentFromDataBase();
+				excelUtils.writeDataInExcel(Filepath, SheetName, i, 26,
+						dbCommonFunctions.POAdvanceDetails(VariableHandler.getMultiplePODocs().get(i - 1),
+								commonFunc.getDataFromTestDataSheet("AdvancePOPayableColumnName")));
+			}
+		}
+		VariableHandler.setMultipleAdvPymtDocs(cashPymtFunc.MultiAdvPaymentDocumentNumber);
+		BPAdvThroughPendingDocsWithMultiTDS(commonFunc.getDataFromTestDataSheet("CreationTypeMerge"), SheetName,
+				commonFunc.getDataFromTestDataSheet("BankTransCurcy"), commonFunc.getDataFromTestDataSheet("BankName"));
+	}
+
+	/**
+	 * This Method Is Used To Create Advance PO Through Add Button
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @param SheetName
+	 */
+	public void BPadvancePOThroughAddButtonBankCurcyUSD(String SheetName) {
+		PurFunc.verifyDirectPODomesticStockTransferSimilarUOMWithMultipleItemWithExcelSheetHK();
+		cashPymtFunc.getAdvPaymentDocumentFromDataBase();
+		VariableHandler.setMultipleAdvPymtDocs(cashPymtFunc.MultiAdvPaymentDocumentNumber);
+		excelUtils.writeDataInExcel(Filepath, SheetName, 1, 26, dbCommonFunctions.POAdvanceDetails(
+				VariableHandler.getPONumber(), commonFunc.getDataFromTestDataSheet("AdvancePOPayableColumnName")));
+		BPAdvThroughAddButton(SheetName, commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
+				commonFunc.getDataFromTestDataSheet("BankNameUSD"));
+	}
+
+	/**
+	 * This Method Is Used To Create Advance PO Through Get Document
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @param SheetName
+	 */
+	public void BPadvancePOThroughGetDocumentBankCurcyUSD(String SheetName) {
+		PurFunc.verifyDirectPODomesticStockTransferSimilarUOMWithMultipleItemWithExcelSheetHK();
+		cashPymtFunc.getAdvPaymentDocumentFromDataBase();
+		VariableHandler.setMultipleAdvPymtDocs(cashPymtFunc.MultiAdvPaymentDocumentNumber);
+		excelUtils.writeDataInExcel(Filepath, SheetName, 1, 26, dbCommonFunctions.POAdvanceDetails(
+				VariableHandler.getPONumber(), commonFunc.getDataFromTestDataSheet("AdvancePOPayableColumnName")));
+		BPAdvThroughGetDocument(SheetName, commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
+				commonFunc.getDataFromTestDataSheet("BankNameUSD"));
+	}
+
+	/**
+	 * This Method Is Used To Create Advance PO Through Pending Documents
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @param SheetName
+	 */
+	public void BPadvancePOThroughPendingDocumentBankCurcyUSD(String SheetName) {
+		PurFunc.verifyDirectPODomesticStockTransferSimilarUOMWithMultipleItemWithExcelSheetHK();
+		cashPymtFunc.getAdvPaymentDocumentFromDataBase();
+		VariableHandler.setMultipleAdvPymtDocs(cashPymtFunc.MultiAdvPaymentDocumentNumber);
+		excelUtils.writeDataInExcel(Filepath, SheetName, 1, 26, dbCommonFunctions.POAdvanceDetails(
+				VariableHandler.getPONumber(), commonFunc.getDataFromTestDataSheet("AdvancePOPayableColumnName")));
+		BPAdvThroughPendingDocs(commonFunc.getDataFromTestDataSheet("CreationTypeSingle"), SheetName,
+				commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
+				commonFunc.getDataFromTestDataSheet("BankNameUSD"));
+	}
+
+	/**
+	 * This Method Is Used To Create Multiple Advance PO Through Add Button
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @param SheetName
+	 */
+	public void BPadvancePOMultipleThroughAddButtonBankCurcyUSD(String SheetName) {
+		for (int i = 0; i < 2; i++) {
+			PurFunc.verifyDirectPODomesticStockTransferSimilarUOMWithMultipleItemWithExcelSheetHK();
+			cashPymtFunc.getAdvPaymentDocumentFromDataBase();
+			excelUtils.writeDataInExcel(Filepath, SheetName, 1, 25 + (i + 1),
+					dbCommonFunctions.POAdvanceDetails(VariableHandler.getMultiplePODocs().get(i),
+							commonFunc.getDataFromTestDataSheet("AdvancePOPayableColumnName")));
+		}
+		VariableHandler.setMultipleAdvPymtDocs(cashPymtFunc.MultiAdvPaymentDocumentNumber);
+		BPAdvThroughAddButton(SheetName, commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
+				commonFunc.getDataFromTestDataSheet("BankNameUSD"));
+	}
+
+	/**
+	 * This Method Is Used To Create Multiple Advance PO Through Get Document
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @param SheetName
+	 */
+	public void BPadvancePOMultipleThroughGetDocumentBankCurcyUSD(String SheetName) {
+		for (int i = 0; i < 2; i++) {
+			PurFunc.verifyDirectPODomesticStockTransferSimilarUOMWithMultipleItemWithExcelSheetHK();
+			cashPymtFunc.getAdvPaymentDocumentFromDataBase();
+			excelUtils.writeDataInExcel(Filepath, SheetName, 1, 25 + (i + 1),
+					dbCommonFunctions.POAdvanceDetails(VariableHandler.getMultiplePODocs().get(i),
+							commonFunc.getDataFromTestDataSheet("AdvancePOPayableColumnName")));
+		}
+		VariableHandler.setMultipleAdvPymtDocs(cashPymtFunc.MultiAdvPaymentDocumentNumber);
+		BPAdvThroughGetDocument(SheetName, commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
+				commonFunc.getDataFromTestDataSheet("BankNameUSD"));
+	}
+
+	/**
+	 * This Method Is Used To Create Multiple Advance PO Through Pending Documents
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @param SheetName
+	 */
+	public void BPadvancePOMultipleThroughPendingDocumentBankCurcyUSD(String SheetName) {
+		for (int i = 0; i < 2; i++) {
+			PurFunc.verifyDirectPODomesticStockTransferSimilarUOMWithMultipleItemWithExcelSheetHK();
+			cashPymtFunc.getAdvPaymentDocumentFromDataBase();
+			excelUtils.writeDataInExcel(Filepath, SheetName, 1, 25 + (i + 1),
+					dbCommonFunctions.POAdvanceDetails(VariableHandler.getMultiplePODocs().get(i),
+							commonFunc.getDataFromTestDataSheet("AdvancePOPayableColumnName")));
+		}
+		VariableHandler.setMultipleAdvPymtDocs(cashPymtFunc.MultiAdvPaymentDocumentNumber);
+		BPAdvThroughPendingDocs(commonFunc.getDataFromTestDataSheet("CreationTypeSingle"), SheetName,
+				commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
+				commonFunc.getDataFromTestDataSheet("BankNameUSD"));
+	}
+
+	/**
+	 * This Method Is Used To Create Advance PO Through Add Button
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @param SheetName
+	 */
+	public void BPadvancePOThroughAddButtonUSD(String SheetName) {
+		PurFunc.verifyDirectPOImportSimilarUOMWithSingleItemWithExcelSheetHK();
+		cashPymtFunc.getAdvPaymentDocumentFromDataBase();
+		VariableHandler.setMultipleAdvPymtDocs(cashPymtFunc.MultiAdvPaymentDocumentNumber);
+		excelUtils.writeDataInExcel(Filepath, SheetName, 1, 26, dbCommonFunctions.POAdvanceDetails(
+				VariableHandler.getPONumber(), commonFunc.getDataFromTestDataSheet("AdvancePOPayableColumnName")));
+		BPAdvThroughAddButton(SheetName, commonFunc.getDataFromTestDataSheet("BankTransCurcyUSD"),
+				commonFunc.getDataFromTestDataSheet("BankName"));
+	}
+
+	/**
+	 * This Method Is Used To Create Advance PO Through Get Document
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @param SheetName
+	 */
+	public void BPadvancePOThroughGetDocumentUSD(String SheetName) {
+		PurFunc.verifyDirectPOImportSimilarUOMWithSingleItemWithExcelSheetHK();
+		cashPymtFunc.getAdvPaymentDocumentFromDataBase();
+		VariableHandler.setMultipleAdvPymtDocs(cashPymtFunc.MultiAdvPaymentDocumentNumber);
+		excelUtils.writeDataInExcel(Filepath, SheetName, 1, 26, dbCommonFunctions.POAdvanceDetails(
+				VariableHandler.getPONumber(), commonFunc.getDataFromTestDataSheet("AdvancePOPayableColumnName")));
+		BPAdvThroughGetDocument(SheetName, commonFunc.getDataFromTestDataSheet("BankTransCurcyUSD"),
+				commonFunc.getDataFromTestDataSheet("BankName"));
+	}
+
+	/**
+	 * This Method Is Used To Create Advance PO Through Pending Documents
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @param SheetName
+	 */
+	public void BPadvancePOThroughPendingDocumentUSD(String SheetName) {
+		PurFunc.verifyDirectPOImportSimilarUOMWithSingleItemWithExcelSheetHK();
+		cashPymtFunc.getAdvPaymentDocumentFromDataBase();
+		VariableHandler.setMultipleAdvPymtDocs(cashPymtFunc.MultiAdvPaymentDocumentNumber);
+		excelUtils.writeDataInExcel(Filepath, SheetName, 1, 26, dbCommonFunctions.POAdvanceDetails(
+				VariableHandler.getPONumber(), commonFunc.getDataFromTestDataSheet("AdvancePOPayableColumnName")));
+		BPAdvThroughPendingDocs(commonFunc.getDataFromTestDataSheet("CreationTypeSingle"), SheetName,
+				commonFunc.getDataFromTestDataSheet("BankTransCurcyUSD"),
+				commonFunc.getDataFromTestDataSheet("BankName"));
+	}
+
+	/**
+	 * This Method Is Used To Create Multiple Advance PO Through Add Button
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @param SheetName
+	 */
+	public void BPadvancePOMultipleThroughAddButtonUSD(String SheetName) {
+		for (int i = 0; i < 2; i++) {
+			PurFunc.verifyDirectPOImportSimilarUOMWithSingleItemWithExcelSheetHK();
+			cashPymtFunc.getAdvPaymentDocumentFromDataBase();
+			excelUtils.writeDataInExcel(Filepath, SheetName, 1, 25 + (i + 1),
+					dbCommonFunctions.POAdvanceDetails(VariableHandler.getMultiplePODocs().get(i),
+							commonFunc.getDataFromTestDataSheet("AdvancePOPayableColumnName")));
+		}
+		VariableHandler.setMultipleAdvPymtDocs(cashPymtFunc.MultiAdvPaymentDocumentNumber);
+		BPAdvThroughAddButton(SheetName, commonFunc.getDataFromTestDataSheet("BankTransCurcyUSD"),
+				commonFunc.getDataFromTestDataSheet("BankName"));
+	}
+
+	/**
+	 * This Method Is Used To Create Multiple Advance PO Through Get Document
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @param SheetName
+	 */
+	public void BPadvancePOMultipleThroughGetDocumentUSD(String SheetName) {
+		for (int i = 0; i < 2; i++) {
+			PurFunc.verifyDirectPOImportSimilarUOMWithSingleItemWithExcelSheetHK();
+			cashPymtFunc.getAdvPaymentDocumentFromDataBase();
+			excelUtils.writeDataInExcel(Filepath, SheetName, 1, 25 + (i + 1),
+					dbCommonFunctions.POAdvanceDetails(VariableHandler.getMultiplePODocs().get(i),
+							commonFunc.getDataFromTestDataSheet("AdvancePOPayableColumnName")));
+		}
+		VariableHandler.setMultipleAdvPymtDocs(cashPymtFunc.MultiAdvPaymentDocumentNumber);
+		BPAdvThroughGetDocument(SheetName, commonFunc.getDataFromTestDataSheet("BankTransCurcyUSD"),
+				commonFunc.getDataFromTestDataSheet("BankName"));
+	}
+
+	/**
+	 * This Method Is Used To Create Multiple Advance PO Through Pending Documents
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @param SheetName
+	 */
+	public void BPadvancePOMultipleThroughPendingDocumentUSD(String SheetName) {
+		for (int i = 0; i < 2; i++) {
+			PurFunc.verifyDirectPOImportSimilarUOMWithSingleItemWithExcelSheetHK();
+			cashPymtFunc.getAdvPaymentDocumentFromDataBase();
+			excelUtils.writeDataInExcel(Filepath, SheetName, 1, 25 + (i + 1),
+					dbCommonFunctions.POAdvanceDetails(VariableHandler.getMultiplePODocs().get(i),
+							commonFunc.getDataFromTestDataSheet("AdvancePOPayableColumnName")));
+		}
+		VariableHandler.setMultipleAdvPymtDocs(cashPymtFunc.MultiAdvPaymentDocumentNumber);
+		BPAdvThroughPendingDocs(commonFunc.getDataFromTestDataSheet("CreationTypeSingle"), SheetName,
+				commonFunc.getDataFromTestDataSheet("BankTransCurcyUSD"),
+				commonFunc.getDataFromTestDataSheet("BankName"));
+	}
+
+	/**
+	 * This Method Is Used To Create a Bank Payment Through Get Document Multi Party
+	 * Single Bill
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @param SheetName
+	 * @return boolean flag
+	 * @throws Exception
+	 */
+	public boolean CreateBankPaymentThroughAddButtonMultiPartyMultiBillAdvanceWithNewRef(String SheetName,
+			String Currency, String BankName) throws Exception {
+		int docIndex = 0; // global counter
+		BankPayments = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		for (int i = 1; i < BankPayments.length; i++) {
+			String SupplierID = BankPayments[i][2];
+			String POSheetName = BankPayments[i][4];
+			if (!SupplierID.equals("")) {
+				for (int i1 = 1; i1 <= 2; i1++) {
+					PurFunc.verifyDirectPODomesticStockTransferSimilarUOMWithMultipleItemWithExcelSheetHK1(SupplierID,
+							POSheetName);
+					cashPymtFunc.getAdvPaymentDocumentFromDataBase();
+					excelUtils.writeDataInExcel(Filepath, SheetName, i, 26 + i1,
+							dbCommonFunctions.POAdvanceDetails(VariableHandler.getMultiplePODocs().get(docIndex),
+									commonFunc.getDataFromTestDataSheet("AdvancePOPayableColumnName")));
+					excelUtils.writeDataInExcel(Filepath, SheetName, i, 28 + i1,
+							dbCommonFunctions.PurchaseOrderHeaderDetails(
+									VariableHandler.getMultiplePODocs().get(docIndex),
+									commonFunc.getDataFromTestDataSheet("POTotalAmount")));
+					docIndex++; // ✅ increment after every use
+				}
+			}
+		}
+		VariableHandler.setMultipleAdvPymtDocs(cashPymtFunc.MultiAdvPaymentDocumentNumber);
+		BPAdvThroughAddButtonWithMPMB(SheetName, Currency, BankName);
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("AdminUsername"));
+		commonFunc.naviagteGrnPage();
+		for (int i = 0; i < VariableHandler.getMultiplePODocs().size(); i++) {
+			grnPageFunc.PendPO(VariableHandler.getMultiplePODocs().get(i));
+			Grnfunc.clickGenLotSerialButtonInHeader();
+			if (Currency.equals("USD")) {
+				grnPageFunc.verifyImportLrBillNumber();
+			}
+			grnPageFunc.clickPostButton();
+			MultiGRNDocs.add(VariableHandler.getGrnDocNumber());// TODO
+			grnPageFunc.waitingForApprovalHK(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
+			grnPageFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrv();
+		}
+		VariableHandler.setMultipleGRNDocs(MultiGRNDocs);
+		System.out.println(VariableHandler.getMultipleGRNDocs().get(0));
+		for (int j = 0; j < VariableHandler.getMultipleGRNDocs().size(); j++) {
+			VariableHandler.getMultipleGRNDocs().get(j);
+			String PbDocsNum = dbCommonFunctions.PBDocQuery(VariableHandler.getMultipleGRNDocs().get(j),
+					commonFunc.getDataFromTestDataSheet("PBDocumentNoColumnName"));
+			VariableHandler.setPbNumber(PbDocsNum);
+			PBDocumentNumber.add(VariableHandler.getPbNumber());
+			logs.logging("INFO", "Purchase Bill Document Number : " + VariableHandler.getPbNumber()
+					+ " Against This GRN Document Is : " + VariableHandler.getMultipleGRNDocs().get(j));
+		}
+		VariableHandler.setMultiplePBDocs(PBDocumentNumber);
+		BPThroughAddButtonAdvanceWithNewRef(SheetName, Currency, BankName);
+		return flag;
+	}
+
+	/**
+	 * This Method Is Used To Create a Bank Payment Through Get Document Multi Party
+	 * Single Bill
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @param SheetName
+	 * @return boolean flag
+	 * @throws Exception
+	 */
+	public boolean CreateBankPaymentThroughGetDocumentMultiPartyMultiBillAdvanceWithNewRef(String SheetName,
+			String Currency, String BankName) throws Exception {
+		int docIndex = 0; // global counter
+		BankPayments = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		for (int i = 1; i < BankPayments.length; i++) {
+			String SupplierID = BankPayments[i][2];
+			String POSheetName = BankPayments[i][4];
+			if (!SupplierID.equals("")) {
+				for (int i1 = 1; i1 <= 2; i1++) {
+					PurFunc.verifyDirectPODomesticStockTransferSimilarUOMWithMultipleItemWithExcelSheetHK1(SupplierID,
+							POSheetName);
+					cashPymtFunc.getAdvPaymentDocumentFromDataBase();
+					excelUtils.writeDataInExcel(Filepath, SheetName, i, 26 + i1,
+							dbCommonFunctions.POAdvanceDetails(VariableHandler.getMultiplePODocs().get(docIndex),
+									commonFunc.getDataFromTestDataSheet("AdvancePOPayableColumnName")));
+					excelUtils.writeDataInExcel(Filepath, SheetName, i, 28 + i1,
+							dbCommonFunctions.PurchaseOrderHeaderDetails(
+									VariableHandler.getMultiplePODocs().get(docIndex),
+									commonFunc.getDataFromTestDataSheet("POTotalAmount")));
+					docIndex++; // ✅ increment after every use
+				}
+			}
+		}
+		VariableHandler.setMultipleAdvPymtDocs(cashPymtFunc.MultiAdvPaymentDocumentNumber);
+		BPAdvThroughAddButtonWithMPMB(SheetName, Currency, BankName);
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("AdminUsername"));
+		commonFunc.naviagteGrnPage();
+		for (int i = 0; i < VariableHandler.getMultiplePODocs().size(); i++) {
+			grnPageFunc.PendPO(VariableHandler.getMultiplePODocs().get(i));
+			Grnfunc.clickGenLotSerialButtonInHeader();
+			if (Currency.equals("USD")) {
+				grnPageFunc.verifyImportLrBillNumber();
+			}
+			grnPageFunc.clickPostButton();
+			MultiGRNDocs.add(VariableHandler.getGrnDocNumber());// TODO
+			grnPageFunc.waitingForApprovalHK(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
+			grnPageFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrv();
+		}
+		VariableHandler.setMultipleGRNDocs(MultiGRNDocs);
+		System.out.println(VariableHandler.getMultipleGRNDocs().get(0));
+		for (int j = 0; j < VariableHandler.getMultipleGRNDocs().size(); j++) {
+			VariableHandler.getMultipleGRNDocs().get(j);
+			String PbDocsNum = dbCommonFunctions.PBDocQuery(VariableHandler.getMultipleGRNDocs().get(j),
+					commonFunc.getDataFromTestDataSheet("PBDocumentNoColumnName"));
+			VariableHandler.setPbNumber(PbDocsNum);
+			PBDocumentNumber.add(VariableHandler.getPbNumber());
+			logs.logging("INFO", "Purchase Bill Document Number : " + VariableHandler.getPbNumber()
+					+ " Against This GRN Document Is : " + VariableHandler.getMultipleGRNDocs().get(j));
+		}
+		VariableHandler.setMultiplePBDocs(PBDocumentNumber);
+		BPThroughGetDocumentAdvanceWithNewReference(SheetName, Currency, BankName);
+		return flag;
+	}
+
+	/**
+	 * This Method Is Used To Create a Bank Payment Through Get Document Multi Party
+	 * Single Bill
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @param SheetName
+	 * @return boolean flag
+	 * @throws Exception
+	 */
+	public boolean CreateBankPaymentThroughPendingDocumentMultiPartyMultiBillAdvanceWithNewRef(String SheetName,
+			String Currency, String BankName) throws Exception {
+		int docIndex = 0; // global counter
+		BankPayments = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		for (int i = 1; i < BankPayments.length; i++) {
+			String SupplierID = BankPayments[i][2];
+			String POSheetName = BankPayments[i][4];
+			if (!SupplierID.equals("")) {
+				for (int i1 = 1; i1 <= 2; i1++) {
+					PurFunc.verifyDirectPODomesticStockTransferSimilarUOMWithMultipleItemWithExcelSheetHK1(SupplierID,
+							POSheetName);
+					cashPymtFunc.getAdvPaymentDocumentFromDataBase();
+					excelUtils.writeDataInExcel(Filepath, SheetName, i, 26 + i1,
+							dbCommonFunctions.POAdvanceDetails(VariableHandler.getMultiplePODocs().get(docIndex),
+									commonFunc.getDataFromTestDataSheet("AdvancePOPayableColumnName")));
+					excelUtils.writeDataInExcel(Filepath, SheetName, i, 28 + i1,
+							dbCommonFunctions.PurchaseOrderHeaderDetails(
+									VariableHandler.getMultiplePODocs().get(docIndex),
+									commonFunc.getDataFromTestDataSheet("POTotalAmount")));
+					docIndex++; // ✅ increment after every use
+				}
+			}
+		}
+		VariableHandler.setMultipleAdvPymtDocs(cashPymtFunc.MultiAdvPaymentDocumentNumber);
+		BPAdvThroughAddButtonWithMPMB(SheetName, Currency, BankName);
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("AdminUsername"));
+		commonFunc.naviagteGrnPage();
+		for (int i = 0; i < VariableHandler.getMultiplePODocs().size(); i++) {
+			grnPageFunc.PendPO(VariableHandler.getMultiplePODocs().get(i));
+			Grnfunc.clickGenLotSerialButtonInHeader();
+			if (Currency.equals("USD")) {
+				grnPageFunc.verifyImportLrBillNumber();
+			}
+			grnPageFunc.clickPostButton();
+			MultiGRNDocs.add(VariableHandler.getGrnDocNumber());// TODO
+			grnPageFunc.waitingForApprovalHK(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
+			grnPageFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrv();
+		}
+		VariableHandler.setMultipleGRNDocs(MultiGRNDocs);
+		System.out.println(VariableHandler.getMultipleGRNDocs().get(0));
+		for (int j = 0; j < VariableHandler.getMultipleGRNDocs().size(); j++) {
+			VariableHandler.getMultipleGRNDocs().get(j);
+			String PbDocsNum = dbCommonFunctions.PBDocQuery(VariableHandler.getMultipleGRNDocs().get(j),
+					commonFunc.getDataFromTestDataSheet("PBDocumentNoColumnName"));
+			VariableHandler.setPbNumber(PbDocsNum);
+			PBDocumentNumber.add(VariableHandler.getPbNumber());
+			logs.logging("INFO", "Purchase Bill Document Number : " + VariableHandler.getPbNumber()
+					+ " Against This GRN Document Is : " + VariableHandler.getMultipleGRNDocs().get(j));
+		}
+		VariableHandler.setMultiplePBDocs(PBDocumentNumber);
+		BPThroughPendingDocsAdvanceWithNewReference(commonFunc.getDataFromTestDataSheet("CreationTypeMerge"), SheetName,
+				Currency, BankName);
+		return flag;
+	}
+
+	/**
+	 * This Method Is Used To Add The Bank Payment Through Add Button
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @param SheetName
+	 */
+	public void BPAdvThroughAddButton(String SheetName, String Currency, String BankName) {
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("AdminUsername"));
+		commonFunc.navigateToFinancialPaymentReceipt();
+		clickAddButtonInPaymentsRecipts();
+		createBankPaymentEntry(commonFunc.getDataFromTestDataSheet("BankDocMode"), BankName, Today,
+				commonFunc.getDataFromTestDataSheet("BankPayMode"),
+				commonFunc.getDataFromTestDataSheet("BankRefNumber"), Today,
+				commonFunc.getDataFromTestDataSheet("BankPrefix"), Currency);
+		getBankPaymentOrReceiptDocumentNumber();
+		checkBPDocumentStatusWithDB(commonFunc.getDataFromTestDataSheet("Draft"),
+				VariableHandler.getBankPaymentOrReceiptDocNumber());
+		verifyBankPaymentHeaderDetailsWithUI(BankName, commonFunc.getDataFromTestDataSheet("BankPrefix"), Today, Today);
+		verifyBankPaymentDetailsWithDB(BankName, commonFunc.getDataFromTestDataSheet("BankPrefix"), Currency);
+		if (!SheetName.contains("TDS")) {
+			BankPayments = excelUtils.readAllDataInExcel(Filepath, SheetName);
+			for (int i = 1; i < BankPayments.length; i++) {
+				String GLAccountDesc = BankPayments[i][1];
+				String PartyName = BankPayments[i][3];
+				String EntityName = BankPayments[i][5];
+				String CPCCodeDesc = BankPayments[i][6];
+				String BillNumber = BankPayments[i][7];
+				String PayAmount = BankPayments[i][8];
+				String DRCR = BankPayments[i][9];
+				String CURCY = BankPayments[i][10];
+				String EXRate = BankPayments[i][11];
+				String TransCURCY = BankPayments[i][12];
+				String BaseCURCY = BankPayments[i][13];
+				String AssesableValue = BankPayments[i][16];
+				if (!GLAccountDesc.equals("")) {
+					clickBPLineAddButton();
+					addBankPaymentLineDetails(GLAccountDesc, CPCCodeDesc);
+					clickLineWiseSaveButton();
+					clickLineWiseAddButton(i);
+					clickPendingAdvancePartyDocumentsInBP();
+					selectAdvPartyDocumentBasedOnPB(PartyName, VariableHandler.getMultipleAdvPymtDocs(), SheetName);
+					if (!Currency.equals("INR")) {
+						excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, dbCommonFunctions.ExchangeRateDetails(
+								Currency, commonFunc.getDataFromTestDataSheet("ImportPurchaseEXRateColumnName")));
+					} else {
+						excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, "1");
+					}
+					verifyBankPaymentsLineDetailsWithDB(SheetName, i);
+					if (Currency.equals("INR")) {
+						if (BankName.equals("JP MORGAN CHASE")) {
+							for (int j = 1; j <= VariableHandler.getMultipleAdvPymtDocs().size(); j++) {
+								excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalADVINR"), 1,
+										5 + j, dbCommonFunctions.POAdvanceDetails(VariableHandler.getPONumber(),
+												commonFunc.getDataFromTestDataSheet("AdvancePOPayableColumnName")));
+								excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalADVINR"), 2,
+										5 + j, dbCommonFunctions.POAdvanceDetails(VariableHandler.getPONumber(),
+												commonFunc.getDataFromTestDataSheet("AdvancePOPayableColumnName")));
+							}
+						} else {
+							for (int j = 1; j <= VariableHandler.getMultipleAdvPymtDocs().size(); j++) {
+								excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalADV"), 1,
+										5 + j, dbCommonFunctions.POAdvanceDetails(VariableHandler.getPONumber(),
+												commonFunc.getDataFromTestDataSheet("AdvancePOPayableColumnName")));
+								excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalADV"), 2,
+										5 + j, dbCommonFunctions.POAdvanceDetails(VariableHandler.getPONumber(),
+												commonFunc.getDataFromTestDataSheet("AdvancePOPayableColumnName")));
+							}
+						}
+					} else {
+						excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalADVUSD"), 0, 10,
+								dbCommonFunctions.ExchangeRateDetails(Currency,
+										commonFunc.getDataFromTestDataSheet("ImportPurchaseEXRateColumnName")));
+						for (int j = 1; j <= VariableHandler.getMultipleAdvPymtDocs().size(); j++) {
+							excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalADVUSD"), 1,
+									5 + j, dbCommonFunctions.POAdvanceDetails(VariableHandler.getPONumber(),
+											commonFunc.getDataFromTestDataSheet("AdvancePOPayableColumnName")));
+							excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalADVUSD"), 2,
+									5 + j, dbCommonFunctions.POAdvanceDetails(VariableHandler.getPONumber(),
+											commonFunc.getDataFromTestDataSheet("AdvancePOPayableColumnName")));
+						}
+					}
+				}
+				if (!Currency.equals("INR") || (BankName.equals("JP MORGAN CHASE"))) {
+					enterRealizedAmountInBPHeader(BaseCURCY);
+				}
+			}
+		} else {
+			BankPayments = excelUtils.readAllDataInExcel(Filepath, SheetName);
+			for (int i = 1; i < BankPayments.length; i++) {
+				String GLAccountDesc = BankPayments[i][1];
+				String POSheetName = BankPayments[i][4];
+				String PartyName = BankPayments[i][3];
+				String EntityName = BankPayments[i][5];
+				String CPCCodeDesc = BankPayments[i][6];
+				String BillNumber = BankPayments[i][7];
+				String PayAmount = BankPayments[i][8];
+				String DRCR = BankPayments[i][9];
+				String CURCY = BankPayments[i][10];
+				String EXRate = BankPayments[i][11];
+				String TransCURCY = BankPayments[i][12];
+				String BaseCURCY = BankPayments[i][13];
+				String AssesableValue = BankPayments[i][16];
+				if (!POSheetName.equals("")) {
+					clickBPLineAddButton();
+					addBankPaymentLineDetails(GLAccountDesc, CPCCodeDesc);
+					clickLineWiseSaveButton();
+					clickLineWiseAddButton(i);
+					clickPendingAdvancePartyDocumentsInBP();
+					selectAdvPartyDocumentBasedOnPB(PartyName, VariableHandler.getMultipleAdvPymtDocs(), SheetName);
+					if (!Currency.equals("INR")) {
+						excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, dbCommonFunctions.ExchangeRateDetails(
+								Currency, commonFunc.getDataFromTestDataSheet("ImportPurchaseEXRateColumnName")));
+					} else {
+						excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, "1");
+					}
+					chooseLineWiseTDS(commonFunc.getDataFromTestDataSheet("CPTDS"), 1);
+					clickApplyDeductionButton();
+					commonFunc.checkRefreshCellsDisappear();
+					for (int j = 1; j <= VariableHandler.getMultipleAdvPymtDocs().size(); j++) {
+						excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("TDSBPJournalADV"), 1, 5 + j,
+								dbCommonFunctions.POAdvanceDetails(VariableHandler.getPONumber(),
+										commonFunc.getDataFromTestDataSheet("AdvancePOPayableColumnName")));
+						excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("TDSBPJournalADV"), 2, 5 + j,
+								dbCommonFunctions.POAdvanceDetails(VariableHandler.getPONumber(),
+										commonFunc.getDataFromTestDataSheet("AdvancePOPayableColumnName")));
+					}
+				}
+				if (!Currency.equals("INR") || (BankName.equals("JP MORGAN CHASE"))) {
+					enterRealizedAmountInBPHeader(BaseCURCY);
+				}
+			}
+			for (int i = 1; i < BankPayments.length; i++) {
+				String GLAccountDesc = BankPayments[i][1];
+				String BaseCURCY = BankPayments[i][13];
+				if (!GLAccountDesc.equals("")) {
+					verifyBankPaymentsLineDetailsWithDB(SheetName, i);
+				}
+			}
+		}
+		clickCreateJournalButton();
+		if (SheetName.contains("TDS")) {
+			bankreceiptfunc.verifyJournalAmountWithDB(webDB.getDataFromProperties("TDSBPJournalADV"),
+					VariableHandler.getBankPaymentOrReceiptDocNumber());
+			for (int j = 1; j <= VariableHandler.getMultipleAdvPymtDocs().size(); j++) {
+				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("TDSBPJournalADV"), 1, 5 + j, "0");
+				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("TDSBPJournalADV"), 2, 5 + j, "0");
+			}
+		} else {
+			if (Currency.equals("INR")) {
+				if (BankName.equals("JP MORGAN CHASE")) {
+					bankreceiptfunc.verifyJournalAmountWithDB(webDB.getDataFromProperties("BPJournalADVINR"),
+							VariableHandler.getBankPaymentOrReceiptDocNumber());
+					for (int j = 1; j <= VariableHandler.getMultipleAdvPymtDocs().size(); j++) {
+						excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalADVINR"), 1, 5 + j,
+								"0");
+						excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalADVINR"), 2, 5 + j,
+								"0");
+					}
+				} else {
+					bankreceiptfunc.verifyJournalAmountWithDB(webDB.getDataFromProperties("BPJournalADV"),
+							VariableHandler.getBankPaymentOrReceiptDocNumber());
+					for (int j = 1; j <= VariableHandler.getMultipleAdvPymtDocs().size(); j++) {
+						excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalADV"), 1, 5 + j,
+								"0");
+						excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalADV"), 2, 5 + j,
+								"0");
+					}
+				}
+			} else {
+				bankreceiptfunc.verifyJournalAmountWithDB(webDB.getDataFromProperties("BPJournalADVUSD"),
+						VariableHandler.getBankPaymentOrReceiptDocNumber());
+				for (int j = 1; j <= VariableHandler.getMultipleAdvPymtDocs().size(); j++) {
+					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalADVUSD"), 1, 5 + j,
+							"0");
+					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalADVUSD"), 2, 5 + j,
+							"0");
+				}
+			}
+		}
+		verifyOverallHeaderAmountWithDB(SheetName);
+		clearDataInExcel(SheetName);
+		clickPostButton();
+		flag = forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
+		if (flag) {
+			commonFunc.logoutUser();
+			checkBPDocumentStatusWithDB(commonFunc.getDataFromTestDataSheet("EntryCompletedStatus"),
+					VariableHandler.getBankPaymentOrReceiptDocNumber());
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+					VariableHandler.getBankPaymentOrReceiptDocNumber(), webDB.getDataFromProperties("HodEmpId"),
+					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+			checkGLMControlBPVAutoClearAndVerifyBPVDocumentStatus(BankName, Currency);
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used to Create BP Through Get Document
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @param SheetName
+	 * @param Currency
+	 * @param BankName
+	 */
+	public void BPAdvThroughGetDocument(String SheetName, String Currency, String BankName) {
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("AdminUsername"));
+		commonFunc.navigateToFinancialPaymentReceipt();
+		clickAddButtonInPaymentsRecipts();
+		createBankPaymentEntry(commonFunc.getDataFromTestDataSheet("BankDocMode"), BankName, Today,
+				commonFunc.getDataFromTestDataSheet("BankPayMode"),
+				commonFunc.getDataFromTestDataSheet("BankRefNumber"), Today,
+				commonFunc.getDataFromTestDataSheet("BankPrefix"), Currency);
+		getBankPaymentOrReceiptDocumentNumber();
+		checkBPDocumentStatusWithDB(commonFunc.getDataFromTestDataSheet("Draft"),
+				VariableHandler.getBankPaymentOrReceiptDocNumber());
+		verifyBankPaymentHeaderDetailsWithUI(BankName, commonFunc.getDataFromTestDataSheet("BankPrefix"), Today, Today);
+		verifyBankPaymentDetailsWithDB(BankName, commonFunc.getDataFromTestDataSheet("BankPrefix"), Currency);
+		clickGetDocumentInBPHeader();
+		clickPendingAdvancePartyDocumentsInBP();
+		chooseAdvPartyNameAndClickSearchButtonInPendingPartyDocs(VariableHandler.getMultipleAdvPymtDocs(), SheetName);
+		if (!SheetName.contains("TDS")) {
+			BankPayments = excelUtils.readAllDataInExcel(Filepath, SheetName);
+			for (int i = 1; i < BankPayments.length; i++) {
+				String GLAccountDesc = BankPayments[i][1];
+				String BaseCURCY = BankPayments[i][13];
+				if (!GLAccountDesc.equals("")) {
+					if (!Currency.equals("INR")) {
+						excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, dbCommonFunctions.ExchangeRateDetails(
+								Currency, commonFunc.getDataFromTestDataSheet("ImportPurchaseEXRateColumnName")));
+					} else {
+						excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, "1");
+					}
+					verifyBankPaymentsLineDetailsWithDB(SheetName, i);
+					if (Currency.equals("INR")) {
+						if (BankName.equals("JP MORGAN CHASE")) {
+							for (int j = 1; j <= VariableHandler.getMultipleAdvPymtDocs().size(); j++) {
+								excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalADVINR"), 1,
+										5 + j, dbCommonFunctions.POAdvanceDetails(VariableHandler.getPONumber(),
+												commonFunc.getDataFromTestDataSheet("AdvancePOPayableColumnName")));
+								excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalADVINR"), 2,
+										5 + j, dbCommonFunctions.POAdvanceDetails(VariableHandler.getPONumber(),
+												commonFunc.getDataFromTestDataSheet("AdvancePOPayableColumnName")));
+							}
+						} else {
+							for (int j = 1; j <= VariableHandler.getMultipleAdvPymtDocs().size(); j++) {
+								excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalADV"), 1,
+										5 + j, dbCommonFunctions.POAdvanceDetails(VariableHandler.getPONumber(),
+												commonFunc.getDataFromTestDataSheet("AdvancePOPayableColumnName")));
+								excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalADV"), 2,
+										5 + j, dbCommonFunctions.POAdvanceDetails(VariableHandler.getPONumber(),
+												commonFunc.getDataFromTestDataSheet("AdvancePOPayableColumnName")));
+							}
+						}
+					} else {
+						excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalADVUSD"), 0, 10,
+								dbCommonFunctions.ExchangeRateDetails(Currency,
+										commonFunc.getDataFromTestDataSheet("ImportPurchaseEXRateColumnName")));
+						for (int j = 1; j <= VariableHandler.getMultipleAdvPymtDocs().size(); j++) {
+							excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalADVUSD"), 1,
+									5 + j, dbCommonFunctions.POAdvanceDetails(VariableHandler.getPONumber(),
+											commonFunc.getDataFromTestDataSheet("AdvancePOPayableColumnName")));
+							excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalADVUSD"), 2,
+									5 + j, dbCommonFunctions.POAdvanceDetails(VariableHandler.getPONumber(),
+											commonFunc.getDataFromTestDataSheet("AdvancePOPayableColumnName")));
+						}
+					}
+					if (!Currency.equals("INR") || (BankName.equals("JP MORGAN CHASE"))) {
+						enterRealizedAmountInBPHeader(BaseCURCY);
+					}
+				}
+			}
+		} else {
+			BankPayments = excelUtils.readAllDataInExcel(Filepath, SheetName);
+			for (int i = 1; i < BankPayments.length; i++) {
+				String GLAccountDesc = BankPayments[i][1];
+				String BaseCURCY = BankPayments[i][13];
+				if (!GLAccountDesc.equals("")) {
+					if (!Currency.equals("INR")) {
+						excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, dbCommonFunctions.ExchangeRateDetails(
+								Currency, commonFunc.getDataFromTestDataSheet("ImportPurchaseEXRateColumnName")));
+					} else {
+						excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, "1");
+					}
+				}
+			}
+			chooseLineWiseTDS(commonFunc.getDataFromTestDataSheet("CPTDS"), 1);
+			clickApplyDeductionButton();
+			for (int j = 1; j <= VariableHandler.getMultipleAdvPymtDocs().size(); j++) {
+				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("TDSBPJournalADV"), 1, 5 + j,
+						dbCommonFunctions.POAdvanceDetails(VariableHandler.getPONumber(),
+								commonFunc.getDataFromTestDataSheet("AdvancePOPayableColumnName")));
+				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("TDSBPJournalADV"), 2, 5 + j,
+						dbCommonFunctions.POAdvanceDetails(VariableHandler.getPONumber(),
+								commonFunc.getDataFromTestDataSheet("AdvancePOPayableColumnName")));
+			}
+			for (int i = 1; i < BankPayments.length; i++) {
+				String GLAccountDesc = BankPayments[i][1];
+				String BaseCURCY = BankPayments[i][13];
+				if (!GLAccountDesc.equals("")) {
+					verifyBankPaymentsLineDetailsWithDB(SheetName, i);
+				}
+			}
+		}
+		clickCreateJournalButton();
+		if (SheetName.contains("TDS")) {
+			bankreceiptfunc.verifyJournalAmountWithDB(webDB.getDataFromProperties("TDSBPJournalADV"),
+					VariableHandler.getBankPaymentOrReceiptDocNumber());
+			for (int j = 1; j <= VariableHandler.getMultipleAdvPymtDocs().size(); j++) {
+				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("TDSBPJournalADV"), 1, 5 + j, "0");
+				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("TDSBPJournalADV"), 2, 5 + j, "0");
+			}
+		} else {
+			if (Currency.equals("INR")) {
+				if (BankName.equals("JP MORGAN CHASE")) {
+					bankreceiptfunc.verifyJournalAmountWithDB(webDB.getDataFromProperties("BPJournalADVINR"),
+							VariableHandler.getBankPaymentOrReceiptDocNumber());
+					for (int j = 1; j <= VariableHandler.getMultipleAdvPymtDocs().size(); j++) {
+						excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalADVINR"), 1, 5 + j,
+								"0");
+						excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalADVINR"), 2, 5 + j,
+								"0");
+					}
+				} else {
+					bankreceiptfunc.verifyJournalAmountWithDB(webDB.getDataFromProperties("BPJournalADV"),
+							VariableHandler.getBankPaymentOrReceiptDocNumber());
+					for (int j = 1; j <= VariableHandler.getMultipleAdvPymtDocs().size(); j++) {
+						excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalADV"), 1, 5 + j,
+								"0");
+						excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalADV"), 2, 5 + j,
+								"0");
+					}
+				}
+			} else {
+				bankreceiptfunc.verifyJournalAmountWithDB(webDB.getDataFromProperties("BPJournalADVUSD"),
+						VariableHandler.getBankPaymentOrReceiptDocNumber());
+				for (int j = 1; j <= VariableHandler.getMultipleAdvPymtDocs().size(); j++) {
+					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalADVUSD"), 1, 5 + j,
+							"0");
+					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalADVUSD"), 2, 5 + j,
+							"0");
+				}
+			}
+		}
+		verifyOverallHeaderAmountWithDB(SheetName);
+		clearDataInExcel(SheetName);
+		clickPostButton();
+		flag = forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
+		if (flag) {
+			checkBPDocumentStatusWithDB(commonFunc.getDataFromTestDataSheet("EntryCompletedStatus"),
+					VariableHandler.getBankPaymentOrReceiptDocNumber());
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+					VariableHandler.getBankPaymentOrReceiptDocNumber(), webDB.getDataFromProperties("HodEmpId"),
+					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+			checkGLMControlBPVAutoClearAndVerifyBPVDocumentStatus(BankName, Currency);
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method is used to Create BP Through Pending DOcs
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @param CreationType
+	 * @param SheetName
+	 * @param Currency
+	 * @param BankName
+	 */
+	public void BPAdvThroughPendingDocs(String CreationType, String SheetName, String Currency, String BankName) {
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("AdminUsername"));
+		commonFunc.navigateToFinancialPaymentReceipt();
+		clickPendingCRDocsButton();
+		clickPendingAdvancePartyDocumentsInPendingCRDocs();
+		chooseAdvDocumentNumberInPendingPayablesScreen(VariableHandler.getMultipleAdvPymtDocs(),
+				commonFunc.getDataFromTestDataSheet("PaymentType"), commonFunc.getDataFromTestDataSheet("BankPayMode"),
+				BankName, CreationType, SheetName);
+		getBankPaymentOrReceiptDocumentNumber();
+		commonFunc.checkRefreshCellsDisappear();
+		sendReferenceNumberInBP(commonFunc.getDataFromTestDataSheet("Reference Number"));
+		clickBPHeaderWiseSaveButton();
+		if (!SheetName.contains("TDS")) {
+			BankPayments = excelUtils.readAllDataInExcel(Filepath, SheetName);
+			for (int i = 1; i < BankPayments.length; i++) {
+				String GLAccountDesc = BankPayments[i][1];
+				String BaseCURCY = BankPayments[i][13];
+				if (!GLAccountDesc.equals("")) {
+					if (!Currency.equals("INR")) {
+						excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, dbCommonFunctions.ExchangeRateDetails(
+								Currency, commonFunc.getDataFromTestDataSheet("ImportPurchaseEXRateColumnName")));
+					} else {
+						excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, "1");
+					}
+					verifyBankPaymentsLineDetailsWithDB(SheetName, i);
+					if (Currency.equals("INR")) {
+						if (BankName.equals("JP MORGAN CHASE")) {
+							for (int j = 1; j <= VariableHandler.getMultipleAdvPymtDocs().size(); j++) {
+								excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalADVINR"), 1,
+										5 + j, dbCommonFunctions.POAdvanceDetails(VariableHandler.getPONumber(),
+												commonFunc.getDataFromTestDataSheet("AdvancePOPayableColumnName")));
+								excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalADVINR"), 2,
+										5 + j, dbCommonFunctions.POAdvanceDetails(VariableHandler.getPONumber(),
+												commonFunc.getDataFromTestDataSheet("AdvancePOPayableColumnName")));
+							}
+						} else {
+							for (int j = 1; j <= VariableHandler.getMultipleAdvPymtDocs().size(); j++) {
+								excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalADV"), 1,
+										5 + j, dbCommonFunctions.POAdvanceDetails(VariableHandler.getPONumber(),
+												commonFunc.getDataFromTestDataSheet("AdvancePOPayableColumnName")));
+								excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalADV"), 2,
+										5 + j, dbCommonFunctions.POAdvanceDetails(VariableHandler.getPONumber(),
+												commonFunc.getDataFromTestDataSheet("AdvancePOPayableColumnName")));
+							}
+						}
+					} else {
+						excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalADVUSD"), 0, 10,
+								dbCommonFunctions.ExchangeRateDetails(Currency,
+										commonFunc.getDataFromTestDataSheet("ImportPurchaseEXRateColumnName")));
+						for (int j = 1; j <= VariableHandler.getMultipleAdvPymtDocs().size(); j++) {
+							excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalADVUSD"), 1,
+									5 + j, dbCommonFunctions.POAdvanceDetails(VariableHandler.getPONumber(),
+											commonFunc.getDataFromTestDataSheet("AdvancePOPayableColumnName")));
+							excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalADVUSD"), 2,
+									5 + j, dbCommonFunctions.POAdvanceDetails(VariableHandler.getPONumber(),
+											commonFunc.getDataFromTestDataSheet("AdvancePOPayableColumnName")));
+						}
+					}
+					if (!Currency.equals("INR") || (BankName.equals("JP MORGAN CHASE"))) {
+						enterRealizedAmountInBPHeader(BaseCURCY);
+					}
+				}
+			}
+		} else {
+			BankPayments = excelUtils.readAllDataInExcel(Filepath, SheetName);
+			for (int i = 1; i < BankPayments.length; i++) {
+				String GLAccountDesc = BankPayments[i][1];
+				String BaseCURCY = BankPayments[i][13];
+				if (!GLAccountDesc.equals("")) {
+					if (!Currency.equals("INR")) {
+						excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, dbCommonFunctions.ExchangeRateDetails(
+								Currency, commonFunc.getDataFromTestDataSheet("ImportPurchaseEXRateColumnName")));
+					} else {
+						excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, "1");
+					}
+				}
+			}
+			chooseLineWiseTDS(commonFunc.getDataFromTestDataSheet("CPTDS"), 1);
+			clickApplyDeductionButton();
+			for (int j = 1; j <= VariableHandler.getMultipleAdvPymtDocs().size(); j++) {
+				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("TDSBPJournalADV"), 1, 5 + j,
+						dbCommonFunctions.POAdvanceDetails(VariableHandler.getPONumber(),
+								commonFunc.getDataFromTestDataSheet("AdvancePOPayableColumnName")));
+				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("TDSBPJournalADV"), 2, 5 + j,
+						dbCommonFunctions.POAdvanceDetails(VariableHandler.getPONumber(),
+								commonFunc.getDataFromTestDataSheet("AdvancePOPayableColumnName")));
+			}
+			for (int i = 1; i < BankPayments.length; i++) {
+				String GLAccountDesc = BankPayments[i][1];
+				String BaseCURCY = BankPayments[i][13];
+				if (!GLAccountDesc.equals("")) {
+					verifyBankPaymentsLineDetailsWithDB(SheetName, i);
+				}
+			}
+		}
+		clickCreateJournalButton();
+		if (SheetName.contains("TDS")) {
+			bankreceiptfunc.verifyJournalAmountWithDB(webDB.getDataFromProperties("TDSBPJournalADV"),
+					VariableHandler.getBankPaymentOrReceiptDocNumber());
+			for (int j = 1; j <= VariableHandler.getMultipleAdvPymtDocs().size(); j++) {
+				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("TDSBPJournalADV"), 1, 5 + j, "0");
+				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("TDSBPJournalADV"), 2, 5 + j, "0");
+			}
+		} else {
+			if (Currency.equals("INR")) {
+				if (BankName.equals("JP MORGAN CHASE")) {
+					bankreceiptfunc.verifyJournalAmountWithDB(webDB.getDataFromProperties("BPJournalADVINR"),
+							VariableHandler.getBankPaymentOrReceiptDocNumber());
+					for (int j = 1; j <= VariableHandler.getMultipleAdvPymtDocs().size(); j++) {
+						excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalADVINR"), 1, 5 + j,
+								"0");
+						excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalADVINR"), 2, 5 + j,
+								"0");
+					}
+				} else {
+					bankreceiptfunc.verifyJournalAmountWithDB(webDB.getDataFromProperties("BPJournalADV"),
+							VariableHandler.getBankPaymentOrReceiptDocNumber());
+					for (int j = 1; j <= VariableHandler.getMultipleAdvPymtDocs().size(); j++) {
+						excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalADV"), 1, 5 + j,
+								"0");
+						excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalADV"), 2, 5 + j,
+								"0");
+					}
+				}
+			} else {
+				bankreceiptfunc.verifyJournalAmountWithDB(webDB.getDataFromProperties("BPJournalADVUSD"),
+						VariableHandler.getBankPaymentOrReceiptDocNumber());
+				for (int j = 1; j <= VariableHandler.getMultipleAdvPymtDocs().size(); j++) {
+					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalADVUSD"), 1, 5 + j,
+							"0");
+					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalADVUSD"), 2, 5 + j,
+							"0");
+				}
+			}
+		}
+		verifyOverallHeaderAmountWithDB(SheetName);
+		clearDataInExcel(SheetName);
+		clickPostButton();
+		flag = forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
+		if (flag) {
+			checkBPDocumentStatusWithDB(commonFunc.getDataFromTestDataSheet("EntryCompletedStatus"),
+					VariableHandler.getBankPaymentOrReceiptDocNumber());
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+					VariableHandler.getBankPaymentOrReceiptDocNumber(), webDB.getDataFromProperties("HodEmpId"),
+					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+			checkGLMControlBPVAutoClearAndVerifyBPVDocumentStatus(BankName, Currency);
+		}
+	}
+
+	/**
+	 * This Method Is Used To Add The Bank Payment Through Add Button
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @param SheetName
+	 */
+	public void BPAdvThroughAddButtonWithMultiTDS(String SheetName, String Currency, String BankName) {
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("AdminUsername"));
+		commonFunc.navigateToFinancialPaymentReceipt();
+		clickAddButtonInPaymentsRecipts();
+		createBankPaymentEntry(commonFunc.getDataFromTestDataSheet("BankDocMode"), BankName, Today,
+				commonFunc.getDataFromTestDataSheet("BankPayMode"),
+				commonFunc.getDataFromTestDataSheet("BankRefNumber"), Today,
+				commonFunc.getDataFromTestDataSheet("BankPrefix"), Currency);
+		getBankPaymentOrReceiptDocumentNumber();
+		checkBPDocumentStatusWithDB(commonFunc.getDataFromTestDataSheet("Draft"),
+				VariableHandler.getBankPaymentOrReceiptDocNumber());
+		verifyBankPaymentHeaderDetailsWithUI(BankName, commonFunc.getDataFromTestDataSheet("BankPrefix"), Today, Today);
+		verifyBankPaymentDetailsWithDB(BankName, commonFunc.getDataFromTestDataSheet("BankPrefix"), Currency);
+		BankPayments = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		for (int i = 1; i < BankPayments.length; i++) {
+			String GLAccountDesc = BankPayments[i][1];
+			String POSheetName = BankPayments[i][4];
+			String PartyName = BankPayments[i][3];
+			String EntityName = BankPayments[i][5];
+			String CPCCodeDesc = BankPayments[i][6];
+			String BillNumber = BankPayments[i][7];
+			String PayAmount = BankPayments[i][8];
+			String DRCR = BankPayments[i][9];
+			String CURCY = BankPayments[i][10];
+			String EXRate = BankPayments[i][11];
+			String TransCURCY = BankPayments[i][12];
+			String BaseCURCY = BankPayments[i][13];
+			String AssesableValue = BankPayments[i][16];
+			String TDS = BankPayments[i][29];
+			if (!POSheetName.equals("")) {
+				clickBPLineAddButton();
+				addBankPaymentLineDetails(GLAccountDesc, CPCCodeDesc);
+				clickLineWiseSaveButton();
+				clickLineWiseAddButton(i);
+				clickPendingAdvancePartyDocumentsInBP();
+				selectBPAdvPartyDocumentBasedOnPBMultiTDS(PartyName, VariableHandler.getMultipleAdvPymtDocs(),
+						SheetName, i);
+				if (!Currency.equals("INR")) {
+					excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, dbCommonFunctions.ExchangeRateDetails(
+							Currency, commonFunc.getDataFromTestDataSheet("ImportPurchaseEXRateColumnName")));
+				} else {
+					excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, "1");
+				}
+				chooseLineWiseTDS(TDS, i);
+			}
+		}
+		clickApplyDeductionButton();
+		for (int j = 1; j <= VariableHandler.getMultipleAdvPymtDocs().size(); j++) {
+			excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("TDSBPJournalADVMulti"), j, 6,
+					dbCommonFunctions.POAdvanceDetails(VariableHandler.getMultiplePODocs().get(j - 1),
+							commonFunc.getDataFromTestDataSheet("AdvancePOPayableColumnName")));
+		}
+		for (int k = 1; k < BankPayments.length; k++) {
+			String GLAccountDesc1 = BankPayments[k][1];
+			String BaseCURCY1 = BankPayments[k][13];
+			if (!GLAccountDesc1.equals("")) {
+				verifyBankPaymentsLineDetailsWithDB(SheetName, k);
+			}
+		}
+		clickCreateJournalButton();
+		bankreceiptfunc.verifyJournalAmountWithDB(webDB.getDataFromProperties("TDSBPJournalADVMulti"),
+				VariableHandler.getBankPaymentOrReceiptDocNumber());
+		for (int j = 1; j <= VariableHandler.getMultipleAdvPymtDocs().size(); j++) {
+			excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("TDSBPJournalADVMulti"), 1, 5 + j, "0");
+			excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("TDSBPJournalADVMulti"), 2, 5 + j, "0");
+		}
+		verifyOverallHeaderAmountWithDB(SheetName);
+		clearDataInExcel(SheetName);
+		clickPostButton();
+		flag = forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
+		if (flag) {
+			commonFunc.logoutUser();
+			checkBPDocumentStatusWithDB(commonFunc.getDataFromTestDataSheet("EntryCompletedStatus"),
+					VariableHandler.getBankPaymentOrReceiptDocNumber());
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+					VariableHandler.getBankPaymentOrReceiptDocNumber(), webDB.getDataFromProperties("HodEmpId"),
+					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+			checkGLMControlBPVAutoClearAndVerifyBPVDocumentStatus(BankName, Currency);
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used to Create BP Through Get Document
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @param SheetName
+	 * @param Currency
+	 * @param BankName
+	 */
+	public void BPAdvThroughGetDocumentWithMultiTDS(String SheetName, String Currency, String BankName) {
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("AdminUsername"));
+		commonFunc.navigateToFinancialPaymentReceipt();
+		clickAddButtonInPaymentsRecipts();
+		createBankPaymentEntry(commonFunc.getDataFromTestDataSheet("BankDocMode"), BankName, Today,
+				commonFunc.getDataFromTestDataSheet("BankPayMode"),
+				commonFunc.getDataFromTestDataSheet("BankRefNumber"), Today,
+				commonFunc.getDataFromTestDataSheet("BankPrefix"), Currency);
+		getBankPaymentOrReceiptDocumentNumber();
+		checkBPDocumentStatusWithDB(commonFunc.getDataFromTestDataSheet("Draft"),
+				VariableHandler.getBankPaymentOrReceiptDocNumber());
+		verifyBankPaymentHeaderDetailsWithUI(BankName, commonFunc.getDataFromTestDataSheet("BankPrefix"), Today, Today);
+		verifyBankPaymentDetailsWithDB(BankName, commonFunc.getDataFromTestDataSheet("BankPrefix"), Currency);
+		clickGetDocumentInBPHeader();
+		clickPendingAdvancePartyDocumentsInBP();
+		chooseAdvPartyNameAndClickSearchButtonInPendingPartyDocs(VariableHandler.getMultipleAdvPymtDocs(), SheetName);
+		BankPayments = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		for (int i = 1; i < BankPayments.length; i++) {
+			String POSheetName = BankPayments[i][4];
+			String BaseCURCY = BankPayments[i][13];
+			String TDS = BankPayments[i][29];
+			if (!Currency.equals("INR")) {
+				excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, dbCommonFunctions.ExchangeRateDetails(Currency,
+						commonFunc.getDataFromTestDataSheet("ImportPurchaseEXRateColumnName")));
+			} else {
+				excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, "1");
+			}
+			if (!POSheetName.equals("")) {
+				chooseLineWiseTDS(TDS, i);
+			}
+		}
+		clickApplyDeductionButton();
+		for (int j = 1; j <= VariableHandler.getMultipleAdvPymtDocs().size(); j++) {
+			excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("TDSBPJournalADVMulti"), j, 6,
+					dbCommonFunctions.POAdvanceDetails(VariableHandler.getMultiplePODocs().get(j - 1),
+							commonFunc.getDataFromTestDataSheet("AdvancePOPayableColumnName")));
+		}
+		for (int i = 1; i < BankPayments.length; i++) {
+			String GLAccountDesc = BankPayments[i][1];
+			String BaseCURCY = BankPayments[i][13];
+			if (!GLAccountDesc.equals("")) {
+				verifyBankPaymentsLineDetailsWithDB(SheetName, i);
+			}
+		}
+		clickCreateJournalButton();
+		bankreceiptfunc.verifyJournalAmountWithDB(webDB.getDataFromProperties("TDSBPJournalADVMulti"),
+				VariableHandler.getBankPaymentOrReceiptDocNumber());
+		for (int j = 1; j <= VariableHandler.getMultipleAdvPymtDocs().size(); j++) {
+			excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("TDSBPJournalADVMulti"), 1, 5 + j, "0");
+			excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("TDSBPJournalADVMulti"), 2, 5 + j, "0");
+		}
+		verifyOverallHeaderAmountWithDB(SheetName);
+		clearDataInExcel(SheetName);
+		clickPostButton();
+		flag = forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
+		if (flag) {
+			checkBPDocumentStatusWithDB(commonFunc.getDataFromTestDataSheet("EntryCompletedStatus"),
+					VariableHandler.getBankPaymentOrReceiptDocNumber());
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+					VariableHandler.getBankPaymentOrReceiptDocNumber(), webDB.getDataFromProperties("HodEmpId"),
+					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+			checkGLMControlBPVAutoClearAndVerifyBPVDocumentStatus(BankName, Currency);
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method is used to Create BP Through Pending DOcs
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @param CreationType
+	 * @param SheetName
+	 * @param Currency
+	 * @param BankName
+	 */
+	public void BPAdvThroughPendingDocsWithMultiTDS(String CreationType, String SheetName, String Currency,
+			String BankName) {
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("AdminUsername"));
+		commonFunc.navigateToFinancialPaymentReceipt();
+		clickPendingCRDocsButton();
+		clickPendingAdvancePartyDocumentsInPendingCRDocs();
+		chooseAdvDocumentNumberInPendingPayablesScreen(VariableHandler.getMultipleAdvPymtDocs(),
+				commonFunc.getDataFromTestDataSheet("PaymentType"), commonFunc.getDataFromTestDataSheet("BankPayMode"),
+				BankName, CreationType, SheetName);
+		getBankPaymentOrReceiptDocumentNumber();
+		commonFunc.checkRefreshCellsDisappear();
+		sendReferenceNumberInBP(commonFunc.getDataFromTestDataSheet("Reference Number"));
+		clickBPHeaderWiseSaveButton();
+		commonFunc.checkRefreshCellsDisappear();
+		BankPayments = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		for (int i = 1; i < BankPayments.length; i++) {
+			String POSheetName = BankPayments[i][4];
+			String BaseCURCY = BankPayments[i][13];
+			String TDS = BankPayments[i][29];
+			if (!Currency.equals("INR")) {
+				excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, dbCommonFunctions.ExchangeRateDetails(Currency,
+						commonFunc.getDataFromTestDataSheet("ImportPurchaseEXRateColumnName")));
+			} else {
+				excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, "1");
+			}
+			if (!POSheetName.equals("")) {
+				chooseLineWiseTDS(TDS, i);
+			}
+		}
+		clickApplyDeductionButton();
+		for (int j = 1; j <= VariableHandler.getMultipleAdvPymtDocs().size(); j++) {
+			excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("TDSBPJournalADVMulti"), j, 6,
+					dbCommonFunctions.POAdvanceDetails(VariableHandler.getMultiplePODocs().get(j - 1),
+							commonFunc.getDataFromTestDataSheet("AdvancePOPayableColumnName")));
+		}
+		for (int i = 1; i < BankPayments.length; i++) {
+			String GLAccountDesc = BankPayments[i][1];
+			String BaseCURCY = BankPayments[i][13];
+			if (!GLAccountDesc.equals("")) {
+				verifyBankPaymentsLineDetailsWithDB(SheetName, i);
+			}
+		}
+		clickCreateJournalButton();
+		bankreceiptfunc.verifyJournalAmountWithDB(webDB.getDataFromProperties("TDSBPJournalADVMulti"),
+				VariableHandler.getBankPaymentOrReceiptDocNumber());
+		for (int j = 1; j <= VariableHandler.getMultipleAdvPymtDocs().size(); j++) {
+			excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("TDSBPJournalADVMulti"), 1, 5 + j, "0");
+			excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("TDSBPJournalADVMulti"), 2, 5 + j, "0");
+		}
+		verifyOverallHeaderAmountWithDB(SheetName);
+		clearDataInExcel(SheetName);
+		clickPostButton();
+		flag = forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
+		if (flag) {
+			checkBPDocumentStatusWithDB(commonFunc.getDataFromTestDataSheet("EntryCompletedStatus"),
+					VariableHandler.getBankPaymentOrReceiptDocNumber());
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+					VariableHandler.getBankPaymentOrReceiptDocNumber(), webDB.getDataFromProperties("HodEmpId"),
+					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+			checkGLMControlBPVAutoClearAndVerifyBPVDocumentStatus(BankName, Currency);
+		}
+	}
+
+	/**
+	 * This Method Is Used To Click The Pending Party Documents In Bank Payment
+	 * Screen
+	 * 
+	 * @author Harikrishna - RMITS
+	 */
+	public void clickPendingAdvancePartyDocumentsInBP() {
+		flag = webDB.waitForElement(BankPaymentLocators.BankPendingAdvPartyDocumentsButton, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(BankPaymentLocators.BankPendingAdvPartyDocumentsButton, ElementType.Xpath);
+			flag = webDB.waitForElement(BankPaymentLocators.BankPendingAdvPartyDocumentsFrameName, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Bank Payment Pending Advance Party Document Is Clicked Successfully");
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Click The Pending Party Documents In Bank Payment
+	 * Screen
+	 * 
+	 * @author Harikrishna - RMITS
+	 */
+	public void clickPendingAdvancePartyDocumentsInPendingCRDocs() {
+		flag = webDB.waitForElement(BankPaymentLocators.BankPendingAdvPartyDocumentsPendingCRButton, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(BankPaymentLocators.BankPendingAdvPartyDocumentsPendingCRButton, ElementType.Xpath);
+			flag = webDB.waitForElement(BankPaymentLocators.BankPendingAdvPartyDocumentsFrameName, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Bank Payment Pending Advance Party Document Is Clicked Successfully");
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used to Select the Bank Payment pending Records In the Pending
+	 * Party Documnets IN the bank Payment Screen
+	 * 
+	 * @author Harikrishna _ RMITS
+	 * @param PartyName
+	 * @param VoucherNumber.get(i)
+	 */
+	public void selectAdvPartyDocumentBasedOnPB(String PartyName, ArrayList<String> VoucherNumber, String SheetName) {
+		flag = webDB.switchToFrame(BankPaymentLocators.BankPendingAdvPartyDocumentsFrameName, ElementType.Xpath);
+		if (flag) {
+			String GetTextPartyName = webDB.getDomPropertyFromElement(
+					BankPaymentLocators.BankPendingPartyDocumentsPartyNameInputField, ElementType.Xpath,
+					commonFunc.getDataFromTestDataSheet("Value"));
+			if (GetTextPartyName.equals(PartyName)) {
+				for (int i = 1; i <= VoucherNumber.size(); i++) {
+					commonFunc.searchAndSelectValueInFilters(BankPaymentLocators.BankPartyAdvDocNumberLovButton,
+							VoucherNumber.get(i - 1));
+					webDB.switchToFrame(BankPaymentLocators.BankPendingAdvPartyDocumentsFrameName, ElementType.Xpath);
+					flag = webDB.waitForElement(BankPaymentLocators.BankPaymentPendingPartyDocumentSearchButton,
+							ElementType.Xpath);
+					if (flag) {
+						commonFunc.checkRefreshCellsDisappear();
+						webDB.doubleClickAnElement(BankPaymentLocators.BankPaymentPendingPartyDocumentSearchButton,
+								ElementType.Xpath);
+						flag = webDB.waitForElement(
+								BankPaymentLocators.BPPendingPartyDocumentSelectCheckBox(VoucherNumber.get(i - 1)),
+								ElementType.Xpath);
+						if (flag) {
+							commonFunc.checkRefreshCellsDisappear();
+							cashPymtFunc.verifyPendingAdvancePayablesThroughGetDoc(SheetName, VoucherNumber.get(i - 1),
+									i); // TODO
+							webDB.clickAnElement(
+									BankPaymentLocators.BPPendingPartyDocumentSelectCheckBox(VoucherNumber.get(i - 1)),
+									ElementType.Xpath);
+							commonFunc.hardWait(6000);
+							flag = webDB.waitForElement(BankPaymentLocators.BankPendingPartyDocumentScreenOkButton,
+									ElementType.Xpath);
+							if (flag) {
+								logs.logging("INFO", "In Pending Advance Party Documents This Voucher Number "
+										+ VoucherNumber.get(i - 1) + " Is Selected Successfully");
+							}
+						}
+					}
+				}
+				webDB.moveToElement(BankPaymentLocators.BankPendingPartyDocumentScreenOkButton, ElementType.Xpath);
+				webDB.javaScriptClickAnElement(BankPaymentLocators.BankPendingPartyDocumentScreenOkButton,
+						ElementType.Xpath);
+				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.hardWait(2000);
+				webDB.switchToDefaultContent();
+				flag = webDB.waitForElement(BankPaymentLocators.BankHeaderCreateJournalButton, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "OK Button Is Clicked Successfully In The Pending Party Documents");
+				}
+			} else {
+				logs.logging("INFO",
+						"Bank Payment Line Wise Party Name And Pending Party Documents Party Name Is not Getting Matched");
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used to Select the Bank Payment pending Records In the Pending
+	 * Party Documnets IN the bank Payment Screen
+	 * 
+	 * @author Harikrishna _ RMITS
+	 * @param PartyName
+	 * @param VoucherNumber.get(i)
+	 */
+	public void selectBPAdvPartyDocumentBasedOnPBMultiTDS(String PartyName, ArrayList<String> VoucherNumber,
+			String SheetName, int i1) {
+		flag = webDB.switchToFrame(CashPaymentLocators.BankPendingAdvPartyDocumentsFrameName, ElementType.Xpath);
+		if (flag) {
+			String GetTextPartyName = webDB.getDomPropertyFromElement(
+					CashPaymentLocators.BankPendingPartyDocumentsPartyNameInputField, ElementType.Xpath,
+					commonFunc.getDataFromTestDataSheet("Value"));
+			if (GetTextPartyName.equals(PartyName)) {
+				for (int i = i1; i <= i1; i++) {
+					commonFunc.searchAndSelectValueInFilters(CashPaymentLocators.BankPartyAdvDocNumberLovButton,
+							VoucherNumber.get(i - 1));
+					webDB.switchToFrame(CashPaymentLocators.BankPendingAdvPartyDocumentsFrameName, ElementType.Xpath);
+					flag = webDB.waitForElement(CashPaymentLocators.BankPaymentAdvPendingPartyDocumentSearchButton,
+							ElementType.Xpath);
+					if (flag) {
+						commonFunc.checkRefreshCellsDisappear();
+						webDB.doubleClickAnElement(CashPaymentLocators.BankPaymentAdvPendingPartyDocumentSearchButton,
+								ElementType.Xpath);
+						commonFunc.hardWait(500);
+						commonFunc.checkRefreshCellsDisappear();
+						flag = webDB.waitForElement(
+								CashPaymentLocators.BPPendingPartyDocumentSelectCheckBox(VoucherNumber.get(i - 1)),
+								ElementType.Xpath);
+						if (flag) {
+							commonFunc.checkRefreshCellsDisappear();
+							cashPymtFunc.verifyPendingAdvancePayablesThroughGetDoc(SheetName, VoucherNumber.get(i - 1),
+									i); // TODO
+							webDB.clickAnElement(
+									CashPaymentLocators.BPPendingPartyDocumentSelectCheckBox(VoucherNumber.get(i - 1)),
+									ElementType.Xpath);
+							commonFunc.hardWait(6000);
+							flag = webDB.waitForElement(CashPaymentLocators.BankPendingAdvPartyDocumentScreenOkButton,
+									ElementType.Xpath);
+							if (flag) {
+								logs.logging("INFO", "In Pending Party Documents This Voucher Number "
+										+ VoucherNumber.get(i - 1) + " Is Selected Successfully");
+							}
+						}
+					}
+				}
+				webDB.moveToElement(CashPaymentLocators.BankPendingAdvPartyDocumentScreenOkButton, ElementType.Xpath);
+				webDB.javaScriptClickAnElement(CashPaymentLocators.BankPendingAdvPartyDocumentScreenOkButton,
+						ElementType.Xpath);
+				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.hardWait(2000);
+				webDB.switchToDefaultContent();
+				flag = webDB.waitForElement(CashPaymentLocators.BankHeaderAdvCreateJournalButton, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "OK Button Is Clicked Successfully In The Pending Party Documents");
+				}
+			} else {
+				logs.logging("INFO",
+						"Bank Payment Line Wise Party Name And Pending Party Documents Party Name Is not Getting Matched");
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Methos Is Used To Choose Party Name And Select The Purchase Bills In The
+	 * Pending Party Documents
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @param PartyName
+	 * @param VoucherNumber
+	 */
+	public void chooseAdvPartyNameAndClickSearchButtonInPendingPartyDocs(ArrayList<String> VoucherNumber,
+			String SheetName) {
+		commonFunc.checkRefreshCellsDisappear();
+		flag = webDB.switchToFrame(BankPaymentLocators.BankPendingAdvPartyDocumentsFrameName, ElementType.Xpath);
+		System.out.println(VoucherNumber.size());
+		if (flag) {
+			for (int i = 1; i <= VoucherNumber.size(); i++) {
+				System.out.println(2);
+//				commonFunc.searchAndSelectValueInFilters(
+//						BankPaymentLocators.BankPaymentPendingPartyDocumentPartyLovButton, PartyName);
+//				webDB.switchToFrame(BankPaymentLocators.BankPendingPartyDocumentsFrameName, ElementType.Xpath);
+//				flag = webDB.waitForElement(BankPaymentLocators.BankPaymentPendingPartyDocumentSearchButton,
+//						ElementType.Xpath);
+//				if (flag) {
+//					webDB.clickAnElement(BankPaymentLocators.BankPaymentPendingPartyDocumentSearchButton,
+//							ElementType.Xpath);
+				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.searchAndSelectValueInFilters(BankPaymentLocators.BankPartyAdvDocNumberLovButton,
+						VoucherNumber.get(i - 1));
+				webDB.switchToFrame(BankPaymentLocators.BankPendingAdvPartyDocumentsFrameName, ElementType.Xpath);
+				flag = webDB.waitForElement(BankPaymentLocators.BankPaymentPendingPartyDocumentSearchButton,
+						ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(BankPaymentLocators.BankPaymentPendingPartyDocumentSearchButton,
+							ElementType.Xpath);
+					commonFunc.hardWait(1000);
+					commonFunc.checkRefreshCellsDisappear();
+					String GetTextDocumentNumber = webDB.getTextFromElement(
+							BankPaymentLocators.PendingAdvPayablesDocumentNumberField, ElementType.Xpath);
+					logs.logging("INFO", "Get Text Document Number Is " + GetTextDocumentNumber);
+					if (GetTextDocumentNumber.equals(VoucherNumber.get(i - 1))) {
+						cashPymtFunc.verifyPendingAdvancePayablesThroughGetDoc(SheetName, VoucherNumber.get(i - 1), i);
+						flag = webDB.waitForElement(
+								BankPaymentLocators.BPPendingPartyDocumentSelectCheckBox(VoucherNumber.get(i - 1)),
+								ElementType.Xpath);
+						if (flag) {
+							webDB.clickAnElement(
+									BankPaymentLocators.BPPendingPartyDocumentSelectCheckBox(VoucherNumber.get(i - 1)),
+									ElementType.Xpath);
+							commonFunc.checkRefreshCellsDisappear();
+							commonFunc.hardWait(3000);
+							flag = webDB.waitForElement(BankPaymentLocators.BankPendingPartyDocumentScreenOkButton,
+									ElementType.Xpath);
+							if (flag) {
+								logs.logging("INFO", "In Pending Party Documents This Voucher Number "
+										+ VoucherNumber.get(i - 1) + " Is Selected Successfully");
+							}
+						}
+					} else {
+						logs.logging("INFO",
+								"Bank Payment Pending Line Wise Party Document Number And Pending Party Documents Number Is not Getting Matched");
+					}
+				}
+			}
+			commonFunc.hardWait(1500);
+			flag = webDB.waitForElement(BankPaymentLocators.BankPendingPartyDocumentScreenOkButton, ElementType.Xpath);
+			if (flag) {
+				webDB.moveToElement(BankPaymentLocators.BankPendingPartyDocumentScreenOkButton, ElementType.Xpath);
+				webDB.javaScriptClickAnElement(BankPaymentLocators.BankPendingPartyDocumentScreenOkButton,
+						ElementType.Xpath);
+				commonFunc.checkRefreshCellsDisappear();
+				webDB.switchToDefaultContent();
+				flag = webDB.waitForElement(BankPaymentLocators.BankHeaderCreateJournalButton, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Ok Button Is Clicked Successfully");
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is USed To Select One Document And Convert Into Bank / Cash
+	 * Payment
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @param DocumentNumber
+	 * @param Type
+	 * @param PayMode
+	 * @param BankName
+	 */
+	public void chooseAdvDocumentNumberInPendingPayablesScreen(ArrayList<String> DocumentNumber, String Type,
+			String PayMode, String BankName, String CreationType, String SheetName) {
+		flag = webDB.waitForElement(BankPaymentLocators.BankPendingAdvPartyDocumentsFrameName, ElementType.Xpath);
+		if (flag) {
+			webDB.switchToFrame(BankPaymentLocators.BankPendingAdvPartyDocumentsFrameName, ElementType.Xpath);
+			for (int i = 1; i <= DocumentNumber.size(); i++) {
+				commonFunc.searchAndSelectValueInFilters(BankPaymentLocators.BankPartyAdvDocNumberLovButton,
+						DocumentNumber.get(i - 1));
+				webDB.switchToFrame(BankPaymentLocators.BankPendingAdvPartyDocumentsFrameName, ElementType.Xpath);
+				flag = webDB.waitForElement(BankPaymentLocators.BankPaymentAdvPendingPartyDocumentSearchButton,
+						ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(BankPaymentLocators.BankPaymentAdvPendingPartyDocumentSearchButton,
+							ElementType.Xpath);
+					commonFunc.hardWait(1000);
+					commonFunc.checkRefreshCellsDisappear();
+					String GetTextDocumentNumber = webDB.getTextFromElement(
+							BankPaymentLocators.PendingAdvancePayablesDocumentNumberField, ElementType.Xpath);
+					if (GetTextDocumentNumber.equals(DocumentNumber.get(i - 1))) {
+						commonFunc.hardWait(1000);
+						cashPymtFunc.verifyPendingAdvancePayablesThroughGetDoc(SheetName, DocumentNumber.get(i - 1), i);
+						webDB.clickAnElement(
+								BankPaymentLocators.BPPendingPartyDocumentSelectCheckBox(DocumentNumber.get(i - 1)),
+								ElementType.Xpath);
+						commonFunc.checkRefreshCellsDisappear();
+						commonFunc.hardWait(1500);
+						flag = webDB.waitForElement(BankPaymentLocators.PendingPayablesCreateButton, ElementType.Xpath);
+						if (flag) {
+							logs.logging("INFO", "This Purchase Bills Document " + DocumentNumber.get(i - 1)
+									+ " Is Selected Successfully");
+							if (DocumentNumber.size() > 1) {
+								webDB.clickAnElement(BankPaymentLocators.BankPendingPartyDocumentClearButton,
+										ElementType.Xpath);
+								flag = webDB.waitForElement(
+										BankPaymentLocators.BankPaymentAdvPendingPartyDocumentSearchButton,
+										ElementType.Xpath);
+								if (flag) {
+									webDB.clickAnElement(
+											BankPaymentLocators.BankPaymentAdvPendingPartyDocumentSearchButton,
+											ElementType.Xpath);
+									commonFunc.checkRefreshCellsDisappear();
+								}
+							}
+						}
+					} else {
+						logs.logging("INFO", "Some Other Document Is Filtered");
+					}
+				}
+			}
+			commonFunc.checkRefreshCellsDisappear();
+			commonFunc.hardWait(2000);
+			webDB.moveToElement(BankPaymentLocators.PendingPayablesCreateButton, ElementType.Xpath);
+			webDB.javaScriptClickAnElement(BankPaymentLocators.PendingPayablesCreateButton, ElementType.Xpath);
+			logs.logging("INFO", "Create Button Is Clicked Successfully");
+			commonFunc.checkRefreshCellsDisappear();
+			if (!CreationType.equals("Single")) {
+				flag = webDB.waitForElement(BankPaymentLocators.PendingPayablesMergeLabelInPending, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(BankPaymentLocators.PendingPayablesMergeLabelInPending, ElementType.Xpath);
+					commonFunc.checkRefreshCellsDisappear();
+				}
+			}
+			flag = webDB.waitForElement(BankPaymentLocators.PendingAdvPayablesTypeField, ElementType.Xpath);
+			if (flag) {
+				webDB.selectDropDownByText(BankPaymentLocators.PendingAdvPayablesTypeDropDown, Type, ElementType.Xpath);
+				logs.logging("INFO", "Type Successfully Choosen As " + Type);
+				if (Type.equals("Bank")) {
+					flag = webDB.waitForElement(BankPaymentLocators.PendingAdvpayablesPaymodeField, ElementType.Xpath);
+					if (flag) {
+						webDB.selectDropDownByText(BankPaymentLocators.PendingAdvPayablesPayModeDropDown, PayMode,
+								ElementType.Xpath);
+						logs.logging("INFO", "Pay Mode Successfully Choosen As " + PayMode);
+					}
+				}
+				commonFunc.searchAndSelectValueInFilters(BankPaymentLocators.PendingAdvPayablesBankNameLOVBUtton,
+						BankName);
+				webDB.switchToFrame(BankPaymentLocators.BankPendingAdvPartyDocumentsFrameName, ElementType.Xpath);
+				flag = webDB.waitForElement(BankPaymentLocators.PendingPayablesOkButton, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(BankPaymentLocators.PendingPayablesOkButton, ElementType.Xpath);
+					webDB.switchToDefaultContent();
+					if (Type.equals("Bank")) {
+						flag = webDB.waitForElement(BankPaymentLocators.BankPaymentScreenName, ElementType.Xpath);
+						if (flag) {
+							logs.logging("INFO",
+									"OK Button Is Clicked Successfully And Navigated To Bank Payment Screen");
+						}
+					} else {
+						flag = webDB.waitForElement(BankPaymentLocators.CashPaymentScreenName, ElementType.Xpath);
+						if (flag) {
+							logs.logging("INFO",
+									"OK Button Is Clicked Successfully And Navigated To Cash Payment Screen");
+						}
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Add The Bank Payment Through Add Button
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @param SheetName
+	 */
+	public void BPAdvThroughAddButtonWithMPMB(String SheetName, String Currency, String BankName) {
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("AdminUsername"));
+		commonFunc.navigateToFinancialPaymentReceipt();
+		clickAddButtonInPaymentsRecipts();
+		createBankPaymentEntry(commonFunc.getDataFromTestDataSheet("BankDocMode"), BankName, Today,
+				commonFunc.getDataFromTestDataSheet("BankPayMode"),
+				commonFunc.getDataFromTestDataSheet("BankRefNumber"), Today,
+				commonFunc.getDataFromTestDataSheet("BankPrefix"), Currency);
+		getBankPaymentOrReceiptDocumentNumber();
+		VariableHandler.setMultipleBankDocs(MultiBankDocumentNumber);
+		checkBPDocumentStatusWithDB(commonFunc.getDataFromTestDataSheet("Draft"),
+				VariableHandler.getBankPaymentOrReceiptDocNumber());
+		verifyBankPaymentHeaderDetailsWithUI(BankName, commonFunc.getDataFromTestDataSheet("BankPrefix"), Today, Today);
+		verifyBankPaymentDetailsWithDB(BankName, commonFunc.getDataFromTestDataSheet("BankPrefix"), Currency);
+		BankPayments = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		for (int i = 1; i < BankPayments.length; i++) {
+			String GLAccountDesc = BankPayments[i][1];
+			String POSheetName = BankPayments[i][4];
+			String PartyName = BankPayments[i][3];
+			String EntityName = BankPayments[i][6];
+			String CPCCodeDesc = BankPayments[i][7];
+			String BillNumber = BankPayments[i][8];
+			String PayAmount = BankPayments[i][9];
+			String DRCR = BankPayments[i][10];
+			String CURCY = BankPayments[i][11];
+			String EXRate = BankPayments[i][12];
+			String TransCURCY = BankPayments[i][13];
+			String BaseCURCY = BankPayments[i][34];
+			String AssesableValue = BankPayments[i][17];
+//			String TDS = BankPayments[i][29];
+			if (!POSheetName.equals("")) {
+				clickBPLineAddButton();
+				addBankPaymentLineDetails(GLAccountDesc, CPCCodeDesc);
+				clickLineWiseSaveButton();
+				clickLineWiseAddButton(i);
+				clickPendingAdvancePartyDocumentsInBP();
+				selectBPAdvPartyDocumentMPMB(PartyName, VariableHandler.getMultipleAdvPymtDocs(), SheetName, i);
+				if (!Currency.equals("INR")) {
+					excelUtils.writeDataInExcel(Filepath, SheetName, i, 12, dbCommonFunctions.ExchangeRateDetails(
+							Currency, commonFunc.getDataFromTestDataSheet("ImportPurchaseEXRateColumnName")));
+				} else {
+					excelUtils.writeDataInExcel(Filepath, SheetName, i, 12, "1");
+				}
+//				chooseLineWiseTDS(TDS, i);
+			}
+			if (!Currency.equals("INR") || (BankName.equals("JP MORGAN CHASE"))) {
+				enterRealizedAmountInBPHeader(BaseCURCY);
+			}
+			verifyBankPaymentsLineDetailsWithDBAdvMPMB(SheetName, i);
+		}
+
+//		clickApplyDeductionButton();
+//		for (int j = 1; j <= VariableHandler.getMultipleAdvPymtDocs().size(); j++) {
+//			excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalADVMulti"), j, 6,
+//					dbCommonFunctions.POAdvanceDetails(VariableHandler.getMultiplePODocs().get(j - 1),
+//							commonFunc.getDataFromTestDataSheet("AdvancePOPayableColumnName")));
+//		}
+//		for (int k = 1; k < BankPayments.length; k++) {
+//			String GLAccountDesc1 = BankPayments[k][1];
+//			String BaseCURCY1 = BankPayments[k][13];
+//			if (!GLAccountDesc1.equals("")) {
+//				verifyBankPaymentsLineDetailsWithDB(SheetName, k);
+//			}
+//		}
+		clickCreateJournalButton();
+//		bankreceiptfunc.verifyJournalAmountWithDB(webDB.getDataFromProperties("BPJournalADVMulti"),
+//				VariableHandler.getBankPaymentOrReceiptDocNumber());
+//		for (int j = 1; j <= VariableHandler.getMultipleAdvPymtDocs().size(); j++) {
+//			excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalADVMulti"), 1, 5 + j, "0");
+//			excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalADVMulti"), 2, 5 + j, "0");
+//		}
+//		verifyOverallHeaderAmountWithDB(SheetName);
+//		clearDataInExcel(SheetName);
+		clickPostButton();
+		flag = forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
+		if (flag) {
+			commonFunc.logoutUser();
+			checkBPDocumentStatusWithDB(commonFunc.getDataFromTestDataSheet("EntryCompletedStatus"),
+					VariableHandler.getBankPaymentOrReceiptDocNumber());
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+					VariableHandler.getBankPaymentOrReceiptDocNumber(), webDB.getDataFromProperties("HodEmpId"),
+					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+			checkGLMControlBPVAutoClearAndVerifyBPVDocumentStatus(BankName, Currency);
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used to Select the Bank Payment pending Records In the Pending
+	 * Party Documnets IN the bank Payment Screen
+	 * 
+	 * @author Harikrishna _ RMITS
+	 * @param PartyName
+	 * @param VoucherNumber.get(i)
+	 */
+	public void selectBPAdvPartyDocumentMPMB(String PartyName, ArrayList<String> VoucherNumber, String SheetName,
+			int i1) {
+		flag = webDB.switchToFrame(CashPaymentLocators.BankPendingAdvPartyDocumentsFrameName, ElementType.Xpath);
+		if (flag) {
+			String GetTextPartyName = webDB.getDomPropertyFromElement(
+					CashPaymentLocators.BankPendingPartyDocumentsPartyNameInputField, ElementType.Xpath,
+					commonFunc.getDataFromTestDataSheet("Value"));
+			int a = i1 * 2;
+			if (GetTextPartyName.equals(PartyName)) {
+				for (int i = a - 1; i <= a; i++) {
+					commonFunc.searchAndSelectValueInFilters(CashPaymentLocators.BankPartyAdvDocNumberLovButton,
+							VoucherNumber.get(i - 1));
+					webDB.switchToFrame(CashPaymentLocators.BankPendingAdvPartyDocumentsFrameName, ElementType.Xpath);
+					flag = webDB.waitForElement(CashPaymentLocators.BankPaymentAdvPendingPartyDocumentSearchButton,
+							ElementType.Xpath);
+					if (flag) {
+						commonFunc.checkRefreshCellsDisappear();
+						webDB.doubleClickAnElement(CashPaymentLocators.BankPaymentAdvPendingPartyDocumentSearchButton,
+								ElementType.Xpath);
+						commonFunc.hardWait(500);
+						commonFunc.checkRefreshCellsDisappear();
+						flag = webDB.waitForElement(
+								CashPaymentLocators.BPPendingPartyDocumentSelectCheckBox(VoucherNumber.get(i - 1)),
+								ElementType.Xpath);
+						if (flag) {
+							commonFunc.checkRefreshCellsDisappear();
+							verifyPendingAdvancePayablesThroughGetDoc(SheetName, VoucherNumber.get(i - 1), i1); // TODO
+							webDB.clickAnElement(
+									CashPaymentLocators.BPPendingPartyDocumentSelectCheckBox(VoucherNumber.get(i - 1)),
+									ElementType.Xpath);
+							commonFunc.hardWait(6000);
+							flag = webDB.waitForElement(CashPaymentLocators.BankPendingAdvPartyDocumentScreenOkButton,
+									ElementType.Xpath);
+							if (flag) {
+								logs.logging("INFO", "In Pending Party Documents This Voucher Number "
+										+ VoucherNumber.get(i - 1) + " Is Selected Successfully");
+							}
+						}
+					}
+				}
+				webDB.moveToElement(CashPaymentLocators.BankPendingAdvPartyDocumentScreenOkButton, ElementType.Xpath);
+				webDB.javaScriptClickAnElement(CashPaymentLocators.BankPendingAdvPartyDocumentScreenOkButton,
+						ElementType.Xpath);
+				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.hardWait(2000);
+				webDB.switchToDefaultContent();
+				flag = webDB.waitForElement(CashPaymentLocators.BankHeaderAdvCreateJournalButton, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "OK Button Is Clicked Successfully In The Pending Party Documents");
+				}
+			} else {
+				logs.logging("INFO",
+						"Bank Payment Line Wise Party Name And Pending Party Documents Party Name Is not Getting Matched");
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Verify Pending Receivables Through Get Document With
+	 * DB
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @param SheetName
+	 * @param VoucherNumber
+	 * @param i1
+	 */
+	public void verifyPendingAdvancePayablesThroughGetDoc(String SheetName, String VoucherNumber, int i1) {
+		BankPayments = excelUtils.readAllDataInExcel(Filepath, SheetName);
+//		int a= i1*1;
+		int count = 0;
+		for (int i = i1; i <= i1; i++) {
+//		int innerValue = (i1 % 2 == 1) ? 1 : 2;
+//		  for (int i = innerValue; i <= innerValue; i++) {
+//			for (int i = (i1 + 1) / 2; i <= (i1 + 1) / 2; i++){
+//			for(int j = 1; j<BankPayments.length;j++) {
+			System.out.println(i);
+			String PartyID = BankPayments[i][2];
+			String PartyName = BankPayments[i][3];
+			String Entity = BankPayments[i][6];
+			String CPCDesc = BankPayments[i][7];
+			String Curcy = BankPayments[i][11];
+			String EXRate = BankPayments[i][12];
+			String Location = BankPayments[i][24];
+			String Unit = BankPayments[i][25];
+			String DrCr = BankPayments[i][26];
+			String PayableAmount = BankPayments[i][27];
+			String PayableAmount1 = BankPayments[i][28];
+			if (!PartyID.equals("")) {
+				salesOrdFunc.verifyAssertionBothValues(
+						dbCommonFunctions.CashPaymentAdvancePendingPayablesDetails(VoucherNumber,
+								commonFunc.getDataFromTestDataSheet("BRDBPendingAdvanceReceivablesPartyName")),
+						PartyName);
+				logs.logging("INFO", "In Advance Pending Payables For This Document Number " + VoucherNumber
+						+ " PartyName Is getting Matched With DB");
+
+				salesOrdFunc.verifyAssertionBothValues(
+						dbCommonFunctions.CashPaymentAdvancePendingPayablesDetails(VoucherNumber,
+								commonFunc.getDataFromTestDataSheet("BRDBPendingAdvanceReceivablesLocationID")),
+						Location);
+				logs.logging("INFO", "In Advance Pending Payables For This Document Number " + VoucherNumber
+						+ " Location ID Is getting Matched With DB");
+
+				salesOrdFunc
+						.verifyAssertionBothValues(
+								dbCommonFunctions.CashPaymentAdvancePendingPayablesDetails(VoucherNumber,
+										commonFunc.getDataFromTestDataSheet("BRDBPendingAdvanceReceivablesUnitID")),
+								Unit);
+				logs.logging("INFO", "In Advance Pending Payables For This Document Number " + VoucherNumber
+						+ " Unit ID Is getting Matched With DB");
+
+				salesOrdFunc
+						.verifyAssertionBothValues(
+								dbCommonFunctions.CashPaymentAdvancePendingPayablesDetails(VoucherNumber,
+										commonFunc.getDataFromTestDataSheet("BRDBPendingAdvanceReceivablesCurcy")),
+								Curcy);
+				logs.logging("INFO", "In Advance Pending Payables For This Document Number " + VoucherNumber
+						+ " Currency Is getting Matched With DB");
+
+				salesOrdFunc
+						.verifyAssertionBothValues(
+								dbCommonFunctions.CashPaymentAdvancePendingPayablesDetails(VoucherNumber,
+										commonFunc.getDataFromTestDataSheet("BRDBPendingAdvanceReceivablesExRate")),
+								EXRate);
+				logs.logging("INFO", "In Advance Pending Payables For This Document Number " + VoucherNumber
+						+ " EX.Rate Is getting Matched With DB");
+
+//				salesOrdFunc.verifyAssertionBothValues(dbCommonFunctions.BankPaymentPendingPayablesDetails(
+//						VoucherNumber, commonFunc.getDataFromTestDataSheet("BRDBPendingAdvanceReceivablesDROrCR")), DrCr);
+//				logs.logging("INFO", "In Advance Pending Payables For This Document Number " + VoucherNumber
+//						+ " Dr / Cr Is getting Matched With DB");
+				if (count >= 1) {
+					salesOrdFunc.verifyAssertionBothValues(
+							dbCommonFunctions.CashPaymentAdvancePendingPayablesDetails(VoucherNumber,
+									commonFunc.getDataFromTestDataSheet("BRDBPendingAdvanceReceivablesInvAmt")),
+							PayableAmount1);
+					logs.logging("INFO", "In Advance Pending Payables For This Document Number " + VoucherNumber
+							+ " Payable Amount Is getting Matched With DB");
+				} else {
+					salesOrdFunc.verifyAssertionBothValues(
+							dbCommonFunctions.CashPaymentAdvancePendingPayablesDetails(VoucherNumber,
+									commonFunc.getDataFromTestDataSheet("BRDBPendingAdvanceReceivablesInvAmt")),
+							PayableAmount);
+					logs.logging("INFO", "In Advance Pending Payables For This Document Number " + VoucherNumber
+							+ " Payable Amount Is getting Matched With DB");
+				}
+
+//				salesOrdFunc.verifyAssertionBothValues(
+//						dbCommonFunctions.BankPaymentPendingPayablesDetails(VoucherNumber,
+//								commonFunc.getDataFromTestDataSheet("BRDBPendingAdvanceReceivablesDueDays")),
+//						dbCommonFunctions.SOPaymentTermAdvPercentage(
+//								commonFunc.getDataFromTestDataSheet("AdvanceSupplierPaymentTerm"),
+//								commonFunc.getDataFromTestDataSheet("PaymentTermDueDays")));
+//				logs.logging("INFO", "In Advance Pending Payables For This Document Number " + VoucherNumber
+//						+ " Due Days Is getting Matched With DB");
+
+				salesOrdFunc.verifyAssertionBothValues(
+						dbCommonFunctions.CashPaymentAdvancePendingPayablesDetails(VoucherNumber,
+								commonFunc.getDataFromTestDataSheet("BRDBPendingAdvanceReceivablesDocNumber")),
+						VoucherNumber);
+				logs.logging("INFO", "In Advance Pending Payables For This Document Number " + VoucherNumber
+						+ " Source Document Is getting Matched With DB");
+			}
+			count++;
+		}
+	}
+
+	/**
+	 * This Method Is Used To Add The Bank Payment Through Add Button
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @param SheetName
+	 */
+	public void BPThroughAddButtonAdvanceWithNewRef(String SheetName, String Currency, String BankName) {
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("AdminUsername"));
+		commonFunc.navigateToFinancialPaymentReceipt();
+		clickAddButtonInPaymentsRecipts();
+		createBankPaymentEntry(commonFunc.getDataFromTestDataSheet("BankDocMode"), BankName, Today,
+				commonFunc.getDataFromTestDataSheet("BankPayMode"),
+				commonFunc.getDataFromTestDataSheet("BankRefNumber"), Today,
+				commonFunc.getDataFromTestDataSheet("BankPrefix"), Currency);
+		getBankPaymentOrReceiptDocumentNumber();
+		checkBPDocumentStatusWithDB(commonFunc.getDataFromTestDataSheet("Draft"),
+				VariableHandler.getBankPaymentOrReceiptDocNumber());
+		verifyBankPaymentHeaderDetailsWithUI(BankName, commonFunc.getDataFromTestDataSheet("BankPrefix"), Today, Today);
+		verifyBankPaymentDetailsWithDB(BankName, commonFunc.getDataFromTestDataSheet("BankPrefix"), Currency);
+		BankPayments = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		for (int i = 1; i < BankPayments.length; i++) {
+			String GLAccountDesc = BankPayments[i][1];
+			String PartyName = BankPayments[i][3];
+			String EntityName = BankPayments[i][6];
+			String CPCCodeDesc = BankPayments[i][7];
+			String BillNumber = BankPayments[i][8];
+			String PayAmount = BankPayments[i][9];
+			String DRCR = BankPayments[i][10];
+			String CURCY = BankPayments[i][11];
+			String EXRate = BankPayments[i][12];
+			String TransCURCY = BankPayments[i][13];
+			String BaseCURCY = BankPayments[i][34];
+			String AssesableValue = BankPayments[i][17];
+			if (!GLAccountDesc.equals("")) {
+				clickBPLineAddButton();
+				addBankPaymentLineDetails(GLAccountDesc, CPCCodeDesc);
+				clickLineWiseSaveButton();
+				clickLineWiseAddButton(i);
+				clickPendingPartyDocumentsInBP();
+				selectAdvancePartyDocumentBasedOnPBThroughAdd(PartyName, VariableHandler.getMultiplePBDocs(), i,
+						SheetName);
+				clickLineWiseViewButton(i);
+				clickAddButtonInViewDetails();
+				addBillNumberAndPayAmount(BillNumber, PayAmount);
+				clickViewDetailsSaveButton();
+				clickBankViewDetailsCloseButton();
+				if (!Currency.equals("INR")) {
+					excelUtils.writeDataInExcel(Filepath, SheetName, i, 12, dbCommonFunctions.ExchangeRateDetails(
+							Currency, commonFunc.getDataFromTestDataSheet("ExportSalesEXRateColumnName")));
+				} else {
+					excelUtils.writeDataInExcel(Filepath, SheetName, i, 12, "1");
+				}
+//				verifyBankPaymentsLineDetailsWithDB(SheetName, i);
+			}
+			if (!Currency.equals("INR") || (BankName.equals("JP MORGAN CHASE"))) {
+				enterRealizedAmountInBPHeader(BaseCURCY);
+			}
+//			if (Currency.equals("INR")) {
+//				if (BankName.equals("JP MORGAN CHASE")) {
+//					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalNRINR"), 1, 6,
+//							dbCommonFunctions.BankPaymentPBHeaderDetails(VariableHandler.getMultiplePBDocs().get(0),
+//									commonFunc.getDataFromTestDataSheet("PBNetAmount")));
+//					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalNRINR"), 1, 7,
+//							dbCommonFunctions.BankPaymentPBHeaderDetails(VariableHandler.getMultiplePBDocs().get(1),
+//									commonFunc.getDataFromTestDataSheet("PBNetAmount")));
+//					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalNRINR"), 2, 6,
+//							dbCommonFunctions.BankPaymentPBHeaderDetails(VariableHandler.getMultiplePBDocs().get(2),
+//									commonFunc.getDataFromTestDataSheet("PBNetAmount")));
+//					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalNRINR"), 2, 7,
+//							dbCommonFunctions.BankPaymentPBHeaderDetails(VariableHandler.getMultiplePBDocs().get(3),
+//									commonFunc.getDataFromTestDataSheet("PBNetAmount")));
+//				} else {
+//					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalNR"), 1, 6,
+//							dbCommonFunctions.BankPaymentPBHeaderDetails(VariableHandler.getMultiplePBDocs().get(0),
+//									commonFunc.getDataFromTestDataSheet("PBNetAmount")));
+//					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalNR"), 1, 7,
+//							dbCommonFunctions.BankPaymentPBHeaderDetails(VariableHandler.getMultiplePBDocs().get(1),
+//									commonFunc.getDataFromTestDataSheet("PBNetAmount")));
+//					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalNR"), 2, 6,
+//							dbCommonFunctions.BankPaymentPBHeaderDetails(VariableHandler.getMultiplePBDocs().get(2),
+//									commonFunc.getDataFromTestDataSheet("PBNetAmount")));
+//					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalNR"), 2, 7,
+//							dbCommonFunctions.BankPaymentPBHeaderDetails(VariableHandler.getMultiplePBDocs().get(3),
+//									commonFunc.getDataFromTestDataSheet("PBNetAmount")));
+//				}
+//			}
+		}
+		clickCreateJournalButton();
+//		if (Currency.equals("INR")) {
+//			if (BankName.equals("JP MORGAN CHASE")) {
+//				bankreceiptfunc.verifyJournalAmountWithDB(webDB.getDataFromProperties("BPJournalNRINR"),
+//						VariableHandler.getBankPaymentOrReceiptDocNumber());
+//				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalNRINR"), 1, 6, "0");
+//				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalNRINR"), 1, 7, "0");
+//				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalNRINR"), 2, 6, "0");
+//				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalNRINR"), 2, 7, "0");
+//			} else {
+//				bankreceiptfunc.verifyJournalAmountWithDB(webDB.getDataFromProperties("BPJournalNR"),
+//						VariableHandler.getBankPaymentOrReceiptDocNumber());
+//				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalNR"), 1, 6, "0");
+//				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalNR"), 1, 7, "0");
+//				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalNR"), 2, 6, "0");
+//				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalNR"), 2, 7, "0");
+//			}
+//		}
+//		verifyOverallHeaderAmountWithDB(SheetName);
+//		clearDataInExcel(SheetName);
+		clickPostButton();
+		flag = forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
+		if (flag) {
+			commonFunc.logoutUser();
+			checkBPDocumentStatusWithDB(commonFunc.getDataFromTestDataSheet("EntryCompletedStatus"),
+					VariableHandler.getBankPaymentOrReceiptDocNumber());
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+					VariableHandler.getBankPaymentOrReceiptDocNumber(), webDB.getDataFromProperties("HodEmpId"),
+					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+			checkGLMControlBPVAutoClearAndVerifyBPVDocumentStatus(BankName, Currency);
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This method Is Used To Get Document Through BP
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @param SheetName
+	 * @param Currency
+	 * @param BankName
+	 */
+	public void BPThroughGetDocumentAdvanceWithNewReference(String SheetName, String Currency, String BankName) {
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("AdminUsername"));
+		commonFunc.navigateToFinancialPaymentReceipt();
+		clickAddButtonInPaymentsRecipts();
+		createBankPaymentEntry(commonFunc.getDataFromTestDataSheet("BankDocMode"), BankName, Today,
+				commonFunc.getDataFromTestDataSheet("BankPayMode"),
+				commonFunc.getDataFromTestDataSheet("BankRefNumber"), Today,
+				commonFunc.getDataFromTestDataSheet("BankPrefix"), Currency);
+		getBankPaymentOrReceiptDocumentNumber();
+		checkBPDocumentStatusWithDB(commonFunc.getDataFromTestDataSheet("Draft"),
+				VariableHandler.getBankPaymentOrReceiptDocNumber());
+		verifyBankPaymentHeaderDetailsWithUI(BankName, commonFunc.getDataFromTestDataSheet("BankPrefix"), Today, Today);
+		verifyBankPaymentDetailsWithDB(BankName, commonFunc.getDataFromTestDataSheet("BankPrefix"), Currency);
+		clickGetDocumentInBPHeader();
+		clickPendingPartyDocumentsInBP();
+		chooseAdvancePartyNameAndClickSearchButtonInPendingPartyDocsMPMB(VariableHandler.getMultiplePBDocs(),
+				SheetName);
+		BankPayments = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		for (int i = 1; i < BankPayments.length; i++) {
+			String GLAccountDesc = BankPayments[i][1];
+			String PartyName = BankPayments[i][3];
+			String EntityName = BankPayments[i][5];
+			String CPCCodeDesc = BankPayments[i][6];
+			String BillNumber = BankPayments[i][7];
+			String PayAmount = BankPayments[i][8];
+			String DRCR = BankPayments[i][9];
+			String CURCY = BankPayments[i][10];
+			String EXRate = BankPayments[i][11];
+			String TransCURCY = BankPayments[i][12];
+			String BaseCURCY = BankPayments[i][34];
+			String AssesableValue = BankPayments[i][16];
+			if (!GLAccountDesc.equals("")) {
+				clickLineWiseViewButton(i);
+				clickAddButtonInViewDetails();
+				addBillNumberAndPayAmount(BillNumber, PayAmount);
+				clickViewDetailsSaveButton();
+				clickBankViewDetailsCloseButton();
+//				for (int j = 1; j < BankPayments.length; j++) {
+//					String GLAccountDesc1 = BankPayments[j][1];
+//					if (!GLAccountDesc1.equals("")) {
+//						if (!Currency.equals("INR")) {
+//							excelUtils.writeDataInExcel(Filepath, SheetName, i, 11,
+//									dbCommonFunctions.ExchangeRateDetails(Currency,
+//											commonFunc.getDataFromTestDataSheet("ImportPurchaseEXRateColumnName")));
+//						} else {
+//							excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, "1");
+//						}
+//						verifyBankPaymentsLineDetailsWithDB(SheetName, i);
+//					}
+//				}
+			}
+			if (!Currency.equals("INR") || (BankName.equals("JP MORGAN CHASE"))) {
+				enterRealizedAmountInBPHeader(BaseCURCY);
+			}
+//			if (Currency.equals("INR")) {
+//				if (BankName.equals("JP MORGAN CHASE")) {
+//					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalNRINR"), 1, 6,
+//							dbCommonFunctions.BankPaymentPBHeaderDetails(VariableHandler.getMultiplePBDocs().get(0),
+//									commonFunc.getDataFromTestDataSheet("PBNetAmount")));
+//					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalNRINR"), 1, 7,
+//							dbCommonFunctions.BankPaymentPBHeaderDetails(VariableHandler.getMultiplePBDocs().get(1),
+//									commonFunc.getDataFromTestDataSheet("PBNetAmount")));
+//					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalNRINR"), 2, 6,
+//							dbCommonFunctions.BankPaymentPBHeaderDetails(VariableHandler.getMultiplePBDocs().get(2),
+//									commonFunc.getDataFromTestDataSheet("PBNetAmount")));
+//					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalNRINR"), 2, 7,
+//							dbCommonFunctions.BankPaymentPBHeaderDetails(VariableHandler.getMultiplePBDocs().get(3),
+//									commonFunc.getDataFromTestDataSheet("PBNetAmount")));
+//				} else {
+//					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalNR"), 1, 6,
+//							dbCommonFunctions.BankPaymentPBHeaderDetails(VariableHandler.getMultiplePBDocs().get(0),
+//									commonFunc.getDataFromTestDataSheet("PBNetAmount")));
+//					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalNR"), 1, 7,
+//							dbCommonFunctions.BankPaymentPBHeaderDetails(VariableHandler.getMultiplePBDocs().get(1),
+//									commonFunc.getDataFromTestDataSheet("PBNetAmount")));
+//					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalNR"), 2, 6,
+//							dbCommonFunctions.BankPaymentPBHeaderDetails(VariableHandler.getMultiplePBDocs().get(2),
+//									commonFunc.getDataFromTestDataSheet("PBNetAmount")));
+//					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalNR"), 2, 7,
+//							dbCommonFunctions.BankPaymentPBHeaderDetails(VariableHandler.getMultiplePBDocs().get(3),
+//									commonFunc.getDataFromTestDataSheet("PBNetAmount")));
+//				}
+//			}
+		}
+		clickCreateJournalButton();
+//		if (Currency.equals("INR")) {
+//			if (BankName.equals("JP MORGAN CHASE")) {
+//				bankreceiptfunc.verifyJournalAmountWithDB(webDB.getDataFromProperties("BPJournalNRINR"),
+//						VariableHandler.getBankPaymentOrReceiptDocNumber());
+//				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalNRINR"), 1, 6, "0");
+//				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalNRINR"), 1, 7, "0");
+//				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalNRINR"), 2, 6, "0");
+//				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalNRINR"), 2, 7, "0");
+//			} else {
+//				bankreceiptfunc.verifyJournalAmountWithDB(webDB.getDataFromProperties("BPJournalNR"),
+//						VariableHandler.getBankPaymentOrReceiptDocNumber());
+//				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalNR"), 1, 6, "0");
+//				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalNR"), 1, 7, "0");
+//				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalNR"), 2, 6, "0");
+//				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalNR"), 2, 7, "0");
+//			}
+//		}
+//		verifyOverallHeaderAmountWithDB(SheetName);
+//		clearDataInExcel(SheetName);
+		clickPostButton();
+		flag = forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
+		if (flag) {
+			checkBPDocumentStatusWithDB(commonFunc.getDataFromTestDataSheet("EntryCompletedStatus"),
+					VariableHandler.getBankPaymentOrReceiptDocNumber());
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+					VariableHandler.getBankPaymentOrReceiptDocNumber(), webDB.getDataFromProperties("HodEmpId"),
+					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+			checkGLMControlBPVAutoClearAndVerifyBPVDocumentStatus(BankName, Currency);
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Verify BP Thriugh Pending Docs with new Ref
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @param CreationType
+	 * @param SheetName
+	 * @param Currency
+	 * @param BankName
+	 */
+
+	public void BPThroughPendingDocsAdvanceWithNewReference(String CreationType, String SheetName, String Currency,
+			String BankName) {
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("AdminUsername"));
+		commonFunc.navigateToFinancialPaymentReceipt();
+		clickPendingCRDocsButton();
+		clickPendingPayablesButtonInPendCRDocs();
+		chooseDocumentNumberInPendingPayablesScreenAdvanceMPMB(VariableHandler.getMultiplePBDocs(),
+				commonFunc.getDataFromTestDataSheet("PaymentType"), commonFunc.getDataFromTestDataSheet("BankPayMode"),
+				BankName, CreationType, SheetName);
+		getBankPaymentOrReceiptDocumentNumber();
+		commonFunc.checkRefreshCellsDisappear();
+		sendReferenceNumberInBP(commonFunc.getDataFromTestDataSheet("Reference Number"));
+		commonFunc.checkRefreshCellsDisappear();
+		clickBPHeaderWiseSaveButton();
+		BankPayments = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		for (int i = 1; i < BankPayments.length; i++) {
+			String GLAccountDesc = BankPayments[i][1];
+			String PartyName = BankPayments[i][2];
+			String EntityName = BankPayments[i][3];
+			String CPCCodeDesc = BankPayments[i][4];
+			String BillNumber = BankPayments[i][5];
+			String PayAmount = BankPayments[i][6];
+			String DRCR = BankPayments[i][7];
+			String CURCY = BankPayments[i][8];
+			String EXRate = BankPayments[i][9];
+			String TransCURCY = BankPayments[i][10];
+			String BaseCURCY = BankPayments[i][34];
+			String AssesableValue = BankPayments[i][14];
+			if (!GLAccountDesc.equals("")) {
+				clickLineWiseViewButton(i);
+				clickAddButtonInViewDetails();
+				addBillNumberAndPayAmount(BillNumber, PayAmount);
+				clickViewDetailsSaveButton();
+				clickBankViewDetailsCloseButton();
+//				for (int j = 1; j < BankPayments.length; j++) {
+//					String GLAccountDesc1 = BankPayments[j][1];
+//					if (!GLAccountDesc1.equals("")) {
+//						if (!Currency.equals("INR")) {
+//							excelUtils.writeDataInExcel(Filepath, SheetName, i, 11,
+//									dbCommonFunctions.ExchangeRateDetails(Currency,
+//											commonFunc.getDataFromTestDataSheet("ImportPurchaseEXRateColumnName")));
+//						} else {
+//							excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, "1");
+//						}
+//						verifyBankPaymentsLineDetailsWithDB(SheetName, i);
+//					}
+//				}
+			}
+			if (!Currency.equals("INR") || (BankName.equals("JP MORGAN CHASE"))) {
+				enterRealizedAmountInBPHeader(BaseCURCY);
+			}
+//			if (Currency.equals("INR")) {
+//				if (BankName.equals("JP MORGAN CHASE")) {
+//					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalNRINR"), 1, 6,
+//							dbCommonFunctions.BankPaymentPBHeaderDetails(VariableHandler.getMultiplePBDocs().get(0),
+//									commonFunc.getDataFromTestDataSheet("PBNetAmount")));
+//					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalNRINR"), 1, 7,
+//							dbCommonFunctions.BankPaymentPBHeaderDetails(VariableHandler.getMultiplePBDocs().get(1),
+//									commonFunc.getDataFromTestDataSheet("PBNetAmount")));
+//					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalNRINR"), 2, 6,
+//							dbCommonFunctions.BankPaymentPBHeaderDetails(VariableHandler.getMultiplePBDocs().get(2),
+//									commonFunc.getDataFromTestDataSheet("PBNetAmount")));
+//					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalNRINR"), 2, 7,
+//							dbCommonFunctions.BankPaymentPBHeaderDetails(VariableHandler.getMultiplePBDocs().get(3),
+//									commonFunc.getDataFromTestDataSheet("PBNetAmount")));
+//				} else {
+//					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalNR"), 1, 6,
+//							dbCommonFunctions.BankPaymentPBHeaderDetails(VariableHandler.getMultiplePBDocs().get(0),
+//									commonFunc.getDataFromTestDataSheet("PBNetAmount")));
+//					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalNR"), 1, 7,
+//							dbCommonFunctions.BankPaymentPBHeaderDetails(VariableHandler.getMultiplePBDocs().get(1),
+//									commonFunc.getDataFromTestDataSheet("PBNetAmount")));
+//					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalNR"), 2, 6,
+//							dbCommonFunctions.BankPaymentPBHeaderDetails(VariableHandler.getMultiplePBDocs().get(2),
+//									commonFunc.getDataFromTestDataSheet("PBNetAmount")));
+//					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalNR"), 2, 7,
+//							dbCommonFunctions.BankPaymentPBHeaderDetails(VariableHandler.getMultiplePBDocs().get(3),
+//									commonFunc.getDataFromTestDataSheet("PBNetAmount")));
+//				}
+//			}
+		}
+		clickCreateJournalButton();
+//		if (Currency.equals("INR")) {
+//			if (BankName.equals("JP MORGAN CHASE")) {
+//				bankreceiptfunc.verifyJournalAmountWithDB(webDB.getDataFromProperties("BPJournalNRINR"),
+//						VariableHandler.getBankPaymentOrReceiptDocNumber());
+//				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalNRINR"), 1, 6, "0");
+//				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalNRINR"), 1, 7, "0");
+//				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalNRINR"), 2, 6, "0");
+//				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalNRINR"), 2, 7, "0");
+//			} else {
+//				bankreceiptfunc.verifyJournalAmountWithDB(webDB.getDataFromProperties("BPJournalNR"),
+//						VariableHandler.getBankPaymentOrReceiptDocNumber());
+//				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalNR"), 1, 6, "0");
+//				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalNR"), 1, 7, "0");
+//				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalNR"), 2, 6, "0");
+//				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalNR"), 2, 7, "0");
+//			}
+//		}
+//		verifyOverallHeaderAmountWithDB(SheetName);
+//		clearDataInExcel(SheetName);
+		clickPostButton();
+		flag = forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
+		if (flag) {
+			checkBPDocumentStatusWithDB(commonFunc.getDataFromTestDataSheet("EntryCompletedStatus"),
+					VariableHandler.getBankPaymentOrReceiptDocNumber());
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+					VariableHandler.getBankPaymentOrReceiptDocNumber(), webDB.getDataFromProperties("HodEmpId"),
+					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+			checkGLMControlBPVAutoClearAndVerifyBPVDocumentStatus(BankName, Currency);
+		}
+	}
+
+	/**
+	 * This Method Is Used to Select the Bank Payment pending Records In the Pending
+	 * Party Documnets IN the bank Payment Screen
+	 * 
+	 * @author Harikrishna _ RMITS
+	 * @param PartyName
+	 * @param VoucherNumber.get(i)
+	 */
+	public void selectAdvancePartyDocumentBasedOnPBThroughAdd(String PartyName, ArrayList<String> VoucherNumber, int i1,
+			String SheetName) {
+		flag = webDB.switchToFrame(BankPaymentLocators.BankPendingPartyDocumentsFrameName, ElementType.Xpath);
+		if (flag) {
+			String GetTextPartyName = webDB.getDomPropertyFromElement(
+					BankPaymentLocators.BankPendingPartyDocumentsPartyNameInputField, ElementType.Xpath,
+					commonFunc.getDataFromTestDataSheet("Value"));
+			int a = i1 * 2;
+			if (GetTextPartyName.equals(PartyName)) {
+				for (int i = a - 1; i <= a; i++) {
+					commonFunc.searchAndSelectValueInFilters(BankPaymentLocators.BankPartyDocNumberLovButton,
+							VoucherNumber.get(i - 1));
+					webDB.switchToFrame(BankPaymentLocators.BankPendingPartyDocumentsFrameName, ElementType.Xpath);
+					flag = webDB.waitForElement(BankPaymentLocators.BankPaymentPendingPartyDocumentSearchButton,
+							ElementType.Xpath);
+					if (flag) {
+						commonFunc.checkRefreshCellsDisappear();
+						webDB.doubleClickAnElement(BankPaymentLocators.BankPaymentPendingPartyDocumentSearchButton,
+								ElementType.Xpath);
+						flag = webDB.waitForElement(BankPaymentLocators.OverAllSelectCheckBox, ElementType.Xpath);
+						if (flag) {
+							commonFunc.checkRefreshCellsDisappear();
+//							verifyPendingPayablesPBDocumentThroughAddButton(SheetName, VoucherNumber.get(i - 1), i);
+							webDB.clickAnElement(BankPaymentLocators.OverAllSelectCheckBox, ElementType.Xpath);
+							commonFunc.hardWait(6000);
+							flag = webDB.waitForElement(BankPaymentLocators.BankPendingPartyDocumentScreenOkButton,
+									ElementType.Xpath);
+							if (flag) {
+								logs.logging("INFO", "In Pending Party Documents This Voucher Number "
+										+ VoucherNumber.get(i - 1) + " Is Selected Successfully");
+							}
+						}
+					}
+				}
+				commonFunc.searchAndSelectValueInFilters(BankPaymentLocators.BankPartyDocNumberLovButton,
+						VariableHandler.getMultipleBankDocs().get(0));
+				webDB.switchToFrame(BankPaymentLocators.BankPendingPartyDocumentsFrameName, ElementType.Xpath);
+				flag = webDB.waitForElement(BankPaymentLocators.BankPaymentPendingPartyDocumentSearchButton,
+						ElementType.Xpath);
+				if (flag) {
+					commonFunc.checkRefreshCellsDisappear();
+					webDB.doubleClickAnElement(BankPaymentLocators.BankPaymentPendingPartyDocumentSearchButton,
+							ElementType.Xpath);
+					flag = webDB.waitForElement(BankPaymentLocators.OverAllSelectCheckBox, ElementType.Xpath);
+					if (flag) {
+						commonFunc.checkRefreshCellsDisappear();
+//						verifyPendingPayablesPBDocumentThroughAddButton(SheetName, VariableHandler.getMultipleBankDocs().get(0), 1);
+						webDB.clickAnElement(BankPaymentLocators.OverAllSelectCheckBox, ElementType.Xpath);
+						commonFunc.hardWait(6000);
+						flag = webDB.waitForElement(BankPaymentLocators.BankPendingPartyDocumentScreenOkButton,
+								ElementType.Xpath);
+						if (flag) {
+							logs.logging("INFO", "In Pending Party Documents This Voucher Number "
+									+ VariableHandler.getMultipleBankDocs().get(0) + " Is Selected Successfully");
+						}
+					}
+				}
+				webDB.moveToElement(BankPaymentLocators.BankPendingPartyDocumentScreenOkButton, ElementType.Xpath);
+				webDB.javaScriptClickAnElement(BankPaymentLocators.BankPendingPartyDocumentScreenOkButton,
+						ElementType.Xpath);
+				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.hardWait(2000);
+				webDB.switchToDefaultContent();
+				flag = webDB.waitForElement(BankPaymentLocators.BankHeaderCreateJournalButton, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "OK Button Is Clicked Successfully In The Pending Party Documents");
+				}
+			} else {
+				logs.logging("INFO",
+						"Bank Payment Line Wise Party Name And Pending Party Documents Party Name Is not Getting Matched");
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Methos Is Used To Choose Party Name And Select The Purchase Bills In The
+	 * Pending Party Documents
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @param PartyName
+	 * @param VoucherNumber
+	 */
+	public void chooseAdvancePartyNameAndClickSearchButtonInPendingPartyDocsMPMB(ArrayList<String> VoucherNumber,
+			String SheetName) {
+		commonFunc.checkRefreshCellsDisappear();
+		flag = webDB.switchToFrame(BankPaymentLocators.BankPendingPartyDocumentsFrameName, ElementType.Xpath);
+		System.out.println(VoucherNumber.size());
+		if (flag) {
+			for (int i = 1; i <= VoucherNumber.size(); i++) {
+				System.out.println(2);
+				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.searchAndSelectValueInFilters(BankPaymentLocators.BankPartyDocNumberLovButton,
+						VoucherNumber.get(i - 1));
+				webDB.switchToFrame(BankPaymentLocators.BankPendingPartyDocumentsFrameName, ElementType.Xpath);
+				flag = webDB.waitForElement(BankPaymentLocators.BankPaymentPendingPartyDocumentSearchButton,
+						ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(BankPaymentLocators.BankPaymentPendingPartyDocumentSearchButton,
+							ElementType.Xpath);
+					commonFunc.checkRefreshCellsDisappear();
+					String GetTextDocumentNumber = webDB.getTextFromElement(
+							BankPaymentLocators.PendingPayablesDocumentNumberField, ElementType.Xpath);
+					logs.logging("INFO", "Get Text Document Number Is " + GetTextDocumentNumber);
+					commonFunc.hardWait(1000);
+					commonFunc.checkRefreshCellsDisappear();
+					if (GetTextDocumentNumber.equals(VoucherNumber.get(i - 1))) {
+//						verifyPendingPayablesPBDocumentThroughAddButton(SheetName, VoucherNumber.get(i - 1), i);
+						flag = webDB.waitForElement(BankPaymentLocators.OverAllSelectCheckBox, ElementType.Xpath);
+						if (flag) {
+							webDB.clickAnElement(BankPaymentLocators.OverAllSelectCheckBox, ElementType.Xpath);
+							commonFunc.checkRefreshCellsDisappear();
+							commonFunc.hardWait(3000);
+							flag = webDB.waitForElement(BankPaymentLocators.BankPendingPartyDocumentScreenOkButton,
+									ElementType.Xpath);
+							if (flag) {
+								logs.logging("INFO", "In Pending Party Documents This Voucher Number "
+										+ VoucherNumber.get(i - 1) + " Is Selected Successfully");
+							}
+						}
+					} else {
+						logs.logging("INFO",
+								"Bank Payment Pending Line Wise Party Document Number And Pending Party Documents Number Is not Getting Matched");
+					}
+				}
+			}
+			commonFunc.searchAndSelectValueInFilters(BankPaymentLocators.BankPartyDocNumberLovButton,
+					VariableHandler.getMultipleBankDocs().get(0));
+			webDB.switchToFrame(BankPaymentLocators.BankPendingPartyDocumentsFrameName, ElementType.Xpath);
+			flag = webDB.waitForElement(BankPaymentLocators.BankPaymentPendingPartyDocumentSearchButton,
+					ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(BankPaymentLocators.BankPaymentPendingPartyDocumentSearchButton,
+						ElementType.Xpath);
+				commonFunc.checkRefreshCellsDisappear();
+				String GetTextDocumentNumber = webDB
+						.getTextFromElement(BankPaymentLocators.PendingPayablesDocumentNumberField, ElementType.Xpath);
+				logs.logging("INFO", "Get Text Document Number Is " + GetTextDocumentNumber);
+				commonFunc.hardWait(1000);
+				commonFunc.checkRefreshCellsDisappear();
+				if (GetTextDocumentNumber.contains(VariableHandler.getMultipleBankDocs().get(0))) {
+//					verifyPendingPayablesPBDocumentThroughAddButton(SheetName, VariableHandler.getMultipleBankDocs().get(0), i);
+					flag = webDB.waitForElement(BankPaymentLocators.OverAllSelectCheckBox, ElementType.Xpath);
+					if (flag) {
+						webDB.clickAnElement(BankPaymentLocators.OverAllSelectCheckBox, ElementType.Xpath);
+						commonFunc.checkRefreshCellsDisappear();
+						commonFunc.hardWait(3000);
+						flag = webDB.waitForElement(BankPaymentLocators.BankPendingPartyDocumentScreenOkButton,
+								ElementType.Xpath);
+						if (flag) {
+							logs.logging("INFO", "In Pending Party Documents This Voucher Number "
+									+ VariableHandler.getMultipleBankDocs().get(0) + " Is Selected Successfully");
+						}
+					}
+				} else {
+					logs.logging("INFO",
+							"Bank Payment Pending Line Wise Party Document Number And Pending Party Documents Number Is not Getting Matched");
+				}
+			}
+			commonFunc.hardWait(1500);
+			flag = webDB.waitForElement(BankPaymentLocators.BankPendingPartyDocumentScreenOkButton, ElementType.Xpath);
+			if (flag) {
+				webDB.moveToElement(BankPaymentLocators.BankPendingPartyDocumentScreenOkButton, ElementType.Xpath);
+				webDB.javaScriptClickAnElement(BankPaymentLocators.BankPendingPartyDocumentScreenOkButton,
+						ElementType.Xpath);
+				commonFunc.checkRefreshCellsDisappear();
+				webDB.switchToDefaultContent();
+				flag = webDB.waitForElement(BankPaymentLocators.BankHeaderCreateJournalButton, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Ok Button Is Clicked Successfully");
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is USed To Select One Document And Convert Into Bank / Cash
+	 * Payment
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @param DocumentNumber
+	 * @param Type
+	 * @param PayMode
+	 * @param BankName
+	 */
+	public void chooseDocumentNumberInPendingPayablesScreenAdvanceMPMB(ArrayList<String> DocumentNumber, String Type,
+			String PayMode, String BankName, String CreationType, String SheetName) {
+		flag = webDB.waitForElement(BankPaymentLocators.BankPendingPartyDocumentsFrameName, ElementType.Xpath);
+		if (flag) {
+			webDB.switchToFrame(BankPaymentLocators.BankPendingPartyDocumentsFrameName, ElementType.Xpath);
+			for (int i = 1; i <= DocumentNumber.size(); i++) {
+				commonFunc.searchAndSelectValueInFilters(BankPaymentLocators.PendingPayablesDocNumberLovButton,
+						DocumentNumber.get(i - 1));
+				webDB.switchToFrame(BankPaymentLocators.BankPendingPartyDocumentsFrameName, ElementType.Xpath);
+				flag = webDB.waitForElement(BankPaymentLocators.BankPaymentPendingPartyDocumentSearchButton,
+						ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(BankPaymentLocators.BankPaymentPendingPartyDocumentSearchButton,
+							ElementType.Xpath);
+					commonFunc.checkRefreshCellsDisappear();
+					String GetTextDocumentNumber = webDB.getTextFromElement(
+							BankPaymentLocators.PendingPayablesDocumentNumberField, ElementType.Xpath);
+					commonFunc.hardWait(1000);
+					commonFunc.checkRefreshCellsDisappear();
+					if (GetTextDocumentNumber.equals(DocumentNumber.get(i - 1))) {
+						commonFunc.hardWait(1000);
+//						verifyPendingPayablesPBDocumentThroughAddButton(SheetName, DocumentNumber.get(i - 1), i);
+						webDB.clickAnElement(BankPaymentLocators.OverAllSelectCheckBox, ElementType.Xpath);
+						commonFunc.checkRefreshCellsDisappear();
+						commonFunc.hardWait(1500);
+						flag = webDB.waitForElement(BankPaymentLocators.PendingPayablesCreateButton, ElementType.Xpath);
+						if (flag) {
+							logs.logging("INFO", "This Purchase Bills Document " + DocumentNumber.get(i - 1)
+									+ " Is Selected Successfully");
+							if (DocumentNumber.size() > 1) {
+								webDB.clickAnElement(BankPaymentLocators.BankPendingPartyDocumentClearButton,
+										ElementType.Xpath);
+								flag = webDB.waitForElement(
+										BankPaymentLocators.BankPaymentPendingPartyDocumentSearchButton,
+										ElementType.Xpath);
+								if (flag) {
+									webDB.clickAnElement(
+											BankPaymentLocators.BankPaymentPendingPartyDocumentSearchButton,
+											ElementType.Xpath);
+									commonFunc.checkRefreshCellsDisappear();
+								}
+							}
+						}
+					} else {
+						logs.logging("INFO", "Some Other Document Is Filtered");
+					}
+				}
+			}
+			commonFunc.searchAndSelectValueInFilters(BankPaymentLocators.PendingPayablesDocNumberLovButton,
+					VariableHandler.getMultipleBankDocs().get(0));
+			webDB.switchToFrame(BankPaymentLocators.BankPendingPartyDocumentsFrameName, ElementType.Xpath);
+			flag = webDB.waitForElement(BankPaymentLocators.BankPaymentPendingPartyDocumentSearchButton,
+					ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(BankPaymentLocators.BankPaymentPendingPartyDocumentSearchButton,
+						ElementType.Xpath);
+				commonFunc.checkRefreshCellsDisappear();
+				String GetTextDocumentNumber = webDB
+						.getTextFromElement(BankPaymentLocators.PendingPayablesDocumentNumberField, ElementType.Xpath);
+				commonFunc.hardWait(1000);
+				commonFunc.checkRefreshCellsDisappear();
+				if (GetTextDocumentNumber.contains(VariableHandler.getMultipleBankDocs().get(0))) {
+					commonFunc.hardWait(1000);
+//					verifyPendingPayablesPBDocumentThroughAddButton(SheetName, DocumentNumber.get(i - 1), i);
+					webDB.clickAnElement(BankPaymentLocators.OverAllSelectCheckBox, ElementType.Xpath);
+					commonFunc.checkRefreshCellsDisappear();
+					commonFunc.hardWait(1500);
+					flag = webDB.waitForElement(BankPaymentLocators.PendingPayablesCreateButton, ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "This Purchase Bills Document "
+								+ VariableHandler.getMultipleBankDocs().get(0) + " Is Selected Successfully");
+						if (DocumentNumber.size() > 1) {
+							webDB.clickAnElement(BankPaymentLocators.BankPendingPartyDocumentClearButton,
+									ElementType.Xpath);
+							flag = webDB.waitForElement(BankPaymentLocators.BankPaymentPendingPartyDocumentSearchButton,
+									ElementType.Xpath);
+							if (flag) {
+								webDB.clickAnElement(BankPaymentLocators.BankPaymentPendingPartyDocumentSearchButton,
+										ElementType.Xpath);
+								commonFunc.checkRefreshCellsDisappear();
+							}
+						}
+					}
+				} else {
+					logs.logging("INFO", "Some Other Document Is Filtered");
+				}
+			}
+			commonFunc.checkRefreshCellsDisappear();
+			commonFunc.hardWait(2000);
+			webDB.moveToElement(BankPaymentLocators.PendingPayablesCreateButton, ElementType.Xpath);
+			webDB.javaScriptClickAnElement(BankPaymentLocators.PendingPayablesCreateButton, ElementType.Xpath);
+			logs.logging("INFO", "Create Button Is Clicked Successfully");
+			commonFunc.checkRefreshCellsDisappear();
+			if (!CreationType.equals("Single")) {
+				flag = webDB.waitForElement(BankPaymentLocators.PendingPayablesMergeLabelInPending, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(BankPaymentLocators.PendingPayablesMergeLabelInPending, ElementType.Xpath);
+					commonFunc.checkRefreshCellsDisappear();
+				}
+			}
+			flag = webDB.waitForElement(BankPaymentLocators.PendingPayablesTypeField, ElementType.Xpath);
+			if (flag) {
+				webDB.selectDropDownByText(BankPaymentLocators.PendingPayablesTypeDropDown, Type, ElementType.Xpath);
+				logs.logging("INFO", "Type Successfully Choosen As " + Type);
+				if (Type.equals("Bank")) {
+					flag = webDB.waitForElement(BankPaymentLocators.PendingpayablesPaymodeField, ElementType.Xpath);
+					if (flag) {
+						webDB.selectDropDownByText(BankPaymentLocators.PendingPayablesPayModeDropDown, PayMode,
+								ElementType.Xpath);
+						logs.logging("INFO", "Pay Mode Successfully Choosen As " + PayMode);
+					}
+				}
+				commonFunc.searchAndSelectValueInFilters(BankPaymentLocators.PendingPayablesBankNameLOVBUtton,
+						BankName);
+				webDB.switchToFrame(BankPaymentLocators.BankPendingPartyDocumentsFrameName, ElementType.Xpath);
+				flag = webDB.waitForElement(BankPaymentLocators.PendingPayablesOkButton, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(BankPaymentLocators.PendingPayablesOkButton, ElementType.Xpath);
+					webDB.switchToDefaultContent();
+					if (Type.equals("Bank")) {
+						flag = webDB.waitForElement(BankPaymentLocators.BankPaymentScreenName, ElementType.Xpath);
+						if (flag) {
+							logs.logging("INFO",
+									"OK Button Is Clicked Successfully And Navigated To Bank Payment Screen");
+						}
+					} else {
+						flag = webDB.waitForElement(BankPaymentLocators.CashPaymentScreenName, ElementType.Xpath);
+						if (flag) {
+							logs.logging("INFO",
+									"OK Button Is Clicked Successfully And Navigated To Cash Payment Screen");
+						}
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Verify Bank Payments Line Details With DB
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @param GLAccountDesc
+	 * @param PartyName
+	 * @param Entity
+	 * @param CPCDesc
+	 * @param AmountInTC
+	 * @param DebitorsORCreditors
+	 * @param AmountInBC
+	 * @param AssesableValue
+	 */
+	public void verifyBankPaymentsLineDetailsWithDBAdvMPMB(String SheetName, int i1) {
+
+		BankPayments = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		for (int i = i1; i <= i1; i++) {
+			String GLAccountDesc = BankPayments[i][1];
+			String PartyID = BankPayments[i][2];
+			String PartyName = BankPayments[i][3];
+			String Entity = BankPayments[i][6];
+			String CPCDesc = BankPayments[i][7];
+			String LineDrCr = BankPayments[i][10];
+			String Curcy = BankPayments[i][11];
+			String EXRate = BankPayments[i][12];
+			String AmtInTC = BankPayments[i][13];
+			String AmtInBC = BankPayments[i][14];
+			String HSNCode = BankPayments[i][15];
+			String AssesableValue = BankPayments[i][17];
+			String CGST = BankPayments[i][18];
+			String SGST = BankPayments[i][19];
+			String IGST = BankPayments[i][20];
+			String UTGST = BankPayments[i][21];
+			String CESSPCT = BankPayments[i][22];
+			String CESSAMT = BankPayments[i][23];
+			String Location = BankPayments[i][24];
+			String Unit = BankPayments[i][25];
+			String PendingDrCr = BankPayments[i][26];
+			String TotAmt = BankPayments[i][33];
+			if (!GLAccountDesc.equals("")) {
+				String SeqNo = String.valueOf(i);
+				salesOrdFunc.verifyAssertionBothValues(
+						dbCommonFunctions.BankPaymentLineDetails(VariableHandler.getBankPaymentOrReceiptDocNumber(),
+								SeqNo, commonFunc.getDataFromTestDataSheet("BPDBGLAccountDescColumnName")),
+						GLAccountDesc);
+				logs.logging("INFO",
+						" Line Wise GL Account Desc Is Matched With DataBase Values Against This Bank Receipt Document "
+								+ VariableHandler.getBankPaymentOrReceiptDocNumber());
+
+//				salesOrdFunc.verifyAssertionBothValues(
+//						dbCommonFunctions.BankPaymentLineDetails(VariableHandler.getBankPaymentOrReceiptDocNumber(),
+//								SeqNo, commonFunc.getDataFromTestDataSheet("BPDBSupplierDescColumnName")),
+//						PartyName);
+//				logs.logging("INFO",
+//						" Line Wise Party Name Is Matched With DataBase Values Against This Bank Receipt Document "
+//								+ VariableHandler.getBankPaymentOrReceiptDocNumber());
+
+				salesOrdFunc.verifyAssertionBothValues(
+						dbCommonFunctions.BankPaymentLineDetails(VariableHandler.getBankPaymentOrReceiptDocNumber(),
+								SeqNo, commonFunc.getDataFromTestDataSheet("BPDBEntityColumnName")),
+						Entity);
+				logs.logging("INFO",
+						" Line Wise Entity Name Is Matched With DataBase Values Against This Bank Receipt Document "
+								+ VariableHandler.getBankPaymentOrReceiptDocNumber());
+
+				salesOrdFunc.verifyAssertionBothValues(
+						dbCommonFunctions.BankPaymentLineDetails(VariableHandler.getBankPaymentOrReceiptDocNumber(),
+								SeqNo, commonFunc.getDataFromTestDataSheet("BPDBCPCcodeDescColumnName")),
+						CPCDesc);
+				logs.logging("INFO",
+						" Line Wise CPC Desc Is Matched With DataBase Values Against This Bank Receipt Document "
+								+ VariableHandler.getBankPaymentOrReceiptDocNumber());
+
+				salesOrdFunc.verifyAssertionBothValues(
+						dbCommonFunctions.BankPaymentLineDetails(VariableHandler.getBankPaymentOrReceiptDocNumber(),
+								SeqNo, commonFunc.getDataFromTestDataSheet("BPDBAmountTCColumnName")),
+						AmtInTC);
+				logs.logging("INFO",
+						" Line Wise Amount In Transaction Currency Is Matched With DataBase Values Against This Bank Receipt Document "
+								+ VariableHandler.getBankPaymentOrReceiptDocNumber());
+
+				salesOrdFunc.verifyAssertionBothValues(
+						dbCommonFunctions.BankPaymentLineDetails(VariableHandler.getBankPaymentOrReceiptDocNumber(),
+								SeqNo, commonFunc.getDataFromTestDataSheet("BPDBDCColumnName")),
+						LineDrCr);
+				logs.logging("INFO",
+						" Line Wise Dr / Cr Is Matched With DataBase Values Against This Bank Receipt Document "
+								+ VariableHandler.getBankPaymentOrReceiptDocNumber());
+
+				salesOrdFunc.verifyAssertionBothValues(
+						dbCommonFunctions.BankPaymentLineDetails(VariableHandler.getBankPaymentOrReceiptDocNumber(),
+								SeqNo, commonFunc.getDataFromTestDataSheet("BPDBBCColumnName")),
+						AmtInBC);
+				logs.logging("INFO",
+						" Line Wise Amount In Base Currency Is Matched With DataBase Values Against This Bank Receipt Document "
+								+ VariableHandler.getBankPaymentOrReceiptDocNumber());
+
+				salesOrdFunc.verifyAssertionBothValues(
+						dbCommonFunctions.BankPaymentLineDetails(VariableHandler.getBankPaymentOrReceiptDocNumber(),
+								SeqNo, commonFunc.getDataFromTestDataSheet("BPDBAssesableColumnName")),
+						AssesableValue);
+				logs.logging("INFO",
+						" Line Wise Amount In Tax Assesable Value Is Matched With DataBase Values Against This Bank Receipt Document "
+								+ VariableHandler.getBankPaymentOrReceiptDocNumber());
+
+				salesOrdFunc.verifyAssertionBothValues(
+						dbCommonFunctions.BankPaymentLineDetails(VariableHandler.getBankPaymentOrReceiptDocNumber(),
+								SeqNo, commonFunc.getDataFromTestDataSheet("BPDBExhangeRateColumnName")),
+						EXRate);
+				logs.logging("INFO",
+						" Line Wise Exchange Rate Is Matched With DataBase Values Against This Bank Receipt Document "
+								+ VariableHandler.getBankPaymentOrReceiptDocNumber());
+
+				salesOrdFunc.verifyAssertionBothValues(
+						dbCommonFunctions.BankPaymentLineDetails(VariableHandler.getBankPaymentOrReceiptDocNumber(),
+								SeqNo, commonFunc.getDataFromTestDataSheet("BPDBLineCurrencyColumnName")),
+						Curcy);
+				logs.logging("INFO",
+						" Line Wise Currency Is Matched With DataBase Values Against This Bank Receipt Document "
+								+ VariableHandler.getBankPaymentOrReceiptDocNumber());
+				if (SheetName.equals("BankPaymentExpGST")) {
+					salesOrdFunc.verifyAssertionBothValues(
+							dbCommonFunctions.BankPaymentLineDetails(VariableHandler.getBankPaymentOrReceiptDocNumber(),
+									SeqNo, commonFunc.getDataFromTestDataSheet("BRDBLineHSNCode")),
+							HSNCode);
+					logs.logging("INFO",
+							" Line Wise HSN Code Is Matched With DataBase Values Against This Bank Receipt Document "
+									+ VariableHandler.getBankPaymentOrReceiptDocNumber());
+
+					salesOrdFunc.verifyAssertionBothValues(
+							dbCommonFunctions.BankPaymentLineDetails(VariableHandler.getBankPaymentOrReceiptDocNumber(),
+									SeqNo, commonFunc.getDataFromTestDataSheet("BRDBLineIGSTAmt")),
+							IGST);
+					logs.logging("INFO",
+							" Line Wise IGST Amount Is Matched With DataBase Values Against This Bank Receipt Document "
+									+ VariableHandler.getBankPaymentOrReceiptDocNumber());
+
+					salesOrdFunc.verifyAssertionBothValues(
+							dbCommonFunctions.BankPaymentLineDetails(VariableHandler.getBankPaymentOrReceiptDocNumber(),
+									SeqNo, commonFunc.getDataFromTestDataSheet("BRDBLineCGSTAmt")),
+							CGST);
+					logs.logging("INFO",
+							" Line Wise CGST Amount Is Matched With DataBase Values Against This Bank Receipt Document "
+									+ VariableHandler.getBankPaymentOrReceiptDocNumber());
+
+					salesOrdFunc.verifyAssertionBothValues(
+							dbCommonFunctions.BankPaymentLineDetails(VariableHandler.getBankPaymentOrReceiptDocNumber(),
+									SeqNo, commonFunc.getDataFromTestDataSheet("BRDBLineSGSTAmt")),
+							SGST);
+					logs.logging("INFO",
+							" Line Wise SGST Amount Is Matched With DataBase Values Against This Bank Receipt Document "
+									+ VariableHandler.getBankPaymentOrReceiptDocNumber());
+
+					salesOrdFunc.verifyAssertionBothValues(
+							dbCommonFunctions.BankPaymentLineDetails(VariableHandler.getBankPaymentOrReceiptDocNumber(),
+									SeqNo, commonFunc.getDataFromTestDataSheet("BRDBLineUTGSTAmt")),
+							UTGST);
+					logs.logging("INFO",
+							" Line Wise UTGST Amount Is Matched With DataBase Values Against This Bank Receipt Document "
+									+ VariableHandler.getBankPaymentOrReceiptDocNumber());
+
+					salesOrdFunc.verifyAssertionBothValues(
+							dbCommonFunctions.BankPaymentLineDetails(VariableHandler.getBankPaymentOrReceiptDocNumber(),
+									SeqNo, commonFunc.getDataFromTestDataSheet("BRDBLineCESSPercent")),
+							CESSPCT);
+					logs.logging("INFO",
+							" Line Wise CESS Percentage Is Matched With DataBase Values Against This Bank Receipt Document "
+									+ VariableHandler.getBankPaymentOrReceiptDocNumber());
+
+					salesOrdFunc.verifyAssertionBothValues(
+							dbCommonFunctions.BankPaymentLineDetails(VariableHandler.getBankPaymentOrReceiptDocNumber(),
+									SeqNo, commonFunc.getDataFromTestDataSheet("BRDBLineCESSAmt")),
+							CESSAMT);
+					logs.logging("INFO",
+							" Line Wise CESS Amount Is Matched With DataBase Values Against This Bank Receipt Document "
+									+ VariableHandler.getBankPaymentOrReceiptDocNumber());
+
+					if (SheetName.contains("TDS")) {
+						String POSheetName = BankPayments[i][4];
+						String TDS = BankPayments[i][29];
+						String TDSSourceAcc = BankPayments[i][30];
+						String TDSSourcePercentage = BankPayments[i][31];
+						String TDSSourceAssVal = BankPayments[i][32];
+						String TDSSourceAmt = BankPayments[i][33];
+
+						if (!POSheetName.equals("")) {
+							salesOrdFunc.verifyAssertionBothValues(dbCommonFunctions.BankPaymentLineDetails(
+									VariableHandler.getCashPaymentOrReceiptDocNumber(), SeqNo,
+									commonFunc.getDataFromTestDataSheet("TDSColumnName")), TDS);
+							logs.logging("INFO",
+									" Line Wise TDS ID Is Matched With DataBase Values Against This Cash Receipt Document "
+											+ VariableHandler.getCashPaymentOrReceiptDocNumber());
+
+							salesOrdFunc.verifyAssertionBothValues(
+									dbCommonFunctions.BankPaymentLineDetails(
+											VariableHandler.getCashPaymentOrReceiptDocNumber(), SeqNo,
+											commonFunc.getDataFromTestDataSheet("TDSSourceAccountColumnName")),
+									TDSSourceAcc);
+							logs.logging("INFO",
+									" Line Wise TDS Source Account Is Matched With DataBase Values Against This Cash Receipt Document "
+											+ VariableHandler.getCashPaymentOrReceiptDocNumber());
+
+							salesOrdFunc.verifyAssertionBothValues(
+									dbCommonFunctions.BankPaymentLineDetails(
+											VariableHandler.getCashPaymentOrReceiptDocNumber(), SeqNo,
+											commonFunc.getDataFromTestDataSheet("TDSSourcePctColumnName")),
+									TDSSourcePercentage);
+							logs.logging("INFO",
+									" Line Wise TDS Source Account Is Matched With DataBase Values Against This Cash Receipt Document "
+											+ VariableHandler.getCashPaymentOrReceiptDocNumber());
+
+							salesOrdFunc.verifyAssertionBothValues(
+									dbCommonFunctions.BankPaymentLineDetails(
+											VariableHandler.getCashPaymentOrReceiptDocNumber(), SeqNo,
+											commonFunc.getDataFromTestDataSheet("TDSSourceAssValueColumnName")),
+									TDSSourceAssVal);
+							logs.logging("INFO",
+									" Line Wise TDS Source Assesable Value Is Matched With DataBase Values Against This Cash Receipt Document "
+											+ VariableHandler.getCashPaymentOrReceiptDocNumber());
+
+							salesOrdFunc.verifyAssertionBothValues(
+									dbCommonFunctions.BankPaymentLineDetails(
+											VariableHandler.getCashPaymentOrReceiptDocNumber(), SeqNo,
+											commonFunc.getDataFromTestDataSheet("TDSSourceAmtColumnName")),
+									TDSSourceAmt);
+							logs.logging("INFO",
+									" Line Wise TDS Source Amount Value Is Matched With DataBase Values Against This Cash Receipt Document "
+											+ VariableHandler.getCashPaymentOrReceiptDocNumber());
+						} else {
+							salesOrdFunc.verifyAssertionBothValues(
+									dbCommonFunctions.BankPaymentLineDetails(
+											VariableHandler.getCashPaymentOrReceiptDocNumber(), SeqNo,
+											commonFunc.getDataFromTestDataSheet("TDSSourcePctColumnName")),
+									TDSSourcePercentage);
+							logs.logging("INFO",
+									" Line Wise TDS Source Account Is Matched With DataBase Values Against This Cash Receipt Document "
+											+ VariableHandler.getCashPaymentOrReceiptDocNumber());
+
+							salesOrdFunc.verifyAssertionBothValues(
+									dbCommonFunctions.BankPaymentLineDetails(
+											VariableHandler.getCashPaymentOrReceiptDocNumber(), SeqNo,
+											commonFunc.getDataFromTestDataSheet("TDSSourceAssValueColumnName")),
+									TDSSourceAssVal);
+							logs.logging("INFO",
+									" Line Wise TDS Source Assesable Value Is Matched With DataBase Values Against This Cash Receipt Document "
+											+ VariableHandler.getCashPaymentOrReceiptDocNumber());
+
+							salesOrdFunc.verifyAssertionBothValues(
+									dbCommonFunctions.BankPaymentLineDetails(
+											VariableHandler.getCashPaymentOrReceiptDocNumber(), SeqNo,
+											commonFunc.getDataFromTestDataSheet("TDSSourceAmtColumnName")),
+									TDSSourceAmt);
+							logs.logging("INFO",
+									" Line Wise TDS Source Amount Value Is Matched With DataBase Values Against This Cash Receipt Document "
+											+ VariableHandler.getCashPaymentOrReceiptDocNumber());
+						}
+					}
+				}
+			}
+		}
+	}
+	
 	/**
 	 * This Method Is Used To Add the Bank Payment Line Details
 	 * 
@@ -6740,4 +10083,5 @@ public class BankPaymentFunctions {
 		}
 		assertTrue(flag);
 	}
+
 }
