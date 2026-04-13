@@ -56,7 +56,7 @@ public class PurchaseBillsFunctionsGrn {
 	 */
 	public void verifyCreatingPurchaseBillwithAdvance() throws IOException {
 		verifyRegisteredSupplierwithLocalGSTAgainstGRNWithoutDeviation();
-		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("DuraiPassword"),
+		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
 				System.getProperty("DuraiUsername"));
 		commonFunc.navigateToFinancialPaymentReceipt();
 		verifyCreatePaymentFromPurchaseBill(commonFunc.getDataFromTestDataSheet("PaymentType"),
@@ -243,7 +243,7 @@ public class PurchaseBillsFunctionsGrn {
 	 */
 	public void verifyRegisteredSupplierwithLocalGSTAgainstGRNWithDeviation() throws IOException {
 		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBill();
-		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("DuraiPassword"),
+		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
 				"DuraiUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(),commonFunc.getDataFromTestDataSheet("TDSValue"),
@@ -270,7 +270,7 @@ public class PurchaseBillsFunctionsGrn {
 	 */
 	public void verifyRegisteredSupplierwithLocalGSTAgainstGRNWithDeviationAndExpense() throws IOException {
 		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBill();
-		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("DuraiPassword"),
+		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
 				"DuraiUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
@@ -301,7 +301,7 @@ public class PurchaseBillsFunctionsGrn {
 	 */
 	public void verifyRegisteredSupplierwithLocalGSTAgainstGRNWithoutDeviation() throws IOException {
 		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBill();
-		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("DuraiPassword"),
+		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
 				"DuraiUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
@@ -322,7 +322,7 @@ public class PurchaseBillsFunctionsGrn {
 	 */
 	public void verifyRegisteredSupplierwithLocalGSTAgainstGRNWithoutDeviationAndExpense() throws IOException {
 		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBill();
-		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("DuraiPassword"),
+		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
 				"DuraiUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
@@ -349,7 +349,7 @@ public class PurchaseBillsFunctionsGrn {
 		verifyCreatingPurchaseBillwithAdvance();
 		commonFunc.logoutUser();
 		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBill();
-		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("DuraiPassword"),
+		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
 				"DuraiUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
@@ -386,7 +386,7 @@ public class PurchaseBillsFunctionsGrn {
 		verifyCreatingPurchaseBillwithAdvance();
 		commonFunc.logoutUser();
 		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBill();
-		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("DuraiPassword"),
+		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
 				"DuraiUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
@@ -416,7 +416,7 @@ public class PurchaseBillsFunctionsGrn {
 	 */
 	public void verifyRegisteredSupplierwithLocalGSTAllowIgstAgainstGRNWithDeviation() throws IOException {
 		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBill();
-		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("DuraiPassword"),
+		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
 				"DuraiUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
@@ -443,7 +443,7 @@ public class PurchaseBillsFunctionsGrn {
 	 */
 	public void verifyRegisteredSupplierwithLocalGSTAllowIgstAgainstGRNWithDeviationAndExpense() throws IOException {
 		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBill();
-		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("DuraiPassword"),
+		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
 				"DuraiUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
@@ -476,7 +476,7 @@ public class PurchaseBillsFunctionsGrn {
 		verifyCreatingPurchaseBillwithAdvance();
 		commonFunc.logoutUser();
 		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBill();
-		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("DuraiPassword"),
+		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
 				"DuraiUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
@@ -511,7 +511,7 @@ public class PurchaseBillsFunctionsGrn {
 	 */
 	public void verifyRegisteredSupplierwithLocalGSTAllowIgstAgainstGRNWithoutDeviation() throws IOException {
 		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBill();
-		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("DuraiPassword"),
+		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
 				"DuraiUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
@@ -534,7 +534,7 @@ public class PurchaseBillsFunctionsGrn {
 	 */
 	public void verifyRegisteredSupplierwithLocalGSTAllowIgstAgainstGRNWithoutDeviationAndExpense() throws IOException {
 		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBill();
-		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("DuraiPassword"),
+		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
 				"DuraiUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
@@ -562,7 +562,7 @@ public class PurchaseBillsFunctionsGrn {
 		verifyCreatingPurchaseBillwithAdvance();
 		commonFunc.logoutUser();
 		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBill();
-		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("DuraiPassword"),
+		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
 				"DuraiUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
@@ -597,7 +597,7 @@ public class PurchaseBillsFunctionsGrn {
 	 */
 	public void verifyRegisteredSupplierwithLocalGSTAllowRcmAgainstGRNWithoutDeviation() throws IOException {
 		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBill();
-		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("DuraiPassword"),
+		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
 				"DuraiUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
@@ -620,7 +620,7 @@ public class PurchaseBillsFunctionsGrn {
 	 */
 	public void verifyRegisteredSupplierwithLocalGSTAllowRcmAgainstGRNWithoutDeviationAndExpense() throws IOException {
 		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBill();
-		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("DuraiPassword"),
+		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
 				"DuraiUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
@@ -648,7 +648,7 @@ public class PurchaseBillsFunctionsGrn {
 		verifyCreatingPurchaseBillwithAdvance();
 		commonFunc.logoutUser();
 		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBill();
-		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("DuraiPassword"),
+		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
 				"DuraiUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
@@ -679,7 +679,7 @@ public class PurchaseBillsFunctionsGrn {
 	 */
 	public void verifyRegisteredSupplierwithLocalGSTAllowRcmAgainstGRNWithDeviation() throws IOException {
 		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBill();
-		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("DuraiPassword"),
+		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
 				"DuraiUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
@@ -706,7 +706,7 @@ public class PurchaseBillsFunctionsGrn {
 	 */
 	public void verifyRegisteredSupplierwithLocalGSTAllowRcmAgainstGRNWithDeviationAndExpense() throws IOException {
 		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBill();
-		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("DuraiPassword"),
+		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
 				"DuraiUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
@@ -739,7 +739,7 @@ public class PurchaseBillsFunctionsGrn {
 		verifyCreatingPurchaseBillwithAdvance();
 		commonFunc.logoutUser();
 		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBill();
-		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("DuraiPassword"),
+		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
 				"DuraiUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
@@ -774,7 +774,7 @@ public class PurchaseBillsFunctionsGrn {
 	 */
 	public void verifyRegisteredSupplierwithLocalGSTITCIneligibleAgainstGRNWithDeviation() throws IOException {
 		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBill();
-		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("DuraiPassword"),
+		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
 				"DuraiUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
@@ -804,7 +804,7 @@ public class PurchaseBillsFunctionsGrn {
 	public void verifyRegisteredSupplierwithLocalGSTITCIneligibleAgainstGRNWithDeviationAndExpense()
 			throws IOException {
 		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBill();
-		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("DuraiPassword"),
+		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
 				"DuraiUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
@@ -840,7 +840,7 @@ public class PurchaseBillsFunctionsGrn {
 		verifyCreatingPurchaseBillwithAdvance();
 		commonFunc.logoutUser();
 		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBill();
-		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("DuraiPassword"),
+		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
 				"DuraiUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
@@ -878,7 +878,7 @@ public class PurchaseBillsFunctionsGrn {
 	 */
 	public void verifyRegisteredSupplierwithLocalGSTITCIneligibleAgainstGRNWithoutDeviation() throws IOException {
 		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBill();
-		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("DuraiPassword"),
+		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
 				"DuraiUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
@@ -904,7 +904,7 @@ public class PurchaseBillsFunctionsGrn {
 	public void verifyRegisteredSupplierwithLocalGSTITCIneligibleAgainstGRNWithoutDeviationAndExpense()
 			throws IOException {
 		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBill();
-		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("DuraiPassword"),
+		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
 				"DuraiUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
@@ -936,7 +936,7 @@ public class PurchaseBillsFunctionsGrn {
 		verifyCreatingPurchaseBillwithAdvance();
 		commonFunc.logoutUser();
 		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBill();
-		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("DuraiPassword"),
+		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
 				"DuraiUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
@@ -970,7 +970,7 @@ public class PurchaseBillsFunctionsGrn {
 	 */
 	public void verifyRegisteredSupplierwithLocalGSTAllowIgstITCIneligibleAgainstGRNWithDeviation() throws IOException {
 		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBill();
-		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("DuraiPassword"),
+		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
 				"DuraiUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
@@ -1002,7 +1002,7 @@ public class PurchaseBillsFunctionsGrn {
 	public void verifyRegisteredSupplierwithLocalGSTAllowIgstITCIneligibleAgainstGRNWithDeviationAndExpense()
 			throws IOException {
 		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBill();
-		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("DuraiPassword"),
+		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
 				"DuraiUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
@@ -1039,7 +1039,7 @@ public class PurchaseBillsFunctionsGrn {
 		verifyCreatingPurchaseBillwithAdvance();
 		commonFunc.logoutUser();
 		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBill();
-		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("DuraiPassword"),
+		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
 				"DuraiUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
@@ -1079,7 +1079,7 @@ public class PurchaseBillsFunctionsGrn {
 	public void verifyRegisteredSupplierwithLocalGSTAllowIgstITCIneligibleAgainstGRNWithoutDeviation()
 			throws IOException {
 		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBill();
-		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("DuraiPassword"),
+		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
 				"DuraiUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
@@ -1108,7 +1108,7 @@ public class PurchaseBillsFunctionsGrn {
 	public void verifyRegisteredSupplierwithLocalGSTAllowIgstITCIneligibleAgainstGRNWithoutDeviationAndExpense()
 			throws IOException {
 		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBill();
-		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("DuraiPassword"),
+		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
 				"DuraiUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
@@ -1140,7 +1140,7 @@ public class PurchaseBillsFunctionsGrn {
 		verifyCreatingPurchaseBillwithAdvance();
 		commonFunc.logoutUser();
 		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBill();
-		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("DuraiPassword"),
+		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
 				"DuraiUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
@@ -1177,7 +1177,7 @@ public class PurchaseBillsFunctionsGrn {
 	public void verifyRegisteredSupplierwithLocalGSTAllowRcmITCIneligibleAgainstGRNWithoutDeviation()
 			throws IOException {
 		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBill();
-		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("DuraiPassword"),
+		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
 				"DuraiUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
@@ -1203,7 +1203,7 @@ public class PurchaseBillsFunctionsGrn {
 	public void verifyRegisteredSupplierwithLocalGSTAllowRcmITCIneligibleAgainstGRNWithoutDeviationAndExpense()
 			throws IOException {
 		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBill();
-		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("DuraiPassword"),
+		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
 				"DuraiUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
@@ -1235,7 +1235,7 @@ public class PurchaseBillsFunctionsGrn {
 		verifyCreatingPurchaseBillwithAdvance();
 		commonFunc.logoutUser();
 		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBill();
-		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("DuraiPassword"),
+		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
 				"DuraiUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
@@ -1274,7 +1274,7 @@ public class PurchaseBillsFunctionsGrn {
 	 */
 	public void verifyRegisteredSupplierwithLocalGSTAllowRcmITCIneligibleAgainstGRNWithDeviation() throws IOException {
 		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBill();
-		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("DuraiPassword"),
+		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
 				"DuraiUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
@@ -1306,7 +1306,7 @@ public class PurchaseBillsFunctionsGrn {
 	public void verifyRegisteredSupplierwithLocalGSTAllowRcmITCIneligibleAgainstGRNWithDeviationAndExpense()
 			throws IOException {
 		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBill();
-		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("DuraiPassword"),
+		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
 				"DuraiUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
@@ -1343,7 +1343,7 @@ public class PurchaseBillsFunctionsGrn {
 		verifyCreatingPurchaseBillwithAdvance();
 		commonFunc.logoutUser();
 		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBill();
-		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("DuraiPassword"),
+		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
 				"DuraiUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
@@ -1381,7 +1381,7 @@ public class PurchaseBillsFunctionsGrn {
 	 */
 	public void verifyRegisteredSupplierwithInterstateGSTAgainstGRNWithDeviation() throws IOException {
 		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBillInterstate();
-		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("DuraiPassword"),
+		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
 				"DuraiUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
@@ -1404,7 +1404,7 @@ public class PurchaseBillsFunctionsGrn {
 	 */
 	public void verifyRegisteredSupplierwithInterstateGSTAgainstGRNWithDeviationAndExpense() throws IOException {
 		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBillInterstate();
-		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("DuraiPassword"),
+		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
 				"DuraiUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
@@ -1436,7 +1436,7 @@ public class PurchaseBillsFunctionsGrn {
 		verifyCreatingPurchaseBillwithAdvance();
 		commonFunc.logoutUser();
 		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBillInterstate();
-		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("DuraiPassword"),
+		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
 				"DuraiUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
@@ -1469,7 +1469,7 @@ public class PurchaseBillsFunctionsGrn {
 	 */
 	public void verifyRegisteredSupplierwithInterstateGSTAgainstGRNWithoutDeviation() throws IOException {
 		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBillInterstate();
-		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("DuraiPassword"),
+		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
 				"DuraiUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
@@ -1489,7 +1489,7 @@ public class PurchaseBillsFunctionsGrn {
 	 */
 	public void verifyRegisteredSupplierwithInterstateGSTAgainstGRNWithoutDeviationAndExpense() throws IOException {
 		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBillInterstate();
-		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("DuraiPassword"),
+		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
 				"DuraiUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
@@ -1516,7 +1516,7 @@ public class PurchaseBillsFunctionsGrn {
 		verifyCreatingPurchaseBillwithAdvance();
 		commonFunc.logoutUser();
 		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBillInterstate();
-		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("DuraiPassword"),
+		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
 				"DuraiUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
@@ -1545,7 +1545,7 @@ public class PurchaseBillsFunctionsGrn {
 	 */
 	public void verifyRegisteredSupplierwithInterstateAllowRcmAgainstGRNWithDeviation() throws IOException {
 		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBillInterstate();
-		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("DuraiPassword"),
+		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
 				"DuraiUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
@@ -1571,7 +1571,7 @@ public class PurchaseBillsFunctionsGrn {
 	 */
 	public void verifyRegisteredSupplierwithInterstateAllowRcmAgainstGRNWithDeviationAndExpense() throws IOException {
 		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBillInterstate();
-		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("DuraiPassword"),
+		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
 				"DuraiUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
@@ -1603,7 +1603,7 @@ public class PurchaseBillsFunctionsGrn {
 		verifyCreatingPurchaseBillwithAdvance();
 		commonFunc.logoutUser();
 		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBillInterstate();
-		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("DuraiPassword"),
+		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
 				"DuraiUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
@@ -1637,7 +1637,7 @@ public class PurchaseBillsFunctionsGrn {
 	 */
 	public void verifyRegisteredSupplierwithInterstateAllowRcmAgainstGRNWithoutDeviation() throws IOException {
 		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBillInterstate();
-		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("DuraiPassword"),
+		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
 				"DuraiUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
@@ -1659,7 +1659,7 @@ public class PurchaseBillsFunctionsGrn {
 	 */
 	public void verifyRegisteredSupplierwithInterstateAllowRcmAgainstGRNWithoutDeviationAndExpense() throws IOException {
 		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBillInterstate();
-		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("DuraiPassword"),
+		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
 				"DuraiUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
@@ -1686,7 +1686,7 @@ public class PurchaseBillsFunctionsGrn {
 		verifyCreatingPurchaseBillwithAdvance();
 		commonFunc.logoutUser();
 		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBillInterstate();
-		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("DuraiPassword"),
+		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
 				"DuraiUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
@@ -1716,7 +1716,7 @@ public class PurchaseBillsFunctionsGrn {
 	 */
 	public void VerifyUnRegisteredSupplierwithLocalGSTAgainstGRNWithDeviation() throws IOException {
 		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBillUnRegisteredSupplier();
-		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("DuraiPassword"),
+		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
 				"DuraiUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
@@ -1740,7 +1740,7 @@ public class PurchaseBillsFunctionsGrn {
 	 */
 	public void VerifyUnRegisteredSupplierwithLocalGSTAgainstGRNWithDeviationAndExpense() throws IOException {
 		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBillUnRegisteredSupplier();
-		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("DuraiPassword"),
+		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
 				"DuraiUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
@@ -1772,7 +1772,7 @@ public class PurchaseBillsFunctionsGrn {
 		verifyCreatingPurchaseBillwithAdvance();
 		commonFunc.logoutUser();
 		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBillUnRegisteredSupplier();
-		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("DuraiPassword"),
+		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
 				"DuraiUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
@@ -1805,7 +1805,7 @@ public class PurchaseBillsFunctionsGrn {
 	 */
 	public void VerifyUnRegisteredSupplierwithLocalGSTAgainstGRNWithoutDeviation() throws IOException {
 		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBillUnRegisteredSupplier();
-		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("DuraiPassword"),
+		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
 				"DuraiUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
@@ -1825,7 +1825,7 @@ public class PurchaseBillsFunctionsGrn {
 	 */
 	public void VerifyUnRegisteredSupplierwithLocalGSTAgainstGRNWithoutDeviationAndExpense() throws IOException {
 		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBillUnRegisteredSupplier();
-		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("DuraiPassword"),
+		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
 				"DuraiUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
@@ -1852,7 +1852,7 @@ public class PurchaseBillsFunctionsGrn {
 		verifyCreatingPurchaseBillwithAdvance();
 		commonFunc.logoutUser();
 		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBillUnRegisteredSupplier();
-		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("DuraiPassword"),
+		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
 				"DuraiUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
@@ -1881,7 +1881,7 @@ public class PurchaseBillsFunctionsGrn {
 	 */
 	public void VerifyUnRegisteredSupplierwithLocalGSTAllowIgstAgainstGRNWithDeviation() throws IOException {
 		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBillUnRegisteredSupplier();
-		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("DuraiPassword"),
+		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
 				"DuraiUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
@@ -1907,7 +1907,7 @@ public class PurchaseBillsFunctionsGrn {
 	 */
 	public void VerifyUnRegisteredSupplierwithLocalGSTAllowIgstAgainstGRNWithDeviationAndExpense() throws IOException {
 		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBillUnRegisteredSupplier();
-		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("DuraiPassword"),
+		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
 				"DuraiUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
@@ -1939,7 +1939,7 @@ public class PurchaseBillsFunctionsGrn {
 		verifyCreatingPurchaseBillwithAdvance();
 		commonFunc.logoutUser();
 		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBillUnRegisteredSupplier();
-		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("DuraiPassword"),
+		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
 				"DuraiUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
@@ -1973,7 +1973,7 @@ public class PurchaseBillsFunctionsGrn {
 	 */
 	public void VerifyUnRegisteredSupplierwithLocalGSTAllowIgstAgainstGRNWithoutDeviation() throws IOException {
 		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBillUnRegisteredSupplier();
-		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("DuraiPassword"),
+		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
 				"DuraiUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
@@ -1995,7 +1995,7 @@ public class PurchaseBillsFunctionsGrn {
 	 */
 	public void VerifyUnRegisteredSupplierwithLocalGSTAllowIgstAgainstGRNWithoutDeviationAndExpense() throws IOException {
 		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBillUnRegisteredSupplier();
-		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("DuraiPassword"),
+		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
 				"DuraiUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
@@ -2022,7 +2022,7 @@ public class PurchaseBillsFunctionsGrn {
 		verifyCreatingPurchaseBillwithAdvance();
 		commonFunc.logoutUser();
 		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBillUnRegisteredSupplier();
-		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("DuraiPassword"),
+		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
 				"DuraiUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
@@ -2054,7 +2054,7 @@ public class PurchaseBillsFunctionsGrn {
 	 */
 	public void VerifyUnRegisteredSupplierwithInterstateGSTAgainstGRNWithDeviation() throws IOException {
 		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBillUnRegisteredInterstate();
-		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("DuraiPassword"),
+		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
 				"DuraiUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
@@ -2078,7 +2078,7 @@ public class PurchaseBillsFunctionsGrn {
 	 */
 	public void VerifyUnRegisteredSupplierwithInterstateGSTAgainstGRNWithDeviationAndExpense() throws IOException {
 		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBillUnRegisteredInterstate();
-		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("DuraiPassword"),
+		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
 				"DuraiUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
@@ -2110,7 +2110,7 @@ public class PurchaseBillsFunctionsGrn {
 		verifyCreatingPurchaseBillwithAdvanceInterstate();
 		commonFunc.logoutUser();
 		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBillUnRegisteredInterstate();
-		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("DuraiPassword"),
+		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
 				"DuraiUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
@@ -2144,7 +2144,7 @@ public class PurchaseBillsFunctionsGrn {
 	 */
 	public void VerifyUnRegisteredSupplierwithInterstateGSTAgainstGRNWithoutDeviation() throws IOException {
 		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBillUnRegisteredInterstate();
-		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("DuraiPassword"),
+		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
 				"DuraiUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
@@ -2167,7 +2167,7 @@ public class PurchaseBillsFunctionsGrn {
 	public void VerifyUnRegisteredSupplierwithInterstateGSTAgainstGRNWithoutDeviationAndExpense()
 			throws IOException {
 		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBillUnRegisteredInterstate();
-		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("DuraiPassword"),
+		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
 				"DuraiUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
@@ -2194,7 +2194,7 @@ public class PurchaseBillsFunctionsGrn {
 		verifyCreatingPurchaseBillwithAdvanceInterstate();
 		commonFunc.logoutUser();
 		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBillUnRegisteredInterstate();
-		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("DuraiPassword"),
+		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
 				"DuraiUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
@@ -2225,7 +2225,7 @@ public class PurchaseBillsFunctionsGrn {
 	 */
 	public void VerifyUnregisteredSupplierimportedwithoutdeviationwithoutGST() throws IOException {
 		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBillImportSupplier();
-		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("DuraiPassword"),
+		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
 				"DuraiUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
@@ -2247,7 +2247,7 @@ public class PurchaseBillsFunctionsGrn {
 	 */
 	public void VerifyUnregisteredSupplierimportedwithdeviationwithoutGST() throws IOException {
 		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBillImportSupplier();
-		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("DuraiPassword"),
+		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
 				"DuraiUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
@@ -2269,7 +2269,7 @@ public class PurchaseBillsFunctionsGrn {
 	 */
 	public void VerifyUnregisteredSupplierimportedwithdeviationandExpensewithoutGST() throws IOException {
 		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBillImportSupplier();
-		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("DuraiPassword"),
+		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
 				"DuraiUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
@@ -2296,7 +2296,7 @@ public class PurchaseBillsFunctionsGrn {
 		verifyCreatingPurchaseBillwithAdvanceInterstate();
 		commonFunc.logoutUser();
 		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBillImportSupplier();
-		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("DuraiPassword"),
+		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
 				"DuraiUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
@@ -2322,7 +2322,7 @@ public class PurchaseBillsFunctionsGrn {
 	 */
 	public void VerifyNonResidentSupplierimportedwithoutdeviationwithoutGST() throws IOException {
 		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBillNonResidentImportSupplier();
-		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("DuraiPassword"),
+		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
 				"DuraiUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
@@ -2343,7 +2343,7 @@ public class PurchaseBillsFunctionsGrn {
 	 */
 	public void VerifyNonResidentSupplierimportedwithdeviationwithoutGST() throws IOException {
 		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBillNonResidentImportSupplier();
-		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("DuraiPassword"),
+		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
 				"DuraiUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
@@ -2365,7 +2365,7 @@ public class PurchaseBillsFunctionsGrn {
 	 */
 	public void VerifyNonResidentSupplierimportedwithdeviationandExpensewithoutGST() throws IOException {
 		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBillNonResidentImportSupplier();
-		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("DuraiPassword"),
+		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
 				"DuraiUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
@@ -2392,7 +2392,7 @@ public class PurchaseBillsFunctionsGrn {
 		verifyCreatingPurchaseBillwithAdvanceInterstateNonResident();
 		commonFunc.logoutUser();
 		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBillNonResidentImportSupplier();
-		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("DuraiPassword"),
+		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
 				"DuraiUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
@@ -2418,7 +2418,7 @@ public class PurchaseBillsFunctionsGrn {
 	 */
 	public void VerifyDomesticRegisteredSupplierWithLocalFreightGST() throws IOException {
 		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBillSupplierLocalFreight();
-		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("DuraiPassword"),
+		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
 				"DuraiUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
@@ -2438,7 +2438,7 @@ public class PurchaseBillsFunctionsGrn {
 	 */
 	public void VerifyDomesticUnRegisteredSupplierWithLocalFreightGST() throws IOException {
 		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBillSupplierLocalFreightUnRegistered();
-		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("DuraiPassword"),
+		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
 				"DuraiUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
@@ -2458,7 +2458,7 @@ public class PurchaseBillsFunctionsGrn {
 	 */
 	public void VerifyDomesticRegisteredSupplierWithSEZUnitGST() throws IOException {
 		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBillSupplierSupplierSEZunit();
-		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("DuraiPassword"),
+		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
 				"DuraiUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
@@ -2478,7 +2478,7 @@ public class PurchaseBillsFunctionsGrn {
 	 */
 	public void VerifyDomesticUnRegisteredSupplierWithSEZUnitGST() throws IOException {
 		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBillSupplierSupplierSEZunitUnRegistered();
-		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("DuraiPassword"),
+		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
 				"DuraiUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
@@ -2498,7 +2498,7 @@ public class PurchaseBillsFunctionsGrn {
 	 */
 	public void DomesticRegisteredSupplierWithunionTerritoryGST() throws IOException {
 		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBillSupplierSupplierUnionTerritory();
-		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("DuraiPassword"),
+		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
 				"DuraiUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
@@ -2518,7 +2518,7 @@ public class PurchaseBillsFunctionsGrn {
 	 */
 	public void DomesticUnRegisteredSupplierWithunionTerritoryGST() throws IOException {
 		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBillSupplierSupplierUnionTerritoryUnRegistered();
-		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("DuraiPassword"),
+		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
 				"DuraiUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
@@ -2538,7 +2538,7 @@ public class PurchaseBillsFunctionsGrn {
 	 */
 	public void DomesticCompositionSupplierWitLocalGST() throws IOException {
 		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBillCompositionSupplierLocal();
-		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("DuraiPassword"),
+		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
 				"DuraiUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
@@ -2557,7 +2557,7 @@ public class PurchaseBillsFunctionsGrn {
 	 */
 	public void DomesticCompositionSupplierWitLocalFreightGST() throws IOException {
 		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBillSupplierSupplierLocalFreightComposition();
-		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("DuraiPassword"),
+		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
 				"DuraiUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
@@ -2731,7 +2731,7 @@ public class PurchaseBillsFunctionsGrn {
 	 * @author Deepan-GWL
 	 */
 	public void verifyPurchaseBillsApproval() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("DuraiPassword"),
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("LoginPassword"),
 				"Sathi Ganesh");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
@@ -2746,7 +2746,7 @@ public class PurchaseBillsFunctionsGrn {
 		approvalPageFunc.verifyApproveWithDocNumber(VariableHandler.getPbNumber());
 		flag = commonFunc.logoutUser();
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("DuraiPassword"),
+			commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
 					"Sathi Ganesh");
 			commonFunc.navigateToFinancialPurchaseBill();
 			verifyPurchaseBillApprovalStatus(VariableHandler.getPbNumber(),
@@ -4103,7 +4103,7 @@ public class PurchaseBillsFunctionsGrn {
 	 */
 	public void verifyCreatingPurchaseBillwithAdvanceInterstate() throws IOException {
 		verifyRegisteredSupplierwithInterstateGSTAgainstGRNWithoutDeviation();
-		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("DuraiPassword"),
+		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
 				System.getProperty("DuraiUsername"));
 		commonFunc.navigateToFinancialPaymentReceipt();
 		verifyCreatePaymentFromPurchaseBill(commonFunc.getDataFromTestDataSheet("PaymentType"),
@@ -4142,7 +4142,7 @@ public class PurchaseBillsFunctionsGrn {
 	 */
 	public void verifyCreatingPurchaseBillwithAdvanceImport() throws IOException {
 		verifyRegisteredSupplierwithLocalGSTAgainstGRNWithoutDeviationForAdvanceInterstate();
-		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("DuraiPassword"),
+		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
 				System.getProperty("DuraiUsername"));
 		commonFunc.navigateToFinancialPaymentReceipt();
 		verifyCreatePaymentFromPurchaseBill(commonFunc.getDataFromTestDataSheet("PaymentType"),
@@ -4181,7 +4181,7 @@ public class PurchaseBillsFunctionsGrn {
 	 */
 	public void verifyCreatingPurchaseBillwithAdvanceInterstateNonResident() throws IOException {
 		VerifyNonResidentSupplierimportedwithoutdeviationwithoutGST();
-		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("DuraiPassword"),
+		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
 				System.getProperty("DuraiUsername"));
 		commonFunc.navigateToFinancialPaymentReceipt();
 		verifyCreatePaymentFromPurchaseBill(commonFunc.getDataFromTestDataSheet("PaymentType"),
@@ -4218,7 +4218,7 @@ public class PurchaseBillsFunctionsGrn {
 	 */
 	public void verifyRegisteredSupplierwithLocalGSTAgainstGRNWithoutDeviationForAdvanceInterstate() throws IOException {
 		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBillUnRegisteredInterstate();
-		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("DuraiPassword"),
+		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
 				"DuraiUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
