@@ -485,8 +485,8 @@ public class PurchaseBillsFunctionsGetDocument {
 	public void verifyToCreateGrnLandedCostInBillBookingFromGetDocument() throws IOException {
 		grnPageFunc.poToGrnGeneralUserDefinedSameStockAndSupplierUomWithAndWithoutInspectionPlanWithLandedCost(
 				webDB.getDataFromProperties("LandedCostDB"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+				"PremUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 		ExcelUtils excelUtils = new ExcelUtils();
@@ -517,8 +517,8 @@ public class PurchaseBillsFunctionsGetDocument {
 		}
 		flag = commonFunc.logoutUser();
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
+			commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+					"PremUsername");
 			commonFunc.navigateToFinancialPurchaseBill();
 			verifyPurchaseBillApprovalStatus();
 			flag = commonFunc.logoutUser();
@@ -1172,8 +1172,8 @@ public class PurchaseBillsFunctionsGetDocument {
 	public void verifyToCreateGrnLandedCostInBillBookingFromGetDocumentWithTds() throws IOException {
 		grnPageFunc.poToGrnGeneralUserDefinedSameStockAndSupplierUomWithAndWithoutInspectionPlanWithLandedCost(
 				webDB.getDataFromProperties("LandedCostWTDS"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+				"PremUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 		ExcelUtils excelUtils = new ExcelUtils();
@@ -1206,8 +1206,8 @@ public class PurchaseBillsFunctionsGetDocument {
 		}
 		flag = commonFunc.logoutUser();
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
+			commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+					"PremUsername");
 			commonFunc.navigateToFinancialPurchaseBill();
 			verifyPurchaseBillApprovalStatus();
 			flag = commonFunc.logoutUser();
@@ -1246,8 +1246,8 @@ public class PurchaseBillsFunctionsGetDocument {
 	public void verifyToCreateGrnLandedCostInBillBookingFromGetDocumentWithTdsAndEsi() throws IOException {
 		grnPageFunc.poToGrnGeneralUserDefinedSameStockAndSupplierUomWithAndWithoutInspectionPlanWithLandedCost(
 				webDB.getDataFromProperties("LandedCostWTDSandESI"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+				"PremUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 		ExcelUtils excelUtils = new ExcelUtils();
@@ -1280,8 +1280,8 @@ public class PurchaseBillsFunctionsGetDocument {
 		}
 		flag = commonFunc.logoutUser();
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
+			commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+					"PremUsername");
 			commonFunc.navigateToFinancialPurchaseBill();
 			verifyPurchaseBillApprovalStatus();
 			flag = commonFunc.logoutUser();
@@ -1301,8 +1301,8 @@ public class PurchaseBillsFunctionsGetDocument {
 	public void verifyToCreateGrnLandedCostInBillBookingFromGetDocumentWithTaxAddition() throws IOException {
 		grnPageFunc.poToGrnGeneralUserDefinedSameStockAndSupplierUomWithAndWithoutInspectionPlanWithLandedCost(
 				webDB.getDataFromProperties("LandedCostHSNCHanged"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+				"PremUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 		ExcelUtils excelUtils = new ExcelUtils();
@@ -1351,8 +1351,8 @@ public class PurchaseBillsFunctionsGetDocument {
 		}
 		flag = commonFunc.logoutUser();
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
+			commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+					"PremUsername");
 			commonFunc.navigateToFinancialPurchaseBill();
 			verifyPurchaseBillApprovalStatus();
 			flag = commonFunc.logoutUser();
@@ -1549,8 +1549,8 @@ public class PurchaseBillsFunctionsGetDocument {
 	public void verifyToCreateGrnLandedCostInBillbookingFromGetDocumentWithNewChargesAddition() throws IOException {
 		grnPageFunc.poToGrnGeneralUserDefinedSameStockAndSupplierUomWithAndWithoutInspectionPlanWithLandedCost(
 				webDB.getDataFromProperties("LandedCostAdditem"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+				"PremUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 		ExcelUtils excelUtils = new ExcelUtils();
@@ -1593,8 +1593,8 @@ public class PurchaseBillsFunctionsGetDocument {
 		}
 		flag = commonFunc.logoutUser();
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
+			commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+					"PremUsername");
 			commonFunc.navigateToFinancialPurchaseBill();
 			verifyPurchaseBillApprovalStatus();
 			flag = commonFunc.logoutUser();
@@ -1650,8 +1650,8 @@ public class PurchaseBillsFunctionsGetDocument {
 	public void verifyToCreateGrnLandedCostInBillbookingFromGetDocumentWithDeviation() throws IOException {
 		grnPageFunc.poToGrnGeneralUserDefinedSameStockAndSupplierUomWithAndWithoutInspectionPlanWithLandedCost(
 				webDB.getDataFromProperties("RoundOFValue"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+				"PremUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 		ExcelUtils excelUtils = new ExcelUtils();
@@ -1692,8 +1692,8 @@ public class PurchaseBillsFunctionsGetDocument {
 		}
 		flag = commonFunc.logoutUser();
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
+			commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+					"PremUsername");
 			commonFunc.navigateToFinancialPurchaseBill();
 			verifyPurchaseBillApprovalStatus();
 			flag = commonFunc.logoutUser();
@@ -1714,8 +1714,8 @@ public class PurchaseBillsFunctionsGetDocument {
 	public void verifyToCreateGrnLandedCostInBillbookingFromGetDocumentWithValueAddition() throws IOException {
 		grnPageFunc.poToGrnGeneralUserDefinedSameStockAndSupplierUomWithAndWithoutInspectionPlanWithLandedCost(
 				webDB.getDataFromProperties("LandedCostAddition"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+				"PremUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 		ExcelUtils excelUtils = new ExcelUtils();
@@ -1766,8 +1766,8 @@ public class PurchaseBillsFunctionsGetDocument {
 		}
 		flag = commonFunc.logoutUser();
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
+			commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+					"PremUsername");
 			commonFunc.navigateToFinancialPurchaseBill();
 			verifyPurchaseBillApprovalStatus();
 			flag = commonFunc.logoutUser();
@@ -1901,8 +1901,8 @@ public class PurchaseBillsFunctionsGetDocument {
 	public void verifyToCreateGrnLandedCostInBillbookingFromGetDocumentWithValueDeduction() throws IOException {
 		grnPageFunc.poToGrnGeneralUserDefinedSameStockAndSupplierUomWithAndWithoutInspectionPlanWithLandedCost(
 				webDB.getDataFromProperties("LandedCostDeduction"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+				"PremUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 		ExcelUtils excelUtils = new ExcelUtils();
@@ -1954,8 +1954,8 @@ public class PurchaseBillsFunctionsGetDocument {
 		}
 		flag = commonFunc.logoutUser();
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
+			commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+					"PremUsername");
 			commonFunc.navigateToFinancialPurchaseBill();
 			verifyPurchaseBillApprovalStatus();
 			flag = commonFunc.logoutUser();
@@ -2085,8 +2085,8 @@ public class PurchaseBillsFunctionsGetDocument {
 
 		grnPageFunc.poToGrnGeneralUserDefinedSameStockAndSupplierUomWithAndWithoutInspectionPlanWithLandedCost(
 				webDB.getDataFromProperties("LandedCostDB"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+				"PremUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 		ExcelUtils excelUtils = new ExcelUtils();
@@ -2116,8 +2116,8 @@ public class PurchaseBillsFunctionsGetDocument {
 		}
 		flag = commonFunc.logoutUser();
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
+			commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+					"PremUsername");
 			commonFunc.navigateToFinancialPurchaseBill();
 			verifyPurchaseBillApprovalStatus();
 			flag = commonFunc.logoutUser();
@@ -2160,8 +2160,8 @@ public class PurchaseBillsFunctionsGetDocument {
 //		assertTrue(flag);
 		grnPageFunc.poToGrnGeneralUserDefinedSameStockAndSupplierUomWithAndWithoutInspectionPlanWithLandedCost(
 				webDB.getDataFromProperties("LandedCostWTDS"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+				"PremUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 		ExcelUtils excelUtils = new ExcelUtils();
@@ -2196,8 +2196,8 @@ public class PurchaseBillsFunctionsGetDocument {
 		}
 		flag = commonFunc.logoutUser();
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
+			commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+					"PremUsername");
 			commonFunc.navigateToFinancialPurchaseBill();
 			verifyPurchaseBillApprovalStatus();
 			flag = commonFunc.logoutUser();
@@ -2240,8 +2240,8 @@ public class PurchaseBillsFunctionsGetDocument {
 //		assertTrue(flag);
 		grnPageFunc.poToGrnGeneralUserDefinedSameStockAndSupplierUomWithAndWithoutInspectionPlanWithLandedCost(
 				webDB.getDataFromProperties("LandedCostWTDSandESI"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+				"PremUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 		ExcelUtils excelUtils = new ExcelUtils();
@@ -2276,8 +2276,8 @@ public class PurchaseBillsFunctionsGetDocument {
 		}
 		flag = commonFunc.logoutUser();
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
+			commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+					"PremUsername");
 			commonFunc.navigateToFinancialPurchaseBill();
 			verifyPurchaseBillApprovalStatus();
 			flag = commonFunc.logoutUser();
@@ -2320,8 +2320,8 @@ public class PurchaseBillsFunctionsGetDocument {
 //		assertTrue(flag);
 		grnPageFunc.poToGrnGeneralUserDefinedSameStockAndSupplierUomWithAndWithoutInspectionPlanWithLandedCost(
 				webDB.getDataFromProperties("LandedCostHSNCHanged"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+				"PremUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 		ExcelUtils excelUtils = new ExcelUtils();
@@ -2369,8 +2369,8 @@ public class PurchaseBillsFunctionsGetDocument {
 		}
 		flag = commonFunc.logoutUser();
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
+			commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+					"PremUsername");
 			commonFunc.navigateToFinancialPurchaseBill();
 			verifyPurchaseBillApprovalStatus();
 			flag = commonFunc.logoutUser();
@@ -2414,8 +2414,8 @@ public class PurchaseBillsFunctionsGetDocument {
 //		assertTrue(flag);
 		grnPageFunc.poToGrnGeneralUserDefinedSameStockAndSupplierUomWithAndWithoutInspectionPlanWithLandedCost(
 				webDB.getDataFromProperties("LandedCostAdditem"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+				"PremUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 		ExcelUtils excelUtils = new ExcelUtils();
@@ -2460,8 +2460,8 @@ public class PurchaseBillsFunctionsGetDocument {
 		}
 		flag = commonFunc.logoutUser();
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
+			commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+					"PremUsername");
 			commonFunc.navigateToFinancialPurchaseBill();
 			verifyPurchaseBillApprovalStatus();
 			flag = commonFunc.logoutUser();
@@ -2537,8 +2537,8 @@ public class PurchaseBillsFunctionsGetDocument {
 //		assertTrue(flag);
 		grnPageFunc.poToGrnGeneralUserDefinedSameStockAndSupplierUomWithAndWithoutInspectionPlanWithLandedCost(
 				webDB.getDataFromProperties("LandedCostAddition"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+				"PremUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 		ExcelUtils excelUtils = new ExcelUtils();
@@ -2591,8 +2591,8 @@ public class PurchaseBillsFunctionsGetDocument {
 		}
 		flag = commonFunc.logoutUser();
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
+			commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+					"PremUsername");
 			commonFunc.navigateToFinancialPurchaseBill();
 			verifyPurchaseBillApprovalStatus();
 			flag = commonFunc.logoutUser();
@@ -2635,8 +2635,8 @@ public class PurchaseBillsFunctionsGetDocument {
 //		assertTrue(flag);
 		grnPageFunc.poToGrnGeneralUserDefinedSameStockAndSupplierUomWithAndWithoutInspectionPlanWithLandedCost(
 				webDB.getDataFromProperties("LandedCostDeduction"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+				"PremUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 		ExcelUtils excelUtils = new ExcelUtils();
@@ -2690,8 +2690,8 @@ public class PurchaseBillsFunctionsGetDocument {
 		}
 		flag = commonFunc.logoutUser();
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
+			commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+					"PremUsername");
 			commonFunc.navigateToFinancialPurchaseBill();
 			verifyPurchaseBillApprovalStatus();
 			flag = commonFunc.logoutUser();
@@ -2735,8 +2735,8 @@ public class PurchaseBillsFunctionsGetDocument {
 //		assertTrue(flag);
 		grnPageFunc.poToGrnGeneralUserDefinedSameStockAndSupplierUomWithAndWithoutInspectionPlanWithLandedCost(
 				webDB.getDataFromProperties("LandedCostAdditem"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+				"PremUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 		ExcelUtils excelUtils = new ExcelUtils();
@@ -2781,8 +2781,8 @@ public class PurchaseBillsFunctionsGetDocument {
 		}
 		flag = commonFunc.logoutUser();
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
+			commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+					"PremUsername");
 			commonFunc.navigateToFinancialPurchaseBill();
 			verifyPurchaseBillApprovalStatus();
 			flag = commonFunc.logoutUser();
@@ -2819,8 +2819,8 @@ public class PurchaseBillsFunctionsGetDocument {
 //		assertTrue(flag);
 		grnPageFunc.PoToGrnStockTransferUserDefinedSameStockAndSupplierUomWithAndWithoutInspectionForLocalSupplier(
 				webDB.getDataFromProperties("StocktransferLC"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+				"PremUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		VerifyToCreateBillBookingDocumentFromPendingStocktransferDocument(VariableHandler.getGrnDocNumber(),
 				commonFunc.getDataFromTestDataSheet("LocalPurchaseBillST"));
@@ -3006,8 +3006,8 @@ public class PurchaseBillsFunctionsGetDocument {
 //		} catch (Exception e) {
 //			e.printStackTrace();
 //		}
-//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-//				"AdminUsername");
+//		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+//				"PremUsername");
 //		commonFunc.navigateToFinancialPurchaseBill();
 //		VerifyToCreateBillBookingDocumentFromPendingStocktransferDocument(VariableHandler.getGrnDocNumber(),
 //				commonFunc.getDataFromTestDataSheet("LocalPurchaseBillST"));
@@ -3024,8 +3024,8 @@ public class PurchaseBillsFunctionsGetDocument {
 //		assertTrue(flag);
 		grnPageFunc.PoToGrnStockTransferUserDefinedSameStockAndSupplierUomWithAndWithoutInspectionForLocalSupplier(
 				webDB.getDataFromProperties("StocktransferLC"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+				"PremUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		VerifyToCreateBillBookingDocumentFromPendingStocktransferDocument(VariableHandler.getGrnDocNumber(),
 				commonFunc.getDataFromTestDataSheet("LocalPurchaseBillST"));
@@ -3154,8 +3154,8 @@ public class PurchaseBillsFunctionsGetDocument {
 //		assertTrue(flag);
 		grnPageFunc.PoToGrnStockTransferUserDefinedSameStockAndSupplierUomWithAndWithoutInspectionForLocalSupplier(
 				webDB.getDataFromProperties("StocktransferLC"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+				"PremUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		VerifyToCreateBillBookingDocumentFromPendingStocktransferDocument(VariableHandler.getGrnDocNumber(),
 				commonFunc.getDataFromTestDataSheet("LocalPurchaseBillST"));
@@ -3224,8 +3224,8 @@ public class PurchaseBillsFunctionsGetDocument {
 //		assertTrue(flag);
 		grnPageFunc.PoToGrnStockTransferUserDefinedSameStockAndSupplierUomWithAndWithoutInspectionForLocalSupplier(
 				webDB.getDataFromProperties("StocktransferLC"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+				"PremUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		VerifyToCreateBillBookingDocumentFromPendingStocktransferDocument(VariableHandler.getGrnDocNumber(),
 				commonFunc.getDataFromTestDataSheet("LocalPurchaseBillST"));
@@ -3522,8 +3522,8 @@ public class PurchaseBillsFunctionsGetDocument {
 		VerifyToAfterWriteTheExcelValueInNumberIgstField(webDB.getDataFromProperties("StocktransferLC"));
 		grnPageFunc.PoToGrnStockTransferUserDefinedSameStockAndSupplierUomWithAndWithoutInspectionForLocalSupplier(
 				webDB.getDataFromProperties("StocktransferLC"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+				"PremUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		VerifyToCreateBillBookingDocumentFromPendingStocktransferDocument(VariableHandler.getGrnDocNumber(),
 				commonFunc.getDataFromTestDataSheet("LocalPurchaseBillST"));
@@ -3605,8 +3605,8 @@ public class PurchaseBillsFunctionsGetDocument {
 
 //		grnPageFunc.PoToGrnStockTransferUserDefinedSameStockAndSupplierUomWithAndWithoutInspectionForLocalSupplier(
 //				webDB.getDataFromProperties("StocktransferLC"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+				"PremUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		VerifyToCreateBillBookingDocumentFromPendingStocktransferDocument(VariableHandler.getGrnDocNumber(),
 				commonFunc.getDataFromTestDataSheet("LocalPurchaseBillST"));
@@ -4002,8 +4002,8 @@ public class PurchaseBillsFunctionsGetDocument {
 //		assertTrue(flag);
 //		grnPageFunc.PoToGrnStockTransferUserDefinedSameStockAndSupplierUomWithAndWithoutInspectionForLocalSupplier(
 //				webDB.getDataFromProperties("StocktransferLC"));
-//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-//				"AdminUsername");
+//		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+//				"PremUsername");
 //		commonFunc.navigateToFinancialPurchaseBill();
 //		VerifyToCreateBillBookingDocumentFromPendingStocktransferDocument(VariableHandler.getGrnDocNumber(),
 //				commonFunc.getDataFromTestDataSheet("LocalPurchaseBillST"));
@@ -4050,8 +4050,8 @@ public class PurchaseBillsFunctionsGetDocument {
 		VerifyToAfterWriteTheExcelValueInNumberIgstField(webDB.getDataFromProperties("StocktransferLC"));
 		grnPageFunc.PoToGrnStockTransferUserDefinedSameStockAndSupplierUomWithAndWithoutInspectionForLocalSupplier(
 				webDB.getDataFromProperties("StocktransferLC"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+				"PremUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		VerifyToCreateBillBookingDocumentFromPendingStocktransferDocument(VariableHandler.getGrnDocNumber(),
 				commonFunc.getDataFromTestDataSheet("LocalPurchaseBillST"));
@@ -4131,8 +4131,8 @@ public class PurchaseBillsFunctionsGetDocument {
 //		assertTrue(flag);
 //		grnPageFunc.PoToGrnStockTransferUserDefinedSameStockAndSupplierUomWithAndWithoutInspectionForLocalSupplier(
 //				webDB.getDataFromProperties("StocktransferLC"));
-//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-//				"AdminUsername");
+//		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+//				"PremUsername");
 //		commonFunc.navigateToFinancialPurchaseBill();
 //		VerifyToCreateBillBookingDocumentFromPendingStocktransferDocument(VariableHandler.getGrnDocNumber(),
 //				commonFunc.getDataFromTestDataSheet("LocalPurchaseBillST"));
@@ -4177,8 +4177,8 @@ public class PurchaseBillsFunctionsGetDocument {
 		VerifyToAfterWriteTheExcelValueInNumberIgstField(webDB.getDataFromProperties("StocktransferLC"));
 		grnPageFunc.PoToGrnStockTransferUserDefinedSameStockAndSupplierUomWithAndWithoutInspectionForLocalSupplier(
 				webDB.getDataFromProperties("StocktransferLC"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+				"PremUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		VerifyToCreateBillBookingDocumentFromPendingStocktransferDocument(VariableHandler.getGrnDocNumber(),
 				commonFunc.getDataFromTestDataSheet("LocalPurchaseBillST"));
@@ -4264,8 +4264,8 @@ public class PurchaseBillsFunctionsGetDocument {
 //		assertTrue(flag);
 //		grnPageFunc.PoToGrnStockTransferUserDefinedSameStockAndSupplierUomWithAndWithoutInspectionForLocalSupplier(
 //				webDB.getDataFromProperties("StocktransferLC"));
-//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-//				"AdminUsername");
+//		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+//				"PremUsername");
 //		commonFunc.navigateToFinancialPurchaseBill();
 //		VerifyToCreateBillBookingDocumentFromPendingStocktransferDocument(VariableHandler.getGrnDocNumber(),
 //				commonFunc.getDataFromTestDataSheet("LocalPurchaseBillST"));
@@ -4310,8 +4310,8 @@ public class PurchaseBillsFunctionsGetDocument {
 		VerifyToAfterWriteTheExcelValueInNumberIgstField(webDB.getDataFromProperties("StocktransferLC"));
 		grnPageFunc.PoToGrnStockTransferUserDefinedSameStockAndSupplierUomWithAndWithoutInspectionForLocalSupplier(
 				webDB.getDataFromProperties("StocktransferLC"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+				"PremUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		VerifyToCreateBillBookingDocumentFromPendingStocktransferDocument(VariableHandler.getGrnDocNumber(),
 				commonFunc.getDataFromTestDataSheet("LocalPurchaseBillST"));
@@ -4441,8 +4441,8 @@ public class PurchaseBillsFunctionsGetDocument {
 		VerifyToAfterWriteTheExcelValueInNumberRcmField(webDB.getDataFromProperties("StockTransferAddLocalRCM"));
 		grnPageFunc.PoToGrnStockTransferUserDefinedSameStockAndSupplierUomWithAndWithoutInspectionForLocalSupplier(
 				webDB.getDataFromProperties("StocktransferLCRCM"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+				"PremUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		VerifyToCreateBillBookingDocumentFromPendingStocktransferDocument(VariableHandler.getGrnDocNumber(),
 				commonFunc.getDataFromTestDataSheet("LocalPurchaseBillST"));
@@ -4526,8 +4526,8 @@ public class PurchaseBillsFunctionsGetDocument {
 //		assertTrue(flag);
 		grnPageFunc.PoToGrnStockTransferRateContractSameUomWithAndWithoutInspectionForLocalPurchaseBill(
 				webDB.getDataFromProperties("StocktransferInterstate"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+				"PremUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		VerifyToCreateBillBookingDocumentFromPendingStocktransferDocument(VariableHandler.getGrnDocNumber(),
 				commonFunc.getDataFromTestDataSheet("InterStatePurchaseBillST"));
@@ -4579,8 +4579,8 @@ public class PurchaseBillsFunctionsGetDocument {
 			throws Exception {
 		grnPageFunc.PoToGrnStockTransferRateContractSameUomWithAndWithoutInspectionForLocalPurchaseBill(
 				webDB.getDataFromProperties("StocktransferInterstate"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+				"PremUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		VerifyToCreateBillBookingDocumentFromPendingStocktransferDocument(VariableHandler.getGrnDocNumber(),
 				commonFunc.getDataFromTestDataSheet("InterStatePurchaseBillST"));
@@ -4632,8 +4632,8 @@ public class PurchaseBillsFunctionsGetDocument {
 			throws Exception {
 		grnPageFunc.PoToGrnStockTransferRateContractSameUomWithAndWithoutInspectionForLocalPurchaseBill(
 				webDB.getDataFromProperties("StocktransferInterstate"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+				"PremUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		VerifyToCreateBillBookingDocumentFromPendingStocktransferDocument(VariableHandler.getGrnDocNumber(),
 				commonFunc.getDataFromTestDataSheet("InterStatePurchaseBillST"));
@@ -4680,8 +4680,8 @@ public class PurchaseBillsFunctionsGetDocument {
 		VerifyToAfterWriteTheExcelValueInNumberRcmField(webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
 		grnPageFunc.PoToGrnStockTransferRateContractSameUomWithAndWithoutInspectionForLocalPurchaseBill(
 				webDB.getDataFromProperties("StocktransferISForRCM"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+				"PremUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		VerifyToCreateBillBookingDocumentFromPendingStocktransferDocument(VariableHandler.getGrnDocNumber(),
 				commonFunc.getDataFromTestDataSheet("InterStatePurchaseBillST"));
@@ -4752,8 +4752,8 @@ public class PurchaseBillsFunctionsGetDocument {
 		VerifyToAfterWriteTheExcelValueInNumberRcmField(webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
 		grnPageFunc.PoToGrnStockTransferRateContractSameUomWithAndWithoutInspectionForLocalPurchaseBill(
 				webDB.getDataFromProperties("StocktransferISForRCM"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+				"PremUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		VerifyToCreateBillBookingDocumentFromPendingStocktransferDocument(VariableHandler.getGrnDocNumber(),
 				commonFunc.getDataFromTestDataSheet("InterStatePurchaseBillST"));
@@ -4821,8 +4821,8 @@ public class PurchaseBillsFunctionsGetDocument {
 		VerifyToAfterWriteTheExcelValueInNumberRcmField(webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
 		grnPageFunc.PoToGrnStockTransferRateContractSameUomWithAndWithoutInspectionForLocalPurchaseBill(
 				webDB.getDataFromProperties("StocktransferISForRCM"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+				"PremUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		VerifyToCreateBillBookingDocumentFromPendingStocktransferDocument(VariableHandler.getGrnDocNumber(),
 				commonFunc.getDataFromTestDataSheet("InterStatePurchaseBillST"));
@@ -4879,8 +4879,8 @@ public class PurchaseBillsFunctionsGetDocument {
 		VerifyToAfterWriteTheExcelValueInNumberRcmField(webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
 		grnPageFunc.PoToGrnStockTransferRateContractSameUomWithAndWithoutInspectionForLocalPurchaseBill(
 				webDB.getDataFromProperties("StocktransferISForRCM"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+				"PremUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		VerifyToCreateBillBookingDocumentFromPendingStocktransferDocument(VariableHandler.getGrnDocNumber(),
 				commonFunc.getDataFromTestDataSheet("InterStatePurchaseBillST"));
@@ -5298,8 +5298,8 @@ public class PurchaseBillsFunctionsGetDocument {
 		grnPageFunc
 				.PoToGrnStockTransferRateContractUnregisterSupplierSameStockAndSupplierUomWithAndWithoutInspectionForLocalSupplier(
 						webDB.getDataFromProperties("StocktransferUR"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+				"PremUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		VerifyToCreateBillBookingDocumentFromPendingStocktransferDocument(VariableHandler.getGrnDocNumber(),
 				commonFunc.getDataFromTestDataSheet("LocalPurchaseBillURST"));
@@ -5398,8 +5398,8 @@ public class PurchaseBillsFunctionsGetDocument {
 		VerifyToAfterWriteTheExcelValueInNumberRcmField(webDB.getDataFromProperties("StockTransferAddLocalRCM"));
 		grnPageFunc.PoToGrnStockTransferUserDefinedSameStockAndSupplierUomWithAndWithoutInspectionForLocalSupplier(
 				webDB.getDataFromProperties("StocktransferLCRCM"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+				"PremUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		VerifyToCreateBillBookingDocumentFromPendingStocktransferDocument(VariableHandler.getGrnDocNumber(),
 				commonFunc.getDataFromTestDataSheet("LocalPurchaseBillST"));
@@ -5483,8 +5483,8 @@ public class PurchaseBillsFunctionsGetDocument {
 		VerifyToAfterWriteTheExcelValueInNumberRcmField(webDB.getDataFromProperties("StockTransferAddLocalRCM"));
 		grnPageFunc.PoToGrnStockTransferUserDefinedSameStockAndSupplierUomWithAndWithoutInspectionForLocalSupplier(
 				webDB.getDataFromProperties("StocktransferLCRCM"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+				"PremUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		VerifyToCreateBillBookingDocumentFromPendingStocktransferDocument(VariableHandler.getGrnDocNumber(),
 				commonFunc.getDataFromTestDataSheet("LocalPurchaseBillST"));
@@ -5567,8 +5567,8 @@ public class PurchaseBillsFunctionsGetDocument {
 		VerifyToAfterWriteTheExcelValueInNumberRcmField(webDB.getDataFromProperties("StockTransferAddLocalRCM"));
 		grnPageFunc.PoToGrnStockTransferUserDefinedSameStockAndSupplierUomWithAndWithoutInspectionForLocalSupplier(
 				webDB.getDataFromProperties("StocktransferLCRCM"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+				"PremUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		VerifyToCreateBillBookingDocumentFromPendingStocktransferDocument(VariableHandler.getGrnDocNumber(),
 				commonFunc.getDataFromTestDataSheet("LocalPurchaseBillST"));
@@ -5672,8 +5672,8 @@ public class PurchaseBillsFunctionsGetDocument {
 		grnPageFunc
 				.PoToGrnStockTransferRateContractUnregisterSupplierSameStockAndSupplierUomWithAndWithoutInspectionForLocalSupplier(
 						webDB.getDataFromProperties("StocktransferUR"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+				"PremUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		VerifyToCreateBillBookingDocumentFromPendingStocktransferDocument(VariableHandler.getGrnDocNumber(),
 				commonFunc.getDataFromTestDataSheet("LocalPurchaseBillURST"));
@@ -5766,8 +5766,8 @@ public class PurchaseBillsFunctionsGetDocument {
 		grnPageFunc
 				.PoToGrnStockTransferRateContractUnregisterSupplierSameStockAndSupplierUomWithAndWithoutInspectionForLocalSupplier(
 						webDB.getDataFromProperties("StocktransferUR"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+				"PremUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		VerifyToCreateBillBookingDocumentFromPendingStocktransferDocument(VariableHandler.getGrnDocNumber(),
 				commonFunc.getDataFromTestDataSheet("LocalPurchaseBillURST"));
@@ -5857,8 +5857,8 @@ public class PurchaseBillsFunctionsGetDocument {
 		grnPageFunc
 				.PoToGrnStockTransferRateContractUnregisterSupplierSameStockAndSupplierUomWithAndWithoutInspectionForLocalSupplier(
 						webDB.getDataFromProperties("StocktransferUR"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+				"PremUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		VerifyToCreateBillBookingDocumentFromPendingStocktransferDocument(VariableHandler.getGrnDocNumber(),
 				commonFunc.getDataFromTestDataSheet("LocalPurchaseBillURST"));
@@ -5962,8 +5962,8 @@ public class PurchaseBillsFunctionsGetDocument {
 		grnPageFunc
 				.PoToGrnStockTransferRateContractUnregisterSupplierSameStockAndSupplierUomWithAndWithoutInspectionForLocalSupplier(
 						webDB.getDataFromProperties("StocktransferURINTR"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+				"PremUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		VerifyToCreateBillBookingDocumentFromPendingStocktransferDocument(VariableHandler.getGrnDocNumber(),
 				commonFunc.getDataFromTestDataSheet("LocalPurchaseBillURST"));
@@ -6029,8 +6029,8 @@ public class PurchaseBillsFunctionsGetDocument {
 		grnPageFunc
 				.PoToGrnStockTransferRateContractUnregisterSupplierSameStockAndSupplierUomWithAndWithoutInspectionForLocalSupplier(
 						webDB.getDataFromProperties("StocktransferURINTR"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+				"PremUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		VerifyToCreateBillBookingDocumentFromPendingStocktransferDocument(VariableHandler.getGrnDocNumber(),
 				commonFunc.getDataFromTestDataSheet("LocalPurchaseBillURST"));
@@ -6096,8 +6096,8 @@ public class PurchaseBillsFunctionsGetDocument {
 		grnPageFunc
 				.PoToGrnStockTransferRateContractUnregisterSupplierSameStockAndSupplierUomWithAndWithoutInspectionForLocalSupplier(
 						webDB.getDataFromProperties("StocktransferURINTR"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+				"PremUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		VerifyToCreateBillBookingDocumentFromPendingStocktransferDocument(VariableHandler.getGrnDocNumber(),
 				commonFunc.getDataFromTestDataSheet("LocalPurchaseBillURST"));
@@ -6154,8 +6154,8 @@ public class PurchaseBillsFunctionsGetDocument {
 		grnPageFunc
 				.PoToGrnStockTransferRateContractUnregisterSupplierSameStockAndSupplierUomWithAndWithoutInspectionForLocalSupplier(
 						webDB.getDataFromProperties("StocktransferURINTR"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+				"PremUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		VerifyToCreateBillBookingDocumentFromPendingStocktransferDocument(VariableHandler.getGrnDocNumber(),
 				commonFunc.getDataFromTestDataSheet("LocalPurchaseBillURST"));
@@ -6210,8 +6210,8 @@ public class PurchaseBillsFunctionsGetDocument {
 		grnPageFunc
 				.PoToGrnStockTransferRateContractUnregisterSupplierSameStockAndSupplierUomWithAndWithoutInspectionForInterstateSupplier(
 						webDB.getDataFromProperties("StocktransferIntrUR"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+				"PremUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		VerifyToCreateBillBookingDocumentFromPendingStocktransferDocument(VariableHandler.getGrnDocNumber(),
 				commonFunc.getDataFromTestDataSheet("PBInterURPK"));
@@ -6268,8 +6268,8 @@ public class PurchaseBillsFunctionsGetDocument {
 		grnPageFunc
 				.PoToGrnStockTransferRateContractUnregisterSupplierSameStockAndSupplierUomWithAndWithoutInspectionForInterstateSupplier(
 						webDB.getDataFromProperties("StocktransferIntrUR"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+				"PremUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		VerifyToCreateBillBookingDocumentFromPendingStocktransferDocument(VariableHandler.getGrnDocNumber(),
 				commonFunc.getDataFromTestDataSheet("PBInterURPK"));
@@ -6326,8 +6326,8 @@ public class PurchaseBillsFunctionsGetDocument {
 		grnPageFunc
 				.PoToGrnStockTransferRateContractUnregisterSupplierSameStockAndSupplierUomWithAndWithoutInspectionForInterstateSupplier(
 						webDB.getDataFromProperties("StocktransferIntrUR"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+				"PremUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		VerifyToCreateBillBookingDocumentFromPendingStocktransferDocument(VariableHandler.getGrnDocNumber(),
 				commonFunc.getDataFromTestDataSheet("PBInterURPK"));
@@ -6380,8 +6380,8 @@ public class PurchaseBillsFunctionsGetDocument {
 		grnPageFunc
 				.PoToGrnStockTransferRateContractUnregisterSupplierSameStockAndSupplierUomWithAndWithoutInspectionForInterstateSupplier(
 						webDB.getDataFromProperties("StocktransferIntrUR"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+				"PremUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		VerifyToCreateBillBookingDocumentFromPendingStocktransferDocument(VariableHandler.getGrnDocNumber(),
 				commonFunc.getDataFromTestDataSheet("PBInterURPK"));
@@ -6433,8 +6433,8 @@ public class PurchaseBillsFunctionsGetDocument {
 		grnPageFunc
 				.PoToGrnStockTransferRateContractUnregisterSupplierSameStockAndSupplierUomWithAndWithoutInspectionForLocalSupplierWithLocalFright(
 						webDB.getDataFromProperties("StocktransferLocalWF"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+				"PremUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		VerifyToCreateBillBookingDocumentFromPendingStocktransferDocument(VariableHandler.getGrnDocNumber(),
 				commonFunc.getDataFromTestDataSheet("PBlocalWF"));
@@ -6487,8 +6487,8 @@ public class PurchaseBillsFunctionsGetDocument {
 		grnPageFunc
 				.PoToGrnStockTransferRateContractUnregisterSupplierSameStockAndSupplierUomWithAndWithoutInspectionForLocalSupplierWithSezUnit(
 						webDB.getDataFromProperties("StocktransferLocalWFSEZ"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+				"PremUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		VerifyToCreateBillBookingDocumentFromPendingStocktransferDocument(VariableHandler.getGrnDocNumber(),
 				commonFunc.getDataFromTestDataSheet("PBlocalSezWF"));
@@ -6540,8 +6540,8 @@ public class PurchaseBillsFunctionsGetDocument {
 	public void verifyToCreateDomesticUnregisteredSupplierWithLocalFreightGST() throws Exception {
 		grnPageFunc.PoToGrnStockTransferRateContractSupplierForRegisterAndUnregister(
 				webDB.getDataFromProperties("StocktransferURLF"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+				"PremUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		VerifyToCreateBillBookingDocumentFromPendingStocktransferDocument(VariableHandler.getGrnDocNumber(),
 				commonFunc.getDataFromTestDataSheet("PBlocalURWF"));
@@ -6580,8 +6580,8 @@ public class PurchaseBillsFunctionsGetDocument {
 	public void verifyToCreateDomesticUnRegisteredSupplierWithSezUnitGst() throws Exception {
 		grnPageFunc.PoToGrnStockTransferRateContractSupplierForRegisterAndUnregisterSezUnit(
 				webDB.getDataFromProperties("StocktransferURSEZ"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+				"PremUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		VerifyToCreateBillBookingDocumentFromPendingStocktransferDocument(VariableHandler.getGrnDocNumber(),
 				commonFunc.getDataFromTestDataSheet("PBlocalURWF"));
@@ -6623,8 +6623,8 @@ public class PurchaseBillsFunctionsGetDocument {
 				commonFunc.getDataFromTestDataSheet("STLURUTPK"),
 				commonFunc.getDataFromTestDataSheet("StockTransferValue"),
 				commonFunc.getDataFromTestDataSheet("STUTSIPK"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+				"PremUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		VerifyToCreateBillBookingDocumentFromPendingStocktransferDocument(VariableHandler.getGrnDocNumber(),
 				commonFunc.getDataFromTestDataSheet("PBUTURWF"));
@@ -6667,8 +6667,8 @@ public class PurchaseBillsFunctionsGetDocument {
 				commonFunc.getDataFromTestDataSheet("StockTransferValue"),
 				commonFunc.getDataFromTestDataSheet("STDC4"));
 //		STLURCOMPK
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+				"PremUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		VerifyToCreateBillBookingDocumentFromPendingStocktransferDocument(VariableHandler.getGrnDocNumber(),
 				commonFunc.getDataFromTestDataSheet("PBlocalDCWF"));
@@ -6710,8 +6710,8 @@ public class PurchaseBillsFunctionsGetDocument {
 				commonFunc.getDataFromTestDataSheet("STLCOMSUP"),
 				commonFunc.getDataFromTestDataSheet("StockTransferValue"),
 				commonFunc.getDataFromTestDataSheet("STDC2"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+				"PremUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		VerifyToCreateBillBookingDocumentFromPendingStocktransferDocument(VariableHandler.getGrnDocNumber(),
 				commonFunc.getDataFromTestDataSheet("PBLCOMSUP"));
@@ -6753,8 +6753,8 @@ public class PurchaseBillsFunctionsGetDocument {
 				commonFunc.getDataFromTestDataSheet("STLCOMINTRSUP"),
 				commonFunc.getDataFromTestDataSheet("StockTransferValue"),
 				commonFunc.getDataFromTestDataSheet("STDC6"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+				"PremUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		VerifyToCreateBillBookingDocumentFromPendingStocktransferDocument(VariableHandler.getGrnDocNumber(),
 				commonFunc.getDataFromTestDataSheet("PBLCOMINTRSUP"));
@@ -6796,8 +6796,8 @@ public class PurchaseBillsFunctionsGetDocument {
 				commonFunc.getDataFromTestDataSheet("STLCOMUTSUP"),
 				commonFunc.getDataFromTestDataSheet("StockTransferValue"),
 				commonFunc.getDataFromTestDataSheet("STDC8"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+				"PremUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		VerifyToCreateBillBookingDocumentFromPendingStocktransferDocument(VariableHandler.getGrnDocNumber(),
 				commonFunc.getDataFromTestDataSheet("PBLCOMUTSUP"));
@@ -6839,8 +6839,8 @@ public class PurchaseBillsFunctionsGetDocument {
 				commonFunc.getDataFromTestDataSheet("STLCPLOCSUP"),
 				commonFunc.getDataFromTestDataSheet("StockTransferValue"),
 				commonFunc.getDataFromTestDataSheet("STDP2"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+				"PremUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		VerifyToCreateBillBookingDocumentFromPendingStocktransferDocument(VariableHandler.getGrnDocNumber(),
 				commonFunc.getDataFromTestDataSheet("PBLCOMUTSUP"));
@@ -6882,8 +6882,8 @@ public class PurchaseBillsFunctionsGetDocument {
 				commonFunc.getDataFromTestDataSheet("STLCPLOCFSUP"),
 				commonFunc.getDataFromTestDataSheet("StockTransferValue"),
 				commonFunc.getDataFromTestDataSheet("STDP4"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+				"PremUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		VerifyToCreateBillBookingDocumentFromPendingStocktransferDocument(VariableHandler.getGrnDocNumber(),
 				commonFunc.getDataFromTestDataSheet("PBLCOMLFSUP"));
@@ -6925,8 +6925,8 @@ public class PurchaseBillsFunctionsGetDocument {
 				commonFunc.getDataFromTestDataSheet("STLCPUTSUP"),
 				commonFunc.getDataFromTestDataSheet("StockTransferValue"),
 				commonFunc.getDataFromTestDataSheet("STDP8"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+				"PremUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		VerifyToCreateBillBookingDocumentFromPendingStocktransferDocument(VariableHandler.getGrnDocNumber(),
 				commonFunc.getDataFromTestDataSheet("PBLCPUTSUP"));
@@ -6968,8 +6968,8 @@ public class PurchaseBillsFunctionsGetDocument {
 				commonFunc.getDataFromTestDataSheet("STSINR4"),
 				commonFunc.getDataFromTestDataSheet("StockTransferValue"),
 				commonFunc.getDataFromTestDataSheet("STNR4"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+				"PremUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		VerifyToCreateBillBookingDocumentFromPendingStocktransferDocument(VariableHandler.getGrnDocNumber(),
 				commonFunc.getDataFromTestDataSheet("PBLNRLFSUP"));
@@ -7011,8 +7011,8 @@ public class PurchaseBillsFunctionsGetDocument {
 				commonFunc.getDataFromTestDataSheet("STUTPO"),
 				commonFunc.getDataFromTestDataSheet("StockTransferValue"),
 				commonFunc.getDataFromTestDataSheet("STNR8"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+				"PremUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		VerifyToCreateBillBookingDocumentFromPendingStocktransferDocument(VariableHandler.getGrnDocNumber(),
 				commonFunc.getDataFromTestDataSheet("PBLNRUTSUP"));
@@ -7050,8 +7050,8 @@ public class PurchaseBillsFunctionsGetDocument {
 	 */
 	public void verifyToCreateRegisteredSupplierWithLocalGstStockTransferDirectStockItemServiceItemAndChargeItem()
 			throws IOException {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+				"PremUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyToCreateNewPurchaseBillDocumentForDirectStockTransfer(commonFunc.getDataFromTestDataSheet("BillNo"),
 				commonFunc.getDataFromTestDataSheet("StockTransferLocalSupplier"),
@@ -7592,8 +7592,8 @@ public class PurchaseBillsFunctionsGetDocument {
 	 */
 	public void verifyToCreateRegisteredSupplierWithLocalGstStockTransferDirectWithExpensesAccountStockItemServiceItemAndChargeItem()
 			throws IOException {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+				"PremUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyToCreateNewPurchaseBillDocumentForDirectStockTransfer(commonFunc.getDataFromTestDataSheet("BillNo"),
 				commonFunc.getDataFromTestDataSheet("StockTransferLocalSupplier"),
@@ -7724,8 +7724,8 @@ public class PurchaseBillsFunctionsGetDocument {
 	public void verifyToCreateRegisteredSupplierWithLocalGstAllowIgstTaxStockTransferDirectStockItemServiceItemAndChargeItem()
 			throws IOException {
 		VerifyToAfterWriteTheExcelValueInNumberIgstField(webDB.getDataFromProperties("StockTransferAddLocalEXIGST"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+				"PremUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyToCreateNewPurchaseBillDocumentForDirectStockTransfer(commonFunc.getDataFromTestDataSheet("BillNo"),
 				commonFunc.getDataFromTestDataSheet("StockTransferLocalSupplier"),
@@ -7930,8 +7930,8 @@ public class PurchaseBillsFunctionsGetDocument {
 	public void verifyToCreateRegisteredSupplierWithLocalGstAllowIgstTaxStockTransferDirectAndExpensesAccountStockItemServiceItemAndChargeItem()
 			throws IOException {
 		VerifyToAfterWriteTheExcelValueInNumberIgstField(webDB.getDataFromProperties("StockTransferAddLocalEXIGST"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+				"PremUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyToCreateNewPurchaseBillDocumentForDirectStockTransfer(commonFunc.getDataFromTestDataSheet("BillNo"),
 				commonFunc.getDataFromTestDataSheet("StockTransferLocalSupplier"),
@@ -7992,8 +7992,8 @@ public class PurchaseBillsFunctionsGetDocument {
 			throws IOException {
 //		VerifyToAfterWriteTheExcelValueInNumberIgstField(webDB.getDataFromProperties("StockTransferAddLocalEXIGST"));
 		VerifyToAfterWriteTheExcelValueInNumberRcmField(webDB.getDataFromProperties("StockTransferAddLocalEXDCTRCM"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+				"PremUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyToCreateNewPurchaseBillDocumentForDirectStockTransfer(commonFunc.getDataFromTestDataSheet("BillNo"),
 				commonFunc.getDataFromTestDataSheet("StockTransferLocalSupplier"),
@@ -8117,8 +8117,8 @@ public class PurchaseBillsFunctionsGetDocument {
 			throws IOException {
 //		VerifyToAfterWriteTheExcelValueInNumberIgstField(webDB.getDataFromProperties("StockTransferAddLocalEXIGST"));
 		VerifyToAfterWriteTheExcelValueInNumberRcmField(webDB.getDataFromProperties("StockTransferAddLocalEXDCTRCM"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+				"PremUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyToCreateNewPurchaseBillDocumentForDirectStockTransfer(commonFunc.getDataFromTestDataSheet("BillNo"),
 				commonFunc.getDataFromTestDataSheet("StockTransferLocalSupplier"),
@@ -8179,8 +8179,8 @@ public class PurchaseBillsFunctionsGetDocument {
 			throws IOException {
 //		VerifyToAfterWriteTheExcelValueInNumberIgstField(webDB.getDataFromProperties("StockTransferAddLocalEXIGST"));
 //		VerifyToAfterWriteTheExcelValueInNumberRcmField(webDB.getDataFromProperties("StockTransferAddLocalEXDCTRCM"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+				"PremUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyToCreateNewPurchaseBillDocumentForDirectStockTransferForInterstate(
 				commonFunc.getDataFromTestDataSheet("STTypePK"), commonFunc.getDataFromTestDataSheet("L0002"),
@@ -8298,8 +8298,8 @@ public class PurchaseBillsFunctionsGetDocument {
 			throws IOException {
 //		VerifyToAfterWriteTheExcelValueInNumberIgstField(webDB.getDataFromProperties("StockTransferAddLocalEXIGST"));
 //		VerifyToAfterWriteTheExcelValueInNumberRcmField(webDB.getDataFromProperties("StockTransferAddLocalEXDCTRCM"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+				"PremUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyToCreateNewPurchaseBillDocumentForDirectStockTransferForInterstate(
 				commonFunc.getDataFromTestDataSheet("STTypePK"), commonFunc.getDataFromTestDataSheet("L0002"),
@@ -8360,8 +8360,8 @@ public class PurchaseBillsFunctionsGetDocument {
 			throws IOException {
 //		VerifyToAfterWriteTheExcelValueInNumberIgstField(webDB.getDataFromProperties("StockTransferAddLocalEXIGST"));
 		VerifyToAfterWriteTheExcelValueInNumberRcmField(webDB.getDataFromProperties("STIGSTWEXPRCM"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+				"PremUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyToCreateNewPurchaseBillDocumentForDirectStockTransfer(commonFunc.getDataFromTestDataSheet("BillNo"),
 				commonFunc.getDataFromTestDataSheet("StockTransferSupplier"),
@@ -8445,8 +8445,8 @@ public class PurchaseBillsFunctionsGetDocument {
 			throws IOException {
 //		VerifyToAfterWriteTheExcelValueInNumberIgstField(webDB.getDataFromProperties("StockTransferAddLocalEXIGST"));
 		VerifyToAfterWriteTheExcelValueInNumberRcmField(webDB.getDataFromProperties("STIGSTWEXPRCM"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+				"PremUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyToCreateNewPurchaseBillDocumentForDirectStockTransfer(commonFunc.getDataFromTestDataSheet("BillNo"),
 				commonFunc.getDataFromTestDataSheet("StockTransferSupplier"),
@@ -8510,8 +8510,8 @@ public class PurchaseBillsFunctionsGetDocument {
 			throws IOException {
 //		VerifyToAfterWriteTheExcelValueInNumberIgstField(webDB.getDataFromProperties("StockTransferAddLocalEXIGST"));
 		VerifyToAfterWriteTheExcelValueInNumberRcmField(webDB.getDataFromProperties("STUNRLocal"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+				"PremUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyToCreateNewPurchaseBillDocumentForDirectStockTransferForInterstate(
 				commonFunc.getDataFromTestDataSheet("STTypePK"), commonFunc.getDataFromTestDataSheet("L54PK"),
@@ -8575,8 +8575,8 @@ public class PurchaseBillsFunctionsGetDocument {
 			throws IOException {
 //		VerifyToAfterWriteTheExcelValueInNumberIgstField(webDB.getDataFromProperties("StockTransferAddLocalEXIGST"));
 		VerifyToAfterWriteTheExcelValueInNumberRcmField(webDB.getDataFromProperties("STUNRLocal"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+				"PremUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyToCreateNewPurchaseBillDocumentForDirectStockTransferForInterstate(
 				commonFunc.getDataFromTestDataSheet("STTypePK"), commonFunc.getDataFromTestDataSheet("L54PK"),
@@ -8640,8 +8640,8 @@ public class PurchaseBillsFunctionsGetDocument {
 			throws IOException {
 		VerifyToAfterWriteTheExcelValueInNumberIgstField(webDB.getDataFromProperties("STUNRLocalToIgst"));
 		VerifyToAfterWriteTheExcelValueInNumberRcmField(webDB.getDataFromProperties("STUNRLocalToIgst"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+				"PremUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyToCreateNewPurchaseBillDocumentForDirectStockTransferForInterstate(
 				commonFunc.getDataFromTestDataSheet("STTypePK"), commonFunc.getDataFromTestDataSheet("L54PK"),
@@ -8707,8 +8707,8 @@ public class PurchaseBillsFunctionsGetDocument {
 			throws IOException {
 		VerifyToAfterWriteTheExcelValueInNumberIgstField(webDB.getDataFromProperties("STUNRLocalToIgst"));
 		VerifyToAfterWriteTheExcelValueInNumberRcmField(webDB.getDataFromProperties("STUNRLocalToIgst"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+				"PremUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyToCreateNewPurchaseBillDocumentForDirectStockTransferForInterstate(
 				commonFunc.getDataFromTestDataSheet("STTypePK"), commonFunc.getDataFromTestDataSheet("L54PK"),
@@ -8772,8 +8772,8 @@ public class PurchaseBillsFunctionsGetDocument {
 	 */
 	public void verifyToCreateUnregisteredSupplierWithInterstateGstStockTransferDirectStockItemServiceItemAndChargeItem()
 			throws IOException {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+				"PremUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyToCreateNewPurchaseBillDocumentForDirectStockTransferForInterstate(
 				commonFunc.getDataFromTestDataSheet("STTypePK"), commonFunc.getDataFromTestDataSheet("L55PK"),
@@ -8834,8 +8834,8 @@ public class PurchaseBillsFunctionsGetDocument {
 	 */
 	public void verifyToCreateUnregisteredSupplierWithInterstateGstStockTransferDirectAndExpensesAccountStockItemServiceItemAndChargeItem()
 			throws IOException {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+				"PremUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyToCreateNewPurchaseBillDocumentForDirectStockTransferForInterstate(
 				commonFunc.getDataFromTestDataSheet("STTypePK"), commonFunc.getDataFromTestDataSheet("L55PK"),
@@ -8894,8 +8894,8 @@ public class PurchaseBillsFunctionsGetDocument {
 	 * @throws IOException
 	 */
 	public void verifyToCreateDomesticRegisteredSupplierWithLocalFreightGst() throws IOException {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+				"PremUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyToCreateNewPurchaseBillDocumentForDirectStockTransferForInterstate(
 				commonFunc.getDataFromTestDataSheet("STTypePK"), commonFunc.getDataFromTestDataSheet("L58PK"),
@@ -8957,8 +8957,8 @@ public class PurchaseBillsFunctionsGetDocument {
 	 * @throws IOException
 	 */
 	public void verifyToCreateDomesticRegisteredSupplierWithSezUnitGst() throws IOException {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+				"PremUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyToCreateNewPurchaseBillDocumentForDirectStockTransferForInterstate(
 				commonFunc.getDataFromTestDataSheet("STTypePK"), commonFunc.getDataFromTestDataSheet("L59PK"),
@@ -9021,8 +9021,8 @@ public class PurchaseBillsFunctionsGetDocument {
 	 * @throws IOException
 	 */
 	public void verifyToCreateDomesticRegisteredSupplierWithUnionTerritoryGst() throws IOException {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+				"PremUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyToCreateNewPurchaseBillDocumentForDirectStockTransferForInterstate(
 				commonFunc.getDataFromTestDataSheet("STTypePK"), commonFunc.getDataFromTestDataSheet("L62PK"),
@@ -9082,8 +9082,8 @@ public class PurchaseBillsFunctionsGetDocument {
 	 * @throws IOException
 	 */
 	public void verifyToCreateDomesticUnregisteredSupplierWithLocalFreightGst() throws IOException {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+				"PremUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyToCreateNewPurchaseBillDocumentForDirectStockTransferForInterstate(
 				commonFunc.getDataFromTestDataSheet("STTypePK"), commonFunc.getDataFromTestDataSheet("L63PK"),
@@ -9142,8 +9142,8 @@ public class PurchaseBillsFunctionsGetDocument {
 	 * @throws IOException
 	 */
 	public void verifyToCreateDomesticUnRegisteredSupplierWithSezUnitGST() throws IOException {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+				"PremUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyToCreateNewPurchaseBillDocumentForDirectStockTransferForInterstate(
 				commonFunc.getDataFromTestDataSheet("STTypePK"), commonFunc.getDataFromTestDataSheet("L65PK"),

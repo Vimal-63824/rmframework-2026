@@ -2000,7 +2000,7 @@ public class PurchaseBillsFunctions {
 	 * @author PremKumar.K-RMITS
 	 */
 	public void verifyDirectPODomesticServiceSimilarUOMMultiple(String SheetName) {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		POfunc.verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -2053,7 +2053,7 @@ public class PurchaseBillsFunctions {
 	 * @author PremKumar.K-RMITS
 	 */
 	public void verifyDirectPODomesticServiceSimilarUOMMultipleLocalUnregrd(String SheetName) {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		POfunc.verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -2107,7 +2107,7 @@ public class PurchaseBillsFunctions {
 	 * @author PremKumar.K-RMITS
 	 */
 	public void verifyDirectPODomesticServiceSimilarUOMMultipleForInterState(String SheetName) {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		POfunc.verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -2160,7 +2160,7 @@ public class PurchaseBillsFunctions {
 	 * @author PremKumar.K-RMITS
 	 */
 	public void verifyDirectPODomesticServiceSimilarUOMMultipleLocalGetDocument(String SheetName) {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		POfunc.verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -2213,7 +2213,7 @@ public class PurchaseBillsFunctions {
 	 * @author PremKumar.K-RMITS
 	 */
 	public void verifyDirectPODomesticServiceSimilarUOMMultipleInterststeGetDocument(String SheetName) {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		POfunc.verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -2266,7 +2266,7 @@ public class PurchaseBillsFunctions {
 	 * @author PremKumar.K-RMITS
 	 */
 	public void verifyDirectPODomesticServiceSimilarUOMMultipleUnregdLocalGetDocument(String SheetName) {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		POfunc.verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -2319,7 +2319,7 @@ public class PurchaseBillsFunctions {
 	 * @author PremKumar.K-RMITS
 	 */
 	public void verifyDirectPODomesticServiceSimilarUOMMultipleUnregdInterstateGetDocument(String SheetName) {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		POfunc.verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -2588,8 +2588,8 @@ public class PurchaseBillsFunctions {
 	public void verifyPurchaseBillsAgainstPurchaseBillsForAdjustment(String BankName, String Currency,
 			String SheetName) {
 
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("AdminUsername"));
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				System.getProperty("KowshikUserName"));
 		commonFunc.navigateToFinancialPaymentReceipt();
 		BPFunc.clickAddButtonInPaymentsRecipts();
 		BPFunc.createBankPaymentEntry(commonFunc.getDataFromTestDataSheet("BankDocMode"), BankName, Today,
@@ -2997,8 +2997,8 @@ public class PurchaseBillsFunctions {
 	}
 
 	public void bankPaymentRecordOfAgainstPo() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("AdminUsername"));
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				System.getProperty("KowshikUserName"));
 		commonFunc.navigateToFinancialPaymentReceipt();
 		bankpaymntFunc.clickPendingCRDocsButton();
 		clickPendingpayablesAdvance();
@@ -3026,8 +3026,8 @@ public class PurchaseBillsFunctions {
 	 */
 
 	public void bankPaymentRecordOfAgainstPoWithAddedNewRef() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("AdminUsername"));
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				System.getProperty("KowshikUserName"));
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.navigateToFinancialPaymentReceipt();
 		bankpaymntFunc.clickPendingCRDocsButton();
@@ -3061,8 +3061,8 @@ public class PurchaseBillsFunctions {
 	 */
 
 	public void bankPaymentRecordOfAgainstPoWithAddedNewRefWithMultiRef() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("AdminUsername"));
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				System.getProperty("KowshikUserName"));
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.navigateToFinancialPaymentReceipt();
 		bankpaymntFunc.clickPendingCRDocsButton();
@@ -3094,8 +3094,8 @@ public class PurchaseBillsFunctions {
 	 * @author Kowshik-RMITS
 	 */
 	public void bankPaymentRecordOfAgainstWithMutiPo() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("AdminUsername"));
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				System.getProperty("KowshikUserName"));
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.navigateToFinancialPaymentReceipt();
 		bankpaymntFunc.clickPendingCRDocsButton();
@@ -3125,8 +3125,8 @@ public class PurchaseBillsFunctions {
 	 * @author Kowshik-RMITS
 	 */
 	public void bankPaymentRecordOfAgainstWithMutiPoSingleNewRef() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("AdminUsername"));
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				System.getProperty("KowshikUserName"));
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.navigateToFinancialPaymentReceipt();
 		bankpaymntFunc.clickPendingCRDocsButton();
@@ -3159,8 +3159,8 @@ public class PurchaseBillsFunctions {
 	 * @author Kowshik-RMITS
 	 */
 	public void bankPaymentRecordOfAgainstwithMultiPoMultiNewRef() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("AdminUsername"));
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				System.getProperty("KowshikUserName"));
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.navigateToFinancialPaymentReceipt();
 		bankpaymntFunc.clickPendingCRDocsButton();
@@ -3197,8 +3197,8 @@ public class PurchaseBillsFunctions {
 	public void verifyPurchaseBillsAgainstPurchaseBillsForAdjustment1(String BankName, String Currency,
 			String SheetName) {
 
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("AdminUsername"));
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				System.getProperty("KowshikUserName"));
 		commonFunc.navigateToFinancialPaymentReceipt();
 		BPFunc.clickAddButtonInPaymentsRecipts();
 		BPFunc.createBankPaymentEntry(commonFunc.getDataFromTestDataSheet("BankDocMode"), BankName, Today,
@@ -3247,8 +3247,8 @@ public class PurchaseBillsFunctions {
 	public void poToGrnProccedWithPurchaseBillsForUnregrd() throws Exception {
 		POfunc.verifyDirectPoWithRateContractItemWithAndWithoutInspectionGeneralTypeForUnregisterK(
 				webDB.getDataFromProperties("po_Unregrd_kowshik"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.naviagteGrnPage();
 		grnFunc.clickPendingPoAndSearchPoNo();
 		grnFunc.clickSelectAllButton();
@@ -3274,8 +3274,8 @@ public class PurchaseBillsFunctions {
 	public void poToGrnProccedWithPurchaseBillsForRegrd() throws Exception {
 		POfunc.verifyDirectPoWithRateContractItemWithAndWithoutInspectionGeneralTypeForRegisterAndUnregisterKForAdvance(
 				webDB.getDataFromProperties("potoGrn_Regrd_Multi_tds"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.naviagteGrnPage();
 		grnFunc.clickPendingPoAndSearchPoNo();
 		grnFunc.clickSelectAllButton();
@@ -3302,8 +3302,8 @@ public class PurchaseBillsFunctions {
 		POfunc.verifyDirectPoWithRateContractItemWithAndWithoutInspectionGeneralTypeForRegisterAndUnregisterKForAdvance(
 				webDB.getDataFromProperties("potoGrn_Regrd_Single_Tds"));
 		bankPaymentRecordOfAgainstPo();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.naviagteGrnPage();
 		grnFunc.clickPendingPoAndSearchPoNo();
 		grnFunc.clickSelectAllButton();
@@ -3329,8 +3329,8 @@ public class PurchaseBillsFunctions {
 		POfunc.verifyDirectPoWithRateContractItemWithAndWithoutInspectionGeneralTypeForRegisterAndUnregisterKForAdvance(
 				webDB.getDataFromProperties("potoGrn_Regrd_Single_Tds"));
 		bankPaymentRecordOfAgainstPoWithAddedNewRef();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.naviagteGrnPage();
 		grnFunc.clickPendingPoAndSearchPoNo();
 		grnFunc.clickSelectAllButton();
@@ -3356,8 +3356,8 @@ public class PurchaseBillsFunctions {
 		POfunc.verifyDirectPoWithRateContractItemWithAndWithoutInspectionGeneralTypeForRegisterAndUnregisterKForAdvance(
 				webDB.getDataFromProperties("potoGrn_Regrd_Multi_tds"));
 		bankPaymentRecordOfAgainstPoWithAddedNewRefWithMultiRef();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.naviagteGrnPage();
 		grnFunc.clickPendingPoAndSearchPoNo();
 		grnFunc.clickSelectAllButton();
@@ -3383,8 +3383,8 @@ public class PurchaseBillsFunctions {
 		POfunc.verifyDirectPoWithRateContractItemWithAndWithoutInspectionGeneralTypeForRegisterAndUnregisterKForAdvance(
 				webDB.getDataFromProperties("potoGrn_Regrd_Multi_tds"));
 		bankPaymentRecordOfAgainstPoWithAddedNewRef();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.naviagteGrnPage();
 		grnFunc.clickPendingPoAndSearchPoNo();
 		grnFunc.clickSelectAllButton();
@@ -3410,8 +3410,8 @@ public class PurchaseBillsFunctions {
 		POfunc.verifyDirectPoWithRateContractItemWithAndWithoutInspectionGeneralTypeForUnregisterKForAdvance(
 				webDB.getDataFromProperties("potoGrn_Unregrd_Multi_Tds"));
 		bankPaymentRecordOfAgainstPoWithAddedNewRef();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.naviagteGrnPage();
 		grnFunc.clickPendingPoAndSearchPoNo();
 		grnFunc.clickSelectAllButton();
@@ -3437,8 +3437,8 @@ public class PurchaseBillsFunctions {
 		POfunc.verifyDirectPoWithRateContractItemWithAndWithoutInspectionGeneralTypeForUnregisterKForAdvance(
 				webDB.getDataFromProperties("potoGrn_Unregrd_Multi_Tds"));
 		bankPaymentRecordOfAgainstPo();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.naviagteGrnPage();
 		grnFunc.clickPendingPoAndSearchPoNo();
 		grnFunc.clickSelectAllButton();
@@ -3464,8 +3464,8 @@ public class PurchaseBillsFunctions {
 		POfunc.verifyDirectPoWithRateContractItemWithAndWithoutInspectionGeneralTypeForUnregisterKForAdvance(
 				webDB.getDataFromProperties("potoGrn_UnRegrd_Single_Tds"));
 		bankPaymentRecordOfAgainstPoWithAddedNewRef();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.naviagteGrnPage();
 		grnFunc.clickPendingPoAndSearchPoNo();
@@ -3493,8 +3493,8 @@ public class PurchaseBillsFunctions {
 		POfunc.verifyDirectPoWithRateContractItemWithAndWithoutInspectionGeneralTypeForUnregisterKForAdvance(
 				webDB.getDataFromProperties("potoGrn_UnRegrd_Single_Tds"));
 		bankPaymentRecordOfAgainstPoWithAddedNewRefWithMultiRef();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.naviagteGrnPage();
 		grnFunc.clickPendingPoAndSearchPoNo();
@@ -3572,8 +3572,8 @@ public class PurchaseBillsFunctions {
 	}
 
 	public void creationGrnDocAgainstToTheMultiplePo() throws Exception {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.naviagteGrnPage();
 		POfunc.selectFromPendingPoDocusClickPendingPo();
@@ -3600,8 +3600,8 @@ public class PurchaseBillsFunctions {
 		POfunc.verifyDirectPoWithRateContractItemWithAndWithoutInspectionGeneralTypeForRegisterAndUnregisterKForAdvance(
 				webDB.getDataFromProperties("potoGrn_Regrd_Multi_tds"));
 		bankPaymentRecordOfAgainstPo();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.naviagteGrnPage();
 		grnFunc.clickPendingPoAndSearchPoNo();
 		grnFunc.clickSelectAllButton();
@@ -3715,7 +3715,7 @@ public class PurchaseBillsFunctions {
 	 * 
 	 */
 	public void verifyDirectPoWithRateContractItemWithAndWithoutInspectionGeneralType(String SheetName) {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		POfunc.verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -3946,8 +3946,8 @@ public class PurchaseBillsFunctions {
 	public void verifyDomesticRegisteredSupplierWithLocalGST(String SubvouType, String PurchaseRef, String Location,
 			String Prefix, String CustomerName, String Bills, String Glaccount, String UnitCost, String Hsncode) {
 
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -3973,8 +3973,8 @@ public class PurchaseBillsFunctions {
 	public void verifyDomesticRegistedSupplierWithLocalGSTAllowIGSTtax(String SubvouType, String PurchaseRef,
 			String Location, String Prefix, String CustomerName, String Bills, String Glaccount, String Unitcost,
 			String Hsncode) {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -4004,8 +4004,8 @@ public class PurchaseBillsFunctions {
 	public void verifyDomesticRegistedSupplierWithLocalGSTAllowRCMtax(String Subvou, String PurchaseRef,
 			String Location, String Prefix, String CustomerName, String Bills, String Glaccount, String Unitcost,
 			String Hsncode) {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(Subvou, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -4035,8 +4035,8 @@ public class PurchaseBillsFunctions {
 	public void DomesticRegisteredSupplierWithLocalGSTIneligible(String Subvoutype, String PurchaseRef, String Location,
 			String Prefix, String CustomerName, String Bills, String Glaccount, String Unitcost, String Hsncode,
 			String Fintype, String FintypeSec) {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(Subvoutype, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -4062,8 +4062,8 @@ public class PurchaseBillsFunctions {
 			String Location, String Prefix, String CustomerName, String Bills, String Glaccount, String Unitcost,
 			String Hsncode, String Fintype, String FintypeSec) {
 
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -4095,8 +4095,8 @@ public class PurchaseBillsFunctions {
 			String Location, String Prefix, String CustomerName, String Bills, String Glaccount, String Unitcost,
 			String Hsncode, String Fintype, String FintypeSec) {
 
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(Subvoutype, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -4127,8 +4127,8 @@ public class PurchaseBillsFunctions {
 	 */
 	public void DomesticRegisteredSupplierWithInterstateGST(String Subvoutype, String PurchaseRef, String Location,
 			String Prefix, String CustomerName, String Bills, String Glaccount, String Unitcost, String Hsncode) {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(Subvoutype, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -4151,8 +4151,8 @@ public class PurchaseBillsFunctions {
 	 */
 	public void DomesticRegdSupplierWithInterstateGSTAllowRCMtax(String SubvouType, String PurchaseRef, String Location,
 			String Prefix, String CustomerName, String Bills, String Glaccount, String Unitcost, String Hsncode) {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -4182,8 +4182,8 @@ public class PurchaseBillsFunctions {
 	public void DomesticRegisteredSupplierWithInterstateGSTitcIneligibleAllowRCMtax(String Subvoutype,
 			String PurchaseRef, String Location, String Prefix, String CustomerName, String Bills, String Glaccount,
 			String Unitcost, String Hsncode, String FinType, String FinTypeSec) {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(Subvoutype, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -4224,8 +4224,8 @@ public class PurchaseBillsFunctions {
 	public void DirectExpensesDomesticUnRegisteredSupplierWithLocalGST(String SubvouType, String PurchaseRef,
 			String Location, String Prefix, String CustomerName, String Bills, String Glaccount, String Unitcost,
 			String Hsncode) {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -4260,8 +4260,8 @@ public class PurchaseBillsFunctions {
 			String Location, String Prefix, String CustomerName, String Glaccount, String Unitcost, String Hsncode,
 			String Bills, String Fintype, String FintypeSec) {
 
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(Subvoutype, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -4296,8 +4296,8 @@ public class PurchaseBillsFunctions {
 	public void DomesticUnRegisteredSupplierWithLocalGSTAllowIGSTtax(String Subvoutype, String PurchaseRef,
 			String Location, String Prefix, String CustomerName, String Bills, String Glaccount, String Unitcost,
 			String Hsncode) {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(Subvoutype, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -4339,8 +4339,8 @@ public class PurchaseBillsFunctions {
 	public void DomesticUnRegisteredSupplierWithLocalGSTAllowIGSTtaxineligible(String Subvoutype, String PurchaseRef,
 			String Location, String Prefix, String CustomerName, String Bills, String Glaccount, String Unitcost,
 			String Hsncode, String Fintype, String FintypeSec) {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(Subvoutype, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -4361,8 +4361,8 @@ public class PurchaseBillsFunctions {
 		verifyWaitingForApprovalForPurchaseBills();
 		commonFunc.logoutUser();
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
+			commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+					"KowshikUserName");
 			commonFunc.navigateToFinancialPurchaseBill();
 			verifyPurchaseBillApprovalStatus();
 			flag = commonFunc.logoutUser();
@@ -4387,8 +4387,8 @@ public class PurchaseBillsFunctions {
 	public void DirectExpensesDomesticUnRegisteredSupplierWithInterstateGST(String SubvouType, String PurchaseRef,
 			String Location, String Prefix, String CustomerName, String Bills, String Glaccount, String UnitCost,
 			String Hsncode) {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -4424,8 +4424,8 @@ public class PurchaseBillsFunctions {
 	public void DirectExpensesDomesticUnRegisteredSupplierWithInterstateGSTineligible(String Subvoutype,
 			String PurchaseRef, String Location, String Prefix, String CustomerName, String Bills, String Glaccount,
 			String Unitcost, String Hsncode, String Fintype, String FintypeSec) {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(Subvoutype, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -4460,8 +4460,8 @@ public class PurchaseBillsFunctions {
 	 */
 	public void DomesticRegisteredSupplierPartyaccount(String SubvouType, String PurchaseRef, String Location,
 			String Prefix, String CustomerName, String Bills, String Glaccount, String UnitCost) {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -4493,8 +4493,8 @@ public class PurchaseBillsFunctions {
 	 */
 	public void DomesticUnRegisteredSupplierPartyaccount(String SubvouType, String PurchaseRef, String Location,
 			String Prefix, String CustomerName, String Bills, String GlaccountPartyAccount, String UnitCost) {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -4527,8 +4527,8 @@ public class PurchaseBillsFunctions {
 			String Location, String Prefix, String CustomerName, String Bills, String Glaccount, String UnitCost) {
 
 		SalesInv.verifyDirectSalesInvoice();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -4542,8 +4542,8 @@ public class PurchaseBillsFunctions {
 		verifyWaitingForApprovalForPurchaseBills();
 		commonFunc.logoutUser();
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
+			commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+					"KowshikUserName");
 			commonFunc.navigateToFinancialPurchaseBill();
 			verifyPurchaseBillApprovalStatus();
 			flag = commonFunc.logoutUser();
@@ -4569,8 +4569,8 @@ public class PurchaseBillsFunctions {
 			String Location, String Prefix, String CustomerName, String Bills, String Glaccount, String UnitCost) {
 
 		SalesInv.verifyDirectSalesInvoice();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -4584,8 +4584,8 @@ public class PurchaseBillsFunctions {
 		verifyWaitingForApprovalForPurchaseBills();
 		commonFunc.logoutUser();
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
+			commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+					"KowshikUserName");
 			commonFunc.navigateToFinancialPurchaseBill();
 			verifyPurchaseBillApprovalStatus();
 			flag = commonFunc.logoutUser();
@@ -4611,8 +4611,8 @@ public class PurchaseBillsFunctions {
 	public void ImportUnregisteredSupplierwithoutGST(String SubvouType, String PurchaseRef, String Location,
 			String Prefix, String CustomerName, String Bills, String Glaccount, String UnitCost, String Section) {
 
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -4645,8 +4645,8 @@ public class PurchaseBillsFunctions {
 	public void ImportNonresidentSupplierwithoutGST(String Subvoutype, String PurchaseRef, String Location,
 			String Prefix, String CustomerName, String Bills, String Glaccount, String UnitCost, String Hsncode) {
 
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(Subvoutype, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -4666,8 +4666,8 @@ public class PurchaseBillsFunctions {
 
 //		public void ImportNonresidentSupplierWithST() {
 //			
-//			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-//					"AdminUsername");
+//			commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+//					"KowshikUserName");
 //			commonFunc.navigateToFinancialPurchaseBill();
 //			createNewRecordExpensesType(Subvoutype , PurchaseRef, Location , Prefix);
 //			insertPartyInPurchaseBills(CustomerName, Bills);
@@ -4698,8 +4698,8 @@ public class PurchaseBillsFunctions {
 	public void DirectExpensewithAdjustments(String SubvouType, String PurchaseRef, String Location, String Prefix,
 			String CustomerName, String Bills, String Glaccount, String UnitCost, String Hsncode, String PaymentDoc) {
 
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -4718,8 +4718,8 @@ public class PurchaseBillsFunctions {
 	public void DirectExpenseForRecurringJournal(String SubvouType, String PurchaseRef, String Location, String Prefix,
 			String CustomerName, String Bills, String Glaccount, String UnitCost, String Hsncode) {
 
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -4729,8 +4729,8 @@ public class PurchaseBillsFunctions {
 		UpdateUnitCostInLineDetail(UnitCost, Hsncode);
 		ClickSaveButton();
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
+			commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+					"KowshikUserName");
 			commonFunc.navigateToFinancialPurchaseBill();
 			verifyPurchaseBillApprovalStatus();
 			flag = commonFunc.logoutUser();
@@ -4756,8 +4756,8 @@ public class PurchaseBillsFunctions {
 	public void DomesticRegisteredSupplierWithSEZUnitGST(String SubvouType, String PurchaseRef, String Location,
 			String Prefix, String CustomerName, String Bills, String Glaccount, String UnitCost, String Hsncode) {
 
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -4772,8 +4772,8 @@ public class PurchaseBillsFunctions {
 		verifyWaitingForApprovalForPurchaseBills();
 		commonFunc.logoutUser();
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
+			commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+					"KowshikUserName");
 			commonFunc.navigateToFinancialPurchaseBill();
 			verifyPurchaseBillApprovalStatus();
 			flag = commonFunc.logoutUser();
@@ -4799,8 +4799,8 @@ public class PurchaseBillsFunctions {
 	public void DomesticRegisteredSupplierWithunionTerritoryGST(String SubvouType, String PurchaseRef, String Location,
 			String Prefix, String CustomerName, String Bills, String Glaccount, String UnitCost, String Hsncode) {
 
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -4814,8 +4814,8 @@ public class PurchaseBillsFunctions {
 		verifyWaitingForApprovalForPurchaseBills();
 		commonFunc.logoutUser();
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
+			commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+					"KowshikUserName");
 			commonFunc.navigateToFinancialPurchaseBill();
 			verifyPurchaseBillApprovalStatus();
 			flag = commonFunc.logoutUser();
@@ -4840,8 +4840,8 @@ public class PurchaseBillsFunctions {
 	public void DomesticRegisteredSupplierWithLocalFreightGST(String SubvouType, String PurchaseRef, String Location,
 			String Prefix, String CustomerName, String Bills, String Glaccount, String UnitCost, String Hsncode) {
 
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -4855,8 +4855,8 @@ public class PurchaseBillsFunctions {
 		verifyWaitingForApprovalForPurchaseBills();
 		commonFunc.logoutUser();
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
+			commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+					"KowshikUserName");
 			commonFunc.navigateToFinancialPurchaseBill();
 			verifyPurchaseBillApprovalStatus();
 			flag = commonFunc.logoutUser();
@@ -4881,8 +4881,8 @@ public class PurchaseBillsFunctions {
 	 */
 	public void DomesticUnregisteredSupplierWithLocalFreightGST(String SubvouType, String PurchaseRef, String Location,
 			String Prefix, String CustomerName, String Bills, String Glaccount, String UnitCost, String Hsncode) {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -4897,8 +4897,8 @@ public class PurchaseBillsFunctions {
 		verifyWaitingForApprovalForPurchaseBills();
 		commonFunc.logoutUser();
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
+			commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+					"KowshikUserName");
 			commonFunc.navigateToFinancialPurchaseBill();
 			verifyPurchaseBillApprovalStatus();
 			flag = commonFunc.logoutUser();
@@ -4924,8 +4924,8 @@ public class PurchaseBillsFunctions {
 	public void DomesticUnRegisteredSupplierWithSEZUnitGST(String SubvouType, String PurchaseRef, String Location,
 			String Prefix, String CustomerName, String Bills, String Glaccount, String UnitCost, String Hsncode) {
 
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -4939,8 +4939,8 @@ public class PurchaseBillsFunctions {
 		verifyWaitingForApprovalForPurchaseBills();
 		commonFunc.logoutUser();
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
+			commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+					"KowshikUserName");
 			commonFunc.navigateToFinancialPurchaseBill();
 			verifyPurchaseBillApprovalStatus();
 			flag = commonFunc.logoutUser();
@@ -4966,8 +4966,8 @@ public class PurchaseBillsFunctions {
 			String Location, String Prefix, String CustomerName, String Bills, String Glaccount, String UnitCost,
 			String Hsncode) {
 
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -4981,8 +4981,8 @@ public class PurchaseBillsFunctions {
 		verifyWaitingForApprovalForPurchaseBills();
 		commonFunc.logoutUser();
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
+			commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+					"KowshikUserName");
 			commonFunc.navigateToFinancialPurchaseBill();
 			verifyPurchaseBillApprovalStatus();
 			flag = commonFunc.logoutUser();
@@ -5008,8 +5008,8 @@ public class PurchaseBillsFunctions {
 	public void DomesticCompositionSupplierWithLocalGST(String SubvouType, String PurchaseRef, String Location,
 			String Prefix, String CustomerName, String Bills, String Glaccount, String UnitCost, String Hsncode) {
 
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -5023,8 +5023,8 @@ public class PurchaseBillsFunctions {
 		verifyWaitingForApprovalForPurchaseBills();
 		commonFunc.logoutUser();
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
+			commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+					"KowshikUserName");
 			commonFunc.navigateToFinancialPurchaseBill();
 			verifyPurchaseBillApprovalStatus();
 			flag = commonFunc.logoutUser();
@@ -5051,8 +5051,8 @@ public class PurchaseBillsFunctions {
 	public void DomesticCompositionSupplierWithLocalFreightGST(String SubvouType, String PurchaseRef, String Location,
 			String Prefix, String CustomerName, String Bills, String Glaccount, String UnitCost, String Hsncode) {
 
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -5066,8 +5066,8 @@ public class PurchaseBillsFunctions {
 		verifyWaitingForApprovalForPurchaseBills();
 		commonFunc.logoutUser();
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
+			commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+					"KowshikUserName");
 			commonFunc.navigateToFinancialPurchaseBill();
 			verifyPurchaseBillApprovalStatus();
 			flag = commonFunc.logoutUser();
@@ -5093,8 +5093,8 @@ public class PurchaseBillsFunctions {
 	public void DomesticCompositionSupplierWithInterstateGST(String SubvouType, String PurchaseRef, String Location,
 			String Prefix, String CustomerName, String Bills, String Glaccount, String UnitCost, String Hsncode) {
 
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -5108,8 +5108,8 @@ public class PurchaseBillsFunctions {
 		verifyWaitingForApprovalForPurchaseBills();
 		commonFunc.logoutUser();
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
+			commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+					"KowshikUserName");
 			commonFunc.navigateToFinancialPurchaseBill();
 			verifyPurchaseBillApprovalStatus();
 			flag = commonFunc.logoutUser();
@@ -5135,8 +5135,8 @@ public class PurchaseBillsFunctions {
 	public void DomesticCompositionSupplierWithunionTerritoryGST(String SubvouType, String PurchaseRef, String Location,
 			String Prefix, String CustomerName, String Bills) {
 
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -5150,8 +5150,8 @@ public class PurchaseBillsFunctions {
 		verifyWaitingForApprovalForPurchaseBills();
 		commonFunc.logoutUser();
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
+			commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+					"KowshikUserName");
 			commonFunc.navigateToFinancialPurchaseBill();
 			verifyPurchaseBillApprovalStatus();
 			flag = commonFunc.logoutUser();
@@ -5173,8 +5173,8 @@ public class PurchaseBillsFunctions {
 	public void DomesticCasualpersonSupplierWithLocalFreightGST(String SubvouType, String PurchaseRef, String Location,
 			String Prefix, String CustomerName, String Bills) {
 
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -5188,8 +5188,8 @@ public class PurchaseBillsFunctions {
 		verifyWaitingForApprovalForPurchaseBills();
 		commonFunc.logoutUser();
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
+			commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+					"KowshikUserName");
 			commonFunc.navigateToFinancialPurchaseBill();
 			verifyPurchaseBillApprovalStatus();
 			flag = commonFunc.logoutUser();
@@ -5212,8 +5212,8 @@ public class PurchaseBillsFunctions {
 	public void DomesticCasualpersonSupplierWithInterstateGST(String SubvouType, String PurchaseRef, String Location,
 			String Prefix, String CustomerName, String Bills) {
 
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -5227,8 +5227,8 @@ public class PurchaseBillsFunctions {
 		verifyWaitingForApprovalForPurchaseBills();
 		commonFunc.logoutUser();
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
+			commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+					"KowshikUserName");
 			commonFunc.navigateToFinancialPurchaseBill();
 			verifyPurchaseBillApprovalStatus();
 			flag = commonFunc.logoutUser();
@@ -5252,8 +5252,8 @@ public class PurchaseBillsFunctions {
 	public void DomesticCasualpersonSupplierWithunionTerritoryGST(String SubvouType, String PurchaseRef,
 			String Location, String Prefix, String CustomerName, String Bills) {
 
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -5267,8 +5267,8 @@ public class PurchaseBillsFunctions {
 		verifyWaitingForApprovalForPurchaseBills();
 		commonFunc.logoutUser();
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
+			commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+					"KowshikUserName");
 			commonFunc.navigateToFinancialPurchaseBill();
 			verifyPurchaseBillApprovalStatus();
 			flag = commonFunc.logoutUser();
@@ -5291,8 +5291,8 @@ public class PurchaseBillsFunctions {
 	public void DomesticNonresidentSupplierWithLocalFreightGST(String SubvouType, String PurchaseRef, String Location,
 			String Prefix, String CustomerName, String Bills) {
 
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -5306,8 +5306,8 @@ public class PurchaseBillsFunctions {
 		verifyWaitingForApprovalForPurchaseBills();
 		commonFunc.logoutUser();
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
+			commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+					"KowshikUserName");
 			commonFunc.navigateToFinancialPurchaseBill();
 			verifyPurchaseBillApprovalStatus();
 			flag = commonFunc.logoutUser();
@@ -5329,8 +5329,8 @@ public class PurchaseBillsFunctions {
 	public void DomesticNonresidentSupplierWithInterstateGST(String SubvouType, String PurchaseRef, String Location,
 			String Prefix, String CustomerName, String Bills) {
 
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -5343,8 +5343,8 @@ public class PurchaseBillsFunctions {
 		verifyWaitingForApprovalForPurchaseBills();
 		commonFunc.logoutUser();
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
+			commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+					"KowshikUserName");
 			commonFunc.navigateToFinancialPurchaseBill();
 			verifyPurchaseBillApprovalStatus();
 			flag = commonFunc.logoutUser();
@@ -5367,8 +5367,8 @@ public class PurchaseBillsFunctions {
 	public void DomesticNonresidentSupplierWithunionTerritoryGST(String SubvouType, String PurchaseRef, String Location,
 			String Prefix, String CustomerName, String Bills) {
 
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -5382,8 +5382,8 @@ public class PurchaseBillsFunctions {
 		verifyWaitingForApprovalForPurchaseBills();
 		commonFunc.logoutUser();
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
+			commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+					"KowshikUserName");
 			commonFunc.navigateToFinancialPurchaseBill();
 			verifyPurchaseBillApprovalStatus();
 			flag = commonFunc.logoutUser();
@@ -5406,8 +5406,8 @@ public class PurchaseBillsFunctions {
 		}
 
 		verifyDirectPODomesticServiceSimilarUOMMultiple(webDB.getDataFromProperties("poSerPurbills"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBillForPendingPo(VariableHandler.getPONumber());
 		commonFunc.hardWait(2000);
@@ -5441,8 +5441,8 @@ public class PurchaseBillsFunctions {
 		}
 
 		verifyDirectPODomesticServiceSimilarUOMMultiple(webDB.getDataFromProperties("poSerPurbills"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBillForPendingPo(VariableHandler.getPONumber());
 		commonFunc.hardWait(2000);
@@ -5480,8 +5480,8 @@ public class PurchaseBillsFunctions {
 		}
 
 		verifyDirectPODomesticServiceSimilarUOMMultiple(webDB.getDataFromProperties("poSerPurbills"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBillForPendingPo(VariableHandler.getPONumber());
 		commonFunc.hardWait(2000);
@@ -5519,8 +5519,8 @@ public class PurchaseBillsFunctions {
 		}
 
 		verifyDirectPODomesticServiceSimilarUOMMultiple(webDB.getDataFromProperties("poSerPurbills"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBillForPendingPo(VariableHandler.getPONumber());
 		commonFunc.hardWait(2000);
@@ -5553,8 +5553,8 @@ public class PurchaseBillsFunctions {
 		}
 		verifyDirectPODomesticServiceSimilarUOMMultipleForInterState(
 				webDB.getDataFromProperties("PoSerPurBillsInterstate"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBillForPendingPo(VariableHandler.getPONumber());
 		commonFunc.hardWait(2000);
@@ -5586,8 +5586,8 @@ public class PurchaseBillsFunctions {
 		}
 		verifyDirectPODomesticServiceSimilarUOMMultipleForInterState(
 				webDB.getDataFromProperties("PoSerPurBillsInterstate"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBillForPendingPo(VariableHandler.getPONumber());
 		commonFunc.hardWait(2000);
@@ -5626,8 +5626,8 @@ public class PurchaseBillsFunctions {
 		}
 		verifyDirectPODomesticServiceSimilarUOMMultipleForInterState(
 				webDB.getDataFromProperties("PoSerPurBillsInterstate"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBillForPendingPo(VariableHandler.getPONumber());
 		commonFunc.hardWait(2000);
@@ -5667,8 +5667,8 @@ public class PurchaseBillsFunctions {
 		}
 
 		verifyDirectPODomesticServiceSimilarUOMMultipleLocalUnregrd(webDB.getDataFromProperties("poSerPurbills"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBillForPendingPo(VariableHandler.getPONumber());
 		commonFunc.hardWait(2000);
@@ -5701,8 +5701,8 @@ public class PurchaseBillsFunctions {
 		}
 
 		verifyDirectPODomesticServiceSimilarUOMMultipleLocalUnregrd(webDB.getDataFromProperties("poSerPurbills"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBillForPendingPo(VariableHandler.getPONumber());
 		commonFunc.hardWait(2000);
@@ -5740,8 +5740,8 @@ public class PurchaseBillsFunctions {
 		}
 
 		verifyDirectPODomesticServiceSimilarUOMMultipleLocalUnregrd(webDB.getDataFromProperties("poSerPurbills"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBillForPendingPo(VariableHandler.getPONumber());
 		commonFunc.hardWait(2000);
@@ -5777,8 +5777,8 @@ public class PurchaseBillsFunctions {
 			Billno = "100";
 		}
 		verifyDirectPODomesticServiceSimilarUOMMultipleLocalUnregrd(webDB.getDataFromProperties("poSerPurbills"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBillForPendingPo(VariableHandler.getPONumber());
 		commonFunc.hardWait(2000);
@@ -5816,8 +5816,8 @@ public class PurchaseBillsFunctions {
 			Billno = "100";
 		}
 		verifyDirectPODomesticServiceSimilarUOMMultipleLocalGetDocument(webDB.getDataFromProperties("poSerPurbills"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -5850,8 +5850,8 @@ public class PurchaseBillsFunctions {
 			Billno = "100";
 		}
 		verifyDirectPODomesticServiceSimilarUOMMultipleLocalGetDocument(webDB.getDataFromProperties("poSerPurbills"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -5888,8 +5888,8 @@ public class PurchaseBillsFunctions {
 			Billno = "100";
 		}
 		verifyDirectPODomesticServiceSimilarUOMMultipleLocalGetDocument(webDB.getDataFromProperties("poSerPurbills"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -5928,8 +5928,8 @@ public class PurchaseBillsFunctions {
 			Billno = "100";
 		}
 		verifyDirectPODomesticServiceSimilarUOMMultipleLocalGetDocument(webDB.getDataFromProperties("poSerPurbills"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -5969,8 +5969,8 @@ public class PurchaseBillsFunctions {
 			Billno = "100";
 		}
 		verifyDirectPODomesticServiceSimilarUOMMultipleLocalGetDocument(webDB.getDataFromProperties("poSerPurbills"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -6008,8 +6008,8 @@ public class PurchaseBillsFunctions {
 		}
 		verifyDirectPODomesticServiceSimilarUOMMultipleInterststeGetDocument(
 				webDB.getDataFromProperties("PoSerPurBillsInterstate"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -6043,8 +6043,8 @@ public class PurchaseBillsFunctions {
 		}
 		verifyDirectPODomesticServiceSimilarUOMMultipleInterststeGetDocument(
 				webDB.getDataFromProperties("PoSerPurBillsInterstate"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -6084,8 +6084,8 @@ public class PurchaseBillsFunctions {
 		}
 		verifyDirectPODomesticServiceSimilarUOMMultipleInterststeGetDocument(
 				webDB.getDataFromProperties("PoSerPurBillsInterstate"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -6126,8 +6126,8 @@ public class PurchaseBillsFunctions {
 		}
 		verifyDirectPODomesticServiceSimilarUOMMultipleUnregdLocalGetDocument(
 				webDB.getDataFromProperties("poSerPurbills"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -6161,8 +6161,8 @@ public class PurchaseBillsFunctions {
 		}
 		verifyDirectPODomesticServiceSimilarUOMMultipleUnregdLocalGetDocument(
 				webDB.getDataFromProperties("poSerPurbills"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -6201,8 +6201,8 @@ public class PurchaseBillsFunctions {
 		}
 		verifyDirectPODomesticServiceSimilarUOMMultipleUnregdLocalGetDocument(
 				webDB.getDataFromProperties("poSerPurbills"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -6245,8 +6245,8 @@ public class PurchaseBillsFunctions {
 		}
 		verifyDirectPODomesticServiceSimilarUOMMultipleUnregdLocalGetDocument(
 				webDB.getDataFromProperties("poSerPurbills"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -6287,8 +6287,8 @@ public class PurchaseBillsFunctions {
 		}
 		verifyDirectPODomesticServiceSimilarUOMMultipleUnregdLocalGetDocument(
 				webDB.getDataFromProperties("poSerPurbills"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -6328,8 +6328,8 @@ public class PurchaseBillsFunctions {
 		}
 		verifyDirectPODomesticServiceSimilarUOMMultipleUnregdInterstateGetDocument(
 				webDB.getDataFromProperties("PoSerPurBillsInterstate"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -6364,8 +6364,8 @@ public class PurchaseBillsFunctions {
 		}
 		verifyDirectPODomesticServiceSimilarUOMMultipleUnregdInterstateGetDocument(
 				webDB.getDataFromProperties("PoSerPurBillsInterstate"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -6406,8 +6406,8 @@ public class PurchaseBillsFunctions {
 		}
 		verifyDirectPODomesticServiceSimilarUOMMultipleUnregdInterstateGetDocument(
 				webDB.getDataFromProperties("PoSerPurBillsInterstate"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -6447,8 +6447,8 @@ public class PurchaseBillsFunctions {
 	public void RegisteredSupplierwithLocalGSTPurchaseDirectStockitemAndserviceitemAndchargeitem(String SubvouType,
 			String PurchaseRef, String Location, String Prefix, String CustomerName, String Bills) {
 
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -6479,8 +6479,8 @@ public class PurchaseBillsFunctions {
 	public void RegisteredSupplierwithLocalGSTPurchaseDirectWithExpensesAccountStockitemserviceitemAndchargeitem(
 			String SubvouType, String PurchaseRef, String Location, String Prefix, String CustomerName, String Bills) {
 
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -6511,8 +6511,8 @@ public class PurchaseBillsFunctions {
 	public void RegisteredSupplierwithLocalGSTAllowIGSTtaxPurchaseDirectStockitemserviceitemAndchargeitem(
 			String SubvouType, String PurchaseRef, String Location, String Prefix, String CustomerName, String Bills) {
 
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -6547,8 +6547,8 @@ public class PurchaseBillsFunctions {
 	public void RegisteredSupplierwithLocalGSTAllowIGSTtaxPurchaseDirectandExpensesAccountStockitemserviceitemAndchargeitem(
 			String SubvouType, String PurchaseRef, String Location, String Prefix, String CustomerName, String Bills) {
 
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -6583,8 +6583,8 @@ public class PurchaseBillsFunctions {
 	public void RegisteredSupplierwithLocalGSTAllowRCMtaxPurchaseDirectStockitemserviceitemAndchargeitem(
 			String SubvouType, String PurchaseRef, String Location, String Prefix, String CustomerName, String Bills) {
 
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -6619,8 +6619,8 @@ public class PurchaseBillsFunctions {
 	public void RegisteredSupplierwithLocalGSTAllowRCMtaxPurchaseDirectandExpensesAccountStockitemserviceitemAndchargeitem(
 			String SubvouType, String PurchaseRef, String Location, String Prefix, String CustomerName, String Bills) {
 
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -6656,8 +6656,8 @@ public class PurchaseBillsFunctions {
 	public void RegisteredSupplierwithInterstateGSTPurchaseDirectStockitemserviceitemAndchargeitem(String SubvouType,
 			String PurchaseRef, String Location, String Prefix, String CustomerName, String Bills) {
 
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -6690,8 +6690,8 @@ public class PurchaseBillsFunctions {
 	public void RegisteredSupplierwithInterstateGSTPurchaseDirectandExpensesAccountStockitemserviceitemAndchargeitem(
 			String SubvouType, String PurchaseRef, String Location, String Prefix, String CustomerName, String Bills) {
 
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -6727,8 +6727,8 @@ public class PurchaseBillsFunctions {
 	public void RegisteredSupplierwithInterstateGSTAllowRCMtaxPurchaseDirectStockitemserviceitemAndchargeitem(
 			String SubvouType, String PurchaseRef, String Location, String Prefix, String CustomerName, String Bills) {
 
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -6764,8 +6764,8 @@ public class PurchaseBillsFunctions {
 	public void RegisteredSupplierwithInterstateGSTAllowRCMtaxPurchaseDirectndExpensesAccountStockitemserviceitemAndchargeitem(
 			String SubvouType, String PurchaseRef, String Location, String Prefix, String CustomerName, String Bills) {
 
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -6801,8 +6801,8 @@ public class PurchaseBillsFunctions {
 	public void UnregisteredSupplierwithLocalGSTPurchaseDirectStockitemserviceitemAndchargeitem(String SubvouType,
 			String PurchaseRef, String Location, String Prefix, String CustomerName, String Bills) {
 
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -6834,8 +6834,8 @@ public class PurchaseBillsFunctions {
 	public void UnregisteredSupplierwithLocalGSTPurchaseDirectandExpensesAccountStockitemserviceitemAndchargeitem(
 			String SubvouType, String PurchaseRef, String Location, String Prefix, String CustomerName, String Bills) {
 
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -6866,8 +6866,8 @@ public class PurchaseBillsFunctions {
 	public void UnregisteredSupplierwithLocalGSTAllowIGSTtaxPurchaseDirectStockitemserviceitemAndchargeitem(
 			String SubvouType, String PurchaseRef, String Location, String Prefix, String CustomerName, String Bills) {
 
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -6902,8 +6902,8 @@ public class PurchaseBillsFunctions {
 	public void UnregisteredSupplierwithLocalGSTAllowIGSTtaxPurchaseDirectandExpensesAccountStockitemserviceitemAndchargeitem(
 			String SubvouType, String PurchaseRef, String Location, String Prefix, String CustomerName, String Bills) {
 
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -6938,8 +6938,8 @@ public class PurchaseBillsFunctions {
 	public void UnregisteredSupplierwithInterstateGSTPurchaseDirectStockitemserviceitemAndchargeitem(String SubvouType,
 			String PurchaseRef, String Location, String Prefix, String CustomerName, String Bills) {
 
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -6972,8 +6972,8 @@ public class PurchaseBillsFunctions {
 	public void UnregisteredSupplierwithInterstateGSTPurchaseDirectandExpensesAccountStockitemserviceitemAndchargeitem(
 			String SubvouType, String PurchaseRef, String Location, String Prefix, String CustomerName, String Bills) {
 
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -7003,8 +7003,8 @@ public class PurchaseBillsFunctions {
 	public void DomesticRegisteredSupplierWithLocalFreightGST(String SubvouType, String PurchaseRef, String Location,
 			String Prefix, String CustomerName, String Bills) {
 
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -7036,8 +7036,8 @@ public class PurchaseBillsFunctions {
 	public void DomesticRegisteredSupplierWithSEZUnitGST(String SubvouType, String PurchaseRef, String Location,
 			String Prefix, String CustomerName, String Bills) {
 
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -7069,8 +7069,8 @@ public class PurchaseBillsFunctions {
 	public void DomesticUnregisteredSupplierWithLocalFreightGST1(String SubvouType, String PurchaseRef, String Location,
 			String Prefix, String CustomerName, String Bills) {
 
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -7101,8 +7101,8 @@ public class PurchaseBillsFunctions {
 	public void DomesticUnRegisteredSupplierWithSEZUnitGST1(String SubvouType, String PurchaseRef, String Location,
 			String Prefix, String CustomerName, String Bills) {
 
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -7131,8 +7131,8 @@ public class PurchaseBillsFunctions {
 	public void DomesticCompositionSupplierWithLocalGST(String SubvouType, String PurchaseRef, String Location,
 			String Prefix, String CustomerName, String Bills) {
 
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -7162,8 +7162,8 @@ public class PurchaseBillsFunctions {
 	public void DomesticCompositionSupplierWithLocalFreightGST1(String SubvouType, String PurchaseRef, String Location,
 			String Prefix, String CustomerName, String Bills) {
 
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -7193,8 +7193,8 @@ public class PurchaseBillsFunctions {
 	public void DomesticCompositionSupplierWithInterstateGST1(String SubvouType, String PurchaseRef, String Location,
 			String Prefix, String CustomerName, String Bills) {
 
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -7224,8 +7224,8 @@ public class PurchaseBillsFunctions {
 	public void DomesticCasualpersonSupplierWithLocalGST(String SubvouType, String PurchaseRef, String Location,
 			String Prefix, String CustomerName, String Bills) {
 
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -7255,8 +7255,8 @@ public class PurchaseBillsFunctions {
 	public void DomesticCasualpersonSupplierWithLocalFreightGST1(String SubvouType, String PurchaseRef, String Location,
 			String Prefix, String CustomerName, String Bills) {
 
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -7286,8 +7286,8 @@ public class PurchaseBillsFunctions {
 	public void DomesticCasualpersonSupplierWithInterstateGST1(String SubvouType, String PurchaseRef, String Location,
 			String Prefix, String CustomerName, String Bills) {
 
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -7316,8 +7316,8 @@ public class PurchaseBillsFunctions {
 	public void DomesticNonresidentSupplierWithLocalGST(String SubvouType, String PurchaseRef, String Location,
 			String Prefix, String CustomerName, String Bills) {
 
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -7347,8 +7347,8 @@ public class PurchaseBillsFunctions {
 	public void DomesticNonresidentSupplierWithLocalFreightGST1(String SubvouType, String PurchaseRef, String Location,
 			String Prefix, String CustomerName, String Bills) {
 
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -7378,8 +7378,8 @@ public class PurchaseBillsFunctions {
 	public void DomesticNonresidentSupplierWithInterstateGST1(String SubvouType, String PurchaseRef, String Location,
 			String Prefix, String CustomerName, String Bills) {
 
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -7409,8 +7409,8 @@ public class PurchaseBillsFunctions {
 	public void DomesticRegisteredSupplierWithunionTerritoryGST(String SubvouType, String PurchaseRef, String Location,
 			String Prefix, String CustomerName, String Bills) {
 
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -7440,8 +7440,8 @@ public class PurchaseBillsFunctions {
 	public void DomesticUnregisteredSupplierWithunionTerritoryGST1(String SubvouType, String PurchaseRef,
 			String Location, String Prefix, String CustomerName, String Bills) {
 
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -7470,8 +7470,8 @@ public class PurchaseBillsFunctions {
 	public void DomesticCompositionSupplierWithunionTerritoryGST1(String SubvouType, String PurchaseRef,
 			String Location, String Prefix, String CustomerName, String Bills) {
 
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -7501,8 +7501,8 @@ public class PurchaseBillsFunctions {
 	public void DomesticCasualpersonSupplierWithunionTerritoryGST1(String SubvouType, String PurchaseRef,
 			String Location, String Prefix, String CustomerName, String Bills) {
 
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -7532,8 +7532,8 @@ public class PurchaseBillsFunctions {
 	public void DomesticNonresidentSupplierWithunionTerritoryGST1(String SubvouType, String PurchaseRef,
 			String Location, String Prefix, String CustomerName, String Bills) {
 
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -7562,8 +7562,8 @@ public class PurchaseBillsFunctions {
 	public void unregisteredSupplierimportedwithoutGST(String SubvouType, String PurchaseRef, String Location,
 			String Prefix, String CustomerName, String Bills) {
 
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -7592,8 +7592,8 @@ public class PurchaseBillsFunctions {
 	public void unregisteredSupplierimportedandexpensesaccountwithoutGST2(String SubvouType, String PurchaseRef,
 			String Location, String Prefix, String CustomerName, String Bills) {
 
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -7623,8 +7623,8 @@ public class PurchaseBillsFunctions {
 	public void unregisteredSupplierimportedwithoutGST1(String SubvouType, String PurchaseRef, String Location,
 			String Prefix, String CustomerName, String Bills) {
 
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -7654,8 +7654,8 @@ public class PurchaseBillsFunctions {
 	public void unregisteredSupplierimportedandexpensesaccountwithoutGST1(String SubvouType, String PurchaseRef,
 			String Location, String Prefix, String CustomerName, String Bills) {
 
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -7685,8 +7685,8 @@ public class PurchaseBillsFunctions {
 	public void unregisteredSupplierImportWithGST(String SubvouType, String PurchaseRef, String Location, String Prefix,
 			String CustomerName, String Bills) {
 
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -7717,8 +7717,8 @@ public class PurchaseBillsFunctions {
 	public void nonresidentSupplierimportedandexpensesaccountwithoutGST(String SubvouType, String PurchaseRef,
 			String Location, String Prefix, String CustomerName, String Bills) {
 
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -7754,8 +7754,8 @@ public class PurchaseBillsFunctions {
 		addNewRefPaymentsAgainstTotheParty(commonFunc.getDataFromTestDataSheet("BillsBank"),
 				commonFunc.getDataFromTestDataSheet("PayAmount1"));
 		clickPostButtonApprovalRecordBankPayments1();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -7794,8 +7794,8 @@ public class PurchaseBillsFunctions {
 				commonFunc.getDataFromTestDataSheet("PayAmount1"));
 		clickPostButtonApprovalRecordBankPayments1();
 
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -7838,8 +7838,8 @@ public class PurchaseBillsFunctions {
 				commonFunc.getDataFromTestDataSheet("PayAmount1"));
 		clickPostButtonApprovalRecordBankPayments1();
 
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -7882,8 +7882,8 @@ public class PurchaseBillsFunctions {
 		addNewRefPaymentsAgainstTotheParty(commonFunc.getDataFromTestDataSheet("BillsBank"),
 				commonFunc.getDataFromTestDataSheet("PayAmount1"));
 		clickPostButtonApprovalRecordBankPayments1();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -7921,8 +7921,8 @@ public class PurchaseBillsFunctions {
 				commonFunc.getDataFromTestDataSheet("PayAmount1"));
 		clickPostButtonApprovalRecordBankPayments();
 
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -7965,8 +7965,8 @@ public class PurchaseBillsFunctions {
 				commonFunc.getDataFromTestDataSheet("PayAmount1"));
 		clickPostButtonApprovalRecordBankPayments1();
 
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -8003,8 +8003,8 @@ public class PurchaseBillsFunctions {
 				commonFunc.getDataFromTestDataSheet("PayAmount1"));
 		clickPostButtonApprovalRecordBankPayments1();
 
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -8046,8 +8046,8 @@ public class PurchaseBillsFunctions {
 				commonFunc.getDataFromTestDataSheet("PayAmount1"));
 		clickPostButtonApprovalRecordBankPayments1();
 
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -8086,8 +8086,8 @@ public class PurchaseBillsFunctions {
 		enterRealizedAmountInHeader(commonFunc.getDataFromTestDataSheet("RealizedAmount"));
 		clickPostButtonApprovalRecordBankPayments1();
 
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
 		insertPartyInPurchaseBills(CustomerName, Bills);
@@ -8111,8 +8111,8 @@ public class PurchaseBillsFunctions {
 	 */
 	public void DomesticRegisteredSupplierWithTDSExemptedwithTdsApplyonBillQty() throws Exception {
 		poToGrnProccedWithPurchaseBillsForRegrd();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber());
 		closeExpandButtonDirect();
@@ -8135,8 +8135,8 @@ public class PurchaseBillsFunctions {
 	 */
 	public void DomesticUnregisteredsupplierWithTDSExemptedwithApplyBillQty() throws Exception {
 		poToGrnProccedWithPurchaseBillsForUnregrd();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber());
 		closeExpandButtonDirect();
@@ -8160,8 +8160,8 @@ public class PurchaseBillsFunctions {
 	public void DomesticRegisteredSupplierWithTDSSingleUndersection() throws Exception {
 
 		poToGrnProccedWithPurchaseBillsForRegrd();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber());
 		closeExpandButtonDirect();
@@ -8183,8 +8183,8 @@ public class PurchaseBillsFunctions {
 	public void DomesticUnregisteredsupplierWithTDSSingleUndersection() throws Exception {
 
 		poToGrnProccedWithPurchaseBillsForUnregrd();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber());
 		closeExpandButtonDirect();
@@ -8206,8 +8206,8 @@ public class PurchaseBillsFunctions {
 	public void DomesticRegisteredSupplierWithTDSMultiUndersection() throws Exception {
 
 		poToGrnProccedWithPurchaseBillsForRegrd();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber());
 		closeExpandButtonDirect();
@@ -8228,8 +8228,8 @@ public class PurchaseBillsFunctions {
 	public void DomesticUnregisteredsupplierWithTDSMultiUndersection() throws Exception {
 
 		poToGrnProccedWithPurchaseBillsForUnregrd();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber());
 		closeExpandButtonDirect();
@@ -8250,8 +8250,8 @@ public class PurchaseBillsFunctions {
 	public void DomesticRegisteredSupplierWithAdvanceTDSsingleundersectionSinglePO() throws Exception {
 		poToGrnProccedWithPurchaseBillsForRegrdForAdvance();
 		// bankPaymentRecordOfAgainstPo();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber());
 		closeExpandButtonDirect();
@@ -8274,8 +8274,8 @@ public class PurchaseBillsFunctions {
 	 */
 	public void DomesticRegisteredSupplierWithAdvanceTDSMultiundersectionSinglePO() throws Exception {
 		poToGrnProccedWithPurchaseBillsForRegrdForAdvanceforMultiSection();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber());
 		closeExpandButtonDirect();
@@ -8297,8 +8297,8 @@ public class PurchaseBillsFunctions {
 	 */
 	public void DomesticUnregisteredsupplierWithAdvanceTDSsingleundersectionSinglePO() throws Exception {
 		poToGrnProccedWithPurchaseBillsForRegrdForAdvanceForUnregrd();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber());
 		closeExpandButtonDirect();
@@ -8321,8 +8321,8 @@ public class PurchaseBillsFunctions {
 	 */
 	public void DomesticUnregisteredsupplierWithAdvanceTDSMultiundersectionSinglePO() throws Exception {
 		poToGrnProccedWithPurchaseBillsForRegrdForAdvanceForUnregrd();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber());
 		closeExpandButtonDirect();
@@ -8346,8 +8346,8 @@ public class PurchaseBillsFunctions {
 	public void DomesticRegisteredSupplierWithAdvanceTDSsingleundersectionSinglePOwithSingleNewreference()
 			throws Exception {
 		poToGrnProccedWithPurchaseBillsForRegrdForAdvanceWithNewRef();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber());
 		closeExpandButtonDirect();
@@ -8371,8 +8371,8 @@ public class PurchaseBillsFunctions {
 	public void DomesticRegisteredSupplierWithAdvanceTDSMultiundersectionSinglePOwithSingleNewreference()
 			throws Exception {
 		poToGrnProccedWithPurchaseBillsForRegrdForAdvanceWithNewRefMultiTds();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber());
 		closeExpandButtonDirect();
@@ -8395,8 +8395,8 @@ public class PurchaseBillsFunctions {
 	public void DomesticUnregisteredsupplierWithAdvanceTDSsingleundersectionSinglePOwithSingleNewreference()
 			throws Exception {
 		poToGrnProccedWithPurchaseBillsForRegrdForAdvanceForUnregrdWithNewRefSingleSection();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber());
@@ -8420,8 +8420,8 @@ public class PurchaseBillsFunctions {
 	public void DomesticUnregisteredsupplierWithAdvanceTDSMultiundersectionSinglePOwithSingleNewreference()
 			throws Exception {
 		poToGrnProccedWithPurchaseBillsForUnRegrdForAdvanceWithNewRefMultiTds();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber());
@@ -8445,8 +8445,8 @@ public class PurchaseBillsFunctions {
 	public void DomesticRegisteredSupplierWithAdvanceTDSsingleundersectionSinglePOwithmultiNewreference()
 			throws Exception {
 		poToGrnProccedWithPurchaseBillsForRegrdForAdvanceWithNewRefinMultiRef();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber());
@@ -8471,8 +8471,8 @@ public class PurchaseBillsFunctions {
 			throws Exception {
 
 		poToGrnProccedWithPurchaseBillsForRegrdForAdvanceWithNewRefinMultiRef();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				"KowshikUserName");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber());
 		closeExpandButtonDirect();
@@ -8857,8 +8857,8 @@ public class PurchaseBillsFunctions {
 	public void verifyPurchaseBillsAgainstPurchaseBillsForAdjustmentAndGetGLAcct(String BankName, String Currency,
 			String SheetName, String Supplier) {
 
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("AdminUsername"));
+		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+				System.getProperty("KowshikUserName"));
 		SubcontractPurchasebillFunc.getSupplierGLAcctFromDB(Supplier);
 		commonFunc.navigateToFinancialPaymentReceipt();
 		BPFunc.clickAddButtonInPaymentsRecipts();
