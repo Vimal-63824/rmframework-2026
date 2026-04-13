@@ -570,8 +570,8 @@ public class BankPaymentFunctions {
 	 * @return
 	 */
 	public boolean CreateBankPaymentSingleBillWithNewRef(String SheetName) {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("AdminUsername"));
+		commonFunc.validCommonLogin(System.getProperty("HKFinUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("HKFinUsername"));
 		commonFunc.navigateToFinancialPaymentReceipt();
 		clickAddButtonInPaymentsRecipts();
 		createBankPaymentEntry(commonFunc.getDataFromTestDataSheet("BankDocMode"),
@@ -1380,8 +1380,8 @@ public class BankPaymentFunctions {
 	 * @param SheetName
 	 */
 	public void BPThroughAddButton(String SheetName, String Currency, String BankName) {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("AdminUsername"));
+		commonFunc.validCommonLogin(System.getProperty("HKFinUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("HKFinUsername"));
 		commonFunc.navigateToFinancialPaymentReceipt();
 		clickAddButtonInPaymentsRecipts();
 		createBankPaymentEntry(commonFunc.getDataFromTestDataSheet("BankDocMode"), BankName, Today,
@@ -1512,8 +1512,8 @@ public class BankPaymentFunctions {
 	 * @param BankName
 	 */
 	public void BPThroughGetDocument(String SheetName, String Currency, String BankName) {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("AdminUsername"));
+		commonFunc.validCommonLogin(System.getProperty("HKFinUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("HKFinUsername"));
 		commonFunc.navigateToFinancialPaymentReceipt();
 		clickAddButtonInPaymentsRecipts();
 		createBankPaymentEntry(commonFunc.getDataFromTestDataSheet("BankDocMode"), BankName, Today,
@@ -1629,8 +1629,8 @@ public class BankPaymentFunctions {
 	 * @param BankName
 	 */
 	public void BPThroughGetDocumentMPSI(String SheetName, String Currency, String BankName) {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("AdminUsername"));
+		commonFunc.validCommonLogin(System.getProperty("HKFinUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("HKFinUsername"));
 		commonFunc.navigateToFinancialPaymentReceipt();
 		clickAddButtonInPaymentsRecipts();
 		createBankPaymentEntry(commonFunc.getDataFromTestDataSheet("BankDocMode"), BankName, Today,
@@ -1737,8 +1737,8 @@ public class BankPaymentFunctions {
 	 * @param BankName
 	 */
 	public void BPThroughPendingDocs(String CreationType, String SheetName, String Currency, String BankName) {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("AdminUsername"));
+		commonFunc.validCommonLogin(System.getProperty("HKFinUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("HKFinUsername"));
 		commonFunc.navigateToFinancialPaymentReceipt();
 		clickPendingCRDocsButton();
 		clickPendingPayablesButtonInPendCRDocs();
@@ -1850,8 +1850,8 @@ public class BankPaymentFunctions {
 	 * @param BankName
 	 */
 	public void BPThroughPendingDocsMPSI(String CreationType, String SheetName, String Currency, String BankName) {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("AdminUsername"));
+		commonFunc.validCommonLogin(System.getProperty("HKFinUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("HKFinUsername"));
 		commonFunc.navigateToFinancialPaymentReceipt();
 		clickPendingCRDocsButton();
 		clickPendingPayablesButtonInPendCRDocs();
@@ -1952,8 +1952,8 @@ public class BankPaymentFunctions {
 	 * @param BankName
 	 */
 	public void BPThroughGetDocumentMPMB(String SheetName, String Currency, String BankName) {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("AdminUsername"));
+		commonFunc.validCommonLogin(System.getProperty("HKFinUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("HKFinUsername"));
 		commonFunc.navigateToFinancialPaymentReceipt();
 		clickAddButtonInPaymentsRecipts();
 		createBankPaymentEntry(commonFunc.getDataFromTestDataSheet("BankDocMode"), BankName, Today,
@@ -2056,8 +2056,8 @@ public class BankPaymentFunctions {
 	 * @param BankName
 	 */
 	public void BPThroughPendingDocsMPMB(String CreationType, String SheetName, String Currency, String BankName) {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("AdminUsername"));
+		commonFunc.validCommonLogin(System.getProperty("HKFinUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("HKFinUsername"));
 		commonFunc.navigateToFinancialPaymentReceipt();
 		clickPendingCRDocsButton();
 		clickPendingPayablesButtonInPendCRDocs();
@@ -2441,8 +2441,8 @@ public class BankPaymentFunctions {
 	 * @param SheetName
 	 */
 	public void BPThroughAddButtonMultiPartySingleBills(String SheetName, String Currency, String BankName) {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("AdminUsername"));
+		commonFunc.validCommonLogin(System.getProperty("HKFinUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("HKFinUsername"));
 		commonFunc.navigateToFinancialPaymentReceipt();
 		clickAddButtonInPaymentsRecipts();
 		createBankPaymentEntry(commonFunc.getDataFromTestDataSheet("BankDocMode"), BankName, Today,
@@ -2634,8 +2634,8 @@ public class BankPaymentFunctions {
 	 * @param SheetName
 	 */
 	public void BPThroughAddButtonMultiPartyMultiBills(String SheetName, String Currency, String BankName) {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("AdminUsername"));
+		commonFunc.validCommonLogin(System.getProperty("HKFinUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("HKFinUsername"));
 		commonFunc.navigateToFinancialPaymentReceipt();
 		clickAddButtonInPaymentsRecipts();
 		createBankPaymentEntry(commonFunc.getDataFromTestDataSheet("BankDocMode"), BankName, Today,
@@ -3034,8 +3034,8 @@ public class BankPaymentFunctions {
 	 * @param BankName
 	 */
 	public void BPThroughGetDocumentWithNewReference(String SheetName, String Currency, String BankName) {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("AdminUsername"));
+		commonFunc.validCommonLogin(System.getProperty("HKFinUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("HKFinUsername"));
 		commonFunc.navigateToFinancialPaymentReceipt();
 		clickAddButtonInPaymentsRecipts();
 		createBankPaymentEntry(commonFunc.getDataFromTestDataSheet("BankDocMode"), BankName, Today,
@@ -3164,8 +3164,8 @@ public class BankPaymentFunctions {
 
 	public void BPThroughPendingDocsWithNewReference(String CreationType, String SheetName, String Currency,
 			String BankName) {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("AdminUsername"));
+		commonFunc.validCommonLogin(System.getProperty("HKFinUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("HKFinUsername"));
 		commonFunc.navigateToFinancialPaymentReceipt();
 		clickPendingCRDocsButton();
 		clickPendingPayablesButtonInPendCRDocs();
@@ -3328,8 +3328,8 @@ public class BankPaymentFunctions {
 	 * @param SheetName
 	 */
 	public void BPThroughAddButtonWithNewRef(String SheetName, String Currency, String BankName) {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("AdminUsername"));
+		commonFunc.validCommonLogin(System.getProperty("HKFinUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("HKFinUsername"));
 		commonFunc.navigateToFinancialPaymentReceipt();
 		clickAddButtonInPaymentsRecipts();
 		createBankPaymentEntry(commonFunc.getDataFromTestDataSheet("BankDocMode"), BankName, Today,
@@ -3531,8 +3531,8 @@ public class BankPaymentFunctions {
 	 * @throws IOException
 	 */
 	public void createPurchaseBillsFromPendingGRN(String DocumentNumber) {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("AdminUsername"));
+		commonFunc.validCommonLogin(System.getProperty("HKFinUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("HKFinUsername"));
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(DocumentNumber);
 		verifyCreateJournalAndPost();
@@ -3704,8 +3704,8 @@ public class BankPaymentFunctions {
 	 * @return
 	 */
 	public boolean BankReceiptThroughAddButton(String SheetName) {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("AdminUsername"));
+		commonFunc.validCommonLogin(System.getProperty("HKFinUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("HKFinUsername"));
 		commonFunc.navigateToFinancialPaymentReceipt();
 		clickAddButtonInPaymentsRecipts();
 		createBankPaymentEntry(commonFunc.getDataFromTestDataSheet("BankDocModeBR"),
@@ -4580,8 +4580,8 @@ public class BankPaymentFunctions {
 				Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeImportSupplierHK(SupplierID, GRNSheetName);
 			}
 		}
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("AdminUsername"));
+		commonFunc.validCommonLogin(System.getProperty("HKFinUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("HKFinUsername"));
 		commonFunc.navigateToFinancialPurchaseBill();
 		for (int i1 = 1; i1 <= 2; i1++) {
 			for (int i = 0; i < VariableHandler.getMultipleGRNDocs().size(); i++) {
@@ -4642,8 +4642,8 @@ public class BankPaymentFunctions {
 				Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeImportSupplierHK(SupplierID, GRNSheetName);
 			}
 		}
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("AdminUsername"));
+		commonFunc.validCommonLogin(System.getProperty("HKFinUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("HKFinUsername"));
 		commonFunc.navigateToFinancialPurchaseBill();
 		for (int i1 = 1; i1 <= 2; i1++) {
 			for (int i = 0; i < VariableHandler.getMultipleGRNDocs().size(); i++) {
@@ -4704,8 +4704,8 @@ public class BankPaymentFunctions {
 				Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeImportSupplierHK(SupplierID, GRNSheetName);
 			}
 		}
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("AdminUsername"));
+		commonFunc.validCommonLogin(System.getProperty("HKFinUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("HKFinUsername"));
 		commonFunc.navigateToFinancialPurchaseBill();
 		for (int i1 = 1; i1 <= 2; i1++) {
 			for (int i = 0; i < VariableHandler.getMultipleGRNDocs().size(); i++) {
@@ -4768,8 +4768,8 @@ public class BankPaymentFunctions {
 				Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeImportSupplierHK(SupplierID, GRNSheetName);
 			}
 		}
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("AdminUsername"));
+		commonFunc.validCommonLogin(System.getProperty("HKFinUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("HKFinUsername"));
 		commonFunc.navigateToFinancialPurchaseBill();
 		for (int i = 0; i < VariableHandler.getMultipleGRNDocs().size(); i++) {
 			String BillSeqNo = RandomStringUtils.randomNumeric(6);
@@ -4828,8 +4828,8 @@ public class BankPaymentFunctions {
 				Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeImportSupplierHK(SupplierID, GRNSheetName);
 			}
 		}
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("AdminUsername"));
+		commonFunc.validCommonLogin(System.getProperty("HKFinUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("HKFinUsername"));
 		commonFunc.navigateToFinancialPurchaseBill();
 		for (int i = 0; i < VariableHandler.getMultipleGRNDocs().size(); i++) {
 			String BillSeqNo = RandomStringUtils.randomNumeric(6);
@@ -4888,8 +4888,8 @@ public class BankPaymentFunctions {
 				Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeImportSupplierHK(SupplierID, GRNSheetName);
 			}
 		}
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("AdminUsername"));
+		commonFunc.validCommonLogin(System.getProperty("HKFinUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("HKFinUsername"));
 		commonFunc.navigateToFinancialPurchaseBill();
 		for (int i = 0; i < VariableHandler.getMultipleGRNDocs().size(); i++) {
 			String BillSeqNo = RandomStringUtils.randomNumeric(6);
@@ -4949,8 +4949,8 @@ public class BankPaymentFunctions {
 				Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeImportSupplierHK(SupplierID, GRNSheetName);
 			}
 		}
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("AdminUsername"));
+		commonFunc.validCommonLogin(System.getProperty("HKFinUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("HKFinUsername"));
 		commonFunc.navigateToFinancialPurchaseBill();
 		for (int i1 = 1; i1 <= 2; i1++) {
 			for (int i = 1; i <= VariableHandler.getMultipleGRNDocs().size(); i++) {
@@ -5020,8 +5020,8 @@ public class BankPaymentFunctions {
 				Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeImportSupplierHK(SupplierID, GRNSheetName);
 			}
 		}
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("AdminUsername"));
+		commonFunc.validCommonLogin(System.getProperty("HKFinUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("HKFinUsername"));
 		commonFunc.navigateToFinancialPurchaseBill();
 		for (int i1 = 1; i1 <= 2; i1++) {
 			for (int i = 1; i <= VariableHandler.getMultipleGRNDocs().size(); i++) {
@@ -5091,8 +5091,8 @@ public class BankPaymentFunctions {
 				Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeImportSupplierHK(SupplierID, GRNSheetName);
 			}
 		}
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("AdminUsername"));
+		commonFunc.validCommonLogin(System.getProperty("HKFinUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("HKFinUsername"));
 		commonFunc.navigateToFinancialPurchaseBill();
 		for (int i1 = 1; i1 <= 2; i1++) {
 			for (int i = 1; i <= VariableHandler.getMultipleGRNDocs().size(); i++) {
@@ -5164,8 +5164,8 @@ public class BankPaymentFunctions {
 				Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeImportSupplierHK(SupplierID, GRNSheetName);
 			}
 		}
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("AdminUsername"));
+		commonFunc.validCommonLogin(System.getProperty("HKFinUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("HKFinUsername"));
 		commonFunc.navigateToFinancialPurchaseBill();
 		for (int i1 = 0; i1 < 2; i1++) {
 			for (int i = 0; i < VariableHandler.getMultipleGRNDocs().size(); i++) {
@@ -5235,8 +5235,8 @@ public class BankPaymentFunctions {
 				Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeImportSupplierHK(SupplierID, GRNSheetName);
 			}
 		}
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("AdminUsername"));
+		commonFunc.validCommonLogin(System.getProperty("HKFinUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("HKFinUsername"));
 		commonFunc.navigateToFinancialPurchaseBill();
 		for (int i1 = 0; i1 < 2; i1++) {
 			for (int i = 0; i < VariableHandler.getMultipleGRNDocs().size(); i++) {
@@ -5308,8 +5308,8 @@ public class BankPaymentFunctions {
 				Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeImportSupplierHK(SupplierID, GRNSheetName);
 			}
 		}
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("AdminUsername"));
+		commonFunc.validCommonLogin(System.getProperty("HKFinUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("HKFinUsername"));
 		commonFunc.navigateToFinancialPurchaseBill();
 		for (int i1 = 0; i1 < 2; i1++) {
 			for (int i = 0; i < VariableHandler.getMultipleGRNDocs().size(); i++) {
@@ -5358,8 +5358,8 @@ public class BankPaymentFunctions {
 	 * @param Currency
 	 */
 	public void bankPaymentWithPostDatedCheque(String SheetName, String Currency) {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("AdminUsername"));
+		commonFunc.validCommonLogin(System.getProperty("HKFinUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("HKFinUsername"));
 		commonFunc.navigateToFinancialPaymentReceipt();
 		clickAddButtonInPaymentsRecipts();
 		createBankPaymentEntry(commonFunc.getDataFromTestDataSheet("BankDocMode"),
@@ -5486,8 +5486,8 @@ public class BankPaymentFunctions {
 	 * @return
 	 */
 	public void BankPaymentWithExpAndRevenueWithoutGST(String SheetName, String Currency, String BankName) {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("AdminUsername"));
+		commonFunc.validCommonLogin(System.getProperty("HKFinUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("HKFinUsername"));
 		commonFunc.navigateToFinancialPaymentReceipt();
 		clickAddButtonInPaymentsRecipts();
 		createBankPaymentEntry(commonFunc.getDataFromTestDataSheet("BankDocMode"), BankName, Today,
@@ -5608,8 +5608,8 @@ public class BankPaymentFunctions {
 	 * @return
 	 */
 	public void BankPaymentWithExpAndRevenueWithGST(String SheetName, String Currency) {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("AdminUsername"));
+		commonFunc.validCommonLogin(System.getProperty("HKFinUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("HKFinUsername"));
 		commonFunc.navigateToFinancialPaymentReceipt();
 		clickAddButtonInPaymentsRecipts();
 		createBankPaymentEntry(commonFunc.getDataFromTestDataSheet("BankDocMode"),
@@ -5853,8 +5853,8 @@ public class BankPaymentFunctions {
 	 * @return
 	 */
 	public void BankPaymentThroughGetDocumentWithCharges(String SheetName, String Currency, String BankName) {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("AdminUsername"));
+		commonFunc.validCommonLogin(System.getProperty("HKFinUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("HKFinUsername"));
 		commonFunc.navigateToFinancialPaymentReceipt();
 		clickAddButtonInPaymentsRecipts();
 		createBankPaymentEntry(commonFunc.getDataFromTestDataSheet("BankDocMode"), BankName, Today,
@@ -6043,8 +6043,8 @@ public class BankPaymentFunctions {
 	 * @return
 	 */
 	public void BankPaymentWithExpAndRevenueWithGSTAndTDS(String SheetName, String Currency) {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("AdminUsername"));
+		commonFunc.validCommonLogin(System.getProperty("HKFinUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("HKFinUsername"));
 		commonFunc.navigateToFinancialPaymentReceipt();
 		clickAddButtonInPaymentsRecipts();
 		createBankPaymentEntry(commonFunc.getDataFromTestDataSheet("BankDocMode"),
@@ -6814,8 +6814,8 @@ public class BankPaymentFunctions {
 	 * @param SheetName
 	 */
 	public void BPAdvNewRefWithAndWithoutTDS(String SheetName, String Currency, String BankName) {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("AdminUsername"));
+		commonFunc.validCommonLogin(System.getProperty("HKFinUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("HKFinUsername"));
 		commonFunc.navigateToFinancialPaymentReceipt();
 		clickAddButtonInPaymentsRecipts();
 		createBankPaymentEntry(commonFunc.getDataFromTestDataSheet("BankDocMode"), BankName, Today,
@@ -6914,8 +6914,8 @@ public class BankPaymentFunctions {
 	 * @param SheetName
 	 */
 	public void BPAdvNewRefWithMultiTDS(String SheetName, String Currency, String BankName) {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("AdminUsername"));
+		commonFunc.validCommonLogin(System.getProperty("HKFinUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("HKFinUsername"));
 		commonFunc.navigateToFinancialPaymentReceipt();
 		clickAddButtonInPaymentsRecipts();
 		createBankPaymentEntry(commonFunc.getDataFromTestDataSheet("BankDocMode"), BankName, Today,
@@ -7044,8 +7044,8 @@ public class BankPaymentFunctions {
 	 * @param SheetName
 	 */
 	public void BPAdvWithNewRef(String SheetName, String Currency, String BankName) {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("AdminUsername"));
+		commonFunc.validCommonLogin(System.getProperty("HKFinUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("HKFinUsername"));
 		commonFunc.navigateToFinancialPaymentReceipt();
 		clickAddButtonInPaymentsRecipts();
 		createBankPaymentEntry(commonFunc.getDataFromTestDataSheet("BankDocMode"), BankName, Today,
@@ -7552,8 +7552,8 @@ public class BankPaymentFunctions {
 		}
 		VariableHandler.setMultipleAdvPymtDocs(cashPymtFunc.MultiAdvPaymentDocumentNumber);
 		BPAdvThroughAddButtonWithMPMB(SheetName, Currency, BankName);
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("AdminUsername"));
+		commonFunc.validCommonLogin(System.getProperty("HKFinUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("HKFinUsername"));
 		commonFunc.naviagteGrnPage();
 		for (int i = 0; i < VariableHandler.getMultiplePODocs().size(); i++) {
 			grnPageFunc.PendPO(VariableHandler.getMultiplePODocs().get(i));
@@ -7616,8 +7616,8 @@ public class BankPaymentFunctions {
 		}
 		VariableHandler.setMultipleAdvPymtDocs(cashPymtFunc.MultiAdvPaymentDocumentNumber);
 		BPAdvThroughAddButtonWithMPMB(SheetName, Currency, BankName);
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("AdminUsername"));
+		commonFunc.validCommonLogin(System.getProperty("HKFinUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("HKFinUsername"));
 		commonFunc.naviagteGrnPage();
 		for (int i = 0; i < VariableHandler.getMultiplePODocs().size(); i++) {
 			grnPageFunc.PendPO(VariableHandler.getMultiplePODocs().get(i));
@@ -7680,8 +7680,8 @@ public class BankPaymentFunctions {
 		}
 		VariableHandler.setMultipleAdvPymtDocs(cashPymtFunc.MultiAdvPaymentDocumentNumber);
 		BPAdvThroughAddButtonWithMPMB(SheetName, Currency, BankName);
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("AdminUsername"));
+		commonFunc.validCommonLogin(System.getProperty("HKFinUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("HKFinUsername"));
 		commonFunc.naviagteGrnPage();
 		for (int i = 0; i < VariableHandler.getMultiplePODocs().size(); i++) {
 			grnPageFunc.PendPO(VariableHandler.getMultiplePODocs().get(i));
@@ -7718,8 +7718,8 @@ public class BankPaymentFunctions {
 	 * @param SheetName
 	 */
 	public void BPAdvThroughAddButton(String SheetName, String Currency, String BankName) {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("AdminUsername"));
+		commonFunc.validCommonLogin(System.getProperty("HKFinUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("HKFinUsername"));
 		commonFunc.navigateToFinancialPaymentReceipt();
 		clickAddButtonInPaymentsRecipts();
 		createBankPaymentEntry(commonFunc.getDataFromTestDataSheet("BankDocMode"), BankName, Today,
@@ -7916,8 +7916,8 @@ public class BankPaymentFunctions {
 	 * @param BankName
 	 */
 	public void BPAdvThroughGetDocument(String SheetName, String Currency, String BankName) {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("AdminUsername"));
+		commonFunc.validCommonLogin(System.getProperty("HKFinUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("HKFinUsername"));
 		commonFunc.navigateToFinancialPaymentReceipt();
 		clickAddButtonInPaymentsRecipts();
 		createBankPaymentEntry(commonFunc.getDataFromTestDataSheet("BankDocMode"), BankName, Today,
@@ -8080,8 +8080,8 @@ public class BankPaymentFunctions {
 	 * @param BankName
 	 */
 	public void BPAdvThroughPendingDocs(String CreationType, String SheetName, String Currency, String BankName) {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("AdminUsername"));
+		commonFunc.validCommonLogin(System.getProperty("HKFinUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("HKFinUsername"));
 		commonFunc.navigateToFinancialPaymentReceipt();
 		clickPendingCRDocsButton();
 		clickPendingAdvancePartyDocumentsInPendingCRDocs();
@@ -8236,8 +8236,8 @@ public class BankPaymentFunctions {
 	 * @param SheetName
 	 */
 	public void BPAdvThroughAddButtonWithMultiTDS(String SheetName, String Currency, String BankName) {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("AdminUsername"));
+		commonFunc.validCommonLogin(System.getProperty("HKFinUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("HKFinUsername"));
 		commonFunc.navigateToFinancialPaymentReceipt();
 		clickAddButtonInPaymentsRecipts();
 		createBankPaymentEntry(commonFunc.getDataFromTestDataSheet("BankDocMode"), BankName, Today,
@@ -8327,8 +8327,8 @@ public class BankPaymentFunctions {
 	 * @param BankName
 	 */
 	public void BPAdvThroughGetDocumentWithMultiTDS(String SheetName, String Currency, String BankName) {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("AdminUsername"));
+		commonFunc.validCommonLogin(System.getProperty("HKFinUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("HKFinUsername"));
 		commonFunc.navigateToFinancialPaymentReceipt();
 		clickAddButtonInPaymentsRecipts();
 		createBankPaymentEntry(commonFunc.getDataFromTestDataSheet("BankDocMode"), BankName, Today,
@@ -8404,8 +8404,8 @@ public class BankPaymentFunctions {
 	 */
 	public void BPAdvThroughPendingDocsWithMultiTDS(String CreationType, String SheetName, String Currency,
 			String BankName) {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("AdminUsername"));
+		commonFunc.validCommonLogin(System.getProperty("HKFinUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("HKFinUsername"));
 		commonFunc.navigateToFinancialPaymentReceipt();
 		clickPendingCRDocsButton();
 		clickPendingAdvancePartyDocumentsInPendingCRDocs();
@@ -8827,8 +8827,8 @@ public class BankPaymentFunctions {
 	 * @param SheetName
 	 */
 	public void BPAdvThroughAddButtonWithMPMB(String SheetName, String Currency, String BankName) {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("AdminUsername"));
+		commonFunc.validCommonLogin(System.getProperty("HKFinUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("HKFinUsername"));
 		commonFunc.navigateToFinancialPaymentReceipt();
 		clickAddButtonInPaymentsRecipts();
 		createBankPaymentEntry(commonFunc.getDataFromTestDataSheet("BankDocMode"), BankName, Today,
@@ -9096,8 +9096,8 @@ public class BankPaymentFunctions {
 	 * @param SheetName
 	 */
 	public void BPThroughAddButtonAdvanceWithNewRef(String SheetName, String Currency, String BankName) {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("AdminUsername"));
+		commonFunc.validCommonLogin(System.getProperty("HKFinUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("HKFinUsername"));
 		commonFunc.navigateToFinancialPaymentReceipt();
 		clickAddButtonInPaymentsRecipts();
 		createBankPaymentEntry(commonFunc.getDataFromTestDataSheet("BankDocMode"), BankName, Today,
@@ -9220,8 +9220,8 @@ public class BankPaymentFunctions {
 	 * @param BankName
 	 */
 	public void BPThroughGetDocumentAdvanceWithNewReference(String SheetName, String Currency, String BankName) {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("AdminUsername"));
+		commonFunc.validCommonLogin(System.getProperty("HKFinUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("HKFinUsername"));
 		commonFunc.navigateToFinancialPaymentReceipt();
 		clickAddButtonInPaymentsRecipts();
 		createBankPaymentEntry(commonFunc.getDataFromTestDataSheet("BankDocMode"), BankName, Today,
@@ -9349,8 +9349,8 @@ public class BankPaymentFunctions {
 
 	public void BPThroughPendingDocsAdvanceWithNewReference(String CreationType, String SheetName, String Currency,
 			String BankName) {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("AdminUsername"));
+		commonFunc.validCommonLogin(System.getProperty("HKFinUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("HKFinUsername"));
 		commonFunc.navigateToFinancialPaymentReceipt();
 		clickPendingCRDocsButton();
 		clickPendingPayablesButtonInPendCRDocs();

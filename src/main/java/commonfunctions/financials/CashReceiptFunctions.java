@@ -1229,8 +1229,8 @@ public class CashReceiptFunctions {
 	 * @return
 	 */
 	public void CashReceiptThroughAddButton(String SheetName, String Currency, String CashierName) {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("AdminUsername"));
+		commonFunc.validCommonLogin(System.getProperty("HKFinUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("HKFinUsername"));
 		commonFunc.navigateToFinancialPaymentReceipt();
 		bankpaymentfunc.clickAddButtonInPaymentsRecipts();
 		createCashReceiptEntry(commonFunc.getDataFromTestDataSheet("CashDocModeCR"), CashierName, Today,
@@ -1295,8 +1295,8 @@ public class CashReceiptFunctions {
 	 * @param Currency
 	 */
 	public void CashReceiptThroughGetDocument(String SheetName, String Currency, String CashierName) {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("AdminUsername"));
+		commonFunc.validCommonLogin(System.getProperty("HKFinUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("HKFinUsername"));
 		commonFunc.navigateToFinancialPaymentReceipt();
 		bankpaymentfunc.clickAddButtonInPaymentsRecipts();
 		createCashReceiptEntry(commonFunc.getDataFromTestDataSheet("CashDocModeCR"), CashierName, Today,
@@ -1361,8 +1361,8 @@ public class CashReceiptFunctions {
 	 */
 	public void CashReceiptThroughPendingDocs(String CreationType, String SheetName, String Currency,
 			String CashierName) {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("AdminUsername"));
+		commonFunc.validCommonLogin(System.getProperty("HKFinUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("HKFinUsername"));
 		commonFunc.navigateToFinancialPaymentReceipt();
 		clickPendingDRDocsButton();
 		clickPendingRecivablesButtonInPendDRDocs();
@@ -1421,8 +1421,8 @@ public class CashReceiptFunctions {
 	 * @param Currency
 	 */
 	public void CashReceiptThroughGetDocumentMPSI(String SheetName, String Currency, String CashierName) {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("AdminUsername"));
+		commonFunc.validCommonLogin(System.getProperty("HKFinUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("HKFinUsername"));
 		commonFunc.navigateToFinancialPaymentReceipt();
 		bankpaymentfunc.clickAddButtonInPaymentsRecipts();
 		createCashReceiptEntry(commonFunc.getDataFromTestDataSheet("CashDocModeCR"), CashierName, Today,
@@ -1488,8 +1488,8 @@ public class CashReceiptFunctions {
 	 */
 	public void CashReceiptThroughPendingDocsMPSI(String CreationType, String SheetName, String Currency,
 			String CashierName) {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("AdminUsername"));
+		commonFunc.validCommonLogin(System.getProperty("HKFinUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("HKFinUsername"));
 		commonFunc.navigateToFinancialPaymentReceipt();
 		clickPendingDRDocsButton();
 		clickPendingRecivablesButtonInPendDRDocs();
@@ -1550,8 +1550,8 @@ public class CashReceiptFunctions {
 	 * @return
 	 */
 	public void BankReceiptThroughAddButtonMPSI(String SheetName, String Currency, String CashierName) {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("AdminUsername"));
+		commonFunc.validCommonLogin(System.getProperty("HKFinUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("HKFinUsername"));
 		commonFunc.navigateToFinancialPaymentReceipt();
 		bankpaymentfunc.clickAddButtonInPaymentsRecipts();
 		createCashReceiptEntry(commonFunc.getDataFromTestDataSheet("CashDocModeCR"), CashierName, Today,
@@ -1615,8 +1615,8 @@ public class CashReceiptFunctions {
 	 * @param SheetName
 	 */
 	public void CashReceiptThroughAddButtonMPMI(String SheetName, String Currency, String CashierName) {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("AdminUsername"));
+		commonFunc.validCommonLogin(System.getProperty("HKFinUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("HKFinUsername"));
 		commonFunc.navigateToFinancialPaymentReceipt();
 		bankpaymentfunc.clickAddButtonInPaymentsRecipts();
 		createCashReceiptEntry(commonFunc.getDataFromTestDataSheet("CashDocModeCR"), CashierName, Today,
@@ -1837,8 +1837,8 @@ public class CashReceiptFunctions {
 	 * @param Currency
 	 */
 	public void CashReceiptThroughGetDocumentMPMI(String SheetName, String Currency, String CashierName) {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("AdminUsername"));
+		commonFunc.validCommonLogin(System.getProperty("HKFinUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("HKFinUsername"));
 		commonFunc.navigateToFinancialPaymentReceipt();
 		bankpaymentfunc.clickAddButtonInPaymentsRecipts();
 		createCashReceiptEntry(commonFunc.getDataFromTestDataSheet("CashDocModeCR"), CashierName, Today,
@@ -2083,8 +2083,8 @@ public class CashReceiptFunctions {
 	 */
 	public void CashReceiptThroughPendingDocsMPMI(String CreationType, String SheetName, String Currency,
 			String CashierName) {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("AdminUsername"));
+		commonFunc.validCommonLogin(System.getProperty("HKFinUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("HKFinUsername"));
 		commonFunc.navigateToFinancialPaymentReceipt();
 		clickPendingDRDocsButton();
 		clickPendingRecivablesButtonInPendDRDocs();
@@ -2147,8 +2147,8 @@ public class CashReceiptFunctions {
 	 * @param SheetName
 	 */
 	public void CashReceiptThroughAddButtonMPMIWithNewRef(String SheetName, String Currency, String CashierName) {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("AdminUsername"));
+		commonFunc.validCommonLogin(System.getProperty("HKFinUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("HKFinUsername"));
 		commonFunc.navigateToFinancialPaymentReceipt();
 		bankpaymentfunc.clickAddButtonInPaymentsRecipts();
 		createCashReceiptEntry(commonFunc.getDataFromTestDataSheet("CashDocModeCR"), CashierName, Today,
@@ -2220,8 +2220,8 @@ public class CashReceiptFunctions {
 	 * @param Currency
 	 */
 	public void CashReceiptThroughGetDocumentWithNewRef(String SheetName, String Currency, String CashierName) {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("AdminUsername"));
+		commonFunc.validCommonLogin(System.getProperty("HKFinUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("HKFinUsername"));
 		commonFunc.navigateToFinancialPaymentReceipt();
 		bankpaymentfunc.clickAddButtonInPaymentsRecipts();
 		createCashReceiptEntry(commonFunc.getDataFromTestDataSheet("CashDocModeCR"), CashierName, Today,
@@ -2315,8 +2315,8 @@ public class CashReceiptFunctions {
 	 */
 	public void CashReceiptThroughPendingDocsWithNewRef(String CreationType, String SheetName, String Currency,
 			String CashierName) {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("AdminUsername"));
+		commonFunc.validCommonLogin(System.getProperty("HKFinUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("HKFinUsername"));
 		commonFunc.navigateToFinancialPaymentReceipt();
 		clickPendingDRDocsButton();
 		clickPendingRecivablesButtonInPendDRDocs();
@@ -2402,8 +2402,8 @@ public class CashReceiptFunctions {
 	 * @return
 	 */
 	public void CashReceiptWithExpAndRevenueWithoutGST(String SheetName, String Currency, String CashierName) {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("AdminUsername"));
+		commonFunc.validCommonLogin(System.getProperty("HKFinUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("HKFinUsername"));
 		commonFunc.navigateToFinancialPaymentReceipt();
 		bankpaymentfunc.clickAddButtonInPaymentsRecipts();
 		createCashReceiptEntry(commonFunc.getDataFromTestDataSheet("CashDocModeCR"), CashierName, Today,
@@ -2473,8 +2473,8 @@ public class CashReceiptFunctions {
 	 * @return
 	 */
 	public void CashReceiptWithExpAndRevenueWithGST(String SheetName, String Currency, String CashierName) {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("AdminUsername"));
+		commonFunc.validCommonLogin(System.getProperty("HKFinUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("HKFinUsername"));
 		commonFunc.navigateToFinancialPaymentReceipt();
 		bankpaymentfunc.clickAddButtonInPaymentsRecipts();
 		createCashReceiptEntry(commonFunc.getDataFromTestDataSheet("CashDocModeCR"), CashierName, Today,
@@ -3515,8 +3515,8 @@ public class CashReceiptFunctions {
 	 * @return
 	 */
 	public void AdvCashReceiptThroughAddButton(String SheetName, String Currency, String CashierName) {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("AdminUsername"));
+		commonFunc.validCommonLogin(System.getProperty("HKFinUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("HKFinUsername"));
 		commonFunc.navigateToFinancialPaymentReceipt();
 		bankpaymentfunc.clickAddButtonInPaymentsRecipts();
 		createCashReceiptEntry(commonFunc.getDataFromTestDataSheet("CashDocModeCR"), CashierName, Today,
@@ -3581,8 +3581,8 @@ public class CashReceiptFunctions {
 	 * @param Currency
 	 */
 	public void AdvCashReceiptThroughGetDocument(String SheetName, String Currency, String CashierName) {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("AdminUsername"));
+		commonFunc.validCommonLogin(System.getProperty("HKFinUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("HKFinUsername"));
 		commonFunc.navigateToFinancialPaymentReceipt();
 		bankpaymentfunc.clickAddButtonInPaymentsRecipts();
 		createCashReceiptEntry(commonFunc.getDataFromTestDataSheet("CashDocModeCR"), CashierName, Today,
@@ -3636,8 +3636,8 @@ public class CashReceiptFunctions {
 	 */
 	public void AdvCashReceiptThroughPendingDocs(String CreationType, String SheetName, String Currency,
 			String CashierName) {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("AdminUsername"));
+		commonFunc.validCommonLogin(System.getProperty("HKFinUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("HKFinUsername"));
 		commonFunc.navigateToFinancialPaymentReceipt();
 		clickPendingDRDocsButton();
 		clickPendingAdvanceRecivablesButtonInPendDRDocs();
@@ -3777,8 +3777,8 @@ public class CashReceiptFunctions {
 	 * @return
 	 */
 	public void AdvCashReceiptWithNewRef(String SheetName, String Currency, String CashierName) {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("AdminUsername"));
+		commonFunc.validCommonLogin(System.getProperty("HKFinUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("HKFinUsername"));
 		commonFunc.navigateToFinancialPaymentReceipt();
 		bankpaymentfunc.clickAddButtonInPaymentsRecipts();
 		createCashReceiptEntry(commonFunc.getDataFromTestDataSheet("CashDocModeCR"), CashierName, Today,
@@ -3846,8 +3846,8 @@ public class CashReceiptFunctions {
 	 * @return
 	 */
 	public void AdvCashReceiptWithMultiRef(String SheetName, String Currency, String CashierName) {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("AdminUsername"));
+		commonFunc.validCommonLogin(System.getProperty("HKFinUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("HKFinUsername"));
 		commonFunc.navigateToFinancialPaymentReceipt();
 		bankpaymentfunc.clickAddButtonInPaymentsRecipts();
 		createCashReceiptEntry(commonFunc.getDataFromTestDataSheet("CashDocModeCR"), CashierName, Today,
