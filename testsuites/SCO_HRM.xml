@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="Road Map - PMF">
+<suite name="Road Map - SCO_HRM">
 	<listeners>
 		<listener class-name="utils.RetryListener"></listener>
 		<listener class-name="utils.Listener"></listener>
 	</listeners>
-	<test parallel="classes" name="SCO Road Map Test" thread-count="5">
+	<test parallel="classes" name="SCO - HRM Road Map Test" thread-count="5">
 		<classes>
-			<class name="com.roadmapERP.SubcontractPurchaseBillsTest" />
-			<class name="com.roadmapERP.SubcontractTransactionTest" />
-			<class name="com.roadmapERP.SubcontractTransactionTest2" />
-			<class name="com.roadmapERP.EmployeeMasterTest" />
-			<class name="com.roadmapERP.AttendanceLeaveTest" />
-			<class name="com.roadmapERP.PreparePayrollTest" />
-			<class name="com.roadmapERP.EmployeePermissionTest" />
-			<class name="com.roadmapERP.EmployeeOvertime" />
+			<class name="com.roadmapERP.AttendanceLeaveTest"></class>
+			<class name="com.roadmapERP.EmployeeMasterTest"></class>
+			<class name="com.roadmapERP.EmployeeOvertime"></class>
+			<class name="com.roadmapERP.EmployeePermissionTest"></class>
+			<class name="com.roadmapERP.PreparePayrollTest"></class>
+			<class name="com.roadmapERP.SubcontractPurchaseBillsTest"></class>
+			<class name="com.roadmapERP.SubcontractSetUpTest"></class>
+			<class name="com.roadmapERP.SubcontractTransactionTest"></class>
+			<class name="com.roadmapERP.SubcontractTransactionTest2"></class>
 		</classes>
 	</test>
 </suite>
