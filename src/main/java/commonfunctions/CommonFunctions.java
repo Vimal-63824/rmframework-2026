@@ -911,7 +911,7 @@ public class CommonFunctions {
 	 * @return Mail
 	 */
 	public String randomEmailIdGenerator() {
-		String Email = "testauto".concat(RandomStringUtils.randomNumeric(4)) + "@mail.com";
+		String Email = "testauto".concat(RandomStringUtils.randomAlphanumeric(4)) + "@mail.com";
 		return Email;
 	}
 
@@ -2421,6 +2421,12 @@ public class CommonFunctions {
 	 * @param PageLocators
 	 */
 	public void navigateToSearchTab(String TabName, String PageLocators) {
+		// TODO will comment the hard script lines once loading issue resolved
+		webDB.waitForElement("//a[@class='t-Header-logo-link']", ElementType.Xpath);
+		webDB.clickAnElement("//a[@class='t-Header-logo-link']", ElementType.Xpath);
+		checkRefreshCellsDisappear();
+		webDB.waitForElement("//button[@id='INFO']", ElementType.Xpath);
+		webDB.waitForPageReady(20);
 		flag = webDB.waitForElement(CommonUiLocators.BusFunctionSearchBox, ElementType.Xpath);
 		if (flag) {
 			webDB.waitUntilElementToBeClickable(CommonUiLocators.BusFunctionSearchBox, ElementType.Xpath);

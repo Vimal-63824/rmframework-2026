@@ -11941,5 +11941,113 @@ public class GrnPageFunctions {
 				webDB.getDataFromProperties("PoToMrvWithPoClosureRcptQtySheet"));
 
 	}
+	
+	/**
+	 * This Methods Method to handle Create GRN Document from PO With and Without
+	 * Inspection for UserDefined Item(Material)
+	 * 
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws Exception
+	 */
+
+	public void PendPO(String VoucherNumber) throws Exception {
+//		verifyStockQtyAndCostForQualityWh(webDB.getDataFromProperties("DirectPOMatUD"));
+//		verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("DirectPOMatUD"));
+//		POfunc.verifyDirectPODomesticMaterialSimilarUOMwithAndWithoutInspectionMaterialTypeForUserDefinedItem(
+//				webDB.getDataFromProperties("DirectPOMatUD"));
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
+		clickPendingPoAndSearchPoNo1(VoucherNumber);
+		clickSelectAllButton();
+		createGrn();
+		supplierBillNumberAndDcNumber1(VoucherNumber);
+//		multipleLotAndSerialItem(webDB.getDataFromProperties("DirectPOMatUD"));
+//		lotSerialQtyApportion();
+//		overAllSaveAndPost(webDB.getDataFromProperties("DirectPOMatUD"));
+//		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+//		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+//				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+//				System.getProperty("HariUsername"));
+//		flag = commonFunc.logoutUser();
+//		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectPOMatUD"));
+//		afterVerifyTheStatusDocumentMoveToQcOrMrv();
+//		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(webDB.getDataFromProperties("DirectPOMatUD"));
+//		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Is Used To Click Pending PO and Search PO Number in Header
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+
+	public void clickPendingPoAndSearchPoNo1(String VoucherNumber) {
+		commonFunc.checkRefreshCellsDisappear();
+		flag = webDB.waitForElement(GrnLocators.ClickPendingButton, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(GrnLocators.ClickPendingButton, ElementType.Xpath);
+			webDB.clickAnElement(GrnLocators.ClickPendingButton, ElementType.Xpath);
+			logs.logging("INFO", "Pending Button Clicked");
+			commonFunc.checkRefreshCellsDisappear();
+			flag = webDB.waitForElement(GrnLocators.PendingPO, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(GrnLocators.PendingPO, ElementType.Xpath);
+				logs.logging("INFO", "Pending PO Button Clicked");
+				commonFunc.checkRefreshCellsDisappear();
+				flag = webDB.waitForElement(GrnLocators.PendingPOIframe, ElementType.Xpath);
+				if (flag) {
+					webDB.switchToFrame(GrnLocators.PendingPOIframe, ElementType.Xpath);
+					commonFunc.searchAndSelectValueInFilters(GrnLocators.PendingPOHeaderPONumberInput, VoucherNumber);
+					logs.logging("INFO", "PO Number Succesfully search and Selected");
+					commonFunc.hardWait(2000);
+					webDB.switchToFrame(GrnLocators.PendingPOIframe, ElementType.Xpath);
+					flag = webDB.waitForElement(GrnLocators.PendingPOHeaderSearchButton, ElementType.Xpath);
+					if (flag) {
+						webDB.clickAnElement(GrnLocators.PendingPOHeaderSearchButton, ElementType.Xpath);
+						logs.logging("INFO", "Document Searched successfully");
+						webDB.switchToDefaultContent();
+						flag = webDB.waitForElement(GrnLocators.PendingPOIframe, ElementType.Xpath);
+						if (flag) {
+							logs.logging("INFO", "Able Select the Document");
+						} else {
+							logs.logging("INFO", "Not Able Select the Document");
+						}
+					}
+
+				}
+			}
+		}
+		assertTrue(flag);
+
+	}
+
+	/**
+	 * This Methods Is Used After create the GRN to Give Supplier Bill Number And DC
+	 * Number
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+
+	public void supplierBillNumberAndDcNumber1(String VoucherNumber) {
+		flag = webDB.waitForElement(GrnLocators.PendingPOClickSupplierBillnumber, ElementType.Xpath);
+		if (flag) {
+			webDB.sendTextToAnElement(GrnLocators.PendingPOClickSupplierBillnumber, VoucherNumber, ElementType.Xpath);
+			logs.logging("INFO", "Supplier Bill Number Successfully entered");
+			flag = webDB.waitForElement(GrnLocators.PendingPOClickDCNumber, ElementType.Xpath);
+			if (flag) {
+				webDB.sendTextToAnElement(GrnLocators.PendingPOClickDCNumber, VoucherNumber, ElementType.Xpath);
+				logs.logging("INFO", "Supplier DC Number Successfully entered");
+				flag = webDB.waitForElement(GrnLocators.PendingPOClickOKButton, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(GrnLocators.PendingPOClickOKButton, ElementType.Xpath);
+					webDB.switchToDefaultContent();
+					flag = webDB.waitForElement(GrnLocators.GrnDocNumber, ElementType.Xpath);
+				}
+			}
+		}
+
+		assertTrue(flag);
+	}
 
 }
