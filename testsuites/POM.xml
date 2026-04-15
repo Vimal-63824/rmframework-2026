@@ -1,19 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="Road Map - POM">
+<suite name="Road Map - Regression">
 	<listeners>
 		<listener class-name="utils.RetryListener"></listener>
 		<listener class-name="utils.Listener"></listener>
 	</listeners>
-	<test parallel="classes" name="POM Road Map Test" thread-count="3">
+	<test name="Road Map Test" parallel="classes" thread-count="5">
 		<classes>
-			<class name="com.roadmapERP.PurchaseOrderTest" />
-			<class name="com.roadmapERP.PurchaseRequestTest" />
 			<class name="com.roadmapERP.POAmendmentTest" />
+			<class name="com.roadmapERP.DirectGrnTest" />
 			<class name="com.roadmapERP.PriselistTest" />
 			<class name="com.roadmapERP.GrnTest" />
+			<class name="com.roadmapERP.POAmendmentTest2" />
 			<class name="com.roadmapERP.RfqTest" />
+			<class name="com.roadmapERP.PurchaseOrderTest" />
+			<class name="com.roadmapERP.GrnTest2" />
+			<class name="com.roadmapERP.GateEntryTest" />
 			<class name="com.roadmapERP.OpenPoRcTest" />
+			<class name="com.roadmapERP.DirectGrnTest2" />
+			<class name="com.roadmapERP.PurchaseRequestTest" />
+			<class name="com.roadmapERP.GateEntryTest" />
+			<class name="com.roadmapERP.SetupPurchaseTest" />
+			<class name="com.roadmapERP.ApprovedSupplierPOTest" />
+			<class name="com.roadmapERP.ShareOfBusinessTest" />
+			<class name="com.roadmapERP.GrnTest3" />
+			<class name="com.roadmapERP.PoToMRVTest" />
+			<class name="com.roadmapERP.PoToMRVTest2" />
+			<class name="com.roadmapERP.PurchaseFOCTest" />
+			<class name="com.roadmapERP.DirectGRNFOCTest" />
+			<class name="com.roadmapERP.PoToGRNFOCTest" />
 		</classes>
 	</test>
 </suite>
