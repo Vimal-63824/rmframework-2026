@@ -1315,6 +1315,121 @@ public class PoToMRVTest2 extends RoadMapERPTest {
 	}
 
 	/**
+	 * Verify Reverse Grn With PR Amendment
+	 * 
+	 * @author Deepan-GWL
+	 */
+	@Author("Deepan-GWL")
+	@Test(priority = 95, groups = { "PoToGrn" }, description = "Verify Reverse Grn With PR Amendment")
+	public void VerifyReverseGrnWithPRAmendment() {
+		grnPageFunc.verifyGrnReverseWithPRAmendmentWithGateEntry();
+	}
+
+	/**
+	 * Verify Reverse GRN With PR Amendment Without Gate Entry
+	 * 
+	 * @author Deepan-GWL
+	 */
+	@Author("Deepan-GWL")
+	@Test(priority = 96, groups = {
+			"PoToGrn" }, description = "Verify Reverse GRN With PR Amendment Without Gate Entry")
+	public void VerifyReverseGrnWithPRAmendmentWithOutGateEntry() {
+		grnPageFunc.verifyGrnReverseWithPRAmendmentWithOutGateEntry();
+	}
+
+	/**
+	 * Verify Reverse Grn With PR Amendment With Lower Quantity
+	 * 
+	 * @author Deepan-GWL
+	 */
+	@Author("Deepan-GWL")
+	@Test(priority = 97, groups = {
+			"PoToGrn" }, description = "Verify Reverse Grn With PR Amendment With Lower Quantity")
+	public void VerifyReverseGrnWithPRAmendmentWithLowerQuantity() {
+		grnPageFunc.verifyGrnReverseWithPRAmendmentWithGateEntryWithLowerQuantity();
+	}
+
+	/**
+	 * Verify Reverse GRN With PR Amendment Without Gate Entry With Lower
+	 * 
+	 * @author Deepan-GWL
+	 */
+	@Author("Deepan-GWL")
+	@Test(priority = 98, groups = {
+			"PoToGrn" }, description = "Verify Reverse GRN With PR Amendment Without Gate Entry With Lower")
+	public void VerifyReverseGrnWithPRAmendmentWithOutGateEntryWithLower() {
+		grnPageFunc.verifyGrnReverseWithPRAmendmentWithOutGateEntryWithLowerQty();
+	}
+
+	/**
+	 * Verify Po To MRV With MOQ
+	 * 
+	 * @author Deepan-GWL
+	 */
+	@Author("Deepan-GWL")
+	@Test(priority = 99, groups = { "PoToGrn" }, description = "Verify Po To MRV With MOQ")
+	public void VerifyPoToMrvWithMoq() {
+		grnPageFunc.verifyMoqQuantityFromPoToMrv();
+	}
+
+	/**
+	 * Verify Pr To MRV With MOQ
+	 * 
+	 * @author Deepan-GWL
+	 */
+	@Author("Deepan-GWL")
+	@Test(priority = 100, groups = { "PoToGrn" }, description = "Verify Pr To MRV With MOQ")
+	public void VerifyPrToMrvWithMoq() {
+		grnPageFunc.verifyMoqQuantityFromPrToMrv();
+	}
+
+	/**
+	 * Verify Reverse GRN With PR Amendment With Material Type
+	 * 
+	 * @author Deepan-GWL
+	 */
+	@Author("Deepan-GWL")
+	@Test(priority = 101, groups = {
+			"PoToGrn" }, description = "Verify Reverse GRN With PR Amendment With Material Type")
+	public void VerifyReverseGrnWithPRAmendmentWithMaterialType() {
+		grnPageFunc.verifyGrnReverseWithPRAmendmentWithGateEntryWithMaterialType();
+	}
+
+	/**
+	 * Verify Reverse GRN With PR Amendment With Service Type
+	 * 
+	 * @author Deepan-GWL
+	 */
+	@Author("Deepan-GWL")
+	@Test(priority = 102, groups = {
+			"PoToGrn" }, description = "Verify Reverse GRN With PR Amendment With Service Type")
+	public void VerifyReverseGrnWithPRAmendmentWithServiceType() {
+		grnPageFunc.verifyGrnReverseWithPRAmendmentWithGateEntryWithServiceType();
+	}
+
+	/**
+	 * Verify Reverse GRN Without GateEntry Material Type
+	 * 
+	 * @author Deepan-GWL
+	 */
+	@Author("Deepan-GWL")
+	@Test(priority = 103, groups = { "PoToGrn" }, description = "Verify Reverse GRN Without GateEntry Material Type")
+	public void VerifyReverseGRNWithoutGateEntryMaterialType() {
+		grnPageFunc.poToGrnMaterialUserDefinedSameStockAndSupplierUomWithFreePassWithReverseWithoutGateEntry();
+	}
+
+	/**
+	 * Verify Reverse GRN WIthout Gate Entry Service Type
+	 * 
+	 * @author Deepan-GWL
+	 */
+	@Author("Deepan-GWL")
+	@Test(priority = 104, groups = { "PoToGrn" }, description = "Verify Reverse GRN WIthout Gate Entry Service Type")
+	public void VerifyReverseGRNWithoutGateEntryServiceType() {
+		grnPageFunc.poToGrnServiceUserDefinedSameStockAndSupplierUomWithFreePassWithReverseWithoutGateEntry();
+	}
+
+	/**
 	 * Verify After Method
 	 * 
 	 * @author Deepan-GWL

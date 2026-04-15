@@ -493,7 +493,7 @@ public class PurchaseOrderPageLocators {
 	public static final String SelectFirstCheckBox = "((//table[contains(@aria-label,'GATEENTRY')])[2]/tbody/tr/td/input[@type='checkbox'])[1]";
 	/** @locatorType Xpath */
 	public static final String SelectFirstItem = "((//table[contains(@aria-label,'GATEENTRY')])[2]/tbody/tr/td)[9]";
-	
+
 	/** @locatorType Xpath */
 	public static final String POpaymentTerms = "//select[@data-testid='P161513106041_POH_TERM_ID']";
 	/** @locatorType Xpath */
@@ -516,4 +516,17 @@ public class PurchaseOrderPageLocators {
 	public static final String GRNPendingPOSelectCheckBox(String VoucherNumber) {
 		return "//td[contains(text(),'" + VoucherNumber + "')]/../td[15]/*";
 	}
+
+	/** @locatorType Xpath */
+	public static final String OpenPODocs(String POno) {
+		return "(//a[text()='" + POno + "'])";
+	}
+
+	/** @locatorType Xpath */
+	public static final String MoqText = "//ul/li[contains(text(),'MOQ Qty.')]";
+	/** @locatorType Xpath */
+	public static final String CancelText = "//button[text()='Cancel']";
+	/** @locatorType Xpath */
+	public static final String ServiceSelect = "//select[@data-testid='P161513106045_POL_SERV_IO_TYPE']";
+
 }
