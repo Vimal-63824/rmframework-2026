@@ -73,7 +73,8 @@ public class SubcontractPurchaseBillsTest extends RoadMapERPTest {
 	}
 
 	/**
-	 * Registered Supplier with Local GST- Against Subcontract With Deviation Expenses Account and Adjustment
+	 * Registered Supplier with Local GST- Against Subcontract With Deviation
+	 * Expenses Account and Adjustment
 	 * 
 	 * @author Vimal - RMITS
 	 */
@@ -180,9 +181,10 @@ public class SubcontractPurchaseBillsTest extends RoadMapERPTest {
 		SubcontractPurchasebillFunc
 				.registeredSupplierwithLocalGSTAllowIGSTtaxAgainstSubcontractWithoutDeviationandExpensesAccountAndAdjustment();
 	}
+
 	/**
-	 * Registered Supplier with Local GST (Allow RCM tax) - Against Subcontract
-	 * With Deviation
+	 * Registered Supplier with Local GST (Allow RCM tax) - Against Subcontract With
+	 * Deviation
 	 * 
 	 * @author Vimal - RMITS
 	 */
@@ -192,9 +194,10 @@ public class SubcontractPurchaseBillsTest extends RoadMapERPTest {
 	public void RegisteredSupplierwithLocalAllowRCMtaxAgainstSubcontractWithDeviation() {
 		SubcontractPurchasebillFunc.registeredSupplierwithLocalAllowRCMtaxAgainstSubcontractWithDeviation();
 	}
+
 	/**
-	 * Registered Supplier with Local GST (Allow RCM tax) - Against Subcontract
-	 * With Deviation and Expenses Account
+	 * Registered Supplier with Local GST (Allow RCM tax) - Against Subcontract With
+	 * Deviation and Expenses Account
 	 * 
 	 * @author Vimal - RMITS
 	 */
@@ -205,9 +208,10 @@ public class SubcontractPurchaseBillsTest extends RoadMapERPTest {
 		SubcontractPurchasebillFunc
 				.registeredSupplierwithLocalGSTAllowRCMtaxAgainstSubcontractWithDeviationandExpensesAccount();
 	}
+
 	/**
-	 * Registered Supplier with Local GST (Allow RCM tax) - Against Subcontract
-	 * With Deviation and Expenses Account And Adjustment
+	 * Registered Supplier with Local GST (Allow RCM tax) - Against Subcontract With
+	 * Deviation and Expenses Account And Adjustment
 	 * 
 	 * @author Vimal - RMITS
 	 */
@@ -218,6 +222,7 @@ public class SubcontractPurchaseBillsTest extends RoadMapERPTest {
 		SubcontractPurchasebillFunc
 				.registeredSupplierwithLocalGSTAllowRCMtaxAgainstSubcontractWithDeviationandExpensesAccountAndAdjustment();
 	}
+
 	/**
 	 * Registered Supplier with Local GST (Allow RCM tax) - Against Subcontract
 	 * Without Deviation
@@ -230,6 +235,7 @@ public class SubcontractPurchaseBillsTest extends RoadMapERPTest {
 	public void RegisteredSupplierwithLocalGSTAllowRCMtaxAgainstSubcontractWithoutDeviation() {
 		SubcontractPurchasebillFunc.registeredSupplierwithLocalGSTAllowRCMtaxAgainstSubcontractWithoutDeviation();
 	}
+
 	/**
 	 * Registered Supplier with Local GST (Allow RCM tax) - Against Subcontract
 	 * Without Deviation and Expenses Account
@@ -243,6 +249,7 @@ public class SubcontractPurchaseBillsTest extends RoadMapERPTest {
 		SubcontractPurchasebillFunc
 				.registeredSupplierwithLocalGSTAllowRCMtaxAgainstSubcontractWithoutDeviationandExpensesAccount();
 	}
+
 	/**
 	 * Registered Supplier with Local GST (Allow RCM tax) - Against Subcontract
 	 * Without Deviation and Expenses Account And Adjustment
@@ -256,9 +263,10 @@ public class SubcontractPurchaseBillsTest extends RoadMapERPTest {
 		SubcontractPurchasebillFunc
 				.registeredSupplierwithLocalGSTAllowRCMtaxAgainstSubcontractWithoutDeviationandExpensesAccountAndAdjustment();
 	}
+
 	/**
-	 * Registered Supplier with Interstate GST- Against Subcontract With Deviation and
-	 * Expenses Account
+	 * Registered Supplier with Interstate GST- Against Subcontract With Deviation
+	 * and Expenses Account
 	 * 
 	 * @author Vimal - RMITS
 	 */
@@ -266,10 +274,13 @@ public class SubcontractPurchaseBillsTest extends RoadMapERPTest {
 	@Test(priority = 19, groups = {
 			"Subcontract" }, description = "Registered Supplier with Interstate GST- Against Subcontract With Deviation and Expenses Account")
 	public void RegisteredSupplierwithInterstateGSTAgainstSubcontractWithDeviationandExpensesAccount() {
-		SubcontractPurchasebillFunc.registeredSupplierwithInterstateGSTAgainstSubcontractWithDeviationandExpensesAccount();
+		SubcontractPurchasebillFunc
+				.registeredSupplierwithInterstateGSTAgainstSubcontractWithDeviationandExpensesAccount();
 	}
+
 	/**
-	 * Registered Supplier with Interstate GST- Against Subcontract Without Deviation
+	 * Registered Supplier with Interstate GST- Against Subcontract Without
+	 * Deviation
 	 * 
 	 * @author Vimal - RMITS
 	 */
@@ -280,9 +291,10 @@ public class SubcontractPurchaseBillsTest extends RoadMapERPTest {
 		SubcontractPurchasebillFunc.registeredSupplierwithInterstateGSTAgainstSubcontractWithoutDeviation();
 		Assert.assertTrue(flag);
 	}
+
 	/**
-	 * Registered Supplier with Interstate GST- Against Subcontract Without Deviation and
-	 * Expenses Account And adjustment
+	 * Registered Supplier with Interstate GST- Against Subcontract Without
+	 * Deviation and Expenses Account And adjustment
 	 * 
 	 * @author Vimal - RMITS
 	 */
@@ -293,6 +305,7 @@ public class SubcontractPurchaseBillsTest extends RoadMapERPTest {
 		SubcontractPurchasebillFunc
 				.registeredSupplierwithInterstateGSTAgainstSubcontractWithoutDeviationandExpensesAccountAndadjustment();
 	}
+
 	/**
 	 * Registered Supplier with Interstate GST- Against Subcontract With Deviation
 	 * 
@@ -304,6 +317,7 @@ public class SubcontractPurchaseBillsTest extends RoadMapERPTest {
 	public void RegisteredSupplierwithInterstateGSTAgainstSubcontractWithDeviation() {
 		SubcontractPurchasebillFunc.registeredSupplierwithInterstateGSTAgainstSubcontractWithDeviation();
 	}
+
 	/**
 	 * Registered Supplier with Interstate GST- Against Subcontract With Deviation
 	 * 
@@ -316,9 +330,10 @@ public class SubcontractPurchaseBillsTest extends RoadMapERPTest {
 		SubcontractPurchasebillFunc
 				.registeredSupplierwithInterstateGSTAgainstSubcontractWithDeviationandExpensesAccountAndadjustment();
 	}
+
 	/**
-	 * Registered Supplier with Interstate GST- Against Subcontract Without Deviation and
-	 * Expenses Account
+	 * Registered Supplier with Interstate GST- Against Subcontract Without
+	 * Deviation and Expenses Account
 	 * 
 	 * @author Vimal - RMITS
 	 */
@@ -329,6 +344,7 @@ public class SubcontractPurchaseBillsTest extends RoadMapERPTest {
 		SubcontractPurchasebillFunc
 				.registeredSupplierwithInterstateGSTAgainstSubcontractWithoutDeviationandExpensesAccount();
 	}
+
 	/**
 	 * Registered Supplier with Interstate GST (Allow RCM tax) - Against Subcontract
 	 * With Deviation
@@ -341,6 +357,7 @@ public class SubcontractPurchaseBillsTest extends RoadMapERPTest {
 	public void RegisteredSupplierwithInterstateAllowRCMtaxAgainstSubcontractWithDeviation() {
 		SubcontractPurchasebillFunc.registeredSupplierwithInterstateAllowRCMtaxAgainstSubcontractWithDeviation();
 	}
+
 	/**
 	 * Registered Supplier with Interstate GST (Allow RCM tax) - Against Subcontract
 	 * With Deviation and Expenses Account
@@ -354,6 +371,7 @@ public class SubcontractPurchaseBillsTest extends RoadMapERPTest {
 		SubcontractPurchasebillFunc
 				.registeredSupplierwithInterstateGSTAllowRCMtaxAgainstSubcontractWithDeviationandExpensesAccount();
 	}
+
 	/**
 	 * Registered Supplier with Interstate GST (Allow RCM tax) - Against Subcontract
 	 * With Deviation and Expenses Account And Adjustment
@@ -367,6 +385,7 @@ public class SubcontractPurchaseBillsTest extends RoadMapERPTest {
 		SubcontractPurchasebillFunc
 				.registeredSupplierwithInterstateGSTAllowRCMtaxAgainstSubcontractWithDeviationandExpensesAccountAndAdjustment();
 	}
+
 	/**
 	 * Registered Supplier with Interstate GST (Allow RCM tax) - Against Subcontract
 	 * Without Deviation
@@ -379,6 +398,7 @@ public class SubcontractPurchaseBillsTest extends RoadMapERPTest {
 	public void registeredSupplierwithInterstateGSTAllowRCMtaxAgainstSubcontractWithoutDeviation() {
 		SubcontractPurchasebillFunc.registeredSupplierwithInterstateGSTAllowRCMtaxAgainstSubcontractWithoutDeviation();
 	}
+
 	/**
 	 * Registered Supplier with Interstate GST (Allow RCM tax) - Against Subcontract
 	 * Without Deviation and Expenses Account
@@ -392,6 +412,7 @@ public class SubcontractPurchaseBillsTest extends RoadMapERPTest {
 		SubcontractPurchasebillFunc
 				.registeredSupplierwithInterstateGSTAllowRCMtaxAgainstSubcontractWithoutDeviationandExpensesAccount();
 	}
+
 	/**
 	 * Registered Supplier with Local GST (Allow RCM tax) - Against Subcontract
 	 * Without Deviation and Expenses Account And Adjustment
@@ -405,6 +426,7 @@ public class SubcontractPurchaseBillsTest extends RoadMapERPTest {
 		SubcontractPurchasebillFunc
 				.registeredSupplierwithInterstateGSTAllowRCMtaxAgainstSubcontractWithoutDeviationandExpensesAccountAndAdjustment();
 	}
+
 	/**
 	 * Unregistered Supplier with Local GST- Against Subcontract With Deviation
 	 * 
@@ -416,6 +438,7 @@ public class SubcontractPurchaseBillsTest extends RoadMapERPTest {
 	public void UnregisteredSupplierwithLocalGSTAgainstSubcontractWithDeviation() {
 		SubcontractPurchasebillFunc.unregisteredSupplierwithLocalGSTAgainstSubcontractWithDeviation();
 	}
+
 	/**
 	 * Unregistered Supplier with Local GST- Against Subcontract With Deviation and
 	 * Expenses Account
@@ -428,8 +451,10 @@ public class SubcontractPurchaseBillsTest extends RoadMapERPTest {
 	public void UnregisteredSupplierwithLocalGSTAgainstSubcontractWithDeviationandExpensesAccount() {
 		SubcontractPurchasebillFunc.unregisteredSupplierwithLocalGSTAgainstSubcontractWithDeviationandExpensesAccount();
 	}
+
 	/**
-	 * Unregistered Supplier with Local GST- Against Subcontract With Deviation Expenses Account and Adjustment
+	 * Unregistered Supplier with Local GST- Against Subcontract With Deviation
+	 * Expenses Account and Adjustment
 	 * 
 	 * @author Vimal - RMITS
 	 */
@@ -440,6 +465,7 @@ public class SubcontractPurchaseBillsTest extends RoadMapERPTest {
 		SubcontractPurchasebillFunc
 				.unregisteredSupplierwithLocalGSTAgainstSubcontractWithDeviationandExpensesAccountAndadjustment();
 	}
+
 	/**
 	 * Unregistered Supplier with Local GST- Against Subcontract Without Deviation
 	 * 
@@ -452,9 +478,10 @@ public class SubcontractPurchaseBillsTest extends RoadMapERPTest {
 		SubcontractPurchasebillFunc.unregisteredSupplierwithLocalGSTAgainstSubcontractWithoutDeviation();
 		Assert.assertTrue(flag);
 	}
+
 	/**
-	 * Unregistered Supplier with Local GST- Against Subcontract Without Deviation and
-	 * Expenses Account
+	 * Unregistered Supplier with Local GST- Against Subcontract Without Deviation
+	 * and Expenses Account
 	 * 
 	 * @author Vimal - RMITS
 	 */
@@ -465,9 +492,10 @@ public class SubcontractPurchaseBillsTest extends RoadMapERPTest {
 		SubcontractPurchasebillFunc
 				.unregisteredSupplierwithLocalGSTAgainstSubcontractWithoutDeviationandExpensesAccount();
 	}
+
 	/**
-	 * Unregistered Supplier with Local GST- Against Subcontract Without Deviation and
-	 * Expenses Account And adjustment
+	 * Unregistered Supplier with Local GST- Against Subcontract Without Deviation
+	 * and Expenses Account And adjustment
 	 * 
 	 * @author Vimal - RMITS
 	 */
@@ -478,6 +506,7 @@ public class SubcontractPurchaseBillsTest extends RoadMapERPTest {
 		SubcontractPurchasebillFunc
 				.unregisteredSupplierwithLocalGSTAgainstSubcontractWithoutDeviationandExpensesAccountAndadjustment();
 	}
+
 	/**
 	 * UnRegistered Supplier with Local GST (Allow IGST tax) - Against Subcontract
 	 * With Deviation
@@ -559,6 +588,7 @@ public class SubcontractPurchaseBillsTest extends RoadMapERPTest {
 		SubcontractPurchasebillFunc
 				.unregisteredSupplierwithLocalGSTAllowIGSTtaxAgainstSubcontractWithoutDeviationandExpensesAccountAndAdjustment();
 	}
+
 	/**
 	 * Unregistered Supplier with Interstate GST- Against Subcontract With Deviation
 	 * 
@@ -570,9 +600,10 @@ public class SubcontractPurchaseBillsTest extends RoadMapERPTest {
 	public void UnregisteredSupplierwithInterstateGSTAgainstSubcontractWithDeviation() {
 		SubcontractPurchasebillFunc.unregisteredSupplierwithInterstateGSTAgainstSubcontractWithDeviation();
 	}
+
 	/**
-	 * Unregistered Supplier with Interstate GST- Against Subcontract With Deviation and
-	 * Expenses Account
+	 * Unregistered Supplier with Interstate GST- Against Subcontract With Deviation
+	 * and Expenses Account
 	 * 
 	 * @author Vimal - RMITS
 	 */
@@ -580,10 +611,13 @@ public class SubcontractPurchaseBillsTest extends RoadMapERPTest {
 	@Test(priority = 44, groups = {
 			"Subcontract" }, description = "Unregistered Supplier with Interstate GST- Against Subcontract With Deviation and Expenses Account")
 	public void UnregisteredSupplierwithInterstateGSTAgainstSubcontractWithDeviationandExpensesAccount() {
-		SubcontractPurchasebillFunc.unregisteredSupplierwithInterstateGSTAgainstSubcontractWithDeviationandExpensesAccount();
+		SubcontractPurchasebillFunc
+				.unregisteredSupplierwithInterstateGSTAgainstSubcontractWithDeviationandExpensesAccount();
 	}
+
 	/**
-	 * Unregistered Supplier with Interstate GST- Against Subcontract With Deviation Expenses Account and Adjustment
+	 * Unregistered Supplier with Interstate GST- Against Subcontract With Deviation
+	 * Expenses Account and Adjustment
 	 * 
 	 * @author Vimal - RMITS
 	 */
@@ -594,6 +628,7 @@ public class SubcontractPurchaseBillsTest extends RoadMapERPTest {
 		SubcontractPurchasebillFunc
 				.unregisteredSupplierwithInterstateGSTAgainstSubcontractWithDeviationandExpensesAccountAndadjustment();
 	}
+
 	/**
 	 * Unregistered Supplier with Local GST- Against Subcontract Without Deviation
 	 * 
@@ -606,9 +641,10 @@ public class SubcontractPurchaseBillsTest extends RoadMapERPTest {
 		SubcontractPurchasebillFunc.unregisteredSupplierwithInterstateGSTAgainstSubcontractWithoutDeviation();
 		Assert.assertTrue(flag);
 	}
+
 	/**
-	 * Unregistered Supplier with Local GST- Against Subcontract Without Deviation and
-	 * Expenses Account
+	 * Unregistered Supplier with Local GST- Against Subcontract Without Deviation
+	 * and Expenses Account
 	 * 
 	 * @author Vimal - RMITS
 	 */
@@ -619,9 +655,10 @@ public class SubcontractPurchaseBillsTest extends RoadMapERPTest {
 		SubcontractPurchasebillFunc
 				.unregisteredSupplierwithInterstateGSTAgainstSubcontractWithoutDeviationandExpensesAccount();
 	}
+
 	/**
-	 * Unregistered Supplier with Local GST- Against Subcontract Without Deviation and
-	 * Expenses Account And adjustment
+	 * Unregistered Supplier with Local GST- Against Subcontract Without Deviation
+	 * and Expenses Account And adjustment
 	 * 
 	 * @author Vimal - RMITS
 	 */
@@ -632,6 +669,7 @@ public class SubcontractPurchaseBillsTest extends RoadMapERPTest {
 		SubcontractPurchasebillFunc
 				.unregisteredSupplierwithInterstateGSTAgainstSubcontractWithoutDeviationandExpensesAccountAndadjustment();
 	}
+
 	/**
 	 * Unregistered Supplier imported without deviation(without GST)
 	 * 
@@ -643,6 +681,7 @@ public class SubcontractPurchaseBillsTest extends RoadMapERPTest {
 	public void UnregisteredSupplierwithImportedGSTAgainstSubcontractWithDeviation() {
 		SubcontractPurchasebillFunc.unregisteredSupplierwithImportedGSTAgainstSubcontractWithDeviation();
 	}
+
 	/**
 	 * Unregistered Supplier imported without deviation(without GST)
 	 * 
@@ -668,6 +707,7 @@ public class SubcontractPurchaseBillsTest extends RoadMapERPTest {
 		SubcontractPurchasebillFunc
 				.unregisteredSupplierwithImportedGSTAgainstSubcontractWithDeviationandExpensesAccount();
 	}
+
 	/**
 	 * This Method used For Unregistered Supplier imported with deviation and
 	 * expenses account And Adjustment(without GST)
@@ -681,6 +721,7 @@ public class SubcontractPurchaseBillsTest extends RoadMapERPTest {
 		SubcontractPurchasebillFunc
 				.unregisteredSupplierwithImportedGSTAgainstSubcontractWithDeviationandExpensesAccountAndadjustment();
 	}
+
 	/**
 	 * This Method used For NonResident Supplier imported with deviation(without
 	 * GST)
@@ -691,9 +732,9 @@ public class SubcontractPurchaseBillsTest extends RoadMapERPTest {
 	@Test(priority = 53, groups = {
 			"Subcontract" }, description = "NonResident Supplier imported with deviation(without GST)")
 	public void NonResidentSupplierwithImportedGSTAgainstSubcontractWithDeviation() {
-		SubcontractPurchasebillFunc
-				.nonResidentSupplierwithImportedGSTAgainstSubcontractWithDeviation();
+		SubcontractPurchasebillFunc.nonResidentSupplierwithImportedGSTAgainstSubcontractWithDeviation();
 	}
+
 	/**
 	 * This Method used For NonResident Supplier imported without deviation(without
 	 * GST)
@@ -704,9 +745,9 @@ public class SubcontractPurchaseBillsTest extends RoadMapERPTest {
 	@Test(priority = 54, groups = {
 			"Subcontract" }, description = "NonResident Supplier imported without deviation(without GST)")
 	public void NonResidentSupplierwithImportedGSTAgainstSubcontractWithoutDeviation() {
-		SubcontractPurchasebillFunc
-				.nonResidentSupplierwithImportedGSTAgainstSubcontractWithoutDeviation();
+		SubcontractPurchasebillFunc.nonResidentSupplierwithImportedGSTAgainstSubcontractWithoutDeviation();
 	}
+
 	/**
 	 * This Method used For NonResident Supplier imported with deviation and
 	 * expenses account(without GST)
@@ -782,39 +823,40 @@ public class SubcontractPurchaseBillsTest extends RoadMapERPTest {
 	public void DomesticUnRegisteredSupplierWithUnionTerritory() {
 		SubcontractPurchasebillFunc.domesticUnRegisteredSupplierWithUnionTerritory();
 	}
+
 	/**
 	 * Domestic UnRegistered Supplier - With Composition
 	 * 
 	 * @author Vimal - RMITS
 	 */
 	@Author("Vimal-RMITS")
-	@Test(priority = 61, groups = {
-			"Subcontract" }, description = "Domestic UnRegistered Supplier - With Composition")
+	@Test(priority = 61, groups = { "Subcontract" }, description = "Domestic UnRegistered Supplier - With Composition")
 	public void DomesticRegisteredSupplierWithComposition() {
 		SubcontractPurchasebillFunc.domesticRegisteredSupplierWithComposition();
 	}
+
 	/**
 	 * Domestic LocalFreight Supplier - With Composition
 	 * 
 	 * @author Vimal - RMITS
 	 */
 	@Author("Vimal-RMITS")
-	@Test(priority = 62, groups = {
-			"Subcontract" }, description = "Domestic LocalFreight Supplier - With Composition")
+	@Test(priority = 62, groups = { "Subcontract" }, description = "Domestic LocalFreight Supplier - With Composition")
 	public void DomesticRegisteredSupplierWithLocalFreightComposition() {
 		SubcontractPurchasebillFunc.domesticRegisteredSupplierWithLocalFreightComposition();
 	}
+
 	/**
 	 * Domestic Interstate Supplier - With Composition
 	 * 
 	 * @author Vimal - RMITS
 	 */
 	@Author("Vimal-RMITS")
-	@Test(priority = 63, groups = {
-			"Subcontract" }, description = "Domestic Interstate Supplier - With Composition")
+	@Test(priority = 63, groups = { "Subcontract" }, description = "Domestic Interstate Supplier - With Composition")
 	public void DomesticRegisteredSupplierWithInterstateComposition() {
 		SubcontractPurchasebillFunc.domesticRegisteredSupplierWithInterstateComposition();
 	}
+
 	/**
 	 * Domestic UnionTerritory Supplier - With Composition
 	 * 
@@ -826,17 +868,18 @@ public class SubcontractPurchaseBillsTest extends RoadMapERPTest {
 	public void DomesticRegisteredSupplierWithUnionTerritoryComposition() {
 		SubcontractPurchasebillFunc.domesticRegisteredSupplierWithUnionTerritoryComposition();
 	}
+
 	/**
 	 * Domestic Interstate Supplier - With CasualPerson
 	 * 
 	 * @author Vimal - RMITS
 	 */
 	@Author("Vimal-RMITS")
-	@Test(priority = 65, groups = {
-			"Subcontract" }, description = "Domestic Interstate Supplier - With CasualPerson")
+	@Test(priority = 65, groups = { "Subcontract" }, description = "Domestic Interstate Supplier - With CasualPerson")
 	public void DomesticRegisteredSupplierWithInterstateCasualPerson() {
 		SubcontractPurchasebillFunc.domesticRegisteredSupplierWithInterstateCasualPerson();
 	}
+
 	/**
 	 * Domestic UnionTerritory Supplier - With CasualPerson
 	 * 
@@ -848,17 +891,18 @@ public class SubcontractPurchaseBillsTest extends RoadMapERPTest {
 	public void DomesticRegisteredSupplierWithUnionTerritoryCasualPerson() {
 		SubcontractPurchasebillFunc.domesticRegisteredSupplierWithUnionTerritoryCasualPerson();
 	}
+
 	/**
 	 * Domestic Interstate Supplier - With NonResident
 	 * 
 	 * @author Vimal - RMITS
 	 */
 	@Author("Vimal-RMITS")
-	@Test(priority = 67, groups = {
-			"Subcontract" }, description = "Domestic Interstate Supplier - With NonResident")
+	@Test(priority = 67, groups = { "Subcontract" }, description = "Domestic Interstate Supplier - With NonResident")
 	public void DomesticRegisteredSupplierWithInterstateNonResident() {
 		SubcontractPurchasebillFunc.domesticRegisteredSupplierWithInterstateNonResident();
 	}
+
 	/**
 	 * Domestic UnionTerritory Supplier - With NonResident
 	 * 
@@ -870,6 +914,7 @@ public class SubcontractPurchaseBillsTest extends RoadMapERPTest {
 	public void DomesticRegisteredSupplierWithUnionTerritoryNonResident() {
 		SubcontractPurchasebillFunc.domesticRegisteredSupplierWithUnionTerritoryNonResident();
 	}
+
 	/**
 	 * Registered Supplier with Local GST- Subcontract Direct
 	 * 
@@ -881,6 +926,7 @@ public class SubcontractPurchaseBillsTest extends RoadMapERPTest {
 	public void registeredSupplierwithLocalGSTSubcontractDirect() {
 		SubcontractPurchasebillFunc.registeredSupplierwithLocalGSTSubcontractDirect();
 	}
+
 	/**
 	 * This Method used For Registered Supplier with Local GST- Subcontract Direct
 	 * With ExpensesAccount
@@ -947,9 +993,10 @@ public class SubcontractPurchaseBillsTest extends RoadMapERPTest {
 		SubcontractPurchasebillFunc
 				.registeredSupplierwithLocalGSTAllowIGSTtaxAgainstSubcontractDirectWithExpensesAccountandAdjustment();
 	}
+
 	/**
 	 * This Method used For Registered Supplier with Local GST (Allow RCM tax) -
-	 * Against Subcontract Direct 
+	 * Against Subcontract Direct
 	 * 
 	 * @author Vimal - RMITS
 	 */
@@ -957,9 +1004,9 @@ public class SubcontractPurchaseBillsTest extends RoadMapERPTest {
 	@Test(priority = 75, groups = {
 			"Subcontract" }, description = "Registered Supplier with Local GST (Allow RCM tax) - Against Subcontract Direct ")
 	public void registeredSupplierwithLocalGSTAllowRCMtaxAgainstSubcontractDirect() {
-		SubcontractPurchasebillFunc
-				.registeredSupplierwithLocalGSTAllowRCMtaxAgainstSubcontractDirect();
+		SubcontractPurchasebillFunc.registeredSupplierwithLocalGSTAllowRCMtaxAgainstSubcontractDirect();
 	}
+
 	/**
 	 * This Method used For Registered Supplier with Local GST (Allow RCM tax) -
 	 * Against Subcontract Direct With ExpensesAccount
@@ -1000,6 +1047,7 @@ public class SubcontractPurchaseBillsTest extends RoadMapERPTest {
 	public void registeredSupplierwithInterstateGSTSubcontractDirect() {
 		SubcontractPurchasebillFunc.registeredSupplierwithInterstateGSTSubcontractDirect();
 	}
+
 	/**
 	 * This Method used For Registered Supplier with Interstate GST- Subcontract
 	 * Direct With ExpensesAccount
@@ -1035,7 +1083,7 @@ public class SubcontractPurchaseBillsTest extends RoadMapERPTest {
 	 */
 	@Author("Vimal-RMITS")
 	@Test(priority = 81, groups = {
-			"Subcontract" }, description = "egistered Supplier with Interstate GST (Allow RCM tax) - Against Subcontract Direct")
+			"Subcontract" }, description = "Registered Supplier with Interstate GST (Allow RCM tax) - Against Subcontract Direct")
 	public void registeredSupplierwithInterstateAllowRCMtaxAgainstSubcontractDirect() {
 		SubcontractPurchasebillFunc.registeredSupplierwithInterstateAllowRCMtaxAgainstSubcontractDirect();
 	}
@@ -1079,6 +1127,7 @@ public class SubcontractPurchaseBillsTest extends RoadMapERPTest {
 	public void unRegisteredSupplierwithLocalGSTSubcontractDirect() {
 		SubcontractPurchasebillFunc.unRegisteredSupplierwithLocalGSTSubcontractDirect();
 	}
+
 	/**
 	 * This Method used For UnRegistered Supplier with Local GST- Subcontract Direct
 	 * With ExpensesAccount
@@ -1118,6 +1167,7 @@ public class SubcontractPurchaseBillsTest extends RoadMapERPTest {
 	public void unRegisteredSupplierwithLocalGSTAllowIGSTTaxSubcontractDirect() {
 		SubcontractPurchasebillFunc.unRegisteredSupplierwithLocalGSTAllowIGSTTaxSubcontractDirect();
 	}
+
 	/**
 	 * This Method used For Unregistered Supplier with Local GST (Allow IGST tax)-
 	 * Subcontract Direct With ExpensesAccount
@@ -1129,6 +1179,228 @@ public class SubcontractPurchaseBillsTest extends RoadMapERPTest {
 			"Subcontract" }, description = "Unregistered Supplier with Local GST (Allow IGST tax)- Subcontract Direct With ExpensesAccount")
 	public void unRegisteredSupplierwithLocalGSTAllowIGSTTaxSubcontractDirectandExpensesAccount() {
 		SubcontractPurchasebillFunc.unRegisteredSupplierwithLocalGSTAllowIGSTTaxSubcontractDirectandExpensesAccount();
+	}
+	/**
+	 * This Method used For Unregistered Supplier with Local GST (Allow IGST tax)-
+	 * Subcontract Direct With ExpensesAccount and Adjustment
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 89, groups = {
+			"Subcontract" }, description = "Unregistered Supplier with Local GST (Allow IGST tax)- Subcontract Direct With ExpensesAccount and Adjustment")
+	public void unRegisteredSupplierwithLocalGSTAllowIGSTTaxSubcontractDirectandExpensesAccountandAdjustment() {
+		SubcontractPurchasebillFunc.unRegisteredSupplierwithLocalGSTAllowIGSTTaxSubcontractDirectandExpensesAccountandAdjustment();
+	}
+
+	/**
+	 * Unregistered Supplier with Interstate GST- Subcontract Direct
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 90, groups = {
+			"Subcontract" }, description = "Unregistered Supplier with Interstate GST- Subcontract Direct")
+	public void unRegisteredSupplierwithInterstateGSTSubcontractDirect() {
+		SubcontractPurchasebillFunc.unRegisteredSupplierwithInterstateGSTSubcontractDirect();
+	}
+	/**
+	 * Unregistered Supplier with Interstate GST- Subcontract Direct and Expenses Account
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 91, groups = {
+			"Subcontract" }, description = "Unregistered Supplier with Interstate GST- Subcontract Direct and Expenses Account")
+	public void unRegisteredSupplierwithInterstateGSTSubcontractDirectandExpensesAccount() {
+		SubcontractPurchasebillFunc.unRegisteredSupplierwithInterstateGSTSubcontractDirectandExpensesAccount();
+	}
+	/**
+	 * Unregistered Supplier with Interstate GST- Subcontract Direct and Expenses Account
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 92, groups = {
+			"Subcontract" }, description = "Unregistered Supplier with Interstate GST- Subcontract Direct and Expenses Account and Adjustment")
+	public void unRegisteredSupplierwithInterstateGSTSubcontractDirectandExpensesAccountandAdjustment() {
+		SubcontractPurchasebillFunc.unRegisteredSupplierwithInterstateGSTSubcontractDirectandExpensesAccountandAdjustment();
+	}
+	/**
+	 * Unregistered Supplier imported (without GST)
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 93, groups = {
+			"Subcontract" }, description = "Unregistered Supplier imported (without GST)")
+	public void unregisteredSupplierimportedwithoutGST() {
+		SubcontractPurchasebillFunc.unregisteredSupplierimportedwithoutGST();
+	}
+	/**
+	 * Unregistered Supplier imported (without GST) and Expenses Account
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 94, groups = {
+			"Subcontract" }, description = "Unregistered Supplier imported (without GST) and Expenses Account")
+	public void unregisteredSupplierimportedwithoutGSTandExpensesAccount() {
+		SubcontractPurchasebillFunc.unregisteredSupplierimportedwithoutGSTandExpensesAccount();
+	}
+	/**
+	 * Unregistered Supplier imported (without GST) and Expenses Account And Adjustment
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 95, groups = {
+			"Subcontract" }, description = "Unregistered Supplier imported (without GST) and Expenses Account And Adjustment")
+	public void unregisteredSupplierimportedwithoutGSTandExpensesAccountandAdjustment() {
+		SubcontractPurchasebillFunc.unregisteredSupplierimportedwithoutGSTandExpensesAccountandAdjustment();
+	}
+	/**
+	 * Non-resident Supplier imported (without GST)
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 96, groups = {
+			"Subcontract" }, description = "Non-resident Supplier imported (without GST)")
+	public void nonresidentSupplierimportedwithoutdeviationwithoutGST() {
+		SubcontractPurchasebillFunc.nonresidentSupplierimportedwithoutdeviationwithoutGST();
+	}
+	/**
+	 * Non-resident Supplier imported without deviation(without GST)
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 97, groups = {
+			"Subcontract" }, description = "Non-resident Supplier imported (without GST)and Expenses Account")
+	public void nonresidentSupplierimportedwithoutdeviationwithoutGSTandExpensesAccount() {
+		SubcontractPurchasebillFunc.nonresidentSupplierimportedwithoutdeviationwithoutGSTandExpensesAccount();
+	}
+	/**
+	 * Non-resident Supplier imported without deviation(without GST) and Expenses Account And Adjustment
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 98, groups = {
+			"Subcontract" }, description = "Non-resident Supplier imported (without GST)and Expenses Account And Adjustment")
+	public void nonresidentSupplierimportedwithoutdeviationwithoutGSTandExpensesAccountandAdjustment() {
+		SubcontractPurchasebillFunc.nonresidentSupplierimportedwithoutdeviationwithoutGSTandExpensesAccountandAdjustment();
+	}
+	/**
+	 * Domestic Registered Supplier - With Local Freight GST
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 99, groups = {
+			"Subcontract" }, description = "Domestic Registered Supplier - With Local Freight GST")
+	public void directdomesticRegisteredSupplierWithLocalFreightGST() {
+		SubcontractPurchasebillFunc.directdomesticRegisteredSupplierWithLocalFreightGST();
+	}
+	/**
+	 * Domestic Registered Supplier - With Union Territory GST
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 100, groups = {
+			"Subcontract" }, description = "Domestic Registered Supplier - With Union Territory GST")
+	public void DirectdomesticRegisteredSupplierWithUnionTerritoryGST() {
+		SubcontractPurchasebillFunc.directdomesticRegisteredSupplierWithUnionTerritoryGST();
+	}
+	/**
+	 * Domestic Unregistered Supplier - With Local Freight GST
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 101, groups = {
+			"Subcontract" }, description = "Domestic Unregistered Supplier - With Local Freight GST")
+	public void directdomesticRegisteredSupplierWithUnregisteredLocalFreight() {
+		SubcontractPurchasebillFunc.directdomesticRegisteredSupplierWithUnregisteredLocalFreight();
+	}
+	/**
+	 * Domestic Unregistered Supplier - With Union Territory GST
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 102, groups = {
+			"Subcontract" }, description = "Domestic Unregistered Supplier - With Union Territory GST")
+	public void directdomesticUnRegisteredSupplierWithUnionTerritory() {
+		SubcontractPurchasebillFunc.directdomesticUnRegisteredSupplierWithUnionTerritory();
+	}
+	/**
+	 * Domestic LocalFreight Supplier - With Composition
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 103, groups = {
+			"Subcontract" }, description = "Domestic LocalFreight Supplier - With Composition")
+	public void directdomesticRegisteredSupplierWithLocalFreightComposition() {
+		SubcontractPurchasebillFunc.directdomesticRegisteredSupplierWithLocalFreightComposition();
+	}
+	/**
+	 *Domestic Interstate Supplier - With Composition
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 104, groups = {
+			"Subcontract" }, description = "Domestic Interstate Supplier - With Composition")
+	public void DirectdomesticRegisteredSupplierWithInterstateComposition() {
+		SubcontractPurchasebillFunc.directdomesticRegisteredSupplierWithInterstateComposition();
+	}
+	/**
+	 *Domestic Interstate Supplier - With CasualPerson
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 105, groups = {
+			"Subcontract" }, description = "Domestic Interstate Supplier - With CasualPerson")
+	public void directdomesticRegisteredSupplierWithInterstateCasualPerson() {
+		SubcontractPurchasebillFunc.directdomesticRegisteredSupplierWithInterstateCasualPerson();
+	}
+	/**
+	 *Domestic UnionTerritory Supplier - With CasualPerson
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 106, groups = {
+			"Subcontract" }, description = "Domestic UnionTerritory Supplier - With CasualPerson")
+	public void DirectdomesticRegisteredSupplierWithUnionTerritoryCasualPerson() {
+		SubcontractPurchasebillFunc.directdomesticRegisteredSupplierWithUnionTerritoryCasualPerson();
+	}
+	/**
+	 *Domestic Interstate Supplier - With NonResident
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 107, groups = {
+			"Subcontract" }, description = "Domestic Interstate Supplier - With NonResident")
+	public void DirectdomesticRegisteredSupplierWithInterstateNonResident() {
+		SubcontractPurchasebillFunc.directdomesticRegisteredSupplierWithInterstateNonResident();
+	}
+	/**
+	 *Domestic UnionTerritory Supplier - With NonResident
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 108, groups = {
+			"Subcontract" }, description = "Domestic UnionTerritory Supplier - With NonResident")
+	public void DirectdomesticRegisteredSupplierWithUnionTerritoryNonResident() {
+		SubcontractPurchasebillFunc.directdomesticRegisteredSupplierWithUnionTerritoryNonResident();
 	}
 
 }
