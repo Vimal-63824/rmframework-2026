@@ -238,4 +238,14 @@ public class PurchaseRequestLocators {
 	public static final String GlAccNoLovButton = "//input[@data-testid='PRL_PUR_ACCT']/following-sibling::button";
 	/** @Locator XPATH */
 	public static final String PendingPR = "//button[@data-testid='ADD_PR']";
+	/** @Locator XPATH */
+	public static final String NewQuantityTable = "//div[@id='LINE_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[11]";
+	/** @Locator XPATH */
+	public static final String NewQuantityInput = "//div[@id='LINE_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[11]//input";
+	/** @Locator XPATH */
+	public static final String LineSaveButton = "//button[@data-testid='Save']";
+	/** @Locator XPATH */
+	public static final String HeaderSaveButton = "//button[@data-testid='SAVE']";
+	/** @Locator XPATH */
+	public static final String HeaderPostButton = "//button[@data-testid='Closeshort']";
 }

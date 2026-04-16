@@ -1787,4 +1787,86 @@ public class PurchaseRequestFunctions {
 //		Assert.assertTrue(flag);
 //	}
 
+	/**
+	 * This Method Is Used To Verify PR Amendment
+	 * 
+	 * @author Deepan-GWL
+	 * @param Location
+	 */
+	public void verifyPrAmendment(String Location, String Quantity) {
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"HodUsername");
+		commonFunc.navigatePurchaseRequestCloseShortPage();
+		clickAddIconPurchaseRequestCloseShort();
+		fillFormDetailsInPurchaseRequestCloseShort(Location, VariableHandler.getPRNumber(),
+				commonFunc.getDataFromTestDataSheet("RefText_Test"));
+		clickTickIconAndStoreDocumentNumberInPRCloseShort();
+		clickLoadPRAndSelectAllItemstoLines();
+		verifyAddNewQuantity(Quantity);
+		verifyPRAmendmentHeaderSaveAndPost();
+
+		searchDocNumberAndCheckPRCloseShortStatus(VariableHandler.getPRCloseShortDocNumber(),
+				commonFunc.getDataFromTestDataSheet("PostedStatus"));
+		commonFunc.logoutUser();
+
+	}
+
+	/**
+	 * This Method Is Used To Verify Add New Quantity
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyAddNewQuantity(String Quantity) {
+		commonFunc.verifyAddTableSpecs(PurchaseRequestLocators.NewQuantityTable,
+				PurchaseRequestLocators.NewQuantityInput, Quantity);
+		flag = webDB.waitForElement(PurchaseRequestLocators.LineSaveButton, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(PurchaseRequestLocators.LineSaveButton, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.SuccesToastCloseIcon, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "PR Amendment Line Value Entered and Saved Successfully");
+				webDB.clickAnElement(CommonUiLocators.SuccesToastCloseIcon, ElementType.Xpath);
+
+			}
+			flag = webDB.waitForElement(PurchaseRequestLocators.HeaderSaveButton, ElementType.Xpath);
+//		}
+		}
+
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Verify PR Amendment Header Save And Post
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyPRAmendmentHeaderSaveAndPost() {
+		flag = webDB.waitForElement(PurchaseRequestLocators.HeaderSaveButton, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(PurchaseRequestLocators.HeaderSaveButton, ElementType.Xpath);
+			webDB.clickAnElement(PurchaseRequestLocators.HeaderSaveButton, ElementType.Xpath);
+			logs.logging("INFO", "Header Saved Successfully.");
+			webDB.waitForElementUntilGivenTime(CommonUiLocators.PostToastMessage, ElementType.Xpath, 10);
+			if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+				webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+			}
+			commonFunc.checkSuccessToastMessageDisappear();
+			flag = webDB.waitForClickElement(PurchaseRequestLocators.HeaderPostButton, ElementType.Xpath);
+			if (flag) {
+				commonFunc.checkRefreshCellsDisappear();
+				webDB.moveToElement(PurchaseRequestLocators.HeaderPostButton, ElementType.Xpath);
+				webDB.clickAnElement(PurchaseRequestLocators.HeaderPostButton, ElementType.Xpath);
+				commonFunc.checkRefreshCellsDisappear();
+				flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
+				if (!VariableHandler.getApprovalFlag()) {
+					approvalPageFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+					commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+							VariableHandler.getPRCloseShortDocNumber(), webDB.getDataFromProperties("HodEmpId"),
+							commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
 }
