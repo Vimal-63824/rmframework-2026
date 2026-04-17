@@ -266,16 +266,17 @@ public class BankPaymentFunctions {
 		if (flag) {
 			webDB.clickAnElement(BankPaymentLocators.BankLineGLAccountField, ElementType.Xpath);
 			commonFunc.searchAndSelectValueInFilters(BankPaymentLocators.BankLineGLAccountLovButton, GLAccount);
+			commonFunc.hardWait(100);
 			webDB.pressTabKey();
-//			commonFunc.hardWait(500);
-//			commonFunc.checkRefreshCellsDisappear();
+			commonFunc.hardWait(200);
+			commonFunc.checkRefreshCellsDisappear();
 			flag = webDB.waitForElement(BankPaymentLocators.BankLineCPCField, ElementType.Xpath);
 			if (flag) {
-//				String GetTextCPC = webDB.getTextFromElement(BankPaymentLocators.BankLineCPCField, ElementType.Xpath);
-//				if (!GetTextCPC.equals(CPCcode)) {
-				webDB.clickAnElement(BankPaymentLocators.BankLineCPCField, ElementType.Xpath);
-				commonFunc.searchAndSelectValueInFilters(BankPaymentLocators.BankLineCPCLovButton, CPCcode);
-//				}
+				String GetTextCPC = webDB.getTextFromElement(BankPaymentLocators.BankLineCPCField, ElementType.Xpath);
+				if (!GetTextCPC.equals(CPCcode)) {
+					webDB.clickAnElement(BankPaymentLocators.BankLineCPCField, ElementType.Xpath);
+					commonFunc.searchAndSelectValueInFilters(BankPaymentLocators.BankLineCPCLovButton, CPCcode);
+				}
 //				commonFunc.checkRefreshCellsDisappear();
 				webDB.pressTabKey();
 			}
@@ -1446,6 +1447,9 @@ public class BankPaymentFunctions {
 						}
 					}
 				} else {
+					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalUSD"), 0, 10,
+							dbCommonFunctions.ExchangeRateDetails(Currency,
+									commonFunc.getDataFromTestDataSheet("ImportPurchaseEXRateColumnName")));
 					for (int j = 1; j <= VariableHandler.getMultiplePBDocs().size(); j++) {
 						excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalUSD"), 1, 5 + j,
 								dbCommonFunctions.BankPaymentPBHeaderDetails(
@@ -1564,6 +1568,9 @@ public class BankPaymentFunctions {
 						}
 					}
 				} else {
+					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalUSD"), 0, 10,
+							dbCommonFunctions.ExchangeRateDetails(Currency,
+									commonFunc.getDataFromTestDataSheet("ImportPurchaseEXRateColumnName")));
 					for (int j = 1; j <= VariableHandler.getMultiplePBDocs().size(); j++) {
 						excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalUSD"), 1, 5 + j,
 								dbCommonFunctions.BankPaymentPBHeaderDetails(
@@ -1683,6 +1690,19 @@ public class BankPaymentFunctions {
 											commonFunc.getDataFromTestDataSheet("PBNetAmount")));
 						}
 					}
+				} else {
+					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalMultiUSD"), 0, 10,
+							dbCommonFunctions.ExchangeRateDetails(Currency,
+									commonFunc.getDataFromTestDataSheet("ImportPurchaseEXRateColumnName")));
+					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalMultiUSD"), 3, 5 + i,
+							dbCommonFunctions.BankPaymentPBHeaderDetails(VariableHandler.getMultiplePBDocs().get(i - 1),
+									commonFunc.getDataFromTestDataSheet("PBNetAmount")));
+					for (int j = 0; j < VariableHandler.getMultiplePBDocs().size(); j++) {
+						excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalMultiUSD"), j + 1,
+								6,
+								dbCommonFunctions.BankPaymentPBHeaderDetails(VariableHandler.getMultiplePBDocs().get(j),
+										commonFunc.getDataFromTestDataSheet("PBNetAmount")));
+					}
 				}
 			}
 			if (!Currency.equals("INR") || (BankName.equals("JP MORGAN CHASE"))) {
@@ -1710,6 +1730,14 @@ public class BankPaymentFunctions {
 					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalMulti"), j + 1, 6, "0");
 					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalMulti"), j + 1, 7, "0");
 				}
+			}
+		} else {
+			bankreceiptfunc.verifyJournalAmountWithDB(webDB.getDataFromProperties("BPJournalMultiUSD"),
+					VariableHandler.getBankPaymentOrReceiptDocNumber());
+			for (int j = 0; j < VariableHandler.getMultiplePBDocs().size(); j++) {
+				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalMultiUSD"), 3, 6 + j, "0");
+				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalMultiUSD"), j + 1, 6, "0");
+				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalMultiUSD"), j + 1, 7, "0");
 			}
 		}
 		verifyOverallHeaderAmountWithDB(SheetName);
@@ -1785,6 +1813,9 @@ public class BankPaymentFunctions {
 						}
 					}
 				} else {
+					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalUSD"), 0, 10,
+							dbCommonFunctions.ExchangeRateDetails(Currency,
+									commonFunc.getDataFromTestDataSheet("ImportPurchaseEXRateColumnName")));
 					for (int j = 1; j <= VariableHandler.getMultiplePBDocs().size(); j++) {
 						excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalUSD"), 1, 5 + j,
 								dbCommonFunctions.BankPaymentPBHeaderDetails(
@@ -1900,6 +1931,19 @@ public class BankPaymentFunctions {
 											commonFunc.getDataFromTestDataSheet("PBNetAmount")));
 						}
 					}
+				} else {
+					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalMultiUSD"), 0, 10,
+							dbCommonFunctions.ExchangeRateDetails(Currency,
+									commonFunc.getDataFromTestDataSheet("ImportPurchaseEXRateColumnName")));
+					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalMultiUSD"), 3, 5 + i,
+							dbCommonFunctions.BankPaymentPBHeaderDetails(VariableHandler.getMultiplePBDocs().get(i - 1),
+									commonFunc.getDataFromTestDataSheet("PBNetAmount")));
+					for (int j = 0; j < VariableHandler.getMultiplePBDocs().size(); j++) {
+						excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalMultiUSD"), j + 1,
+								6,
+								dbCommonFunctions.BankPaymentPBHeaderDetails(VariableHandler.getMultiplePBDocs().get(j),
+										commonFunc.getDataFromTestDataSheet("PBNetAmount")));
+					}
 				}
 			}
 			if (!Currency.equals("INR") || (BankName.equals("JP MORGAN CHASE"))) {
@@ -1927,6 +1971,14 @@ public class BankPaymentFunctions {
 					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalMulti"), j + 1, 6, "0");
 					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalMulti"), j + 1, 7, "0");
 				}
+			}
+		} else {
+			bankreceiptfunc.verifyJournalAmountWithDB(webDB.getDataFromProperties("BPJournalMultiUSD"),
+					VariableHandler.getBankPaymentOrReceiptDocNumber());
+			for (int j = 0; j < VariableHandler.getMultiplePBDocs().size(); j++) {
+				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalMultiUSD"), 3, 6 + j, "0");
+				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalMultiUSD"), j + 1, 6, "0");
+				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalMultiUSD"), j + 1, 7, "0");
 			}
 		}
 		verifyOverallHeaderAmountWithDB(SheetName);
@@ -2011,6 +2063,19 @@ public class BankPaymentFunctions {
 							dbCommonFunctions.BankPaymentPBHeaderDetails(VariableHandler.getMultiplePBDocs().get(3),
 									commonFunc.getDataFromTestDataSheet("PBNetAmount")));
 				}
+			} else {
+				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalMPMIUSD"), 1, 6,
+						dbCommonFunctions.BankPaymentPBHeaderDetails(VariableHandler.getMultiplePBDocs().get(0),
+								commonFunc.getDataFromTestDataSheet("PBNetAmount")));
+				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalMPMIUSD"), 1, 7,
+						dbCommonFunctions.BankPaymentPBHeaderDetails(VariableHandler.getMultiplePBDocs().get(1),
+								commonFunc.getDataFromTestDataSheet("PBNetAmount")));
+				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalMPMIUSD"), 2, 6,
+						dbCommonFunctions.BankPaymentPBHeaderDetails(VariableHandler.getMultiplePBDocs().get(2),
+								commonFunc.getDataFromTestDataSheet("PBNetAmount")));
+				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalMPMIUSD"), 2, 7,
+						dbCommonFunctions.BankPaymentPBHeaderDetails(VariableHandler.getMultiplePBDocs().get(3),
+								commonFunc.getDataFromTestDataSheet("PBNetAmount")));
 			}
 		}
 		clickCreateJournalButton();
@@ -2030,6 +2095,13 @@ public class BankPaymentFunctions {
 				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalMPMI"), 2, 6, "0");
 				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalMPMI"), 2, 7, "0");
 			}
+		} else {
+			bankreceiptfunc.verifyJournalAmountWithDB(webDB.getDataFromProperties("BPJournalMPMIUSD"),
+					VariableHandler.getBankPaymentOrReceiptDocNumber());
+			excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalMPMIUSD"), 1, 6, "0");
+			excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalMPMIUSD"), 1, 7, "0");
+			excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalMPMIUSD"), 2, 6, "0");
+			excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalMPMIUSD"), 2, 7, "0");
 		}
 		verifyOverallHeaderAmountWithDB(SheetName);
 		clearDataInExcel(SheetName);
@@ -2111,6 +2183,19 @@ public class BankPaymentFunctions {
 							dbCommonFunctions.BankPaymentPBHeaderDetails(VariableHandler.getMultiplePBDocs().get(3),
 									commonFunc.getDataFromTestDataSheet("PBNetAmount")));
 				}
+			} else {
+				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalMPMIUSD"), 1, 6,
+						dbCommonFunctions.BankPaymentPBHeaderDetails(VariableHandler.getMultiplePBDocs().get(0),
+								commonFunc.getDataFromTestDataSheet("PBNetAmount")));
+				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalMPMIUSD"), 1, 7,
+						dbCommonFunctions.BankPaymentPBHeaderDetails(VariableHandler.getMultiplePBDocs().get(1),
+								commonFunc.getDataFromTestDataSheet("PBNetAmount")));
+				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalMPMIUSD"), 2, 6,
+						dbCommonFunctions.BankPaymentPBHeaderDetails(VariableHandler.getMultiplePBDocs().get(2),
+								commonFunc.getDataFromTestDataSheet("PBNetAmount")));
+				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalMPMIUSD"), 2, 7,
+						dbCommonFunctions.BankPaymentPBHeaderDetails(VariableHandler.getMultiplePBDocs().get(3),
+								commonFunc.getDataFromTestDataSheet("PBNetAmount")));
 			}
 		}
 		clickCreateJournalButton();
@@ -2130,6 +2215,13 @@ public class BankPaymentFunctions {
 				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalMPMI"), 2, 6, "0");
 				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalMPMI"), 2, 7, "0");
 			}
+		} else {
+			bankreceiptfunc.verifyJournalAmountWithDB(webDB.getDataFromProperties("BPJournalMPMIUSD"),
+					VariableHandler.getBankPaymentOrReceiptDocNumber());
+			excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalMPMIUSD"), 1, 6, "0");
+			excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalMPMIUSD"), 1, 7, "0");
+			excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalMPMIUSD"), 2, 6, "0");
+			excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalMPMIUSD"), 2, 7, "0");
 		}
 		verifyOverallHeaderAmountWithDB(SheetName);
 		clearDataInExcel(SheetName);
@@ -2448,14 +2540,12 @@ public class BankPaymentFunctions {
 		createBankPaymentEntry(commonFunc.getDataFromTestDataSheet("BankDocMode"), BankName, Today,
 				commonFunc.getDataFromTestDataSheet("BankPayMode"),
 				commonFunc.getDataFromTestDataSheet("BankRefNumber"), Today,
-				commonFunc.getDataFromTestDataSheet("BankPrefix"),
-				commonFunc.getDataFromTestDataSheet("BankTransCurcy"));
+				commonFunc.getDataFromTestDataSheet("BankPrefix"), Currency);
 		getBankPaymentOrReceiptDocumentNumber();
 		checkBPDocumentStatusWithDB(commonFunc.getDataFromTestDataSheet("Draft"),
 				VariableHandler.getBankPaymentOrReceiptDocNumber());
 		verifyBankPaymentHeaderDetailsWithUI(BankName, commonFunc.getDataFromTestDataSheet("BankPrefix"), Today, Today);
-		verifyBankPaymentDetailsWithDB(BankName, commonFunc.getDataFromTestDataSheet("BankPrefix"),
-				commonFunc.getDataFromTestDataSheet("BankTransCurcy"));
+		verifyBankPaymentDetailsWithDB(BankName, commonFunc.getDataFromTestDataSheet("BankPrefix"), Currency);
 		BankPayments = excelUtils.readAllDataInExcel(Filepath, SheetName);
 		for (int i = 1; i < BankPayments.length; i++) {
 			String GLAccountDesc = BankPayments[i][1];
@@ -2512,6 +2602,19 @@ public class BankPaymentFunctions {
 											commonFunc.getDataFromTestDataSheet("PBNetAmount")));
 						}
 					}
+				} else {
+					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalMultiUSD"), 0, 10,
+							dbCommonFunctions.ExchangeRateDetails(Currency,
+									commonFunc.getDataFromTestDataSheet("ImportPurchaseEXRateColumnName")));
+					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalMultiUSD"), 3, 5 + i,
+							dbCommonFunctions.BankPaymentPBHeaderDetails(VariableHandler.getMultiplePBDocs().get(i - 1),
+									commonFunc.getDataFromTestDataSheet("PBNetAmount")));
+					for (int j = 0; j < VariableHandler.getMultiplePBDocs().size(); j++) {
+						excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalMultiUSD"), j + 1,
+								6,
+								dbCommonFunctions.BankPaymentPBHeaderDetails(VariableHandler.getMultiplePBDocs().get(j),
+										commonFunc.getDataFromTestDataSheet("PBNetAmount")));
+					}
 				}
 			}
 			if (!Currency.equals("INR") || (BankName.equals("JP MORGAN CHASE"))) {
@@ -2539,6 +2642,14 @@ public class BankPaymentFunctions {
 					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalMulti"), j + 1, 6, "0");
 					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalMulti"), j + 1, 7, "0");
 				}
+			}
+		} else {
+			bankreceiptfunc.verifyJournalAmountWithDB(webDB.getDataFromProperties("BPJournalMultiUSD"),
+					VariableHandler.getBankPaymentOrReceiptDocNumber());
+			for (int j = 0; j < VariableHandler.getMultiplePBDocs().size(); j++) {
+				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalMultiUSD"), 3, 6 + j, "0");
+				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalMultiUSD"), j + 1, 6, "0");
+				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalMultiUSD"), j + 1, 7, "0");
 			}
 		}
 		verifyOverallHeaderAmountWithDB(SheetName);
@@ -2607,7 +2718,7 @@ public class BankPaymentFunctions {
 			String SupplierID = BankPayments[i][2];
 			String GRNSheetName = BankPayments[i][4];
 			if (!SupplierID.equals("")) {
-				Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName);
+				Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeImportSupplierHK(SupplierID, GRNSheetName);
 			}
 		}
 		for (int i = 0; i < VariableHandler.getMultipleGRNDocs().size(); i++) {
@@ -2641,14 +2752,12 @@ public class BankPaymentFunctions {
 		createBankPaymentEntry(commonFunc.getDataFromTestDataSheet("BankDocMode"), BankName, Today,
 				commonFunc.getDataFromTestDataSheet("BankPayMode"),
 				commonFunc.getDataFromTestDataSheet("BankRefNumber"), Today,
-				commonFunc.getDataFromTestDataSheet("BankPrefix"),
-				commonFunc.getDataFromTestDataSheet("BankTransCurcy"));
+				commonFunc.getDataFromTestDataSheet("BankPrefix"), Currency);
 		getBankPaymentOrReceiptDocumentNumber();
 		checkBPDocumentStatusWithDB(commonFunc.getDataFromTestDataSheet("Draft"),
 				VariableHandler.getBankPaymentOrReceiptDocNumber());
 		verifyBankPaymentHeaderDetailsWithUI(BankName, commonFunc.getDataFromTestDataSheet("BankPrefix"), Today, Today);
-		verifyBankPaymentDetailsWithDB(BankName, commonFunc.getDataFromTestDataSheet("BankPrefix"),
-				commonFunc.getDataFromTestDataSheet("BankTransCurcy"));
+		verifyBankPaymentDetailsWithDB(BankName, commonFunc.getDataFromTestDataSheet("BankPrefix"), Currency);
 		BankPayments = excelUtils.readAllDataInExcel(Filepath, SheetName);
 		for (int i = 1; i < BankPayments.length; i++) {
 			String GLAccountDesc = BankPayments[i][1];
@@ -2709,6 +2818,19 @@ public class BankPaymentFunctions {
 							dbCommonFunctions.BankPaymentPBHeaderDetails(VariableHandler.getMultiplePBDocs().get(3),
 									commonFunc.getDataFromTestDataSheet("PBNetAmount")));
 				}
+			} else {
+				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalMPMIUSD"), 1, 6,
+						dbCommonFunctions.BankPaymentPBHeaderDetails(VariableHandler.getMultiplePBDocs().get(0),
+								commonFunc.getDataFromTestDataSheet("PBNetAmount")));
+				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalMPMIUSD"), 1, 7,
+						dbCommonFunctions.BankPaymentPBHeaderDetails(VariableHandler.getMultiplePBDocs().get(1),
+								commonFunc.getDataFromTestDataSheet("PBNetAmount")));
+				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalMPMIUSD"), 2, 6,
+						dbCommonFunctions.BankPaymentPBHeaderDetails(VariableHandler.getMultiplePBDocs().get(2),
+								commonFunc.getDataFromTestDataSheet("PBNetAmount")));
+				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalMPMIUSD"), 2, 7,
+						dbCommonFunctions.BankPaymentPBHeaderDetails(VariableHandler.getMultiplePBDocs().get(3),
+								commonFunc.getDataFromTestDataSheet("PBNetAmount")));
 			}
 		}
 		clickCreateJournalButton();
@@ -2728,6 +2850,13 @@ public class BankPaymentFunctions {
 				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalMPMI"), 2, 6, "0");
 				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalMPMI"), 2, 7, "0");
 			}
+		} else {
+			bankreceiptfunc.verifyJournalAmountWithDB(webDB.getDataFromProperties("BPJournalMPMIUSD"),
+					VariableHandler.getBankPaymentOrReceiptDocNumber());
+			excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalMPMIUSD"), 1, 6, "0");
+			excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalMPMIUSD"), 1, 7, "0");
+			excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalMPMIUSD"), 2, 6, "0");
+			excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalMPMIUSD"), 2, 7, "0");
 		}
 		clickPostButton();
 		flag = forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
@@ -3041,14 +3170,12 @@ public class BankPaymentFunctions {
 		createBankPaymentEntry(commonFunc.getDataFromTestDataSheet("BankDocMode"), BankName, Today,
 				commonFunc.getDataFromTestDataSheet("BankPayMode"),
 				commonFunc.getDataFromTestDataSheet("BankRefNumber"), Today,
-				commonFunc.getDataFromTestDataSheet("BankPrefix"),
-				commonFunc.getDataFromTestDataSheet("BankTransCurcy"));
+				commonFunc.getDataFromTestDataSheet("BankPrefix"), Currency);
 		getBankPaymentOrReceiptDocumentNumber();
 		checkBPDocumentStatusWithDB(commonFunc.getDataFromTestDataSheet("Draft"),
 				VariableHandler.getBankPaymentOrReceiptDocNumber());
 		verifyBankPaymentHeaderDetailsWithUI(BankName, commonFunc.getDataFromTestDataSheet("BankPrefix"), Today, Today);
-		verifyBankPaymentDetailsWithDB(BankName, commonFunc.getDataFromTestDataSheet("BankPrefix"),
-				commonFunc.getDataFromTestDataSheet("BankTransCurcy"));
+		verifyBankPaymentDetailsWithDB(BankName, commonFunc.getDataFromTestDataSheet("BankPrefix"), Currency);
 		clickGetDocumentInBPHeader();
 		clickPendingPartyDocumentsInBP();
 		choosePartyNameAndClickSearchButtonInPendingPartyDocsMPMB(VariableHandler.getMultiplePBDocs(), SheetName);
@@ -3117,6 +3244,23 @@ public class BankPaymentFunctions {
 							dbCommonFunctions.BankPaymentPBHeaderDetails(VariableHandler.getMultiplePBDocs().get(3),
 									commonFunc.getDataFromTestDataSheet("PBNetAmount")));
 				}
+			} else {
+				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalNRUSD"), 0, 11,
+						dbCommonFunctions.ExchangeRateDetails(Currency,
+								commonFunc.getDataFromTestDataSheet("ImportPurchaseEXRateColumnName")));
+
+				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalNRUSD"), 1, 6,
+						dbCommonFunctions.BankPaymentPBHeaderDetails(VariableHandler.getMultiplePBDocs().get(0),
+								commonFunc.getDataFromTestDataSheet("PBNetAmount")));
+				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalNRUSD"), 1, 7,
+						dbCommonFunctions.BankPaymentPBHeaderDetails(VariableHandler.getMultiplePBDocs().get(1),
+								commonFunc.getDataFromTestDataSheet("PBNetAmount")));
+				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalNRUSD"), 2, 6,
+						dbCommonFunctions.BankPaymentPBHeaderDetails(VariableHandler.getMultiplePBDocs().get(2),
+								commonFunc.getDataFromTestDataSheet("PBNetAmount")));
+				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalNRUSD"), 2, 7,
+						dbCommonFunctions.BankPaymentPBHeaderDetails(VariableHandler.getMultiplePBDocs().get(3),
+								commonFunc.getDataFromTestDataSheet("PBNetAmount")));
 			}
 		}
 		clickCreateJournalButton();
@@ -3136,6 +3280,13 @@ public class BankPaymentFunctions {
 				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalNR"), 2, 6, "0");
 				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalNR"), 2, 7, "0");
 			}
+		} else {
+			bankreceiptfunc.verifyJournalAmountWithDB(webDB.getDataFromProperties("BPJournalNRUSD"),
+					VariableHandler.getBankPaymentOrReceiptDocNumber());
+			excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalNRUSD"), 1, 6, "0");
+			excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalNRUSD"), 1, 7, "0");
+			excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalNRUSD"), 2, 6, "0");
+			excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalNRUSD"), 2, 7, "0");
 		}
 		verifyOverallHeaderAmountWithDB(SheetName);
 		clearDataInExcel(SheetName);
@@ -3242,6 +3393,23 @@ public class BankPaymentFunctions {
 							dbCommonFunctions.BankPaymentPBHeaderDetails(VariableHandler.getMultiplePBDocs().get(3),
 									commonFunc.getDataFromTestDataSheet("PBNetAmount")));
 				}
+			} else {
+				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalNRUSD"), 0, 11,
+						dbCommonFunctions.ExchangeRateDetails(Currency,
+								commonFunc.getDataFromTestDataSheet("ImportPurchaseEXRateColumnName")));
+
+				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalNRUSD"), 1, 6,
+						dbCommonFunctions.BankPaymentPBHeaderDetails(VariableHandler.getMultiplePBDocs().get(0),
+								commonFunc.getDataFromTestDataSheet("PBNetAmount")));
+				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalNRUSD"), 1, 7,
+						dbCommonFunctions.BankPaymentPBHeaderDetails(VariableHandler.getMultiplePBDocs().get(1),
+								commonFunc.getDataFromTestDataSheet("PBNetAmount")));
+				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalNRUSD"), 2, 6,
+						dbCommonFunctions.BankPaymentPBHeaderDetails(VariableHandler.getMultiplePBDocs().get(2),
+								commonFunc.getDataFromTestDataSheet("PBNetAmount")));
+				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalNRUSD"), 2, 7,
+						dbCommonFunctions.BankPaymentPBHeaderDetails(VariableHandler.getMultiplePBDocs().get(3),
+								commonFunc.getDataFromTestDataSheet("PBNetAmount")));
 			}
 		}
 		clickCreateJournalButton();
@@ -3261,6 +3429,13 @@ public class BankPaymentFunctions {
 				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalNR"), 2, 6, "0");
 				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalNR"), 2, 7, "0");
 			}
+		} else {
+			bankreceiptfunc.verifyJournalAmountWithDB(webDB.getDataFromProperties("BPJournalNRUSD"),
+					VariableHandler.getBankPaymentOrReceiptDocNumber());
+			excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalNRUSD"), 1, 6, "0");
+			excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalNRUSD"), 1, 7, "0");
+			excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalNRUSD"), 2, 6, "0");
+			excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalNRUSD"), 2, 7, "0");
 		}
 		verifyOverallHeaderAmountWithDB(SheetName);
 		clearDataInExcel(SheetName);
@@ -3369,7 +3544,7 @@ public class BankPaymentFunctions {
 				clickBankViewDetailsCloseButton();
 				if (!Currency.equals("INR")) {
 					excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, dbCommonFunctions.ExchangeRateDetails(
-							Currency, commonFunc.getDataFromTestDataSheet("ExportSalesEXRateColumnName")));
+							Currency, commonFunc.getDataFromTestDataSheet("ImportPurchaseEXRateColumnName")));
 				} else {
 					excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, "1");
 				}
@@ -3406,6 +3581,23 @@ public class BankPaymentFunctions {
 							dbCommonFunctions.BankPaymentPBHeaderDetails(VariableHandler.getMultiplePBDocs().get(3),
 									commonFunc.getDataFromTestDataSheet("PBNetAmount")));
 				}
+			} else {
+				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalNRUSD"), i, 11,
+						dbCommonFunctions.ExchangeRateDetails(Currency,
+								commonFunc.getDataFromTestDataSheet("ImportPurchaseEXRateColumnName")));
+
+				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalNRUSD"), 1, 6,
+						dbCommonFunctions.BankPaymentPBHeaderDetails(VariableHandler.getMultiplePBDocs().get(0),
+								commonFunc.getDataFromTestDataSheet("PBNetAmount")));
+				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalNRUSD"), 1, 7,
+						dbCommonFunctions.BankPaymentPBHeaderDetails(VariableHandler.getMultiplePBDocs().get(1),
+								commonFunc.getDataFromTestDataSheet("PBNetAmount")));
+				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalNRUSD"), 2, 6,
+						dbCommonFunctions.BankPaymentPBHeaderDetails(VariableHandler.getMultiplePBDocs().get(2),
+								commonFunc.getDataFromTestDataSheet("PBNetAmount")));
+				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalNRUSD"), 2, 7,
+						dbCommonFunctions.BankPaymentPBHeaderDetails(VariableHandler.getMultiplePBDocs().get(3),
+								commonFunc.getDataFromTestDataSheet("PBNetAmount")));
 			}
 		}
 		clickCreateJournalButton();
@@ -3425,6 +3617,13 @@ public class BankPaymentFunctions {
 				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalNR"), 2, 6, "0");
 				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalNR"), 2, 7, "0");
 			}
+		} else {
+			bankreceiptfunc.verifyJournalAmountWithDB(webDB.getDataFromProperties("BPJournalNRUSD"),
+					VariableHandler.getBankPaymentOrReceiptDocNumber());
+			excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalNRUSD"), 1, 6, "0");
+			excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalNRUSD"), 1, 7, "0");
+			excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalNRUSD"), 2, 6, "0");
+			excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalNRUSD"), 2, 7, "0");
 		}
 		verifyOverallHeaderAmountWithDB(SheetName);
 		clearDataInExcel(SheetName);
@@ -3813,12 +4012,23 @@ public class BankPaymentFunctions {
 						VoucherNumber, commonFunc.getDataFromTestDataSheet("BRDBPendingReceivablesCurcy")), Curcy);
 				logs.logging("INFO", "In Pending Payables For This Document Number " + VoucherNumber
 						+ " Currency Is getting Matched With DB");
-
-				salesOrdFunc.verifyAssertionBothValues(dbCommonFunctions.BankPaymentPendingPayablesDetails(
-						VoucherNumber, commonFunc.getDataFromTestDataSheet("BRDBPendingReceivablesExRate")), EXRate);
-				logs.logging("INFO", "In Pending Payables For This Document Number " + VoucherNumber
-						+ " EX.Rate Is getting Matched With DB");
-
+				if (Curcy.equals("INR")) {
+					salesOrdFunc
+							.verifyAssertionBothValues(
+									dbCommonFunctions.BankPaymentPendingPayablesDetails(VoucherNumber,
+											commonFunc.getDataFromTestDataSheet("BRDBPendingReceivablesExRate")),
+									EXRate);
+					logs.logging("INFO", "In Pending Payables For This Document Number " + VoucherNumber
+							+ " EX.Rate Is getting Matched With DB");
+				} else {
+					salesOrdFunc.verifyAssertionBothValues(
+							dbCommonFunctions.BankPaymentPendingPayablesDetails(VoucherNumber,
+									commonFunc.getDataFromTestDataSheet("BRDBPendingReceivablesExRate")),
+							dbCommonFunctions.ExchangeRateDetails(Curcy,
+									commonFunc.getDataFromTestDataSheet("ImportPurchaseEXRateColumnName")));
+					logs.logging("INFO", "In Pending Payables For This Document Number " + VoucherNumber
+							+ " EX.Rate Is getting Matched With DB");
+				}
 				salesOrdFunc.verifyAssertionBothValues(dbCommonFunctions.BankPaymentPendingPayablesDetails(
 						VoucherNumber, commonFunc.getDataFromTestDataSheet("BRDBPendingReceivablesDROrCR")), DrCr);
 				logs.logging("INFO", "In Pending Payables For This Document Number " + VoucherNumber
@@ -3908,13 +4118,23 @@ public class BankPaymentFunctions {
 					logs.logging("INFO", "In Pending Payables For This Document Number " + VoucherNumber
 							+ " Currency Is getting Matched With DB");
 
-					salesOrdFunc
-							.verifyAssertionBothValues(
-									dbCommonFunctions.BankPaymentPendingPayablesDetails(VoucherNumber,
-											commonFunc.getDataFromTestDataSheet("BRDBPendingReceivablesExRate")),
-									EXRate);
-					logs.logging("INFO", "In Pending Payables For This Document Number " + VoucherNumber
-							+ " EX.Rate Is getting Matched With DB");
+					if (Curcy.equals("INR")) {
+						salesOrdFunc
+								.verifyAssertionBothValues(
+										dbCommonFunctions.BankPaymentPendingPayablesDetails(VoucherNumber,
+												commonFunc.getDataFromTestDataSheet("BRDBPendingReceivablesExRate")),
+										EXRate);
+						logs.logging("INFO", "In Pending Payables For This Document Number " + VoucherNumber
+								+ " EX.Rate Is getting Matched With DB");
+					} else {
+						salesOrdFunc.verifyAssertionBothValues(
+								dbCommonFunctions.BankPaymentPendingPayablesDetails(VoucherNumber,
+										commonFunc.getDataFromTestDataSheet("BRDBPendingReceivablesExRate")),
+								dbCommonFunctions.ExchangeRateDetails(Curcy,
+										commonFunc.getDataFromTestDataSheet("ImportPurchaseEXRateColumnName")));
+						logs.logging("INFO", "In Pending Payables For This Document Number " + VoucherNumber
+								+ " EX.Rate Is getting Matched With DB");
+					}
 
 					salesOrdFunc.verifyAssertionBothValues(dbCommonFunctions.BankPaymentPendingPayablesDetails(
 							VoucherNumber, commonFunc.getDataFromTestDataSheet("BRDBPendingReceivablesDROrCR")), DrCr);
@@ -3983,11 +4203,11 @@ public class BankPaymentFunctions {
 					logs.logging("INFO", "In Pending Payables For This Document Number " + VoucherNumber
 							+ " Currency Is getting Matched With DB");
 
-					salesOrdFunc
-							.verifyAssertionBothValues(
-									dbCommonFunctions.BankPaymentPendingPayablesDetails(VoucherNumber,
-											commonFunc.getDataFromTestDataSheet("BRDBPendingReceivablesExRate")),
-									EXRate);
+					salesOrdFunc.verifyAssertionBothValues(
+							dbCommonFunctions.BankPaymentPendingPayablesDetails(VoucherNumber,
+									commonFunc.getDataFromTestDataSheet("BRDBPendingReceivablesExRate")),
+							dbCommonFunctions.ExchangeRateDetails(Curcy,
+									commonFunc.getDataFromTestDataSheet("ImportPurchaseEXRateColumnName")));
 					logs.logging("INFO", "In Pending Payables For This Document Number " + VoucherNumber
 							+ " EX.Rate Is getting Matched With DB");
 
@@ -4524,7 +4744,13 @@ public class BankPaymentFunctions {
 			}
 		}
 		for (int i = 1; i <= VariableHandler.getMultipleGRNDocs().size(); i++) {
-			createPurchaseBillsFromPendingGRN(VariableHandler.getMultipleGRNDocs().get(i - 1));
+//			createPurchaseBillsFromPendingGRN(VariableHandler.getMultipleGRNDocs().get(i - 1));
+			String PbDocsNum = dbCommonFunctions.PBDocQuery(VariableHandler.getMultipleGRNDocs().get(0),
+					commonFunc.getDataFromTestDataSheet("PBDocumentNoColumnName"));
+			VariableHandler.setPbNumber(PbDocsNum);
+			PBDocumentNumber.add(VariableHandler.getPbNumber());
+			logs.logging("INFO", "Purchase Bill Document Number is : " + VariableHandler.getPbNumber());
+			VariableHandler.setMultiplePBDocs(PBDocumentNumber);
 			excelUtils.writeDataInExcel(Filepath, SheetName, i, 25 + i,
 					dbCommonFunctions.BankPaymentPBHeaderDetails(VariableHandler.getMultiplePBDocs().get(i - 1),
 							commonFunc.getDataFromTestDataSheet("PBNetAmount")));
@@ -4552,7 +4778,13 @@ public class BankPaymentFunctions {
 			}
 		}
 		for (int i = 1; i <= VariableHandler.getMultipleGRNDocs().size(); i++) {
-			createPurchaseBillsFromPendingGRN(VariableHandler.getMultipleGRNDocs().get(i - 1));
+//			createPurchaseBillsFromPendingGRN(VariableHandler.getMultipleGRNDocs().get(i - 1));
+			String PbDocsNum = dbCommonFunctions.PBDocQuery(VariableHandler.getMultipleGRNDocs().get(0),
+					commonFunc.getDataFromTestDataSheet("PBDocumentNoColumnName"));
+			VariableHandler.setPbNumber(PbDocsNum);
+			PBDocumentNumber.add(VariableHandler.getPbNumber());
+			logs.logging("INFO", "Purchase Bill Document Number is : " + VariableHandler.getPbNumber());
+			VariableHandler.setMultiplePBDocs(PBDocumentNumber);
 			excelUtils.writeDataInExcel(Filepath, SheetName, i, 25 + i,
 					dbCommonFunctions.BankPaymentPBHeaderDetails(VariableHandler.getMultiplePBDocs().get(i - 1),
 							commonFunc.getDataFromTestDataSheet("PBNetAmount")));
@@ -4573,53 +4805,23 @@ public class BankPaymentFunctions {
 	 */
 	public boolean CreateBankPaymentThroughLineAddButtonMultiBillsUSD(String SheetName) throws IOException {
 		BankPayments = excelUtils.readAllDataInExcel(Filepath, SheetName);
-		for (int i = 1; i < BankPayments.length; i++) {
-			String SupplierID = BankPayments[i][2];
-			String GRNSheetName = BankPayments[i][4];
-			if (!SupplierID.equals("")) {
-				Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeImportSupplierHK(SupplierID, GRNSheetName);
-			}
+		for (int i = 1; i <= 2; i++) {
+			String SupplierID = BankPayments[1][2];
+			String GRNSheetName = BankPayments[1][4];
+			Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeImportSupplierHK(SupplierID, GRNSheetName);
 		}
-		commonFunc.validCommonLogin(System.getProperty("HKFinUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("HKFinUsername"));
-		commonFunc.navigateToFinancialPurchaseBill();
-		for (int i1 = 1; i1 <= 2; i1++) {
-			for (int i = 0; i < VariableHandler.getMultipleGRNDocs().size(); i++) {
-				String BillSeqNo = RandomStringUtils.randomNumeric(6);
-				if (BillSeqNo.equals("000")) {
-					BillSeqNo = "10";
-				}
-				String PBBillNumber = "PB" + BillSeqNo;
-				verifyPendingPurchaseBill(VariableHandler.getMultipleGRNDocs().get(i));
-				flag = webDB.waitForElement(BankPaymentLocators.PBBillNumberInputField, ElementType.Xpath);
-				if (flag) {
-					webDB.doubleClickAnElement(BankPaymentLocators.PBBillNumberInputField, ElementType.Xpath);
-					webDB.clearTextField(BankPaymentLocators.PBBillNumberInputField, ElementType.Xpath);
-					webDB.sendTextToAnElement(BankPaymentLocators.PBBillNumberInputField, PBBillNumber,
-							ElementType.Xpath);
-					verifyCreateJournalAndPost();
-					VariableHandler.setMultiplePBDocs(PBDocumentNumber);
-					flag = forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
-					if (flag) {
-						commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
-								VariableHandler.getPbNumber(), webDB.getDataFromProperties("HodEmpId"),
-								commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
-						flag = webDB.waitForElement(BankPaymentLocators.PBFindButton, ElementType.Xpath);
-						if (flag) {
-							webDB.clickAnElement(BankPaymentLocators.PBFindButton, ElementType.Xpath);
-							flag = webDB.waitForElement(BankPaymentLocators.PendingPurchaseBill, ElementType.Xpath);
-							if (flag) {
-								logs.logging("INFO", "Find Button Is clicked Successfully");
-							}
-						}
-					}
-				}
-				excelUtils.writeDataInExcel(Filepath, SheetName, i + 1, 25 + (i + i1),
-						dbCommonFunctions.BankPaymentPBHeaderDetails(VariableHandler.getMultiplePBDocs().get(i1 - 1),
-								commonFunc.getDataFromTestDataSheet("PBNetAmount")));
-			}
+		for (int i = 0; i < VariableHandler.getMultipleGRNDocs().size(); i++) {
+			String PbDocsNum = dbCommonFunctions.PBDocQuery(VariableHandler.getMultipleGRNDocs().get(i),
+					commonFunc.getDataFromTestDataSheet("PBDocumentNoColumnName"));
+			VariableHandler.setPbNumber(PbDocsNum);
+			PBDocumentNumber.add(VariableHandler.getPbNumber());
+			logs.logging("INFO", "Purchase Bill Document Number : " + VariableHandler.getPbNumber()
+					+ " Against This GRN Document Is : " + VariableHandler.getMultipleGRNDocs().get(i));
+			VariableHandler.setMultiplePBDocs(PBDocumentNumber);
+			excelUtils.writeDataInExcel(Filepath, SheetName, 1, 25 + (i + 1),
+					dbCommonFunctions.BankPaymentPBHeaderDetails(VariableHandler.getMultiplePBDocs().get(i),
+							commonFunc.getDataFromTestDataSheet("PBNetAmount")));
 		}
-		commonFunc.logoutUser();
 		BPThroughAddButton(SheetName, commonFunc.getDataFromTestDataSheet("BankTransCurcyUSD"),
 				commonFunc.getDataFromTestDataSheet("BankName"));
 		return flag;
@@ -4635,53 +4837,23 @@ public class BankPaymentFunctions {
 	 */
 	public boolean CreateBankPaymentThroughGetDocumentMultiBillsUSD(String SheetName) throws IOException {
 		BankPayments = excelUtils.readAllDataInExcel(Filepath, SheetName);
-		for (int i = 1; i < BankPayments.length; i++) {
-			String SupplierID = BankPayments[i][2];
-			String GRNSheetName = BankPayments[i][4];
-			if (!SupplierID.equals("")) {
-				Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeImportSupplierHK(SupplierID, GRNSheetName);
-			}
+		for (int i = 1; i <= 2; i++) {
+			String SupplierID = BankPayments[1][2];
+			String GRNSheetName = BankPayments[1][4];
+			Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeImportSupplierHK(SupplierID, GRNSheetName);
 		}
-		commonFunc.validCommonLogin(System.getProperty("HKFinUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("HKFinUsername"));
-		commonFunc.navigateToFinancialPurchaseBill();
-		for (int i1 = 1; i1 <= 2; i1++) {
-			for (int i = 0; i < VariableHandler.getMultipleGRNDocs().size(); i++) {
-				String BillSeqNo = RandomStringUtils.randomNumeric(6);
-				if (BillSeqNo.equals("000")) {
-					BillSeqNo = "10";
-				}
-				String PBBillNumber = "PB" + BillSeqNo;
-				verifyPendingPurchaseBill(VariableHandler.getMultipleGRNDocs().get(i));
-				flag = webDB.waitForElement(BankPaymentLocators.PBBillNumberInputField, ElementType.Xpath);
-				if (flag) {
-					webDB.doubleClickAnElement(BankPaymentLocators.PBBillNumberInputField, ElementType.Xpath);
-					webDB.clearTextField(BankPaymentLocators.PBBillNumberInputField, ElementType.Xpath);
-					webDB.sendTextToAnElement(BankPaymentLocators.PBBillNumberInputField, PBBillNumber,
-							ElementType.Xpath);
-					verifyCreateJournalAndPost();
-					VariableHandler.setMultiplePBDocs(PBDocumentNumber);
-					flag = forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
-					if (flag) {
-						commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
-								VariableHandler.getPbNumber(), webDB.getDataFromProperties("HodEmpId"),
-								commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
-						flag = webDB.waitForElement(BankPaymentLocators.PBFindButton, ElementType.Xpath);
-						if (flag) {
-							webDB.clickAnElement(BankPaymentLocators.PBFindButton, ElementType.Xpath);
-							flag = webDB.waitForElement(BankPaymentLocators.PendingPurchaseBill, ElementType.Xpath);
-							if (flag) {
-								logs.logging("INFO", "Find Button Is clicked Successfully");
-							}
-						}
-					}
-				}
-				excelUtils.writeDataInExcel(Filepath, SheetName, i + 1, 25 + (i + i1),
-						dbCommonFunctions.BankPaymentPBHeaderDetails(VariableHandler.getMultiplePBDocs().get(i1 - 1),
-								commonFunc.getDataFromTestDataSheet("PBNetAmount")));
-			}
+		for (int i = 0; i < VariableHandler.getMultipleGRNDocs().size(); i++) {
+			String PbDocsNum = dbCommonFunctions.PBDocQuery(VariableHandler.getMultipleGRNDocs().get(i),
+					commonFunc.getDataFromTestDataSheet("PBDocumentNoColumnName"));
+			VariableHandler.setPbNumber(PbDocsNum);
+			PBDocumentNumber.add(VariableHandler.getPbNumber());
+			logs.logging("INFO", "Purchase Bill Document Number : " + VariableHandler.getPbNumber()
+					+ " Against This GRN Document Is : " + VariableHandler.getMultipleGRNDocs().get(i));
+			VariableHandler.setMultiplePBDocs(PBDocumentNumber);
+			excelUtils.writeDataInExcel(Filepath, SheetName, 1, 25 + (i + 1),
+					dbCommonFunctions.BankPaymentPBHeaderDetails(VariableHandler.getMultiplePBDocs().get(i),
+							commonFunc.getDataFromTestDataSheet("PBNetAmount")));
 		}
-		commonFunc.logoutUser();
 		BPThroughGetDocument(SheetName, commonFunc.getDataFromTestDataSheet("BankTransCurcyUSD"),
 				commonFunc.getDataFromTestDataSheet("BankName"));
 		return flag;
@@ -4697,53 +4869,23 @@ public class BankPaymentFunctions {
 	 */
 	public boolean CreateBankPaymentThroughPendingDocsMultiBillsUSD(String SheetName) throws IOException {
 		BankPayments = excelUtils.readAllDataInExcel(Filepath, SheetName);
-		for (int i = 1; i < BankPayments.length; i++) {
-			String SupplierID = BankPayments[i][2];
-			String GRNSheetName = BankPayments[i][4];
-			if (!SupplierID.equals("")) {
-				Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeImportSupplierHK(SupplierID, GRNSheetName);
-			}
+		for (int i = 1; i <= 2; i++) {
+			String SupplierID = BankPayments[1][2];
+			String GRNSheetName = BankPayments[1][4];
+			Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeImportSupplierHK(SupplierID, GRNSheetName);
 		}
-		commonFunc.validCommonLogin(System.getProperty("HKFinUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("HKFinUsername"));
-		commonFunc.navigateToFinancialPurchaseBill();
-		for (int i1 = 1; i1 <= 2; i1++) {
-			for (int i = 0; i < VariableHandler.getMultipleGRNDocs().size(); i++) {
-				String BillSeqNo = RandomStringUtils.randomNumeric(6);
-				if (BillSeqNo.equals("000")) {
-					BillSeqNo = "10";
-				}
-				String PBBillNumber = "PB" + BillSeqNo;
-				verifyPendingPurchaseBill(VariableHandler.getMultipleGRNDocs().get(i));
-				flag = webDB.waitForElement(BankPaymentLocators.PBBillNumberInputField, ElementType.Xpath);
-				if (flag) {
-					webDB.doubleClickAnElement(BankPaymentLocators.PBBillNumberInputField, ElementType.Xpath);
-					webDB.clearTextField(BankPaymentLocators.PBBillNumberInputField, ElementType.Xpath);
-					webDB.sendTextToAnElement(BankPaymentLocators.PBBillNumberInputField, PBBillNumber,
-							ElementType.Xpath);
-					verifyCreateJournalAndPost();
-					VariableHandler.setMultiplePBDocs(PBDocumentNumber);
-					flag = forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
-					if (flag) {
-						commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
-								VariableHandler.getPbNumber(), webDB.getDataFromProperties("HodEmpId"),
-								commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
-						flag = webDB.waitForElement(BankPaymentLocators.PBFindButton, ElementType.Xpath);
-						if (flag) {
-							webDB.clickAnElement(BankPaymentLocators.PBFindButton, ElementType.Xpath);
-							flag = webDB.waitForElement(BankPaymentLocators.PendingPurchaseBill, ElementType.Xpath);
-							if (flag) {
-								logs.logging("INFO", "Find Button Is clicked Successfully");
-							}
-						}
-					}
-				}
-				excelUtils.writeDataInExcel(Filepath, SheetName, i + 1, 25 + (i + i1),
-						dbCommonFunctions.BankPaymentPBHeaderDetails(VariableHandler.getMultiplePBDocs().get(i1 - 1),
-								commonFunc.getDataFromTestDataSheet("PBNetAmount")));
-			}
+		for (int i = 0; i < VariableHandler.getMultipleGRNDocs().size(); i++) {
+			String PbDocsNum = dbCommonFunctions.PBDocQuery(VariableHandler.getMultipleGRNDocs().get(i),
+					commonFunc.getDataFromTestDataSheet("PBDocumentNoColumnName"));
+			VariableHandler.setPbNumber(PbDocsNum);
+			PBDocumentNumber.add(VariableHandler.getPbNumber());
+			logs.logging("INFO", "Purchase Bill Document Number : " + VariableHandler.getPbNumber()
+					+ " Against This GRN Document Is : " + VariableHandler.getMultipleGRNDocs().get(i));
+			VariableHandler.setMultiplePBDocs(PBDocumentNumber);
+			excelUtils.writeDataInExcel(Filepath, SheetName, 1, 25 + (i + 1),
+					dbCommonFunctions.BankPaymentPBHeaderDetails(VariableHandler.getMultiplePBDocs().get(i),
+							commonFunc.getDataFromTestDataSheet("PBNetAmount")));
 		}
-		commonFunc.logoutUser();
 		BPThroughPendingDocs(commonFunc.getDataFromTestDataSheet("CreationTypeSingle"), SheetName,
 				commonFunc.getDataFromTestDataSheet("BankTransCurcyUSD"),
 				commonFunc.getDataFromTestDataSheet("BankName"));
@@ -4768,43 +4910,18 @@ public class BankPaymentFunctions {
 				Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeImportSupplierHK(SupplierID, GRNSheetName);
 			}
 		}
-		commonFunc.validCommonLogin(System.getProperty("HKFinUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("HKFinUsername"));
-		commonFunc.navigateToFinancialPurchaseBill();
 		for (int i = 0; i < VariableHandler.getMultipleGRNDocs().size(); i++) {
-			String BillSeqNo = RandomStringUtils.randomNumeric(6);
-			if (BillSeqNo.equals("000")) {
-				BillSeqNo = "10";
-			}
-			String PBBillNumber = "PB" + BillSeqNo;
-			verifyPendingPurchaseBill(VariableHandler.getMultipleGRNDocs().get(i));
-			flag = webDB.waitForElement(BankPaymentLocators.PBBillNumberInputField, ElementType.Xpath);
-			if (flag) {
-				webDB.doubleClickAnElement(BankPaymentLocators.PBBillNumberInputField, ElementType.Xpath);
-				webDB.clearTextField(BankPaymentLocators.PBBillNumberInputField, ElementType.Xpath);
-				webDB.sendTextToAnElement(BankPaymentLocators.PBBillNumberInputField, PBBillNumber, ElementType.Xpath);
-				verifyCreateJournalAndPost();
-				VariableHandler.setMultiplePBDocs(PBDocumentNumber);
-				flag = forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
-				if (flag) {
-					commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPbNumber(),
-							webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-							System.getProperty("HariUsername"));
-					flag = webDB.waitForElement(BankPaymentLocators.PBFindButton, ElementType.Xpath);
-					if (flag) {
-						webDB.clickAnElement(BankPaymentLocators.PBFindButton, ElementType.Xpath);
-						flag = webDB.waitForElement(BankPaymentLocators.PendingPurchaseBill, ElementType.Xpath);
-						if (flag) {
-							logs.logging("INFO", "Find Button Is clicked Successfully");
-						}
-					}
-				}
-			}
-			excelUtils.writeDataInExcel(Filepath, SheetName, i + 1, 25 + i + 1,
+			String PbDocsNum = dbCommonFunctions.PBDocQuery(VariableHandler.getMultipleGRNDocs().get(i),
+					commonFunc.getDataFromTestDataSheet("PBDocumentNoColumnName"));
+			VariableHandler.setPbNumber(PbDocsNum);
+			PBDocumentNumber.add(VariableHandler.getPbNumber());
+			logs.logging("INFO", "Purchase Bill Document Number : " + VariableHandler.getPbNumber()
+					+ " Against This GRN Document Is : " + VariableHandler.getMultipleGRNDocs().get(i));
+			VariableHandler.setMultiplePBDocs(PBDocumentNumber);
+			excelUtils.writeDataInExcel(Filepath, SheetName, i + 1, 25 + (i + 1),
 					dbCommonFunctions.BankPaymentPBHeaderDetails(VariableHandler.getMultiplePBDocs().get(i),
 							commonFunc.getDataFromTestDataSheet("PBNetAmount")));
 		}
-		commonFunc.logoutUser();
 		BPThroughAddButtonMultiPartySingleBills(SheetName, commonFunc.getDataFromTestDataSheet("BankTransCurcyUSD"),
 				commonFunc.getDataFromTestDataSheet("BankName"));
 		return flag;
@@ -4828,44 +4945,19 @@ public class BankPaymentFunctions {
 				Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeImportSupplierHK(SupplierID, GRNSheetName);
 			}
 		}
-		commonFunc.validCommonLogin(System.getProperty("HKFinUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("HKFinUsername"));
-		commonFunc.navigateToFinancialPurchaseBill();
 		for (int i = 0; i < VariableHandler.getMultipleGRNDocs().size(); i++) {
-			String BillSeqNo = RandomStringUtils.randomNumeric(6);
-			if (BillSeqNo.equals("000")) {
-				BillSeqNo = "10";
-			}
-			String PBBillNumber = "PB" + BillSeqNo;
-			verifyPendingPurchaseBill(VariableHandler.getMultipleGRNDocs().get(i));
-			flag = webDB.waitForElement(BankPaymentLocators.PBBillNumberInputField, ElementType.Xpath);
-			if (flag) {
-				webDB.doubleClickAnElement(BankPaymentLocators.PBBillNumberInputField, ElementType.Xpath);
-				webDB.clearTextField(BankPaymentLocators.PBBillNumberInputField, ElementType.Xpath);
-				webDB.sendTextToAnElement(BankPaymentLocators.PBBillNumberInputField, PBBillNumber, ElementType.Xpath);
-				verifyCreateJournalAndPost();
-				VariableHandler.setMultiplePBDocs(PBDocumentNumber);
-				flag = forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
-				if (flag) {
-					commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPbNumber(),
-							webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-							System.getProperty("HariUsername"));
-					flag = webDB.waitForElement(BankPaymentLocators.PBFindButton, ElementType.Xpath);
-					if (flag) {
-						webDB.clickAnElement(BankPaymentLocators.PBFindButton, ElementType.Xpath);
-						flag = webDB.waitForElement(BankPaymentLocators.PendingPurchaseBill, ElementType.Xpath);
-						if (flag) {
-							logs.logging("INFO", "Find Button Is clicked Successfully");
-						}
-					}
-				}
-			}
-			excelUtils.writeDataInExcel(Filepath, SheetName, i + 1, 25 + i + 1,
+			String PbDocsNum = dbCommonFunctions.PBDocQuery(VariableHandler.getMultipleGRNDocs().get(i),
+					commonFunc.getDataFromTestDataSheet("PBDocumentNoColumnName"));
+			VariableHandler.setPbNumber(PbDocsNum);
+			PBDocumentNumber.add(VariableHandler.getPbNumber());
+			logs.logging("INFO", "Purchase Bill Document Number : " + VariableHandler.getPbNumber()
+					+ " Against This GRN Document Is : " + VariableHandler.getMultipleGRNDocs().get(i));
+			VariableHandler.setMultiplePBDocs(PBDocumentNumber);
+			excelUtils.writeDataInExcel(Filepath, SheetName, i + 1, 25 + (i + 1),
 					dbCommonFunctions.BankPaymentPBHeaderDetails(VariableHandler.getMultiplePBDocs().get(i),
 							commonFunc.getDataFromTestDataSheet("PBNetAmount")));
 		}
-		commonFunc.logoutUser();
-		BPThroughGetDocument(SheetName, commonFunc.getDataFromTestDataSheet("BankTransCurcyUSD"),
+		BPThroughGetDocumentMPSI(SheetName, commonFunc.getDataFromTestDataSheet("BankTransCurcyUSD"),
 				commonFunc.getDataFromTestDataSheet("BankName"));
 		return flag;
 	}
@@ -4946,57 +5038,31 @@ public class BankPaymentFunctions {
 			String SupplierID = BankPayments[i][2];
 			String GRNSheetName = BankPayments[i][4];
 			if (!SupplierID.equals("")) {
-				Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeImportSupplierHK(SupplierID, GRNSheetName);
+				for (int i1 = 1; i1 <= 2; i1++) {
+					Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeImportSupplierHK(SupplierID, GRNSheetName);
+				}
 			}
 		}
-		commonFunc.validCommonLogin(System.getProperty("HKFinUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("HKFinUsername"));
-		commonFunc.navigateToFinancialPurchaseBill();
-		for (int i1 = 1; i1 <= 2; i1++) {
-			for (int i = 1; i <= VariableHandler.getMultipleGRNDocs().size(); i++) {
-				String BillSeqNo = RandomStringUtils.randomNumeric(6);
-				if (BillSeqNo.equals("000")) {
-					BillSeqNo = "10";
-				}
-				String PBBillNumber = "PB" + BillSeqNo;
-				verifyPendingPurchaseBill(VariableHandler.getMultipleGRNDocs().get(i - 1));
-				flag = webDB.waitForElement(BankPaymentLocators.PBBillNumberInputField, ElementType.Xpath);
-				if (flag) {
-					webDB.doubleClickAnElement(BankPaymentLocators.PBBillNumberInputField, ElementType.Xpath);
-					webDB.clearTextField(BankPaymentLocators.PBBillNumberInputField, ElementType.Xpath);
-					webDB.sendTextToAnElement(BankPaymentLocators.PBBillNumberInputField, PBBillNumber,
-							ElementType.Xpath);
-					verifyCreateJournalAndPost();
-					VariableHandler.setMultiplePBDocs(PBDocumentNumber);
-					flag = forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
-					if (flag) {
-						commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
-								VariableHandler.getPbNumber(), webDB.getDataFromProperties("HodEmpId"),
-								commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
-						flag = webDB.waitForElement(BankPaymentLocators.PBFindButton, ElementType.Xpath);
-						if (flag) {
-							webDB.clickAnElement(BankPaymentLocators.PBFindButton, ElementType.Xpath);
-							flag = webDB.waitForElement(BankPaymentLocators.PendingPurchaseBill, ElementType.Xpath);
-							if (flag) {
-								logs.logging("INFO", "Find Button Is clicked Successfully");
-							}
-						}
-					}
-				}
-			}
+		for (int i = 0; i < VariableHandler.getMultipleGRNDocs().size(); i++) {
+			String PbDocsNum = dbCommonFunctions.PBDocQuery(VariableHandler.getMultipleGRNDocs().get(i),
+					commonFunc.getDataFromTestDataSheet("PBDocumentNoColumnName"));
+			VariableHandler.setPbNumber(PbDocsNum);
+			PBDocumentNumber.add(VariableHandler.getPbNumber());
+			logs.logging("INFO", "Purchase Bill Document Number : " + VariableHandler.getPbNumber()
+					+ " Against This GRN Document Is : " + VariableHandler.getMultipleGRNDocs().get(i));
+			VariableHandler.setMultiplePBDocs(PBDocumentNumber);
 		}
 		for (int j = 1; j <= VariableHandler.getMultiplePBDocs().size(); j++) {
 			if (j <= 2) {
-				excelUtils.writeDataInExcel(Filepath, SheetName, j, 26,
+				excelUtils.writeDataInExcel(Filepath, SheetName, 1, 25 + j,
 						dbCommonFunctions.BankPaymentPBHeaderDetails(VariableHandler.getMultiplePBDocs().get(j - 1),
 								commonFunc.getDataFromTestDataSheet("PBNetAmount")));
 			} else {
-				excelUtils.writeDataInExcel(Filepath, SheetName, j - 2, 27,
+				excelUtils.writeDataInExcel(Filepath, SheetName, 2, 23 + j,
 						dbCommonFunctions.BankPaymentPBHeaderDetails(VariableHandler.getMultiplePBDocs().get(j - 1),
 								commonFunc.getDataFromTestDataSheet("PBNetAmount")));
 			}
 		}
-		commonFunc.logoutUser();
 		BPThroughAddButtonMultiPartyMultiBills(SheetName, commonFunc.getDataFromTestDataSheet("BankTransCurcyUSD"),
 				commonFunc.getDataFromTestDataSheet("BankName"));
 		return flag;
@@ -5017,57 +5083,31 @@ public class BankPaymentFunctions {
 			String SupplierID = BankPayments[i][2];
 			String GRNSheetName = BankPayments[i][4];
 			if (!SupplierID.equals("")) {
-				Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeImportSupplierHK(SupplierID, GRNSheetName);
+				for (int i1 = 1; i1 <= 2; i1++) {
+					Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeImportSupplierHK(SupplierID, GRNSheetName);
+				}
 			}
 		}
-		commonFunc.validCommonLogin(System.getProperty("HKFinUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("HKFinUsername"));
-		commonFunc.navigateToFinancialPurchaseBill();
-		for (int i1 = 1; i1 <= 2; i1++) {
-			for (int i = 1; i <= VariableHandler.getMultipleGRNDocs().size(); i++) {
-				String BillSeqNo = RandomStringUtils.randomNumeric(6);
-				if (BillSeqNo.equals("000")) {
-					BillSeqNo = "10";
-				}
-				String PBBillNumber = "PB" + BillSeqNo;
-				verifyPendingPurchaseBill(VariableHandler.getMultipleGRNDocs().get(i - 1));
-				flag = webDB.waitForElement(BankPaymentLocators.PBBillNumberInputField, ElementType.Xpath);
-				if (flag) {
-					webDB.doubleClickAnElement(BankPaymentLocators.PBBillNumberInputField, ElementType.Xpath);
-					webDB.clearTextField(BankPaymentLocators.PBBillNumberInputField, ElementType.Xpath);
-					webDB.sendTextToAnElement(BankPaymentLocators.PBBillNumberInputField, PBBillNumber,
-							ElementType.Xpath);
-					verifyCreateJournalAndPost();
-					VariableHandler.setMultiplePBDocs(PBDocumentNumber);
-					flag = forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
-					if (flag) {
-						commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
-								VariableHandler.getPbNumber(), webDB.getDataFromProperties("HodEmpId"),
-								commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
-						flag = webDB.waitForElement(BankPaymentLocators.PBFindButton, ElementType.Xpath);
-						if (flag) {
-							webDB.clickAnElement(BankPaymentLocators.PBFindButton, ElementType.Xpath);
-							flag = webDB.waitForElement(BankPaymentLocators.PendingPurchaseBill, ElementType.Xpath);
-							if (flag) {
-								logs.logging("INFO", "Find Button Is clicked Successfully");
-							}
-						}
-					}
-				}
-			}
+		for (int i = 0; i < VariableHandler.getMultipleGRNDocs().size(); i++) {
+			String PbDocsNum = dbCommonFunctions.PBDocQuery(VariableHandler.getMultipleGRNDocs().get(i),
+					commonFunc.getDataFromTestDataSheet("PBDocumentNoColumnName"));
+			VariableHandler.setPbNumber(PbDocsNum);
+			PBDocumentNumber.add(VariableHandler.getPbNumber());
+			logs.logging("INFO", "Purchase Bill Document Number : " + VariableHandler.getPbNumber()
+					+ " Against This GRN Document Is : " + VariableHandler.getMultipleGRNDocs().get(i));
+			VariableHandler.setMultiplePBDocs(PBDocumentNumber);
 		}
 		for (int j = 1; j <= VariableHandler.getMultiplePBDocs().size(); j++) {
 			if (j <= 2) {
-				excelUtils.writeDataInExcel(Filepath, SheetName, j, 26,
+				excelUtils.writeDataInExcel(Filepath, SheetName, 1, 25 + j,
 						dbCommonFunctions.BankPaymentPBHeaderDetails(VariableHandler.getMultiplePBDocs().get(j - 1),
 								commonFunc.getDataFromTestDataSheet("PBNetAmount")));
 			} else {
-				excelUtils.writeDataInExcel(Filepath, SheetName, j - 2, 27,
+				excelUtils.writeDataInExcel(Filepath, SheetName, 2, 23 + j,
 						dbCommonFunctions.BankPaymentPBHeaderDetails(VariableHandler.getMultiplePBDocs().get(j - 1),
 								commonFunc.getDataFromTestDataSheet("PBNetAmount")));
 			}
 		}
-		commonFunc.logoutUser();
 		BPThroughGetDocumentMPMB(SheetName, commonFunc.getDataFromTestDataSheet("BankTransCurcyUSD"),
 				commonFunc.getDataFromTestDataSheet("BankName"));
 		return flag;
@@ -5088,57 +5128,31 @@ public class BankPaymentFunctions {
 			String SupplierID = BankPayments[i][2];
 			String GRNSheetName = BankPayments[i][4];
 			if (!SupplierID.equals("")) {
-				Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeImportSupplierHK(SupplierID, GRNSheetName);
+				for (int i1 = 1; i1 <= 2; i1++) {
+					Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeImportSupplierHK(SupplierID, GRNSheetName);
+				}
 			}
 		}
-		commonFunc.validCommonLogin(System.getProperty("HKFinUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("HKFinUsername"));
-		commonFunc.navigateToFinancialPurchaseBill();
-		for (int i1 = 1; i1 <= 2; i1++) {
-			for (int i = 1; i <= VariableHandler.getMultipleGRNDocs().size(); i++) {
-				String BillSeqNo = RandomStringUtils.randomNumeric(6);
-				if (BillSeqNo.equals("000")) {
-					BillSeqNo = "10";
-				}
-				String PBBillNumber = "PB" + BillSeqNo;
-				verifyPendingPurchaseBill(VariableHandler.getMultipleGRNDocs().get(i - 1));
-				flag = webDB.waitForElement(BankPaymentLocators.PBBillNumberInputField, ElementType.Xpath);
-				if (flag) {
-					webDB.doubleClickAnElement(BankPaymentLocators.PBBillNumberInputField, ElementType.Xpath);
-					webDB.clearTextField(BankPaymentLocators.PBBillNumberInputField, ElementType.Xpath);
-					webDB.sendTextToAnElement(BankPaymentLocators.PBBillNumberInputField, PBBillNumber,
-							ElementType.Xpath);
-					verifyCreateJournalAndPost();
-					VariableHandler.setMultiplePBDocs(PBDocumentNumber);
-					flag = forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
-					if (flag) {
-						commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
-								VariableHandler.getPbNumber(), webDB.getDataFromProperties("HodEmpId"),
-								commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
-						flag = webDB.waitForElement(BankPaymentLocators.PBFindButton, ElementType.Xpath);
-						if (flag) {
-							webDB.clickAnElement(BankPaymentLocators.PBFindButton, ElementType.Xpath);
-							flag = webDB.waitForElement(BankPaymentLocators.PendingPurchaseBill, ElementType.Xpath);
-							if (flag) {
-								logs.logging("INFO", "Find Button Is clicked Successfully");
-							}
-						}
-					}
-				}
-			}
+		for (int i = 0; i < VariableHandler.getMultipleGRNDocs().size(); i++) {
+			String PbDocsNum = dbCommonFunctions.PBDocQuery(VariableHandler.getMultipleGRNDocs().get(i),
+					commonFunc.getDataFromTestDataSheet("PBDocumentNoColumnName"));
+			VariableHandler.setPbNumber(PbDocsNum);
+			PBDocumentNumber.add(VariableHandler.getPbNumber());
+			logs.logging("INFO", "Purchase Bill Document Number : " + VariableHandler.getPbNumber()
+					+ " Against This GRN Document Is : " + VariableHandler.getMultipleGRNDocs().get(i));
+			VariableHandler.setMultiplePBDocs(PBDocumentNumber);
 		}
 		for (int j = 1; j <= VariableHandler.getMultiplePBDocs().size(); j++) {
 			if (j <= 2) {
-				excelUtils.writeDataInExcel(Filepath, SheetName, j, 26,
+				excelUtils.writeDataInExcel(Filepath, SheetName, 1, 25 + j,
 						dbCommonFunctions.BankPaymentPBHeaderDetails(VariableHandler.getMultiplePBDocs().get(j - 1),
 								commonFunc.getDataFromTestDataSheet("PBNetAmount")));
 			} else {
-				excelUtils.writeDataInExcel(Filepath, SheetName, j - 2, 27,
+				excelUtils.writeDataInExcel(Filepath, SheetName, 2, 23 + j,
 						dbCommonFunctions.BankPaymentPBHeaderDetails(VariableHandler.getMultiplePBDocs().get(j - 1),
 								commonFunc.getDataFromTestDataSheet("PBNetAmount")));
 			}
 		}
-		commonFunc.logoutUser();
 		BPThroughPendingDocsMPMB(commonFunc.getDataFromTestDataSheet("CreationTypeMerge"), SheetName,
 				commonFunc.getDataFromTestDataSheet("BankTransCurcyUSD"),
 				commonFunc.getDataFromTestDataSheet("BankName"));
@@ -5161,57 +5175,31 @@ public class BankPaymentFunctions {
 			String SupplierID = BankPayments[i][2];
 			String GRNSheetName = BankPayments[i][4];
 			if (!SupplierID.equals("")) {
-				Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeImportSupplierHK(SupplierID, GRNSheetName);
+				for (int i1 = 1; i1 <= 2; i1++) {
+					Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeImportSupplierHK(SupplierID, GRNSheetName);
+				}
 			}
 		}
-		commonFunc.validCommonLogin(System.getProperty("HKFinUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("HKFinUsername"));
-		commonFunc.navigateToFinancialPurchaseBill();
-		for (int i1 = 0; i1 < 2; i1++) {
-			for (int i = 0; i < VariableHandler.getMultipleGRNDocs().size(); i++) {
-				String BillSeqNo = RandomStringUtils.randomNumeric(6);
-				if (BillSeqNo.equals("000")) {
-					BillSeqNo = "10";
-				}
-				String PBBillNumber = "PB" + BillSeqNo;
-				verifyPendingPurchaseBill(VariableHandler.getMultipleGRNDocs().get(i));
-				flag = webDB.waitForElement(BankPaymentLocators.PBBillNumberInputField, ElementType.Xpath);
-				if (flag) {
-					webDB.doubleClickAnElement(BankPaymentLocators.PBBillNumberInputField, ElementType.Xpath);
-					webDB.clearTextField(BankPaymentLocators.PBBillNumberInputField, ElementType.Xpath);
-					webDB.sendTextToAnElement(BankPaymentLocators.PBBillNumberInputField, PBBillNumber,
-							ElementType.Xpath);
-					verifyCreateJournalAndPost();
-					VariableHandler.setMultiplePBDocs(PBDocumentNumber);
-					flag = forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
-					if (flag) {
-						commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
-								VariableHandler.getPbNumber(), webDB.getDataFromProperties("HodEmpId"),
-								commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
-						flag = webDB.waitForElement(BankPaymentLocators.PBFindButton, ElementType.Xpath);
-						if (flag) {
-							webDB.clickAnElement(BankPaymentLocators.PBFindButton, ElementType.Xpath);
-							flag = webDB.waitForElement(BankPaymentLocators.PendingPurchaseBill, ElementType.Xpath);
-							if (flag) {
-								logs.logging("INFO", "Find Button Is clicked Successfully");
-							}
-						}
-					}
-				}
-			}
+		for (int i = 0; i < VariableHandler.getMultipleGRNDocs().size(); i++) {
+			String PbDocsNum = dbCommonFunctions.PBDocQuery(VariableHandler.getMultipleGRNDocs().get(i),
+					commonFunc.getDataFromTestDataSheet("PBDocumentNoColumnName"));
+			VariableHandler.setPbNumber(PbDocsNum);
+			PBDocumentNumber.add(VariableHandler.getPbNumber());
+			logs.logging("INFO", "Purchase Bill Document Number : " + VariableHandler.getPbNumber()
+					+ " Against This GRN Document Is : " + VariableHandler.getMultipleGRNDocs().get(i));
+			VariableHandler.setMultiplePBDocs(PBDocumentNumber);
 		}
 		for (int j = 1; j <= VariableHandler.getMultiplePBDocs().size(); j++) {
 			if (j <= 2) {
-				excelUtils.writeDataInExcel(Filepath, SheetName, j, 26,
+				excelUtils.writeDataInExcel(Filepath, SheetName, 1, 25 + j,
 						dbCommonFunctions.BankPaymentPBHeaderDetails(VariableHandler.getMultiplePBDocs().get(j - 1),
 								commonFunc.getDataFromTestDataSheet("PBNetAmount")));
 			} else {
-				excelUtils.writeDataInExcel(Filepath, SheetName, j - 2, 27,
+				excelUtils.writeDataInExcel(Filepath, SheetName, 2, 23 + j,
 						dbCommonFunctions.BankPaymentPBHeaderDetails(VariableHandler.getMultiplePBDocs().get(j - 1),
 								commonFunc.getDataFromTestDataSheet("PBNetAmount")));
 			}
 		}
-		commonFunc.logoutUser();
 		BPThroughGetDocumentWithNewReference(SheetName, commonFunc.getDataFromTestDataSheet("BankTransCurcyUSD"),
 				commonFunc.getDataFromTestDataSheet("BankName"));
 		return flag;
@@ -5232,57 +5220,31 @@ public class BankPaymentFunctions {
 			String SupplierID = BankPayments[i][2];
 			String GRNSheetName = BankPayments[i][4];
 			if (!SupplierID.equals("")) {
-				Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeImportSupplierHK(SupplierID, GRNSheetName);
+				for (int i1 = 1; i1 <= 2; i1++) {
+					Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeImportSupplierHK(SupplierID, GRNSheetName);
+				}
 			}
 		}
-		commonFunc.validCommonLogin(System.getProperty("HKFinUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("HKFinUsername"));
-		commonFunc.navigateToFinancialPurchaseBill();
-		for (int i1 = 0; i1 < 2; i1++) {
-			for (int i = 0; i < VariableHandler.getMultipleGRNDocs().size(); i++) {
-				String BillSeqNo = RandomStringUtils.randomNumeric(6);
-				if (BillSeqNo.equals("000")) {
-					BillSeqNo = "10";
-				}
-				String PBBillNumber = "PB" + BillSeqNo;
-				verifyPendingPurchaseBill(VariableHandler.getMultipleGRNDocs().get(i));
-				flag = webDB.waitForElement(BankPaymentLocators.PBBillNumberInputField, ElementType.Xpath);
-				if (flag) {
-					webDB.doubleClickAnElement(BankPaymentLocators.PBBillNumberInputField, ElementType.Xpath);
-					webDB.clearTextField(BankPaymentLocators.PBBillNumberInputField, ElementType.Xpath);
-					webDB.sendTextToAnElement(BankPaymentLocators.PBBillNumberInputField, PBBillNumber,
-							ElementType.Xpath);
-					verifyCreateJournalAndPost();
-					VariableHandler.setMultiplePBDocs(PBDocumentNumber);
-					flag = forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
-					if (flag) {
-						commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
-								VariableHandler.getPbNumber(), webDB.getDataFromProperties("HodEmpId"),
-								commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
-						flag = webDB.waitForElement(BankPaymentLocators.PBFindButton, ElementType.Xpath);
-						if (flag) {
-							webDB.clickAnElement(BankPaymentLocators.PBFindButton, ElementType.Xpath);
-							flag = webDB.waitForElement(BankPaymentLocators.PendingPurchaseBill, ElementType.Xpath);
-							if (flag) {
-								logs.logging("INFO", "Find Button Is clicked Successfully");
-							}
-						}
-					}
-				}
-			}
+		for (int i = 0; i < VariableHandler.getMultipleGRNDocs().size(); i++) {
+			String PbDocsNum = dbCommonFunctions.PBDocQuery(VariableHandler.getMultipleGRNDocs().get(i),
+					commonFunc.getDataFromTestDataSheet("PBDocumentNoColumnName"));
+			VariableHandler.setPbNumber(PbDocsNum);
+			PBDocumentNumber.add(VariableHandler.getPbNumber());
+			logs.logging("INFO", "Purchase Bill Document Number : " + VariableHandler.getPbNumber()
+					+ " Against This GRN Document Is : " + VariableHandler.getMultipleGRNDocs().get(i));
+			VariableHandler.setMultiplePBDocs(PBDocumentNumber);
 		}
 		for (int j = 1; j <= VariableHandler.getMultiplePBDocs().size(); j++) {
 			if (j <= 2) {
-				excelUtils.writeDataInExcel(Filepath, SheetName, j, 26,
+				excelUtils.writeDataInExcel(Filepath, SheetName, 1, 25 + j,
 						dbCommonFunctions.BankPaymentPBHeaderDetails(VariableHandler.getMultiplePBDocs().get(j - 1),
 								commonFunc.getDataFromTestDataSheet("PBNetAmount")));
 			} else {
-				excelUtils.writeDataInExcel(Filepath, SheetName, j - 2, 27,
+				excelUtils.writeDataInExcel(Filepath, SheetName, 2, 23 + j,
 						dbCommonFunctions.BankPaymentPBHeaderDetails(VariableHandler.getMultiplePBDocs().get(j - 1),
 								commonFunc.getDataFromTestDataSheet("PBNetAmount")));
 			}
 		}
-		commonFunc.logoutUser();
 		BPThroughPendingDocsWithNewReference(commonFunc.getDataFromTestDataSheet("CreationTypeMerge"), SheetName,
 				commonFunc.getDataFromTestDataSheet("BankTransCurcyUSD"),
 				commonFunc.getDataFromTestDataSheet("BankName"));
@@ -5305,46 +5267,31 @@ public class BankPaymentFunctions {
 			String SupplierID = BankPayments[i][2];
 			String GRNSheetName = BankPayments[i][4];
 			if (!SupplierID.equals("")) {
-				Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeImportSupplierHK(SupplierID, GRNSheetName);
-			}
-		}
-		commonFunc.validCommonLogin(System.getProperty("HKFinUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("HKFinUsername"));
-		commonFunc.navigateToFinancialPurchaseBill();
-		for (int i1 = 0; i1 < 2; i1++) {
-			for (int i = 0; i < VariableHandler.getMultipleGRNDocs().size(); i++) {
-				String BillSeqNo = RandomStringUtils.randomNumeric(6);
-				if (BillSeqNo.equals("000")) {
-					BillSeqNo = "10";
-				}
-				String PBBillNumber = "PB" + BillSeqNo;
-				verifyPendingPurchaseBill(VariableHandler.getMultipleGRNDocs().get(i));
-				flag = webDB.waitForElement(BankPaymentLocators.PBBillNumberInputField, ElementType.Xpath);
-				if (flag) {
-					webDB.doubleClickAnElement(BankPaymentLocators.PBBillNumberInputField, ElementType.Xpath);
-					webDB.clearTextField(BankPaymentLocators.PBBillNumberInputField, ElementType.Xpath);
-					webDB.sendTextToAnElement(BankPaymentLocators.PBBillNumberInputField, PBBillNumber,
-							ElementType.Xpath);
-					verifyCreateJournalAndPost();
-					VariableHandler.setMultiplePBDocs(PBDocumentNumber);
-					flag = forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
-					if (flag) {
-						commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
-								VariableHandler.getPbNumber(), webDB.getDataFromProperties("HodEmpId"),
-								commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
-						flag = webDB.waitForElement(BankPaymentLocators.PBFindButton, ElementType.Xpath);
-						if (flag) {
-							webDB.clickAnElement(BankPaymentLocators.PBFindButton, ElementType.Xpath);
-							flag = webDB.waitForElement(BankPaymentLocators.PendingPurchaseBill, ElementType.Xpath);
-							if (flag) {
-								logs.logging("INFO", "Find Button Is clicked Successfully");
-							}
-						}
-					}
+				for (int i1 = 1; i1 <= 2; i1++) {
+					Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeImportSupplierHK(SupplierID, GRNSheetName);
 				}
 			}
 		}
-		commonFunc.logoutUser();
+		for (int i = 0; i < VariableHandler.getMultipleGRNDocs().size(); i++) {
+			String PbDocsNum = dbCommonFunctions.PBDocQuery(VariableHandler.getMultipleGRNDocs().get(i),
+					commonFunc.getDataFromTestDataSheet("PBDocumentNoColumnName"));
+			VariableHandler.setPbNumber(PbDocsNum);
+			PBDocumentNumber.add(VariableHandler.getPbNumber());
+			logs.logging("INFO", "Purchase Bill Document Number : " + VariableHandler.getPbNumber()
+					+ " Against This GRN Document Is : " + VariableHandler.getMultipleGRNDocs().get(i));
+			VariableHandler.setMultiplePBDocs(PBDocumentNumber);
+		}
+		for (int j = 1; j <= VariableHandler.getMultiplePBDocs().size(); j++) {
+			if (j <= 2) {
+				excelUtils.writeDataInExcel(Filepath, SheetName, 1, 25 + j,
+						dbCommonFunctions.BankPaymentPBHeaderDetails(VariableHandler.getMultiplePBDocs().get(j - 1),
+								commonFunc.getDataFromTestDataSheet("PBNetAmount")));
+			} else {
+				excelUtils.writeDataInExcel(Filepath, SheetName, 2, 23 + j,
+						dbCommonFunctions.BankPaymentPBHeaderDetails(VariableHandler.getMultiplePBDocs().get(j - 1),
+								commonFunc.getDataFromTestDataSheet("PBNetAmount")));
+			}
+		}
 		BPThroughAddButtonWithNewRef(SheetName, commonFunc.getDataFromTestDataSheet("BankTransCurcyUSD"),
 				commonFunc.getDataFromTestDataSheet("BankName"));
 		return flag;
@@ -6016,7 +5963,7 @@ public class BankPaymentFunctions {
 			String SupplierID = BankPayments[i][2];
 			String GRNSheetName = BankPayments[i][4];
 			if (!SupplierID.equals("")) {
-				Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName);
+				Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeImportSupplierHK(SupplierID, GRNSheetName);
 			}
 		}
 		for (int i = 1; i <= VariableHandler.getMultipleGRNDocs().size(); i++) {
@@ -10054,7 +10001,7 @@ public class BankPaymentFunctions {
 			}
 		}
 	}
-	
+
 	/**
 	 * This Method Is Used To Add the Bank Payment Line Details
 	 * 

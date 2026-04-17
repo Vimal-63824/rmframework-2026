@@ -2284,6 +2284,7 @@ public class DBCommonFunctions {
 				VariableHandler.getProductionCompletionOrderNo(), DBHeaderColumnValue);
 		return value;
 	}
+
 	/**
 	 * Supplier GL Acct Query
 	 * 
@@ -2297,7 +2298,7 @@ public class DBCommonFunctions {
 				commonFunc.getDataFromTestDataSheet("SUPNO"), SUPNO, DBHeaderColumnValue);
 		return value;
 	}
-	
+
 	/**
 	 * Bank Payment Header details
 	 * 
@@ -2311,6 +2312,7 @@ public class DBCommonFunctions {
 				commonFunc.getDataFromTestDataSheet("SONO"), SONo, DBHeaderColumnValue);
 		return value;
 	}
+
 	/**
 	 * CS Line Details
 	 * 
@@ -2326,5 +2328,5 @@ public class DBCommonFunctions {
 				DBHeaderColumnValue);
 		return value;
 	}
-	
+
 }
