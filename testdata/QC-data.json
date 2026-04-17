@@ -2037,5 +2037,8 @@
 	"TDSSourceAssValueColumnName" : "BTDLN_TDS_SRC_ASSBL_VAL",
 	"TDSSourceAmtColumnName" : "BTDLN_TDS_SRC_AMT",
 	"TDSColumnName" : "BTDLN_TDS_US_ID",
-	"AdvIMPSupplier" : "HKIMPSUP01"
+	"AdvIMPSupplier" : "HKIMPSUP01",
+	"UTUnit":"UT2",
+	"PBPrefix":"PB",
+	"PBUTPrefix":"PBUT2"
 }
