@@ -2284,6 +2284,7 @@ public class DBCommonFunctions {
 				VariableHandler.getProductionCompletionOrderNo(), DBHeaderColumnValue);
 		return value;
 	}
+
 	/**
 	 * Supplier GL Acct Query
 	 * 
@@ -2297,7 +2298,7 @@ public class DBCommonFunctions {
 				commonFunc.getDataFromTestDataSheet("SUPNO"), SUPNO, DBHeaderColumnValue);
 		return value;
 	}
-	
+
 	/**
 	 * Bank Payment Header details
 	 * 
@@ -2311,6 +2312,7 @@ public class DBCommonFunctions {
 				commonFunc.getDataFromTestDataSheet("SONO"), SONo, DBHeaderColumnValue);
 		return value;
 	}
+
 	/**
 	 * CS Line Details
 	 * 
@@ -2326,5 +2328,20 @@ public class DBCommonFunctions {
 				DBHeaderColumnValue);
 		return value;
 	}
-	
+	/**
+	 * StockQuery
+	 * 
+	 * @author PremKumar.K -RMITS
+	 * @param AdvReceiptDocNo
+	 * @param DBHeaderColumnValue
+	 * @return String Value
+	 */
+	public List<String> PbJournalViewDetailsQueryForTDSSupplierPK(String PBVoucherNumber, String GLDesc, String DBHeaderColumnValue) {
+		List<String> value = getDataFromDBUsingQuery2(getDataFromDBTestDataSheet("PBJournalDetailsQueryPK"),
+				commonFunc.getDataFromTestDataSheet("PBVouNum"), PBVoucherNumber,
+				commonFunc.getDataFromTestDataSheet("PBGL"), GLDesc, DBHeaderColumnValue);
+		System.out.println("value check " + value);
+		return value;
+	}
+
 }

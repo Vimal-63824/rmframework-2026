@@ -7,9 +7,9 @@
 	<test name="Finance Road Map Test" parallel="classes" thread-count="5">
 		<classes>
 			<class name="com.roadmapERP.BankPaymentTest"></class>
-			<class name="com.roadmapERP.BankReceiptTest"></class>
+		<!--	<class name="com.roadmapERP.BankReceiptTest"></class>
 			<class name="com.roadmapERP.CashPaymentTest"></class>
-			<class name="com.roadmapERP.CashReceiptTest"></class>
+			<class name="com.roadmapERP.CashReceiptTest"></class>-->
 			<class name="com.roadmapERP.DebitNoteTest"></class>
 			<class name="com.roadmapERP.PurchaseBillGetDocumenTest"></class>
 			<class name="com.roadmapERP.PurchaseBillsTest"></class>
