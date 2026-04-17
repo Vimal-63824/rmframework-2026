@@ -229,7 +229,7 @@ public class PurchaseBillsLocators {
 	/** @locatorType Xpath */
 	public static final String SearchButtonGetDoc = "//button[@data-testid='SearchPO']";
 	/** @locatorType Xpath */
-	public static final String CheckBoxPendingPo = "//*[@id='5414119390218282305']/tbody/tr[2]/td[13]";
+	public static final String CheckBoxPendingPo = "//table[@id='5414119390218282305']/tbody/tr/td[13]";
 	/** @locatorType Xpath */
 	public static final String OkButtonPendingPO = "//button[@data-testid='OK']";
 	/** @locatorType Xpath */
@@ -303,7 +303,7 @@ public class PurchaseBillsLocators {
 	/** @locatorType Xpath */
 	public static final String LoadButton = "//button[@id='loadadj']";
 	/** @locatorType Xpath */
-	public static final String CheckBoxAdjTap = "//*[@id=\"3632475644335763481_orig\"]/tbody/tr[2]/td[11]";
+	public static final String CheckBoxAdjTap = "//*[@id='3632475644335763481_orig']/tbody/tr[2]/td[11]";
 	/**@locatorType Xpath*/
 	public static final String FrameAdjTap = "//iframe[@title='Advance Adjustment ']";
 	/**@locatorType Xpath*/
