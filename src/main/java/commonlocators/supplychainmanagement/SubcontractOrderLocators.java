@@ -465,15 +465,15 @@ public class SubcontractOrderLocators {
 	/** @Locator XPATH */
 	public static final String SCO_GetTarSFcode = "//span[@data-testid='P161713106504_POL_TARG_SF_CODE']";
 	/** @Locator XPATH */
-	public static final String SubcontractCSFindAddIcon = "//button[@id='B1162763568144715495']";
+	public static final String SubcontractCSFindAddIcon = "//button[@id='B1881864447764329204']";
 	/** @Locator XPATH */
-	public static final String SubcontractCSBackIcon = "//button[@id='B1045111864081619701']";
+	public static final String SubcontractCSBackIcon = "//button[@id='B1764212743701233410']";
 	/** @Locator XPATH */
 	public static final String SCOA_SCOPfx = "//input[@data-testid='P60_PFX']/following-sibling::button";
 	/** @Locator XPATH */
-	public static final String SubcontractCSHeaderSaveIcon = "//button[@id='B1045107532048619697']";
+	public static final String SubcontractCSHeaderSaveIcon = "//button[@id='B1764208411668233406']";
 	/** @Locator XPATH */
-	public static final String SubcontractCSAddSCOLine = "//button[@id='B1045105907669619694']";
+	public static final String SubcontractCSAddSCOLine = "//button[@id='B1764206787289233403']";
 	/** @Locator XPATH */
 	public static final String SubcontractCSAddSCOLine_Iframe = "//iframe[@title='SCO Details']";
 	/** @Locator XPATH */
@@ -489,9 +489,9 @@ public class SubcontractOrderLocators {
 	/** @Locator XPATH */
 	public static final String SubcontractCS_ProcDetails_BatchCost = "//input[@id='P61_SCOAP_NEW_BATCH_COST']";
 	/** @Locator XPATH */
-	public static final String SubcontractCS_ProcDetails_SaveIcon = "//button[@id='B1054370510727881854']";
+	public static final String SubcontractCS_ProcDetails_SaveIcon = "//button[@title='Save']";
 	/** @Locator XPATH */
-	public static final String SubcontractCS_PostIcon = "//button[@id='B1045107912563619697']";
+	public static final String SubcontractCS_PostIcon = "//button[@id='B1764208792183233406']";
 	/** @Locator XPATH */
 	public static final String SubcontractCS_DocNO = "//input[@data-testid='P60_PAH_DOC_NO']";
 	/** @Locator XPATH */
@@ -499,7 +499,7 @@ public class SubcontractOrderLocators {
 	/** @Locator XPATH */
 	public static final String SubcontractCS_CloseshortButton = "//button[@id='B1']";
 	/** @Locator XPATH */
-	public static final String SubcontractCS_Closeshort_CancelButton = "//button[@id='B1045109078127619698']";
+	public static final String SubcontractCS_Closeshort_CancelButton = "//button[@id='B1764209957747233407']";
 	/** @Locator XPATH */
 	public static final String PendingSCOProcessDetailsIframe = "//iframe[@title='Process Details']";
 	/** @Locator XPATH */
