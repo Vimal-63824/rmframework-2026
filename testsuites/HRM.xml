@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Road Map - HRM">
+	<listeners>
+		<listener class-name="utils.RetryListener"></listener>
+		<listener class-name="utils.Listener"></listener>
+	</listeners>
+	<test parallel="classes" name="HRM Road Map Test" thread-count="5">
+		<classes>
+			<class name="com.roadmapERP.AttendanceLeaveTest"></class>
+			<class name="com.roadmapERP.EmployeeMasterTest"></class>
+			<class name="com.roadmapERP.EmployeeOvertime"></class>
+			<class name="com.roadmapERP.EmployeePermissionTest"></class>
+			<class name="com.roadmapERP.PreparePayrollTest"></class>
+		</classes>
+	</test>
+</suite>
