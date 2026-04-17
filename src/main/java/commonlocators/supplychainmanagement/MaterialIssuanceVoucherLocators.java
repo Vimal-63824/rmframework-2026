@@ -131,7 +131,7 @@ public class MaterialIssuanceVoucherLocators {
 	/** @locatorType XPATH */
 	public static final String CreateMIVButton = "//div[@id='CRE_MIV']//table//button";
 	/** @locatorType XPATH */
-	public static final String PendingCreateMIV = "//button[@data-testid='PendingMRCreateMIBtn']";
+	public static final String PendingCreateMIV = "//button[@id='B2183708502436997799']";
 	/** @locatorType XPATH */
 	public static final String Pending_TableShowMyRecordBtn = "//button[@id='hid']";
 	/** @locatorType XPATH */
