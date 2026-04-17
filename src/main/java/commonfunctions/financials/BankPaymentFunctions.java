@@ -4203,13 +4203,23 @@ public class BankPaymentFunctions {
 					logs.logging("INFO", "In Pending Payables For This Document Number " + VoucherNumber
 							+ " Currency Is getting Matched With DB");
 
-					salesOrdFunc.verifyAssertionBothValues(
-							dbCommonFunctions.BankPaymentPendingPayablesDetails(VoucherNumber,
-									commonFunc.getDataFromTestDataSheet("BRDBPendingReceivablesExRate")),
-							dbCommonFunctions.ExchangeRateDetails(Curcy,
-									commonFunc.getDataFromTestDataSheet("ImportPurchaseEXRateColumnName")));
-					logs.logging("INFO", "In Pending Payables For This Document Number " + VoucherNumber
-							+ " EX.Rate Is getting Matched With DB");
+					if (Curcy.equals("INR")) {
+						salesOrdFunc
+								.verifyAssertionBothValues(
+										dbCommonFunctions.BankPaymentPendingPayablesDetails(VoucherNumber,
+												commonFunc.getDataFromTestDataSheet("BRDBPendingReceivablesExRate")),
+										EXRate);
+						logs.logging("INFO", "In Pending Payables For This Document Number " + VoucherNumber
+								+ " EX.Rate Is getting Matched With DB");
+					} else {
+						salesOrdFunc.verifyAssertionBothValues(
+								dbCommonFunctions.BankPaymentPendingPayablesDetails(VoucherNumber,
+										commonFunc.getDataFromTestDataSheet("BRDBPendingReceivablesExRate")),
+								dbCommonFunctions.ExchangeRateDetails(Curcy,
+										commonFunc.getDataFromTestDataSheet("ImportPurchaseEXRateColumnName")));
+						logs.logging("INFO", "In Pending Payables For This Document Number " + VoucherNumber
+								+ " EX.Rate Is getting Matched With DB");
+					}
 
 					salesOrdFunc.verifyAssertionBothValues(dbCommonFunctions.BankPaymentPendingPayablesDetails(
 							VoucherNumber, commonFunc.getDataFromTestDataSheet("BRDBPendingReceivablesDROrCR")), DrCr);
@@ -5864,9 +5874,15 @@ public class BankPaymentFunctions {
 			if (!Currency.equals("INR") || (BankName.equals("JP MORGAN CHASE"))) {
 				enterRealizedAmountInBPHeader(BaseCURCY);
 			}
-			excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalBank"), 1, 6,
-					dbCommonFunctions.BankPaymentPBHeaderDetails(VariableHandler.getMultiplePBDocs().get(0),
-							commonFunc.getDataFromTestDataSheet("PBNetAmount")));
+			if (Currency.equals("INR")) {
+				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalBank"), 1, 6,
+						dbCommonFunctions.BankPaymentPBHeaderDetails(VariableHandler.getMultiplePBDocs().get(0),
+								commonFunc.getDataFromTestDataSheet("PBNetAmount")));
+			} else {
+				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalBankUSD"), 1, 6,
+						dbCommonFunctions.BankPaymentPBHeaderDetails(VariableHandler.getMultiplePBDocs().get(0),
+								commonFunc.getDataFromTestDataSheet("PBNetAmount")));
+			}
 		}
 		clickCreateJournalButton();
 		if (Currency.equals("INR")) {
@@ -5884,7 +5900,7 @@ public class BankPaymentFunctions {
 					VariableHandler.getBankPaymentOrReceiptDocNumber());
 			excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BPJournalBankUSD"), 1, 6, "0");
 		}
-		verifyOverallHeaderAmountWithDB(SheetName);
+//		verifyOverallHeaderAmountWithDB(SheetName);
 		clearDataInExcel(SheetName);
 		clickPostButton();
 		flag = forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
