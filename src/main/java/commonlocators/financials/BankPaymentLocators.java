@@ -236,11 +236,11 @@ public class BankPaymentLocators {
 	/** @locatorType Xpath */
 	public static final String BankPaymentSourcePartyField = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[35]";
 	/** @locatorType Xpath */
-	public static final String BankPaymentSourcePartyLovButton = "//button[@id='C3527944025707373314_lov_btn']";
+	public static final String BankPaymentSourcePartyLovButton = "//button[@id='C3747602616938592573_lov_btn']";
 	/** @locatorType Xpath */
 	public static final String BankPayment2ndLine = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[2]/td[1]";
 	/** @locatorType Xpath */
-	public static final String BankBillDateInputField = "//input[@id='C2484857470317090315_input']";
+	public static final String BankBillDateInputField = "//input[@id='C2704516061548309574_input']";
 	/** @locatorType Xpath */
 	public static final String PDCVoucherNumberLovButton = "//button[@id='P34131031_VOU_NO_lov_btn']";
 	/** @locatorType Xpath */
