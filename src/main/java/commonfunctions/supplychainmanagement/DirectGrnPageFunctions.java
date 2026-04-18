@@ -5480,26 +5480,28 @@ public class DirectGrnPageFunctions {
 						if (flag) {
 							webDB.clickAnElement(GrnLocators.AddLotSerialItem, ElementType.Xpath);
 							commonFunc.hardWait(2000);
-//							flag = webDB.waitForElement(GrnLocators.ItemTable, ElementType.Xpath);
-//							if (flag) {
-							webDB.clickAnElement(GrnLocators.ItemTable, ElementType.Xpath);
-							commonFunc.checkRefreshCellsDisappear();
-							flag = webDB.waitForElement(GrnLocators.LotSerialItemLov, ElementType.Xpath);
+							flag = webDB.waitForElement(GrnLocators.ItemTable, ElementType.Xpath);
 							if (flag) {
-								webDB.clickAnElement(GrnLocators.LotSerialItemLov, ElementType.Xpath);
-								webDB.switchToDefaultContent();
-								System.out.println("Nit");
-								flag = webDB.waitForElement(GrnLocators.LotSerialItemSearch, ElementType.Xpath);
-								List<WebElement> removeFilter = webDB.getDriver()
-										.findElements(By.xpath(GrnLocators.LotserialitemsInput));
-								for (WebElement element : removeFilter) {
-									if (element.isDisplayed()) {
-										element.sendKeys(ITEM_NAME);
-										System.out.println(1);
-										break;
-									}
-								}
-								webDB.waitForElement(GrnLocators.LotSerialItemSearch, ElementType.Xpath);
+								webDB.clickAnElement(GrnLocators.ItemTable, ElementType.Xpath);
+//							commonFunc.searchAndSelectValueInFilters(GrnLocators.LotSerialItemLov, ITEM_NAME);
+
+//							commonFunc.checkRefreshCellsDisappear();
+//							flag = webDB.waitForElement(GrnLocators.LotSerialItemLov, ElementType.Xpath);
+//							if (flag) {
+//								webDB.clickAnElement(GrnLocators.LotSerialItemLov, ElementType.Xpath);
+//								webDB.switchToDefaultContent();
+//								System.out.println("Nit");
+//								flag = webDB.waitForElement(GrnLocators.LotSerialItemSearch, ElementType.Xpath);
+//								List<WebElement> removeFilter = webDB.getDriver()
+//										.findElements(By.xpath(GrnLocators.LotserialitemsInput));
+//								for (WebElement element : removeFilter) {
+//									if (element.isDisplayed()) {
+//										element.sendKeys(ITEM_NAME);
+//										System.out.println(1);
+//										break;
+//									}
+//								}
+//								webDB.waitForElement(GrnLocators.LotSerialItemSearch, ElementType.Xpath);
 							}
 //							}
 						}

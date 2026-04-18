@@ -1189,7 +1189,7 @@ public class InspectionDocumentFunctions {
 				int endNum = Integer.parseInt(toNum);
 				ArrayList<String> allDocumentNumbers = new ArrayList<>();
 				for (int i = startNum; i <= endNum; i++) {
-					String generatedDocumentNumber = "INDP-" + "2526-" + String.format("%04d", i);
+					String generatedDocumentNumber = "INDP-" + "2627-" + String.format("%04d", i);
 					allDocumentNumbers.add(generatedDocumentNumber);
 				}
 				VariableHandler.setAllDocumentNumber(allDocumentNumbers);
