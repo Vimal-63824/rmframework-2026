@@ -1988,9 +1988,9 @@ public class DBCommonFunctions {
 	 * @param DBHeaderColumnValue
 	 * @return
 	 */
-	public String POAdvanceDetails(String PONO1, String DBHeaderColumnValue) {
-		String value = getDataFromDBUsingQuery(getDataFromDBTestDataSheet("POadvanceQuery"),
-				commonFunc.getDataFromTestDataSheet("PONO1"), PONO1, DBHeaderColumnValue);
+	public String POAdvanceDetails(String SONo, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery(getDataFromDBTestDataSheet("POAdvanceQuery"),
+				commonFunc.getDataFromTestDataSheet("SONO"), SONo, DBHeaderColumnValue);
 		return value;
 	}
 
@@ -2328,6 +2328,7 @@ public class DBCommonFunctions {
 				DBHeaderColumnValue);
 		return value;
 	}
+
 	/**
 	 * StockQuery
 	 * 
@@ -2336,7 +2337,8 @@ public class DBCommonFunctions {
 	 * @param DBHeaderColumnValue
 	 * @return String Value
 	 */
-	public List<String> PbJournalViewDetailsQueryForTDSSupplierPK(String PBVoucherNumber, String GLDesc, String DBHeaderColumnValue) {
+	public List<String> PbJournalViewDetailsQueryForTDSSupplierPK(String PBVoucherNumber, String GLDesc,
+			String DBHeaderColumnValue) {
 		List<String> value = getDataFromDBUsingQuery2(getDataFromDBTestDataSheet("PBJournalDetailsQueryPK"),
 				commonFunc.getDataFromTestDataSheet("PBVouNum"), PBVoucherNumber,
 				commonFunc.getDataFromTestDataSheet("PBGL"), GLDesc, DBHeaderColumnValue);

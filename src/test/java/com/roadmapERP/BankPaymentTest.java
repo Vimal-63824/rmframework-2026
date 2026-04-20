@@ -989,7 +989,7 @@ public class BankPaymentTest extends RoadMapERPTest {
 		bankPaymentFunc.BPadvancePOMultipleThroughPendingDocument(webDB.getDataFromProperties("BPAdvance"));
 //		Assert.assertTrue(flag);
 	}
-
+//
 	/**
 	 * Advance against PO single purchase order (With TDS single Under
 	 * section)(Through Add button)
@@ -999,7 +999,7 @@ public class BankPaymentTest extends RoadMapERPTest {
 	 */
 	@Test(priority = 67, groups = {
 			"Bank Payments" }, description = " Advance against PO single purchase order (With TDS single Under section)(Through Add button)")
-	public void CreateCashPaymentAdvPOThroughAddButtonWithSingleTDS() throws IOException {
+	public void CreateBankPaymentAdvPOThroughAddButtonWithSingleTDS() throws IOException {
 		bankPaymentFunc.BPadvancePOThroughAddButton(webDB.getDataFromProperties("TDSBPAdvance"));
 //		Assert.assertTrue(flag);
 	}
@@ -1233,159 +1233,159 @@ public class BankPaymentTest extends RoadMapERPTest {
 //		Assert.assertTrue(flag);
 	}
 
-	/**
-	 * Payment Against Multi Party, Multi Bill with New reference (Dr/Cr)(Through
-	 * Add button)
-	 * 
-	 * @author Harikrishna - RMITS
-	 * @throws Exception
-	 */
-	@Author("Harikrishna-RMITS")
-	@Test(priority = 85, groups = {
-			"Bank Payments" }, description = "Payment Against Multi Party, Multi Bill with New reference (Dr/Cr)(Through Add button)")
-	public void CreateBankPaymentThroughAddButtonMultiPartyMultiBillAdvanceWithNewRef() throws Exception {
-		flag = bankPaymentFunc.CreateBankPaymentThroughAddButtonMultiPartyMultiBillAdvanceWithNewRef(
-				webDB.getDataFromProperties("BPMPMBADVNR"), commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
-				commonFunc.getDataFromTestDataSheet("BankName"));
-		Assert.assertTrue(flag);
-	}
-
-	/**
-	 * Payment Against Multi Party, Multi Bill with New reference (Dr/Cr)(Through
-	 * Add button)
-	 * 
-	 * @author Harikrishna - RMITS
-	 * @throws Exception
-	 */
-	@Author("Harikrishna-RMITS")
-	@Test(priority = 86, groups = {
-			"Bank Payments" }, description = "Payment Against Multi Party, Multi Bill with New reference (Dr/Cr)(Through Add button)")
-	public void CreateBankPaymentThroughGetDocumentMultiPartyMultiBillAdvanceWithNewRef() throws Exception {
-		flag = bankPaymentFunc.CreateBankPaymentThroughGetDocumentMultiPartyMultiBillAdvanceWithNewRef(
-				webDB.getDataFromProperties("BPMPMBADVNR"), commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
-				commonFunc.getDataFromTestDataSheet("BankName"));
-		Assert.assertTrue(flag);
-	}
-
-	/**
-	 * Payment Against Multi Party, Multi Bill with New reference (Dr/Cr)(Through
-	 * Add button)
-	 * 
-	 * @author Harikrishna - RMITS
-	 * @throws Exception
-	 */
-	@Author("Harikrishna-RMITS")
-	@Test(priority = 87, groups = {
-			"Bank Payments" }, description = "Payment Against Multi Party, Multi Bill with New reference (Dr/Cr)(Through Add button)")
-	public void CreateBankPaymentThroughPendingDocumentMultiPartyMultiBillAdvanceWithNewRef() throws Exception {
-		flag = bankPaymentFunc.CreateBankPaymentThroughPendingDocumentMultiPartyMultiBillAdvanceWithNewRef(
-				webDB.getDataFromProperties("BPMPMBADVNR"), commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
-				commonFunc.getDataFromTestDataSheet("BankName"));
-		Assert.assertTrue(flag);
-	}
-
-	/**
-	 * Payment Against Multi Party, Multi Bill with New reference (Dr/Cr)(Through
-	 * Add button)
-	 * 
-	 * @author Harikrishna - RMITS
-	 * @throws Exception
-	 */
-	@Author("Harikrishna-RMITS")
-	@Test(priority = 88, groups = {
-			"Bank Payments" }, description = "Payment Against Multi Party, Multi Bill with New reference (Dr/Cr)(Through Add button)")
-	public void CreateBankPaymentThroughAddButtonMultiPartyMultiBillAdvanceWithNewRefBankCurcyUSD() throws Exception {
-		flag = bankPaymentFunc.CreateBankPaymentThroughAddButtonMultiPartyMultiBillAdvanceWithNewRef(
-				webDB.getDataFromProperties("BPMPMBADVNR"), commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
-				commonFunc.getDataFromTestDataSheet("BankNameUSD"));
-		Assert.assertTrue(flag);
-	}
-
-	/**
-	 * Payment Against Multi Party, Multi Bill with New reference (Dr/Cr)(Through
-	 * Add button)
-	 * 
-	 * @author Harikrishna - RMITS
-	 * @throws Exception
-	 */
-	@Author("Harikrishna-RMITS")
-	@Test(priority = 89, groups = {
-			"Bank Payments" }, description = "Payment Against Multi Party, Multi Bill with New reference (Dr/Cr)(Through Add button)")
-	public void CreateBankPaymentThroughGetDocumentMultiPartyMultiBillAdvanceWithNewRefBankCurcyUSD() throws Exception {
-		flag = bankPaymentFunc.CreateBankPaymentThroughGetDocumentMultiPartyMultiBillAdvanceWithNewRef(
-				webDB.getDataFromProperties("BPMPMBADVNR"), commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
-				commonFunc.getDataFromTestDataSheet("BankNameUSD"));
-		Assert.assertTrue(flag);
-	}
-
-	/**
-	 * Payment Against Multi Party, Multi Bill with New reference (Dr/Cr)(Through
-	 * Add button)
-	 * 
-	 * @author Harikrishna - RMITS
-	 * @throws Exception
-	 */
-	@Author("Harikrishna-RMITS")
-	@Test(priority = 90, groups = {
-			"Bank Payments" }, description = "Payment Against Multi Party, Multi Bill with New reference (Dr/Cr)(Through Add button)")
-	public void CreateBankPaymentThroughPendingDocumentMultiPartyMultiBillAdvanceWithNewRefBankCurcyUSD()
-			throws Exception {
-		flag = bankPaymentFunc.CreateBankPaymentThroughPendingDocumentMultiPartyMultiBillAdvanceWithNewRef(
-				webDB.getDataFromProperties("BPMPMBADVNR"), commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
-				commonFunc.getDataFromTestDataSheet("BankNameUSD"));
-		Assert.assertTrue(flag);
-	}
-
-	/**
-	 * Payment Against Multi Party, Multi Bill with New reference (Dr/Cr)(Through
-	 * Add button)
-	 * 
-	 * @author Harikrishna - RMITS
-	 * @throws Exception
-	 */
-	@Author("Harikrishna-RMITS")
-	@Test(priority = 91, groups = {
-			"Bank Payments" }, description = "Payment Against Multi Party, Multi Bill with New reference (Dr/Cr)(Through Add button)")
-	public void CreateBankPaymentThroughAddButtonMultiPartyMultiBillAdvanceWithNewRefUSD() throws Exception {
-		flag = bankPaymentFunc.CreateBankPaymentThroughAddButtonMultiPartyMultiBillAdvanceWithNewRef(
-				webDB.getDataFromProperties("BPMPMBADVNRUSD"), commonFunc.getDataFromTestDataSheet("BankTransCurcyUSD"),
-				commonFunc.getDataFromTestDataSheet("BankName"));
-		Assert.assertTrue(flag);
-	}
-
-	/**
-	 * Payment Against Multi Party, Multi Bill with New reference (Dr/Cr)(Through
-	 * Add button)
-	 * 
-	 * @author Harikrishna - RMITS
-	 * @throws Exception
-	 */
-	@Author("Harikrishna-RMITS")
-	@Test(priority = 92, groups = {
-			"Bank Payments" }, description = "Payment Against Multi Party, Multi Bill with New reference (Dr/Cr)(Through Add button)")
-	public void CreateBankPaymentThroughGetDocumentMultiPartyMultiBillAdvanceWithNewRefUSD() throws Exception {
-		flag = bankPaymentFunc.CreateBankPaymentThroughGetDocumentMultiPartyMultiBillAdvanceWithNewRef(
-				webDB.getDataFromProperties("BPMPMBADVNRUSD"), commonFunc.getDataFromTestDataSheet("BankTransCurcyUSD"),
-				commonFunc.getDataFromTestDataSheet("BankName"));
-		Assert.assertTrue(flag);
-	}
-
-	/**
-	 * Payment Against Multi Party, Multi Bill with New reference (Dr/Cr)(Through
-	 * Add button)
-	 * 
-	 * @author Harikrishna - RMITS
-	 * @throws Exception
-	 */
-	@Author("Harikrishna-RMITS")
-	@Test(priority = 93, groups = {
-			"Bank Payments" }, description = "Payment Against Multi Party, Multi Bill with New reference (Dr/Cr)(Through Add button)")
-	public void CreateBankPaymentThroughPendingDocumentMultiPartyMultiBillAdvanceWithNewRefUSD() throws Exception {
-		flag = bankPaymentFunc.CreateBankPaymentThroughPendingDocumentMultiPartyMultiBillAdvanceWithNewRef(
-				webDB.getDataFromProperties("BPMPMBADVNRUSD"), commonFunc.getDataFromTestDataSheet("BankTransCurcyUSD"),
-				commonFunc.getDataFromTestDataSheet("BankName"));
-		Assert.assertTrue(flag);
-	}
+//	/**
+//	 * Payment Against Multi Party, Multi Bill with New reference (Dr/Cr)(Through
+//	 * Add button)
+//	 * 
+//	 * @author Harikrishna - RMITS
+//	 * @throws Exception
+//	 */
+//	@Author("Harikrishna-RMITS")
+//	@Test(priority = 85, groups = {
+//			"Bank Payments" }, description = "Payment Against Multi Party, Multi Bill with New reference (Dr/Cr)(Through Add button)")
+//	public void CreateBankPaymentThroughAddButtonMultiPartyMultiBillAdvanceWithNewRef() throws Exception {
+//		flag = bankPaymentFunc.CreateBankPaymentThroughAddButtonMultiPartyMultiBillAdvanceWithNewRef(
+//				webDB.getDataFromProperties("BPMPMBADVNR"), commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
+//				commonFunc.getDataFromTestDataSheet("BankName"));
+//		Assert.assertTrue(flag);
+//	}
+//
+//	/**
+//	 * Payment Against Multi Party, Multi Bill with New reference (Dr/Cr)(Through
+//	 * Add button)
+//	 * 
+//	 * @author Harikrishna - RMITS
+//	 * @throws Exception
+//	 */
+//	@Author("Harikrishna-RMITS")
+//	@Test(priority = 86, groups = {
+//			"Bank Payments" }, description = "Payment Against Multi Party, Multi Bill with New reference (Dr/Cr)(Through Add button)")
+//	public void CreateBankPaymentThroughGetDocumentMultiPartyMultiBillAdvanceWithNewRef() throws Exception {
+//		flag = bankPaymentFunc.CreateBankPaymentThroughGetDocumentMultiPartyMultiBillAdvanceWithNewRef(
+//				webDB.getDataFromProperties("BPMPMBADVNR"), commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
+//				commonFunc.getDataFromTestDataSheet("BankName"));
+//		Assert.assertTrue(flag);
+//	}
+//
+//	/**
+//	 * Payment Against Multi Party, Multi Bill with New reference (Dr/Cr)(Through
+//	 * Add button)
+//	 * 
+//	 * @author Harikrishna - RMITS
+//	 * @throws Exception
+//	 */
+//	@Author("Harikrishna-RMITS")
+//	@Test(priority = 87, groups = {
+//			"Bank Payments" }, description = "Payment Against Multi Party, Multi Bill with New reference (Dr/Cr)(Through Add button)")
+//	public void CreateBankPaymentThroughPendingDocumentMultiPartyMultiBillAdvanceWithNewRef() throws Exception {
+//		flag = bankPaymentFunc.CreateBankPaymentThroughPendingDocumentMultiPartyMultiBillAdvanceWithNewRef(
+//				webDB.getDataFromProperties("BPMPMBADVNR"), commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
+//				commonFunc.getDataFromTestDataSheet("BankName"));
+//		Assert.assertTrue(flag);
+//	}
+//
+//	/**
+//	 * Payment Against Multi Party, Multi Bill with New reference (Dr/Cr)(Through
+//	 * Add button)
+//	 * 
+//	 * @author Harikrishna - RMITS
+//	 * @throws Exception
+//	 */
+//	@Author("Harikrishna-RMITS")
+//	@Test(priority = 88, groups = {
+//			"Bank Payments" }, description = "Payment Against Multi Party, Multi Bill with New reference (Dr/Cr)(Through Add button)")
+//	public void CreateBankPaymentThroughAddButtonMultiPartyMultiBillAdvanceWithNewRefBankCurcyUSD() throws Exception {
+//		flag = bankPaymentFunc.CreateBankPaymentThroughAddButtonMultiPartyMultiBillAdvanceWithNewRef(
+//				webDB.getDataFromProperties("BPMPMBADVNR"), commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
+//				commonFunc.getDataFromTestDataSheet("BankNameUSD"));
+//		Assert.assertTrue(flag);
+//	}
+//
+//	/**
+//	 * Payment Against Multi Party, Multi Bill with New reference (Dr/Cr)(Through
+//	 * Add button)
+//	 * 
+//	 * @author Harikrishna - RMITS
+//	 * @throws Exception
+//	 */
+//	@Author("Harikrishna-RMITS")
+//	@Test(priority = 89, groups = {
+//			"Bank Payments" }, description = "Payment Against Multi Party, Multi Bill with New reference (Dr/Cr)(Through Add button)")
+//	public void CreateBankPaymentThroughGetDocumentMultiPartyMultiBillAdvanceWithNewRefBankCurcyUSD() throws Exception {
+//		flag = bankPaymentFunc.CreateBankPaymentThroughGetDocumentMultiPartyMultiBillAdvanceWithNewRef(
+//				webDB.getDataFromProperties("BPMPMBADVNR"), commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
+//				commonFunc.getDataFromTestDataSheet("BankNameUSD"));
+//		Assert.assertTrue(flag);
+//	}
+//
+//	/**
+//	 * Payment Against Multi Party, Multi Bill with New reference (Dr/Cr)(Through
+//	 * Add button)
+//	 * 
+//	 * @author Harikrishna - RMITS
+//	 * @throws Exception
+//	 */
+//	@Author("Harikrishna-RMITS")
+//	@Test(priority = 90, groups = {
+//			"Bank Payments" }, description = "Payment Against Multi Party, Multi Bill with New reference (Dr/Cr)(Through Add button)")
+//	public void CreateBankPaymentThroughPendingDocumentMultiPartyMultiBillAdvanceWithNewRefBankCurcyUSD()
+//			throws Exception {
+//		flag = bankPaymentFunc.CreateBankPaymentThroughPendingDocumentMultiPartyMultiBillAdvanceWithNewRef(
+//				webDB.getDataFromProperties("BPMPMBADVNR"), commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
+//				commonFunc.getDataFromTestDataSheet("BankNameUSD"));
+//		Assert.assertTrue(flag);
+//	}
+//
+//	/**
+//	 * Payment Against Multi Party, Multi Bill with New reference (Dr/Cr)(Through
+//	 * Add button)
+//	 * 
+//	 * @author Harikrishna - RMITS
+//	 * @throws Exception
+//	 */
+//	@Author("Harikrishna-RMITS")
+//	@Test(priority = 91, groups = {
+//			"Bank Payments" }, description = "Payment Against Multi Party, Multi Bill with New reference (Dr/Cr)(Through Add button)")
+//	public void CreateBankPaymentThroughAddButtonMultiPartyMultiBillAdvanceWithNewRefUSD() throws Exception {
+//		flag = bankPaymentFunc.CreateBankPaymentThroughAddButtonMultiPartyMultiBillAdvanceWithNewRef(
+//				webDB.getDataFromProperties("BPMPMBADVNRUSD"), commonFunc.getDataFromTestDataSheet("BankTransCurcyUSD"),
+//				commonFunc.getDataFromTestDataSheet("BankName"));
+//		Assert.assertTrue(flag);
+//	}
+//
+//	/**
+//	 * Payment Against Multi Party, Multi Bill with New reference (Dr/Cr)(Through
+//	 * Add button)
+//	 * 
+//	 * @author Harikrishna - RMITS
+//	 * @throws Exception
+//	 */
+//	@Author("Harikrishna-RMITS")
+//	@Test(priority = 92, groups = {
+//			"Bank Payments" }, description = "Payment Against Multi Party, Multi Bill with New reference (Dr/Cr)(Through Add button)")
+//	public void CreateBankPaymentThroughGetDocumentMultiPartyMultiBillAdvanceWithNewRefUSD() throws Exception {
+//		flag = bankPaymentFunc.CreateBankPaymentThroughGetDocumentMultiPartyMultiBillAdvanceWithNewRef(
+//				webDB.getDataFromProperties("BPMPMBADVNRUSD"), commonFunc.getDataFromTestDataSheet("BankTransCurcyUSD"),
+//				commonFunc.getDataFromTestDataSheet("BankName"));
+//		Assert.assertTrue(flag);
+//	}
+//
+//	/**
+//	 * Payment Against Multi Party, Multi Bill with New reference (Dr/Cr)(Through
+//	 * Add button)
+//	 * 
+//	 * @author Harikrishna - RMITS
+//	 * @throws Exception
+//	 */
+//	@Author("Harikrishna-RMITS")
+//	@Test(priority = 93, groups = {
+//			"Bank Payments" }, description = "Payment Against Multi Party, Multi Bill with New reference (Dr/Cr)(Through Add button)")
+//	public void CreateBankPaymentThroughPendingDocumentMultiPartyMultiBillAdvanceWithNewRefUSD() throws Exception {
+//		flag = bankPaymentFunc.CreateBankPaymentThroughPendingDocumentMultiPartyMultiBillAdvanceWithNewRef(
+//				webDB.getDataFromProperties("BPMPMBADVNRUSD"), commonFunc.getDataFromTestDataSheet("BankTransCurcyUSD"),
+//				commonFunc.getDataFromTestDataSheet("BankName"));
+//		Assert.assertTrue(flag);
+//	}
 
 	/**
 	 * This Is Used to set the Variable Handler To Zero After Finishing One Test
