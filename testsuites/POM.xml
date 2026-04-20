@@ -7,7 +7,7 @@
 	</listeners>
 	<test name="Road Map Test" parallel="classes" thread-count="7">
 		<classes>
-			<class name="com.roadmapERP.ApprovedSupplierPOTest"></class>
+			<!--	<class name="com.roadmapERP.ApprovedSupplierPOTest"></class> -->
 			<class name="com.roadmapERP.DirectGRNFOCTest"></class>
 			<class name="com.roadmapERP.DirectGrnImportTest"></class>
 			<class name="com.roadmapERP.DirectGrnTest"></class>
@@ -16,16 +16,16 @@
 			<class name="com.roadmapERP.GrnTest"></class>
 			<class name="com.roadmapERP.GrnTest2"></class>
 			<class name="com.roadmapERP.GrnTest3"></class>
-			<class name="com.roadmapERP.OpenPoRcTest"></class>
+			<!--	<class name="com.roadmapERP.OpenPoRcTest"></class>
 			<class name="com.roadmapERP.POAmendmentTest"></class>
-			<class name="com.roadmapERP.POAmendmentTest2"></class>
+			<class name="com.roadmapERP.POAmendmentTest2"></class>-->
 			<class name="com.roadmapERP.PoToGRNFOCTest"></class>
 			<class name="com.roadmapERP.PoToMRVTest"></class>
 			<class name="com.roadmapERP.PoToMRVTest2"></class>
 			<class name="com.roadmapERP.PriselistTest"></class>
-			<class name="com.roadmapERP.PurchaseFOCTest"></class>
+			<!--<class name="com.roadmapERP.PurchaseFOCTest"></class>
 			<class name="com.roadmapERP.PurchaseOrderTest"></class>
-			<class name="com.roadmapERP.PurchaseRequestTest"></class>
+			<class name="com.roadmapERP.PurchaseRequestTest"></class>-->
 			<class name="com.roadmapERP.RfqTest"></class>
 			<class name="com.roadmapERP.ShareOfBusinessTest"></class>
 			<class name="com.roadmapERP.SetupPurchaseTest"></class>

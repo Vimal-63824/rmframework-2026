@@ -4376,7 +4376,7 @@ public class DirectGrnPageFunctions {
 					verifyClickingReceiptQuantity(QTY);
 					verifyClickingCost(COST);
 					verifyClickingSaveLine();
-					verifyUnitcostAndDiscountAmountForPriceListItemForDirectGRN(i, SheetName,
+					verifyUnitcostAndDiscountAmountForPriceListItemForDirectGRNWithLoc49(i, Filepath, SheetName,
 							commonFunc.getDataFromTestDataSheet("PriceListSupplier"));
 					verifyRateContractItemUnitCostAndDiscPctWriteInExcelForGeneralTypeForDirectGrn(i, SheetName);
 					otherThanUserdefinedDiscountAmountForDirectGRN(i, SheetName);
@@ -5253,12 +5253,12 @@ public class DirectGrnPageFunctions {
 		GRNFunc.verifyImportLrBillNumber();
 		GRNFunc.overAllSaveAndPost();
 		GRNFunc.waitingForApproval();
-		GRNFunc.verifyReturnToGrnPageHeaderStatus();
 		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectGrnSheet"),
 				webDB.getDataFromProperties("DGSUomWISheet"));
-		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrv();
+		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrvForDifferentLoc();
 		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DirectGrnSheet"), webDB.getDataFromProperties("DGSUomWISheet"));
+		GRNFunc.verifyReturnToGrnPageHeaderStatus();
 	}
 
 	/**
@@ -5629,12 +5629,12 @@ public class DirectGrnPageFunctions {
 		GRNFunc.verifyImportLrBillNumber();
 		GRNFunc.overAllSaveAndPost();
 		GRNFunc.waitingForApproval();
-		GRNFunc.verifyReturnToGrnPageHeaderStatus();
 		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectGrnSheet"),
 				webDB.getDataFromProperties("DGSUomWISheet"));
-		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrv();
+		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrvForDifferentLoc();
 		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DirectGrnSheet"), webDB.getDataFromProperties("DGSUomWISheet"));
+		GRNFunc.verifyReturnToGrnPageHeaderStatus();
 	}
 
 	/**
@@ -5662,12 +5662,13 @@ public class DirectGrnPageFunctions {
 		GRNFunc.verifyImportLrBillNumber();
 		GRNFunc.overAllSaveAndPost();
 		GRNFunc.waitingForApproval();
-		GRNFunc.verifyReturnToGrnPageHeaderStatus();
+
 		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectGrnSheet"),
 				webDB.getDataFromProperties("DGSUomWIRcImpSheet"));
-		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrv();
+		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrvForDifferentLoc();
 		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DirectGrnSheet"), webDB.getDataFromProperties("DGSUomWIRcImpSheet"));
+		GRNFunc.verifyReturnToGrnPageHeaderStatus();
 	}
 
 	/**
@@ -5902,12 +5903,12 @@ public class DirectGrnPageFunctions {
 		GRNFunc.verifyImportLrBillNumber();
 		GRNFunc.overAllSaveAndPost();
 		GRNFunc.waitingForApproval();
-		GRNFunc.verifyReturnToGrnPageHeaderStatus();
 		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectGrnSheet"),
 				webDB.getDataFromProperties("DGSUomWIRcImpSheet"));
-		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrv();
+		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrvForDifferentLoc();
 		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DirectGrnSheet"), webDB.getDataFromProperties("DGSUomWIRcImpSheet"));
+		GRNFunc.verifyReturnToGrnPageHeaderStatus();
 	}
 
 	/**
@@ -5944,7 +5945,8 @@ public class DirectGrnPageFunctions {
 					verifyClickingReceiptQuantity(QTY);
 					verifyClickingCost(COST);
 					verifyClickingSaveLine();
-					verifyUnitcostAndDiscountAmountForPriceListItemForDirectGRN(i, FileName, SheetName, Supplier);
+					verifyUnitcostAndDiscountAmountForPriceListItemForDirectGRN(i, FileName, SheetName,
+							commonFunc.getDataFromTestDataSheet("PriceListSupplier"));
 					verifyRateContractItemUnitCostAndDiscPctWriteInExcelForGeneralTypeForDirectGrn(i, FileName,
 							SheetName);
 					otherThanUserdefinedDiscountAmountForDirectGRN(i, FileName, SheetName);
@@ -5964,6 +5966,43 @@ public class DirectGrnPageFunctions {
 
 	public void verifyUnitcostAndDiscountAmountForPriceListItemForDirectGRN(int i1, String FileName, String SheetName,
 			String PriceListSupplier) {
+		String[][] PRMultipleline = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
+		PRMultipleline = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		for (int i = i1; i <= i1; i++) {
+			String ITEM_NAME = PRMultipleline[i1][1];
+			if (!ITEM_NAME.equals("")) {
+				commonFunc.hardWait(2000);
+				commonFunc.checkRefreshCellsDisappear();
+				verifyAssertionBothValues(
+						dbCommonFunc.priceListDetails(PriceListSupplier, ITEM_NAME,
+								commonFunc.getDataFromTestDataSheet("PriceListUnitCost")),
+						dbCommonFunc.StockQuery4(VariableHandler.getGrnDocNumber(), ITEM_NAME,
+								commonFunc.getDataFromTestDataSheet("GRNUnitCost")));
+				logs.logging("INFO", "Open PO And  PO unit Cost Matched For This " + ITEM_NAME);
+				commonFunc.hardWait(3000);
+				commonFunc.checkRefreshCellsDisappear();
+				verifyAssertionBothValues(
+						dbCommonFunc.priceListDetails(PriceListSupplier, ITEM_NAME,
+								commonFunc.getDataFromTestDataSheet("PriceListDiscPct")),
+						dbCommonFunc.StockQuery4(VariableHandler.getGrnDocNumber(), ITEM_NAME,
+								commonFunc.getDataFromTestDataSheet("GRNDiscPct")));
+				logs.logging("INFO", "Open PO And  PO Discount % Matched For This " + ITEM_NAME);
+			}
+		}
+	}
+
+	/**
+	 * This Method Is Used To Verify Unit Cost and Discount Amount For Rate Contract
+	 * Item UOM(General)
+	 * 
+	 * @author PremKumar.K-RM ITS
+	 * 
+	 */
+
+	public void verifyUnitcostAndDiscountAmountForPriceListItemForDirectGRNWithLoc49(int i1, String FileName,
+			String SheetName, String PriceListSupplier) {
 		String[][] PRMultipleline = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 		ExcelUtils excelUtils = new ExcelUtils();
 		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
@@ -6016,13 +6055,13 @@ public class DirectGrnPageFunctions {
 		GRNFunc.verifyImportLrBillNumber();
 		GRNFunc.overAllSaveAndPost();
 		GRNFunc.waitingForApproval();
-		GRNFunc.verifyReturnToGrnPageHeaderStatus();
+
 		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectGrnSheet"),
 				webDB.getDataFromProperties("DGSUomWIPlImpSheet"));
-		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrv();
+		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrvForDifferentLoc();
 		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DirectGrnSheet"), webDB.getDataFromProperties("DGSUomWIPlImpSheet"));
-
+		GRNFunc.verifyReturnToGrnPageHeaderStatus();
 	}
 
 	/**
@@ -6050,13 +6089,13 @@ public class DirectGrnPageFunctions {
 		GRNFunc.verifyImportLrBillNumber();
 		GRNFunc.overAllSaveAndPost();
 		GRNFunc.waitingForApproval();
-		GRNFunc.verifyReturnToGrnPageHeaderStatus();
+
 		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectGrnSheet"),
 				webDB.getDataFromProperties("DGSUomWIPlImpSheet"));
-		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrv();
+		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrvForDifferentLoc();
 		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DirectGrnSheet"), webDB.getDataFromProperties("DGSUomWIPlImpSheet"));
-
+		GRNFunc.verifyReturnToGrnPageHeaderStatus();
 	}
 
 	/**
@@ -6256,12 +6295,13 @@ public class DirectGrnPageFunctions {
 		GRNFunc.verifyImportLrBillNumber();
 		GRNFunc.overAllSaveAndPost();
 		GRNFunc.waitingForApproval();
-		GRNFunc.verifyReturnToGrnPageHeaderStatus();
+
 		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectGrnSheet"),
 				webDB.getDataFromProperties("DGDUomWISheet"));
-		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrv();
+		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrvForDifferentLoc();
 		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DirectGrnSheet"), webDB.getDataFromProperties("DGDUomWISheet"));
+		GRNFunc.verifyReturnToGrnPageHeaderStatus();
 	}
 
 	/**
@@ -6292,12 +6332,13 @@ public class DirectGrnPageFunctions {
 		GRNFunc.verifyImportLrBillNumber();
 		GRNFunc.overAllSaveAndPost();
 		GRNFunc.waitingForApproval();
-		GRNFunc.verifyReturnToGrnPageHeaderStatus();
+
 		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectGrnSheet"),
 				webDB.getDataFromProperties("DGDUomWISheet"));
-		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrv();
+		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrvForDifferentLoc();
 		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DirectGrnSheet"), webDB.getDataFromProperties("DGDUomWISheet"));
+		GRNFunc.verifyReturnToGrnPageHeaderStatus();
 	}
 
 	/**
@@ -6325,12 +6366,13 @@ public class DirectGrnPageFunctions {
 		GRNFunc.verifyImportLrBillNumber();
 		GRNFunc.overAllSaveAndPost();
 		GRNFunc.waitingForApproval();
-		GRNFunc.verifyReturnToGrnPageHeaderStatus();
+
 		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectGrnSheet"),
 				webDB.getDataFromProperties("DGDUomWIRcImpSheet"));
-		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrv();
+		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrvForDifferentLoc();
 		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DirectGrnSheet"), webDB.getDataFromProperties("DGDUomWIRcImpSheet"));
+		GRNFunc.verifyReturnToGrnPageHeaderStatus();
 	}
 
 	/**
@@ -6358,12 +6400,13 @@ public class DirectGrnPageFunctions {
 		GRNFunc.verifyImportLrBillNumber();
 		GRNFunc.overAllSaveAndPost();
 		GRNFunc.waitingForApproval();
-		GRNFunc.verifyReturnToGrnPageHeaderStatus();
+
 		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectGrnSheet"),
 				webDB.getDataFromProperties("DGDUomWIRcImpSheet"));
-		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrv();
+		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrvForDifferentLoc();
 		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DirectGrnSheet"), webDB.getDataFromProperties("DGDUomWIRcImpSheet"));
+		GRNFunc.verifyReturnToGrnPageHeaderStatus();
 	}
 
 	/**
@@ -6391,12 +6434,13 @@ public class DirectGrnPageFunctions {
 		GRNFunc.verifyImportLrBillNumber();
 		GRNFunc.overAllSaveAndPost();
 		GRNFunc.waitingForApproval();
-		GRNFunc.verifyReturnToGrnPageHeaderStatus();
+
 		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectGrnSheet"),
 				webDB.getDataFromProperties("DGDUomWIPlImpSheet"));
-		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrv();
+		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrvForDifferentLoc();
 		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DirectGrnSheet"), webDB.getDataFromProperties("DGDUomWIPlImpSheet"));
+		GRNFunc.verifyReturnToGrnPageHeaderStatus();
 
 	}
 
@@ -6425,13 +6469,12 @@ public class DirectGrnPageFunctions {
 		GRNFunc.verifyImportLrBillNumber();
 		GRNFunc.overAllSaveAndPost();
 		GRNFunc.waitingForApproval();
-		GRNFunc.verifyReturnToGrnPageHeaderStatus();
 		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectGrnSheet"),
 				webDB.getDataFromProperties("DGDUomWIPlImpSheet"));
-		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrv();
+		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrvForDifferentLoc();
 		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DirectGrnSheet"), webDB.getDataFromProperties("DGDUomWIPlImpSheet"));
-
+		GRNFunc.verifyReturnToGrnPageHeaderStatus();
 	}
 
 	/**
@@ -6498,12 +6541,13 @@ public class DirectGrnPageFunctions {
 		GRNFunc.verifyImportLrBillNumber();
 		GRNFunc.overAllSaveAndPost();
 		GRNFunc.waitingForApproval();
-		GRNFunc.verifyReturnToGrnPageHeaderStatus();
+
 		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectGrnSheet"),
 				webDB.getDataFromProperties("DGSUomWoQWISheet"));
 		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DirectGrnSheet"), webDB.getDataFromProperties("DGSUomWoQWISheet"));
+		GRNFunc.verifyReturnToGrnPageHeaderStatus();
 	}
 
 	/**
@@ -6534,12 +6578,13 @@ public class DirectGrnPageFunctions {
 		GRNFunc.verifyImportLrBillNumber();
 		GRNFunc.overAllSaveAndPost();
 		GRNFunc.waitingForApproval();
-		GRNFunc.verifyReturnToGrnPageHeaderStatus();
+
 		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectGrnSheet"),
 				webDB.getDataFromProperties("DGSUomWoQWISheet"));
 		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DirectGrnSheet"), webDB.getDataFromProperties("DGSUomWoQWISheet"));
+		GRNFunc.verifyReturnToGrnPageHeaderStatus();
 	}
 
 	/**
