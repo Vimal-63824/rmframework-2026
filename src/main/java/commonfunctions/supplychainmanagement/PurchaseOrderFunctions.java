@@ -187,15 +187,14 @@ public class PurchaseOrderFunctions {
 			commonFunc.checkRefreshCellsDisappear();
 			verifyAddTableSpecs(PurchaseOrderPageLocators.OrderedQuantity,
 					PurchaseOrderPageLocators.OrderedQuantityInput, quantity);
-			webDB.pressEscapeKey();
 			commonFunc.checkRefreshCellsDisappear();
 			verifyAddTableSpecs(PurchaseOrderPageLocators.UnitCost, PurchaseOrderPageLocators.UnitCostInput, unitcost);
-			webDB.pressEscapeKey();
 			webDB.waitForElement(PurchaseOrderPageLocators.PONumber, ElementType.Xpath);
 			String PONumbervalue = webDB.getDomPropertyFromElement(PurchaseOrderPageLocators.PONumber,
 					ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
 			logs.logging("INFO", "Get PO Number Is: " + PONumbervalue);
 			VariableHandler.setPONumber(PONumbervalue);
+			MultiPODocumentNumber.add(VariableHandler.getPONumber());
 		} catch (Exception e) {
 		}
 	}
@@ -12988,7 +12987,7 @@ public class PurchaseOrderFunctions {
 		itemmultiple = excelUtils.readAllDataInExcel(Filepath, SheetName);
 		int count = 0;
 		int maxRows = 1;
-			count++;
+		count++;
 		System.out.println(itemmultiple.length);
 		for (int i = 22; i < itemmultiple.length; i++) {
 			String ITEM_NAME = itemmultiple[i][1];
@@ -16738,6 +16737,7 @@ public class PurchaseOrderFunctions {
 		flag = commonFunc.logoutUser();
 		return flag;
 	}
+
 	/**
 	 * This Methods Is Used To verify To Create PO For Stock Transfer RateContract
 	 * Same Stock And Supplier UOM With And WithoutInspection
