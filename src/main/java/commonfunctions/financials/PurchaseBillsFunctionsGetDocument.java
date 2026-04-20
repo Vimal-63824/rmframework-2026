@@ -3660,7 +3660,7 @@ public class PurchaseBillsFunctionsGetDocument {
 //				commonFunc.getDataFromTestDataSheet("LINUX_PVT_LTD_SF"));
 		verifyToValiadteJournalDetailPartForAccuralAccountStocktransaferTypeLocalSupplierForCommonWithRoundOff(
 				webDB.getDataFromProperties("StocktransferLC"),
-				commonFunc.getDataFromTestDataSheet("LOCAL_REGISTERED_WITH_ROUNDOFF"),
+				commonFunc.getDataFromTestDataSheet("LINUX_PVT_LTD_SF"),
 				commonFunc.getDataFromTestDataSheet("RoundOffValue"));
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.hardWait(1000);
@@ -3981,7 +3981,7 @@ public class PurchaseBillsFunctionsGetDocument {
 		commonFunc.hardWait(1000);
 		verifyToValiadteJournalDetailPartForAccuralAccountStocktransaferTypeLocalSupplierForCommonWithRoundOff(
 				webDB.getDataFromProperties("StocktransferLC"),
-				commonFunc.getDataFromTestDataSheet("LOCAL_REGISTERED_WITH_ROUNDOFF"),
+				commonFunc.getDataFromTestDataSheet("LINUX_PVT_LTD_SF"),
 				commonFunc.getDataFromTestDataSheet("RoundOffValue"));
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.hardWait(1000);
@@ -4213,7 +4213,7 @@ public class PurchaseBillsFunctionsGetDocument {
 		commonFunc.hardWait(1000);
 		verifyToValiadteJournalDetailPartForAccuralAccountStocktransaferTypeLocalSupplierForCommonWithRoundOff(
 				webDB.getDataFromProperties("StocktransferLC"),
-				commonFunc.getDataFromTestDataSheet("LOCAL_REGISTERED_WITH_ROUNDOFF"),
+				commonFunc.getDataFromTestDataSheet("LINUX_PVT_LTD_SF"),
 				commonFunc.getDataFromTestDataSheet("RoundOffValue"));
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.hardWait(1000);
@@ -4343,7 +4343,7 @@ public class PurchaseBillsFunctionsGetDocument {
 		commonFunc.hardWait(1000);
 		verifyToValiadteJournalDetailPartForAccuralAccountStocktransaferTypeLocalSupplierForCommonWithRoundOff(
 				webDB.getDataFromProperties("StocktransferLC"),
-				commonFunc.getDataFromTestDataSheet("LOCAL_REGISTERED_WITH_ROUNDOFF"),
+				commonFunc.getDataFromTestDataSheet("LINUX_PVT_LTD_SF"),
 				commonFunc.getDataFromTestDataSheet("RoundOffValue"));
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.hardWait(1000);
@@ -6016,6 +6016,7 @@ public class PurchaseBillsFunctionsGetDocument {
 				webDB.getDataFromProperties("StockTransferAddIterstateEX"));
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.hardWait(1000);
+//		verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument
 //		verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(
 //				webDB.getDataFromProperties("StockTransferAddLocalRCM"));
 //		commonFunc.checkRefreshCellsDisappear();
