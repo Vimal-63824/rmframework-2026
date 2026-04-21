@@ -40,9 +40,9 @@ public class BankPaymentTest extends RoadMapERPTest {
 	@Test(priority = 1, groups = {
 			"Bank Payments" }, description = " Payment Against single Party, Single Bill (Through Add button)")
 	public void CreateBankPaymentThroughAddButton() throws IOException {
-		 bankPaymentFunc
+		bankPaymentFunc
 				.CreateBankPaymentThroughLineAddButtonSingleBills(webDB.getDataFromProperties("BankPaymentSingle"));
-//		Assert.assertTrue(flag);
+//	Assert.assertTrue(flag);
 	}
 
 	/**
@@ -764,8 +764,8 @@ public class BankPaymentTest extends RoadMapERPTest {
 	@Test(priority = 50, groups = {
 			"Bank Payments" }, description = " Payment Against Multi Party, Single Bill (Pending)")
 	public void CreateBankPaymentThroughPendingDocsMultiPartyMultiBillBankCurcyUSD() throws IOException {
-		flag = bankPaymentFunc
-				.CreateBankPaymentThroughPendingMultiPartyMultiBillBankCurcyUSD(webDB.getDataFromProperties("BankPaymentINRMPMB"));
+		flag = bankPaymentFunc.CreateBankPaymentThroughPendingMultiPartyMultiBillBankCurcyUSD(
+				webDB.getDataFromProperties("BankPaymentINRMPMB"));
 		Assert.assertTrue(flag);
 	}
 
@@ -842,6 +842,551 @@ public class BankPaymentTest extends RoadMapERPTest {
 				commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
 				commonFunc.getDataFromTestDataSheet("BankNameUSD"));
 	}
+
+	/**
+	 * Advance against New reference (without TDS)
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @throws IOException
+	 */
+	@Author("Harikrishna-RMITS")
+	@Test(priority = 56, groups = { "Bank Payments" }, description = "Advance against New reference (without TDS)")
+	public void CreateBankPaymentAdvWithNewRefWithoutTDS() throws IOException {
+		bankPaymentFunc.BPAdvNewRefWithAndWithoutTDS(webDB.getDataFromProperties("CPAdvanceWithNewRef"),
+				commonFunc.getDataFromTestDataSheet("BankTransCurcy"), commonFunc.getDataFromTestDataSheet("BankName"));
+	}
+
+	/**
+	 * Advance against New reference (with TDS Single under section)
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @throws IOException
+	 */
+	@Author("Harikrishna-RMITS")
+	@Test(priority = 57, groups = {
+			"Bank Payments" }, description = "Advance against New reference (with TDS Single under section)")
+	public void CreateBankPaymentAdvWithNewRefWithTDS() throws IOException {
+		bankPaymentFunc.BPAdvNewRefWithAndWithoutTDS(webDB.getDataFromProperties("TDSCPAdvanceWithNewRef"),
+				commonFunc.getDataFromTestDataSheet("BankTransCurcy"), commonFunc.getDataFromTestDataSheet("BankName"));
+	}
+
+	/**
+	 * Advance against New reference (with TDS Single under section)
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @throws IOException
+	 */
+	@Author("Harikrishna-RMITS")
+	@Test(priority = 58, groups = {
+			"Bank Payments" }, description = "Advance against New reference (with TDS Single under section)")
+	public void CreateBankPaymentAdvWithNewRefWithMultiTDS() throws IOException {
+		bankPaymentFunc.BPAdvNewRefWithMultiTDS(webDB.getDataFromProperties("TDSCPAdvanceMultiNewRef"),
+				commonFunc.getDataFromTestDataSheet("BankTransCurcy"), commonFunc.getDataFromTestDataSheet("BankName"));
+	}
+
+	/**
+	 * Advance against New reference (without TDS)
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @throws IOException
+	 */
+	@Author("Harikrishna-RMITS")
+	@Test(priority = 59, groups = { "Bank Payments" }, description = "Advance against New reference (without TDS)")
+	public void CreateBankPaymentAdvWithNewRefUSD() throws IOException {
+		bankPaymentFunc.BPAdvWithNewRef(webDB.getDataFromProperties("BankPaymentAdvUSD"),
+				commonFunc.getDataFromTestDataSheet("BankTransCurcyUSD"),
+				commonFunc.getDataFromTestDataSheet("BankName"));
+	}
+
+	/**
+	 * Advance against New reference (without TDS)
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @throws IOException
+	 */
+	@Author("Harikrishna-RMITS")
+	@Test(priority = 60, groups = { "Bank Payments" }, description = "Advance against New reference (without TDS)")
+	public void CreateBankPaymentAdvWithNewRefBankCurcyUSD() throws IOException {
+		bankPaymentFunc.BPAdvWithNewRef(webDB.getDataFromProperties("BankPaymentAdv"),
+				commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
+				commonFunc.getDataFromTestDataSheet("BankNameUSD"));
+	}
+
+	/**
+	 * Advance against PO single purchase order (without TDS)(Through Add button)
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @throws IOException
+	 */
+	@Test(priority = 61, groups = {
+			"Bank Payments" }, description = " Advance against PO single purchase order (without TDS)(Through Add button)")
+	public void CreateBankPaymentAdvPOThroughAddButton() throws IOException {
+		bankPaymentFunc.BPadvancePOThroughAddButton(webDB.getDataFromProperties("BPAdvance"));
+//		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Advance against PO single purchase order (without TDS) (Get document)
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @throws IOException
+	 */
+	@Test(priority = 62, groups = {
+			"Bank Payments" }, description = " Advance against PO single purchase order (without TDS) (Get document)")
+	public void CreateBankPaymentAdvPOThroughGetDocument() throws IOException {
+		bankPaymentFunc.BPadvancePOThroughGetDocument(webDB.getDataFromProperties("BPAdvance"));
+//		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Advance against PO single purchase order (without TDS) (Pending)
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @throws IOException
+	 */
+	@Test(priority = 63, groups = {
+			"Bank Payments" }, description = " Advance against PO single purchase order (without TDS) (Pending)")
+	public void CreateBankPaymentAdvPOThroughPendingDocument() throws IOException {
+		bankPaymentFunc.BPadvancePOThroughPendingDocument(webDB.getDataFromProperties("BPAdvance"));
+//		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Advance against PO Multiple purchase order (without TDS)(Through Add button)
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @throws IOException
+	 */
+	@Test(priority = 64, groups = {
+			"Bank Payments" }, description = " Advance against PO Multiple purchase order (without TDS)(Through Add button)")
+	public void CreateBankPaymentMultipleAdvPOThroughAddButton() throws IOException {
+		bankPaymentFunc.BPadvancePOMultipleThroughAddButton(webDB.getDataFromProperties("BPAdvance"));
+//		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Advance against PO Multiple purchase order (without TDS) (Get document)
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @throws IOException
+	 */
+	@Test(priority = 65, groups = {
+			"Bank Payments" }, description = " Advance against PO Multiple purchase order (without TDS) (Get document)")
+	public void CreateBankPaymentMultipleAdvPOThroughGetDocument() throws IOException {
+		bankPaymentFunc.BPadvancePOMultipleThroughGetDocument(webDB.getDataFromProperties("BPAdvance"));
+//		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Advance against PO Multiple purchase order (without TDS) (Pending)
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @throws IOException
+	 */
+	@Test(priority = 66, groups = {
+			"Bank Payments" }, description = "Advance against PO Multiple purchase order (without TDS) (Pending)")
+	public void CreateBankPaymentMultipleAdvPOThroughPendingDocument() throws IOException {
+		bankPaymentFunc.BPadvancePOMultipleThroughPendingDocument(webDB.getDataFromProperties("BPAdvance"));
+//		Assert.assertTrue(flag);
+	}
+
+//
+	/**
+	 * Advance against PO single purchase order (With TDS single Under
+	 * section)(Through Add button)
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @throws IOException
+	 */
+	@Test(priority = 67, groups = {
+			"Bank Payments" }, description = " Advance against PO single purchase order (With TDS single Under section)(Through Add button)")
+	public void CreateBankPaymentAdvPOThroughAddButtonWithSingleTDS() throws IOException {
+		bankPaymentFunc.BPadvancePOThroughAddButton(webDB.getDataFromProperties("TDSBPAdvance"));
+//		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Advance against PO single purchase order (With TDS single Under section) (Get
+	 * document)
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @throws IOException
+	 */
+	@Test(priority = 68, groups = {
+			"Bank Payments" }, description = " Advance against PO single purchase order (With TDS single Under section) (Get document)")
+	public void CreateBankPaymentAdvPOThroughGetDocumentWithSingleTDS() throws IOException {
+		bankPaymentFunc.BPadvancePOThroughGetDocument(webDB.getDataFromProperties("TDSBPAdvance"));
+//		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Advance against PO single purchase order (With TDS single Under section)
+	 * (Pending)
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @throws IOException
+	 */
+	@Test(priority = 69, groups = {
+			"Bank Payments" }, description = " Advance against PO single purchase order (With TDS single Under section) (Pending))")
+	public void CreateBankPaymentAdvPOThroughPendingDocumentWithSingleTDS() throws IOException {
+		bankPaymentFunc.BPadvancePOThroughPendingDocument(webDB.getDataFromProperties("TDSBPAdvance"));
+//		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Advance against PO Multiple purchase order (With TDS multiple Under
+	 * section)(Through Add button)
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @throws IOException
+	 */
+	@Test(priority = 70, groups = {
+			"Bank Payments" }, description = " Advance against PO Multiple purchase order (With TDS multiple Under section)(Through Add button)")
+	public void CreateBankPaymentMultipleAdvPOThroughAddButtonWithMultiTDS() throws IOException {
+		bankPaymentFunc
+				.BPadvancePOMultipleThroughAddButtonWithMultipleTDS(webDB.getDataFromProperties("TDSBPAdvanceMulti"));
+//		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Advance against PO Multiple purchase order (With TDS multiple Under section)
+	 * (Get document)
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @throws IOException
+	 */
+	@Test(priority = 71, groups = {
+			"Bank Payments" }, description = " Advance against PO Multiple purchase order (With TDS multiple Under section) (Get document)")
+	public void CreateBankPaymentMultipleAdvPOThroughGetDocumentWithMultiTDS() throws IOException {
+		bankPaymentFunc
+				.BPadvancePOMultipleThroughGetDocumentWithMultipleTDS(webDB.getDataFromProperties("TDSBPAdvanceMulti"));
+//		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Advance against PO Multiple purchase order (With TDS multiple Under section)
+	 * (Pending)
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @throws IOException
+	 */
+	@Test(priority = 72, groups = {
+			"Cash Payments" }, description = " Advance against PO Multiple purchase order (With TDS multiple Under section) (Pending)")
+	public void CreateCashPaymentMultipleAdvPOThroughPendingDocumentWithMultiTDS() throws IOException {
+		bankPaymentFunc.BPadvancePOMultipleThroughPendingDocumentWithMultipleTDS(
+				webDB.getDataFromProperties("TDSBPAdvanceMulti"));
+//		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Advance against PO single purchase order (without TDS)(Through Add button)
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @throws IOException
+	 */
+	@Test(priority = 73, groups = {
+			"Bank Payments" }, description = " Advance against PO single purchase order (without TDS)(Through Add button)")
+	public void CreateBankPaymentAdvPOThroughAddButtonBankCurcyUSD() throws IOException {
+		bankPaymentFunc.BPadvancePOThroughAddButtonBankCurcyUSD(webDB.getDataFromProperties("BPAdvance"));
+//		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Advance against PO single purchase order (without TDS) (Get document)
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @throws IOException
+	 */
+	@Test(priority = 74, groups = {
+			"Bank Payments" }, description = " Advance against PO single purchase order (without TDS) (Get document)")
+	public void CreateBankPaymentAdvPOThroughGetDocumentBankCurcyUSD() throws IOException {
+		bankPaymentFunc.BPadvancePOThroughGetDocumentBankCurcyUSD(webDB.getDataFromProperties("BPAdvance"));
+//		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Advance against PO single purchase order (without TDS) (Pending)
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @throws IOException
+	 */
+	@Test(priority = 75, groups = {
+			"Bank Payments" }, description = " Advance against PO single purchase order (without TDS) (Pending)")
+	public void CreateBankPaymentAdvPOThroughPendingDocumentBankCurcyUSD() throws IOException {
+		bankPaymentFunc.BPadvancePOThroughPendingDocumentBankCurcyUSD(webDB.getDataFromProperties("BPAdvance"));
+//		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Advance against PO Multiple purchase order (without TDS)(Through Add button)
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @throws IOException
+	 */
+	@Test(priority = 76, groups = {
+			"Bank Payments" }, description = " Advance against PO Multiple purchase order (without TDS)(Through Add button)")
+	public void CreateBankPaymentMultipleAdvPOThroughAddButtonBankCurcyUSD() throws IOException {
+		bankPaymentFunc.BPadvancePOMultipleThroughAddButtonBankCurcyUSD(webDB.getDataFromProperties("BPAdvance"));
+//		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Advance against PO Multiple purchase order (without TDS) (Get document)
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @throws IOException
+	 */
+	@Test(priority = 77, groups = {
+			"Bank Payments" }, description = " Advance against PO Multiple purchase order (without TDS) (Get document)")
+	public void CreateBankPaymentMultipleAdvPOThroughGetDocumentBankCurcyUSD() throws IOException {
+		bankPaymentFunc.BPadvancePOMultipleThroughGetDocumentBankCurcyUSD(webDB.getDataFromProperties("BPAdvance"));
+//		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Advance against PO Multiple purchase order (without TDS) (Pending)
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @throws IOException
+	 */
+	@Test(priority = 78, groups = {
+			"Bank Payments" }, description = "Advance against PO Multiple purchase order (without TDS) (Pending)")
+	public void CreateBankPaymentMultipleAdvPOThroughPendingDocumentBankCurcyUSD() throws IOException {
+		bankPaymentFunc.BPadvancePOMultipleThroughPendingDocumentBankCurcyUSD(webDB.getDataFromProperties("BPAdvance"));
+//		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Advance against PO single purchase order (without TDS)(Through Add button)
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @throws IOException
+	 */
+	@Test(priority = 79, groups = {
+			"Bank Payments" }, description = " Advance against PO single purchase order (without TDS)(Through Add button)")
+	public void CreateBankPaymentAdvPOThroughAddButtonUSD() throws IOException {
+		bankPaymentFunc.BPadvancePOThroughAddButtonUSD(webDB.getDataFromProperties("BPAdvanceUSD"));
+//		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Advance against PO single purchase order (without TDS) (Get document)
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @throws IOException
+	 */
+	@Test(priority = 80, groups = {
+			"Bank Payments" }, description = " Advance against PO single purchase order (without TDS) (Get document)")
+	public void CreateBankPaymentAdvPOThroughGetDocumentUSD() throws IOException {
+		bankPaymentFunc.BPadvancePOThroughGetDocumentUSD(webDB.getDataFromProperties("BPAdvanceUSD"));
+//		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Advance against PO single purchase order (without TDS) (Pending)
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @throws IOException
+	 */
+	@Test(priority = 81, groups = {
+			"Bank Payments" }, description = " Advance against PO single purchase order (without TDS) (Pending)")
+	public void CreateBankPaymentAdvPOThroughPendingDocumentUSD() throws IOException {
+		bankPaymentFunc.BPadvancePOThroughPendingDocumentUSD(webDB.getDataFromProperties("BPAdvanceUSD"));
+//		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Advance against PO Multiple purchase order (without TDS)(Through Add button)
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @throws IOException
+	 */
+	@Test(priority = 82, groups = {
+			"Bank Payments" }, description = " Advance against PO Multiple purchase order (without TDS)(Through Add button)")
+	public void CreateBankPaymentMultipleAdvPOThroughAddButtonUSD() throws IOException {
+		bankPaymentFunc.BPadvancePOMultipleThroughAddButtonUSD(webDB.getDataFromProperties("BPAdvanceUSD"));
+//		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Advance against PO Multiple purchase order (without TDS) (Get document)
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @throws IOException
+	 */
+	@Test(priority = 83, groups = {
+			"Bank Payments" }, description = " Advance against PO Multiple purchase order (without TDS) (Get document)")
+	public void CreateBankPaymentMultipleAdvPOThroughGetDocumentBankUSD() throws IOException {
+		bankPaymentFunc.BPadvancePOMultipleThroughGetDocumentUSD(webDB.getDataFromProperties("BPAdvanceUSD"));
+//		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Advance against PO Multiple purchase order (without TDS) (Pending)
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @throws IOException
+	 */
+	@Test(priority = 84, groups = {
+			"Bank Payments" }, description = "Advance against PO Multiple purchase order (without TDS) (Pending)")
+	public void CreateBankPaymentMultipleAdvPOThroughPendingDocumentUSD() throws IOException {
+		bankPaymentFunc.BPadvancePOMultipleThroughPendingDocumentUSD(webDB.getDataFromProperties("BPAdvanceUSD"));
+//		Assert.assertTrue(flag);
+	}
+
+//	/**
+//	 * Payment Against Multi Party, Multi Bill with New reference (Dr/Cr)(Through
+//	 * Add button)
+//	 * 
+//	 * @author Harikrishna - RMITS
+//	 * @throws Exception
+//	 */
+//	@Author("Harikrishna-RMITS")
+//	@Test(priority = 85, groups = {
+//			"Bank Payments" }, description = "Payment Against Multi Party, Multi Bill with New reference (Dr/Cr)(Through Add button)")
+//	public void CreateBankPaymentThroughAddButtonMultiPartyMultiBillAdvanceWithNewRef() throws Exception {
+//		flag = bankPaymentFunc.CreateBankPaymentThroughAddButtonMultiPartyMultiBillAdvanceWithNewRef(
+//				webDB.getDataFromProperties("BPMPMBADVNR"), commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
+//				commonFunc.getDataFromTestDataSheet("BankName"));
+//		Assert.assertTrue(flag);
+//	}
+//
+//	/**
+//	 * Payment Against Multi Party, Multi Bill with New reference (Dr/Cr)(Through
+//	 * Add button)
+//	 * 
+//	 * @author Harikrishna - RMITS
+//	 * @throws Exception
+//	 */
+//	@Author("Harikrishna-RMITS")
+//	@Test(priority = 86, groups = {
+//			"Bank Payments" }, description = "Payment Against Multi Party, Multi Bill with New reference (Dr/Cr)(Through Add button)")
+//	public void CreateBankPaymentThroughGetDocumentMultiPartyMultiBillAdvanceWithNewRef() throws Exception {
+//		flag = bankPaymentFunc.CreateBankPaymentThroughGetDocumentMultiPartyMultiBillAdvanceWithNewRef(
+//				webDB.getDataFromProperties("BPMPMBADVNR"), commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
+//				commonFunc.getDataFromTestDataSheet("BankName"));
+//		Assert.assertTrue(flag);
+//	}
+//
+//	/**
+//	 * Payment Against Multi Party, Multi Bill with New reference (Dr/Cr)(Through
+//	 * Add button)
+//	 * 
+//	 * @author Harikrishna - RMITS
+//	 * @throws Exception
+//	 */
+//	@Author("Harikrishna-RMITS")
+//	@Test(priority = 87, groups = {
+//			"Bank Payments" }, description = "Payment Against Multi Party, Multi Bill with New reference (Dr/Cr)(Through Add button)")
+//	public void CreateBankPaymentThroughPendingDocumentMultiPartyMultiBillAdvanceWithNewRef() throws Exception {
+//		flag = bankPaymentFunc.CreateBankPaymentThroughPendingDocumentMultiPartyMultiBillAdvanceWithNewRef(
+//				webDB.getDataFromProperties("BPMPMBADVNR"), commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
+//				commonFunc.getDataFromTestDataSheet("BankName"));
+//		Assert.assertTrue(flag);
+//	}
+//
+//	/**
+//	 * Payment Against Multi Party, Multi Bill with New reference (Dr/Cr)(Through
+//	 * Add button)
+//	 * 
+//	 * @author Harikrishna - RMITS
+//	 * @throws Exception
+//	 */
+//	@Author("Harikrishna-RMITS")
+//	@Test(priority = 88, groups = {
+//			"Bank Payments" }, description = "Payment Against Multi Party, Multi Bill with New reference (Dr/Cr)(Through Add button)")
+//	public void CreateBankPaymentThroughAddButtonMultiPartyMultiBillAdvanceWithNewRefBankCurcyUSD() throws Exception {
+//		flag = bankPaymentFunc.CreateBankPaymentThroughAddButtonMultiPartyMultiBillAdvanceWithNewRef(
+//				webDB.getDataFromProperties("BPMPMBADVNR"), commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
+//				commonFunc.getDataFromTestDataSheet("BankNameUSD"));
+//		Assert.assertTrue(flag);
+//	}
+//
+//	/**
+//	 * Payment Against Multi Party, Multi Bill with New reference (Dr/Cr)(Through
+//	 * Add button)
+//	 * 
+//	 * @author Harikrishna - RMITS
+//	 * @throws Exception
+//	 */
+//	@Author("Harikrishna-RMITS")
+//	@Test(priority = 89, groups = {
+//			"Bank Payments" }, description = "Payment Against Multi Party, Multi Bill with New reference (Dr/Cr)(Through Add button)")
+//	public void CreateBankPaymentThroughGetDocumentMultiPartyMultiBillAdvanceWithNewRefBankCurcyUSD() throws Exception {
+//		flag = bankPaymentFunc.CreateBankPaymentThroughGetDocumentMultiPartyMultiBillAdvanceWithNewRef(
+//				webDB.getDataFromProperties("BPMPMBADVNR"), commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
+//				commonFunc.getDataFromTestDataSheet("BankNameUSD"));
+//		Assert.assertTrue(flag);
+//	}
+//
+//	/**
+//	 * Payment Against Multi Party, Multi Bill with New reference (Dr/Cr)(Through
+//	 * Add button)
+//	 * 
+//	 * @author Harikrishna - RMITS
+//	 * @throws Exception
+//	 */
+//	@Author("Harikrishna-RMITS")
+//	@Test(priority = 90, groups = {
+//			"Bank Payments" }, description = "Payment Against Multi Party, Multi Bill with New reference (Dr/Cr)(Through Add button)")
+//	public void CreateBankPaymentThroughPendingDocumentMultiPartyMultiBillAdvanceWithNewRefBankCurcyUSD()
+//			throws Exception {
+//		flag = bankPaymentFunc.CreateBankPaymentThroughPendingDocumentMultiPartyMultiBillAdvanceWithNewRef(
+//				webDB.getDataFromProperties("BPMPMBADVNR"), commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
+//				commonFunc.getDataFromTestDataSheet("BankNameUSD"));
+//		Assert.assertTrue(flag);
+//	}
+//
+//	/**
+//	 * Payment Against Multi Party, Multi Bill with New reference (Dr/Cr)(Through
+//	 * Add button)
+//	 * 
+//	 * @author Harikrishna - RMITS
+//	 * @throws Exception
+//	 */
+//	@Author("Harikrishna-RMITS")
+//	@Test(priority = 91, groups = {
+//			"Bank Payments" }, description = "Payment Against Multi Party, Multi Bill with New reference (Dr/Cr)(Through Add button)")
+//	public void CreateBankPaymentThroughAddButtonMultiPartyMultiBillAdvanceWithNewRefUSD() throws Exception {
+//		flag = bankPaymentFunc.CreateBankPaymentThroughAddButtonMultiPartyMultiBillAdvanceWithNewRef(
+//				webDB.getDataFromProperties("BPMPMBADVNRUSD"), commonFunc.getDataFromTestDataSheet("BankTransCurcyUSD"),
+//				commonFunc.getDataFromTestDataSheet("BankName"));
+//		Assert.assertTrue(flag);
+//	}
+//
+//	/**
+//	 * Payment Against Multi Party, Multi Bill with New reference (Dr/Cr)(Through
+//	 * Add button)
+//	 * 
+//	 * @author Harikrishna - RMITS
+//	 * @throws Exception
+//	 */
+//	@Author("Harikrishna-RMITS")
+//	@Test(priority = 92, groups = {
+//			"Bank Payments" }, description = "Payment Against Multi Party, Multi Bill with New reference (Dr/Cr)(Through Add button)")
+//	public void CreateBankPaymentThroughGetDocumentMultiPartyMultiBillAdvanceWithNewRefUSD() throws Exception {
+//		flag = bankPaymentFunc.CreateBankPaymentThroughGetDocumentMultiPartyMultiBillAdvanceWithNewRef(
+//				webDB.getDataFromProperties("BPMPMBADVNRUSD"), commonFunc.getDataFromTestDataSheet("BankTransCurcyUSD"),
+//				commonFunc.getDataFromTestDataSheet("BankName"));
+//		Assert.assertTrue(flag);
+//	}
+//
+//	/**
+//	 * Payment Against Multi Party, Multi Bill with New reference (Dr/Cr)(Through
+//	 * Add button)
+//	 * 
+//	 * @author Harikrishna - RMITS
+//	 * @throws Exception
+//	 */
+//	@Author("Harikrishna-RMITS")
+//	@Test(priority = 93, groups = {
+//			"Bank Payments" }, description = "Payment Against Multi Party, Multi Bill with New reference (Dr/Cr)(Through Add button)")
+//	public void CreateBankPaymentThroughPendingDocumentMultiPartyMultiBillAdvanceWithNewRefUSD() throws Exception {
+//		flag = bankPaymentFunc.CreateBankPaymentThroughPendingDocumentMultiPartyMultiBillAdvanceWithNewRef(
+//				webDB.getDataFromProperties("BPMPMBADVNRUSD"), commonFunc.getDataFromTestDataSheet("BankTransCurcyUSD"),
+//				commonFunc.getDataFromTestDataSheet("BankName"));
+//		Assert.assertTrue(flag);
+//	}
 
 	/**
 	 * This Is Used to set the Variable Handler To Zero After Finishing One Test

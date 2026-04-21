@@ -1108,12 +1108,28 @@ public class PoToMRVTest2 extends RoadMapERPTest {
 	}
 
 	/**
-	 * PO to GRN-Service-Price List-Same Stock and Supplier UOM - WO Inspection Plan
+	 * PO to GRN-General-Rate Contract-Same Stock and Supplier UOM - WO Inspection
+	 * Plan
 	 * 
 	 * @author Deepan-GWL
 	 */
 	@Author("Deepan-GWL")
 	@Test(priority = 78, groups = {
+			"PurchaseOrder" }, description = "PO to GRN-General-Rate Contract-Same Stock and Supplier UOM - WO Inspection Plan")
+	public void VerifyPoToGrnGeneralImportRateContractSameUomWithOutQualityWoInspectionPlan() {
+		logs.logging("INFO", "PO to GRN-General-Rate Contract-Same Stock and Supplier UOM - WO Inspection Plan");
+		if (previousStatus != ITestResult.SUCCESS) {
+			Assert.fail();
+		}
+	}
+
+	/**
+	 * PO to GRN-Service-Price List-Same Stock and Supplier UOM - WO Inspection Plan
+	 * 
+	 * @author Deepan-GWL
+	 */
+	@Author("Deepan-GWL")
+	@Test(priority = 79, groups = {
 			"PurchaseOrder" }, description = "PO to GRN-Service-Price List-Same Stock and Supplier UOM - WO Inspection Plan")
 	public void VerifyPoToGrnServiceImportPriceListSameUomWithOutQualityWithOutInspectionPlan() {
 		grnPageFunc.poToGrnServiceImportPriceListSameStockAndSupplierUomWithOutQualityWithGateEntry();
@@ -1127,7 +1143,7 @@ public class PoToMRVTest2 extends RoadMapERPTest {
 	 * @throws Exception
 	 */
 	@Author("Prem-RMITS")
-	@Test(priority = 79, groups = { "GRN" }, description = "332 Check  the process of GRN with Tolerance Quantity")
+	@Test(priority = 80, groups = { "GRN" }, description = "332 Check  the process of GRN with Tolerance Quantity")
 	public void PotoGrnMateriallPriceListDifferentStockAndSupplierUOMWithInspectionPlanWithoutQualityEnabledAndToleranceQty()
 			throws Exception {
 		grnPageFunc
@@ -1140,10 +1156,41 @@ public class PoToMRVTest2 extends RoadMapERPTest {
 	 * @author Deepan-GWL
 	 */
 	@Author("Deepan-GWL")
-	@Test(priority = 80, groups = {
+	@Test(priority = 81, groups = {
 			"PurchaseOrder" }, description = "Check  the process of GRN with Tolerance Quantity")
 	public void VerifyGRNToleranceQuantity() {
-		// Check the process of GRN with Tolerance Quantity
+		logs.logging("INFO", "Check  the process of GRN with Tolerance Quantity");
+		if (previousStatus != ITestResult.SUCCESS) {
+			Assert.fail();
+		}
+	}
+
+	/**
+	 * Check the process of GRN with ExcessQuantity
+	 * 
+	 * @author Deepan-GWL
+	 */
+	@Author("Deepan-GWL")
+	@Test(priority = 82, groups = { "PurchaseOrder" }, description = " Check  the process of GRN with ExcessQuantity")
+	public void VerifyGRNExcessQuantity() {
+		logs.logging("INFO", "Check  the process of GRN with ExcessQuantity");
+		if (previousStatus != ITestResult.SUCCESS) {
+			Assert.fail();
+		}
+	}
+
+	/**
+	 * Check the process of GRN with ExcessQuantity
+	 * 
+	 * @author Deepan-GWL
+	 */
+	@Author("Deepan-GWL")
+	@Test(priority = 83, groups = { "PurchaseOrder" }, description = " Check  the process of GRN with ExcessQuantity")
+	public void VerifyGRNExcessQuantityCovered() {
+		logs.logging("INFO", "Check  the process of GRN with ExcessQuantity");
+		if (previousStatus != ITestResult.SUCCESS) {
+			Assert.fail();
+		}
 	}
 
 	/**
@@ -1154,7 +1201,7 @@ public class PoToMRVTest2 extends RoadMapERPTest {
 	 * @throws IOException
 	 */
 	@Author("Prem-RMITS")
-	@Test(priority = 81, groups = { "GRN" }, description = "335  cancel the GRN lines")
+	@Test(priority = 84, groups = { "GRN" }, description = "335  cancel the GRN lines")
 	public void poToGrnGeneralUserDefinedSameStockAndSupplierUomWithAndWithoutInspectionPlanLinewiseCancelled()
 			throws IOException {
 
@@ -1167,9 +1214,12 @@ public class PoToMRVTest2 extends RoadMapERPTest {
 	 * @author Deepan-GWL
 	 */
 	@Author("Deepan-GWL")
-	@Test(priority = 82, groups = { "PurchaseOrder" }, description = " cancel the GRN lines")
+	@Test(priority = 85, groups = { "PurchaseOrder" }, description = " cancel the GRN lines")
 	public void VerifyCancelTheGRNLines() {
-		// cancel the GRN lines
+		logs.logging("INFO", "cancel the GRN lines");
+		if (previousStatus != ITestResult.SUCCESS) {
+			Assert.fail();
+		}
 	}
 
 	/**
@@ -1180,7 +1230,7 @@ public class PoToMRVTest2 extends RoadMapERPTest {
 	 * @throws IOException
 	 */
 	@Author("Prem-RMITS")
-	@Test(priority = 83, groups = { "GRN" }, description = "336  Cancel GRN Document")
+	@Test(priority = 86, groups = { "GRN" }, description = "336  Cancel GRN Document")
 	public void poToGrnGeneralUserDefinedSameStockAndSupplierUomWithAndWithoutInspectionPlanDocumentwiseCancelled()
 			throws IOException {
 
@@ -1194,125 +1244,43 @@ public class PoToMRVTest2 extends RoadMapERPTest {
 	 * @author Deepan-GWL
 	 */
 	@Author("Deepan-GWL")
-	@Test(priority = 84, groups = { "PurchaseOrder" }, description = "Cancel GRN Document")
+	@Test(priority = 87, groups = { "PurchaseOrder" }, description = "Cancel GRN Document")
 	public void VerifyCancelTheGRNDocuments() {
-		// Cancel GRN Document
+		logs.logging("INFO", "Cancel GRN Document");
+		if (previousStatus != ITestResult.SUCCESS) {
+			Assert.fail();
+		}
 	}
 
-	/**
-	 * Check the process of GRN with ExcessQuantity
-	 * 
-	 * @author Deepan-GWL
-	 */
-	@Author("Deepan-GWL")
-	@Test(priority = 85, groups = { "PurchaseOrder" }, description = " Check  the process of GRN with ExcessQuantity")
-	public void VerifyGRNExcessQuantity() {
-		// Check the process of GRN with ExcessQuantity
-	}
-
-	/**
-	 * Inward GRN with Landed cost and other charges
-	 * 
-	 * @author Deepan-GWL
-	 */
-	@Author("Deepan-GWL")
-	@Test(priority = 86, groups = { "PurchaseOrder" }, description = " Inward GRN with Landed cost and other charges")
-	public void VerifyInwardGrnWithLandedCostAndOtherCharges() {
-		// Inward GRN with Landed cost and other charges
-	}
-
-	/**
-	 * Verify Grn Reverse With Domestic Supplier
-	 * 
-	 * @author Deepan-GWL
-	 */
-	@Author("Deepan-GWL")
-	@Test(priority = 87, groups = { "PurchaseOrder" }, description = "Verify Grn Reverse With Domestic Supplier")
-	public void VerifyGrnReverseWithDomesticSupplier() {
-		grnPageFunc.poToGrnGeneralUserDefinedSameStockAndSupplierUomWithFreePassWithGateEntryWithReverse();
-	}
-
-	/**
-	 * Verify Grn Reverse With Import Supplier
-	 * 
-	 * @author Deepan-GWL
-	 */
-	@Author("Deepan-GWL")
-	@Test(priority = 88, groups = { "PurchaseOrder" }, description = "Verify Grn Reverse With Import Supplier")
-	public void VerifyGrnReverseWithImportcSupplier() {
-		grnPageFunc
-				.poToGrnGeneralUserDefinedSameStockAndSupplierUomWithFreePassWithGateEntryWithReverseWithImportSupplier();
-	}
-
-	/**
-	 * Verify Grn Reverse With Po Amendment
-	 * 
-	 * @author Deepan-GWL
-	 */
-	@Author("Deepan-GWL")
-	@Test(priority = 89, groups = { "PurchaseOrder" }, description = "Verify Grn Reverse With Po Amendment")
-	public void VerifyGrnReverseWithPOA() {
-		grnPageFunc.poToGrnGeneralUserDefinedSameStockAndSupplierUomWithFreePassWithGateEntryWithReentryPOA();
-	}
-
-	/**
-	 * Verify Grn Reverse With Po Amendment
-	 * 
-	 * @author Deepan-GWL
-	 */
-	@Author("Deepan-GWL")
-	@Test(priority = 90, groups = { "PurchaseOrder" }, description = "Verify Grn Reverse With Po Amendment")
-	public void VerifyGrnReverseWithPOAImport() {
-		grnPageFunc.poToGrnGeneralUserDefinedSameStockAndSupplierUomWithFreePassWithGateEntryWithReentryPOAWithImport();
-	}
-
-	/**
-	 * Verify Grn Reverse With Domestic Supplier WithOut Gate Entry
-	 * 
-	 * @author Deepan-GWL
-	 */
-	@Author("Deepan-GWL")
-	@Test(priority = 91, groups = {
-			"PurchaseOrder" }, description = "Verify Grn Reverse With Domestic Supplier WithOut Gate Entry")
-	public void VerifyGrnReverseWithDomesticSupplierWithOutGateEntry() {
-		grnPageFunc.poToGrnGeneralUserDefinedSameStockAndSupplierUomWithFreePassWithReverseWithoutGateEntry();
-	}
-
-	/**
-	 * Verify Grn Reverse With Import Supplier WithOut Gate Entry
-	 * 
-	 * @author Deepan-GWL
-	 */
-	@Author("Deepan-GWL")
-	@Test(priority = 92, groups = {
-			"PurchaseOrder" }, description = "Verify Grn Reverse With Import Supplier WithOut Gate Entry")
-	public void VerifyGrnReverseWithWithOutGateEntryImport() {
-		grnPageFunc.poToGrnGeneralUserDefinedSameStockAndSupplierUomWithFreePassWithReverseWithoutGateEntryImport();
-	}
-
-	/**
-	 * Verify Grn Reverse With Po Amendment Without Gate Entry
-	 * 
-	 * @author Deepan-GWL
-	 */
-	@Author("Deepan-GWL")
-	@Test(priority = 93, groups = {
-			"PurchaseOrder" }, description = "Verify Grn Reverse With Po Amendment Without Gate Entry")
-	public void VerifyGrnReverseWithPOAWithoutGateEntry() {
-		grnPageFunc.poToGrnGeneralUserDefinedSameStockAndSupplierUomWithFreePassWithOutGateEntryWithReentryPOA();
-	}
-
-	/**
-	 * Verify Grn Reverse With Po Amendment Without Gate Entry Import Supplier
-	 * 
-	 * @author Deepan-GWL
-	 */
-	@Author("Deepan-GWL")
-	@Test(priority = 94, groups = {
-			"PurchaseOrder" }, description = "Verify Grn Reverse With Po Amendment Without Gate Entry Import Supplier")
-	public void VerifyGrnReverseWithPOAWithoutGateEntryImp() {
-		grnPageFunc.poToGrnGeneralUserDefinedSameStockAndSupplierUomWithFreePassWithOutGateEntryWithReentryPOAImp();
-	}
+//	/**
+//	 * This Methods Is Used To Create GRN Document from PO with Inspection PriceList
+//	 * Document for Material Type Without Quality Enabled For Landed Cost And Other
+//	 * Charges
+//	 * 
+//	 * @author PremKumar.K-RMITS Direct GRN
+//	 * @throws IOException
+//	 */
+//	@Author("Prem-RMITS")
+//	@Test(priority = 88, groups = { "GRN" }, description = "334  Inward GRN with Landed cost and other charges")
+//	public void poToGrnGeneralUserDefinedSameStockAndSupplierUomWithAndWithoutInspectionPlanWithLandedCostAnd()
+//			throws IOException {
+//
+//		grnPageFunc.poToGrnGeneralUserDefinedSameStockAndSupplierUomWithAndWithoutInspectionPlanWithLandedCost();
+//	}
+//
+//	/**
+//	 * Inward GRN with Landed cost and other charges
+//	 * 
+//	 * @author Deepan-GWL
+//	 */
+//	@Author("Deepan-GWL")
+//	@Test(priority = 89, groups = { "PurchaseOrder" }, description = " Inward GRN with Landed cost and other charges")
+//	public void VerifyInwardGrnWithLandedCost() {
+//		logs.logging("INFO", "Inward GRN with Landed cost and other charges");
+//		if (previousStatus != ITestResult.SUCCESS) {
+//			Assert.fail();
+//		}
+//	}
 
 	/**
 	 * Verify After Method

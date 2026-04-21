@@ -95,7 +95,7 @@ public class PurchaseBillsLocatorsGetDocument {
 	/** @locatorType Xpath */
 	public static final String HsnFieldGrid = "//div[@id='IN_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[14]";
 	/** @locatorType Xpath */
-	public static final String PBAddTypeExp = "//select[@id='C2487000269160585286']";
+	public static final String PBAddTypeExp = "//select[@data-testid='SUPLN_TYPE']";
 	/** @locatorType Xpath */
 	public static final String PBCostInput = "//input[@data-testid='SUPLN_UNIT_COST']";
 	/** @locatorType Xpath */

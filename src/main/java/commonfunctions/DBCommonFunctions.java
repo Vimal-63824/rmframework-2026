@@ -1988,9 +1988,9 @@ public class DBCommonFunctions {
 	 * @param DBHeaderColumnValue
 	 * @return
 	 */
-	public String POAdvanceDetails(String PONO1, String DBHeaderColumnValue) {
-		String value = getDataFromDBUsingQuery(getDataFromDBTestDataSheet("POadvanceQuery"),
-				commonFunc.getDataFromTestDataSheet("PONO1"), PONO1, DBHeaderColumnValue);
+	public String POAdvanceDetails(String SONo, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery(getDataFromDBTestDataSheet("POAdvanceQuery"),
+				commonFunc.getDataFromTestDataSheet("SONO"), SONo, DBHeaderColumnValue);
 		return value;
 	}
 
@@ -2284,6 +2284,7 @@ public class DBCommonFunctions {
 				VariableHandler.getProductionCompletionOrderNo(), DBHeaderColumnValue);
 		return value;
 	}
+
 	/**
 	 * Supplier GL Acct Query
 	 * 
@@ -2297,4 +2298,52 @@ public class DBCommonFunctions {
 				commonFunc.getDataFromTestDataSheet("SUPNO"), SUPNO, DBHeaderColumnValue);
 		return value;
 	}
+
+	/**
+	 * Bank Payment Header details
+	 * 
+	 * @author Harikrishna -RMITS
+	 * @param SONo
+	 * @param HeaderValue
+	 * @return String Value
+	 */
+	public String CashPaymentAdvancePendingPayablesDetails(String SONo, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery(getDataFromDBTestDataSheet("CashPaymentAdvancePendingQuery"),
+				commonFunc.getDataFromTestDataSheet("SONO"), SONo, DBHeaderColumnValue);
+		return value;
+	}
+
+	/**
+	 * CS Line Details
+	 * 
+	 * @author Harikrishna -RMITS
+	 * @param SOANo
+	 * @param SeqNo
+	 * @param DBHeaderColumnValue
+	 * @return String Value
+	 */
+	public String ApplicationJournalViewDetails(String BRNo, String SeqNo, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery1(getDataFromDBTestDataSheet("JournalQuery"),
+				commonFunc.getDataFromTestDataSheet("SONO"), BRNo, commonFunc.getDataFromTestDataSheet("PONO"), SeqNo,
+				DBHeaderColumnValue);
+		return value;
+	}
+
+	/**
+	 * StockQuery
+	 * 
+	 * @author PremKumar.K -RMITS
+	 * @param AdvReceiptDocNo
+	 * @param DBHeaderColumnValue
+	 * @return String Value
+	 */
+	public List<String> PbJournalViewDetailsQueryForTDSSupplierPK(String PBVoucherNumber, String GLDesc,
+			String DBHeaderColumnValue) {
+		List<String> value = getDataFromDBUsingQuery2(getDataFromDBTestDataSheet("PBJournalDetailsQueryPK"),
+				commonFunc.getDataFromTestDataSheet("PBVouNum"), PBVoucherNumber,
+				commonFunc.getDataFromTestDataSheet("PBGL"), GLDesc, DBHeaderColumnValue);
+		System.out.println("value check " + value);
+		return value;
+	}
+
 }
