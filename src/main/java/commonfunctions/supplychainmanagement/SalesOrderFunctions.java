@@ -28,6 +28,7 @@ import commonfunctions.ItemDetailsHandler;
 import commonfunctions.ItemDetailsHandler.SOCustomerDetailsName;
 import commonfunctions.ItemDetailsHandler.SOLineDetailsName;
 import commonfunctions.VariableHandler;
+import commonfunctions.financials.BankReceiptFunctions;
 import commonlocators.CommonUiLocators;
 import commonlocators.supplychainmanagement.ApprovalPageLocators;
 import commonlocators.supplychainmanagement.CustomerScheduleLocators;
@@ -53,6 +54,7 @@ public class SalesOrderFunctions {
 	private static DBCommonFunctions dbCommonFunctions = new DBCommonFunctions();
 	private static MaterialRequestFunctions MatReqFunc = new MaterialRequestFunctions();
 	private static CustomerScheduleFunctions CSFunc = new CustomerScheduleFunctions();
+	public BankReceiptFunctions bankreceiptfunc = new BankReceiptFunctions();
 	private static ExcelUtils excelUtils = new ExcelUtils();
 	public static String[] SOItems;
 	public static String[] SOQty;
@@ -2848,21 +2850,19 @@ public class SalesOrderFunctions {
 			flag = webDB.waitForClickElement(SalesOrderLocators.BankReceiptsRefNumber, ElementType.Xpath);
 			if (flag) {
 				webDB.sendTextToAnElement(SalesOrderLocators.BankReceiptsRefNumber, RefNumber, ElementType.Xpath);
-				flag = webDB.waitForElement(SalesOrderLocators.BankReceiptsHeaderSave, ElementType.Xpath);
+				bankreceiptfunc.checkARMControlBankNameRqrdFlag(commonFunc.getDataFromTestDataSheet("BankName"));
+				bankreceiptfunc.checkARMControlReceivedFromRqrdFlag();
+				flag = webDB.waitForElement(SalesOrderLocators.BankReceiptCreateJournalButton, ElementType.Xpath);
 				if (flag) {
-					webDB.clickAnElement(SalesOrderLocators.BankReceiptsHeaderSave, ElementType.Xpath);
+					webDB.clickAnElement(SalesOrderLocators.BankReceiptCreateJournalButton, ElementType.Xpath);
 					commonFunc.checkRefreshCellsDisappear();
-					flag = webDB.waitForElement(SalesOrderLocators.BankReceiptCreateJournalButton, ElementType.Xpath);
+					flag = webDB.waitForElement(SalesOrderLocators.BankReceiptpostButton, ElementType.Xpath);
 					if (flag) {
-						webDB.clickAnElement(SalesOrderLocators.BankReceiptCreateJournalButton, ElementType.Xpath);
+						webDB.clickAnElement(SalesOrderLocators.BankReceiptpostButton, ElementType.Xpath);
 						commonFunc.checkRefreshCellsDisappear();
-						flag = webDB.waitForElement(SalesOrderLocators.BankReceiptpostButton, ElementType.Xpath);
-						if (flag) {
-							webDB.clickAnElement(SalesOrderLocators.BankReceiptpostButton, ElementType.Xpath);
-							commonFunc.checkRefreshCellsDisappear();
-						}
 					}
 				}
+//				}
 			}
 		}
 		assertTrue(flag);
