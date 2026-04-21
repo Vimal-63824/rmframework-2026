@@ -266,6 +266,11 @@ public class CompletionProductionOrderLocators {
 	public static final String PendingMRSelectAllBtn(String prodNo) {
 		return "//table/tbody//td[text()='" + prodNo + "']/../td/input[contains(@id,'checkbox')]";
 	}
+	
+	/** @locatorType XPATH */
+	public static final String PendingMRQuantityInut(String prodNo) {
+		return "//table/tbody//td[text()='" + prodNo + "']/../td/input[contains(@id,'inputField')]";
+	}
 
 	/** @locatorType XPATH */
 	public static final String PendingMRProcessDetailIcon(String prodNo) {

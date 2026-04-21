@@ -1064,7 +1064,7 @@ public class Purchase_GRN_FOCFunctions {
 		commonFunc.naviagteGrnPage();
 		GRNFunc.verifyGrnAdd();
 		GRNFunc.verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
-				commonFunc.getDataFromTestDataSheet("GRNPG"), commonFunc.getDataFromTestDataSheet("WalmartSupId"),
+				commonFunc.getDataFromTestDataSheet("GRNPG"), commonFunc.getDataFromTestDataSheet("HKIMPSUP01"),
 				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
 		GRN2Func.verifyGrnAddLineDetails(webDB.getDataFromProperties("DirectGRN-FocFileName"),
 				webDB.getDataFromProperties("DirGRNImpSameUDGeneral"));
@@ -1118,7 +1118,7 @@ public class Purchase_GRN_FOCFunctions {
 		commonFunc.naviagteGrnPage();
 		GRNFunc.verifyGrnAdd();
 		GRNFunc.verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
-				commonFunc.getDataFromTestDataSheet("GRNPM"), commonFunc.getDataFromTestDataSheet("WalmartSupId"),
+				commonFunc.getDataFromTestDataSheet("GRNPM"), commonFunc.getDataFromTestDataSheet("HKIMPSUP01"),
 				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
 		GRN2Func.verifyGrnAddLineDetails(webDB.getDataFromProperties("DirectGRN-FocFileName"),
 				webDB.getDataFromProperties("DirGRNImpSameUDRawMat"));
@@ -1168,7 +1168,7 @@ public class Purchase_GRN_FOCFunctions {
 		commonFunc.naviagteGrnPage();
 		GRNFunc.verifyGrnAdd();
 		GRNFunc.verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
-				commonFunc.getDataFromTestDataSheet("GRNPS"), commonFunc.getDataFromTestDataSheet("WalmartSupId"),
+				commonFunc.getDataFromTestDataSheet("GRNPS"), commonFunc.getDataFromTestDataSheet("HKIMPSUP01"),
 				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
 		GRN2Func.verifyGrnAddLineDetails(webDB.getDataFromProperties("DirectGRN-FocFileName"),
 				webDB.getDataFromProperties("DirGRNImpSameUDService"));
@@ -1216,7 +1216,7 @@ public class Purchase_GRN_FOCFunctions {
 		commonFunc.naviagteGrnPage();
 		GRNFunc.verifyGrnAdd();
 		GRNFunc.verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
-				commonFunc.getDataFromTestDataSheet("GRNPG"), commonFunc.getDataFromTestDataSheet("WalmartSupId"),
+				commonFunc.getDataFromTestDataSheet("GRNPG"), commonFunc.getDataFromTestDataSheet("HKIMPSUP01"),
 				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
 		GRN2Func.verifyGrnAddLineDetails(webDB.getDataFromProperties("DirectGRN-FocFileName"),
 				webDB.getDataFromProperties("DirGRNImpDiffUDGeneral"));
@@ -1270,7 +1270,7 @@ public class Purchase_GRN_FOCFunctions {
 		commonFunc.naviagteGrnPage();
 		GRNFunc.verifyGrnAdd();
 		GRNFunc.verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
-				commonFunc.getDataFromTestDataSheet("GRNPM"), commonFunc.getDataFromTestDataSheet("WalmartSupId"),
+				commonFunc.getDataFromTestDataSheet("GRNPM"), commonFunc.getDataFromTestDataSheet("HKIMPSUP01"),
 				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
 		GRN2Func.verifyGrnAddLineDetails(webDB.getDataFromProperties("DirectGRN-FocFileName"),
 				webDB.getDataFromProperties("DirGRNImpDiffUDRawMat"));
@@ -1324,7 +1324,7 @@ public class Purchase_GRN_FOCFunctions {
 		commonFunc.naviagteGrnPage();
 		GRNFunc.verifyGrnAdd();
 		GRNFunc.verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
-				commonFunc.getDataFromTestDataSheet("GRNPG"), commonFunc.getDataFromTestDataSheet("WalmartSupId"),
+				commonFunc.getDataFromTestDataSheet("GRNPG"), commonFunc.getDataFromTestDataSheet("HKIMPSUP01"),
 				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
 		GRN2Func.verifyGrnAddLineDetails(webDB.getDataFromProperties("DirectGRN-FocFileName"),
 				webDB.getDataFromProperties("DirGRNImpSameRCGeneral"));
@@ -1372,7 +1372,7 @@ public class Purchase_GRN_FOCFunctions {
 		commonFunc.naviagteGrnPage();
 		GRNFunc.verifyGrnAdd();
 		GRNFunc.verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
-				commonFunc.getDataFromTestDataSheet("GRNPG"), commonFunc.getDataFromTestDataSheet("WalmartSupId"),
+				commonFunc.getDataFromTestDataSheet("GRNPG"), commonFunc.getDataFromTestDataSheet("HKIMPSUP01"),
 				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
 		GRN2Func.verifyGrnAddLineDetails(webDB.getDataFromProperties("DirectGRN-FocFileName"),
 				webDB.getDataFromProperties("DirGRNImpSameRCRawMat"));
@@ -1416,7 +1416,7 @@ public class Purchase_GRN_FOCFunctions {
 		commonFunc.naviagteGrnPage();
 		GRNFunc.verifyGrnAdd();
 		GRNFunc.verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
-				commonFunc.getDataFromTestDataSheet("GRNPG"), commonFunc.getDataFromTestDataSheet("WalmartSupId"),
+				commonFunc.getDataFromTestDataSheet("GRNPG"), commonFunc.getDataFromTestDataSheet("HKIMPSUP01"),
 				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
 		GRN2Func.verifyGrnAddLineDetails(webDB.getDataFromProperties("DirectGRN-FocFileName"),
 				webDB.getDataFromProperties("DirGRNImpSameRCService"));
@@ -1458,7 +1458,7 @@ public class Purchase_GRN_FOCFunctions {
 		commonFunc.naviagteGrnPage();
 		GRNFunc.verifyGrnAdd();
 		GRNFunc.verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
-				commonFunc.getDataFromTestDataSheet("GRNPG"), commonFunc.getDataFromTestDataSheet("WalmartSupId"),
+				commonFunc.getDataFromTestDataSheet("GRNPG"), commonFunc.getDataFromTestDataSheet("HKIMPSUP01"),
 				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
 		GRN2Func.verifyGrnAddLineDetails(webDB.getDataFromProperties("DirectGRN-FocFileName"),
 				webDB.getDataFromProperties("DirGRNImpDiffRCGeneral"));
@@ -1506,7 +1506,7 @@ public class Purchase_GRN_FOCFunctions {
 		commonFunc.naviagteGrnPage();
 		GRNFunc.verifyGrnAdd();
 		GRNFunc.verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
-				commonFunc.getDataFromTestDataSheet("GRNPG"), commonFunc.getDataFromTestDataSheet("WalmartSupId"),
+				commonFunc.getDataFromTestDataSheet("GRNPG"), commonFunc.getDataFromTestDataSheet("HKIMPSUP01"),
 				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
 		GRN2Func.verifyGrnAddLineDetails(webDB.getDataFromProperties("DirectGRN-FocFileName"),
 				webDB.getDataFromProperties("DirGRNImpDiffRCRawMat"));
@@ -1554,7 +1554,7 @@ public class Purchase_GRN_FOCFunctions {
 		commonFunc.naviagteGrnPage();
 		GRNFunc.verifyGrnAdd();
 		GRNFunc.verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
-				commonFunc.getDataFromTestDataSheet("GRNPG"), commonFunc.getDataFromTestDataSheet("WalmartSupId"),
+				commonFunc.getDataFromTestDataSheet("GRNPG"), commonFunc.getDataFromTestDataSheet("HKIMPSUP01"),
 				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
 		GRN2Func.verifyGrnAddLineDetails(webDB.getDataFromProperties("DirectGRN-FocFileName"),
 				webDB.getDataFromProperties("DirGRNImpSamePLGeneral"));
@@ -1602,7 +1602,7 @@ public class Purchase_GRN_FOCFunctions {
 		commonFunc.naviagteGrnPage();
 		GRNFunc.verifyGrnAdd();
 		GRNFunc.verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
-				commonFunc.getDataFromTestDataSheet("GRNPG"), commonFunc.getDataFromTestDataSheet("WalmartSupId"),
+				commonFunc.getDataFromTestDataSheet("GRNPG"), commonFunc.getDataFromTestDataSheet("HKIMPSUP01"),
 				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
 		GRN2Func.verifyGrnAddLineDetails(webDB.getDataFromProperties("DirectGRN-FocFileName"),
 				webDB.getDataFromProperties("DirGRNImpSamePLRawMat"));
@@ -1646,7 +1646,7 @@ public class Purchase_GRN_FOCFunctions {
 		commonFunc.naviagteGrnPage();
 		GRNFunc.verifyGrnAdd();
 		GRNFunc.verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
-				commonFunc.getDataFromTestDataSheet("GRNPG"), commonFunc.getDataFromTestDataSheet("WalmartSupId"),
+				commonFunc.getDataFromTestDataSheet("GRNPG"), commonFunc.getDataFromTestDataSheet("HKIMPSUP01"),
 				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
 		GRN2Func.verifyGrnAddLineDetails(webDB.getDataFromProperties("DirectGRN-FocFileName"),
 				webDB.getDataFromProperties("DirGRNImpSamePLService"));
@@ -1688,7 +1688,7 @@ public class Purchase_GRN_FOCFunctions {
 		commonFunc.naviagteGrnPage();
 		GRNFunc.verifyGrnAdd();
 		GRNFunc.verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
-				commonFunc.getDataFromTestDataSheet("GRNPG"), commonFunc.getDataFromTestDataSheet("WalmartSupId"),
+				commonFunc.getDataFromTestDataSheet("GRNPG"), commonFunc.getDataFromTestDataSheet("HKIMPSUP01"),
 				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
 		GRN2Func.verifyGrnAddLineDetails(webDB.getDataFromProperties("DirectGRN-FocFileName"),
 				webDB.getDataFromProperties("DirGRNImpDiffPLGeneral"));
@@ -1736,7 +1736,7 @@ public class Purchase_GRN_FOCFunctions {
 		commonFunc.naviagteGrnPage();
 		GRNFunc.verifyGrnAdd();
 		GRNFunc.verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
-				commonFunc.getDataFromTestDataSheet("GRNPG"), commonFunc.getDataFromTestDataSheet("WalmartSupId"),
+				commonFunc.getDataFromTestDataSheet("GRNPG"), commonFunc.getDataFromTestDataSheet("HKIMPSUP01"),
 				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
 		GRN2Func.verifyGrnAddLineDetails(webDB.getDataFromProperties("DirectGRN-FocFileName"),
 				webDB.getDataFromProperties("DirGRNImpDiffPLRawMat"));
