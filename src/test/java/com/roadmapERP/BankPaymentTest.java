@@ -989,6 +989,7 @@ public class BankPaymentTest extends RoadMapERPTest {
 		bankPaymentFunc.BPadvancePOMultipleThroughPendingDocument(webDB.getDataFromProperties("BPAdvance"));
 //		Assert.assertTrue(flag);
 	}
+
 //
 	/**
 	 * Advance against PO single purchase order (With TDS single Under
