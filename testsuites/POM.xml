@@ -22,6 +22,7 @@
 			<class name="com.roadmapERP.PoToGRNFOCTest"></class>
 			<class name="com.roadmapERP.PoToMRVTest"></class>
 			<class name="com.roadmapERP.PoToMRVTest2"></class>
+			<class name="com.roadmapERP.PoToMRVTest3"></class>
 			<class name="com.roadmapERP.PriselistTest"></class>
 			<!--<class name="com.roadmapERP.PurchaseFOCTest"></class>
 			<class name="com.roadmapERP.PurchaseOrderTest"></class>
