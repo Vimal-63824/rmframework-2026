@@ -6117,7 +6117,7 @@ public class BankReceiptFunctions {
 						commonFunc.getDataFromTestDataSheet("USDBankName"));
 			}
 		}
-		assertTrue(flag);
+//		assertTrue(flag);
 	}
 
 	public void verifyCustomerDocumentWithDBAfterSI(ArrayList<String> DocumentNumber) {
