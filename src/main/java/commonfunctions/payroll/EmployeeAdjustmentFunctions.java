@@ -367,6 +367,7 @@ public class EmployeeAdjustmentFunctions {
 						ProcessType, ElementType.Xpath);
 				if (flag) {
 					clickSaveIconInAdjustmentTable();
+					commonFunc.checkRefreshCellsDisappear();
 					flag = webDB.waitForElement(EmployeeAdjustmentLocators.AdjustmentTableProcessHoldData,
 							ElementType.Xpath);
 					if (flag) {
@@ -444,6 +445,7 @@ public class EmployeeAdjustmentFunctions {
 				if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
 					webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
 				}
+				commonFunc.checkSuccessToastMessageDisappear();
 				flag = webDB.waitForElement(EmployeeAdjustmentLocators.AdjustmentTableAdjustmentNoData,
 						ElementType.Xpath);
 				if (flag) {
