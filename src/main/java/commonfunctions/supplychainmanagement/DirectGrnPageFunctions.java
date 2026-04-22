@@ -5918,7 +5918,7 @@ public class DirectGrnPageFunctions {
 	 * @throws IOException
 	 */
 	public void verifyDirectGRNAddLineDetailsOtherThanUserDefinedPriceList(String FileName, String SheetName,
-			String Supplier) {
+			String Supplier, String LocId) {
 		flag = webDB.waitForElement(GrnLocators.GrnDocNumber, ElementType.Xpath);
 		if (flag) {
 			commonFunc.hardWait(3000);
@@ -5945,8 +5945,8 @@ public class DirectGrnPageFunctions {
 					verifyClickingReceiptQuantity(QTY);
 					verifyClickingCost(COST);
 					verifyClickingSaveLine();
-					verifyUnitcostAndDiscountAmountForPriceListItemForDirectGRN(i, FileName, SheetName,
-							commonFunc.getDataFromTestDataSheet("PriceListSupplier"));
+					verifyUnitcostAndDiscountAmountForPriceListItemForDirectGRN(i, FileName, SheetName, Supplier,
+							LocId);
 					verifyRateContractItemUnitCostAndDiscPctWriteInExcelForGeneralTypeForDirectGrn(i, FileName,
 							SheetName);
 					otherThanUserdefinedDiscountAmountForDirectGRN(i, FileName, SheetName);
@@ -5965,7 +5965,7 @@ public class DirectGrnPageFunctions {
 	 */
 
 	public void verifyUnitcostAndDiscountAmountForPriceListItemForDirectGRN(int i1, String FileName, String SheetName,
-			String PriceListSupplier) {
+			String PriceListSupplier, String LocId) {
 		String[][] PRMultipleline = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 		ExcelUtils excelUtils = new ExcelUtils();
 		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
@@ -5975,16 +5975,19 @@ public class DirectGrnPageFunctions {
 			if (!ITEM_NAME.equals("")) {
 				commonFunc.hardWait(2000);
 				commonFunc.checkRefreshCellsDisappear();
+				logs.logging("INFO", "Item " + ITEM_NAME + " " + PriceListSupplier);
 				verifyAssertionBothValues(
-						dbCommonFunc.priceListDetails(PriceListSupplier, ITEM_NAME,
+
+						dbCommonFunc.priceListDetails(PriceListSupplier, ITEM_NAME, LocId,
 								commonFunc.getDataFromTestDataSheet("PriceListUnitCost")),
 						dbCommonFunc.StockQuery4(VariableHandler.getGrnDocNumber(), ITEM_NAME,
 								commonFunc.getDataFromTestDataSheet("GRNUnitCost")));
 				logs.logging("INFO", "Open PO And  PO unit Cost Matched For This " + ITEM_NAME);
 				commonFunc.hardWait(3000);
 				commonFunc.checkRefreshCellsDisappear();
+				logs.logging("INFO", "Supplier " + PriceListSupplier + " Item NAme" + ITEM_NAME);
 				verifyAssertionBothValues(
-						dbCommonFunc.priceListDetails(PriceListSupplier, ITEM_NAME,
+						dbCommonFunc.priceListDetails(PriceListSupplier, ITEM_NAME, LocId,
 								commonFunc.getDataFromTestDataSheet("PriceListDiscPct")),
 						dbCommonFunc.StockQuery4(VariableHandler.getGrnDocNumber(), ITEM_NAME,
 								commonFunc.getDataFromTestDataSheet("GRNDiscPct")));
@@ -6049,7 +6052,8 @@ public class DirectGrnPageFunctions {
 				commonFunc.getDataFromTestDataSheet("WalmartSupId"),
 				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
 		verifyDirectGRNAddLineDetailsOtherThanUserDefinedPriceList(webDB.getDataFromProperties("DirectGrnSheet"),
-				webDB.getDataFromProperties("DGSUomWIPlImpSheet"), commonFunc.getDataFromTestDataSheet("WalmartSupId"));
+				webDB.getDataFromProperties("DGSUomWIPlImpSheet"), commonFunc.getDataFromTestDataSheet("WalmartSupId"),
+				commonFunc.getDataFromTestDataSheet("L49"));
 		DirectGRNmultipleLotandSerialWithGeneralType(webDB.getDataFromProperties("DirectGrnSheet"),
 				webDB.getDataFromProperties("DGSUomWIPlImpSheet"));
 		GRNFunc.verifyImportLrBillNumber();
@@ -6083,7 +6087,8 @@ public class DirectGrnPageFunctions {
 				commonFunc.getDataFromTestDataSheet("WalmartSupId"),
 				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
 		verifyDirectGRNAddLineDetailsOtherThanUserDefinedPriceList(webDB.getDataFromProperties("DirectGrnSheet"),
-				webDB.getDataFromProperties("DGSUomWIPlImpSheet"), commonFunc.getDataFromTestDataSheet("WalmartSupId"));
+				webDB.getDataFromProperties("DGSUomWIPlImpSheet"), commonFunc.getDataFromTestDataSheet("WalmartSupId"),
+				commonFunc.getDataFromTestDataSheet("L49"));
 		DirectGRNmultipleLotandSerialWithGeneralType(webDB.getDataFromProperties("DirectGrnSheet"),
 				webDB.getDataFromProperties("DGSUomWIPlImpSheet"));
 		GRNFunc.verifyImportLrBillNumber();
@@ -6260,7 +6265,8 @@ public class DirectGrnPageFunctions {
 				commonFunc.getDataFromTestDataSheet("WalmartSupId"),
 				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
 		verifyDirectGRNAddLineDetailsOtherThanUserDefinedPriceList(webDB.getDataFromProperties("DirectGrnSheet"),
-				webDB.getDataFromProperties("DGSUomWIPlSerSheet"), commonFunc.getDataFromTestDataSheet("WalmartSupId"));
+				webDB.getDataFromProperties("DGSUomWIPlSerSheet"), commonFunc.getDataFromTestDataSheet("WalmartSupId"),
+				commonFunc.getDataFromTestDataSheet("L49"));
 		GRNFunc.verifyImportLrBillNumber();
 		GRNFunc.overAllSaveAndPost();
 		GRNFunc.waitingForApproval();
@@ -6428,7 +6434,8 @@ public class DirectGrnPageFunctions {
 				commonFunc.getDataFromTestDataSheet("WalmartSupId"),
 				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
 		verifyDirectGRNAddLineDetailsOtherThanUserDefinedPriceList(webDB.getDataFromProperties("DirectGrnSheet"),
-				webDB.getDataFromProperties("DGDUomWIPlImpSheet"), commonFunc.getDataFromTestDataSheet("WalmartSupId"));
+				webDB.getDataFromProperties("DGDUomWIPlImpSheet"), commonFunc.getDataFromTestDataSheet("WalmartSupId"),
+				commonFunc.getDataFromTestDataSheet("L49"));
 		DirectGRNmultipleLotandSerialWithGeneralType(webDB.getDataFromProperties("DirectGrnSheet"),
 				webDB.getDataFromProperties("DGDUomWIPlImpSheet"));
 		GRNFunc.verifyImportLrBillNumber();
@@ -6463,7 +6470,8 @@ public class DirectGrnPageFunctions {
 				commonFunc.getDataFromTestDataSheet("WalmartSupId"),
 				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
 		verifyDirectGRNAddLineDetailsOtherThanUserDefinedPriceList(webDB.getDataFromProperties("DirectGrnSheet"),
-				webDB.getDataFromProperties("DGDUomWIPlImpSheet"), commonFunc.getDataFromTestDataSheet("WalmartSupId"));
+				webDB.getDataFromProperties("DGDUomWIPlImpSheet"), commonFunc.getDataFromTestDataSheet("WalmartSupId"),
+				commonFunc.getDataFromTestDataSheet("L49"));
 		DirectGRNmultipleLotandSerialWithGeneralType(webDB.getDataFromProperties("DirectGrnSheet"),
 				webDB.getDataFromProperties("DGDUomWIPlImpSheet"));
 		GRNFunc.verifyImportLrBillNumber();
@@ -6675,7 +6683,7 @@ public class DirectGrnPageFunctions {
 				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
 		verifyDirectGRNAddLineDetailsOtherThanUserDefinedPriceList(webDB.getDataFromProperties("DirectGrnSheet"),
 				webDB.getDataFromProperties("DGSUomWIWoQPlImpSheet"),
-				commonFunc.getDataFromTestDataSheet("WalmartSupId"));
+				commonFunc.getDataFromTestDataSheet("WalmartSupId"), commonFunc.getDataFromTestDataSheet("L49"));
 		DirectGRNmultipleLotandSerialWithGeneralType(webDB.getDataFromProperties("DirectGrnSheet"),
 				webDB.getDataFromProperties("DGSUomWIWoQPlImpSheet"));
 		GRNFunc.verifyImportLrBillNumber();
@@ -6710,7 +6718,7 @@ public class DirectGrnPageFunctions {
 				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
 		verifyDirectGRNAddLineDetailsOtherThanUserDefinedPriceList(webDB.getDataFromProperties("DirectGrnSheet"),
 				webDB.getDataFromProperties("DGSUomWIWoQPlImpSheet"),
-				commonFunc.getDataFromTestDataSheet("WalmartSupId"));
+				commonFunc.getDataFromTestDataSheet("WalmartSupId"), commonFunc.getDataFromTestDataSheet("L49"));
 		DirectGRNmultipleLotandSerialWithGeneralType(webDB.getDataFromProperties("DirectGrnSheet"),
 				webDB.getDataFromProperties("DGSUomWIWoQPlImpSheet"));
 		GRNFunc.verifyImportLrBillNumber();
@@ -6790,7 +6798,7 @@ public class DirectGrnPageFunctions {
 				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
 		verifyDirectGRNAddLineDetailsOtherThanUserDefinedPriceList(webDB.getDataFromProperties("DirectGrnSheet"),
 				webDB.getDataFromProperties("DGSUomWoQWIPlSerSheet"),
-				commonFunc.getDataFromTestDataSheet("WalmartSupId"));
+				commonFunc.getDataFromTestDataSheet("WalmartSupId"), commonFunc.getDataFromTestDataSheet("L49"));
 		GRNFunc.verifyImportLrBillNumber();
 		GRNFunc.overAllSaveAndPost();
 		GRNFunc.waitingForApproval();
@@ -6957,7 +6965,7 @@ public class DirectGrnPageFunctions {
 				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
 		verifyDirectGRNAddLineDetailsOtherThanUserDefinedPriceList(webDB.getDataFromProperties("DirectGrnSheet"),
 				webDB.getDataFromProperties("DGDUomWoQWIPlImpSheet"),
-				commonFunc.getDataFromTestDataSheet("WalmartSupId"));
+				commonFunc.getDataFromTestDataSheet("WalmartSupId"), commonFunc.getDataFromTestDataSheet("L49"));
 		DirectGRNmultipleLotandSerialWithGeneralType(webDB.getDataFromProperties("DirectGrnSheet"),
 				webDB.getDataFromProperties("DGDUomWoQWIPlImpSheet"));
 		GRNFunc.verifyImportLrBillNumber();
@@ -6992,7 +7000,7 @@ public class DirectGrnPageFunctions {
 				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
 		verifyDirectGRNAddLineDetailsOtherThanUserDefinedPriceList(webDB.getDataFromProperties("DirectGrnSheet"),
 				webDB.getDataFromProperties("DGDUomWoQWIPlImpSheet"),
-				commonFunc.getDataFromTestDataSheet("WalmartSupId"));
+				commonFunc.getDataFromTestDataSheet("WalmartSupId"), commonFunc.getDataFromTestDataSheet("L49"));
 		DirectGRNmultipleLotandSerialWithGeneralType(webDB.getDataFromProperties("DirectGrnSheet"),
 				webDB.getDataFromProperties("DGDUomWoQWIPlImpSheet"));
 		GRNFunc.verifyImportLrBillNumber();

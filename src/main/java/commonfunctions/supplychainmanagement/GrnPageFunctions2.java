@@ -626,8 +626,8 @@ public class GrnPageFunctions2 {
 		GRNFunc.verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("GRNPG"), commonFunc.getDataFromTestDataSheet("HKIMPSUP01"),
 				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
-//		verifyGrnAddLineDetails(webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"),
-//				webDB.getDataFromProperties("DirGRNImpSameUDGeneral"));
+		verifyGrnAddLineDetails(webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"),
+				webDB.getDataFromProperties("DirGRNImpSameUDGeneral"));
 		multipleLotandSerialWithGeneralType(webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"),
 				webDB.getDataFromProperties("DirGRNImpSameUDGeneral"));
 		DirectGRNFunc.lotSerialQtyApportion();

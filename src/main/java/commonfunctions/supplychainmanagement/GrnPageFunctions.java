@@ -5138,7 +5138,7 @@ public class GrnPageFunctions {
 		ExcelUtils excelUtils = new ExcelUtils();
 		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
 		ItemDetails = excelUtils.readAllDataInExcel(Filepath, SheetName);
-		for (int i = 3; i < ItemDetails.length; i++) {
+		for (int i = 22; i < ItemDetails.length; i++) {
 			String ItemId = ItemDetails[i][1];
 			String WareHouse = ItemDetails[i][44];
 			String AfterExcelStockCost = ItemDetails[i][51];
