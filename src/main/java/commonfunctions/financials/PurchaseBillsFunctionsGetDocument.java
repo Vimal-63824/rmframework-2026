@@ -3659,8 +3659,7 @@ public class PurchaseBillsFunctionsGetDocument {
 //				webDB.getDataFromProperties("StocktransferLC"),
 //				commonFunc.getDataFromTestDataSheet("LINUX_PVT_LTD_SF"));
 		verifyToValiadteJournalDetailPartForAccuralAccountStocktransaferTypeLocalSupplierForCommonWithRoundOff(
-				webDB.getDataFromProperties("StocktransferLC"),
-				commonFunc.getDataFromTestDataSheet("LINUX_PVT_LTD_SF"),
+				webDB.getDataFromProperties("StocktransferLC"), commonFunc.getDataFromTestDataSheet("LINUX_PVT_LTD_SF"),
 				commonFunc.getDataFromTestDataSheet("RoundOffValue"));
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.hardWait(1000);
@@ -3980,8 +3979,7 @@ public class PurchaseBillsFunctionsGetDocument {
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.hardWait(1000);
 		verifyToValiadteJournalDetailPartForAccuralAccountStocktransaferTypeLocalSupplierForCommonWithRoundOff(
-				webDB.getDataFromProperties("StocktransferLC"),
-				commonFunc.getDataFromTestDataSheet("LINUX_PVT_LTD_SF"),
+				webDB.getDataFromProperties("StocktransferLC"), commonFunc.getDataFromTestDataSheet("LINUX_PVT_LTD_SF"),
 				commonFunc.getDataFromTestDataSheet("RoundOffValue"));
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.hardWait(1000);
@@ -4212,8 +4210,7 @@ public class PurchaseBillsFunctionsGetDocument {
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.hardWait(1000);
 		verifyToValiadteJournalDetailPartForAccuralAccountStocktransaferTypeLocalSupplierForCommonWithRoundOff(
-				webDB.getDataFromProperties("StocktransferLC"),
-				commonFunc.getDataFromTestDataSheet("LINUX_PVT_LTD_SF"),
+				webDB.getDataFromProperties("StocktransferLC"), commonFunc.getDataFromTestDataSheet("LINUX_PVT_LTD_SF"),
 				commonFunc.getDataFromTestDataSheet("RoundOffValue"));
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.hardWait(1000);
@@ -4342,8 +4339,7 @@ public class PurchaseBillsFunctionsGetDocument {
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.hardWait(1000);
 		verifyToValiadteJournalDetailPartForAccuralAccountStocktransaferTypeLocalSupplierForCommonWithRoundOff(
-				webDB.getDataFromProperties("StocktransferLC"),
-				commonFunc.getDataFromTestDataSheet("LINUX_PVT_LTD_SF"),
+				webDB.getDataFromProperties("StocktransferLC"), commonFunc.getDataFromTestDataSheet("LINUX_PVT_LTD_SF"),
 				commonFunc.getDataFromTestDataSheet("RoundOffValue"));
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.hardWait(1000);
@@ -5845,7 +5841,8 @@ public class PurchaseBillsFunctionsGetDocument {
 				commonFunc.getDataFromTestDataSheet("LocalPurchaseBillST"));
 		commonFunc.hardWait(1000);
 		ValidateHeaderDetails();
-		VerifyToValidateBeforePriceDeviationForLineLevelForStocktransferType(webDB.getDataFromProperties("StockTransferAddLocalRCM"));
+		VerifyToValidateBeforePriceDeviationForLineLevelForStocktransferType(
+				webDB.getDataFromProperties("StockTransferAddLocalRCM"));
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.hardWait(1000);
 //		VerifyToClickReferenceFieldAndClickRcmFlag(webDB.getDataFromProperties("StocktransferLC"));
@@ -5861,11 +5858,13 @@ public class PurchaseBillsFunctionsGetDocument {
 //				webDB.getDataFromProperties("StockTransferAddLocalRCM"));
 //		commonFunc.checkRefreshCellsDisappear();
 //		commonFunc.hardWait(1000);
-		VerifytoPutPriceDeviationForStocktransferTypeForCommonStocktransfer(webDB.getDataFromProperties("StockTransferAddLocalRCM"));
+		VerifytoPutPriceDeviationForStocktransferTypeForCommonStocktransfer(
+				webDB.getDataFromProperties("StockTransferAddLocalRCM"));
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.hardWait(1000);
 //		VerifyToValidateAfterPriceDeviationForStockTransferType(webDB.getDataFromProperties("StockTransferAddLocalRCM"));
-		VerifyToValidateAfterPriceDeviationForStockTransferTypeCommon(webDB.getDataFromProperties("StockTransferAddLocalRCM"));
+		VerifyToValidateAfterPriceDeviationForStockTransferTypeCommon(
+				webDB.getDataFromProperties("StockTransferAddLocalRCM"));
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.hardWait(1000);
 		verifyAddTheItemBasedOnTypeForStockTransfer(webDB.getDataFromProperties("StockTransferAddLocalRCM"));
@@ -6004,7 +6003,8 @@ public class PurchaseBillsFunctionsGetDocument {
 				commonFunc.getDataFromTestDataSheet("InterStatePurchaseBillST"));
 		commonFunc.hardWait(1000);
 		ValidateHeaderDetails();
-		VerifyToValidateBeforePriceDeviationForLineLevelForStocktransferType(webDB.getDataFromProperties("StockTransferAddIterstateEX"));
+		VerifyToValidateBeforePriceDeviationForLineLevelForStocktransferType(
+				webDB.getDataFromProperties("StockTransferAddIterstateEX"));
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.hardWait(1000);
 //		VerifyToClickReferenceFieldAndClickRcmFlag(webDB.getDataFromProperties("StocktransferLC"));
@@ -6021,11 +6021,13 @@ public class PurchaseBillsFunctionsGetDocument {
 //				webDB.getDataFromProperties("StockTransferAddLocalRCM"));
 //		commonFunc.checkRefreshCellsDisappear();
 //		commonFunc.hardWait(1000);
-		VerifytoPutPriceDeviationForStocktransferTypeForCommonStocktransfer(webDB.getDataFromProperties("StockTransferAddIterstateEX"));
+		VerifytoPutPriceDeviationForStocktransferTypeForCommonStocktransfer(
+				webDB.getDataFromProperties("StockTransferAddIterstateEX"));
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.hardWait(1000);
 //		VerifyToValidateAfterPriceDeviationForStockTransferType(webDB.getDataFromProperties("StockTransferAddLocalRCM"));
-		VerifyToValidateAfterPriceDeviationForStockTransferTypeCommon(webDB.getDataFromProperties("StockTransferAddIterstateEX"));
+		VerifyToValidateAfterPriceDeviationForStockTransferTypeCommon(
+				webDB.getDataFromProperties("StockTransferAddIterstateEX"));
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.hardWait(1000);
 		verifyAddTheItemBasedOnTypeForStockTransfer(webDB.getDataFromProperties("StockTransferAddIterstateEX"));
@@ -6078,7 +6080,7 @@ public class PurchaseBillsFunctionsGetDocument {
 		flag = commonFunc.logoutUser();
 //		VerifyToAfterWriteTheExcelValueInNumberRcmField(webDB.getDataFromProperties("StocktransferLCRCM"));
 //		VerifyToAfterWriteTheExcelValueInNumberRcmField(webDB.getDataFromProperties("StockTransferAddLocalRCM"));
-	
+
 		assertTrue(flag);
 	}
 
@@ -6091,8 +6093,113 @@ public class PurchaseBillsFunctionsGetDocument {
 	 */
 	public void verifyToCreateRegisteredSupplierWithInterstateGstAgainstStockTransferWithDeviationAndExpensesAccountStockitemServiceitemAndChargeItem()
 			throws Exception {
+//		grnPageFunc.PoToGrnStockTransferRateContractSameUomWithAndWithoutInspectionForLocalPurchaseBill(
+//				webDB.getDataFromProperties("StocktransferInterstate"));
+//		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+//				"PremUsername");
+//		commonFunc.navigateToFinancialPurchaseBill();
+//		VerifyToCreateBillBookingDocumentFromPendingStocktransferDocument(VariableHandler.getGrnDocNumber(),
+//				commonFunc.getDataFromTestDataSheet("InterStatePurchaseBillST"));
+//		commonFunc.hardWait(1000);
+//		ValidateHeaderDetails();
+//		VerifyToValidateBeforePriceDeviationForLineLevel(webDB.getDataFromProperties("StocktransferInterstate"));
+//		commonFunc.checkRefreshCellsDisappear();
+//		verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(
+//				webDB.getDataFromProperties("StocktransferInterstate"));
+//		commonFunc.checkRefreshCellsDisappear();
+//		commonFunc.hardWait(1000);
+//		verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(
+//				webDB.getDataFromProperties("StockTransferAddIterstateEX"));
+//		VerifytoPutPriceDeviationForStocktransferType(webDB.getDataFromProperties("StocktransferInterstate"));
+//		commonFunc.checkRefreshCellsDisappear();
+//		commonFunc.hardWait(1000);
+//		VerifyToValidateAfterPriceDeviation(webDB.getDataFromProperties("StocktransferInterstate"));
+//		commonFunc.checkRefreshCellsDisappear();
+//		commonFunc.hardWait(1000);
+//		verifyAddTheItemBasedOnTypeForStockTransfer(webDB.getDataFromProperties("StockTransferAddIterstateEX"));
+//		commonFunc.checkRefreshCellsDisappear();
+//		commonFunc.hardWait(1000);
+////		VerifyToValidateAfterAddTheItemToHeaderAmountForPurchaseBillStocktransferType(webDB.getDataFromProperties("StockTransferAddIterstateEX"));
+//		VerifyToClickCreateJournalButton();
+//		commonFunc.checkRefreshCellsDisappear();
+//		commonFunc.hardWait(1000);
+//		VerifyToValidateRoundOffAmountForStockTransferType(webDB.getDataFromProperties("StockTransferAddIterstateEX"));
+//		commonFunc.checkRefreshCellsDisappear();
+//		commonFunc.hardWait(1000);
+//		VerifyToValidateRoundOffAmountForHeaderValueForStockTransferType(
+//				webDB.getDataFromProperties("StockTransferAddIterstateEX"));
+//		VerifyToClickPostButton();
+//		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+//		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPbNumber(),
+//				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+//				System.getProperty("HariUsername"));
+//		flag = commonFunc.logoutUser();
+//		assertTrue(flag);
+
+//		try {
+//			grnPageFunc
+//					.poToGRNStockTransferUserDefinedSameStockandSupplierUOMWithAndWithoutInspectionInterStateSupplier(
+//							webDB.getDataFromProperties("StockTransferGenInterItemType"));
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+//				"Sathi Ganesh");
+//		commonFunc.navigateToFinancialPurchaseBill();
+//		VerifyToCreateBillBookingDocumentFromPendingStocktransferDocument(VariableHandler.getGrnDocNumber(),
+//				commonFunc.getDataFromTestDataSheet("InvoicePfxForStockTransfer"));
+//		// VariableHandler.getGrnDocNumber()
+////		VerifyToClickReferenceFieldAndClickRcmFlag();
+//		VerifytoPutPriceDeviationForStocktransferType(webDB.getDataFromProperties("StockTransferGenInterItemType"));
+//		verifyAddTheItemBasedOnTypeForStockTransfer(webDB.getDataFromProperties("StockTransferGenInterItemType"));
+//		verifyCreateJournalAndPost();
+//		waitingForApproval(commonFunc.getDataFromTestDataSheet("AshokValue"));
+//		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPbNumber(),
+//				webDB.getDataFromProperties("AshokEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+//				System.getProperty("AshokUsername"));
+//		flag = commonFunc.logoutUser();
+//		assertTrue(flag);
 		grnPageFunc.PoToGrnStockTransferRateContractSameUomWithAndWithoutInspectionForLocalPurchaseBill(
-				webDB.getDataFromProperties("StocktransferInterstate"));
+				webDB.getDataFromProperties("StockTransferAddIterstateEX"));
+//		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+//				"PremUsername");
+//		commonFunc.navigateToFinancialPurchaseBill();
+//		VerifyToCreateBillBookingDocumentFromPendingStocktransferDocument(VariableHandler.getGrnDocNumber(),
+//				commonFunc.getDataFromTestDataSheet("InterStatePurchaseBillST"));
+//		// VariableHandler.getGrnDocNumber()
+////		VerifyToClickReferenceFieldAndClickRcmFlag();
+//		commonFunc.hardWait(1000);
+//		ValidateHeaderDetails();
+//		VerifyToValidateBeforePriceDeviationForLineLevel(webDB.getDataFromProperties("StocktransferInterstate"));
+//		commonFunc.checkRefreshCellsDisappear();
+//		verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(
+//				webDB.getDataFromProperties("StocktransferInterstate"));
+//		verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(
+//				webDB.getDataFromProperties("StockTransferAddIterstateEX"));
+//		commonFunc.checkRefreshCellsDisappear();
+//		commonFunc.hardWait(1000);
+//		VerifytoPutPriceDeviationForStocktransferType(webDB.getDataFromProperties("StocktransferInterstate"));
+//		commonFunc.checkRefreshCellsDisappear();
+//		// VerifyToValidateAfterPriceDeviation(webDB.getDataFromProperties("StocktransferLC"));
+//		VerifyToValidateAfterPriceDeviationForStockTransferType(webDB.getDataFromProperties("StocktransferInterstate"));
+//		verifyAddTheItemBasedOnTypeForStockTransfer(webDB.getDataFromProperties("StockTransferAddIterstateEX"));
+////		verifyCreateJournalAndPost();
+//		VerifyToClickCreateJournalButton();
+//		commonFunc.checkRefreshCellsDisappear();
+//		commonFunc.hardWait(1000);
+//		VerifyToValidateRoundOffAmountForStockTransferType(webDB.getDataFromProperties("StockTransferAddIterstateEX"));
+//		commonFunc.checkRefreshCellsDisappear();
+//		commonFunc.hardWait(1000);
+//		VerifyToValidateRoundOffAmountForHeaderValueForStockTransferType(
+//				webDB.getDataFromProperties("StockTransferAddIterstateEX"));
+//		commonFunc.checkRefreshCellsDisappear();
+//		commonFunc.hardWait(1000);
+//		VerifyToClickPostButton();
+//		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+//		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPbNumber(),
+//				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+//				System.getProperty("HariUsername"));
+//		flag = commonFunc.logoutUser();
 		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
 				"PremUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
@@ -6100,39 +6207,86 @@ public class PurchaseBillsFunctionsGetDocument {
 				commonFunc.getDataFromTestDataSheet("InterStatePurchaseBillST"));
 		commonFunc.hardWait(1000);
 		ValidateHeaderDetails();
-		VerifyToValidateBeforePriceDeviationForLineLevel(webDB.getDataFromProperties("StocktransferInterstate"));
+		VerifyToValidateBeforePriceDeviationForLineLevelForStocktransferType(
+				webDB.getDataFromProperties("StockTransferAddIterstateEX"));
 		commonFunc.checkRefreshCellsDisappear();
-		verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(
-				webDB.getDataFromProperties("StocktransferInterstate"));
+		commonFunc.hardWait(1000);
+//		VerifyToClickReferenceFieldAndClickRcmFlag(webDB.getDataFromProperties("StocktransferLC"));
+//		VerifyToWriteExcelValue(webDB.getDataFromProperties("StockTransferAddLocalRCM"),
+//				webDB.getDataFromProperties("StockTransferAddLocalRCM"));
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.hardWait(1000);
 		verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(
 				webDB.getDataFromProperties("StockTransferAddIterstateEX"));
-		VerifytoPutPriceDeviationForStocktransferType(webDB.getDataFromProperties("StocktransferInterstate"));
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.hardWait(1000);
-		VerifyToValidateAfterPriceDeviation(webDB.getDataFromProperties("StocktransferInterstate"));
+//		verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument
+//		verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(
+//				webDB.getDataFromProperties("StockTransferAddLocalRCM"));
+//		commonFunc.checkRefreshCellsDisappear();
+//		commonFunc.hardWait(1000);
+		VerifytoPutPriceDeviationForStocktransferTypeForCommonStocktransfer(
+				webDB.getDataFromProperties("StockTransferAddIterstateEX"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.hardWait(1000);
+//		VerifyToValidateAfterPriceDeviationForStockTransferType(webDB.getDataFromProperties("StockTransferAddLocalRCM"));
+		VerifyToValidateAfterPriceDeviationForStockTransferTypeCommon(
+				webDB.getDataFromProperties("StockTransferAddIterstateEX"));
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.hardWait(1000);
 		verifyAddTheItemBasedOnTypeForStockTransfer(webDB.getDataFromProperties("StockTransferAddIterstateEX"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.hardWait(1000);
-//		VerifyToValidateAfterAddTheItemToHeaderAmountForPurchaseBillStocktransferType(webDB.getDataFromProperties("StockTransferAddIterstateEX"));
+//		VerifyToClickCreateJournalButton();
+//		commonFunc.checkRefreshCellsDisappear();
+//		commonFunc.hardWait(1000);
+//		VerifyToValidateRoundOffAmountForStockTransferType(webDB.getDataFromProperties("StockTransferAddLocalRCM"));
+//		commonFunc.checkRefreshCellsDisappear();
+//		commonFunc.hardWait(1000);
+//		VerifyToValidateRoundOffAmountForHeaderValueForStockTransferType(
+//				webDB.getDataFromProperties("StockTransferAddLocalRCM"));
+//		VerifyToClickPostButton();
 		VerifyToClickCreateJournalButton();
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.hardWait(1000);
-		VerifyToValidateRoundOffAmountForStockTransferType(webDB.getDataFromProperties("StockTransferAddIterstateEX"));
+		VerifyToValidateAfterAddTheItemToHeaderAmountForPurchaseBillStocktransferType(
+				webDB.getDataFromProperties("StockTransferAddIterstateEX"));
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.hardWait(1000);
+		verifyToValiadteJournalPartForStocktransaferType(webDB.getDataFromProperties("StockTransferAddIterstateEX"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.hardWait(1000);
+		verifyToValiadteJournalDetailsPartForStocktransaferAllTypeSupplierCommon(
+				webDB.getDataFromProperties("StockTransferAddIterstateEX"),
+				commonFunc.getDataFromTestDataSheet("INTERSTATE_REGISTERED"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.hardWait(1000);
+		verifyToValiadteJournalDetailPartForAccuralAccountStocktransaferTypeLocalSupplierForCommonWithRoundOff(
+				webDB.getDataFromProperties("StockTransferAddIterstateEX"),
+				commonFunc.getDataFromTestDataSheet("BENNY_ASSOCIATES"),
+				commonFunc.getDataFromTestDataSheet("RoundOffValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.hardWait(1000);
+		System.out.println("100");
+		VerifyToValidateRoundOffAmountForDirectStockTransferType(
+				webDB.getDataFromProperties("StockTransferAddIterstateEX"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.hardWait(2000);
+		System.out.println("101");
 		VerifyToValidateRoundOffAmountForHeaderValueForStockTransferType(
 				webDB.getDataFromProperties("StockTransferAddIterstateEX"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.hardWait(1000);
 		VerifyToClickPostButton();
 		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPbNumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		flag = commonFunc.logoutUser();
+//		VerifyToAfterWriteTheExcelValueInNumberRcmField(webDB.getDataFromProperties("StocktransferLCRCM"));
+//		VerifyToAfterWriteTheExcelValueInNumberRcmField(webDB.getDataFromProperties("StockTransferAddLocalRCM"));
+
 		assertTrue(flag);
+
 	}
 
 	/**
@@ -6144,8 +6298,149 @@ public class PurchaseBillsFunctionsGetDocument {
 	 */
 	public void verifyToCreateRegisteredSupplierWithInterstateGstAgainstStockTransferWithoutDeviationStockItemServiceItemAndChargeItem()
 			throws Exception {
+//		grnPageFunc.PoToGrnStockTransferRateContractSameUomWithAndWithoutInspectionForLocalPurchaseBill(
+//				webDB.getDataFromProperties("StocktransferInterstate"));
+//		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+//				"PremUsername");
+//		commonFunc.navigateToFinancialPurchaseBill();
+//		VerifyToCreateBillBookingDocumentFromPendingStocktransferDocument(VariableHandler.getGrnDocNumber(),
+//				commonFunc.getDataFromTestDataSheet("InterStatePurchaseBillST"));
+//		commonFunc.hardWait(1000);
+//		ValidateHeaderDetails();
+//		VerifyToValidateBeforePriceDeviationForLineLevel(webDB.getDataFromProperties("StocktransferInterstate"));
+//		commonFunc.checkRefreshCellsDisappear();
+//		verifyTowriteGrnPriceToWriteInExcelForPurchasebillDocument(
+//				webDB.getDataFromProperties("StocktransferInterstate"));
+//		commonFunc.checkRefreshCellsDisappear();
+//		commonFunc.hardWait(1000);
+//		verifyTowriteGrnPriceToWriteInExcelForPurchasebillDocument(
+//				webDB.getDataFromProperties("StockTransferAddIterstateEX"));
+//		verifyAddTheItemBasedOnTypeForStockTransfer(webDB.getDataFromProperties("StockTransferAddIterstateEX"));
+//		commonFunc.checkRefreshCellsDisappear();
+//		commonFunc.hardWait(1000);
+//		VerifyToClickCreateJournalButton();
+//		commonFunc.checkRefreshCellsDisappear();
+//		commonFunc.hardWait(1000);
+//		VerifyToValidateRoundOffAmountForStockTransferType(webDB.getDataFromProperties("StockTransferAddIterstateEX"));
+//		commonFunc.checkRefreshCellsDisappear();
+//		commonFunc.hardWait(1000);
+//		VerifyToValidateRoundOffAmountForHeaderValueForStockTransferType(
+//				webDB.getDataFromProperties("StockTransferAddIterstateEX"));
+//		VerifyToClickPostButton();
+//		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+//		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPbNumber(),
+//				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+//				System.getProperty("HariUsername"));
+//		flag = commonFunc.logoutUser();
+//		assertTrue(flag);
+
+//	grnPageFunc.PoToGrnStockTransferRateContractSameUomWithAndWithoutInspectionForLocalPurchaseBill(
+//			webDB.getDataFromProperties("StocktransferInterstate"));
+//	commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+//			"PremUsername");
+//	commonFunc.navigateToFinancialPurchaseBill();
+//	VerifyToCreateBillBookingDocumentFromPendingStocktransferDocument(VariableHandler.getGrnDocNumber(),
+//			commonFunc.getDataFromTestDataSheet("InterStatePurchaseBillST"));
+//	commonFunc.hardWait(1000);
+//	ValidateHeaderDetails();
+//	VerifyToValidateBeforePriceDeviationForLineLevel(webDB.getDataFromProperties("StocktransferInterstate"));
+//	commonFunc.checkRefreshCellsDisappear();
+//	verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(
+//			webDB.getDataFromProperties("StocktransferInterstate"));
+//	commonFunc.checkRefreshCellsDisappear();
+//	commonFunc.hardWait(1000);
+//	verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(
+//			webDB.getDataFromProperties("StockTransferAddIterstateEX"));
+//	VerifytoPutPriceDeviationForStocktransferType(webDB.getDataFromProperties("StocktransferInterstate"));
+//	commonFunc.checkRefreshCellsDisappear();
+//	commonFunc.hardWait(1000);
+//	VerifyToValidateAfterPriceDeviation(webDB.getDataFromProperties("StocktransferInterstate"));
+//	commonFunc.checkRefreshCellsDisappear();
+//	commonFunc.hardWait(1000);
+//	verifyAddTheItemBasedOnTypeForStockTransfer(webDB.getDataFromProperties("StockTransferAddIterstateEX"));
+//	commonFunc.checkRefreshCellsDisappear();
+//	commonFunc.hardWait(1000);
+////	VerifyToValidateAfterAddTheItemToHeaderAmountForPurchaseBillStocktransferType(webDB.getDataFromProperties("StockTransferAddIterstateEX"));
+//	VerifyToClickCreateJournalButton();
+//	commonFunc.checkRefreshCellsDisappear();
+//	commonFunc.hardWait(1000);
+//	VerifyToValidateRoundOffAmountForStockTransferType(webDB.getDataFromProperties("StockTransferAddIterstateEX"));
+//	commonFunc.checkRefreshCellsDisappear();
+//	commonFunc.hardWait(1000);
+//	VerifyToValidateRoundOffAmountForHeaderValueForStockTransferType(
+//			webDB.getDataFromProperties("StockTransferAddIterstateEX"));
+//	VerifyToClickPostButton();
+//	waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+//	commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPbNumber(),
+//			webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+//			System.getProperty("HariUsername"));
+//	flag = commonFunc.logoutUser();
+//	assertTrue(flag);
+
+//	try {
+//		grnPageFunc
+//				.poToGRNStockTransferUserDefinedSameStockandSupplierUOMWithAndWithoutInspectionInterStateSupplier(
+//						webDB.getDataFromProperties("StockTransferGenInterItemType"));
+//	} catch (Exception e) {
+//		e.printStackTrace();
+//	}
+//	commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+//			"Sathi Ganesh");
+//	commonFunc.navigateToFinancialPurchaseBill();
+//	VerifyToCreateBillBookingDocumentFromPendingStocktransferDocument(VariableHandler.getGrnDocNumber(),
+//			commonFunc.getDataFromTestDataSheet("InvoicePfxForStockTransfer"));
+//	// VariableHandler.getGrnDocNumber()
+////	VerifyToClickReferenceFieldAndClickRcmFlag();
+//	VerifytoPutPriceDeviationForStocktransferType(webDB.getDataFromProperties("StockTransferGenInterItemType"));
+//	verifyAddTheItemBasedOnTypeForStockTransfer(webDB.getDataFromProperties("StockTransferGenInterItemType"));
+//	verifyCreateJournalAndPost();
+//	waitingForApproval(commonFunc.getDataFromTestDataSheet("AshokValue"));
+//	commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPbNumber(),
+//			webDB.getDataFromProperties("AshokEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+//			System.getProperty("AshokUsername"));
+//	flag = commonFunc.logoutUser();
+//	assertTrue(flag);
 		grnPageFunc.PoToGrnStockTransferRateContractSameUomWithAndWithoutInspectionForLocalPurchaseBill(
-				webDB.getDataFromProperties("StocktransferInterstate"));
+				webDB.getDataFromProperties("StockTransferAddIterstateEX"));
+//	commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+//			"PremUsername");
+//	commonFunc.navigateToFinancialPurchaseBill();
+//	VerifyToCreateBillBookingDocumentFromPendingStocktransferDocument(VariableHandler.getGrnDocNumber(),
+//			commonFunc.getDataFromTestDataSheet("InterStatePurchaseBillST"));
+//	// VariableHandler.getGrnDocNumber()
+////	VerifyToClickReferenceFieldAndClickRcmFlag();
+//	commonFunc.hardWait(1000);
+//	ValidateHeaderDetails();
+//	VerifyToValidateBeforePriceDeviationForLineLevel(webDB.getDataFromProperties("StocktransferInterstate"));
+//	commonFunc.checkRefreshCellsDisappear();
+//	verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(
+//			webDB.getDataFromProperties("StocktransferInterstate"));
+//	verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(
+//			webDB.getDataFromProperties("StockTransferAddIterstateEX"));
+//	commonFunc.checkRefreshCellsDisappear();
+//	commonFunc.hardWait(1000);
+//	VerifytoPutPriceDeviationForStocktransferType(webDB.getDataFromProperties("StocktransferInterstate"));
+//	commonFunc.checkRefreshCellsDisappear();
+//	// VerifyToValidateAfterPriceDeviation(webDB.getDataFromProperties("StocktransferLC"));
+//	VerifyToValidateAfterPriceDeviationForStockTransferType(webDB.getDataFromProperties("StocktransferInterstate"));
+//	verifyAddTheItemBasedOnTypeForStockTransfer(webDB.getDataFromProperties("StockTransferAddIterstateEX"));
+////	verifyCreateJournalAndPost();
+//	VerifyToClickCreateJournalButton();
+//	commonFunc.checkRefreshCellsDisappear();
+//	commonFunc.hardWait(1000);
+//	VerifyToValidateRoundOffAmountForStockTransferType(webDB.getDataFromProperties("StockTransferAddIterstateEX"));
+//	commonFunc.checkRefreshCellsDisappear();
+//	commonFunc.hardWait(1000);
+//	VerifyToValidateRoundOffAmountForHeaderValueForStockTransferType(
+//			webDB.getDataFromProperties("StockTransferAddIterstateEX"));
+//	commonFunc.checkRefreshCellsDisappear();
+//	commonFunc.hardWait(1000);
+//	VerifyToClickPostButton();
+//	waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+//	commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPbNumber(),
+//			webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+//			System.getProperty("HariUsername"));
+//	flag = commonFunc.logoutUser();
 		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
 				"PremUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
@@ -6153,32 +6448,85 @@ public class PurchaseBillsFunctionsGetDocument {
 				commonFunc.getDataFromTestDataSheet("InterStatePurchaseBillST"));
 		commonFunc.hardWait(1000);
 		ValidateHeaderDetails();
-		VerifyToValidateBeforePriceDeviationForLineLevel(webDB.getDataFromProperties("StocktransferInterstate"));
-		commonFunc.checkRefreshCellsDisappear();
-		verifyTowriteGrnPriceToWriteInExcelForPurchasebillDocument(
-				webDB.getDataFromProperties("StocktransferInterstate"));
+		VerifyToValidateBeforePriceDeviationForLineLevelForStocktransferType(
+				webDB.getDataFromProperties("StockTransferAddIterstateEX"));
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.hardWait(1000);
-		verifyTowriteGrnPriceToWriteInExcelForPurchasebillDocument(
+//	VerifyToClickReferenceFieldAndClickRcmFlag(webDB.getDataFromProperties("StocktransferLC"));
+//	VerifyToWriteExcelValue(webDB.getDataFromProperties("StockTransferAddLocalRCM"),
+//			webDB.getDataFromProperties("StockTransferAddLocalRCM"));
+//	commonFunc.checkRefreshCellsDisappear();
+//	commonFunc.hardWait(1000);
+//	verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(
+//			webDB.getDataFromProperties("StockTransferAddIterstateEX"));
+//	commonFunc.checkRefreshCellsDisappear();
+//	commonFunc.hardWait(1000);
+//	verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument
+//	verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(
+//			webDB.getDataFromProperties("StockTransferAddLocalRCM"));
+//	commonFunc.checkRefreshCellsDisappear();
+//	commonFunc.hardWait(1000);
+//	VerifytoPutPriceDeviationForStocktransferTypeForCommonStocktransfer(webDB.getDataFromProperties("StockTransferAddIterstateEX"));
+//	commonFunc.checkRefreshCellsDisappear();
+//	commonFunc.hardWait(1000);
+//	VerifyToValidateAfterPriceDeviationForStockTransferType(webDB.getDataFromProperties("StockTransferAddLocalRCM"));
+		VerifyToValidateAfterPriceDeviationForStockTransferTypeCommon(
 				webDB.getDataFromProperties("StockTransferAddIterstateEX"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.hardWait(1000);
 		verifyAddTheItemBasedOnTypeForStockTransfer(webDB.getDataFromProperties("StockTransferAddIterstateEX"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.hardWait(1000);
+//	VerifyToClickCreateJournalButton();
+//	commonFunc.checkRefreshCellsDisappear();
+//	commonFunc.hardWait(1000);
+//	VerifyToValidateRoundOffAmountForStockTransferType(webDB.getDataFromProperties("StockTransferAddLocalRCM"));
+//	commonFunc.checkRefreshCellsDisappear();
+//	commonFunc.hardWait(1000);
+//	VerifyToValidateRoundOffAmountForHeaderValueForStockTransferType(
+//			webDB.getDataFromProperties("StockTransferAddLocalRCM"));
+//	VerifyToClickPostButton();
 		VerifyToClickCreateJournalButton();
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.hardWait(1000);
-		VerifyToValidateRoundOffAmountForStockTransferType(webDB.getDataFromProperties("StockTransferAddIterstateEX"));
+		VerifyToValidateAfterAddTheItemToHeaderAmountForPurchaseBillStocktransferType(
+				webDB.getDataFromProperties("StockTransferAddIterstateEX"));
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.hardWait(1000);
+		verifyToValiadteJournalPartForStocktransaferType(webDB.getDataFromProperties("StockTransferAddIterstateEX"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.hardWait(1000);
+		verifyToValiadteJournalDetailsPartForStocktransaferAllTypeSupplierCommon(
+				webDB.getDataFromProperties("StockTransferAddIterstateEX"),
+				commonFunc.getDataFromTestDataSheet("INTERSTATE_REGISTERED"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.hardWait(1000);
+		verifyToValiadteJournalDetailPartForAccuralAccountStocktransaferTypeLocalSupplierForCommonWithRoundOff(
+				webDB.getDataFromProperties("StockTransferAddIterstateEX"),
+				commonFunc.getDataFromTestDataSheet("BENNY_ASSOCIATES"),
+				commonFunc.getDataFromTestDataSheet("RoundOffValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.hardWait(1000);
+		System.out.println("100");
+		VerifyToValidateRoundOffAmountForDirectStockTransferType(
+				webDB.getDataFromProperties("StockTransferAddIterstateEX"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.hardWait(2000);
+		System.out.println("101");
 		VerifyToValidateRoundOffAmountForHeaderValueForStockTransferType(
 				webDB.getDataFromProperties("StockTransferAddIterstateEX"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.hardWait(1000);
 		VerifyToClickPostButton();
 		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPbNumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		flag = commonFunc.logoutUser();
+//	VerifyToAfterWriteTheExcelValueInNumberRcmField(webDB.getDataFromProperties("StocktransferLCRCM"));
+//	VerifyToAfterWriteTheExcelValueInNumberRcmField(webDB.getDataFromProperties("StockTransferAddLocalRCM"));
+
 		assertTrue(flag);
+
 	}
 
 	/**
@@ -6190,22 +6538,83 @@ public class PurchaseBillsFunctionsGetDocument {
 	 */
 	public void verifyToCreateRegisteredSupplierWithInterstateGstAllowRCMTaxAgainstStockTransferWithDeviationStockitemserviceItemAndChargeItem()
 			throws Exception {
-		VerifyToAfterWriteTheExcelValueInNumberRcmField(webDB.getDataFromProperties("StocktransferISForRCM"));
+//		VerifyToAfterWriteTheExcelValueInNumberRcmField(webDB.getDataFromProperties("StocktransferISForRCM"));
 		VerifyToAfterWriteTheExcelValueInNumberRcmField(webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
 		grnPageFunc.PoToGrnStockTransferRateContractSameUomWithAndWithoutInspectionForLocalPurchaseBill(
-				webDB.getDataFromProperties("StocktransferISForRCM"));
+				webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
+//		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+//				"PremUsername");
+//		commonFunc.navigateToFinancialPurchaseBill();
+//		VerifyToCreateBillBookingDocumentFromPendingStocktransferDocument(VariableHandler.getGrnDocNumber(),
+//				commonFunc.getDataFromTestDataSheet("InterStatePurchaseBillST"));
+//		// VariableHandler.getGrnDocNumber()
+//		commonFunc.hardWait(1000);
+//		ValidateHeaderDetails();
+//		VerifyToValidateBeforePriceDeviationForLineLevel(webDB.getDataFromProperties("StocktransferISForRCM"));
+//		commonFunc.checkRefreshCellsDisappear();
+////		VerifyToClickReferenceFieldAndClickRcmFlag(webDB.getDataFromProperties("StocktransferISForRCM"));
+//		VerifyToWriteExcelValue(webDB.getDataFromProperties("StocktransferISForRCM"),
+//				webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
+//		commonFunc.checkRefreshCellsDisappear();
+//		commonFunc.hardWait(1000);
+//		verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(
+//				webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
+//		commonFunc.checkRefreshCellsDisappear();
+//		commonFunc.hardWait(1000);
+//		VerifytoPutPriceDeviationForStocktransferType(webDB.getDataFromProperties("StocktransferISForRCM"));
+//		commonFunc.checkRefreshCellsDisappear();
+//		commonFunc.hardWait(1000);
+//		VerifyToValidateAfterPriceDeviation(webDB.getDataFromProperties("StocktransferISForRCM"));
+//		commonFunc.checkRefreshCellsDisappear();
+//		commonFunc.hardWait(1000);
+//		VerifyToValidateAfterPriceDeviationForStockTransferType(webDB.getDataFromProperties("StocktransferISForRCM"));
+//		commonFunc.checkRefreshCellsDisappear();
+//		commonFunc.hardWait(1000);
+//		verifyAddTheItemBasedOnTypeForStockTransfer(webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
+//////		verifyCreateJournalAndPost();
+//////		VerifyToClickCreateJournalButton();
+//		commonFunc.checkRefreshCellsDisappear();
+//		commonFunc.hardWait(1000);
+////		VerifyToValidateAfterAddTheItemToHeaderAmountForPurchaseBillStocktransferType(
+////				webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
+////		commonFunc.checkRefreshCellsDisappear();
+////		commonFunc.hardWait(1000);
+////		VerifyToClickPostButton();
+////		commonFunc.checkRefreshCellsDisappear();
+////		commonFunc.hardWait(1000);
+//		VerifyToClickCreateJournalButton();
+//		commonFunc.checkRefreshCellsDisappear();
+//		commonFunc.hardWait(1000);
+//		VerifyToValidateRoundOffAmountForStockTransferType(webDB.getDataFromProperties("StocktransferISForRCM"));
+//		commonFunc.checkRefreshCellsDisappear();
+//		commonFunc.hardWait(1000);
+//		VerifyToValidateRoundOffAmountForHeaderValueForStockTransferType(
+//				webDB.getDataFromProperties("StocktransferISForRCM"));
+//		VerifyToClickPostButton();
+//		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+//		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPbNumber(),
+//				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+//				System.getProperty("HariUsername"));
+//		flag = commonFunc.logoutUser();
+////		VerifyToAfterWriteTheExcelValueInNumberRcmField(webDB.getDataFromProperties("StocktransferISForRCM"));
+//		VerifyToAfterWriteTheExcelValueInNumberRcmField(webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
+//		StockTransferAddIterstateEXWRCM
+//		VerifyToAfterWriteTheExcelValueInNumberRcmField(webDB.getDataFromProperties("StockTransferAddLocalRCM"));
+//		grnPageFunc.PoToGrnStockTransferUserDefinedSameStockAndSupplierUomWithAndWithoutInspectionForLocalSupplier(
+//				webDB.getDataFromProperties("StockTransferAddLocalRCM"));
 		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
 				"PremUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		VerifyToCreateBillBookingDocumentFromPendingStocktransferDocument(VariableHandler.getGrnDocNumber(),
 				commonFunc.getDataFromTestDataSheet("InterStatePurchaseBillST"));
-		// VariableHandler.getGrnDocNumber()
 		commonFunc.hardWait(1000);
 		ValidateHeaderDetails();
-		VerifyToValidateBeforePriceDeviationForLineLevel(webDB.getDataFromProperties("StocktransferISForRCM"));
+		VerifyToValidateBeforePriceDeviationForLineLevelForStocktransferType(
+				webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
 		commonFunc.checkRefreshCellsDisappear();
-//		VerifyToClickReferenceFieldAndClickRcmFlag(webDB.getDataFromProperties("StocktransferISForRCM"));
-		VerifyToWriteExcelValue(webDB.getDataFromProperties("StocktransferISForRCM"),
+		commonFunc.hardWait(1000);
+//		VerifyToClickReferenceFieldAndClickRcmFlag(webDB.getDataFromProperties("StocktransferLC"));
+		VerifyToWriteExcelValue(webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"),
 				webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.hardWait(1000);
@@ -6213,42 +6622,69 @@ public class PurchaseBillsFunctionsGetDocument {
 				webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.hardWait(1000);
-		VerifytoPutPriceDeviationForStocktransferType(webDB.getDataFromProperties("StocktransferISForRCM"));
+//		verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(
+//				webDB.getDataFromProperties("StockTransferAddLocalRCM"));
+//		commonFunc.checkRefreshCellsDisappear();
+//		commonFunc.hardWait(1000);
+		VerifytoPutPriceDeviationForStocktransferTypeForCommonStocktransfer(
+				webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.hardWait(1000);
-		VerifyToValidateAfterPriceDeviation(webDB.getDataFromProperties("StocktransferISForRCM"));
-		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.hardWait(1000);
-		VerifyToValidateAfterPriceDeviationForStockTransferType(webDB.getDataFromProperties("StocktransferISForRCM"));
+//		VerifyToValidateAfterPriceDeviationForStockTransferType(webDB.getDataFromProperties("StockTransferAddLocalRCM"));
+		VerifyToValidateAfterPriceDeviationForStockTransferTypeCommon(
+				webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.hardWait(1000);
 		verifyAddTheItemBasedOnTypeForStockTransfer(webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
-////		verifyCreateJournalAndPost();
-////		VerifyToClickCreateJournalButton();
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.hardWait(1000);
-//		VerifyToValidateAfterAddTheItemToHeaderAmountForPurchaseBillStocktransferType(
-//				webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
+//		VerifyToClickCreateJournalButton();
 //		commonFunc.checkRefreshCellsDisappear();
 //		commonFunc.hardWait(1000);
+//		VerifyToValidateRoundOffAmountForStockTransferType(webDB.getDataFromProperties("StockTransferAddLocalRCM"));
+//		commonFunc.checkRefreshCellsDisappear();
+//		commonFunc.hardWait(1000);
+//		VerifyToValidateRoundOffAmountForHeaderValueForStockTransferType(
+//				webDB.getDataFromProperties("StockTransferAddLocalRCM"));
 //		VerifyToClickPostButton();
-//		commonFunc.checkRefreshCellsDisappear();
-//		commonFunc.hardWait(1000);
 		VerifyToClickCreateJournalButton();
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.hardWait(1000);
-		VerifyToValidateRoundOffAmountForStockTransferType(webDB.getDataFromProperties("StocktransferISForRCM"));
+		VerifyToValidateAfterAddTheItemToHeaderAmountForPurchaseBillStocktransferType(
+				webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.hardWait(1000);
+		verifyToValiadteJournalPartForStocktransaferType(
+				webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.hardWait(1000);
+		verifyToValiadteJournalDetailsPartForStocktransaferAllTypeSupplierCommon(
+				webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"),
+				commonFunc.getDataFromTestDataSheet("INTERSTATE_UNREGISTERED"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.hardWait(1000);
+		verifyToValiadteJournalDetailPartForAccuralAccountStocktransaferTypeLocalSupplierForCommonWithRoundOff(
+				webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"),
+				commonFunc.getDataFromTestDataSheet("BENNY_ASSOCIATES"),
+				commonFunc.getDataFromTestDataSheet("RoundOffValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.hardWait(1000);
+		System.out.println("100");
+		VerifyToValidateRoundOffAmountForDirectStockTransferType(
+				webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.hardWait(2000);
+		System.out.println("101");
 		VerifyToValidateRoundOffAmountForHeaderValueForStockTransferType(
-				webDB.getDataFromProperties("StocktransferISForRCM"));
+				webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.hardWait(1000);
 		VerifyToClickPostButton();
 		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPbNumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		flag = commonFunc.logoutUser();
-		VerifyToAfterWriteTheExcelValueInNumberRcmField(webDB.getDataFromProperties("StocktransferISForRCM"));
+//		VerifyToAfterWriteTheExcelValueInNumberRcmField(webDB.getDataFromProperties("StocktransferLCRCM"));
 		VerifyToAfterWriteTheExcelValueInNumberRcmField(webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
 		assertTrue(flag);
 	}
@@ -6262,10 +6698,128 @@ public class PurchaseBillsFunctionsGetDocument {
 	 */
 	public void verifyToCreateRegisteredSupplierWithInterstateGstAllowRcmTaxAgainstStockTransferWithDeviationAndExpensesAccountStockItemserviceItemAndChargeItem()
 			throws Exception {
-		VerifyToAfterWriteTheExcelValueInNumberRcmField(webDB.getDataFromProperties("StocktransferISForRCM"));
+//		VerifyToAfterWriteTheExcelValueInNumberRcmField(webDB.getDataFromProperties("StocktransferISForRCM"));
+//		VerifyToAfterWriteTheExcelValueInNumberRcmField(webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
+//		grnPageFunc.PoToGrnStockTransferRateContractSameUomWithAndWithoutInspectionForLocalPurchaseBill(
+//				webDB.getDataFromProperties("StocktransferISForRCM"));
+//		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+//				"PremUsername");
+//		commonFunc.navigateToFinancialPurchaseBill();
+//		VerifyToCreateBillBookingDocumentFromPendingStocktransferDocument(VariableHandler.getGrnDocNumber(),
+//				commonFunc.getDataFromTestDataSheet("InterStatePurchaseBillST"));
+//		commonFunc.hardWait(1000);
+//		ValidateHeaderDetails();
+//		VerifyToValidateBeforePriceDeviationForLineLevel(webDB.getDataFromProperties("StocktransferISForRCM"));
+//		commonFunc.checkRefreshCellsDisappear();
+//		commonFunc.hardWait(1000);
+////		VerifyToClickReferenceFieldAndClickRcmFlag(webDB.getDataFromProperties("StocktransferISForRCM"));
+////		commonFunc.checkRefreshCellsDisappear();
+////		commonFunc.hardWait(1000);
+////		VerifyToWriteExcelValueInNumberRcmField(webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
+//		VerifyToWriteExcelValue(webDB.getDataFromProperties("StocktransferISForRCM"),
+//				webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
+//		commonFunc.checkRefreshCellsDisappear();
+//		commonFunc.hardWait(1000);
+//		verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(
+//				webDB.getDataFromProperties("StocktransferISForRCM"));
+//		commonFunc.checkRefreshCellsDisappear();
+//		commonFunc.hardWait(1000);
+//		verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(
+//				webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
+//		commonFunc.checkRefreshCellsDisappear();
+//		commonFunc.hardWait(1000);
+//		VerifytoPutPriceDeviationForStocktransferType(webDB.getDataFromProperties("StocktransferISForRCM"));
+//		commonFunc.checkRefreshCellsDisappear();
+//		commonFunc.hardWait(1000);
+//		VerifyToValidateAfterPriceDeviation(webDB.getDataFromProperties("StocktransferISForRCM"));
+//		commonFunc.checkRefreshCellsDisappear();
+//		commonFunc.hardWait(1000);
+//		verifyAddTheItemBasedOnTypeForStockTransfer(webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
+//		commonFunc.checkRefreshCellsDisappear();
+//		commonFunc.hardWait(1000);
+//		VerifyToClickCreateJournalButton();
+//		commonFunc.checkRefreshCellsDisappear();
+//		commonFunc.hardWait(1000);
+//		VerifyToValidateRoundOffAmountForStockTransferType(
+//				webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
+//		commonFunc.checkRefreshCellsDisappear();
+//		commonFunc.hardWait(1000);
+//		VerifyToValidateRoundOffAmountForHeaderValueForStockTransferType(
+//				webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
+//		VerifyToClickPostButton();
+//		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+//		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPbNumber(),
+//				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+//				System.getProperty("HariUsername"));
+//		flag = commonFunc.logoutUser();
+//		VerifyToAfterWriteTheExcelValueInNumberRcmField(webDB.getDataFromProperties("StocktransferISForRCM"));
+//		VerifyToAfterWriteTheExcelValueInNumberRcmField(webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
+//		assertTrue(flag);
+
+//	VerifyToAfterWriteTheExcelValueInNumberRcmField(webDB.getDataFromProperties("StocktransferISForRCM"));
 		VerifyToAfterWriteTheExcelValueInNumberRcmField(webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
 		grnPageFunc.PoToGrnStockTransferRateContractSameUomWithAndWithoutInspectionForLocalPurchaseBill(
-				webDB.getDataFromProperties("StocktransferISForRCM"));
+				webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
+//	commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+//			"PremUsername");
+//	commonFunc.navigateToFinancialPurchaseBill();
+//	VerifyToCreateBillBookingDocumentFromPendingStocktransferDocument(VariableHandler.getGrnDocNumber(),
+//			commonFunc.getDataFromTestDataSheet("InterStatePurchaseBillST"));
+//	// VariableHandler.getGrnDocNumber()
+//	commonFunc.hardWait(1000);
+//	ValidateHeaderDetails();
+//	VerifyToValidateBeforePriceDeviationForLineLevel(webDB.getDataFromProperties("StocktransferISForRCM"));
+//	commonFunc.checkRefreshCellsDisappear();
+////	VerifyToClickReferenceFieldAndClickRcmFlag(webDB.getDataFromProperties("StocktransferISForRCM"));
+//	VerifyToWriteExcelValue(webDB.getDataFromProperties("StocktransferISForRCM"),
+//			webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
+//	commonFunc.checkRefreshCellsDisappear();
+//	commonFunc.hardWait(1000);
+//	verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(
+//			webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
+//	commonFunc.checkRefreshCellsDisappear();
+//	commonFunc.hardWait(1000);
+//	VerifytoPutPriceDeviationForStocktransferType(webDB.getDataFromProperties("StocktransferISForRCM"));
+//	commonFunc.checkRefreshCellsDisappear();
+//	commonFunc.hardWait(1000);
+//	VerifyToValidateAfterPriceDeviation(webDB.getDataFromProperties("StocktransferISForRCM"));
+//	commonFunc.checkRefreshCellsDisappear();
+//	commonFunc.hardWait(1000);
+//	VerifyToValidateAfterPriceDeviationForStockTransferType(webDB.getDataFromProperties("StocktransferISForRCM"));
+//	commonFunc.checkRefreshCellsDisappear();
+//	commonFunc.hardWait(1000);
+//	verifyAddTheItemBasedOnTypeForStockTransfer(webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
+//////	verifyCreateJournalAndPost();
+//////	VerifyToClickCreateJournalButton();
+//	commonFunc.checkRefreshCellsDisappear();
+//	commonFunc.hardWait(1000);
+////	VerifyToValidateAfterAddTheItemToHeaderAmountForPurchaseBillStocktransferType(
+////			webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
+////	commonFunc.checkRefreshCellsDisappear();
+////	commonFunc.hardWait(1000);
+////	VerifyToClickPostButton();
+////	commonFunc.checkRefreshCellsDisappear();
+////	commonFunc.hardWait(1000);
+//	VerifyToClickCreateJournalButton();
+//	commonFunc.checkRefreshCellsDisappear();
+//	commonFunc.hardWait(1000);
+//	VerifyToValidateRoundOffAmountForStockTransferType(webDB.getDataFromProperties("StocktransferISForRCM"));
+//	commonFunc.checkRefreshCellsDisappear();
+//	commonFunc.hardWait(1000);
+//	VerifyToValidateRoundOffAmountForHeaderValueForStockTransferType(
+//			webDB.getDataFromProperties("StocktransferISForRCM"));
+//	VerifyToClickPostButton();
+//	waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+//	commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPbNumber(),
+//			webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+//			System.getProperty("HariUsername"));
+//	flag = commonFunc.logoutUser();
+////	VerifyToAfterWriteTheExcelValueInNumberRcmField(webDB.getDataFromProperties("StocktransferISForRCM"));
+//	VerifyToAfterWriteTheExcelValueInNumberRcmField(webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
+//	StockTransferAddIterstateEXWRCM
+//	VerifyToAfterWriteTheExcelValueInNumberRcmField(webDB.getDataFromProperties("StockTransferAddLocalRCM"));
+//	grnPageFunc.PoToGrnStockTransferUserDefinedSameStockAndSupplierUomWithAndWithoutInspectionForLocalSupplier(
+//			webDB.getDataFromProperties("StockTransferAddLocalRCM"));
 		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
 				"PremUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
@@ -6273,50 +6827,82 @@ public class PurchaseBillsFunctionsGetDocument {
 				commonFunc.getDataFromTestDataSheet("InterStatePurchaseBillST"));
 		commonFunc.hardWait(1000);
 		ValidateHeaderDetails();
-		VerifyToValidateBeforePriceDeviationForLineLevel(webDB.getDataFromProperties("StocktransferISForRCM"));
-		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.hardWait(1000);
-//		VerifyToClickReferenceFieldAndClickRcmFlag(webDB.getDataFromProperties("StocktransferISForRCM"));
-//		commonFunc.checkRefreshCellsDisappear();
-//		commonFunc.hardWait(1000);
-//		VerifyToWriteExcelValueInNumberRcmField(webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
-		VerifyToWriteExcelValue(webDB.getDataFromProperties("StocktransferISForRCM"),
+		VerifyToValidateBeforePriceDeviationForLineLevelForStocktransferType(
 				webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.hardWait(1000);
-		verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(
-				webDB.getDataFromProperties("StocktransferISForRCM"));
+//	VerifyToClickReferenceFieldAndClickRcmFlag(webDB.getDataFromProperties("StocktransferLC"));
+		VerifyToWriteExcelValue(webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"),
+				webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.hardWait(1000);
 		verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(
 				webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.hardWait(1000);
-		VerifytoPutPriceDeviationForStocktransferType(webDB.getDataFromProperties("StocktransferISForRCM"));
+//	verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(
+//			webDB.getDataFromProperties("StockTransferAddLocalRCM"));
+//	commonFunc.checkRefreshCellsDisappear();
+//	commonFunc.hardWait(1000);
+		VerifytoPutPriceDeviationForStocktransferTypeForCommonStocktransfer(
+				webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.hardWait(1000);
-		VerifyToValidateAfterPriceDeviation(webDB.getDataFromProperties("StocktransferISForRCM"));
+//	VerifyToValidateAfterPriceDeviationForStockTransferType(webDB.getDataFromProperties("StockTransferAddLocalRCM"));
+		VerifyToValidateAfterPriceDeviationForStockTransferTypeCommon(
+				webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.hardWait(1000);
 		verifyAddTheItemBasedOnTypeForStockTransfer(webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.hardWait(1000);
+//	VerifyToClickCreateJournalButton();
+//	commonFunc.checkRefreshCellsDisappear();
+//	commonFunc.hardWait(1000);
+//	VerifyToValidateRoundOffAmountForStockTransferType(webDB.getDataFromProperties("StockTransferAddLocalRCM"));
+//	commonFunc.checkRefreshCellsDisappear();
+//	commonFunc.hardWait(1000);
+//	VerifyToValidateRoundOffAmountForHeaderValueForStockTransferType(
+//			webDB.getDataFromProperties("StockTransferAddLocalRCM"));
+//	VerifyToClickPostButton();
 		VerifyToClickCreateJournalButton();
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.hardWait(1000);
-		VerifyToValidateRoundOffAmountForStockTransferType(
+		VerifyToValidateAfterAddTheItemToHeaderAmountForPurchaseBillStocktransferType(
 				webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.hardWait(1000);
+		verifyToValiadteJournalPartForStocktransaferType(
+				webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.hardWait(1000);
+		verifyToValiadteJournalDetailsPartForStocktransaferAllTypeSupplierCommon(
+				webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"),
+				commonFunc.getDataFromTestDataSheet("INTERSTATE_UNREGISTERED"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.hardWait(1000);
+		verifyToValiadteJournalDetailPartForAccuralAccountStocktransaferTypeLocalSupplierForCommonWithRoundOff(
+				webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"),
+				commonFunc.getDataFromTestDataSheet("BENNY_ASSOCIATES"),
+				commonFunc.getDataFromTestDataSheet("RoundOffValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.hardWait(1000);
+		System.out.println("100");
+		VerifyToValidateRoundOffAmountForDirectStockTransferType(
+				webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.hardWait(2000);
+		System.out.println("101");
 		VerifyToValidateRoundOffAmountForHeaderValueForStockTransferType(
 				webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.hardWait(1000);
 		VerifyToClickPostButton();
 		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPbNumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		flag = commonFunc.logoutUser();
-		VerifyToAfterWriteTheExcelValueInNumberRcmField(webDB.getDataFromProperties("StocktransferISForRCM"));
+//	VerifyToAfterWriteTheExcelValueInNumberRcmField(webDB.getDataFromProperties("StocktransferLCRCM"));
 		VerifyToAfterWriteTheExcelValueInNumberRcmField(webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
 		assertTrue(flag);
 
@@ -6331,10 +6917,176 @@ public class PurchaseBillsFunctionsGetDocument {
 	 */
 	public void verifyToCreateRegisteredSupplierWithInterstateGstAllowRCMTaxAgainstStockTransferWithoutDeviationStockItemServiceItemAndChargeItem()
 			throws Exception {
-		VerifyToAfterWriteTheExcelValueInNumberRcmField(webDB.getDataFromProperties("StocktransferISForRCM"));
+//		VerifyToAfterWriteTheExcelValueInNumberRcmField(webDB.getDataFromProperties("StocktransferISForRCM"));
+//		VerifyToAfterWriteTheExcelValueInNumberRcmField(webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
+//		grnPageFunc.PoToGrnStockTransferRateContractSameUomWithAndWithoutInspectionForLocalPurchaseBill(
+//				webDB.getDataFromProperties("StocktransferISForRCM"));
+//		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+//				"PremUsername");
+//		commonFunc.navigateToFinancialPurchaseBill();
+//		VerifyToCreateBillBookingDocumentFromPendingStocktransferDocument(VariableHandler.getGrnDocNumber(),
+//				commonFunc.getDataFromTestDataSheet("InterStatePurchaseBillST"));
+//		commonFunc.hardWait(1000);
+//		ValidateHeaderDetails();
+//		VerifyToValidateBeforePriceDeviationForLineLevel(webDB.getDataFromProperties("StocktransferISForRCM"));
+//		commonFunc.checkRefreshCellsDisappear();
+//		verifyTowriteGrnPriceToWriteInExcelForPurchasebillDocument(
+//				webDB.getDataFromProperties("StocktransferISForRCM"));
+//		commonFunc.checkRefreshCellsDisappear();
+//		commonFunc.hardWait(1000);
+//		verifyTowriteGrnPriceToWriteInExcelForPurchasebillDocument(
+//				webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
+//		commonFunc.checkRefreshCellsDisappear();
+//		commonFunc.hardWait(1000);
+//		VerifyToWriteExcelValue(webDB.getDataFromProperties("StocktransferISForRCM"),
+//				webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
+//		commonFunc.checkRefreshCellsDisappear();
+//		commonFunc.hardWait(1000);
+//		verifyAddTheItemBasedOnTypeForStockTransfer(webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
+//		commonFunc.checkRefreshCellsDisappear();
+//		commonFunc.hardWait(1000);
+//		VerifyToClickCreateJournalButton();
+//		commonFunc.checkRefreshCellsDisappear();
+//		commonFunc.hardWait(1000);
+//		VerifyToValidateRoundOffAmountForStockTransferType(
+//				webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
+//		commonFunc.checkRefreshCellsDisappear();
+//		commonFunc.hardWait(1000);
+//		VerifyToValidateRoundOffAmountForHeaderValueForStockTransferType(
+//				webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
+//		VerifyToClickPostButton();
+//		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+//		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPbNumber(),
+//				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+//				System.getProperty("HariUsername"));
+//		flag = commonFunc.logoutUser();
+//		VerifyToAfterWriteTheExcelValueInNumberRcmField(webDB.getDataFromProperties("StocktransferISForRCM"));
+//		VerifyToAfterWriteTheExcelValueInNumberRcmField(webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
+//		assertTrue(flag);
+//
+
+//		VerifyToAfterWriteTheExcelValueInNumberRcmField(webDB.getDataFromProperties("StocktransferISForRCM"));
+//		VerifyToAfterWriteTheExcelValueInNumberRcmField(webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
+//		grnPageFunc.PoToGrnStockTransferRateContractSameUomWithAndWithoutInspectionForLocalPurchaseBill(
+//				webDB.getDataFromProperties("StocktransferISForRCM"));
+//		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+//				"PremUsername");
+//		commonFunc.navigateToFinancialPurchaseBill();
+//		VerifyToCreateBillBookingDocumentFromPendingStocktransferDocument(VariableHandler.getGrnDocNumber(),
+//				commonFunc.getDataFromTestDataSheet("InterStatePurchaseBillST"));
+//		commonFunc.hardWait(1000);
+//		ValidateHeaderDetails();
+//		VerifyToValidateBeforePriceDeviationForLineLevel(webDB.getDataFromProperties("StocktransferISForRCM"));
+//		commonFunc.checkRefreshCellsDisappear();
+//		commonFunc.hardWait(1000);
+////		VerifyToClickReferenceFieldAndClickRcmFlag(webDB.getDataFromProperties("StocktransferISForRCM"));
+////		commonFunc.checkRefreshCellsDisappear();
+////		commonFunc.hardWait(1000);
+////		VerifyToWriteExcelValueInNumberRcmField(webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
+//		VerifyToWriteExcelValue(webDB.getDataFromProperties("StocktransferISForRCM"),
+//				webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
+//		commonFunc.checkRefreshCellsDisappear();
+//		commonFunc.hardWait(1000);
+//		verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(
+//				webDB.getDataFromProperties("StocktransferISForRCM"));
+//		commonFunc.checkRefreshCellsDisappear();
+//		commonFunc.hardWait(1000);
+//		verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(
+//				webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
+//		commonFunc.checkRefreshCellsDisappear();
+//		commonFunc.hardWait(1000);
+//		VerifytoPutPriceDeviationForStocktransferType(webDB.getDataFromProperties("StocktransferISForRCM"));
+//		commonFunc.checkRefreshCellsDisappear();
+//		commonFunc.hardWait(1000);
+//		VerifyToValidateAfterPriceDeviation(webDB.getDataFromProperties("StocktransferISForRCM"));
+//		commonFunc.checkRefreshCellsDisappear();
+//		commonFunc.hardWait(1000);
+//		verifyAddTheItemBasedOnTypeForStockTransfer(webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
+//		commonFunc.checkRefreshCellsDisappear();
+//		commonFunc.hardWait(1000);
+//		VerifyToClickCreateJournalButton();
+//		commonFunc.checkRefreshCellsDisappear();
+//		commonFunc.hardWait(1000);
+//		VerifyToValidateRoundOffAmountForStockTransferType(
+//				webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
+//		commonFunc.checkRefreshCellsDisappear();
+//		commonFunc.hardWait(1000);
+//		VerifyToValidateRoundOffAmountForHeaderValueForStockTransferType(
+//				webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
+//		VerifyToClickPostButton();
+//		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+//		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPbNumber(),
+//				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+//				System.getProperty("HariUsername"));
+//		flag = commonFunc.logoutUser();
+//		VerifyToAfterWriteTheExcelValueInNumberRcmField(webDB.getDataFromProperties("StocktransferISForRCM"));
+//		VerifyToAfterWriteTheExcelValueInNumberRcmField(webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
+//		assertTrue(flag);
+
+//	VerifyToAfterWriteTheExcelValueInNumberRcmField(webDB.getDataFromProperties("StocktransferISForRCM"));
 		VerifyToAfterWriteTheExcelValueInNumberRcmField(webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
 		grnPageFunc.PoToGrnStockTransferRateContractSameUomWithAndWithoutInspectionForLocalPurchaseBill(
-				webDB.getDataFromProperties("StocktransferISForRCM"));
+				webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
+//	commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+//			"PremUsername");
+//	commonFunc.navigateToFinancialPurchaseBill();
+//	VerifyToCreateBillBookingDocumentFromPendingStocktransferDocument(VariableHandler.getGrnDocNumber(),
+//			commonFunc.getDataFromTestDataSheet("InterStatePurchaseBillST"));
+//	// VariableHandler.getGrnDocNumber()
+//	commonFunc.hardWait(1000);
+//	ValidateHeaderDetails();
+//	VerifyToValidateBeforePriceDeviationForLineLevel(webDB.getDataFromProperties("StocktransferISForRCM"));
+//	commonFunc.checkRefreshCellsDisappear();
+////	VerifyToClickReferenceFieldAndClickRcmFlag(webDB.getDataFromProperties("StocktransferISForRCM"));
+//	VerifyToWriteExcelValue(webDB.getDataFromProperties("StocktransferISForRCM"),
+//			webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
+//	commonFunc.checkRefreshCellsDisappear();
+//	commonFunc.hardWait(1000);
+//	verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(
+//			webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
+//	commonFunc.checkRefreshCellsDisappear();
+//	commonFunc.hardWait(1000);
+//	VerifytoPutPriceDeviationForStocktransferType(webDB.getDataFromProperties("StocktransferISForRCM"));
+//	commonFunc.checkRefreshCellsDisappear();
+//	commonFunc.hardWait(1000);
+//	VerifyToValidateAfterPriceDeviation(webDB.getDataFromProperties("StocktransferISForRCM"));
+//	commonFunc.checkRefreshCellsDisappear();
+//	commonFunc.hardWait(1000);
+//	VerifyToValidateAfterPriceDeviationForStockTransferType(webDB.getDataFromProperties("StocktransferISForRCM"));
+//	commonFunc.checkRefreshCellsDisappear();
+//	commonFunc.hardWait(1000);
+//	verifyAddTheItemBasedOnTypeForStockTransfer(webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
+//////	verifyCreateJournalAndPost();
+//////	VerifyToClickCreateJournalButton();
+//	commonFunc.checkRefreshCellsDisappear();
+//	commonFunc.hardWait(1000);
+////	VerifyToValidateAfterAddTheItemToHeaderAmountForPurchaseBillStocktransferType(
+////			webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
+////	commonFunc.checkRefreshCellsDisappear();
+////	commonFunc.hardWait(1000);
+////	VerifyToClickPostButton();
+////	commonFunc.checkRefreshCellsDisappear();
+////	commonFunc.hardWait(1000);
+//	VerifyToClickCreateJournalButton();
+//	commonFunc.checkRefreshCellsDisappear();
+//	commonFunc.hardWait(1000);
+//	VerifyToValidateRoundOffAmountForStockTransferType(webDB.getDataFromProperties("StocktransferISForRCM"));
+//	commonFunc.checkRefreshCellsDisappear();
+//	commonFunc.hardWait(1000);
+//	VerifyToValidateRoundOffAmountForHeaderValueForStockTransferType(
+//			webDB.getDataFromProperties("StocktransferISForRCM"));
+//	VerifyToClickPostButton();
+//	waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+//	commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPbNumber(),
+//			webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+//			System.getProperty("HariUsername"));
+//	flag = commonFunc.logoutUser();
+////	VerifyToAfterWriteTheExcelValueInNumberRcmField(webDB.getDataFromProperties("StocktransferISForRCM"));
+//	VerifyToAfterWriteTheExcelValueInNumberRcmField(webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
+//	StockTransferAddIterstateEXWRCM
+//	VerifyToAfterWriteTheExcelValueInNumberRcmField(webDB.getDataFromProperties("StockTransferAddLocalRCM"));
+//	grnPageFunc.PoToGrnStockTransferUserDefinedSameStockAndSupplierUomWithAndWithoutInspectionForLocalSupplier(
+//			webDB.getDataFromProperties("StockTransferAddLocalRCM"));
 		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
 				"PremUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
@@ -6342,42 +7094,83 @@ public class PurchaseBillsFunctionsGetDocument {
 				commonFunc.getDataFromTestDataSheet("InterStatePurchaseBillST"));
 		commonFunc.hardWait(1000);
 		ValidateHeaderDetails();
-		VerifyToValidateBeforePriceDeviationForLineLevel(webDB.getDataFromProperties("StocktransferISForRCM"));
-		commonFunc.checkRefreshCellsDisappear();
-		verifyTowriteGrnPriceToWriteInExcelForPurchasebillDocument(
-				webDB.getDataFromProperties("StocktransferISForRCM"));
-		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.hardWait(1000);
-		verifyTowriteGrnPriceToWriteInExcelForPurchasebillDocument(
+		VerifyToValidateBeforePriceDeviationForLineLevelForStocktransferType(
 				webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.hardWait(1000);
-		VerifyToWriteExcelValue(webDB.getDataFromProperties("StocktransferISForRCM"),
+//	VerifyToClickReferenceFieldAndClickRcmFlag(webDB.getDataFromProperties("StocktransferLC"));
+		VerifyToWriteExcelValue(webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"),
+				webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.hardWait(1000);
+//	verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(
+//			webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
+//	commonFunc.checkRefreshCellsDisappear();
+//	commonFunc.hardWait(1000);
+//	verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(
+//			webDB.getDataFromProperties("StockTransferAddLocalRCM"));
+//	commonFunc.checkRefreshCellsDisappear();
+//	commonFunc.hardWait(1000);
+//	VerifytoPutPriceDeviationForStocktransferTypeForCommonStocktransfer(webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.hardWait(1000);
+//	VerifyToValidateAfterPriceDeviationForStockTransferType(webDB.getDataFromProperties("StockTransferAddLocalRCM"));
+		VerifyToValidateAfterPriceDeviationForStockTransferTypeCommon(
 				webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.hardWait(1000);
 		verifyAddTheItemBasedOnTypeForStockTransfer(webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.hardWait(1000);
+//	VerifyToClickCreateJournalButton();
+//	commonFunc.checkRefreshCellsDisappear();
+//	commonFunc.hardWait(1000);
+//	VerifyToValidateRoundOffAmountForStockTransferType(webDB.getDataFromProperties("StockTransferAddLocalRCM"));
+//	commonFunc.checkRefreshCellsDisappear();
+//	commonFunc.hardWait(1000);
+//	VerifyToValidateRoundOffAmountForHeaderValueForStockTransferType(
+//			webDB.getDataFromProperties("StockTransferAddLocalRCM"));
+//	VerifyToClickPostButton();
 		VerifyToClickCreateJournalButton();
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.hardWait(1000);
-		VerifyToValidateRoundOffAmountForStockTransferType(
+		VerifyToValidateAfterAddTheItemToHeaderAmountForPurchaseBillStocktransferType(
 				webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.hardWait(1000);
+		verifyToValiadteJournalPartForStocktransaferType(
+				webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.hardWait(1000);
+		verifyToValiadteJournalDetailsPartForStocktransaferAllTypeSupplierCommon(
+				webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"),
+				commonFunc.getDataFromTestDataSheet("INTERSTATE_UNREGISTERED"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.hardWait(1000);
+		verifyToValiadteJournalDetailPartForAccuralAccountStocktransaferTypeLocalSupplierForCommonWithRoundOff(
+				webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"),
+				commonFunc.getDataFromTestDataSheet("BENNY_ASSOCIATES"),
+				commonFunc.getDataFromTestDataSheet("RoundOffValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.hardWait(1000);
+		System.out.println("100");
+		VerifyToValidateRoundOffAmountForDirectStockTransferType(
+				webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.hardWait(2000);
+		System.out.println("101");
 		VerifyToValidateRoundOffAmountForHeaderValueForStockTransferType(
 				webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.hardWait(1000);
 		VerifyToClickPostButton();
 		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPbNumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		flag = commonFunc.logoutUser();
-		VerifyToAfterWriteTheExcelValueInNumberRcmField(webDB.getDataFromProperties("StocktransferISForRCM"));
+//	VerifyToAfterWriteTheExcelValueInNumberRcmField(webDB.getDataFromProperties("StocktransferLCRCM"));
 		VerifyToAfterWriteTheExcelValueInNumberRcmField(webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
 		assertTrue(flag);
-
 	}
 
 	/**
@@ -6389,10 +7182,223 @@ public class PurchaseBillsFunctionsGetDocument {
 	 */
 	public void verifyToCreateRegisteredSupplierWithInterstateGstAllowRcmTaxAgainstStockTransferWithoutDeviationAndExpensesAccountStockitemServiceItemAndChargeItem()
 			throws Exception {
-		VerifyToAfterWriteTheExcelValueInNumberRcmField(webDB.getDataFromProperties("StocktransferISForRCM"));
+//		VerifyToAfterWriteTheExcelValueInNumberRcmField(webDB.getDataFromProperties("StocktransferISForRCM"));
+//		VerifyToAfterWriteTheExcelValueInNumberRcmField(webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
+//		grnPageFunc.PoToGrnStockTransferRateContractSameUomWithAndWithoutInspectionForLocalPurchaseBill(
+//				webDB.getDataFromProperties("StocktransferISForRCM"));
+//		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+//				"PremUsername");
+//		commonFunc.navigateToFinancialPurchaseBill();
+//		VerifyToCreateBillBookingDocumentFromPendingStocktransferDocument(VariableHandler.getGrnDocNumber(),
+//				commonFunc.getDataFromTestDataSheet("InterStatePurchaseBillST"));
+//		commonFunc.hardWait(1000);
+//		ValidateHeaderDetails();
+//		VerifyToValidateBeforePriceDeviationForLineLevel(webDB.getDataFromProperties("StocktransferISForRCM"));
+//		commonFunc.checkRefreshCellsDisappear();
+//		verifyTowriteGrnPriceToWriteInExcelForPurchasebillDocument(
+//				webDB.getDataFromProperties("StocktransferISForRCM"));
+//		commonFunc.checkRefreshCellsDisappear();
+//		commonFunc.hardWait(1000);
+//		verifyTowriteGrnPriceToWriteInExcelForPurchasebillDocument(
+//				webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
+//		commonFunc.checkRefreshCellsDisappear();
+//		commonFunc.hardWait(1000);
+//		VerifyToWriteExcelValue(webDB.getDataFromProperties("StocktransferISForRCM"),
+//				webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
+//		commonFunc.checkRefreshCellsDisappear();
+//		commonFunc.hardWait(1000);
+//		verifyAddTheItemBasedOnTypeForStockTransfer(webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
+//		commonFunc.checkRefreshCellsDisappear();
+//		commonFunc.hardWait(1000);
+//		VerifyToClickCreateJournalButton();
+//		commonFunc.checkRefreshCellsDisappear();
+//		commonFunc.hardWait(1000);
+//		VerifyToValidateRoundOffAmountForStockTransferType(
+//				webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
+//		commonFunc.checkRefreshCellsDisappear();
+//		commonFunc.hardWait(1000);
+//		VerifyToValidateRoundOffAmountForHeaderValueForStockTransferType(
+//				webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
+//		VerifyToClickPostButton();
+//		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+//		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPbNumber(),
+//				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+//				System.getProperty("HariUsername"));
+//		flag = commonFunc.logoutUser();
+//		VerifyToAfterWriteTheExcelValueInNumberRcmField(webDB.getDataFromProperties("StocktransferISForRCM"));
+//		VerifyToAfterWriteTheExcelValueInNumberRcmField(webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
+//		assertTrue(flag);
+
+//		VerifyToAfterWriteTheExcelValueInNumberRcmField(webDB.getDataFromProperties("StocktransferISForRCM"));
+//		VerifyToAfterWriteTheExcelValueInNumberRcmField(webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
+//		grnPageFunc.PoToGrnStockTransferRateContractSameUomWithAndWithoutInspectionForLocalPurchaseBill(
+//				webDB.getDataFromProperties("StocktransferISForRCM"));
+//		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+//				"PremUsername");
+//		commonFunc.navigateToFinancialPurchaseBill();
+//		VerifyToCreateBillBookingDocumentFromPendingStocktransferDocument(VariableHandler.getGrnDocNumber(),
+//				commonFunc.getDataFromTestDataSheet("InterStatePurchaseBillST"));
+//		commonFunc.hardWait(1000);
+//		ValidateHeaderDetails();
+//		VerifyToValidateBeforePriceDeviationForLineLevel(webDB.getDataFromProperties("StocktransferISForRCM"));
+//		commonFunc.checkRefreshCellsDisappear();
+//		verifyTowriteGrnPriceToWriteInExcelForPurchasebillDocument(
+//				webDB.getDataFromProperties("StocktransferISForRCM"));
+//		commonFunc.checkRefreshCellsDisappear();
+//		commonFunc.hardWait(1000);
+//		verifyTowriteGrnPriceToWriteInExcelForPurchasebillDocument(
+//				webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
+//		commonFunc.checkRefreshCellsDisappear();
+//		commonFunc.hardWait(1000);
+//		VerifyToWriteExcelValue(webDB.getDataFromProperties("StocktransferISForRCM"),
+//				webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
+//		commonFunc.checkRefreshCellsDisappear();
+//		commonFunc.hardWait(1000);
+//		verifyAddTheItemBasedOnTypeForStockTransfer(webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
+//		commonFunc.checkRefreshCellsDisappear();
+//		commonFunc.hardWait(1000);
+//		VerifyToClickCreateJournalButton();
+//		commonFunc.checkRefreshCellsDisappear();
+//		commonFunc.hardWait(1000);
+//		VerifyToValidateRoundOffAmountForStockTransferType(
+//				webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
+//		commonFunc.checkRefreshCellsDisappear();
+//		commonFunc.hardWait(1000);
+//		VerifyToValidateRoundOffAmountForHeaderValueForStockTransferType(
+//				webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
+//		VerifyToClickPostButton();
+//		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+//		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPbNumber(),
+//				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+//				System.getProperty("HariUsername"));
+//		flag = commonFunc.logoutUser();
+//		VerifyToAfterWriteTheExcelValueInNumberRcmField(webDB.getDataFromProperties("StocktransferISForRCM"));
+//		VerifyToAfterWriteTheExcelValueInNumberRcmField(webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
+//		assertTrue(flag);
+//
+
+//		VerifyToAfterWriteTheExcelValueInNumberRcmField(webDB.getDataFromProperties("StocktransferISForRCM"));
+//		VerifyToAfterWriteTheExcelValueInNumberRcmField(webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
+//		grnPageFunc.PoToGrnStockTransferRateContractSameUomWithAndWithoutInspectionForLocalPurchaseBill(
+//				webDB.getDataFromProperties("StocktransferISForRCM"));
+//		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+//				"PremUsername");
+//		commonFunc.navigateToFinancialPurchaseBill();
+//		VerifyToCreateBillBookingDocumentFromPendingStocktransferDocument(VariableHandler.getGrnDocNumber(),
+//				commonFunc.getDataFromTestDataSheet("InterStatePurchaseBillST"));
+//		commonFunc.hardWait(1000);
+//		ValidateHeaderDetails();
+//		VerifyToValidateBeforePriceDeviationForLineLevel(webDB.getDataFromProperties("StocktransferISForRCM"));
+//		commonFunc.checkRefreshCellsDisappear();
+//		commonFunc.hardWait(1000);
+////		VerifyToClickReferenceFieldAndClickRcmFlag(webDB.getDataFromProperties("StocktransferISForRCM"));
+////		commonFunc.checkRefreshCellsDisappear();
+////		commonFunc.hardWait(1000);
+////		VerifyToWriteExcelValueInNumberRcmField(webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
+//		VerifyToWriteExcelValue(webDB.getDataFromProperties("StocktransferISForRCM"),
+//				webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
+//		commonFunc.checkRefreshCellsDisappear();
+//		commonFunc.hardWait(1000);
+//		verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(
+//				webDB.getDataFromProperties("StocktransferISForRCM"));
+//		commonFunc.checkRefreshCellsDisappear();
+//		commonFunc.hardWait(1000);
+//		verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(
+//				webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
+//		commonFunc.checkRefreshCellsDisappear();
+//		commonFunc.hardWait(1000);
+//		VerifytoPutPriceDeviationForStocktransferType(webDB.getDataFromProperties("StocktransferISForRCM"));
+//		commonFunc.checkRefreshCellsDisappear();
+//		commonFunc.hardWait(1000);
+//		VerifyToValidateAfterPriceDeviation(webDB.getDataFromProperties("StocktransferISForRCM"));
+//		commonFunc.checkRefreshCellsDisappear();
+//		commonFunc.hardWait(1000);
+//		verifyAddTheItemBasedOnTypeForStockTransfer(webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
+//		commonFunc.checkRefreshCellsDisappear();
+//		commonFunc.hardWait(1000);
+//		VerifyToClickCreateJournalButton();
+//		commonFunc.checkRefreshCellsDisappear();
+//		commonFunc.hardWait(1000);
+//		VerifyToValidateRoundOffAmountForStockTransferType(
+//				webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
+//		commonFunc.checkRefreshCellsDisappear();
+//		commonFunc.hardWait(1000);
+//		VerifyToValidateRoundOffAmountForHeaderValueForStockTransferType(
+//				webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
+//		VerifyToClickPostButton();
+//		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+//		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPbNumber(),
+//				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+//				System.getProperty("HariUsername"));
+//		flag = commonFunc.logoutUser();
+//		VerifyToAfterWriteTheExcelValueInNumberRcmField(webDB.getDataFromProperties("StocktransferISForRCM"));
+//		VerifyToAfterWriteTheExcelValueInNumberRcmField(webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
+//		assertTrue(flag);
+
+//	VerifyToAfterWriteTheExcelValueInNumberRcmField(webDB.getDataFromProperties("StocktransferISForRCM"));
 		VerifyToAfterWriteTheExcelValueInNumberRcmField(webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
 		grnPageFunc.PoToGrnStockTransferRateContractSameUomWithAndWithoutInspectionForLocalPurchaseBill(
-				webDB.getDataFromProperties("StocktransferISForRCM"));
+				webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
+//	commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
+//			"PremUsername");
+//	commonFunc.navigateToFinancialPurchaseBill();
+//	VerifyToCreateBillBookingDocumentFromPendingStocktransferDocument(VariableHandler.getGrnDocNumber(),
+//			commonFunc.getDataFromTestDataSheet("InterStatePurchaseBillST"));
+//	// VariableHandler.getGrnDocNumber()
+//	commonFunc.hardWait(1000);
+//	ValidateHeaderDetails();
+//	VerifyToValidateBeforePriceDeviationForLineLevel(webDB.getDataFromProperties("StocktransferISForRCM"));
+//	commonFunc.checkRefreshCellsDisappear();
+////	VerifyToClickReferenceFieldAndClickRcmFlag(webDB.getDataFromProperties("StocktransferISForRCM"));
+//	VerifyToWriteExcelValue(webDB.getDataFromProperties("StocktransferISForRCM"),
+//			webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
+//	commonFunc.checkRefreshCellsDisappear();
+//	commonFunc.hardWait(1000);
+//	verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(
+//			webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
+//	commonFunc.checkRefreshCellsDisappear();
+//	commonFunc.hardWait(1000);
+//	VerifytoPutPriceDeviationForStocktransferType(webDB.getDataFromProperties("StocktransferISForRCM"));
+//	commonFunc.checkRefreshCellsDisappear();
+//	commonFunc.hardWait(1000);
+//	VerifyToValidateAfterPriceDeviation(webDB.getDataFromProperties("StocktransferISForRCM"));
+//	commonFunc.checkRefreshCellsDisappear();
+//	commonFunc.hardWait(1000);
+//	VerifyToValidateAfterPriceDeviationForStockTransferType(webDB.getDataFromProperties("StocktransferISForRCM"));
+//	commonFunc.checkRefreshCellsDisappear();
+//	commonFunc.hardWait(1000);
+//	verifyAddTheItemBasedOnTypeForStockTransfer(webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
+//////	verifyCreateJournalAndPost();
+//////	VerifyToClickCreateJournalButton();
+//	commonFunc.checkRefreshCellsDisappear();
+//	commonFunc.hardWait(1000);
+////	VerifyToValidateAfterAddTheItemToHeaderAmountForPurchaseBillStocktransferType(
+////			webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
+////	commonFunc.checkRefreshCellsDisappear();
+////	commonFunc.hardWait(1000);
+////	VerifyToClickPostButton();
+////	commonFunc.checkRefreshCellsDisappear();
+////	commonFunc.hardWait(1000);
+//	VerifyToClickCreateJournalButton();
+//	commonFunc.checkRefreshCellsDisappear();
+//	commonFunc.hardWait(1000);
+//	VerifyToValidateRoundOffAmountForStockTransferType(webDB.getDataFromProperties("StocktransferISForRCM"));
+//	commonFunc.checkRefreshCellsDisappear();
+//	commonFunc.hardWait(1000);
+//	VerifyToValidateRoundOffAmountForHeaderValueForStockTransferType(
+//			webDB.getDataFromProperties("StocktransferISForRCM"));
+//	VerifyToClickPostButton();
+//	waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+//	commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPbNumber(),
+//			webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+//			System.getProperty("HariUsername"));
+//	flag = commonFunc.logoutUser();
+////	VerifyToAfterWriteTheExcelValueInNumberRcmField(webDB.getDataFromProperties("StocktransferISForRCM"));
+//	VerifyToAfterWriteTheExcelValueInNumberRcmField(webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
+//	StockTransferAddIterstateEXWRCM
+//	VerifyToAfterWriteTheExcelValueInNumberRcmField(webDB.getDataFromProperties("StockTransferAddLocalRCM"));
+//	grnPageFunc.PoToGrnStockTransferUserDefinedSameStockAndSupplierUomWithAndWithoutInspectionForLocalSupplier(
+//			webDB.getDataFromProperties("StockTransferAddLocalRCM"));
 		commonFunc.validCommonLogin(System.getProperty("PremUsername"), System.getProperty("LoginPassword"),
 				"PremUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
@@ -6400,41 +7406,84 @@ public class PurchaseBillsFunctionsGetDocument {
 				commonFunc.getDataFromTestDataSheet("InterStatePurchaseBillST"));
 		commonFunc.hardWait(1000);
 		ValidateHeaderDetails();
-		VerifyToValidateBeforePriceDeviationForLineLevel(webDB.getDataFromProperties("StocktransferISForRCM"));
-		commonFunc.checkRefreshCellsDisappear();
-		verifyTowriteGrnPriceToWriteInExcelForPurchasebillDocument(
-				webDB.getDataFromProperties("StocktransferISForRCM"));
-		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.hardWait(1000);
-		verifyTowriteGrnPriceToWriteInExcelForPurchasebillDocument(
+		VerifyToValidateBeforePriceDeviationForLineLevelForStocktransferType(
 				webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.hardWait(1000);
-		VerifyToWriteExcelValue(webDB.getDataFromProperties("StocktransferISForRCM"),
+//	VerifyToClickReferenceFieldAndClickRcmFlag(webDB.getDataFromProperties("StocktransferLC"));
+		VerifyToWriteExcelValue(webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"),
+				webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.hardWait(1000);
+//	verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(
+//			webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
+//	commonFunc.checkRefreshCellsDisappear();
+//	commonFunc.hardWait(1000);
+//	verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(
+//			webDB.getDataFromProperties("StockTransferAddLocalRCM"));
+//	commonFunc.checkRefreshCellsDisappear();
+//	commonFunc.hardWait(1000);
+//	VerifytoPutPriceDeviationForStocktransferTypeForCommonStocktransfer(webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.hardWait(1000);
+//	VerifyToValidateAfterPriceDeviationForStockTransferType(webDB.getDataFromProperties("StockTransferAddLocalRCM"));
+		VerifyToValidateAfterPriceDeviationForStockTransferTypeCommon(
 				webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.hardWait(1000);
 		verifyAddTheItemBasedOnTypeForStockTransfer(webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.hardWait(1000);
+//	VerifyToClickCreateJournalButton();
+//	commonFunc.checkRefreshCellsDisappear();
+//	commonFunc.hardWait(1000);
+//	VerifyToValidateRoundOffAmountForStockTransferType(webDB.getDataFromProperties("StockTransferAddLocalRCM"));
+//	commonFunc.checkRefreshCellsDisappear();
+//	commonFunc.hardWait(1000);
+//	VerifyToValidateRoundOffAmountForHeaderValueForStockTransferType(
+//			webDB.getDataFromProperties("StockTransferAddLocalRCM"));
+//	VerifyToClickPostButton();
 		VerifyToClickCreateJournalButton();
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.hardWait(1000);
-		VerifyToValidateRoundOffAmountForStockTransferType(
+		VerifyToValidateAfterAddTheItemToHeaderAmountForPurchaseBillStocktransferType(
 				webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.hardWait(1000);
+		verifyToValiadteJournalPartForStocktransaferType(
+				webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.hardWait(1000);
+		verifyToValiadteJournalDetailsPartForStocktransaferAllTypeSupplierCommon(
+				webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"),
+				commonFunc.getDataFromTestDataSheet("INTERSTATE_UNREGISTERED"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.hardWait(1000);
+		verifyToValiadteJournalDetailPartForAccuralAccountStocktransaferTypeLocalSupplierForCommonWithRoundOff(
+				webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"),
+				commonFunc.getDataFromTestDataSheet("BENNY_ASSOCIATES"),
+				commonFunc.getDataFromTestDataSheet("RoundOffValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.hardWait(1000);
+		System.out.println("100");
+		VerifyToValidateRoundOffAmountForDirectStockTransferType(
+				webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.hardWait(2000);
+		System.out.println("101");
 		VerifyToValidateRoundOffAmountForHeaderValueForStockTransferType(
 				webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.hardWait(1000);
 		VerifyToClickPostButton();
 		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPbNumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		flag = commonFunc.logoutUser();
-		VerifyToAfterWriteTheExcelValueInNumberRcmField(webDB.getDataFromProperties("StocktransferISForRCM"));
+//	VerifyToAfterWriteTheExcelValueInNumberRcmField(webDB.getDataFromProperties("StocktransferLCRCM"));
 		VerifyToAfterWriteTheExcelValueInNumberRcmField(webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
 		assertTrue(flag);
+	
 	}
 
 	/**
@@ -6969,7 +8018,8 @@ public class PurchaseBillsFunctionsGetDocument {
 				commonFunc.getDataFromTestDataSheet("LocalPurchaseBillST"));
 		commonFunc.hardWait(1000);
 		ValidateHeaderDetails();
-		VerifyToValidateBeforePriceDeviationForLineLevelForStocktransferType(webDB.getDataFromProperties("StockTransferAddLocalRCM"));
+		VerifyToValidateBeforePriceDeviationForLineLevelForStocktransferType(
+				webDB.getDataFromProperties("StockTransferAddLocalRCM"));
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.hardWait(1000);
 //		VerifyToClickReferenceFieldAndClickRcmFlag(webDB.getDataFromProperties("StocktransferLC"));
@@ -6985,11 +8035,13 @@ public class PurchaseBillsFunctionsGetDocument {
 //				webDB.getDataFromProperties("StockTransferAddLocalRCM"));
 //		commonFunc.checkRefreshCellsDisappear();
 //		commonFunc.hardWait(1000);
-		VerifytoPutPriceDeviationForStocktransferTypeForCommonStocktransfer(webDB.getDataFromProperties("StockTransferAddLocalRCM"));
+		VerifytoPutPriceDeviationForStocktransferTypeForCommonStocktransfer(
+				webDB.getDataFromProperties("StockTransferAddLocalRCM"));
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.hardWait(1000);
 //		VerifyToValidateAfterPriceDeviationForStockTransferType(webDB.getDataFromProperties("StockTransferAddLocalRCM"));
-		VerifyToValidateAfterPriceDeviationForStockTransferTypeCommon(webDB.getDataFromProperties("StockTransferAddLocalRCM"));
+		VerifyToValidateAfterPriceDeviationForStockTransferTypeCommon(
+				webDB.getDataFromProperties("StockTransferAddLocalRCM"));
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.hardWait(1000);
 		verifyAddTheItemBasedOnTypeForStockTransfer(webDB.getDataFromProperties("StockTransferAddLocalRCM"));
@@ -7136,7 +8188,8 @@ public class PurchaseBillsFunctionsGetDocument {
 				commonFunc.getDataFromTestDataSheet("LocalPurchaseBillST"));
 		commonFunc.hardWait(1000);
 		ValidateHeaderDetails();
-		VerifyToValidateBeforePriceDeviationForLineLevelForStocktransferType(webDB.getDataFromProperties("StockTransferAddLocalRCM"));
+		VerifyToValidateBeforePriceDeviationForLineLevelForStocktransferType(
+				webDB.getDataFromProperties("StockTransferAddLocalRCM"));
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.hardWait(1000);
 //		VerifyToClickReferenceFieldAndClickRcmFlag(webDB.getDataFromProperties("StocktransferLC"));
@@ -7156,7 +8209,8 @@ public class PurchaseBillsFunctionsGetDocument {
 //		commonFunc.checkRefreshCellsDisappear();
 //		commonFunc.hardWait(1000);
 //		VerifyToValidateAfterPriceDeviationForStockTransferType(webDB.getDataFromProperties("StockTransferAddLocalRCM"));
-		VerifyToValidateAfterPriceDeviationForStockTransferTypeCommon(webDB.getDataFromProperties("StockTransferAddLocalRCM"));
+		VerifyToValidateAfterPriceDeviationForStockTransferTypeCommon(
+				webDB.getDataFromProperties("StockTransferAddLocalRCM"));
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.hardWait(1000);
 		verifyAddTheItemBasedOnTypeForStockTransfer(webDB.getDataFromProperties("StockTransferAddLocalRCM"));
@@ -7303,7 +8357,8 @@ public class PurchaseBillsFunctionsGetDocument {
 				commonFunc.getDataFromTestDataSheet("LocalPurchaseBillST"));
 		commonFunc.hardWait(1000);
 		ValidateHeaderDetails();
-		VerifyToValidateBeforePriceDeviationForLineLevelForStocktransferType(webDB.getDataFromProperties("StockTransferAddLocalRCM"));
+		VerifyToValidateBeforePriceDeviationForLineLevelForStocktransferType(
+				webDB.getDataFromProperties("StockTransferAddLocalRCM"));
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.hardWait(1000);
 //		VerifyToClickReferenceFieldAndClickRcmFlag(webDB.getDataFromProperties("StocktransferLC"));
@@ -7323,7 +8378,8 @@ public class PurchaseBillsFunctionsGetDocument {
 //		commonFunc.checkRefreshCellsDisappear();
 //		commonFunc.hardWait(1000);
 //		VerifyToValidateAfterPriceDeviationForStockTransferType(webDB.getDataFromProperties("StockTransferAddLocalRCM"));
-		VerifyToValidateAfterPriceDeviationForStockTransferTypeCommon(webDB.getDataFromProperties("StockTransferAddLocalRCM"));
+		VerifyToValidateAfterPriceDeviationForStockTransferTypeCommon(
+				webDB.getDataFromProperties("StockTransferAddLocalRCM"));
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.hardWait(1000);
 		verifyAddTheItemBasedOnTypeForStockTransfer(webDB.getDataFromProperties("StockTransferAddLocalRCM"));

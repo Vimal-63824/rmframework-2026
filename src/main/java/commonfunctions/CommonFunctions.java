@@ -81,7 +81,13 @@ public class CommonFunctions {
 	 * @author Sakthi-GWL
 	 */
 	public void browserOpen() {
-		webDB.Setup(System.getProperty("platformName"));
+		try {
+			webDB.Setup(System.getProperty("platformName"));
+		} catch (Exception e) {
+			logs.logging("INFO", "Browser not Setup with the Exception: " + e);
+			logs.logging("INFO", "Retrying Browser Open Again....!!!");
+			webDB.Setup(System.getProperty("platformName"));
+		}
 	}
 
 	/**

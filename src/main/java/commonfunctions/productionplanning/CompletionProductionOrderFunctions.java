@@ -1202,6 +1202,29 @@ public class CompletionProductionOrderFunctions {
 	}
 
 	/**
+	 * This method used to enter Request Quantity In Pending MR Creation
+	 * 
+	 * @author Sakthi-GWL
+	 * @param ProdNumber
+	 * @param Quantity
+	 */
+	public void enterRequestQuantityInPendingMRCreation(String ProdNumber, String Quantity) {
+		flag = webDB.waitForElement(CompletionProductionOrderLocators.PendingMRCreateIframe, ElementType.Xpath);
+		if (flag) {
+			webDB.switchToFrame(CompletionProductionOrderLocators.PendingMRCreateIframe, ElementType.Xpath);
+			flag = webDB.waitForElement(CompletionProductionOrderLocators.PendingMRQuantityInut(ProdNumber),
+					ElementType.Xpath);
+			if (flag) {
+				commonFunc.verifyAddTableSpecs(CompletionProductionOrderLocators.PendingMRQuantityInut(ProdNumber),
+						CompletionProductionOrderLocators.PendingMRQuantityInut(ProdNumber), Quantity);
+				logs.logging("INFO", "Request Quantity Entered: " + Quantity);
+			}
+		}
+		webDB.switchToDefaultContent();
+		assertTrue(flag);
+	}
+
+	/**
 	 * This method used to click Process Details and Select Process in Pending MR
 	 * 
 	 * @author Sakthi-GWL
