@@ -1443,6 +1443,7 @@ public class GateEntryPageFunctions {
 		flag = webDB.waitForElement(GateEntryPageLocators.GateEntryPendingPoSelectAll, ElementType.Xpath);
 		if (flag) {
 			webDB.moveToElement(GateEntryPageLocators.GateEntryPendingPoSelectAll, ElementType.Xpath);
+			webDB.scrollToAnElement(GateEntryPageLocators.GateEntryPendingPoSelectAll, ElementType.Xpath);
 			List<WebElement> CheckBox = webDB.getDriver()
 					.findElements(By.xpath(GateEntryPageLocators.GateEntryPendingPoSelectAll));
 			for (WebElement element : CheckBox) {
