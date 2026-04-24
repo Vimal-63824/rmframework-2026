@@ -330,7 +330,7 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 	 * @author Vimal - RMITS
 	 */
 	@Author("Vimal-RMITS")
-	@Test(priority = 23, groups = {
+	@Test(priority = 86, groups = {
 			"Subcontract" }, description = "Create serial Item subcontract orders from pending Production Queue (OS)-Local(Registered)")
 	public void CreateProductionOrderFromPendingSerialItemSubcontractorderLocalRegistered() {
 		flag = SubcontractFunc.createProductionOrderFromPendingSerialItemSubcontractorderLocalRegistered();
@@ -344,7 +344,7 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 	 * @author Vimal - RMITS
 	 */
 	@Author("Vimal-RMITS")
-	@Test(priority = 24, groups = {
+	@Test(priority = 87, groups = {
 			"Subcontract" }, description = "Direct Serial Item Subcontract Order With BOM For Standard Type- Interstate(Unregistered)")
 	public void CreateDirectSerialItemSubcontractOrderWithBOMForStandardTypeInterstateUnregistered() {
 		SubcontractFunc.createDirectSerialItemSubcontractOrderWithBOMForStandardTypeInterstateUnregistered();
@@ -358,7 +358,7 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 	 * @author Vimal - RMITS
 	 */
 	@Author("Vimal-RMITS")
-	@Test(priority = 25, groups = {
+	@Test(priority = 88, groups = {
 			"Subcontract" }, description = "Direct Serial Item Subcontract Order For SCO Value Addition Type- Interstate(Unregistered)")
 	public void CreateDirectSerialItemSubcontractOrderForValueAdditionTypeInterstateUnregistered() {
 		flag = SubcontractFunc.createDirectSerialItemSubcontractOrderForValueAdditionTypeInterstateUnregistered();
@@ -371,7 +371,7 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 	 * @author Vimal - RMITS
 	 */
 	@Author("Vimal-RMITS")
-	@Test(priority = 26, groups = {
+	@Test(priority = 89, groups = {
 			"Subcontract" }, description = "Cancelling Serial Item Direct Subcontract Order For Standard Type")
 	public void DocumentCancellingForDirectSerialItemSubcontractOrderStandardType() {
 		SubcontractFunc.documentCancellingForDirectSerialItemSubcontractOrderStandardType();
@@ -383,7 +383,7 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 	 * @author Vimal - RMITS
 	 */
 	@Author("Vimal-RMITS")
-	@Test(priority = 27, groups = {
+	@Test(priority = 90, groups = {
 			"Subcontract" }, description = "Cancelling Serial Item Direct Subcontract Order For SCO Value Addition Type")
 	public void DocumentCancellingForDirectSerialItemSubcontractOrderValueAdditionType() {
 		SubcontractFunc.documentCancellingForDirectSerialItemSubcontractOrderValueAdditionType();
@@ -396,7 +396,7 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 	 * @author Vimal - RMITS
 	 */
 	@Author("Vimal-RMITS")
-	@Test(priority = 28, groups = {
+	@Test(priority = 91, groups = {
 			"Subcontract" }, description = "Create Serial Item Subcontract Order From Pending With Sales Order Ref-Local(Registered)")
 	public void CreateSerialItemSubcontractOrderFromPendingWithSalesOrderRefLocalRegistered() {
 		flag = SubcontractFunc.createSerialItemSubcontractOrderFromPendingWithSalesOrderRefLocalRegistered();
@@ -410,7 +410,7 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 	 * @author Vimal - RMITS
 	 */
 	@Author("Vimal-RMITS")
-	@Test(priority = 29, groups = {
+	@Test(priority = 92, groups = {
 			"Subcontract" }, description = "Direct Serial Item Subcontract Order With BOM For Standard Type In Sales Order Ref- Interstate(Unregistered)")
 	public void DirectSerialItemSubcontractOrderWithBOMForStandardTypeInSalesOrderRefInterstateUnregistered() {
 		flag = SubcontractFunc
@@ -425,7 +425,7 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 	 * @author Vimal - RMITS
 	 */
 	@Author("Vimal-RMITS")
-	@Test(priority = 30, groups = {
+	@Test(priority = 93, groups = {
 			"Subcontract" }, description = "Direct Serial Item Subcontract Order For SCO Value Addition Type with Sales Order Ref- Interstate(Unregistered)")
 	public void CreateDirectSerialItemSubcontractOrderForValueAdditionTypeWithSOrefInterstateUnregistered() {
 		flag = SubcontractFunc
@@ -440,7 +440,7 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 	 * @author Vimal - RMITS
 	 */
 	@Author("Vimal-RMITS")
-	@Test(priority = 31, groups = {
+	@Test(priority = 94, groups = {
 			"Subcontract" }, description = "Direct Serial Item Subcontract Order With BOM For Standard Type with Project- Interstate(Unregistered)")
 	public void DirectSerialItemSubcontractOrderWithBOMForStandardTypeWithProjectInterstateUnregistered() {
 		flag = SubcontractFunc
@@ -455,7 +455,7 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 	 * @author Vimal - RMITS
 	 */
 	@Author("Vimal-RMITS")
-	@Test(priority = 32, groups = {
+	@Test(priority = 95, groups = {
 			"Subcontract" }, description = "Create Serial Item Subcontract Order From Pending With Project-Local(Registered)")
 	public void CreateSerialitemSubcontractOrderFromPendingWithProjectLocalRegistered() {
 		flag = SubcontractFunc.createSerialitemSubcontractOrderFromPendingWithProjectLocalRegistered();
@@ -468,7 +468,7 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 	 * @author Vimal - RMITS
 	 */
 	@Author("Vimal-RMITS")
-	@Test(priority = 33, groups = {
+	@Test(priority = 23, groups = {
 			"Subcontract" }, description = "Direct Subcontract Order For SCO Value Addition Type-Local(Registered)")
 	public void CreateDirectSubcontractOrderForValueAdditionTypeLocalRegistered() {
 		flag = SubcontractFunc.createDirectSubcontractOrderForValueAdditionTypeLocalRegistered();
@@ -482,7 +482,7 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 	 * @author Vimal - RMITS
 	 */
 	@Author("Vimal-RMITS")
-	@Test(priority = 34, groups = {
+	@Test(priority = 24, groups = {
 			"Subcontract" }, description = "Create Direct Subcontract Order For Standard Type In Conversion Factor-Local(Registered)")
 	public void CreateDirectSubcontractOrderWithBOMForStandardTypeInConversionFactorLocalRegistered() {
 		flag = SubcontractFunc.createDirectSubcontractOrderWithBOMForStandardTypeInConversionFactorLocalRegistered();
@@ -496,7 +496,7 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 	 * @author Vimal - RMITS
 	 */
 	@Author("Vimal-RMITS")
-	@Test(priority = 35, groups = {
+	@Test(priority = 25, groups = {
 			"Subcontract" }, description = "Direct Subcontract Order With BOM For Standard Type In Sales Order Ref-Local(Registered)")
 	public void DirectSubcontractOrderWithBOMForStandardTypeInSalesOrderRefLocalRegistered() {
 		SubcontractFunc.directSubcontractOrderWithBOMForStandardTypeInSalesOrderRefLocalRegistered();
@@ -509,7 +509,7 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 	 * @author Vimal - RMITS
 	 */
 	@Author("Vimal-RMITS")
-	@Test(priority = 36, groups = {
+	@Test(priority = 26, groups = {
 			"Subcontract" }, description = "Direct Subcontract Order With BOM For Standard Type In Sales Order Ref and Conv Factor-Local(Registered)")
 	public void DirectSubcontractOrderWithBOMForStandardTypeInSalesOrderRefandConvFactorLocalRegistered() {
 		SubcontractFunc.directSubcontractOrderWithBOMForStandardTypeInSalesOrderRefandConvFactorLocalRegistered();
@@ -522,7 +522,7 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 	 * @author Vimal - RMITS
 	 */
 	@Author("Vimal-RMITS")
-	@Test(priority = 37, groups = {
+	@Test(priority = 27, groups = {
 			"Subcontract" }, description = "Direct Subcontract Order For SCO Value Addition Type with Conv Factor-Local(Registered)")
 	public void CreateDirectSubcontractOrderForValueAdditionTypeWithConvFactorLocalRegistered() {
 		SubcontractFunc.createDirectSubcontractOrderForValueAdditionTypeWithConvFactorLocalRegistered();
@@ -535,7 +535,7 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 	 * @author Vimal - RMITS
 	 */
 	@Author("Vimal-RMITS")
-	@Test(priority = 38, groups = {
+	@Test(priority = 28, groups = {
 			"Subcontract" }, description = "Direct Subcontract Order For SCO Value Addition Type with Conv Factor and Sales Order Ref-Local(Registered)")
 	public void CreateDirectSubcontractOrderForValueAdditionTypeWithConvFactorAndSOrefLocalRegistered() {
 		SubcontractFunc.createDirectSubcontractOrderForValueAdditionTypeWithConvFactorAndSOrefLocalRegistered();
@@ -548,7 +548,7 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 	 * @author Vimal - RMITS
 	 */
 	@Author("Vimal-RMITS")
-	@Test(priority = 39, groups = {
+	@Test(priority = 29, groups = {
 			"Subcontract" }, description = "Direct Subcontract Order With BOM For Standard Type with Project-Local(Registered)")
 	public void DirectSubcontractOrderWithBOMForStandardTypeWithProjectLocalRegistered() {
 		SubcontractFunc.directSubcontractOrderWithBOMForStandardTypeWithProjectLocalRegistered();
@@ -561,7 +561,7 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 	 * @author Vimal - RMITS
 	 */
 	@Author("Vimal-RMITS")
-	@Test(priority = 40, groups = {
+	@Test(priority = 30, groups = {
 			"Subcontract" }, description = "Create Subcontract Order From Pending With Conversion Factor in GRN PR Type-Interstate(Unregistered)")
 	public void CreateSubcontractOrderFromPendingWithConversionFactorinGRN_PRTypeInterstateUnRegistered() {
 		SubcontractFunc.createSubcontractOrderFromPendingWithConversionFactorinGRN_PRTypeInterstateUnRegistered();
@@ -574,7 +574,7 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 	 * @author Vimal - RMITS
 	 */
 	@Author("Vimal-RMITS")
-	@Test(priority = 41, groups = {
+	@Test(priority = 31, groups = {
 			"Subcontract" }, description = "Create Subcontract Order From Pending With Sales Order Ref-Interstate(Unregistered)")
 	public void CreateSubcontractOrderFromPendingWithSalesOrderRefInterstateUnregistered() {
 		SubcontractFunc.createSubcontractOrderFromPendingWithSalesOrderRefInterstateUnregistered();
@@ -587,7 +587,7 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 	 * @author Vimal - RMITS
 	 */
 	@Author("Vimal-RMITS")
-	@Test(priority = 42, groups = {
+	@Test(priority = 32, groups = {
 			"Subcontract" }, description = "Create Subcontract Order From Pending With Sales Order Ref and Conv Factor-Interstate(Unregistered)")
 	public void CreateSubcontractOrderFromPendingWithSalesOrderRefandConvFactorInterstateUnregistered() {
 		SubcontractFunc.createSubcontractOrderFromPendingWithSalesOrderRefandConvFactorInterstateUnregistered();
@@ -599,7 +599,7 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 	 * @author Vimal - RMITS
 	 */
 	@Author("Vimal-RMITS")
-	@Test(priority = 43, groups = {
+	@Test(priority = 33, groups = {
 			"Subcontract" }, description = "Create Subcontract Order From Pending With Project-Interstate(Unregistered)")
 	public void CreateSubcontractOrderFromPendingWithProjectInterstateUnregistered() {
 		SubcontractFunc.createSubcontractOrderFromPendingWithProjectInterstateUnregistered();
@@ -612,7 +612,7 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 	 * @author Vimal - RMITS
 	 */
 	@Author("Vimal-RMITS")
-	@Test(priority = 44, groups = {
+	@Test(priority = 34, groups = {
 			"Subcontract" }, description = "Direct Subcontract Order For SCO Value Addition Type-Local(Unregistered)")
 	public void CreateDirectSubcontractOrderForValueAdditionTypeLocalUnregistered() {
 		SubcontractFunc.createDirectSubcontractOrderForValueAdditionTypeLocalUnregistered();
@@ -626,7 +626,7 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 	 * @author Vimal - RMITS
 	 */
 	@Author("Vimal-RMITS")
-	@Test(priority = 45, groups = {
+	@Test(priority = 35, groups = {
 			"Subcontract" }, description = "Create Direct Subcontract Order For Standard Type In Conversion Factor-Local(Unregistered)")
 	public void CreateDirectSubcontractOrderWithBOMForStandardTypeInConversionFactorLocalUnRegistered() {
 		SubcontractFunc.createDirectSubcontractOrderWithBOMForStandardTypeInConversionFactorLocalUnRegistered();
@@ -640,7 +640,7 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 	 * @author Vimal - RMITS
 	 */
 	@Author("Vimal-RMITS")
-	@Test(priority = 46, groups = {
+	@Test(priority = 36, groups = {
 			"Subcontract" }, description = "Direct Subcontract Order With BOM For Standard Type In Sales Order Ref-Local(Unregistered)")
 	public void CirectSubcontractOrderWithBOMForStandardTypeInSalesOrderRefLocalUnRegistered() {
 		SubcontractFunc.directSubcontractOrderWithBOMForStandardTypeInSalesOrderRefLocalUnRegistered();
@@ -654,7 +654,7 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 	 * @author Vimal - RMITS
 	 */
 	@Author("Vimal-RMITS")
-	@Test(priority = 47, groups = {
+	@Test(priority = 37, groups = {
 			"Subcontract" }, description = "Direct Subcontract Order With BOM For Standard Type In Sales Order Ref and Conv Factor- Interstate(Unregistered)")
 	public void DirectSubcontractOrderWithBOMForStandardTypeInSalesOrderRefandConvFactorLocalUnRegistered() {
 		SubcontractFunc.directSubcontractOrderWithBOMForStandardTypeInSalesOrderRefandConvFactorLocalUnRegistered();
@@ -667,7 +667,7 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 	 * @author Vimal - RMITS
 	 */
 	@Author("Vimal-RMITS")
-	@Test(priority = 48, groups = {
+	@Test(priority = 38, groups = {
 			"Subcontract" }, description = "Direct Subcontract Order For SCO Value Addition Type with Conv Factor-Local(Unregistered)")
 	public void CreateDirectSubcontractOrderForValueAdditionTypeWithConvFactorLocalUnRegistered() {
 		SubcontractFunc.createDirectSubcontractOrderForValueAdditionTypeWithConvFactorLocalUnRegistered();
@@ -680,7 +680,7 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 	 * @author Vimal - RMITS
 	 */
 	@Author("Vimal-RMITS")
-	@Test(priority = 49, groups = {
+	@Test(priority = 39, groups = {
 			"Subcontract" }, description = "Direct Subcontract Order For SCO Value Addition Type with Conv Factor and Sales Order Ref-Local(Unregistered)")
 	public void CreateDirectSubcontractOrderForValueAdditionTypeWithConvFactorAndSOrefLocalUnRegistered() {
 		SubcontractFunc.createDirectSubcontractOrderForValueAdditionTypeWithConvFactorAndSOrefLocalUnRegistered();
@@ -693,7 +693,7 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 	 * @author Vimal - RMITS
 	 */
 	@Author("Vimal-RMITS")
-	@Test(priority = 50, groups = {
+	@Test(priority = 40, groups = {
 			"Subcontract" }, description = "Direct Subcontract Order With BOM For Standard Type with Project-Local(Unregistered)")
 	public void DirectSubcontractOrderWithBOMForStandardTypeWithProjectLocalUnRegistered() {
 		SubcontractFunc.directSubcontractOrderWithBOMForStandardTypeWithProjectLocalUnRegistered();
@@ -706,7 +706,7 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 	 * @author Vimal - RMITS
 	 */
 	@Author("Vimal-RMITS")
-	@Test(priority = 51, groups = {
+	@Test(priority = 41, groups = {
 			"Subcontract" }, description = "Create Subcontract Order From Pending With Conversion Factor in GRN PR Type-Interstate(Registered)")
 	public void CreateSubcontractOrderFromPendingWithConversionFactorinGRN_PRTypeInterstateRegistered() {
 		SubcontractFunc.createSubcontractOrderFromPendingWithConversionFactorinGRN_PRTypeInterstateRegistered();
@@ -719,7 +719,7 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 	 * @author Vimal - RMITS
 	 */
 	@Author("Vimal-RMITS")
-	@Test(priority = 52, groups = {
+	@Test(priority = 42, groups = {
 			"Subcontract" }, description = "Create Subcontract Order From Pending With Sales Order Ref-Interstate(Registered)")
 	public void CreateSubcontractOrderFromPendingWithSalesOrderRefInterstateRegistered() {
 		SubcontractFunc.createSubcontractOrderFromPendingWithSalesOrderRefInterstateRegistered();
@@ -732,7 +732,7 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 	 * @author Vimal - RMITS
 	 */
 	@Author("Vimal-RMITS")
-	@Test(priority = 53, groups = {
+	@Test(priority = 43, groups = {
 			"Subcontract" }, description = "Create Subcontract Order From Pending With Sales Order Ref and Conv Factor-Interstate(Registered)")
 	public void CreateSubcontractOrderFromPendingWithSalesOrderRefandConvFactorInterstateRegistered() {
 		SubcontractFunc.createSubcontractOrderFromPendingWithSalesOrderRefandConvFactorInterstateRegistered();
@@ -744,7 +744,7 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 	 * @author Vimal - RMITS
 	 */
 	@Author("Vimal-RMITS")
-	@Test(priority = 54, groups = {
+	@Test(priority = 44, groups = {
 			"Subcontract" }, description = "Create Subcontract Order From Pending With Project-Interstate(Registered)")
 	public void CreateSubcontractOrderFromPendingWithProjectInterstateRegistered() {
 		SubcontractFunc.createSubcontractOrderFromPendingWithProjectInterstateRegistered();
@@ -756,7 +756,7 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 	 * @author Vimal - RMITS
 	 */
 	@Author("Vimal-RMITS")
-	@Test(priority = 55, groups = {
+	@Test(priority = 45, groups = {
 			"Subcontract" }, description = "Direct Subcontract Order With BOM For Standard Type - UTGST(Unregistered)")
 	public void CreateDirectSubcontractOrderWithBOMForStandardTypeUTGSTUnregistered() {
 		SubcontractFunc.createDirectSubcontractOrderWithBOMForStandardTypeUTGSTUnregistered();
@@ -768,7 +768,7 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 	 * @author Vimal - RMITS
 	 */
 	@Author("Vimal-RMITS")
-	@Test(priority = 56, groups = {
+	@Test(priority = 46, groups = {
 			"Subcontract" }, description = "Direct Subcontract Order For SCO Value Addition Type- UTGST(Unregistered)")
 	public void CreateDirectSubcontractOrderForValueAdditionTypeUTGSTUnregistered() {
 		SubcontractFunc.createDirectSubcontractOrderForValueAdditionTypeUTGSTUnregistered();
@@ -781,7 +781,7 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 	 * @author Vimal - RMITS
 	 */
 	@Author("Vimal-RMITS")
-	@Test(priority = 57, groups = {
+	@Test(priority = 47, groups = {
 			"Subcontract" }, description = "Create Direct Subcontract Order For Standard Type In Conversion Factor- UTGST(Unregistered)")
 	public void CreateDirectSubcontractOrderWithBOMForStandardTypeInConversionFactorUTGSTUnregistered() {
 		SubcontractFunc.createDirectSubcontractOrderWithBOMForStandardTypeInConversionFactorUTGSTUnregistered();
@@ -794,7 +794,7 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 	 * @author Vimal - RMITS
 	 */
 	@Author("Vimal-RMITS")
-	@Test(priority = 58, groups = {
+	@Test(priority = 48, groups = {
 			"Subcontract" }, description = "Direct Subcontract Order With BOM For Standard Type In Sales Order Ref- UTGST(Unregistered)")
 	public void DirectSubcontractOrderWithBOMForStandardTypeInSalesOrderRefUTGSTUnregistered() {
 		SubcontractFunc.directSubcontractOrderWithBOMForStandardTypeInSalesOrderRefUTGSTUnregistered();
@@ -807,7 +807,7 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 	 * @author Vimal - RMITS
 	 */
 	@Author("Vimal-RMITS")
-	@Test(priority = 59, groups = {
+	@Test(priority = 49, groups = {
 			"Subcontract" }, description = "Direct Subcontract Order With BOM For Standard Type In Sales Order Ref and Conv Factor-UTGST(Unregistered)")
 	public void DirectSubcontractOrderWithBOMForStandardTypeInSalesOrderRefandConvFactorUTGSTUnregistered() {
 		SubcontractFunc.directSubcontractOrderWithBOMForStandardTypeInSalesOrderRefandConvFactorUTGSTUnregistered();
@@ -820,7 +820,7 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 	 * @author Vimal - RMITS
 	 */
 	@Author("Vimal-RMITS")
-	@Test(priority = 60, groups = {
+	@Test(priority = 50, groups = {
 			"Subcontract" }, description = "Direct Subcontract Order For SCO Value Addition Type with Conv Factor- UTGST(Unregistered)")
 	public void CreateDirectSubcontractOrderForValueAdditionTypeWithConvFactorUTGSTUnregistered() {
 		SubcontractFunc.createDirectSubcontractOrderForValueAdditionTypeWithConvFactorUTGSTUnregistered();
@@ -833,7 +833,7 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 	 * @author Vimal - RMITS
 	 */
 	@Author("Vimal-RMITS")
-	@Test(priority = 61, groups = {
+	@Test(priority = 51, groups = {
 			"Subcontract" }, description = "Direct Subcontract Order For SCO Value Addition Type with Conv Factor and Sales Order Ref- UTGST(Unregistered)")
 	public void CreateDirectSubcontractOrderForValueAdditionTypeWithConvFactorAndSOrefUTGSTUnregistered() {
 		SubcontractFunc.createDirectSubcontractOrderForValueAdditionTypeWithConvFactorAndSOrefUTGSTUnregistered();
@@ -846,7 +846,7 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 	 * @author Vimal - RMITS
 	 */
 	@Author("Vimal-RMITS")
-	@Test(priority = 62, groups = {
+	@Test(priority = 52, groups = {
 			"Subcontract" }, description = "Direct Subcontract Order With BOM For Standard Type with Project- UTGST(Unregistered)")
 	public void DirectSubcontractOrderWithBOMForStandardTypeWithProjectUTGSTUnregistered() {
 		SubcontractFunc.directSubcontractOrderWithBOMForStandardTypeWithProjectUTGSTUnregistered();
@@ -858,7 +858,7 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 	 * @author Vimal - RMITS
 	 */
 	@Author("Vimal-RMITS")
-	@Test(priority = 63, groups = {
+	@Test(priority = 53, groups = {
 			"Subcontract" }, description = " Direct Subcontract Order With BOM For Standard Type - UTGST(Registered)")
 	public void CreateDirectSubcontractOrderWithBOMForStandardTypeUTGSTregistered() {
 		SubcontractFunc.createDirectSubcontractOrderWithBOMForStandardTypeUTGSTregistered();
@@ -870,7 +870,7 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 	 * @author Vimal - RMITS
 	 */
 	@Author("Vimal-RMITS")
-	@Test(priority = 64, groups = {
+	@Test(priority = 54, groups = {
 			"Subcontract" }, description = "Direct Subcontract Order For SCO Value Addition Type- UTGST(Registered)")
 	public void CreateDirectSubcontractOrderForValueAdditionTypeUTGSTregistered() {
 		SubcontractFunc.createDirectSubcontractOrderForValueAdditionTypeUTGSTregistered();
@@ -883,7 +883,7 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 	 * @author Vimal - RMITS
 	 */
 	@Author("Vimal-RMITS")
-	@Test(priority = 65, groups = {
+	@Test(priority = 55, groups = {
 			"Subcontract" }, description = "Create Direct Subcontract Order For Standard Type In Conversion Factor- UTGST(Registered)")
 	public void CreateDirectSubcontractOrderWithBOMForStandardTypeInConversionFactorUTGSTregistered() {
 		SubcontractFunc.createDirectSubcontractOrderWithBOMForStandardTypeInConversionFactorUTGSTregistered();
@@ -896,7 +896,7 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 	 * @author Vimal - RMITS
 	 */
 	@Author("Vimal-RMITS")
-	@Test(priority = 66, groups = {
+	@Test(priority = 56, groups = {
 			"Subcontract" }, description = "Direct Subcontract Order With BOM For Standard Type In Sales Order Ref- UTGST(Registered)")
 	public void DirectSubcontractOrderWithBOMForStandardTypeInSalesOrderRefUTGSTregistered() {
 		SubcontractFunc.directSubcontractOrderWithBOMForStandardTypeInSalesOrderRefUTGSTregistered();
@@ -909,7 +909,7 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 	 * @author Vimal - RMITS
 	 */
 	@Author("Vimal-RMITS")
-	@Test(priority = 67, groups = {
+	@Test(priority = 57, groups = {
 			"Subcontract" }, description = "Direct Subcontract Order With BOM For Standard Type In Sales Order Ref and Conv Factor-UTGST(Registered)")
 	public void DirectSubcontractOrderWithBOMForStandardTypeInSalesOrderRefandConvFactorUTGSTregistered() {
 		SubcontractFunc.directSubcontractOrderWithBOMForStandardTypeInSalesOrderRefandConvFactorUTGSTregistered();
@@ -922,7 +922,7 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 	 * @author Vimal - RMITS
 	 */
 	@Author("Vimal-RMITS")
-	@Test(priority = 68, groups = {
+	@Test(priority = 58, groups = {
 			"Subcontract" }, description = "Direct Subcontract Order For SCO Value Addition Type with Conv Factor- UTGST(Registered)")
 	public void CreateDirectSubcontractOrderForValueAdditionTypeWithConvFactorUTGSTregistered() {
 		SubcontractFunc.createDirectSubcontractOrderForValueAdditionTypeWithConvFactorUTGSTregistered();
@@ -935,7 +935,7 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 	 * @author Vimal - RMITS
 	 */
 	@Author("Vimal-RMITS")
-	@Test(priority = 69, groups = {
+	@Test(priority = 59, groups = {
 			"Subcontract" }, description = "Direct Subcontract Order For SCO Value Addition Type with Conv Factor and Sales Order Ref- UTGST(Registered)")
 	public void CreateDirectSubcontractOrderForValueAdditionTypeWithConvFactorAndSOrefUTGSTregistered() {
 		SubcontractFunc.createDirectSubcontractOrderForValueAdditionTypeWithConvFactorAndSOrefUTGSTregistered();
@@ -948,7 +948,7 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 	 * @author Vimal - RMITS
 	 */
 	@Author("Vimal-RMITS")
-	@Test(priority = 70, groups = {
+	@Test(priority = 60, groups = {
 			"Subcontract" }, description = "Direct Subcontract Order With BOM For Standard Type with Project- UTGST(Registered)")
 	public void DirectSubcontractOrderWithBOMForStandardTypeWithProjectUTGSTregistered() {
 		SubcontractFunc.directSubcontractOrderWithBOMForStandardTypeWithProjectUTGSTregistered();
@@ -961,7 +961,7 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 	 * @author Vimal - RMITS
 	 */
 	@Author("Vimal-RMITS")
-	@Test(priority = 71, groups = {
+	@Test(priority = 61, groups = {
 			"Subcontract" }, description = "Create Subcontract Order From Pending With Conversion Factor in GRN PR Type-UTGST(Registered)")
 	public void CreateSubcontractOrderFromPendingWithConversionFactorinGRN_PRTypeUTGSTregistered() {
 		SubcontractFunc.createSubcontractOrderFromPendingWithConversionFactorinGRN_PRTypeUTGSTregistered();
@@ -973,7 +973,7 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 	 * @author Vimal - RMITS
 	 */
 	@Author("Vimal-RMITS")
-	@Test(priority = 72, groups = {
+	@Test(priority = 62, groups = {
 			"Subcontract" }, description = "Create Subcontract Order From Pending With Sales Order Ref-UTGST(Registered)")
 	public void CreateSubcontractOrderFromPendingWithSalesOrderRefUTGSTregistered() {
 		SubcontractFunc.createSubcontractOrderFromPendingWithSalesOrderRefUTGSTregistered();
@@ -986,7 +986,7 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 	 * @author Vimal - RMITS
 	 */
 	@Author("Vimal-RMITS")
-	@Test(priority = 73, groups = {
+	@Test(priority = 63, groups = {
 			"Subcontract" }, description = "Create Subcontract Order From Pending With Sales Order Ref and Conv Factor-UTGST(Registered)")
 	public void CreateSubcontractOrderFromPendingWithSalesOrderRefandConvFactorUTGSTRegistered() {
 		SubcontractFunc.createSubcontractOrderFromPendingWithSalesOrderRefandConvFactorUTGSTRegistered();
@@ -998,7 +998,7 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 	 * @author Vimal - RMITS
 	 */
 	@Author("Vimal-RMITS")
-	@Test(priority = 74, groups = {
+	@Test(priority = 64, groups = {
 			"Subcontract" }, description = "Create Subcontract Order From Pending With Project-UTGST(Registered)")
 	public void CreateSubcontractOrderFromPendingWithProjectUTGSTRegistered() {
 		SubcontractFunc.createSubcontractOrderFromPendingWithProjectUTGSTRegistered();
@@ -1011,7 +1011,7 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 	 * @author Vimal - RMITS
 	 */
 	@Author("Vimal-RMITS")
-	@Test(priority = 75, groups = {
+	@Test(priority = 96 , groups = {
 			"Subcontract" }, description = "Create Serial Item Subcontract Order From Pending With Sales Order Ref-UTGST(Registered)")
 	public void CreateSerialItemSubcontractOrderFromPendingWithSalesOrderRefUTGSTRegistered() {
 		SubcontractFunc.createSerialItemSubcontractOrderFromPendingWithSalesOrderRefUTGSTRegistered();
