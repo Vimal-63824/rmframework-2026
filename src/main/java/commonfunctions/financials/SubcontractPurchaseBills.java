@@ -3709,6 +3709,7 @@ public class SubcontractPurchaseBills {
 		verifyCreateJournalAndVerifyMatchedAmtAndPost();
 		PurBillFunc.waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
 	}
+
 	/**
 	 * This Method used For Non-resident Supplier imported (without GST)
 	 * 
@@ -3726,9 +3727,10 @@ public class SubcontractPurchaseBills {
 		verifyCreateJournalAndVerifyMatchedAmtAndPost();
 		PurBillFunc.waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
 	}
+
 	/**
-	 * This Method used For Non-resident Supplier imported (without GST)
-	 * Expenses Account
+	 * This Method used For Non-resident Supplier imported (without GST) Expenses
+	 * Account
 	 * 
 	 * @author Vimal - RMITS
 	 */
@@ -3746,9 +3748,10 @@ public class SubcontractPurchaseBills {
 		verifyCreateJournalAndVerifyMatchedAmtAndPost();
 		PurBillFunc.waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
 	}
+
 	/**
-	 * This Method used ForNon-resident Supplier imported (without GST) and
-	 * Expenses Account And Adjustment
+	 * This Method used ForNon-resident Supplier imported (without GST) and Expenses
+	 * Account And Adjustment
 	 * 
 	 * @author Vimal - RMITS
 	 */
@@ -3777,6 +3780,7 @@ public class SubcontractPurchaseBills {
 		verifyCreateJournalAndVerifyMatchedAmtAndPost();
 		PurBillFunc.waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
 	}
+
 	/**
 	 * This Method used For Domestic Registered Supplier - With Local Freight GST
 	 * 
@@ -3794,6 +3798,7 @@ public class SubcontractPurchaseBills {
 		verifyCreateJournalAndVerifyMatchedAmtAndPost();
 		PurBillFunc.waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
 	}
+
 	/**
 	 * This Method used For Domestic Registered Supplier - With Union Territory GST
 	 * 
@@ -3811,6 +3816,7 @@ public class SubcontractPurchaseBills {
 		verifyCreateJournalAndVerifyMatchedAmtAndPost();
 		PurBillFunc.waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
 	}
+
 	/**
 	 * This Method used For Domestic Unregistered Supplier - With Local Freight GST
 	 * 
@@ -3828,8 +3834,10 @@ public class SubcontractPurchaseBills {
 		verifyCreateJournalAndVerifyMatchedAmtAndPost();
 		PurBillFunc.waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
 	}
+
 	/**
-	 * This Method used For Domestic Unregistered Supplier - With Union Territory GST
+	 * This Method used For Domestic Unregistered Supplier - With Union Territory
+	 * GST
 	 * 
 	 * @author Vimal - RMITS
 	 */
@@ -3845,6 +3853,7 @@ public class SubcontractPurchaseBills {
 		verifyCreateJournalAndVerifyMatchedAmtAndPost();
 		PurBillFunc.waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
 	}
+
 	/**
 	 * This Method used For Domestic LocalFreight Supplier - With Composition
 	 * 
@@ -3862,6 +3871,7 @@ public class SubcontractPurchaseBills {
 		verifyCreateJournalAndVerifyMatchedAmtAndPost();
 		PurBillFunc.waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
 	}
+
 	/**
 	 * This Method used For Domestic Interstate Supplier - With Composition
 	 * 
@@ -3879,6 +3889,7 @@ public class SubcontractPurchaseBills {
 		verifyCreateJournalAndVerifyMatchedAmtAndPost();
 		PurBillFunc.waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
 	}
+
 	/**
 	 * This Method used For Domestic UnionTerritory Supplier - With Composition
 	 * 
@@ -3896,6 +3907,7 @@ public class SubcontractPurchaseBills {
 		verifyCreateJournalAndVerifyMatchedAmtAndPost();
 		PurBillFunc.waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
 	}
+
 	/**
 	 * This Method used For Domestic Interstate Supplier - With CasualPerson
 	 * 
@@ -3913,6 +3925,7 @@ public class SubcontractPurchaseBills {
 		verifyCreateJournalAndVerifyMatchedAmtAndPost();
 		PurBillFunc.waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
 	}
+
 	/**
 	 * This Method used For Domestic UnionTerritory Supplier - With CasualPerson
 	 * 
@@ -3930,6 +3943,7 @@ public class SubcontractPurchaseBills {
 		verifyCreateJournalAndVerifyMatchedAmtAndPost();
 		PurBillFunc.waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
 	}
+
 	/**
 	 * This Method used For Domestic Interstate Supplier - With NonResident
 	 * 
@@ -3947,8 +3961,9 @@ public class SubcontractPurchaseBills {
 		verifyCreateJournalAndVerifyMatchedAmtAndPost();
 		PurBillFunc.waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
 	}
+
 	/**
-	 * This Method used For  Domestic UnionTerritory Supplier - With NonResident
+	 * This Method used For Domestic UnionTerritory Supplier - With NonResident
 	 * 
 	 * @author Vimal - RMITS
 	 */
@@ -3961,6 +3976,134 @@ public class SubcontractPurchaseBills {
 				commonFunc.getDataFromTestDataSheet("PBRefType"));
 		insertingSubcontractProcessDetails(commonFunc.getDataFromTestDataSheet("ProcQty"),
 				commonFunc.getDataFromTestDataSheet("ProcCost"));
+		verifyCreateJournalAndVerifyMatchedAmtAndPost();
+		PurBillFunc.waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+	}
+
+	/**
+	 * Navigate To Reference Tab And Validating IGST Flag
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public boolean VerifyToClickReferenceFieldAndClickExemptedFlag() {
+		commonFunc.checkRefreshCellsDisappear();
+		flag = webDB.waitForElement(PurchaseBillsLocatorsGetDocument.ReferenceTab, ElementType.Xpath);
+		if (flag) {
+			logs.logging("INFO", "Pending Grn Is Displayed");
+			webDB.clickAnElement(PurchaseBillsLocatorsGetDocument.ReferenceTab, ElementType.Xpath);
+			flag = webDB.waitForElement(PurchaseBillsLocatorsGetDocument.AllowExemptedFlag, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "RCM Flag Displayed");
+
+				webDB.clickAnElement(PurchaseBillsLocatorsGetDocument.AllowExemptedFlag, ElementType.Xpath);
+				commonFunc.checkRefreshCellsDisappear();
+				flag = webDB.waitForElement(PurchaseBillsLocatorsGetDocument.OverAllSaveBtn, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "IGST Flag Successfully Clicked");
+					commonFunc.checkRefreshCellsDisappear();
+					commonFunc.hardWait(2000);
+					webDB.clickAnElement(PurchaseBillsLocatorsGetDocument.OverAllSaveBtn, ElementType.Xpath);
+					commonFunc.checkRefreshCellsDisappear();
+					flag = webDB.waitForElement(PurchaseBillsLocatorsGetDocument.InvoiceLineTab, ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "OverAll Save Button Successfully Clicked");
+						webDB.clickAnElement(PurchaseBillsLocatorsGetDocument.InvoiceLineTab, ElementType.Xpath);
+						commonFunc.checkRefreshCellsDisappear();
+						flag = webDB.waitForElement(PurchaseBillsLocatorsGetDocument.PBAddLine, ElementType.Xpath);
+						if (flag) {
+							logs.logging("INFO", "Invoice Tab Successfully Clicked");
+						}
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+		return flag;
+	}
+
+	/**
+	 * This Method used For Domestic Registered Supplier - With TDS (Exempted)
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void domesticRegisteredSupplierWithTDSExempted() {
+		SubcontractFunc.directSubcontractorderToGRNTypePRWithTDS();
+		commonFunc.navigateToFinancialPurchaseBill();
+		verifyPendingSCOPurchaseBill(VariableHandler.getScoGrnNumber(),
+				commonFunc.getDataFromTestDataSheet("TDSValue"));
+		VerifyToClickReferenceFieldAndClickExemptedFlag();
+		clickingLinewiseProcessDetailsChangingQtyandUnitcost(commonFunc.getDataFromTestDataSheet("TDSValue"),
+				commonFunc.getDataFromTestDataSheet("PBProcessQtyInput"));
+		verifyCreateJournalAndVerifyMatchedAmtAndPost();
+		PurBillFunc.waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+	}
+
+	/**
+	 * This Method used For Domestic Registered Supplier - With TDS Single Under
+	 * section
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void domesticRegisteredSupplierWithTDSSingleUndersection() {
+		SubcontractFunc.directSubcontractorderToGRNTypePRWithTDS();
+		commonFunc.navigateToFinancialPurchaseBill();
+		verifyPendingSCOPurchaseBill(VariableHandler.getScoGrnNumber(),
+				commonFunc.getDataFromTestDataSheet("TDSValue"));
+		clickingLinewiseProcessDetailsChangingQtyandUnitcost(commonFunc.getDataFromTestDataSheet("TDSValue"),
+				commonFunc.getDataFromTestDataSheet("PBProcessQtyInput"));
+		verifyCreateJournalAndVerifyMatchedAmtAndPost();
+		PurBillFunc.waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+	}
+
+	/**
+	 * This Method used For Clicking Apply Deduction Button
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void clickApplyDeductionButton() {
+		flag = webDB.waitForElement(PurchaseBillsGrnLocators.PB_ApplyDeduction, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(PurchaseBillsGrnLocators.PB_ApplyDeduction, ElementType.Xpath);
+			commonFunc.hardWait(1000);
+			webDB.pressEnterKey();
+				logs.logging("INFO", "Apply Deduction Buttton Clicked");
+				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.hardWait(1000);
+			}
+		assertTrue(flag);
+	}
+
+	/**
+	 * Domestic Registered Supplier - With Advance TDS single under section (Single
+	 * PO)
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void domesticRegisteredSupplierWithAdvanceTDSsingleundersectionSinglePO() {
+		SubcontractFunc.directSubcontractorderToGRNTypePRWithTDS();
+		purchaseBillsFunc.verifyPurchaseBillsAgainstPurchaseBillsForAdjustmentAndGetGLAcct(
+				commonFunc.getDataFromTestDataSheet("BankName"), commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
+				webDB.getDataFromProperties("BankRecptGlAcct"), commonFunc.getDataFromTestDataSheet("SupplierForTDS"));
+		purchaseBillsFunc.addNewRefPaymentsAgainstTotheParty(commonFunc.getDataFromTestDataSheet("BillsBank"),
+				commonFunc.getDataFromTestDataSheet("PayAmount1"));
+		BPFunc.clickPostButton();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+				VariableHandler.getBankPaymentOrReceiptDocNumber(), webDB.getDataFromProperties("HodEmpId"),
+				commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+		commonFunc.navigateToFinancialPurchaseBill();
+		verifyPendingSCOPurchaseBill(VariableHandler.getScoGrnNumber(),
+				commonFunc.getDataFromTestDataSheet("TDSValue"));
+		clickingReferenceTabAndValidating();
+		clickingLinewiseProcessDetailsChangingQtyandUnitcost(commonFunc.getDataFromTestDataSheet("TDSValue"),
+				commonFunc.getDataFromTestDataSheet("PBProcessQtyInput"));
+		getMatchedAmtAndGRNAmtandWriteInExcelSheet(webDB.getDataFromProperties("PurchaseBillDeviationandExp"));
+//		verifyAddExpenseTypeUnitcostinExcelSheet(commonFunc.getDataFromTestDataSheet("PBGLAccount"),
+//				commonFunc.getDataFromTestDataSheet("ExpenseType"));
+		purchaseBillsFunc.ClickSaveButton();
+		purchaseBillsFunc.loadAdjustmentForSupplierToAddedInParty(VariableHandler.getBankPaymentOrReceiptDocNumber());
+		clickApplyDeductionButton();
 		verifyCreateJournalAndVerifyMatchedAmtAndPost();
 		PurBillFunc.waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
 	}

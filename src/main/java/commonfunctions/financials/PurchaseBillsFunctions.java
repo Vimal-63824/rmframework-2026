@@ -8857,8 +8857,8 @@ public class PurchaseBillsFunctions {
 	public void verifyPurchaseBillsAgainstPurchaseBillsForAdjustmentAndGetGLAcct(String BankName, String Currency,
 			String SheetName, String Supplier) {
 
-		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
-				System.getProperty("KowshikUserName"));
+//		commonFunc.validCommonLogin(System.getProperty("KowshikUserName"), System.getProperty("LoginPassword"),
+//				System.getProperty("KowshikUserName"));
 		SubcontractPurchasebillFunc.getSupplierGLAcctFromDB(Supplier);
 		commonFunc.navigateToFinancialPaymentReceipt();
 		BPFunc.clickAddButtonInPaymentsRecipts();
