@@ -7546,7 +7546,7 @@ public class GrnPageFunctions {
 		verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("StPoToMRVWFPlSheet"),
 				webDB.getDataFromProperties("PoToMrvSheet"));
 		POfunc.verifyDirectPODomesticCustomizeTypeSimilarUOMwithAndWithoutInspectionMaterialTypeForPriceListItem(
-				commonFunc.getDataFromTestDataSheet("L0007"), commonFunc.getDataFromTestDataSheet("MagaPvtLtd"),
+				commonFunc.getDataFromTestDataSheet("L0007Name"), commonFunc.getDataFromTestDataSheet("MagaPvtLtd"),
 				commonFunc.getDataFromTestDataSheet("StockTransferSelect"),
 				webDB.getDataFromProperties("StPoToMRVWFPlSheet"), webDB.getDataFromProperties("PoToMrvSheet"));
 		verifyToStockTransferSaleOrderDocumentPost();
