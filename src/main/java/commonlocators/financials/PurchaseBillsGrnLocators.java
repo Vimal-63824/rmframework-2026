@@ -191,4 +191,8 @@ public class PurchaseBillsGrnLocators {
 	public static final String BankPaymentAmountField = "//*[@id=\"ig_line_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[7]";
 	/** @locatorType Xpath */
 	public static final String PendingPBPrefixLov = "//input[@data-testid=\"P116131004_INV_PFX\"]/following-sibling::button";
+	/** @locatorType Xpath */
+	public static final String PB_ApplyDeduction = "//button[@data-testid='ApplyDeductions']";
+	/** @locatorType Xpath */
+	public static final String PB_ApplyDeduction_Yes = "//*[@id=\"t_PageBody\"]/div[35]/div[3]/div/button[2]";
 }
