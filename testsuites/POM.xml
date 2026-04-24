@@ -30,6 +30,7 @@
 			<class name="com.roadmapERP.RfqTest"></class>
 			<class name="com.roadmapERP.ShareOfBusinessTest"></class>
 			<class name="com.roadmapERP.SetupPurchaseTest"></class>
+			<class name="com.roadmapERP.OpenPoRcTest"></class>
 		</classes>
 	</test>
 </suite>

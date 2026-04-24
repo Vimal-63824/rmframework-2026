@@ -212,4 +212,6 @@ public class PurchaseBillsLocatorsGetDocument {
 	public static final String PBInvoiceTablineWiseDelete = "//button[@id='DL']";
 	/** @locatorType Xpath */
 	public static final String SCODirectReferenceTab = "//input[@id='P11613101001_TABS_4']/following-sibling::label";
+	/** @locatorType Xpath */
+	public static final String AllowExemptedFlag = "//input[@id='P11613101001_SUPHD_TDS_EXMP_FL']/following-sibling::label";
 }
