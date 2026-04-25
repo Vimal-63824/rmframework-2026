@@ -4297,84 +4297,6 @@ public class CashPaymentFunctions {
 	}
 
 	/**
-	 * This Method Is Used To Add The Bank Payment Through Add Button
-	 * 
-	 * @author Harikrishna - RMITS
-	 * @param SheetName
-	 */
-	public void CPAdvThroughAddButton(String SheetName, String Currency, String CashierName) {
-		commonFunc.validCommonLogin(System.getProperty("HKFinUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("HKFinUsername"));
-		commonFunc.navigateToFinancialPaymentReceipt();
-		clickAddButtonInPaymentsRecipts();
-		createCashPaymentEntry(commonFunc.getDataFromTestDataSheet("CashDocModeCP"), CashierName, Today,
-				commonFunc.getDataFromTestDataSheet("CashPaymentPrefix"));
-		getCashPaymentOrReceiptDocumentNumber();
-		bankpaymentfunc.checkBPDocumentStatusWithDB(commonFunc.getDataFromTestDataSheet("Draft"),
-				VariableHandler.getCashPaymentOrReceiptDocNumber());
-		verifyCashPaymentDetailsWithDB(CashierName, commonFunc.getDataFromTestDataSheet("CashPaymentPrefix"), Currency);
-		CashPayments = excelUtils.readAllDataInExcel(Filepath, SheetName);
-		for (int i = 1; i < CashPayments.length; i++) {
-			String GLAccountDesc = CashPayments[i][1];
-			String PartyName = CashPayments[i][3];
-			String EntityName = CashPayments[i][5];
-			String CPCCodeDesc = CashPayments[i][6];
-			String BillNumber = CashPayments[i][7];
-			String PayAmount = CashPayments[i][8];
-			String DRCR = CashPayments[i][9];
-			String CURCY = CashPayments[i][10];
-			String EXRate = CashPayments[i][11];
-			String TransCURCY = CashPayments[i][12];
-			String BaseCURCY = CashPayments[i][13];
-			String AssesableValue = CashPayments[i][16];
-			if (!GLAccountDesc.equals("")) {
-				clickCPLineAddButton();
-				addCashPaymentLineDetails(GLAccountDesc, CPCCodeDesc);
-				clickLineWiseSaveButton();
-				clickLineWiseAddButton(i);
-				clickPendingAdvancePartyDocumentsInBP();
-				selectAdvPartyDocumentBasedOnPB(PartyName, VariableHandler.getMultipleAdvPymtDocs(), SheetName);
-				if (!Currency.equals("INR")) {
-					excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, dbCommonFunctions.ExchangeRateDetails(
-							Currency, commonFunc.getDataFromTestDataSheet("ImportPurchaseEXRateColumnName")));
-				} else {
-					excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, "1");
-				}
-				verifyCashPaymentsLineDetailsWithDB(SheetName, i);
-				for (int j = 1; j <= VariableHandler.getMultipleAdvPymtDocs().size(); j++) {
-					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("CPJournalADV"), 1, 5 + j,
-							dbCommonFunctions.POAdvanceDetails(VariableHandler.getPONumber(),
-									commonFunc.getDataFromTestDataSheet("AdvancePOPayableColumnName")));
-					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("CPJournalADV"), 2, 5 + j,
-							dbCommonFunctions.POAdvanceDetails(VariableHandler.getPONumber(),
-									commonFunc.getDataFromTestDataSheet("AdvancePOPayableColumnName")));
-				}
-			}
-		}
-		clickCreateJournalButton();
-		commonFunc.checkRefreshCellsDisappear();
-		bankreceiptfunc.verifyJournalAmountWithDB(webDB.getDataFromProperties("CPJournalADV"),
-				VariableHandler.getCashPaymentOrReceiptDocNumber());
-		for (int j = 1; j <= VariableHandler.getMultipleAdvPymtDocs().size(); j++) {
-			excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("CPJournalADV"), 1, 5 + j, "0");
-			excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("CPJournalADV"), 2, 5 + j, "0");
-		}
-		clearDataInExcel(SheetName);
-		clickPostButton();
-		flag = forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
-		if (flag) {
-			commonFunc.logoutUser();
-			checkBPDocumentStatusWithDB(commonFunc.getDataFromTestDataSheet("EntryCompletedStatus"),
-					VariableHandler.getCashPaymentOrReceiptDocNumber());
-			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
-					VariableHandler.getCashPaymentOrReceiptDocNumber(), webDB.getDataFromProperties("HodEmpId"),
-					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
-			VerifyCPVDocumentStatus();
-		}
-		assertTrue(flag);
-	}
-
-	/**
 	 * This Method Is Used To Click The Pending Party Documents In Bank Payment
 	 * Screen
 	 * 
@@ -4565,6 +4487,143 @@ public class CashPaymentFunctions {
 					logs.logging("INFO", "Ok Button Is Clicked Successfully");
 				}
 			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Add The Bank Payment Through Add Button
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @param SheetName
+	 */
+	public void CPAdvThroughAddButton(String SheetName, String Currency, String CashierName) {
+		commonFunc.validCommonLogin(System.getProperty("HKFinUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("HKFinUsername"));
+		commonFunc.navigateToFinancialPaymentReceipt();
+		clickAddButtonInPaymentsRecipts();
+		createCashPaymentEntry(commonFunc.getDataFromTestDataSheet("CashDocModeCP"), CashierName, Today,
+				commonFunc.getDataFromTestDataSheet("CashPaymentPrefix"));
+		getCashPaymentOrReceiptDocumentNumber();
+		bankpaymentfunc.checkBPDocumentStatusWithDB(commonFunc.getDataFromTestDataSheet("Draft"),
+				VariableHandler.getCashPaymentOrReceiptDocNumber());
+		verifyCashPaymentDetailsWithDB(CashierName, commonFunc.getDataFromTestDataSheet("CashPaymentPrefix"), Currency);
+		if (!SheetName.contains("TDS")) {
+			CashPayments = excelUtils.readAllDataInExcel(Filepath, SheetName);
+			for (int i = 1; i < CashPayments.length; i++) {
+				String GLAccountDesc = CashPayments[i][1];
+				String PartyName = CashPayments[i][3];
+				String EntityName = CashPayments[i][5];
+				String CPCCodeDesc = CashPayments[i][6];
+				String BillNumber = CashPayments[i][7];
+				String PayAmount = CashPayments[i][8];
+				String DRCR = CashPayments[i][9];
+				String CURCY = CashPayments[i][10];
+				String EXRate = CashPayments[i][11];
+				String TransCURCY = CashPayments[i][12];
+				String BaseCURCY = CashPayments[i][13];
+				String AssesableValue = CashPayments[i][16];
+				if (!GLAccountDesc.equals("")) {
+					clickCPLineAddButton();
+					addCashPaymentLineDetails(GLAccountDesc, CPCCodeDesc);
+					clickLineWiseSaveButton();
+					clickLineWiseAddButton(i);
+					clickPendingAdvancePartyDocumentsInBP();
+					selectAdvPartyDocumentBasedOnPB(PartyName, VariableHandler.getMultipleAdvPymtDocs(), SheetName);
+					if (!Currency.equals("INR")) {
+						excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, dbCommonFunctions.ExchangeRateDetails(
+								Currency, commonFunc.getDataFromTestDataSheet("ImportPurchaseEXRateColumnName")));
+					} else {
+						excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, "1");
+					}
+					verifyCashPaymentsLineDetailsWithDB(SheetName, i);
+					for (int j = 1; j <= VariableHandler.getMultipleAdvPymtDocs().size(); j++) {
+						excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("CPJournalADV"), 1, 5 + j,
+								dbCommonFunctions.POAdvanceDetails(VariableHandler.getPONumber(),
+										commonFunc.getDataFromTestDataSheet("AdvancePOPayableColumnName")));
+						excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("CPJournalADV"), 2, 5 + j,
+								dbCommonFunctions.POAdvanceDetails(VariableHandler.getPONumber(),
+										commonFunc.getDataFromTestDataSheet("AdvancePOPayableColumnName")));
+					}
+				}
+			}
+		} else {
+			CashPayments = excelUtils.readAllDataInExcel(Filepath, SheetName);
+			for (int i = 1; i < CashPayments.length; i++) {
+				String GLAccountDesc = CashPayments[i][1];
+				String PartyName = CashPayments[i][3];
+				String POSheetName = CashPayments[i][4];
+				String EntityName = CashPayments[i][5];
+				String CPCCodeDesc = CashPayments[i][6];
+				String BillNumber = CashPayments[i][7];
+				String PayAmount = CashPayments[i][8];
+				String DRCR = CashPayments[i][9];
+				String CURCY = CashPayments[i][10];
+				String EXRate = CashPayments[i][11];
+				String TransCURCY = CashPayments[i][12];
+				String BaseCURCY = CashPayments[i][13];
+				String AssesableValue = CashPayments[i][16];
+				if (!POSheetName.equals("")) {
+					clickCPLineAddButton();
+					addCashPaymentLineDetails(GLAccountDesc, CPCCodeDesc);
+					clickLineWiseSaveButton();
+					clickLineWiseAddButton(i);
+					clickPendingAdvancePartyDocumentsInBP();
+					selectAdvPartyDocumentBasedOnPB(PartyName, VariableHandler.getMultipleAdvPymtDocs(), SheetName);
+					if (!Currency.equals("INR")) {
+						excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, dbCommonFunctions.ExchangeRateDetails(
+								Currency, commonFunc.getDataFromTestDataSheet("ImportPurchaseEXRateColumnName")));
+					} else {
+						excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, "1");
+					}
+				}
+			}
+			chooseLineWiseTDS(commonFunc.getDataFromTestDataSheet("CPTDS"), 1);
+			clickApplyDeductionButton();
+			for (int j = 1; j <= VariableHandler.getMultipleAdvPymtDocs().size(); j++) {
+				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("TDSCPJournalADV"), 1, 5 + j,
+						dbCommonFunctions.POAdvanceDetails(VariableHandler.getPONumber(),
+								commonFunc.getDataFromTestDataSheet("AdvancePOPayableColumnName")));
+				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("TDSCPJournalADV"), 2, 5 + j,
+						dbCommonFunctions.POAdvanceDetails(VariableHandler.getPONumber(),
+								commonFunc.getDataFromTestDataSheet("AdvancePOPayableColumnName")));
+			}
+			for (int i = 1; i < CashPayments.length; i++) {
+				String GLAccountDesc = CashPayments[i][1];
+				String BaseCURCY = CashPayments[i][13];
+				if (!GLAccountDesc.equals("")) {
+					verifyCashPaymentsLineDetailsWithDB(SheetName, i);
+				}
+			}
+		}
+		clickCreateJournalButton();
+		if (SheetName.contains("TDS")) {
+			bankreceiptfunc.verifyJournalAmountWithDB(webDB.getDataFromProperties("TDSCPJournalADV"),
+					VariableHandler.getCashPaymentOrReceiptDocNumber());
+			for (int j = 1; j <= VariableHandler.getMultipleAdvPymtDocs().size(); j++) {
+				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("TDSCPJournalADV"), 1, 5 + j, "0");
+				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("TDSCPJournalADV"), 2, 5 + j, "0");
+			}
+			clearDataInExcel(SheetName);
+		} else {
+			bankreceiptfunc.verifyJournalAmountWithDB(webDB.getDataFromProperties("CPJournalADV"),
+					VariableHandler.getCashPaymentOrReceiptDocNumber());
+			for (int j = 1; j <= VariableHandler.getMultipleAdvPymtDocs().size(); j++) {
+				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("CPJournalADV"), 1, 5 + j, "0");
+				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("CPJournalADV"), 2, 5 + j, "0");
+			}
+			clearDataInExcel(SheetName);
+		}
+		clickPostButton();
+		flag = forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
+		if (flag) {
+			commonFunc.logoutUser();
+			checkBPDocumentStatusWithDB(commonFunc.getDataFromTestDataSheet("EntryCompletedStatus"),
+					VariableHandler.getCashPaymentOrReceiptDocNumber());
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+					VariableHandler.getCashPaymentOrReceiptDocNumber(), webDB.getDataFromProperties("HodEmpId"),
+					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+			VerifyCPVDocumentStatus();
 		}
 		assertTrue(flag);
 	}
@@ -5489,20 +5548,21 @@ public class CashPaymentFunctions {
 					chooseLineWiseTDS(TDS, i);
 					clickApplyDeductionButton();
 				}
-			}
-			verifyCashPaymentsLineDetailsWithDB(SheetName, i);
-			if (SheetName.contains("TDS")) {
-				if (!TDS.equals("")) {
-					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("TDSCPJournalADVWithNewRef"), 1,
-							6, PayAmount);
-					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("TDSCPJournalADVWithNewRef"), 2,
-							6, PayAmount);
+//			}
+				verifyCashPaymentsLineDetailsWithDB(SheetName, i);
+				if (SheetName.contains("TDS")) {
+					if (!TDS.equals("")) {
+						excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("TDSCPJournalADVWithNewRef"),
+								1, 6, PayAmount);
+						excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("TDSCPJournalADVWithNewRef"),
+								2, 6, PayAmount);
+					}
+				} else {
+					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("CPJournalADVWithNewRef"), 1, 6,
+							PayAmount);
+					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("CPJournalADVWithNewRef"), 2, 6,
+							PayAmount);
 				}
-			} else {
-				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("CPJournalADVWithNewRef"), 1, 6,
-						PayAmount);
-				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("CPJournalADVWithNewRef"), 2, 6,
-						PayAmount);
 			}
 		}
 		clickCreateJournalButton();
@@ -5533,7 +5593,7 @@ public class CashPaymentFunctions {
 		}
 		assertTrue(flag);
 	}
-	
+
 	/**
 	 * This Method Is Used To Add The Bank Payment Through Add Button
 	 * 
@@ -5598,8 +5658,8 @@ public class CashPaymentFunctions {
 		clickCreateJournalButton();
 		bankreceiptfunc.verifyJournalAmountWithDB(webDB.getDataFromProperties("TDSCPJournalADVMultiNewref"),
 				VariableHandler.getCashPaymentOrReceiptDocNumber());
-			excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("TDSCPJournalADVMultiNewref"), 1, 6, "0");
-			excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("TDSCPJournalADVMultiNewref"), 2, 6, "0");
+		excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("TDSCPJournalADVMultiNewref"), 1, 6, "0");
+		excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("TDSCPJournalADVMultiNewref"), 2, 6, "0");
 		clearDataInExcel(SheetName);
 		clickPostButton();
 		flag = forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
@@ -5624,7 +5684,7 @@ public class CashPaymentFunctions {
 		CPadvanceWithNewRef(SheetName, commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
 				commonFunc.getDataFromTestDataSheet("CashierName"));
 	}
-	
+
 	/**
 	 * This Method Is Used To Create Advance PO Through Add Button
 	 * 

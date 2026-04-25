@@ -399,7 +399,7 @@ public class CashPaymentTest extends RoadMapERPTest {
 				webDB.getDataFromProperties("BankPaymentINRMPMBMU"));
 		Assert.assertTrue(flag);
 	}
-	
+
 	/**
 	 * Payment Against Multi Party, Single Bill (Through Add button)
 	 * 
@@ -409,10 +409,10 @@ public class CashPaymentTest extends RoadMapERPTest {
 	@Test(priority = 26, groups = {
 			"Cash Payments" }, description = " Payment Against Multi Party, Single Bill (Through Add button)")
 	public void CreateCashPaymentAdvPOThroughAddButton() throws IOException {
-		 cashPaymentFunc.advancePOThroughAddButton(webDB.getDataFromProperties("CPAdvance"));
+		cashPaymentFunc.advancePOThroughAddButton(webDB.getDataFromProperties("CPAdvance"));
 //		Assert.assertTrue(flag);
 	}
-	
+
 	/**
 	 * Payment Against Multi Party, Single Bill (Through Add button)
 	 * 
@@ -422,10 +422,10 @@ public class CashPaymentTest extends RoadMapERPTest {
 	@Test(priority = 27, groups = {
 			"Cash Payments" }, description = " Payment Against Multi Party, Single Bill (Through Add button)")
 	public void CreateCashPaymentAdvPOThroughGetDocument() throws IOException {
-		 cashPaymentFunc.advancePOThroughGetDocument(webDB.getDataFromProperties("CPAdvance"));
+		cashPaymentFunc.advancePOThroughGetDocument(webDB.getDataFromProperties("CPAdvance"));
 //		Assert.assertTrue(flag);
 	}
-//	
+
 	/**
 	 * Payment Against Multi Party, Single Bill (Through Add button)
 	 * 
@@ -435,10 +435,10 @@ public class CashPaymentTest extends RoadMapERPTest {
 	@Test(priority = 28, groups = {
 			"Cash Payments" }, description = " Payment Against Multi Party, Single Bill (Through Add button)")
 	public void CreateCashPaymentAdvPOThroughPendingDocument() throws IOException {
-		 cashPaymentFunc.advancePOThroughPendingDocument(webDB.getDataFromProperties("CPAdvance"));
+		cashPaymentFunc.advancePOThroughPendingDocument(webDB.getDataFromProperties("CPAdvance"));
 //		Assert.assertTrue(flag);
 	}
-	
+
 	/**
 	 * Payment Against Multi Party, Single Bill (Through Add button)
 	 * 
@@ -448,10 +448,10 @@ public class CashPaymentTest extends RoadMapERPTest {
 	@Test(priority = 29, groups = {
 			"Cash Payments" }, description = " Payment Against Multi Party, Single Bill (Through Add button)")
 	public void CreateCashPaymentMultipleAdvPOThroughAddButton() throws IOException {
-		 cashPaymentFunc.advancePOMultipleThroughAddButton(webDB.getDataFromProperties("CPAdvance"));
+		cashPaymentFunc.advancePOMultipleThroughAddButton(webDB.getDataFromProperties("CPAdvance"));
 //		Assert.assertTrue(flag);
 	}
-	
+
 	/**
 	 * Payment Against Multi Party, Single Bill (Through Add button)
 	 * 
@@ -461,10 +461,10 @@ public class CashPaymentTest extends RoadMapERPTest {
 	@Test(priority = 30, groups = {
 			"Cash Payments" }, description = " Payment Against Multi Party, Single Bill (Through Add button)")
 	public void CreateCashPaymentMultipleAdvPOThroughGetDocument() throws IOException {
-		 cashPaymentFunc.advancePOMultipleThroughGetDocument(webDB.getDataFromProperties("CPAdvance"));
+		cashPaymentFunc.advancePOMultipleThroughGetDocument(webDB.getDataFromProperties("CPAdvance"));
 //		Assert.assertTrue(flag);
 	}
-	
+
 	/**
 	 * Payment Against Multi Party, Single Bill (Through Add button)
 	 * 
@@ -474,10 +474,10 @@ public class CashPaymentTest extends RoadMapERPTest {
 	@Test(priority = 31, groups = {
 			"Cash Payments" }, description = " Payment Against Multi Party, Single Bill (Through Add button)")
 	public void CreateCashPaymentMultipleAdvPOThroughPendingDocument() throws IOException {
-		 cashPaymentFunc.advancePOMultipleThroughPendingDocument(webDB.getDataFromProperties("CPAdvance"));
+		cashPaymentFunc.advancePOMultipleThroughPendingDocument(webDB.getDataFromProperties("CPAdvance"));
 //		Assert.assertTrue(flag);
 	}
-	
+
 	/**
 	 * Payment Against Multi Party, Single Bill (Through Add button)
 	 * 
@@ -487,10 +487,10 @@ public class CashPaymentTest extends RoadMapERPTest {
 	@Test(priority = 32, groups = {
 			"Cash Payments" }, description = " Payment Against Multi Party, Single Bill (Through Add button)")
 	public void CreateCashPaymentAdvPOThroughAddButtonWithSingleTDS() throws IOException {
-		 cashPaymentFunc.advancePOThroughAddButton(webDB.getDataFromProperties("TDSCPAdvance"));
+		cashPaymentFunc.advancePOThroughAddButton(webDB.getDataFromProperties("TDSCPAdvance"));
 //		Assert.assertTrue(flag);
 	}
-	
+
 	/**
 	 * Payment Against Multi Party, Single Bill (Through Add button)
 	 * 
@@ -516,7 +516,7 @@ public class CashPaymentTest extends RoadMapERPTest {
 		cashPaymentFunc.advancePOThroughPendingDocument(webDB.getDataFromProperties("TDSCPAdvance"));
 //		Assert.assertTrue(flag);
 	}
-	
+
 	/**
 	 * Payment Against Multi Party, Single Bill (Through Add button)
 	 * 
@@ -526,7 +526,8 @@ public class CashPaymentTest extends RoadMapERPTest {
 	@Test(priority = 35, groups = {
 			"Cash Payments" }, description = " Payment Against Multi Party, Single Bill (Through Add button)")
 	public void CreateCashPaymentMultipleAdvPOThroughAddButtonWithMultiTDS() throws IOException {
-		 cashPaymentFunc.advancePOMultipleThroughAddButtonWithMultipleTDS(webDB.getDataFromProperties("TDSCPAdvanceMulti"));
+		cashPaymentFunc
+				.advancePOMultipleThroughAddButtonWithMultipleTDS(webDB.getDataFromProperties("TDSCPAdvanceMulti"));
 //		Assert.assertTrue(flag);
 	}
 
@@ -553,10 +554,11 @@ public class CashPaymentTest extends RoadMapERPTest {
 	@Test(priority = 37, groups = {
 			"Cash Payments" }, description = " Payment Against Multi Party, Single Bill (Through Add button)")
 	public void CreateCashPaymentMultipleAdvPOThroughPendingDocumentWithMultiTDS() throws IOException {
-		 cashPaymentFunc.advancePOMultipleThroughPendingDocumentWithMultipleTDS(webDB.getDataFromProperties("TDSCPAdvanceMulti"));
+		cashPaymentFunc.advancePOMultipleThroughPendingDocumentWithMultipleTDS(
+				webDB.getDataFromProperties("TDSCPAdvanceMulti"));
 //		Assert.assertTrue(flag);
 	}
-	
+
 	/**
 	 * Payment Against Multi Party, Single Bill (Through Add button)
 	 * 
@@ -566,10 +568,10 @@ public class CashPaymentTest extends RoadMapERPTest {
 	@Test(priority = 38, groups = {
 			"Cash Payments" }, description = " Payment Against Multi Party, Single Bill (Through Add button)")
 	public void CreateCashPaymentAdvWithNewRef() throws IOException {
-		 cashPaymentFunc.advanceWithNewRef(webDB.getDataFromProperties("CPAdvanceWithNewRef"));
+		cashPaymentFunc.advanceWithNewRef(webDB.getDataFromProperties("CPAdvanceWithNewRef"));
 //		Assert.assertTrue(flag);
 	}
-	
+
 	/**
 	 * Payment Against Multi Party, Single Bill (Through Add button)
 	 * 
@@ -579,10 +581,10 @@ public class CashPaymentTest extends RoadMapERPTest {
 	@Test(priority = 39, groups = {
 			"Cash Payments" }, description = " Payment Against Multi Party, Single Bill (Through Add button)")
 	public void CreateCashPaymentAdvWithNewRefWithTDS() throws IOException {
-		 cashPaymentFunc.advanceWithNewRef(webDB.getDataFromProperties("TDSCPAdvanceWithNewRef"));
+		cashPaymentFunc.advanceWithNewRef(webDB.getDataFromProperties("TDSCPAdvanceWithNewRef"));
 //		Assert.assertTrue(flag);
 	}
-	
+
 	/**
 	 * Payment Against Multi Party, Single Bill (Through Add button)
 	 * 
@@ -592,7 +594,7 @@ public class CashPaymentTest extends RoadMapERPTest {
 	@Test(priority = 40, groups = {
 			"Cash Payments" }, description = " Payment Against Multi Party, Single Bill (Through Add button)")
 	public void CreateCashPaymentAdvWithNewRefWithMultiTDS() throws IOException {
-		 cashPaymentFunc.advanceWithNewRefMultiTDS(webDB.getDataFromProperties("TDSCPAdvanceMultiNewRef"));
+		cashPaymentFunc.advanceWithNewRefMultiTDS(webDB.getDataFromProperties("TDSCPAdvanceMultiNewRef"));
 //		Assert.assertTrue(flag);
 	}
 
