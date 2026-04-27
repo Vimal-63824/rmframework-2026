@@ -4376,7 +4376,7 @@ public class DirectGrnPageFunctions {
 					verifyClickingReceiptQuantity(QTY);
 					verifyClickingCost(COST);
 					verifyClickingSaveLine();
-					verifyUnitcostAndDiscountAmountForPriceListItemForDirectGRNWithLoc49(i, Filepath, SheetName,
+					verifyUnitcostAndDiscountAmountForPriceListItemForDirectGRNWithLoc49(i, SheetName,
 							commonFunc.getDataFromTestDataSheet("PriceListSupplier"));
 					verifyRateContractItemUnitCostAndDiscPctWriteInExcelForGeneralTypeForDirectGrn(i, SheetName);
 					otherThanUserdefinedDiscountAmountForDirectGRN(i, SheetName);
@@ -6007,11 +6007,11 @@ public class DirectGrnPageFunctions {
 	 * 
 	 */
 
-	public void verifyUnitcostAndDiscountAmountForPriceListItemForDirectGRNWithLoc49(int i1, String FileName,
+	public void verifyUnitcostAndDiscountAmountForPriceListItemForDirectGRNWithLoc49(int i1, 
 			String SheetName, String PriceListSupplier) {
 		String[][] PRMultipleline = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 		ExcelUtils excelUtils = new ExcelUtils();
-		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + "DirectGrnDetails.xlsx";
 		PRMultipleline = excelUtils.readAllDataInExcel(Filepath, SheetName);
 		for (int i = i1; i <= i1; i++) {
 			String ITEM_NAME = PRMultipleline[i1][1];

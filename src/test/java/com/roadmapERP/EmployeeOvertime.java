@@ -311,14 +311,40 @@ public class EmployeeOvertime extends RoadMapERPTest {
 	}
 
 	/**
-	 * To Check General Expense Based on Employee Wise
+	 * To Check Travel Reimbursement Based on Cancelling The Document
 	 * 
 	 * @author Kishore-RMITS
 	 */
 	@Author("Kishore-RMITS")
 	@Test(priority = 23, groups = {
+			"Travel Reimbursement" }, description = "169.To Check Travel Reimbursement Based on Cancelling The Document")
+	public void checkTravelReimbursementBasedOnCancellingTheDocument() {
+		flag = attendanceLeave.CheckTravelReimbursementBasedOnCancellingTheDocument();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * To Check Travel Reimbursement fetches values correctly
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	@Author("Kishore-RMITS")
+	@Test(priority = 24, groups = {
+			"Travel Reimbursement" }, description = "170.To Check Travel Reimbursement fetches values correctly")
+	public void checkTravelReimbursementFetchesValuesCorrectly() {
+		// TODO Covered in CheckTravelReimbursementBasedOnCancellingTheDocument() Method
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * To Check General Expense Based on Employee Wise
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	@Author("Kishore-RMITS")
+	@Test(priority = 25, groups = {
 			"General Expenses" }, description = "177.To Check General Expense Based on Employee Wise ")
-	public void CheckGeneralExpenseBasedOnEmployeeWise() {
+	public void checkGeneralExpenseBasedOnEmployeeWise() {
 		flag = attendanceLeave.checkGeneralExpenseBasedOnEmployeeWise();
 		Assert.assertTrue(flag);
 	}
@@ -329,10 +355,10 @@ public class EmployeeOvertime extends RoadMapERPTest {
 	 * @author Kishore-RMITS
 	 */
 	@Author("Kishore-RMITS")
-	@Test(priority = 24, groups = {
+	@Test(priority = 26, groups = {
 			"General Expenses" }, description = "178.To Check General Expense Based on the Expenses details")
-	public void CheckGeneralExpenseBasedOnTheExpensesDetails() {
-		// TODO Covered in checkGeneralExpenseBasedOnEmployeeWise() Method
+	public void checkGeneralExpenseBasedOnTheExpensesDetails() {
+		// TODO Covered in CheckGeneralExpenseBasedOnEmployeeWise() Method
 		Assert.assertTrue(flag);
 	}
 
@@ -342,10 +368,10 @@ public class EmployeeOvertime extends RoadMapERPTest {
 	 * @author Kishore-RMITS
 	 */
 	@Author("Kishore-RMITS")
-	@Test(priority = 25, groups = {
-			"General Expenses" }, description = "176.To Check General Expense Find page with all line wise record")
-	public void CheckGeneralExpenseFindPageWithAllLineWiseRecord() {
-		// TODO Covered in checkGeneralExpenseBasedOnEmployeeWise() Method
+	@Test(priority = 27, groups = {
+			"General Expenses" }, description = "179.To Check General Expense Find page with all line wise record")
+	public void checkGeneralExpenseFindPageWithAllLineWiseRecord() {
+		// TODO Covered in CheckGeneralExpenseBasedOnEmployeeWise() Method
 		Assert.assertTrue(flag);
 	}
 
@@ -355,9 +381,9 @@ public class EmployeeOvertime extends RoadMapERPTest {
 	 * @author Kishore-RMITS
 	 */
 	@Author("Kishore-RMITS")
-	@Test(priority = 26, groups = {
-			"General Expenses" }, description = "176.To Check General Expense Based on Forward To Approval")
-	public void CheckGeneralExpenseBasedOnForwardToApproval() {
+	@Test(priority = 28, groups = {
+			"General Expenses" }, description = "180.To Check General Expense Based on Forward To Approval")
+	public void checkGeneralExpenseBasedOnForwardToApproval() {
 		flag = attendanceLeave.checkGeneralExpenseBasedOnForwardToApproval();
 		Assert.assertTrue(flag);
 	}
@@ -368,9 +394,9 @@ public class EmployeeOvertime extends RoadMapERPTest {
 	 * @author Kishore-RMITS
 	 */
 	@Author("Kishore-RMITS")
-	@Test(priority = 27, groups = {
+	@Test(priority = 29, groups = {
 			"General Expenses" }, description = "181.To Check General Expense Based on Return To Approval")
-	public void CheckGeneralExpenseBasedOnReturnToApproval() {
+	public void checkGeneralExpenseBasedOnReturnToApproval() {
 		flag = attendanceLeave.checkGeneralExpenseBasedOnReturnToApproval();
 		Assert.assertTrue(flag);
 	}
@@ -381,10 +407,10 @@ public class EmployeeOvertime extends RoadMapERPTest {
 	 * @author Kishore-RMITS
 	 */
 	@Author("Kishore-RMITS")
-	@Test(priority = 28, groups = {
+	@Test(priority = 30, groups = {
 			"General Expenses" }, description = "174.To Check General Expense Based on all the Required Fields")
-	public void CheckGeneralExpenseBasedOnAllTheRequiredFields() {
-		// TODO Covered in checkGeneralExpenseBasedOnReturnToApproval() Method
+	public void checkGeneralExpenseBasedOnAllTheRequiredFields() {
+		// TODO Covered in CheckGeneralExpenseBasedOnReturnToApproval() Method
 		Assert.assertTrue(flag);
 	}
 
@@ -394,10 +420,10 @@ public class EmployeeOvertime extends RoadMapERPTest {
 	 * @author Kishore-RMITS
 	 */
 	@Author("Kishore-RMITS")
-	@Test(priority = 29, groups = {
+	@Test(priority = 31, groups = {
 			"General Expenses" }, description = "178.To Check General Expense fetches values correctly")
-	public void CheckGeneralExpenseFetchesvaluesCorrectly() {
-		// TODO Covered in checkGeneralExpenseBasedOnReturnToApproval() Method
+	public void checkGeneralExpenseFetchesvaluesCorrectly() {
+		// TODO Covered in CheckGeneralExpenseBasedOnReturnToApproval() Method
 		Assert.assertTrue(flag);
 	}
 
@@ -407,10 +433,10 @@ public class EmployeeOvertime extends RoadMapERPTest {
 	 * @author Kishore-RMITS
 	 */
 	@Author("Kishore-RMITS")
-	@Test(priority = 30, groups = {
+	@Test(priority = 32, groups = {
 			"General Expenses" }, description = "178.To Check General Expense With all the field validations and Note alerts")
-	public void CheckGeneralExpenseWithAllTheFieldValidationsAndNoteAlerts() {
-		// TODO Covered in checkGeneralExpenseBasedOnReturnToApproval() Method
+	public void checkGeneralExpenseWithAllTheFieldValidationsAndNoteAlerts() {
+		// TODO Covered in CheckGeneralExpenseBasedOnReturnToApproval() Method
 		Assert.assertTrue(flag);
 	}
 
@@ -420,9 +446,9 @@ public class EmployeeOvertime extends RoadMapERPTest {
 	 * @author Kishore-RMITS
 	 */
 	@Author("Kishore-RMITS")
-	@Test(priority = 31, groups = {
+	@Test(priority = 33, groups = {
 			"General Expenses" }, description = "178.To Check General Expense Based on Cancelling The Document")
-	public void CheckGeneralExpenseBasedOnCancellingTheDocument() {
+	public void checkGeneralExpenseBasedOnCancellingTheDocument() {
 		flag = attendanceLeave.checkGeneralExpenseBasedOnCancellingTheDocument();
 		Assert.assertTrue(flag);
 	}
@@ -433,7 +459,7 @@ public class EmployeeOvertime extends RoadMapERPTest {
 	 * @author Kishore-RMITS
 	 */
 	@Author("Kishore-RMITS")
-	@Test(priority = 32, groups = {
+	@Test(priority = 34, groups = {
 			"Resignation Request" }, description = "178.To Check Resign/Termination Request Based on Request Date")
 	public void CheckResignTerminationRequestBasedOnRequestDate() {
 		flag = attendanceLeave.checkResignTerminationRequestBasedOnRequestDate();
@@ -446,7 +472,7 @@ public class EmployeeOvertime extends RoadMapERPTest {
 	 * @author Kishore-RMITS
 	 */
 	@Author("Kishore-RMITS")
-	@Test(priority = 33, groups = {
+	@Test(priority = 35, groups = {
 			"Resignation Request" }, description = "178.To Check Resign/Termination Request Based on Employee Wise ")
 	public void CheckResignTerminationRequestBasedOnEmployeeWise() {
 		// TODO Covered in checkResignTerminationRequestBasedOnRequestDate() Method
@@ -459,7 +485,7 @@ public class EmployeeOvertime extends RoadMapERPTest {
 	 * @author Kishore-RMITS
 	 */
 	@Author("Kishore-RMITS")
-	@Test(priority = 34, groups = {
+	@Test(priority = 36, groups = {
 			"Resignation Request" }, description = "178.To Check Resign/Termination Request Find page with all line wise record")
 	public void CheckResignTerminationRequesFindpagewithAllLineWiseRecord() {
 		// TODO Covered in checkResignTerminationRequestBasedOnRequestDate() Method
@@ -472,20 +498,20 @@ public class EmployeeOvertime extends RoadMapERPTest {
 	 * @author Kishore-RMITS
 	 */
 	@Author("Kishore-RMITS")
-	@Test(priority = 35, groups = {
+	@Test(priority = 37, groups = {
 			"Resignation Request" }, description = "178.To Check Resign/Termination Request Based on Forward To Approval")
 	public void CheckResignTerminationRequestBasedOnForwardToApproval() {
 		flag = attendanceLeave.checkResignTerminationRequestBasedOnForwardToApproval();
 		Assert.assertTrue(flag);
 	}
-	
+
 	/**
 	 * To Check Resign/Termination Request Based on Employee Pay
 	 * 
 	 * @author Kishore-RMITS
 	 */
 	@Author("Kishore-RMITS")
-	@Test(priority = 36, groups = {
+	@Test(priority = 38, groups = {
 			"Resignation Request" }, description = "178.To Check Resign/Termination Request Based on Employee Pay")
 	public void CheckResignTerminationRequestBasedOnEmployeePay() {
 		flag = attendanceLeave.checkResignTerminationRequestBasedOnEmployeePay();
@@ -498,7 +524,7 @@ public class EmployeeOvertime extends RoadMapERPTest {
 	 * @author Kishore-RMITS
 	 */
 	@Author("Kishore-RMITS")
-	@Test(priority = 37, groups = {
+	@Test(priority = 39, groups = {
 			"Resignation Request" }, description = "178.To Check Resign/Termination Request Based on Adjust Encash Leave")
 	public void CheckResignTerminationRequestBasedOnAdjustEncashLeave() {
 		flag = attendanceLeave.checkResignTerminationRequestBasedOnAdjustEncashLeave();
@@ -511,7 +537,7 @@ public class EmployeeOvertime extends RoadMapERPTest {
 	 * @author Kishore-RMITS
 	 */
 	@Author("Kishore-RMITS")
-	@Test(priority = 38, groups = {
+	@Test(priority = 40, groups = {
 			"Resignation Request" }, description = "178.To Check Resign/Termination Request Based on Planned Date & Optional date")
 	public void CheckResignTerminationRequestBasedOnPlannedDateOptionalDate() {
 		// TODO Covered in checkResignTerminationRequestBasedOnAdjustEncashLeave()
@@ -525,7 +551,7 @@ public class EmployeeOvertime extends RoadMapERPTest {
 	 * @author Kishore-RMITS
 	 */
 	@Author("Kishore-RMITS")
-	@Test(priority = 39, groups = {
+	@Test(priority = 41, groups = {
 			"Resignation Request" }, description = "178.To Check Resign/Termination Request Based on Reverse the Resignation Request")
 	public void CheckResignTerminationRequestBasedOnReverseTheResignationRequest() {
 		// TODO Covered in checkResignTerminationRequestBasedOnAdjustEncashLeave()
@@ -536,10 +562,10 @@ public class EmployeeOvertime extends RoadMapERPTest {
 	/**
 	 * To Check Resign/Termination Request Based on Return To Approval
 	 * 
-	 * @author Kishore-RMITS
+	 * @author Kishore-RMITSv
 	 */
 	@Author("Kishore-RMITS")
-	@Test(priority = 40, groups = {
+	@Test(priority = 42, groups = {
 			"Resignation Request" }, description = "178.To Check Resign/Termination Request Based on Return To Approval")
 	public void CheckResignTerminationRequestBasedOnReturnToApproval() {
 		flag = attendanceLeave.checkResignTerminationRequestBasedOnReturnToApproval();
@@ -553,7 +579,7 @@ public class EmployeeOvertime extends RoadMapERPTest {
 	 * @author Kishore-RMITS
 	 */
 	@Author("Kishore-RMITS")
-	@Test(priority = 41, groups = {
+	@Test(priority = 43, groups = {
 			"Resignation Request" }, description = "179.To Check Resign/Termination Request With all the field validations and Note alerts")
 	public void CheckResignTerminationRequestWithAllTheFieldValidationsAndNoteAlerts() {
 		// TODO Covered in CheckResignTerminationRequestBasedOnReturnToApproval()

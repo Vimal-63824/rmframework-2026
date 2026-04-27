@@ -102,13 +102,13 @@ public class CashPaymentLocators {
 	/** @locatorType Xpath */
 	public static final String BankPendingPartyDocumentsPartyNameInputField = "//input[@data-testid='PartyName']";
 	/** @locatorType Xpath */
-	public static final String BankPendingPartyDocumentScreenOkButton = "//button[@id='B6']";
+	public static final String BankPendingPartyDocumentScreenOkButton = "//span[text()='OK']/ancestor::button";
 	/** @locatorType Xpath */
 	public static final String BankPaymentGetDocumentButton = "//button[@data-testid='GetDoc']";
 	/** @locatorType Xpath */
 	public static final String BankPaymentPendingPartyDocumentPartyLovButton = "//button[@id='P3413101001_PART_NAME_lov_btn']";
 	/** @locatorType Xpath */
-	public static final String BankPaymentPendingPartyDocumentSearchButton = "//button[@data-testid='Search1']";
+	public static final String BankPaymentPendingPartyDocumentSearchButton = "//span[text()='Search']/ancestor::button";
 	/** @locatorType Xpath */
 	public static final String BankPaymentPendingPartyNameColumnNameField = "//*[@id='2550108912065853115_orig']/tbody/tr[2]/td[2]";
 	/** @locatorType Xpath */
@@ -118,7 +118,7 @@ public class CashPaymentLocators {
 	/** @locatorType Xpath */
 	public static final String PendingPayablesDocNumberLovButton = "//input[@data-testid='P3413101001_DOC_NO']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String PendingPayablesDocumentNumberField = "//*[@id='4195384145355255566_orig']/tbody/tr[2]/td[21]";
+	public static final String PendingPayablesDocumentNumberField = "//*[@id='4197259402980598581_orig']/tbody/tr[2]/td[21]";
 	/** @locatorType Xpath */
 	public static final String PendingPayablesCreateButton = "//button[@data-testid='Create']";
 	/** @locatorType Xpath */
@@ -234,7 +234,7 @@ public class CashPaymentLocators {
 	/** @locatorType Xpath */
 	public static final String BankPaymentSourcePartyField = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[32]";
 	/** @locatorType Xpath */
-	public static final String BankPaymentSourcePartyLovButton = "//button[@id='C6074250135118781592_lov_btn']";
+	public static final String BankPaymentSourcePartyLovButton = "//button[@id='C6076125392744124607_lov_btn']";
 	/** @locatorType Xpath */
 	public static final String BankPayment2ndLine = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[2]/td[1]";
 	/** @locatorType Xpath */
