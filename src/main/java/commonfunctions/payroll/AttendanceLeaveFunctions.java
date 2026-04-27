@@ -5399,6 +5399,36 @@ public class AttendanceLeaveFunctions {
 	}
 
 	/**
+	 * This method is used Check Travel Reimbursement Based On Cancelling The
+	 * Document
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	public boolean CheckTravelReimbursementBasedOnCancellingTheDocument() {
+		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+				"HrRqtUsername");
+//		commonFunc.hardWait(3000);
+		commonFunc.navigateToTravelRequest();
+		AddTravelEmployee(commonFunc.getDataFromTestDataSheet("EmployeeDurai"),
+				commonFunc.getDataFromTestDataSheet("MobileNo"), commonFunc.getDataFromTestDataSheet("EmailID"),
+				commonFunc.getDataFromTestDataSheet("PurposeOfTravel"));
+		EmployeeTraveldates(commonFunc.getDataFromTestDataSheet("DepartCity"),
+				commonFunc.getDataFromTestDataSheet("DestCity"));
+		EmployeeTravelExpenses(commonFunc.getDataFromTestDataSheet("Expenses"),
+				commonFunc.getDataFromTestDataSheet("ExpenseAmount"),
+				commonFunc.getDataFromTestDataSheet("ExpenseRef"));
+		EmployeeAdditionalTravellers(commonFunc.getDataFromTestDataSheet("AddTravEmployee"));
+//		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+//				"HrRqtUsername");
+		commonFunc.navigateToTravelReimbursement();
+		TravelReimbursementDocEntry(commonFunc.getDataFromTestDataSheet("TravelCity"));
+		TravelReimbursementExpensesDetails(commonFunc.getDataFromTestDataSheet("TravelReimAmount"));
+		commonFunc.navigateToTravelReimbursement();
+		cancellingTravelReimbursementDocument();
+		return flag;
+	}
+
+	/**
 	 * This method is used To Enter the Data For Travel Reimbursement
 	 * 
 	 * @author Kishore-RMITS
@@ -5555,6 +5585,34 @@ public class AttendanceLeaveFunctions {
 									}
 								}
 							}
+						}
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This method is used To Cancel The Travel Reimbursement Document
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	public void cancellingTravelReimbursementDocument() {
+		flag = webDB.waitForElement(AttendanceLeaveLocators.TravelReimbFindSearchButton, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(AttendanceLeaveLocators.TravelReimbFindSearchButton, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Travel Reimbursement Search Button Is Clicked");
+				flag = webDB.waitForElement(AttendanceLeaveLocators.TravelReimbDocSelect, ElementType.CssSelector);
+				if (flag) {
+					commonFunc.hardWait(2000);
+					webDB.clickAnElement(AttendanceLeaveLocators.TravelReimbDocSelect, ElementType.CssSelector);
+					flag = webDB.waitForElement(AttendanceLeaveLocators.TravelReimDocCancel, ElementType.Xpath);
+					if (flag) {
+						webDB.clickAnElement(AttendanceLeaveLocators.TravelReimDocCancel, ElementType.Xpath);
+						if (flag) {
+							logs.logging("INFO", "Travel Reimbursement Have Been Cancelled");
 						}
 					}
 				}

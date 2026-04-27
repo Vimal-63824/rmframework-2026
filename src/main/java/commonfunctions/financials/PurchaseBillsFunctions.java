@@ -4850,7 +4850,7 @@ public class PurchaseBillsFunctions {
 		addingGlaccountFromReadingExcelSheet(webDB.getDataFromProperties("PurchaseBillsLocal"));
 		ClickSaveButton();
 		createJvForRecord();
-		verifyLineDetailWithDbInPurchaseBills(webDB.getDataFromProperties("PurchaseBillsLocal"));
+		verifyLineDetailWithDbInPurchaseBills(webDB.getDataFromProperties("PurchaseBillsImport"));
 		clickPostButton();
 		verifyWaitingForApprovalForPurchaseBills();
 		commonFunc.logoutUser();
@@ -4891,7 +4891,7 @@ public class PurchaseBillsFunctions {
 		addingGlaccountFromReadingExcelSheet(webDB.getDataFromProperties("PurchaseBillslocalUnreg"));
 		ClickSaveButton();
 		createJvForRecord();
-		verifyLineDetailWithDbInPurchaseBills(webDB.getDataFromProperties("PurchaseBillslocalUnreg"));
+		verifyLineDetailWithDbInPurchaseBills(webDB.getDataFromProperties("PurchaseBillsImport"));
 		verifyHeaderValidationForPurchaseBillsWithDbConnections();
 		clickPostButton();
 		verifyWaitingForApprovalForPurchaseBills();
@@ -5061,7 +5061,7 @@ public class PurchaseBillsFunctions {
 		addingGlaccountFromReadingExcelSheet(webDB.getDataFromProperties("PurchaseBillsLocal"));
 		ClickSaveButton();
 		createJvForRecord();
-		verifyLineDetailWithDbInPurchaseBills(webDB.getDataFromProperties("PurchaseBillsLocal"));
+		verifyLineDetailWithDbInPurchaseBills(webDB.getDataFromProperties("PurchaseBillsImport"));
 		clickPostButton();
 		verifyWaitingForApprovalForPurchaseBills();
 		commonFunc.logoutUser();
@@ -6914,7 +6914,7 @@ public class PurchaseBillsFunctions {
 		openExpandButtonDirect();
 		getGstClafInLocation();
 		movesToInvoiceTap();
-		clickValidateAllowIgstFlagUpdated(webDB.getDataFromProperties("Purchase_Bills_In_Updated_2"));
+		clickValidateAllowIgstFlagUpdated(webDB.getDataFromProperties("purchase bills test 2"));
 		createJvForRecord();
 		verifyLineDetailsWithDBvalidationInGrnPurchaseType(webDB.getDataFromProperties("PurchaseBills_ExAcc"));
 		clickPostButton();
@@ -7748,7 +7748,7 @@ public class PurchaseBillsFunctions {
 	public void registeredSupplierwithLocalGSTAgainstGRNWithDeviationExpensesAccountandAdjustmentStockitemserviceitemAndchargeitem(
 			String SubvouType, String PurchaseRef, String Location, String Prefix, String CustomerName, String Bills) {
 
-		verifyPurchaseBillsAgainstPurchaseBillsForAdjustment1(commonFunc.getDataFromTestDataSheet("BankName"),
+		verifyPurchaseBillsAgainstPurchaseBillsForAdjustment(commonFunc.getDataFromTestDataSheet("BankName"),
 				commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
 				webDB.getDataFromProperties("BankPaymentSingle"));
 		addNewRefPaymentsAgainstTotheParty(commonFunc.getDataFromTestDataSheet("BillsBank"),
@@ -7787,7 +7787,7 @@ public class PurchaseBillsFunctions {
 	public void registeredSupplierwithLocalGSTAllowIGSTtaxPurchaseDirectandExpensesAccountAndAdjustmentStockitemserviceitemAndchargeitem(
 			String SubvouType, String PurchaseRef, String Location, String Prefix, String CustomerName, String Bills) {
 
-		verifyPurchaseBillsAgainstPurchaseBillsForAdjustment1(commonFunc.getDataFromTestDataSheet("BankName"),
+		verifyPurchaseBillsAgainstPurchaseBillsForAdjustment(commonFunc.getDataFromTestDataSheet("BankName"),
 				commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
 				webDB.getDataFromProperties("BankPaymentSingle"));
 		addNewRefPaymentsAgainstTotheParty(commonFunc.getDataFromTestDataSheet("BillsBank"),
@@ -7831,7 +7831,7 @@ public class PurchaseBillsFunctions {
 	public void registeredSupplierwithLocalGSTAllowRCMtaxPurchaseDirectandExpensesAccountwithadjustmentStockitemserviceitemAndchargeitem(
 			String SubvouType, String PurchaseRef, String Location, String Prefix, String CustomerName, String Bills) {
 
-		verifyPurchaseBillsAgainstPurchaseBillsForAdjustment1(commonFunc.getDataFromTestDataSheet("BankName"),
+		verifyPurchaseBillsAgainstPurchaseBillsForAdjustment(commonFunc.getDataFromTestDataSheet("BankName"),
 				commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
 				webDB.getDataFromProperties("BankPaymentSingle"));
 		addNewRefPaymentsAgainstTotheParty(commonFunc.getDataFromTestDataSheet("BillsBank"),
@@ -7876,7 +7876,7 @@ public class PurchaseBillsFunctions {
 	public void registeredSupplierwithInterstateGSTPurchaseDirectandExpensesAccountwithadjustmentStockitemserviceitemAndchargeitem(
 			String SubvouType, String PurchaseRef, String Location, String Prefix, String CustomerName, String Bills) {
 
-		verifyPurchaseBillsAgainstPurchaseBillsForAdjustment1(commonFunc.getDataFromTestDataSheet("BankName"),
+		verifyPurchaseBillsAgainstPurchaseBillsForAdjustment(commonFunc.getDataFromTestDataSheet("BankName"),
 				commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
 				webDB.getDataFromProperties("Purchasebills_adj_interstate"));
 		addNewRefPaymentsAgainstTotheParty(commonFunc.getDataFromTestDataSheet("BillsBank"),
@@ -7914,7 +7914,7 @@ public class PurchaseBillsFunctions {
 	public void registeredSupplierwithInterstateGSTAllowRCMtaxPurchaseDirectandExpensesAccountwithadjustmentStockitemserviceitemAndchargeitem(
 			String SubvouType, String PurchaseRef, String Location, String Prefix, String CustomerName, String Bills) {
 
-		verifyPurchaseBillsAgainstPurchaseBillsForAdjustment1(commonFunc.getDataFromTestDataSheet("BankName"),
+		verifyPurchaseBillsAgainstPurchaseBillsForAdjustment(commonFunc.getDataFromTestDataSheet("BankName"),
 				commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
 				webDB.getDataFromProperties("Purchasebills_adj_interstate"));
 		addNewRefPaymentsAgainstTotheParty(commonFunc.getDataFromTestDataSheet("BillsBank"),
@@ -7996,7 +7996,7 @@ public class PurchaseBillsFunctions {
 	public void unregisteredSupplierwithLocalGSTAllowIGSTtaxPurchaseDirectandExpensesAccountwithadjustmentStockitemserviceitemAndchargeitem(
 			String SubvouType, String PurchaseRef, String Location, String Prefix, String CustomerName, String Bills) {
 
-		verifyPurchaseBillsAgainstPurchaseBillsForAdjustment1(commonFunc.getDataFromTestDataSheet("BankName"),
+		verifyPurchaseBillsAgainstPurchaseBillsForAdjustment(commonFunc.getDataFromTestDataSheet("BankName"),
 				commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
 				webDB.getDataFromProperties("Purchasebills_Adj_unregrd"));
 		addNewRefPaymentsAgainstTotheParty(commonFunc.getDataFromTestDataSheet("BillsBank"),
@@ -8039,7 +8039,7 @@ public class PurchaseBillsFunctions {
 	public void unregisteredSupplierwithInterstateGSTPurchaseDirectandExpensesAccountwithadjustmentStockitemserviceitemAndchargeitem(
 			String SubvouType, String PurchaseRef, String Location, String Prefix, String CustomerName, String Bills) {
 
-		verifyPurchaseBillsAgainstPurchaseBillsForAdjustment1(commonFunc.getDataFromTestDataSheet("BankName"),
+		verifyPurchaseBillsAgainstPurchaseBillsForAdjustment(commonFunc.getDataFromTestDataSheet("BankName"),
 				commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
 				webDB.getDataFromProperties("Purchasebills_Adj_unregrd"));
 		addNewRefPaymentsAgainstTotheParty(commonFunc.getDataFromTestDataSheet("BillsBank"),
@@ -8078,7 +8078,7 @@ public class PurchaseBillsFunctions {
 	public void unregisteredSupplierimportedexpensesaccountwithadjustmentwithoutGST(String SubvouType,
 			String PurchaseRef, String Location, String Prefix, String CustomerName, String Bills) {
 
-		verifyPurchaseBillsAgainstPurchaseBillsForAdjustment1(commonFunc.getDataFromTestDataSheet("BankName"),
+		verifyPurchaseBillsAgainstPurchaseBillsForAdjustment(commonFunc.getDataFromTestDataSheet("BankName"),
 				commonFunc.getDataFromTestDataSheet("BankTransCurcyUSD"),
 				webDB.getDataFromProperties("PurchaseBills_Import"));
 		addNewRefPaymentsAgainstTotheParty(commonFunc.getDataFromTestDataSheet("BillsBank"),
