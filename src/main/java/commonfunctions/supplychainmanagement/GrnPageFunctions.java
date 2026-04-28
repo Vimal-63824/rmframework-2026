@@ -9235,8 +9235,10 @@ public class GrnPageFunctions {
 	 */
 	public void PoToGrnStockTransferRateContractUnregisterSupplierSameStockAndSupplierUomWithAndWithoutInspectionForLocalSupplier(
 			String SheetName) throws Exception {
-		verifyStockQtyAndCostForQualityWh(SheetName);
-		verifyStockQtyAndCostForSourceWH(SheetName);
+//		verifyStockQtyAndCostForQualityWh(SheetName);
+//		verifyStockQtyAndCostForSourceWH(SheetName);
+		verifyStockQtyAndCostForQualityWhForStockTransferType(SheetName);
+		verifyStockQtyAndCostForSourceWHForStocktransferType(SheetName);
 		POfunc.verifyToCreatePoForStockTransferRateContractUnregisterSameStockandSupplierUomWithAndWithoutInspection(
 				SheetName);
 		verifyToStockTransferSaleOrderDocumentPost();
@@ -9259,9 +9261,12 @@ public class GrnPageFunctions {
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		flag = commonFunc.logoutUser();
-		verifyExpectedStockQtAndCostyForQualityWH(SheetName);
+//		verifyExpectedStockQtAndCostyForQualityWH(SheetName);
+//		afterVerifyTheStatusDocumentMoveToQcOrMrvForStockTransferType();
+//		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(SheetName);
+		verifyExpectedStockQtAndCostyForQualityWHForStockTransfertype(SheetName);
 		afterVerifyTheStatusDocumentMoveToQcOrMrvForStockTransferType();
-		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(SheetName);
+		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWHForStockTransferType(SheetName);
 		assertTrue(flag);
 
 	}
