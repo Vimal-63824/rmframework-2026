@@ -1762,9 +1762,13 @@ public class GateEntryPageFunctions {
 						webDB.waitUntilElementToNotBeStale(GateEntryPageLocators.GateEntryPendingPoSelectAll,
 								ElementType.Xpath);
 						logs.logging("INFO", "Document Search And Selected Successfully");
+						commonFunc.checkRefreshCellsDisappear();
+						commonFunc.checkRefreshCellsDisappear();
 						webDB.clearText(GateEntryPageLocators.QtyValue, ElementType.Xpath);
 						webDB.sendTextToAnElement(GateEntryPageLocators.QtyValue,
 								commonFunc.getDataFromTestDataSheet("QuantityExcess"), ElementType.Xpath);
+						commonFunc.checkRefreshCellsDisappear();
+						commonFunc.checkRefreshCellsDisappear();
 						webDB.clickAnElement(GateEntryPageLocators.FirstCheckBox, ElementType.Xpath);
 						commonFunc.checkRefreshCellsDisappear();
 //						verifyClickSelectAllButton();
