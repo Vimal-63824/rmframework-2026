@@ -41,7 +41,7 @@ public class PoToMRVTest extends RoadMapERPTest {
 	 * @author Deepan-GWL
 	 */
 	@Author("Deepan-GWL")
-	@Test(priority = 1, groups = {
+	@Test(priority = 70, groups = {
 			"PurchaseOrder" }, description = "PO to GRN-General-User Defined-Same Stock and Supplier UOM - With Inspection Plan")
 	public void VerifyPoToGrnGeneralUserDefSameUomWoInspectionPlan() {
 		grnPageFunc.poToGrnGeneralUserDefinedSameStockAndSupplierUomWithAndWithoutInspectionPlanWithGateEntry();
@@ -54,7 +54,7 @@ public class PoToMRVTest extends RoadMapERPTest {
 	 * @author Deepan-GWL
 	 */
 	@Author("Deepan-GWL")
-	@Test(priority = 2, groups = {
+	@Test(priority = 71, groups = {
 			"PurchaseOrder" }, description = "PO to GRN-General-User Defined-Same Stock and Supplier UOM - With Inspection Plan")
 	public void VerifyPoToGrnGeneralUserDefSameUomWithInspectionPlan() {
 		logs.logging("INFO", "PO to GRN-General-User Defined-Same Stock and Supplier UOM - With Inspection Plan");
@@ -142,7 +142,7 @@ public class PoToMRVTest extends RoadMapERPTest {
 	 * @author Deepan-GWL
 	 */
 	@Author("Deepan-GWL")
-	@Test(priority = 8, groups = {
+	@Test(priority = 72, groups = {
 			"PurchaseOrder" }, description = "PO to GRN-Material-Rate Contract-Same Stock and Supplier UOM - With Inspection Plan")
 	public void VerifyPoToGrnMaterialRateContractSameUomWoInspectionPlan() {
 		grnPageFunc.poToGrnMaterialRateContractSameStockAndSupplierUomWithAndWithoutInspectionPlanWithGateEntry();
@@ -155,7 +155,7 @@ public class PoToMRVTest extends RoadMapERPTest {
 	 * @author Deepan-GWL
 	 */
 	@Author("Deepan-GWL")
-	@Test(priority = 9, groups = {
+	@Test(priority = 73, groups = {
 			"PurchaseOrder" }, description = "PO to GRN-Material-Rate Contract-Same Stock and Supplier UOM - With Inspection Plan")
 	public void VerifyPoToGrnMaterialRateContractSameUomWithInspectionPlan() {
 		logs.logging("INFO", "PO to GRN-Material-Rate Contract-Same Stock and Supplier UOM - With Inspection Plan");
@@ -399,7 +399,7 @@ public class PoToMRVTest extends RoadMapERPTest {
 	 * @author Deepan-GWL
 	 */
 	@Author("Deepan-GWL")
-	@Test(priority = 26, groups = {
+	@Test(priority = 74, groups = {
 			"PurchaseOrder" }, description = " PO to GRN-General-Price List-Different Stock and Supplier UOM - WO Inspection Plan")
 	public void VerifyPoToGrnMaterialPriceListDifferentUomWoInspectionPlan() {
 		grnPageFunc.poToGrnMaterialPriceListDifferentStockAndSupplierUomWithAndWithoutInspectionPlanWithGateEntry();
@@ -412,7 +412,7 @@ public class PoToMRVTest extends RoadMapERPTest {
 	 * @author Deepan-GWL
 	 */
 	@Author("Deepan-GWL")
-	@Test(priority = 27, groups = {
+	@Test(priority = 75, groups = {
 			"PurchaseOrder" }, description = "PO to GRN-Material-Price List-Different Stock and Supplier UOM - With Inspection Plan")
 	public void VerifyPoToGrnMaterialPriceListDifferentUomWithInspectionPlan() {
 		logs.logging("INFO", "PO to GRN-Material-Price List-Different Stock and Supplier UOM - With Inspection Plan");

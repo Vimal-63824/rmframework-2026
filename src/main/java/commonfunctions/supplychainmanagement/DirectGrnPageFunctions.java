@@ -5863,7 +5863,7 @@ public class DirectGrnPageFunctions {
 				commonFunc.hardWait(2000);
 				commonFunc.checkRefreshCellsDisappear();
 				verifyAssertionBothValues(
-						dbCommonFunc.OpenPoDetails(RateContractSupplier, ITEM_NAME,
+						dbCommonFunc.OpenPoDetails(RateContractSupplier, ITEM_NAME, UnitId,
 								commonFunc.getDataFromTestDataSheet("OpenPoUnitCost")),
 						dbCommonFunc.StockQuery4(VariableHandler.getGrnDocNumber(), ITEM_NAME,
 								commonFunc.getDataFromTestDataSheet("GRNUnitCost")));
