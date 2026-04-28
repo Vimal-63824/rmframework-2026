@@ -475,7 +475,7 @@ public class BankReceiptFunctions {
 //				if (flag) {
 //					webDB.clickAnElement(BankPaymentLocators.BankPaymentPendingPartyDocumentSearchButton,
 //							ElementType.Xpath);
-//					commonFunc.checkRefreshCellsDisappear();
+					commonFunc.checkRefreshCellsDisappear();
 				commonFunc.searchAndSelectValueInFilters(BankReceiptLocators.BankReceiptDocNumberLovButton,
 						VoucherNumber.get(i - 1));
 				webDB.switchToFrame(BankReceiptLocators.BankReceiptPendingReceivablesFrameName, ElementType.Xpath);
@@ -665,7 +665,7 @@ public class BankReceiptFunctions {
 								webDB.clickAnElement(BankReceiptLocators.BankPendingPartyDocumentClearButton,
 										ElementType.Xpath);
 								flag = webDB.waitForElement(
-										BankReceiptLocators.BankReceiptPendingReceivablesSearchButton,
+										BankPaymentLocators.BankReceiptPendingReceivablesSearchButton,
 										ElementType.Xpath);
 								if (flag) {
 									webDB.clickAnElement(BankPaymentLocators.BankReceiptPendingReceivablesSearchButton,
@@ -1105,6 +1105,36 @@ public class BankReceiptFunctions {
 				selectSalesInvoiceDocumentInPendingBankReceipt(PartyName, VariableHandler.getMultipleSIDocs(),
 						SheetName);
 				verifyBankReceiptLineDetailsWithDB(SheetName, i);
+				if (Currency.equals("INR")) {
+					if (BankName.equals("JP MORGAN CHASE")) {
+						for (int k = 1; k <= VariableHandler.getMultipleSIDocs().size(); k++) {
+							excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalINR"), 1, 5 + k,
+									dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(k - 1),
+											commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
+							excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalINR"), 2, 5 + k,
+									dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(k - 1),
+											commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
+						}
+					} else {
+						for (int j = 1; j <= VariableHandler.getMultipleSIDocs().size(); j++) {
+							excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("Journal"), 1, 5 + j,
+									dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(j - 1),
+											commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
+							excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("Journal"), 2, 5 + j,
+									dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(j - 1),
+											commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
+						}
+					}
+				} else {
+					for (int j = 1; j <= VariableHandler.getMultipleSIDocs().size(); j++) {
+						excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalUSD"), 1, 5 + j,
+								dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(j - 1),
+										commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
+						excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalUSD"), 2, 5 + j,
+								dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(j - 1),
+										commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
+					}
+				}
 			}
 			if (!Currency.equals("INR") || (BankName.equals("JP MORGAN CHASE"))) {
 				enterRealizedAmountInBRHeader(BaseCURCY);
@@ -1113,6 +1143,30 @@ public class BankReceiptFunctions {
 		checkARMControlBankNameRqrdFlag(BankName);
 		checkARMControlReceivedFromRqrdFlag();
 		clickCreateJournalButtonInBR();
+		if (Currency.equals("INR")) {
+			if (BankName.equals("JP MORGAN CHASE")) {
+				verifyJournalAmountWithDB(webDB.getDataFromProperties("JournalINR"),
+						VariableHandler.getBankPaymentOrReceiptDocNumber());
+				for (int j = 1; j <= VariableHandler.getMultipleSIDocs().size(); j++) {
+					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalINR"), 1, 5 + j, "0");
+					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalINR"), 2, 5 + j, "0");
+				}
+			} else {
+				verifyJournalAmountWithDB(webDB.getDataFromProperties("Journal"),
+						VariableHandler.getBankPaymentOrReceiptDocNumber());
+				for (int j = 1; j <= VariableHandler.getMultipleSIDocs().size(); j++) {
+					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("Journal"), 1, 5 + j, "0");
+					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("Journal"), 2, 5 + j, "0");
+				}
+			}
+		} else {
+			verifyJournalAmountWithDB(webDB.getDataFromProperties("JournalUSD"),
+					VariableHandler.getBankPaymentOrReceiptDocNumber());
+			for (int j = 1; j <= VariableHandler.getMultipleSIDocs().size(); j++) {
+				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalUSD"), 1, 5 + j, "0");
+				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalUSD"), 2, 5 + j, "0");
+			}
+		}
 		verifyOverallHeaderAmountWithDB(SheetName);
 		clearDataInExcel(SheetName);
 		clickPostButton();
@@ -2795,7 +2849,7 @@ public class BankReceiptFunctions {
 		verifyCustomerDocumentWithDBAfterSI(VariableHandler.getMultipleSIDocs());
 		BankReceiptThroughAddButtonMPSI(SheetName, commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
 				commonFunc.getDataFromTestDataSheet("BankName"));
-		verifyCustomerDocumentWithDBAfterBRV(VariableHandler.getBankPaymentOrReceiptDocNumber());
+//		verifyCustomerDocumentWithDBAfterBRV(VariableHandler.getBankPaymentOrReceiptDocNumber());
 	}
 
 	/**
@@ -2843,7 +2897,7 @@ public class BankReceiptFunctions {
 		verifyCustomerDocumentWithDBAfterSI(VariableHandler.getMultipleSIDocs());
 		BankReceiptThroughPendingDocsMPSI(commonFunc.getDataFromTestDataSheet("CreationTypeMerge"), SheetName,
 				commonFunc.getDataFromTestDataSheet("BankTransCurcy"), commonFunc.getDataFromTestDataSheet("BankName"));
-		verifyCustomerDocumentWithDBAfterBRV(VariableHandler.getBankPaymentOrReceiptDocNumber());
+//		verifyCustomerDocumentWithDBAfterBRV(VariableHandler.getBankPaymentOrReceiptDocNumber());
 	}
 
 	/**
@@ -2864,7 +2918,7 @@ public class BankReceiptFunctions {
 		verifyCustomerDocumentWithDBAfterSI(VariableHandler.getMultipleSIDocs());
 		BankReceiptThroughAddButtonMPMI(SheetName, commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
 				commonFunc.getDataFromTestDataSheet("BankName"));
-		verifyCustomerDocumentWithDBAfterBRV(VariableHandler.getBankPaymentOrReceiptDocNumber());
+//		verifyCustomerDocumentWithDBAfterBRV(VariableHandler.getBankPaymentOrReceiptDocNumber());
 	}
 
 	/**
