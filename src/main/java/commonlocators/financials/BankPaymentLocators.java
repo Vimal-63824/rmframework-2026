@@ -196,7 +196,7 @@ public class BankPaymentLocators {
 	/** @locatorType Xpath */
 	public static final String BankReceiptDocNumberLovButton = "//input[@data-testid='DocNo']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String BankReceiptPendingReceivablesSearchButton = "//button[@id='B1891436466362546326']";
+	public static final String BankReceiptPendingReceivablesSearchButton = "//button[@id='B3538586957277291792']";
 	/** @locatorType Xpath */
 	public static final String BankReceiptPendingReceivableScreenOkButton = "//button[@id='B4']";
 	/** @locatorType Xpath */
