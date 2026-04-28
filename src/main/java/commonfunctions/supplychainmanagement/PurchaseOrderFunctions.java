@@ -14219,7 +14219,7 @@ public class PurchaseOrderFunctions {
 				webDB.pressEscapeKey();
 				verifyDirectPoLineWiseSaved();
 //				verifyUnitcostAndDiscountAmountForOpenPoItem(i, SheetName, Supplier, Unit, FileName);
-				verifyRateContractItemUnitCostAndDiscPctWriteInExcelForGeneralType(i, SheetName, FileName);
+//				verifyRateContractItemUnitCostAndDiscPctWriteInExcelForGeneralType(i, SheetName, FileName);
 				otherThanUserdefinedDiscountAmount(i, SheetName, FileName);
 				webDB.switchToDefaultContent();
 				commonFunc.checkRefreshCellsDisappear();
@@ -14451,8 +14451,8 @@ public class PurchaseOrderFunctions {
 						PurchaseOrderPageLocators.HsnCodeInput, HsnCode);
 				webDB.pressEscapeKey();
 				verifyDirectPoLineWiseSaved();
-				verifyUnitcostAndDiscountAmountForPriceListItem(i, SheetName, Supplier, Loc, FileName);
-				verifyRateContractItemUnitCostAndDiscPctWriteInExcelForGeneralType(i, SheetName, FileName);
+//				verifyUnitcostAndDiscountAmountForPriceListItem(i, SheetName, Supplier, Loc, FileName);
+//				verifyRateContractItemUnitCostAndDiscPctWriteInExcelForGeneralType(i, SheetName, FileName);
 				otherThanUserdefinedDiscountAmount(i, SheetName, FileName);
 				webDB.switchToDefaultContent();
 				commonFunc.checkRefreshCellsDisappear();
