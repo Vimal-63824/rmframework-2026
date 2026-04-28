@@ -3147,8 +3147,8 @@ public class DirectGrnPageFunctions {
 	 */
 	public void verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(String Supplier, String SheetName)
 			throws IOException {
-		verifyDirectGRNStockQtyAndCostForQualityWh(SheetName);
-		verifyDirectGRNStockQtyAndCostForSourceWH(SheetName);
+		verifyDirectGRNStockQtyAndCostForQualityWhHK(SheetName);
+		verifyDirectGRNStockQtyAndCostForSourceWHHK(SheetName);
 		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
 				System.getProperty("DuraiUsername"));
 		commonFunc.naviagteGrnPage();
@@ -3156,14 +3156,14 @@ public class DirectGrnPageFunctions {
 		verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("GRNPG"), Supplier,
 				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
-		verifyDirectGRNAddLineDetails(SheetName);
+		verifyDirectGRNAddLineDetailsHK(SheetName);
 		clickGenLotSerialButtonInHeader();
 //		DirectGRNmultipleLotandSerialWithGeneralType(SheetName);
 		VariableHandler.setMultipleGRNDocs(MultiGRNDocs);
 		GRNFunc.clickPostButton();
 		GRNFunc.waitingForApprovalHK(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 //		GRNFunc.verifyReturnToGrnPageHeaderStatus();
-		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(SheetName);
+		verifyDirectGRNExpectedStockQtAndCostyForQualityWHHK(SheetName);
 		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrv();
 //		commonFunc.hardWait(2000);
 //		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(SheetName);
@@ -4224,6 +4224,34 @@ public class DirectGrnPageFunctions {
 			}
 		}
 	}
+	
+	/**
+	 * This Methods Is Used To verify Expected stock Qty And Cost For Quality
+	 * WareHouse
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+	public void verifyDirectGRNExpectedStockQtAndCostyForQualityWHHK(String SheetName) {
+		String[][] ItemDetails = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+				+ "DirectGrnDetailsHK.xlsx";
+		ItemDetails = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		for (int i = 22; i < ItemDetails.length; i++) {
+			String ItemId = ItemDetails[i][1];
+			String WareHouse = ItemDetails[i][44];
+			String AfterExcelStockCost = ItemDetails[i][51];
+			if (!ItemId.equals("")) {
+				String AfterStockCost = dbCommonFunctions.StockQuery1(WareHouse, ItemId,
+						commonFunc.getDataFromTestDataSheet("StockCostDBColumnName"));
+				logs.logging("INFO", "After GRN Actual Stock Cost For This Item " + ItemId + "Is : " + AfterStockCost);
+
+				verifyAssertionBothValues(AfterStockCost, AfterExcelStockCost);
+				logs.logging("INFO",
+						"Verified Expected Stock Cost For This Item " + ItemId + " With Database Values After MRV");
+			}
+		}
+	}
 
 	/**
 	 * This Methods Is Used To verify Expected stock Qty And Cost For Source
@@ -4303,6 +4331,44 @@ public class DirectGrnPageFunctions {
 			}
 		}
 	}
+	
+	/**
+	 * This Methods Used To Verify stock Quantity For Quality Warehouse
+	 * Document(Single Item)
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+
+	public void verifyDirectGRNStockQtyAndCostForQualityWhHK(String SheetName) throws IOException {
+		String[][] ItemMultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+				+ "DirectGrnDetailsHK.xlsx";
+		ItemMultiple = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		logs.logging("INFO", "Before Stock Qty For This Item ");
+		for (int i = 22; i < ItemMultiple.length; i++) {
+			String ItemId = ItemMultiple[i][1];
+			String WareHouse = ItemMultiple[i][44];
+			String ExpectedStockQuantity = ItemMultiple[i][50];
+			String ExpectedStockCost = ItemMultiple[i][51];
+			if (!ItemId.equals("")) {
+				String BeforeStockQty = dbCommonFunctions.StockQuery1(WareHouse, ItemId,
+						commonFunc.getDataFromTestDataSheet("StockQtyDBColumnName"));
+				logs.logging("INFO",
+						"Before InspectionWH Stock Qty For This Item " + ItemId + "Is : " + BeforeStockQty);
+				logs.logging("INFO",
+						"Expected InspectionWH Stock Qty For This Item " + ItemId + "Is : " + ExpectedStockQuantity);
+				String BeforeStockCost = dbCommonFunctions.StockQuery1(WareHouse, ItemId,
+						commonFunc.getDataFromTestDataSheet("StockCostDBColumnName"));
+				logs.logging("INFO",
+						"Before InspectionWH Stock Cost For This Item " + ItemId + "Is : " + BeforeStockCost);
+				logs.logging("INFO",
+						"Expected InspectionWH Stock Cost For This Item " + ItemId + "Is : " + ExpectedStockCost);
+				excelUtils.writeDataInExcel(Filepath, SheetName, i, 46, BeforeStockQty);
+				excelUtils.writeDataInExcel(Filepath, SheetName, i, 47, BeforeStockCost);
+			}
+		}
+	}
 
 	/**
 	 * This Methods Used To Verify stock Quantity For Source Warehouse
@@ -4315,6 +4381,44 @@ public class DirectGrnPageFunctions {
 		ExcelUtils excelUtils = new ExcelUtils();
 		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
 				+ "DirectGrnDetails.xlsx";
+		ItemMultiple = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		logs.logging("INFO", "Before Stock Qty For This Item ");
+		for (int i = 22; i < ItemMultiple.length; i++) {
+			String ItemId = ItemMultiple[i][1];
+			String SourecWareHouse = ItemMultiple[i][63];
+			String ExpectedStockQuantity = ItemMultiple[i][67];
+			String ExpectedStockCost = ItemMultiple[i][66];
+			if (!ItemId.equals("")) {
+				String BeforeStockQty = dbCommonFunctions.StockQuery1(SourecWareHouse, ItemId,
+						commonFunc.getDataFromTestDataSheet("StockQtyDBColumnName"));
+				logs.logging("INFO",
+						"Before Source WareHouse Stock Qty For This Item " + ItemId + "Is : " + BeforeStockQty);
+				logs.logging("INFO", "Expected Source WareHouse Stock Qty For This Item " + ItemId + "Is : "
+						+ ExpectedStockQuantity);
+				String BeforeStockCost = dbCommonFunctions.StockQuery1(SourecWareHouse, ItemId,
+						commonFunc.getDataFromTestDataSheet("StockCostDBColumnName"));
+				logs.logging("INFO",
+						"Before Source WareHouse Stock Cost For This Item " + ItemId + "Is : " + BeforeStockCost);
+				logs.logging("INFO",
+						"Expected Source WareHouse Stock Cost For This Item " + ItemId + "Is : " + ExpectedStockCost);
+				excelUtils.writeDataInExcel(Filepath, SheetName, i, 65, BeforeStockQty);
+				excelUtils.writeDataInExcel(Filepath, SheetName, i, 64, BeforeStockCost);
+			}
+		}
+
+	}
+	
+	/**
+	 * This Methods Used To Verify stock Quantity For Source Warehouse
+	 * Document(Single Item)
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+	public void verifyDirectGRNStockQtyAndCostForSourceWHHK(String SheetName) throws IOException {
+		String[][] ItemMultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+				+ "DirectGrnDetailsHK.xlsx";
 		ItemMultiple = excelUtils.readAllDataInExcel(Filepath, SheetName);
 		logs.logging("INFO", "Before Stock Qty For This Item ");
 		for (int i = 22; i < ItemMultiple.length; i++) {
@@ -4376,7 +4480,7 @@ public class DirectGrnPageFunctions {
 					verifyClickingReceiptQuantity(QTY);
 					verifyClickingCost(COST);
 					verifyClickingSaveLine();
-					verifyUnitcostAndDiscountAmountForPriceListItemForDirectGRNWithLoc49(i, Filepath, SheetName,
+					verifyUnitcostAndDiscountAmountForPriceListItemForDirectGRNWithLoc49(i, SheetName,
 							commonFunc.getDataFromTestDataSheet("PriceListSupplier"));
 					verifyRateContractItemUnitCostAndDiscPctWriteInExcelForGeneralTypeForDirectGrn(i, SheetName);
 					otherThanUserdefinedDiscountAmountForDirectGRN(i, SheetName);
@@ -4530,6 +4634,73 @@ public class DirectGrnPageFunctions {
 		ExcelUtils excelUtils = new ExcelUtils();
 		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
 				+ "DirectGrnDetails.xlsx";
+		GRNMultipleline = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		for (int i = i2; i <= i2; i++) {
+			String ItemId = GRNMultipleline[i2][1];
+			String TradeDiscountAmount = GRNMultipleline[i2][12];
+			String SpecialDiscountAmount = GRNMultipleline[i2][14];
+			String CashDiscountAmount = GRNMultipleline[i2][16];
+			String TradeAssessbleValue = GRNMultipleline[i2][11];
+			String SpecialAssessbleValue = GRNMultipleline[i2][13];
+			String CashAssessbleValue = GRNMultipleline[i2][15];
+			String LineAmount = GRNMultipleline[i2][18];
+			String TaxAmountCGST = GRNMultipleline[i2][21];
+			String TaxAmountSGST = GRNMultipleline[i2][22];
+			String TaxAmountIGST = GRNMultipleline[i2][23];
+			if (!ItemId.equals("")) {
+				verifyAssertionBothValues(dbCommonFunc.StockQuery4(VariableHandler.getGrnDocNumber(), ItemId,
+						commonFunc.getDataFromTestDataSheet("GRNTradeAssessableValue")), TradeAssessbleValue);
+				logs.logging("INFO", "Trade Assessable Value Matched With DB Values For This Item " + ItemId);
+				verifyAssertionBothValues(
+						dbCommonFunc.StockQuery4(VariableHandler.getGrnDocNumber(), ItemId,
+								commonFunc.getDataFromTestDataSheet("GRNSpecialAssessableValue")),
+						SpecialAssessbleValue);
+				logs.logging("INFO", "Special Assessable Value Matched With DB Values For This Item " + ItemId);
+				verifyAssertionBothValues(dbCommonFunc.StockQuery4(VariableHandler.getGrnDocNumber(), ItemId,
+						commonFunc.getDataFromTestDataSheet("GRNCashAssessableValue")), CashAssessbleValue);
+				logs.logging("INFO", "Cash Assessable Value Matched With DB Values For This Item " + ItemId);
+				verifyAssertionBothValues(dbCommonFunc.StockQuery4(VariableHandler.getGrnDocNumber(), ItemId,
+						commonFunc.getDataFromTestDataSheet("GRNTradeDiscountAmount")), TradeDiscountAmount);
+				logs.logging("INFO", "Trade Discount Amount Matched With DB Values For This Item " + ItemId);
+				verifyAssertionBothValues(
+						dbCommonFunc.StockQuery4(VariableHandler.getGrnDocNumber(), ItemId,
+								commonFunc.getDataFromTestDataSheet("GRNSpecialDiscountAmount")),
+						SpecialDiscountAmount);
+				logs.logging("INFO", "Special Discount Amount Matched With DB Values For This Item " + ItemId);
+				commonFunc.hardWait(2000);
+				verifyAssertionBothValues(dbCommonFunc.StockQuery4(VariableHandler.getGrnDocNumber(), ItemId,
+						commonFunc.getDataFromTestDataSheet("GRNCashDiscountAmount")), CashDiscountAmount);
+				logs.logging("INFO", "Cash Discount Amount Matched With DB Values For This Item " + ItemId);
+				verifyAssertionBothValues(dbCommonFunc.StockQuery4(VariableHandler.getGrnDocNumber(), ItemId,
+						commonFunc.getDataFromTestDataSheet("GrnLineAmount")), LineAmount);
+				logs.logging("INFO", "Line Amount" + LineAmount + "Matched With DB Values For This Item" + ItemId);
+				verifyAssertionBothValues(dbCommonFunc.StockQuery4(VariableHandler.getGrnDocNumber(), ItemId,
+						commonFunc.getDataFromTestDataSheet("GRNCgstAmount")), TaxAmountCGST);
+				logs.logging("INFO", "Tax Amount CGST " + TaxAmountCGST + "For This Item" + ItemId);
+				verifyAssertionBothValues(dbCommonFunc.StockQuery4(VariableHandler.getGrnDocNumber(), ItemId,
+						commonFunc.getDataFromTestDataSheet("GRNSgstAmount")), TaxAmountSGST);
+				logs.logging("INFO", "Tax Amount SGST" + TaxAmountSGST + "For This Item" + ItemId);
+				verifyAssertionBothValues(dbCommonFunc.StockQuery4(VariableHandler.getGrnDocNumber(), ItemId,
+						commonFunc.getDataFromTestDataSheet("GRNIgstAmount")), TaxAmountIGST);
+				logs.logging("INFO", "Tax Amount IGST" + TaxAmountIGST + "For This Item" + ItemId);
+
+			}
+		}
+	}
+	
+	/**
+	 * This Method Is Used To Verify The Discount Amount For PO Document
+	 * 
+	 * @author PremKumar.K-RM ITS
+	 * 
+	 *
+	 */
+
+	public void verifyDiscountAmountForDirectGRNHK(int i2, String SheetName) {
+		String[][] GRNMultipleline = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+				+ "DirectGrnDetailsHK.xlsx";
 		GRNMultipleline = excelUtils.readAllDataInExcel(Filepath, SheetName);
 		for (int i = i2; i <= i2; i++) {
 			String ItemId = GRNMultipleline[i2][1];
@@ -4806,6 +4977,49 @@ public class DirectGrnPageFunctions {
 		}
 		assertTrue(flag);
 	}
+	
+	/**
+	 * This Methods Is Used To Verify Creation Of PR General RFQ
+	 * 
+	 * @author Durai-RMITS
+	 * @throws IOException
+	 */
+	public void verifyDirectGRNAddLineDetailsHK(String SheetName) {
+		flag = webDB.waitForElement(GrnLocators.GrnDocNumber, ElementType.Xpath);
+		if (flag) {
+			commonFunc.hardWait(200);
+			String GrnNumber = webDB.getTextFromElement(GrnLocators.GrnDocNumber, ElementType.Xpath);
+			VariableHandler.setGrnDocNumber(GrnNumber);
+			logs.logging("INFO", "GrnNumber Is :" + VariableHandler.getGrnDocNumber());
+			MultiGRNDocs.add(VariableHandler.getGrnDocNumber());// TODO
+
+			String[][] GRNMultipleline = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+			ExcelUtils excelUtils = new ExcelUtils();
+
+			String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+					+ "DirectGrnDetailsHK.xlsx";
+			GRNMultipleline = excelUtils.readAllDataInExcel(Filepath, SheetName);
+			for (int i = 22; i < GRNMultipleline.length; i++) {
+				String ITEM_NAME = GRNMultipleline[i][1];
+				String HSN = GRNMultipleline[i][68];
+				String QTY = GRNMultipleline[i][5];
+				String COST = GRNMultipleline[i][6];
+
+				if (!ITEM_NAME.equals("")) {
+					commonFunc.hardWait(200);
+					verifyClickingAdd();
+					verifyClickingItemField(ITEM_NAME);
+					verifyClickingHsnField(HSN);
+					verifyClickingSuppQuantity(QTY);
+					verifyClickingReceiptQuantity(QTY);
+					verifyClickingCost(COST);
+					verifyClickingSaveLine();
+					verifyDirectGRNAddingDiscountHK(i, SheetName);
+				}
+			}
+		}
+		assertTrue(flag);
+	}
 
 	/**
 	 * This Methods Is Used To Verify Creation Of PR General RFQ
@@ -4872,6 +5086,83 @@ public class DirectGrnPageFunctions {
 										webDB.switchToDefaultContent();
 										commonFunc.checkRefreshCellsDisappear();
 										verifyDiscountAmountForDirectGRN(i1, SheetName);
+
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+	
+	/**
+	 * This Methods Is Used To Verify Creation Of PR General RFQ
+	 * 
+	 * @author Durai-RMITS
+	 */
+	public void verifyDirectGRNAddingDiscountHK(int i1, String SheetName) {
+
+		String[][] PRMultipleline = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+				+ "DirectGrnDetailsHK.xlsx";
+		PRMultipleline = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		System.out.println(PRMultipleline.length);
+		for (int i = i1; i <= i1; i++) {
+
+			String ITEM_NAME = PRMultipleline[i1][1];
+			String TradeDiscount = PRMultipleline[i1][8];
+			String SpecialDiscount = PRMultipleline[i1][9];
+			String CashDiscount = PRMultipleline[i1][10];
+			if (!ITEM_NAME.equals("")) {
+				commonFunc.checkRefreshCellsDisappear();
+				flag = webDB.waitForElement(DirectGrnPageLocators.GrnDetailsBtn(i - 21), ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(DirectGrnPageLocators.GrnDetailsBtn(i - 21), ElementType.Xpath);
+					logs.logging("INFO", "Details Button Is Clicked");
+					commonFunc.hardWait(500);
+					flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineDetailsFrame, ElementType.Xpath);
+					if (flag) {
+						webDB.switchToFrame(DirectGrnPageLocators.GrnLineDetailsFrame, ElementType.Xpath);
+						logs.logging("INFO", "Switched To Frame");
+						flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineTrdDisc, ElementType.Xpath);
+						if (flag) {
+							webDB.clickAnElement(DirectGrnPageLocators.GrnLineTrdDisc, ElementType.Xpath);
+							webDB.clearText(DirectGrnPageLocators.GrnLineTrdDisc, ElementType.Xpath);
+							webDB.sendTextToAnElement(DirectGrnPageLocators.GrnLineTrdDisc, TradeDiscount,
+									ElementType.Xpath);
+							logs.logging("INFO", "Entered Trade Discount Is:" + TradeDiscount);
+							commonFunc.hardWait(1000);
+							flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineSpclDisc, ElementType.Xpath);
+							if (flag) {
+								webDB.clickAnElement(DirectGrnPageLocators.GrnLineSpclDisc, ElementType.Xpath);
+								webDB.clearText(DirectGrnPageLocators.GrnLineSpclDisc, ElementType.Xpath);
+								webDB.sendTextToAnElement(DirectGrnPageLocators.GrnLineSpclDisc, SpecialDiscount,
+										ElementType.Xpath);
+								logs.logging("INFO", "Entered Trade Discount Is:" + SpecialDiscount);
+								commonFunc.hardWait(1000);
+								flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineCashDisc, ElementType.Xpath);
+								if (flag) {
+									webDB.clickAnElement(DirectGrnPageLocators.GrnLineCashDisc, ElementType.Xpath);
+									webDB.clearText(DirectGrnPageLocators.GrnLineCashDisc, ElementType.Xpath);
+									webDB.sendTextToAnElement(DirectGrnPageLocators.GrnLineCashDisc, CashDiscount,
+											ElementType.Xpath);
+									logs.logging("INFO", "Entered Trade Discount Is:" + CashDiscount);
+									commonFunc.hardWait(1000);
+									flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineDetailsSave,
+											ElementType.Xpath);
+									if (flag) {
+										webDB.clickAnElement(DirectGrnPageLocators.GrnLineDetailsSave,
+												ElementType.Xpath);
+										logs.logging("INFO", "Details Is Saved");
+										commonFunc.hardWait(1000);
+										webDB.pressEscapeKey();
+										webDB.switchToDefaultContent();
+										commonFunc.checkRefreshCellsDisappear();
+										verifyDiscountAmountForDirectGRNHK(i1, SheetName);
 
 									}
 								}
@@ -5863,7 +6154,7 @@ public class DirectGrnPageFunctions {
 				commonFunc.hardWait(2000);
 				commonFunc.checkRefreshCellsDisappear();
 				verifyAssertionBothValues(
-						dbCommonFunc.OpenPoDetails(RateContractSupplier, ITEM_NAME,
+						dbCommonFunc.OpenPoDetails(RateContractSupplier, ITEM_NAME, UnitId,
 								commonFunc.getDataFromTestDataSheet("OpenPoUnitCost")),
 						dbCommonFunc.StockQuery4(VariableHandler.getGrnDocNumber(), ITEM_NAME,
 								commonFunc.getDataFromTestDataSheet("GRNUnitCost")));
@@ -6007,11 +6298,11 @@ public class DirectGrnPageFunctions {
 	 * 
 	 */
 
-	public void verifyUnitcostAndDiscountAmountForPriceListItemForDirectGRNWithLoc49(int i1, String FileName,
+	public void verifyUnitcostAndDiscountAmountForPriceListItemForDirectGRNWithLoc49(int i1, 
 			String SheetName, String PriceListSupplier) {
 		String[][] PRMultipleline = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 		ExcelUtils excelUtils = new ExcelUtils();
-		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + "DirectGrnDetails.xlsx";
 		PRMultipleline = excelUtils.readAllDataInExcel(Filepath, SheetName);
 		for (int i = i1; i <= i1; i++) {
 			String ITEM_NAME = PRMultipleline[i1][1];

@@ -206,7 +206,7 @@ public class BankReceiptLocators {
 	/** @locatorType Xpath */
 	public static final String BankReceiptCreateJournalButton = "//button[@data-testid='CreateJournal']";
 	/** @locatorType Xpath */
-	public static final String PendingReceivablesDocumentNumberField = "//*[@id='3509127463087363502_orig']/tbody/tr[2]/td[19]";
+	public static final String PendingReceivablesDocumentNumberField = "//*[@id='3511002720712706517_orig']/tbody/tr[2]/td[19]";
 	/** @locatorType Xpath */
 	public static final String PendingReceivablesDRDocumentNumberLOVButton = "//button[@id='P3413101003_DOC_NO_lov_btn']";
 	/** @locatorType Xpath */

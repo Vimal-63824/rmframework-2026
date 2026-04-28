@@ -14,6 +14,7 @@ import java.util.List;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import commonfunctions.CommonFunctions;
 import commonfunctions.DBCommonFunctions;
@@ -1440,30 +1441,33 @@ public class GateEntryPageFunctions {
 	public void verifyClickSelectAllButton() {
 		commonFunc.hardWait(3000);
 		commonFunc.checkRefreshCellsDisappear();
-		flag = webDB.waitForElement(GateEntryPageLocators.GateEntryPendingPoSelectAll, ElementType.Xpath);
-		if (flag) {
-			webDB.moveToElement(GateEntryPageLocators.GateEntryPendingPoSelectAll, ElementType.Xpath);
-			webDB.scrollToAnElement(GateEntryPageLocators.GateEntryPendingPoSelectAll, ElementType.Xpath);
-			List<WebElement> CheckBox = webDB.getDriver()
-					.findElements(By.xpath(GateEntryPageLocators.GateEntryPendingPoSelectAll));
-			for (WebElement element : CheckBox) {
-				try {
-					if (element.isDisplayed()) {
-						if (!element.isSelected()) {
-							element.click();
-							flag = true;
-							break;
-						} else {
-							element.click();
+		commonFunc.checkRefreshCellsDisappear();
+//		flag = webDB.waitForElement(GateEntryPageLocators.GateEntryPendingPoSelectAll, ElementType.Xpath);
+//		if (flag) {
+		webDB.moveToElement(GateEntryPageLocators.GateEntryPendingPoSelectAll, ElementType.Xpath);
+		webDB.scrollToAnElement(GateEntryPageLocators.GateEntryPendingPoSelectAll, ElementType.Xpath);
+		List<WebElement> CheckBox = webDB.getDriver()
+				.findElements(By.xpath(GateEntryPageLocators.GateEntryPendingPoSelectAll));
+		for (WebElement element : CheckBox) {
+			try {
+				if (element.isDisplayed()) {
+					Actions action = new Actions(webDB.getDriver());
+					action.moveToElement(element).build().perform();
+					if (!element.isSelected()) {
+						element.click();
+						flag = true;
+						break;
+					} else {
+						element.click();
 //						Thread.sleep(10000);
-							verifyClickSelectAllButton();
-							flag = true;
-							break;
-						}
+						verifyClickSelectAllButton();
+						flag = true;
+						break;
 					}
-				} catch (Exception e) {
 				}
+			} catch (Exception e) {
 			}
+//			}
 		}
 		assertTrue(flag);
 	}
@@ -1758,9 +1762,13 @@ public class GateEntryPageFunctions {
 						webDB.waitUntilElementToNotBeStale(GateEntryPageLocators.GateEntryPendingPoSelectAll,
 								ElementType.Xpath);
 						logs.logging("INFO", "Document Search And Selected Successfully");
+						commonFunc.checkRefreshCellsDisappear();
+						commonFunc.checkRefreshCellsDisappear();
 						webDB.clearText(GateEntryPageLocators.QtyValue, ElementType.Xpath);
 						webDB.sendTextToAnElement(GateEntryPageLocators.QtyValue,
 								commonFunc.getDataFromTestDataSheet("QuantityExcess"), ElementType.Xpath);
+						commonFunc.checkRefreshCellsDisappear();
+						commonFunc.checkRefreshCellsDisappear();
 						webDB.clickAnElement(GateEntryPageLocators.FirstCheckBox, ElementType.Xpath);
 						commonFunc.checkRefreshCellsDisappear();
 //						verifyClickSelectAllButton();

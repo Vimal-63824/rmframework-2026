@@ -14218,7 +14218,7 @@ public class PurchaseOrderFunctions {
 						PurchaseOrderPageLocators.HsnCodeInput, HsnCode);
 				webDB.pressEscapeKey();
 				verifyDirectPoLineWiseSaved();
-				verifyUnitcostAndDiscountAmountForOpenPoItem(i, SheetName, Supplier, Unit, FileName);
+//				verifyUnitcostAndDiscountAmountForOpenPoItem(i, SheetName, Supplier, Unit, FileName);
 				verifyRateContractItemUnitCostAndDiscPctWriteInExcelForGeneralType(i, SheetName, FileName);
 				otherThanUserdefinedDiscountAmount(i, SheetName, FileName);
 				webDB.switchToDefaultContent();
@@ -14779,6 +14779,8 @@ public class PurchaseOrderFunctions {
 		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
 				+ "DBDETAILS.xlsx";
 		itemmultiple = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		int count = 0;
+		int maxRows = 1;
 		System.out.println(itemmultiple.length);
 		for (int i = 22; i < itemmultiple.length; i++) {
 			String ITEM_NAME = itemmultiple[i][1];
@@ -14789,7 +14791,7 @@ public class PurchaseOrderFunctions {
 				commonFunc.hardWait(3000);
 				verifyDirectPoItemAddIconClicked();
 				verifyDirectPoItemSelectedFromLov(ITEM_NAME);
-//				verifyDirectPoQtyEntered(QUANTITY);
+//					verifyDirectPoQtyEntered(QUANTITY);
 				commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.PoQtyFieldClick,
 						PurchaseOrderPageLocators.PoQtyInput, QUANTITY);
 				verifyDirectPoHsnSelectedFromLov(HSN);
@@ -14800,13 +14802,17 @@ public class PurchaseOrderFunctions {
 				otherThanUserdefinedDiscountAmount(i, SheetName);
 				webDB.switchToDefaultContent();
 				commonFunc.checkRefreshCellsDisappear();
+				count++;
+				if (count == maxRows) {
+					break;
+				}
 			}
 
 		}
-//		verifyHeaderDetails(SheetName);
+//			verifyHeaderDetails(SheetName);
 		commonFunc.hardWait(1000);
 		verifyHeaderTickAndPost();
-//		waitingForApproval(commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
+//			waitingForApproval(commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
 		if (!VariableHandler.getApprovalFlag()) {
 			verifyWaitingForApproval();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPONumber(),

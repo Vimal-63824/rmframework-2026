@@ -749,9 +749,10 @@ public class CashReceiptFunctions {
 				flag = webDB.waitForElement(CashReceiptLocators.BankReceiptPendingReceivablesSearchButton,
 						ElementType.Xpath);
 				if (flag) {
+					commonFunc.hardWait(500);
+					commonFunc.checkRefreshCellsDisappear();
 					webDB.clickAnElement(CashReceiptLocators.BankReceiptPendingReceivablesSearchButton,
 							ElementType.Xpath);
-					commonFunc.checkRefreshCellsDisappear();
 					commonFunc.hardWait(1000);
 					String GetTextDocumentNumber = webDB.getTextFromElement(
 							CashReceiptLocators.PendingReceivablesDocumentNumberField, ElementType.Xpath);
@@ -1308,6 +1309,7 @@ public class CashReceiptFunctions {
 		clickGetDocumentInCRHeader();
 		clickPendingReceivablesInGetDocumentCR();
 		chooseDocumentNumberAndClickSearchButtonInPendingReceivables(VariableHandler.getMultipleSIDocs(), SheetName);
+		CashReceipts = excelUtils.readAllDataInExcel(Filepath, SheetName);
 		for (int i = 1; i < CashReceipts.length; i++) {
 			String GLAccountDesc = CashReceipts[i][1];
 			String BaseCURCY = CashReceipts[i][13];

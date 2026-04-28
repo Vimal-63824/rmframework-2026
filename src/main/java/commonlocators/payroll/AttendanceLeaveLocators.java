@@ -658,6 +658,8 @@ public class AttendanceLeaveLocators {
 	public static final String TravelReimPostButton = "//button[@id='B4329113522555004130']";
 	/** @locatorType Xpath */
 	public static final String TravelReimDocNoField = "//*[@id=\"P818210021_HTEH_DOC_NO_DISPLAY\"]";
+	/** @locatorType Xpath */
+	public static final String TravelReimDocCancel = "//*[@id='B4329113629079004131']";
 
 	/** @locatorType Xpath */
 	public static final String GeneralExpFindAddButton = "//button[@id='B4120382923549549935']";
@@ -691,7 +693,7 @@ public class AttendanceLeaveLocators {
 	public static final String GeneralExpenseCancelButton = "//button[@id='B1738933392567435917']";
 
 	/** @locatorType Xpath */
-	public static final String ResigRequestFindAddButton = "//button[@id='B1592754182645032762']";
+	public static final String ResigRequestFindAddButton = "//button[@id='B1811127945709513127']";
 	/** @locatorType Xpath */
 	public static final String ResignRqtDocDate = "//input[@id='P8186120501_EMPREL_DOC_DATE_input']";
 	/** @locatorType Xpath */
@@ -699,17 +701,17 @@ public class AttendanceLeaveLocators {
 	/** @locatorType Xpath */
 	public static final String ResignRqtReferenceField = "//input[@id='P8186120501_EMPREL_REFERENCE']";
 	/** @locatorType Xpath */
-	public static final String ResignRqtEntrySaveButton = "//button[@id='B4793378069217108466']";
+	public static final String ResignRqtEntrySaveButton = "//button[@id='B5011751832281588831']";
 	/** @locatorType Xpath */
-	public static final String ResignRqtEntryPostButton = "//button[@id='B4693895738041935427']";
+	public static final String ResignRqtEntryPostButton = "//button[@id='B4912269501106415792']";
 	/** @locatorType Xpath */
 	public static final String ResignRqtDocNoField = "//input[@id='P8186120501_EMPREL_DOC_NO']";
 	/** @locatorType Xpath */
-	public static final String FFSFindPendingForFNF = "//button[@id='B2699027812235802156']";
+	public static final String FFSFindPendingForFNF = "//button[@id='B2917401575300282521']";
 	/** @locatorType Xpath */
 	public static final String FFSFindPendingForFNFScrollBy = "//*[@id=\"R2_data_panel\"]/div[1]/div/div[3]";
 	/** @locatorType Xpath */
-	public static final String FFSFindPendingForFNFReverseButton = "#\\39 006561326705192134_orig > tbody > tr:nth-child(2) > td:nth-child(13) > a";
+	public static final String FFSFindPendingForFNFReverseButton = "#\\39 224935089769672499_orig > tbody > tr:nth-child(2) > td:nth-child(13) > a";
 	/** @locatorType Xpath */
 	public static final String PendingForFNFFrame = "//iframe[contains(@title,'Pending For FNF')]";
 	/** @locatorType Xpath */
@@ -717,13 +719,17 @@ public class AttendanceLeaveLocators {
 	/** @locatorType Xpath */
 	public static final String FFSFindPendingForFNFClose = "//*[@id=\"t_PageBody\"]/div[7]/div[1]/button";
 	/** @locatorType Xpath */
-	public static final String ResignRequestFindSearchButton = "//button[@id='B1592754553151032766']";
+	public static final String ResignRequestFindSearchButton = "//button[@id='B1811128316215513131']";
 	/** @locatorType Xpath */
-	public static final String ResignRequestFindDocSelect = "#\\36 043216600885500164_orig > tbody > tr:nth-child(2) > td:nth-child(3) > a";
+	public static final String ResignRequestFindDocSelect = "#\\36 261590363949980529_orig > tbody > tr:nth-child(2) > td:nth-child(3) > a";
 	/** @locatorType Xpath */
-	public static final String ResignRequestDocCancel = "//button[@id='B4693895826952935428']";
+	public static final String ResignRequestDocCancel = "//button[@id='B4912269590017415793']";
 	/** @locatorType Xpath */
 	public static final String ResignRqtAdjustEncashLeave = "//*[@id=\"P8186120501_EMPREL_ADJUST_EL_LABEL\"]";
 	/** @locatorType Xpath */
 	public static final String ResignRqtEmployeePay = "//*[@id=\"P8186120501_EMPREL_PAY_NOTICE_LABEL\"]";
+	/** @locatorType Xpath */
+	public static final String ResignationCreateFNF = "#\\39 224935089769672499_orig > tbody > tr:nth-child(2) > td:nth-child(1) > a";
+	/** @locatorType Xpath */
+	public static final String CreateFNFOkButton = "//*[@id=\"t_PageBody\"]/div[9]/div[3]/div/button[2]";
 }
