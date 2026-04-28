@@ -85,7 +85,7 @@ public class CashPaymentTest extends RoadMapERPTest {
 	@Author("Harikrishna-RMITS")
 	@Test(priority = 4, groups = {
 			"Cash Payments" }, description = " Payment Against single Party, Multi Bill (Dr/Cr) (Through Add button)")
-	public void CreateBankPaymentSinglePartyMultiBillsThroughAddButton() throws IOException {
+	public void CreateCashPaymentSinglePartyMultiBillsThroughAddButton() throws IOException {
 		flag = cashPaymentFunc.CreateCashPaymentThroughLineAddButtonMultiBills(webDB.getDataFromProperties("BPSPMB"));
 		Assert.assertTrue(flag);
 	}
