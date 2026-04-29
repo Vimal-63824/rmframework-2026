@@ -26,11 +26,13 @@ public class DirectGrnPageLocators {
 	/** @locatorType Xpath */
 	public static final String GrnLineItemField = "//*[@id='add_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[3]";
 	/** @locatorType Xpath */
-	public static final String GrnLineHsnField = "//*[@id='add_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[7]";
+	public static final String GrnLineHsnField = "//*[@id='add_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[7]"; 
 	/** @locatorType Xpath */
 	public static final String GrnLineHsnLov = "//input[@data-testid='PORL_HSN_CODE']/following-sibling::button";
 	/** @locatorType Xpath */
 	public static final String GrnLineSupQtyInput = "//*[@id='add_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[8]//input";
+	/** @locatorType Xpath */
+	public static final String GrnLineSupQtyInputHK = "//input[@id='C4741147491331263419']"; 
 	/** @locatorType Xpath */
 	public static final String GrnLineSupQty = "//*[@id='add_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[8]";
 	/** @locatorType Xpath */
@@ -38,9 +40,13 @@ public class DirectGrnPageLocators {
 	/** @locatorType Xpath */
 	public static final String GrnLineRcpQtyInput = "//*[@id='add_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[9]//input";
 	/** @locatorType Xpath */
+	public static final String GrnLineRcpQtyInputHK = "//input[@id='C4741181645480263711']";
+	/** @locatorType Xpath */
 	public static final String GrnLineCost = "//*[@id='add_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[13]";
 	/** @locatorType Xpath */
 	public static final String GrnLineCostInput = "//*[@id='add_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[13]//input";
+	/** @locatorType Xpath */
+	public static final String GrnLineCostInputHK = "//input[@data-testid='PORL_SC_UNIT_COST']";
 	/** @locatorType Xpath */
 	public static final String GrnLineSave = "//button[@data-testid='Save_Line']";
 	/** @locatorType Xpath */
