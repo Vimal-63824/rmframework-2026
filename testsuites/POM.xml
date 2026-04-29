@@ -37,7 +37,7 @@
 	<!--	<test name="Free of Cost test scenarios" parallel="classes" thread-count="2">
 		<classes>
 			<class name="com.roadmapERP.DirectGRNFOCTest"></class>
-			<class name="com.roadmapERP.PoToGRNFOCTest"></class>-->
+			<class name="com.roadmapERP.PoToGRNFOCTest"></class>
 		</classes>
-	</test>
+	</test>-->
 </suite>
