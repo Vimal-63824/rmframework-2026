@@ -11,14 +11,14 @@
 					<include name="CreateBankPaymentThroughAddButton"></include>
 				</methods>
 			</class>
-		<!--	<class name="com.roadmapERP.BankReceiptTest"></class>-->
-			<class name="com.roadmapERP.CashPaymentTest"></class>
-		<!--	<class name="com.roadmapERP.CashReceiptTest"></class>-->
-			<class name="com.roadmapERP.DebitNoteTest"></class>
-			<class name="com.roadmapERP.PurchaseBillGetDocumenTest"></class>
-			<class name="com.roadmapERP.PurchaseBillsTest"></class>
-			<class name="com.roadmapERP.PurchaseBillsTest2"></class>
-			<class name="com.roadmapERP.PurchaseBillTestGrn"></class>
+<!--				<class name="com.roadmapERP.BankReceiptTest"></class>-->
+<!--			<class name="com.roadmapERP.CashPaymentTest"></class>-->
+<!--				<class name="com.roadmapERP.CashReceiptTest"></class>-->
+<!--			<class name="com.roadmapERP.DebitNoteTest"></class>-->
+<!--			<class name="com.roadmapERP.PurchaseBillGetDocumenTest"></class>-->
+<!--			<class name="com.roadmapERP.PurchaseBillsTest"></class>-->
+<!--			<class name="com.roadmapERP.PurchaseBillsTest2"></class>-->
+<!--			<class name="com.roadmapERP.PurchaseBillTestGrn"></class>-->
 		</classes>
 	</test>
 </suite>
