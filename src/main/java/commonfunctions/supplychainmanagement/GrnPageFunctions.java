@@ -5171,24 +5171,25 @@ public class GrnPageFunctions {
 		for (int i = 3; i < ItemMultiple.length; i++) {
 			String ItemId = ItemMultiple[i][1];
 			String WareHouse = ItemMultiple[i][44];
-			String ExpectedStockQuantity = ItemMultiple[i][50];
-			String ExpectedStockCost = ItemMultiple[i][51];
 			if (!ItemId.equals("")) {
 				logs.logging("INFO", "Inspection Warehouse: " + WareHouse);
 				String BeforeStockQty = dbCommonFunctions.StockQuery1(WareHouse, ItemId,
 						commonFunc.getDataFromTestDataSheet("StockQtyDBColumnName"));
 				logs.logging("INFO",
 						"Before InspectionWH Stock Qty For This Item '" + ItemId + "' Is : " + BeforeStockQty);
-				logs.logging("INFO",
-						"Expected InspectionWH Stock Qty For This Item '" + ItemId + "' Is : " + ExpectedStockQuantity);
 				String BeforeStockCost = dbCommonFunctions.StockQuery1(WareHouse, ItemId,
 						commonFunc.getDataFromTestDataSheet("StockCostDBColumnName"));
 				logs.logging("INFO",
 						"Before InspectionWH Stock Cost For This Item '" + ItemId + "' Is : " + BeforeStockCost);
-				logs.logging("INFO",
-						"Expected InspectionWH Stock Cost For This Item '" + ItemId + "' Is : " + ExpectedStockCost);
 				excelUtils.writeDataInExcel(Filepath, SheetName, i, 46, BeforeStockQty);
 				excelUtils.writeDataInExcel(Filepath, SheetName, i, 47, BeforeStockCost);
+				ItemMultiple = excelUtils.readAllDataInExcel(Filepath, SheetName);
+				String ExpectedStockQuantity = ItemMultiple[i][50];
+				String ExpectedStockCost = ItemMultiple[i][51];
+				logs.logging("INFO",
+						"Expected InspectionWH Stock Qty For This Item '" + ItemId + "' Is : " + ExpectedStockQuantity);
+				logs.logging("INFO",
+						"Expected InspectionWH Stock Cost For This Item '" + ItemId + "' Is : " + ExpectedStockCost);
 			} else {
 				break;
 			}
@@ -5249,24 +5250,25 @@ public class GrnPageFunctions {
 		for (int i = 22; i < ItemMultiple.length; i++) {
 			String ItemId = ItemMultiple[i][1];
 			String WareHouse = ItemMultiple[i][44];
-			String ExpectedStockQuantity = ItemMultiple[i][50];
-			String ExpectedStockCost = ItemMultiple[i][51];
 			if (!ItemId.equals("")) {
 				logs.logging("INFO", "Inspection Warehouse: " + WareHouse);
 				String BeforeStockQty = dbCommonFunctions.StockQuery1(WareHouse, ItemId,
 						commonFunc.getDataFromTestDataSheet("StockQtyDBColumnName"));
 				logs.logging("INFO",
 						"Before InspectionWH Stock Qty For This Item '" + ItemId + "' Is : " + BeforeStockQty);
-				logs.logging("INFO",
-						"Expected InspectionWH Stock Qty For This Item '" + ItemId + "' Is : " + ExpectedStockQuantity);
 				String BeforeStockCost = dbCommonFunctions.StockQuery1(WareHouse, ItemId,
 						commonFunc.getDataFromTestDataSheet("StockCostDBColumnName"));
 				logs.logging("INFO",
 						"Before InspectionWH Stock Cost For This Item '" + ItemId + "' Is : " + BeforeStockCost);
-				logs.logging("INFO",
-						"Expected InspectionWH Stock Cost For This Item '" + ItemId + "' Is : " + ExpectedStockCost);
 				excelUtils.writeDataInExcel(Filepath, SheetName, i, 46, BeforeStockQty);
 				excelUtils.writeDataInExcel(Filepath, SheetName, i, 47, BeforeStockCost);
+				ItemMultiple = excelUtils.readAllDataInExcel(Filepath, SheetName);
+				String ExpectedStockQuantity = ItemMultiple[i][50];
+				String ExpectedStockCost = ItemMultiple[i][51];
+				logs.logging("INFO",
+						"Expected InspectionWH Stock Qty For This Item '" + ItemId + "' Is : " + ExpectedStockQuantity);
+				logs.logging("INFO",
+						"Expected InspectionWH Stock Cost For This Item '" + ItemId + "' Is : " + ExpectedStockCost);
 			}
 		}
 
@@ -5330,24 +5332,25 @@ public class GrnPageFunctions {
 		for (int i = 3; i < ItemMultiple.length; i++) {
 			String ItemId = ItemMultiple[i][1];
 			String SourecWareHouse = ItemMultiple[i][63];
-			String ExpectedStockQuantity = ItemMultiple[i][67];
-			String ExpectedStockCost = ItemMultiple[i][66];
 			if (!ItemId.equals("")) {
 				logs.logging("INFO", "Source Warehouse: " + SourecWareHouse);
 				String BeforeStockQty = dbCommonFunctions.StockQuery1(SourecWareHouse, ItemId,
 						commonFunc.getDataFromTestDataSheet("StockQtyDBColumnName"));
 				logs.logging("INFO",
 						"Before Source WareHouse Stock Qty For This Item '" + ItemId + "' Is : " + BeforeStockQty);
-				logs.logging("INFO", "Expected Source WareHouse Stock Qty For This Item '" + ItemId + "' Is : "
-						+ ExpectedStockQuantity);
 				String BeforeStockCost = dbCommonFunctions.StockQuery1(SourecWareHouse, ItemId,
 						commonFunc.getDataFromTestDataSheet("StockCostDBColumnName"));
 				logs.logging("INFO",
 						"Before Source WareHouse Stock Cost For This Item '" + ItemId + "' Is : " + BeforeStockCost);
-				logs.logging("INFO", "Expected Source WareHouse Stock Cost For This Item '" + ItemId + "' Is : "
-						+ ExpectedStockCost);
 				excelUtils.writeDataInExcel(Filepath, SheetName, i, 65, BeforeStockQty);
 				excelUtils.writeDataInExcel(Filepath, SheetName, i, 64, BeforeStockCost);
+				ItemMultiple = excelUtils.readAllDataInExcel(Filepath, SheetName);
+				String ExpectedStockQuantity = ItemMultiple[i][67];
+				String ExpectedStockCost = ItemMultiple[i][66];
+				logs.logging("INFO", "Expected Source WareHouse Stock Qty For This Item '" + ItemId + "' Is : "
+						+ ExpectedStockQuantity);
+				logs.logging("INFO", "Expected Source WareHouse Stock Cost For This Item '" + ItemId + "' Is : "
+						+ ExpectedStockCost);
 			} else {
 				break;
 			}
@@ -5408,24 +5411,25 @@ public class GrnPageFunctions {
 		for (int i = 22; i < ItemMultiple.length; i++) {
 			String ItemId = ItemMultiple[i][1];
 			String SourecWareHouse = ItemMultiple[i][63];
-			String ExpectedStockQuantity = ItemMultiple[i][67];
-			String ExpectedStockCost = ItemMultiple[i][66];
 			if (!ItemId.equals("")) {
 				logs.logging("INFO", "Source Warehouse: " + SourecWareHouse);
 				String BeforeStockQty = dbCommonFunctions.StockQuery1(SourecWareHouse, ItemId,
 						commonFunc.getDataFromTestDataSheet("StockQtyDBColumnName"));
 				logs.logging("INFO",
 						"Before Source WareHouse Stock Qty For This Item '" + ItemId + "' Is : " + BeforeStockQty);
-				logs.logging("INFO", "Expected Source WareHouse Stock Qty For This Item '" + ItemId + "' Is : "
-						+ ExpectedStockQuantity);
 				String BeforeStockCost = dbCommonFunctions.StockQuery1(SourecWareHouse, ItemId,
 						commonFunc.getDataFromTestDataSheet("StockCostDBColumnName"));
 				logs.logging("INFO",
 						"Before Source WareHouse Stock Cost For This Item '" + ItemId + "' Is : " + BeforeStockCost);
-				logs.logging("INFO", "Expected Source WareHouse Stock Cost For This Item '" + ItemId + "' Is : "
-						+ ExpectedStockCost);
 				excelUtils.writeDataInExcel(Filepath, SheetName, i, 65, BeforeStockQty);
 				excelUtils.writeDataInExcel(Filepath, SheetName, i, 64, BeforeStockCost);
+				ItemMultiple = excelUtils.readAllDataInExcel(Filepath, SheetName);
+				String ExpectedStockQuantity = ItemMultiple[i][67];
+				String ExpectedStockCost = ItemMultiple[i][66];
+				logs.logging("INFO", "Expected Source WareHouse Stock Qty For This Item '" + ItemId + "' Is : "
+						+ ExpectedStockQuantity);
+				logs.logging("INFO", "Expected Source WareHouse Stock Cost For This Item '" + ItemId + "' Is : "
+						+ ExpectedStockCost);
 			}
 		}
 
@@ -9235,8 +9239,10 @@ public class GrnPageFunctions {
 	 */
 	public void PoToGrnStockTransferRateContractUnregisterSupplierSameStockAndSupplierUomWithAndWithoutInspectionForLocalSupplier(
 			String SheetName) throws Exception {
-		verifyStockQtyAndCostForQualityWh(SheetName);
-		verifyStockQtyAndCostForSourceWH(SheetName);
+//		verifyStockQtyAndCostForQualityWh(SheetName);
+//		verifyStockQtyAndCostForSourceWH(SheetName);
+		verifyStockQtyAndCostForQualityWhForStockTransferType(SheetName);
+		verifyStockQtyAndCostForSourceWHForStocktransferType(SheetName);
 		POfunc.verifyToCreatePoForStockTransferRateContractUnregisterSameStockandSupplierUomWithAndWithoutInspection(
 				SheetName);
 		verifyToStockTransferSaleOrderDocumentPost();
@@ -9259,9 +9265,12 @@ public class GrnPageFunctions {
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		flag = commonFunc.logoutUser();
-		verifyExpectedStockQtAndCostyForQualityWH(SheetName);
+//		verifyExpectedStockQtAndCostyForQualityWH(SheetName);
+//		afterVerifyTheStatusDocumentMoveToQcOrMrvForStockTransferType();
+//		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(SheetName);
+		verifyExpectedStockQtAndCostyForQualityWHForStockTransfertype(SheetName);
 		afterVerifyTheStatusDocumentMoveToQcOrMrvForStockTransferType();
-		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(SheetName);
+		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWHForStockTransferType(SheetName);
 		assertTrue(flag);
 
 	}
