@@ -989,7 +989,7 @@ public class SalesInvoiceFunctions {
 			commonFunc.checkRefreshCellsDisappear();
 			verifyClickingTickButton();
 			verifyInvoicePfx(commonFunc.getDataFromTestDataSheet("InvoicePrefix"));
-			verifyHeaderCPCCode(commonFunc.getDataFromTestDataSheet("CPC_Code"));
+			verifyHeaderCPCCode(commonFunc.getDataFromTestDataSheet("SO_CPC_Code"));
 			verifyHeaderTickIcon();
 			commonFunc.checkRefreshCellsDisappear();
 //			CustomerDetailsVerification(commonFunc.getDataFromTestDataSheet("CustomerName"));
