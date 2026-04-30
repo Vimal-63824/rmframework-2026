@@ -1436,5 +1436,18 @@ public class SubcontractPurchaseBillsTest extends RoadMapERPTest {
 	public void domesticRegisteredSupplierWithAdvanceTDSsingleundersectionSinglePO() {
 		SubcontractPurchasebillFunc.domesticRegisteredSupplierWithAdvanceTDSsingleundersectionSinglePO();
 	}
+	/**
+	 * Domestic Registered Supplier - With Advance TDS single under section (Single
+	 * PO with Single New reference)
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 112, groups = {
+			"Subcontract" }, description = "Domestic Registered Supplier - With Advance TDS single under section (SinglePO with Single New reference)")
+	public void domesticRegisteredSupplierWithAdvanceTDSsingleundersectionSinglePOWithSingleNewreference() {
+		SubcontractPurchasebillFunc
+				.domesticRegisteredSupplierWithAdvanceTDSsingleundersectionSinglePOWithSingleNewreference();
+	}
 
 }
