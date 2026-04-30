@@ -1139,10 +1139,10 @@ public class PoToMRVTest2 extends RoadMapERPTest {
 	 * This Methods Is Used To Create GRN Document from PO with Inspection PriceList
 	 * Document for Material Type Without Quality Enabled
 	 * 
-	 * @author PremKumar.K-RMITS
+	 * @author Deepan-GWL
 	 * @throws Exception
 	 */
-	@Author("Prem-RMITS")
+	@Author("Deepan-GWL")
 	@Test(priority = 80, groups = { "GRN" }, description = "332 Check  the process of GRN with Tolerance Quantity")
 	public void PotoGrnMateriallPriceListDifferentStockAndSupplierUOMWithInspectionPlanWithoutQualityEnabledAndToleranceQty()
 			throws Exception {
@@ -1197,10 +1197,10 @@ public class PoToMRVTest2 extends RoadMapERPTest {
 	 * This Methods Is Used To Create GRN Document from PO with Inspection PriceList
 	 * Document for Material Type Without Quality Line wise Cancelled
 	 * 
-	 * @author PremKumar.K-RMITS
+	 * @author Deepan-GWL
 	 * @throws IOException
 	 */
-	@Author("Prem-RMITS")
+	@Author("Deepan-GWL")
 	@Test(priority = 84, groups = { "GRN" }, description = "335  cancel the GRN lines")
 	public void poToGrnGeneralUserDefinedSameStockAndSupplierUomWithAndWithoutInspectionPlanLinewiseCancelled()
 			throws IOException {
@@ -1226,10 +1226,10 @@ public class PoToMRVTest2 extends RoadMapERPTest {
 	 * This Methods Is Used To Create GRN Document from PO with Inspection PriceList
 	 * Document for Material Type Without Quality Document wise cancelled
 	 * 
-	 * @author PremKumar.K-RMITS
+	 * @author Deepan-GWL
 	 * @throws IOException
 	 */
-	@Author("Prem-RMITS")
+	@Author("Deepan-GWL")
 	@Test(priority = 86, groups = { "GRN" }, description = "336  Cancel GRN Document")
 	public void poToGrnGeneralUserDefinedSameStockAndSupplierUomWithAndWithoutInspectionPlanDocumentwiseCancelled()
 			throws IOException {
@@ -1257,10 +1257,10 @@ public class PoToMRVTest2 extends RoadMapERPTest {
 //	 * Document for Material Type Without Quality Enabled For Landed Cost And Other
 //	 * Charges
 //	 * 
-//	 * @author PremKumar.K-RMITS Direct GRN
+//	 * @author Deepan-GWL Direct GRN
 //	 * @throws IOException
 //	 */
-//	@Author("Prem-RMITS")
+//	@Author("Deepan-GWL")
 //	@Test(priority = 88, groups = { "GRN" }, description = "334  Inward GRN with Landed cost and other charges")
 //	public void poToGrnGeneralUserDefinedSameStockAndSupplierUomWithAndWithoutInspectionPlanWithLandedCostAnd()
 //			throws IOException {
