@@ -99,6 +99,11 @@ public class CommonFunctions {
 	public boolean enterUrl() {
 		webDB.enterURL(System.getProperty("url"));
 		flag = webDB.waitForElementUntilGivenTime(CommonUiLocators.LoginForm, ElementType.Xpath, 45);
+		if (!flag) {
+			logs.logging("INFO", "Retrying Navigate To URL");
+			webDB.navigateToUrl(System.getProperty("url"));
+			flag = webDB.waitForElementUntilGivenTime(CommonUiLocators.LoginForm, ElementType.Xpath, 45);
+		}
 		return flag;
 	}
 
