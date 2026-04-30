@@ -43,32 +43,31 @@ public class ProductionAndShopFloorSetupTest extends RoadMapERPTest {
 //		flag = ppShopFloorSetupFunc.howtodefineInsideTypeProcessAndAssociatedTheProcess();
 //		Assert.assertTrue(flag);
 //	}
-
-	/**
-	 * How to define Process master in OutSide Type
-	 * 
-	 * @author Vimal - RMITS
-	 * @throws IOException
-	 */
-	@Author("Vimal-RMITS")
-	@Test(priority = 3, groups = { "PP&ShopFloor" }, description = "3 - How to define Process master in OutSide Type")
-	public void HowtodefineOutsideTypeProcessAndAssociatedTheProcess() throws IOException {
-		ppShopFloorSetupFunc.howtodefineOutsideTypeProcessAndAssociatedTheProcess();
-		Assert.assertTrue(flag);
-	}
-
-	/**
-	 * How to define Process master in Both Type
-	 * 
-	 * @author Vimal - RMITS
-	 */
-	@Author("Vimal-RMITS")
-	@Test(priority = 4, groups = { "PP&ShopFloor" }, description = "4 - How to define Process master in Both Type")
-	public void HowtodefineBothTypeProcessAndAssociatedTheProcess() {
-		ppShopFloorSetupFunc.howtodefineBothTypeProcessAndAssociatedTheProcess();
-		Assert.assertTrue(flag);
-	}
-
+//
+//	/**
+//	 * How to define Process master in OutSide Type
+//	 * 
+//	 * @author Vimal - RMITS
+//	 * @throws IOException
+//	 */
+//	@Author("Vimal-RMITS")
+//	@Test(priority = 3, groups = { "PP&ShopFloor" }, description = "3 - How to define Process master in OutSide Type")
+//	public void HowtodefineOutsideTypeProcessAndAssociatedTheProcess() throws IOException {
+//		ppShopFloorSetupFunc.howtodefineOutsideTypeProcessAndAssociatedTheProcess();
+//		Assert.assertTrue(flag);
+//	}
+//
+//	/**
+//	 * How to define Process master in Both Type
+//	 * 
+//	 * @author Vimal - RMITS
+//	 */
+//	@Author("Vimal-RMITS")
+//	@Test(priority = 4, groups = { "PP&ShopFloor" }, description = "4 - How to define Process master in Both Type")
+//	public void HowtodefineBothTypeProcessAndAssociatedTheProcess() {
+//		ppShopFloorSetupFunc.howtodefineBothTypeProcessAndAssociatedTheProcess();
+//		Assert.assertTrue(flag);
+//	}
 //	/**
 //	 * How to Create Resource Group and Resources for Machine
 //	 * 

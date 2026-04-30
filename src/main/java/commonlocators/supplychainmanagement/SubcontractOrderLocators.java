@@ -435,7 +435,7 @@ public class SubcontractOrderLocators {
 	/** @Locator XPATH */
 	public static final String Pend_SCO_GE_SelectAll = "//*[@id=\"check_all\"]";
 	/** @Locator XPATH */
-	public static final String Pend_SCO_GE_Select = "//*[@id=\"18449977181828174731_orig\"]/tbody/tr[2]/td[19]";
+	public static final String Pend_SCO_GE_Select = "//*[@id=\"18666039099557906161_orig\"]/tbody/tr[2]/td[19]";
 	/** @Locator XPATH */
 	public static final String Pend_SCO_GE_CreateGE = "//button[@data-testid='Create_GE']";
 	/** @Locator XPATH */
@@ -509,4 +509,6 @@ public class SubcontractOrderLocators {
 	public static final String PendingSCOProcessDetailIcon(String prodNo) {
 		return "(//table/tbody//td/a[text()='" + prodNo + "']/../../td//span[@class='fa fa-gears'])[1]";
 	}
+	/** @Locator XPATH */
+	public static final String SCO_Pend_SelectALl = "(//input[@id='check_all'])[1]";
 }
