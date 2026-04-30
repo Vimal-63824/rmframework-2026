@@ -4107,4 +4107,38 @@ public class SubcontractPurchaseBills {
 		verifyCreateJournalAndVerifyMatchedAmtAndPost();
 		PurBillFunc.waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
 	}
+	/**
+	 * Domestic Registered Supplier - With Advance TDS single under section (Single
+	 * PO with Single New reference)
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void domesticRegisteredSupplierWithAdvanceTDSsingleundersectionSinglePOWithSingleNewreference() {
+		SubcontractFunc.directSubcontractorderToGRNTypePRWithTDS();
+		purchaseBillsFunc.verifyPurchaseBillsAgainstPurchaseBillsForAdjustmentAndGetGLAcct(
+				commonFunc.getDataFromTestDataSheet("BankName"), commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
+				webDB.getDataFromProperties("BankRecptGlAcct"), commonFunc.getDataFromTestDataSheet("SupplierForTDS"));
+		purchaseBillsFunc.addNewRefPaymentsAgainstTotheParty(commonFunc.getDataFromTestDataSheet("BillsBank"),
+				commonFunc.getDataFromTestDataSheet("PayAmount1"));
+		BPFunc.clickPostButton();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+				VariableHandler.getBankPaymentOrReceiptDocNumber(), webDB.getDataFromProperties("HodEmpId"),
+				commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+		commonFunc.navigateToFinancialPurchaseBill();
+		verifyPendingSCOPurchaseBill(VariableHandler.getScoGrnNumber(),
+				commonFunc.getDataFromTestDataSheet("TDSValue"));
+		clickingReferenceTabAndValidating();
+		clickingLinewiseProcessDetailsChangingQtyandUnitcost(commonFunc.getDataFromTestDataSheet("TDSValue"),
+				commonFunc.getDataFromTestDataSheet("PBProcessQtyInput"));
+		getMatchedAmtAndGRNAmtandWriteInExcelSheet(webDB.getDataFromProperties("PurchaseBillDeviationandExp"));
+//		verifyAddExpenseTypeUnitcostinExcelSheet(commonFunc.getDataFromTestDataSheet("PBGLAccount"),
+//				commonFunc.getDataFromTestDataSheet("ExpenseType"));
+		purchaseBillsFunc.ClickSaveButton();
+		purchaseBillsFunc.loadAdjustmentForSupplierToAddedInParty(VariableHandler.getBankPaymentOrReceiptDocNumber());
+		clickApplyDeductionButton();
+		verifyCreateJournalAndVerifyMatchedAmtAndPost();
+		PurBillFunc.waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+	}
 }
