@@ -2731,6 +2731,10 @@ public class CommonFunctions {
 				|| (Actual.equalsIgnoreCase("RAW MATERIAL WAREHOUSE") && Expected.equalsIgnoreCase("RM WH"))) {
 			Actual = Expected;
 		}
+		if ((Expected.equalsIgnoreCase("FINISHED GOODS WAREHOUSE") && Actual.equalsIgnoreCase("FG WH"))
+				|| (Actual.equalsIgnoreCase("FINISHED GOODS WAREHOUSE") && Expected.equalsIgnoreCase("FG WH"))) {
+			Actual = Expected;
+		}
 		flag = (Actual.equalsIgnoreCase(Expected));
 		if (flag) {
 			logs.logging("INFO", "Verified Actual And Expected Values");

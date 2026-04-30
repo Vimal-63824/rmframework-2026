@@ -1478,8 +1478,8 @@ public class BillOfMaterialsFunctions {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 		LocalDate date = LocalDate.now();
 		String Today = date.format(formatter);
-		String RMItem1 = commonFunc.getDataFromTestDataSheet("FG-10002-Item");
-		String RMItem2 = commonFunc.getDataFromTestDataSheet("FG-10001-Item");
+		String RMItem1 = commonFunc.getDataFromTestDataSheet("FG-BOM-Item1");
+		String RMItem2 = commonFunc.getDataFromTestDataSheet("FG-BOM-Item2");
 		try {
 			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 					"AdminUsername");
@@ -1507,19 +1507,19 @@ public class BillOfMaterialsFunctions {
 					commonFunc.getDataFromTestDataSheet("WIPU100_WH"));
 			navigateToMaterialsSubTab();
 			clickAddLineIconInMaterialTab();
-			fillProcessItemUOMInMaterial(commonFunc.getDataFromTestDataSheet("GwlProcess1"), RMItem1,
-					commonFunc.getDataFromTestDataSheet("Kgs"));
+			fillProcessItemUOMInMaterial(commonFunc.getDataFromTestDataSheet("GwlProcess1Desc"), RMItem1,
+					commonFunc.getDataFromTestDataSheet("UomNos"));
 			fillReqQntyConvFactorAndSourceWHInMaterial("3", "1", commonFunc.getDataFromTestDataSheet("FinishedGoodWH"));
 			clickSaveLineIconInMaterialTab();
 			validateLineDetailsWithDB("1", "1", commonFunc.getDataFromTestDataSheet("GwlProcess1"), RMItem1,
-					commonFunc.getDataFromTestDataSheet("FinishedGoodWH"), commonFunc.getDataFromTestDataSheet("Kgs"));
+					commonFunc.getDataFromTestDataSheet("FinishedGoodWH"), commonFunc.getDataFromTestDataSheet("UomNos"));
 			clickAddLineIconInMaterialTab();
 			fillProcessItemUOMInMaterial(commonFunc.getDataFromTestDataSheet("GwlProcess1Desc"), RMItem2,
-					commonFunc.getDataFromTestDataSheet("Kgs"));
+					commonFunc.getDataFromTestDataSheet("UomNos"));
 			fillReqQntyConvFactorAndSourceWHInMaterial("3", "1", commonFunc.getDataFromTestDataSheet("FinishedGoodWH"));
 			clickSaveLineIconInMaterialTab();
 			validateLineDetailsWithDB("1", "2", commonFunc.getDataFromTestDataSheet("GwlProcess1"), RMItem2,
-					commonFunc.getDataFromTestDataSheet("FinishedGoodWH"), commonFunc.getDataFromTestDataSheet("Kgs"));
+					commonFunc.getDataFromTestDataSheet("FinishedGoodWH"), commonFunc.getDataFromTestDataSheet("UomNos"));
 			navigateToBORSubTab();
 			clickAddLineIconInBORTab();
 			fillLineSnoAndProcessIdInBORTab("1", commonFunc.getDataFromTestDataSheet("GwlProcess1Desc"));
