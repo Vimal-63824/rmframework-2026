@@ -21,6 +21,8 @@ import org.openqa.selenium.WebElement;
 import commonfunctions.CommonFunctions;
 import commonfunctions.VariableHandler;
 import commonfunctions.supplychainmanagement.ApprovalPageFunctions;
+import commonfunctions.supplychainmanagement.DirectGrnPageFunctions;
+import commonfunctions.supplychainmanagement.GrnPageFunctions;
 import commonfunctions.supplychainmanagement.MaterialIssuanceVoucherFunctions;
 import commonfunctions.supplychainmanagement.MaterialRequestFunctions;
 import commonfunctions.supplychainmanagement.MaterialReturnFunctions;
@@ -45,6 +47,8 @@ public class InspectionDocumentFunctions {
 	private static MaterialRequestFunctions MRFunc = new MaterialRequestFunctions();
 	private static MaterialReturnFunctions MatReturnFunc = new MaterialReturnFunctions();
 	private static MaterialIssuanceVoucherFunctions materialIssuanceVoucherFunc = new MaterialIssuanceVoucherFunctions();
+	private static DirectGrnPageFunctions directGrnPageFunc = new DirectGrnPageFunctions();
+	private static GrnPageFunctions grnPageFunc = new GrnPageFunctions();
 
 	/**
 	 * Verify Pending Inspection Documents
@@ -2024,5 +2028,83 @@ public class InspectionDocumentFunctions {
 		} else {
 			logs.logging("INFO", "Unable to extract valid From-to format from alert text.");
 		}
+	}
+
+	/**
+	 * This Methods Is Used To Create Inspection Document With inspection Plan From
+	 * GRN
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+	public void InspectionDocumentWithInspectionPlanForDifferentValues() {
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.navigateInspectionDocumentsPage();
+		pendingInspectionRequestDocumentToCreateInspectionDocument();
+		getInspectionDocumentNumberFromToastMessage();
+		inspectionPlanNumberCheckingInInspectionDocument();
+		if (VariableHandler.getInspectionPlanNumber().equals("")) {
+		} else {
+			verifyChangeSampleAndObservationValue();
+			enterObservationValue();
+			verifyAttributeTabClicking();
+			verifyEnteringAttributeVAlue();
+			verifyTextTabClicking();
+			verifyEnteringTextVAlue();
+
+		}
+		clickTickAndPostIconForGrnDocument();
+		waitingForApproval();
+		String alertText = VariableHandler.getIDAlertMessage();
+		logs.logging("INFO", "Alert text: " + alertText);
+		String pattern = "Pend\\. Inspection Request Moved\\s*-\\s*[A-Za-z0-9]+/\\d{5}/\\d{2}-\\d{2}\\s*~\\s*[A-Za-z0-9]+/\\d{5}/\\d{2}-\\d{2}";
+		if (alertText.matches(".*" + pattern + ".*")) {
+			documentSearchAndSelectLovForFindPage();
+			commonFunc.logoutUser();
+			logs.logging("INFO", "Specific alert found, proceeding with the process.");
+		} else {
+			commonFunc.logoutUser();
+			logs.logging("INFO", "Other alert detected, no action taken.");
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used to Verify Change Sample And Observation Value
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyChangeSampleAndObservationValue() {
+		flag = webDB.waitForElement(InspectionDocumentsLocators.InspCharacter, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(InspectionDocumentsLocators.InspCharacter, ElementType.Xpath);
+			flag = webDB.waitForElement(InspectionDocumentsLocators.SampleTableValue, ElementType.Xpath);
+			if (flag) {
+				List<WebElement> sampleWebElement = webDB.getDriver()
+						.findElements(By.xpath(InspectionDocumentsLocators.SampleTableValue));
+				List<WebElement> ObservationWebElement = webDB.getDriver()
+						.findElements(By.xpath(InspectionDocumentsLocators.ObservationTableValue));
+				for (int i = 0; i < sampleWebElement.size(); i++) {
+					sampleWebElement.get(i).click();
+//					sampleInputWebElement.get(i).clear();
+//					webDB.clearText(InspectionDocumentsLocators., null)
+//					sampleInputWebElement.get(i).sendKeys("1");
+//					ObservationWebElement.get(i).click();
+//					ObservationInputWebElement.get(i).clear();
+//					ObservationInputWebElement.get(i).sendKeys("1");
+				}
+				flag = webDB.waitForElement(InspectionDocumentsLocators.TickButtonInspChar, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(InspectionDocumentsLocators.TickButtonInspChar, ElementType.Xpath);
+					webDB.waitForElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	public void verifyInspectionDocumentsIncoming() {
+		directGrnPageFunc.verifyCreationOfDirectGrnPriceListForIncomingInspection();
+		grnPageFunc.aafterVerifyTheStatusInspectionDocumentMoveToQcOrMrv();
 	}
 }

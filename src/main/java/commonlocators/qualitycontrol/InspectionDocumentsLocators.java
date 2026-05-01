@@ -110,4 +110,25 @@ public class InspectionDocumentsLocators {
 	public static final String InspDocPendingShowDoc = "//button[@id='show']";
 	/** @locatorType Xpath */
 	public static final String InspDocPendingTableDocNo = "//table[@id='8792142794784090710']//tr/td[5]";
+	/** @locatorType Xpath */
+	public static final String InspCharacter = "(//input[@data-testid='P20171310201_TAB'])[4]/following-sibling::label";
+	/** @locatorType Xpath */
+	public static final String SampleTableValue = "//div[@id='char_ig_content_container']/div[1]/div[3]/div[3]/table/tbody/tr/td[4]";
+	/** @locatorType Xpath */
+	public static final String ObservationTableValue = "//div[@id='char_ig_content_container']/div[1]/div[3]/div[3]/table/tbody/tr/td[5]";
+
+	/** @locatorType Xpath */
+	public static final String ObservationTableValueInput(int i) {
+		return "//div[@id='char_ig_content_container']/div[1]/div[3]/div[3]/table/tbody/tr[" + i + "]/td[5]//input";
+
+	}
+
+	/** @locatorType Xpath */
+	public static final String SampleTableValueInput(int i) {
+		return "//div[@id='char_ig_content_container']/div[1]/div[3]/div[3]/table/tbody/tr[" + i + "]/td[4]//input";
+	}
+
+	/** @locatorType Xpath */
+	public static final String TickButtonInspChar = "//button[@data-testid='Char_SAVE']";
+
 }
