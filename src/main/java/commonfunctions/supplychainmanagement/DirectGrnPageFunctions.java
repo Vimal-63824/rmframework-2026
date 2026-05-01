@@ -7933,4 +7933,27 @@ public class DirectGrnPageFunctions {
 		}
 		assertTrue(flag);
 	}
+
+	/**
+	 * This Methods Is Used To Verify Direct Grn PriceList
+	 * 
+	 * @author Deepan-GWL
+	 * @throws IOException
+	 */
+	public void verifyCreationOfDirectGrnPriceListForIncomingInspection() {
+		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
+				"DuraiUsername");
+		commonFunc.naviagteGrnPage();
+		verifyGrnAdd();
+		verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("L0001"), commonFunc.getDataFromTestDataSheet("GRNPG"),
+				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
+				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
+		verifyDirectGRNAddLineDetails(webDB.getDataFromProperties("QualityInspectionSheet"),
+				webDB.getDataFromProperties("Insp-IncommingSheet"));
+		DirectGRNmultipleLotandSerialWithGeneralType(webDB.getDataFromProperties("QualityInspectionSheet"),
+				webDB.getDataFromProperties("Insp-IncommingSheet"));
+		GRNFunc.overAllSaveAndPost();
+		GRNFunc.waitingForApproval();
+
+	}
 }
