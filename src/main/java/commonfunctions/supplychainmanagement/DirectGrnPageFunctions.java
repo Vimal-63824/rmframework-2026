@@ -546,8 +546,9 @@ public class DirectGrnPageFunctions {
 			logs.logging("INFO", "Item Lov Is Clicked");
 			commonFunc.searchAndSelectValueInFilters(DirectGrnPageLocators.GrnLineItemLov, ITEM_NAME);
 			logs.logging("INFO", "Entered Item Is: " + ITEM_NAME);
+			webDB.pressTabKey();
 			commonFunc.checkRefreshCellsDisappear();
-			commonFunc.checkRefreshCellsDisappear();
+//			commonFunc.checkRefreshCellsDisappear();
 		}
 		assertTrue(flag);
 	}
@@ -558,7 +559,7 @@ public class DirectGrnPageFunctions {
 	 * @author Durai-RMITS
 	 */
 	public void verifyClickingHsnField(String HSN) {
-		commonFunc.checkRefreshCellsDisappear();
+//		commonFunc.checkRefreshCellsDisappear();
 		flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineHsnField, ElementType.Xpath);
 		if (flag) {
 			String GetTextHSN = webDB.getTextFromElement(DirectGrnPageLocators.GrnLineHsnField, ElementType.Xpath);
@@ -567,7 +568,9 @@ public class DirectGrnPageFunctions {
 				logs.logging("INFO", "HSN Field Is Clicked");
 				commonFunc.searchAndSelectValueInFilters(DirectGrnPageLocators.GrnLineHsnLov, HSN);
 				logs.logging("INFO", "Entered HSN Code Is:" + HSN);
+				webDB.pressTabKey();
 			}
+			webDB.pressTabKey();
 		}
 		assertTrue(flag);
 	}
@@ -587,6 +590,41 @@ public class DirectGrnPageFunctions {
 			logs.logging("INFO", "Entered Quantity Is:" + QTY);
 		}
 		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Is Used To Verify Creation Of PR General RFQ
+	 * 
+	 * @author Durai-RMITS
+	 */
+	public void verifyClickingSuppQuantityHK(String QTY) {
+		flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineSupQty, ElementType.Xpath);
+		if (flag) {
+			salesOrderFunctions.verifyClickAndEnterValueInTableFields(DirectGrnPageLocators.GrnLineSupQty,
+					DirectGrnPageLocators.GrnLineSupQtyInputHK, QTY);
+			webDB.pressTabKey();
+//			logs.logging("INFO", "Entered Supply Quantity Is:" + QTY);
+//			commonFunc.checkRefreshCellsDisappear();
+//			logs.logging("INFO", "Entered Quantity Is:" + QTY);
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Is Used To Verify Creation Of PR General RFQ
+	 * 
+	 * @author Durai-RMITS
+	 */
+	public void verifyClickingReceiptQuantityHK(String QTY) {
+		flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineRcpQty, ElementType.Xpath);
+		if (flag) {
+			salesOrderFunctions.verifyClickAndEnterValueInTableFields(DirectGrnPageLocators.GrnLineRcpQty,
+					DirectGrnPageLocators.GrnLineRcpQtyInputHK, QTY);
+			webDB.pressTabKey();
+//			logs.logging("INFO", "Entered Supply Quantity Is:" + QTY);
+//			commonFunc.checkRefreshCellsDisappear();
+//			logs.logging("INFO", "Entered Quantity Is:" + QTY);
+		}
 	}
 
 	/**
@@ -626,6 +664,25 @@ public class DirectGrnPageFunctions {
 	 * 
 	 * @author Durai-RMITS
 	 */
+	public void verifyClickingCostHK(String COST) {
+		flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineCost, ElementType.Xpath);
+		if (flag) {
+			salesOrderFunctions.verifyClickAndEnterValueInTableFields(DirectGrnPageLocators.GrnLineCost,
+					DirectGrnPageLocators.GrnLineCostInputHK, COST);
+			webDB.pressTabKey();
+//			webDB.clickAnElement(DirectGrnPageLocators.GrnLineCost, ElementType.Xpath);
+//			webDB.clearText(DirectGrnPageLocators.GrnLineCostInput, ElementType.Xpath);
+//			webDB.sendTextToAnElement(DirectGrnPageLocators.GrnLineCostInput, COST, ElementType.Xpath);
+//			logs.logging("INFO", "Entered Cost Is:" + COST);
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Is Used To Verify Creation Of PR General RFQ
+	 * 
+	 * @author Durai-RMITS
+	 */
 	public void verifyClickingSaveLine() {
 		flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineSave, ElementType.Xpath);
 		if (flag) {
@@ -637,6 +694,26 @@ public class DirectGrnPageFunctions {
 			closeToastIfDisplayed();
 			commonFunc.checkRefreshCellsDisappear();
 			commonFunc.hardWait(4000);
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Is Used To Verify Creation Of PR General RFQ
+	 * 
+	 * @author Durai-RMITS
+	 */
+	public void verifyClickingSaveLineHK() {
+		flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineSave, ElementType.Xpath);
+		if (flag) {
+//			webDB.moveToElement(DirectGrnPageLocators.GrnLineSave, ElementType.Xpath);
+			webDB.clickAnElement(DirectGrnPageLocators.GrnLineSave, ElementType.Xpath);
+			logs.logging("INFO", "GRN Line Is Saved");
+			commonFunc.checkRefreshCellsDisappear();
+//			closeToastIfDisplayed();
+//			closeToastIfDisplayed();
+//			commonFunc.checkRefreshCellsDisappear();
+//			commonFunc.hardWait(4000);
 		}
 		assertTrue(flag);
 	}
@@ -2682,37 +2759,12 @@ public class DirectGrnPageFunctions {
 	 * @author PremKumar.K-RMITS
 	 */
 	public void waitingForApproval() {
-		commonFunc.hardWait(3000);
-		if (webDB.verifyIsElementDisplayed(GrnLocators.DocAprovalIfrmae, ElementType.Xpath)) {
-			flag = true;
-			VariableHandler.setApprovalFlag(flag);
-			webDB.switchToFrame(PurchaseOrderPageLocators.WorkApprovalFrame, ElementType.Xpath);
-			logs.logging("INFO", "Switched To Workflow Frame");
-			commonFunc.searchAndSelectValueInFilters(PurchaseOrderPageLocators.ForwardApproval,
-					commonFunc.getDataFromTestDataSheet("AshokValue"));
-			commonFunc.hardWait(2000);
-			webDB.switchToFrame(PurchaseOrderPageLocators.WorkApprovalFrame, ElementType.Xpath);
-			logs.logging("INFO", "Switched To WorkFlow Frame");
-			flag = webDB.waitForElement(PurchaseOrderPageLocators.OkButtonFwdForQcDocument, ElementType.Xpath);
-			if (flag) {
-				webDB.clickAnElement(PurchaseOrderPageLocators.OkButtonFwdForQcDocument, ElementType.Xpath);
-				logs.logging("INFO", "Ok Button Is Clicked");
-				webDB.switchToDefaultContent();
-				flag = webDB.waitForClickElement(CommonUiLocators.LogoutIcon, ElementType.Xpath);
-				if (flag) {
-					commonFunc.hardWait(3000);
-					commonFunc.logoutUser();
-					commonFunc.validCommonLogin(System.getProperty("AshokUsername"),
-							System.getProperty("AshokPassword"));
-					approvalFunc.navigateToApprovals();
-					approvalFunc.filterDocumentsforApproval(VariableHandler.getIDNumber());
-					approvalFunc.verifyApproveWithDocNumber(VariableHandler.getIDNumber());
-					commonFunc.hardWait(3000);
-					logs.logging("INFO", "PASSED");
-					flag = commonFunc.logoutUser();
-				}
-			}
-		}
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		logs.logging("INFO", "Ok Button Is Clicked");
+		webDB.switchToDefaultContent();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getIDNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		assertTrue(flag);
 	}
 
@@ -4224,7 +4276,7 @@ public class DirectGrnPageFunctions {
 			}
 		}
 	}
-	
+
 	/**
 	 * This Methods Is Used To verify Expected stock Qty And Cost For Quality
 	 * WareHouse
@@ -4331,7 +4383,7 @@ public class DirectGrnPageFunctions {
 			}
 		}
 	}
-	
+
 	/**
 	 * This Methods Used To Verify stock Quantity For Quality Warehouse
 	 * Document(Single Item)
@@ -4407,7 +4459,7 @@ public class DirectGrnPageFunctions {
 		}
 
 	}
-	
+
 	/**
 	 * This Methods Used To Verify stock Quantity For Source Warehouse
 	 * Document(Single Item)
@@ -4687,7 +4739,7 @@ public class DirectGrnPageFunctions {
 			}
 		}
 	}
-	
+
 	/**
 	 * This Method Is Used To Verify The Discount Amount For PO Document
 	 * 
@@ -4977,7 +5029,7 @@ public class DirectGrnPageFunctions {
 		}
 		assertTrue(flag);
 	}
-	
+
 	/**
 	 * This Methods Is Used To Verify Creation Of PR General RFQ
 	 * 
@@ -5006,14 +5058,14 @@ public class DirectGrnPageFunctions {
 				String COST = GRNMultipleline[i][6];
 
 				if (!ITEM_NAME.equals("")) {
-					commonFunc.hardWait(200);
+//					commonFunc.hardWait(200);
 					verifyClickingAdd();
 					verifyClickingItemField(ITEM_NAME);
 					verifyClickingHsnField(HSN);
-					verifyClickingSuppQuantity(QTY);
-					verifyClickingReceiptQuantity(QTY);
-					verifyClickingCost(COST);
-					verifyClickingSaveLine();
+					verifyClickingSuppQuantityHK(QTY);
+					verifyClickingReceiptQuantityHK(QTY);
+					verifyClickingCostHK(COST);
+					verifyClickingSaveLineHK();
 					verifyDirectGRNAddingDiscountHK(i, SheetName);
 				}
 			}
@@ -5097,7 +5149,7 @@ public class DirectGrnPageFunctions {
 		}
 		assertTrue(flag);
 	}
-	
+
 	/**
 	 * This Methods Is Used To Verify Creation Of PR General RFQ
 	 * 
@@ -5118,12 +5170,13 @@ public class DirectGrnPageFunctions {
 			String SpecialDiscount = PRMultipleline[i1][9];
 			String CashDiscount = PRMultipleline[i1][10];
 			if (!ITEM_NAME.equals("")) {
-				commonFunc.checkRefreshCellsDisappear();
+//				commonFunc.checkRefreshCellsDisappear();
 				flag = webDB.waitForElement(DirectGrnPageLocators.GrnDetailsBtn(i - 21), ElementType.Xpath);
 				if (flag) {
 					webDB.clickAnElement(DirectGrnPageLocators.GrnDetailsBtn(i - 21), ElementType.Xpath);
 					logs.logging("INFO", "Details Button Is Clicked");
-					commonFunc.hardWait(500);
+					commonFunc.hardWait(200);
+					commonFunc.checkRefreshCellsDisappear();
 					flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineDetailsFrame, ElementType.Xpath);
 					if (flag) {
 						webDB.switchToFrame(DirectGrnPageLocators.GrnLineDetailsFrame, ElementType.Xpath);
@@ -5135,7 +5188,8 @@ public class DirectGrnPageFunctions {
 							webDB.sendTextToAnElement(DirectGrnPageLocators.GrnLineTrdDisc, TradeDiscount,
 									ElementType.Xpath);
 							logs.logging("INFO", "Entered Trade Discount Is:" + TradeDiscount);
-							commonFunc.hardWait(1000);
+							commonFunc.hardWait(200);
+							commonFunc.checkRefreshCellsDisappear();
 							flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineSpclDisc, ElementType.Xpath);
 							if (flag) {
 								webDB.clickAnElement(DirectGrnPageLocators.GrnLineSpclDisc, ElementType.Xpath);
@@ -5143,7 +5197,8 @@ public class DirectGrnPageFunctions {
 								webDB.sendTextToAnElement(DirectGrnPageLocators.GrnLineSpclDisc, SpecialDiscount,
 										ElementType.Xpath);
 								logs.logging("INFO", "Entered Trade Discount Is:" + SpecialDiscount);
-								commonFunc.hardWait(1000);
+								commonFunc.hardWait(200);
+								commonFunc.checkRefreshCellsDisappear();
 								flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineCashDisc, ElementType.Xpath);
 								if (flag) {
 									webDB.clickAnElement(DirectGrnPageLocators.GrnLineCashDisc, ElementType.Xpath);
@@ -5151,14 +5206,15 @@ public class DirectGrnPageFunctions {
 									webDB.sendTextToAnElement(DirectGrnPageLocators.GrnLineCashDisc, CashDiscount,
 											ElementType.Xpath);
 									logs.logging("INFO", "Entered Trade Discount Is:" + CashDiscount);
-									commonFunc.hardWait(1000);
+									commonFunc.hardWait(500);
+									commonFunc.checkRefreshCellsDisappear();
 									flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineDetailsSave,
 											ElementType.Xpath);
 									if (flag) {
 										webDB.clickAnElement(DirectGrnPageLocators.GrnLineDetailsSave,
 												ElementType.Xpath);
 										logs.logging("INFO", "Details Is Saved");
-										commonFunc.hardWait(1000);
+										commonFunc.hardWait(500);
 										webDB.pressEscapeKey();
 										webDB.switchToDefaultContent();
 										commonFunc.checkRefreshCellsDisappear();
@@ -6298,11 +6354,12 @@ public class DirectGrnPageFunctions {
 	 * 
 	 */
 
-	public void verifyUnitcostAndDiscountAmountForPriceListItemForDirectGRNWithLoc49(int i1, 
-			String SheetName, String PriceListSupplier) {
+	public void verifyUnitcostAndDiscountAmountForPriceListItemForDirectGRNWithLoc49(int i1, String SheetName,
+			String PriceListSupplier) {
 		String[][] PRMultipleline = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 		ExcelUtils excelUtils = new ExcelUtils();
-		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + "DirectGrnDetails.xlsx";
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+				+ "DirectGrnDetails.xlsx";
 		PRMultipleline = excelUtils.readAllDataInExcel(Filepath, SheetName);
 		for (int i = i1; i <= i1; i++) {
 			String ITEM_NAME = PRMultipleline[i1][1];

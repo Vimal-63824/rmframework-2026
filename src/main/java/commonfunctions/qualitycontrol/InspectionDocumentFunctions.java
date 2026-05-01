@@ -879,33 +879,33 @@ public class InspectionDocumentFunctions {
 			if (flag) {
 				logs.logging("INFO", "Pending Inspection Documents Is Displayed");
 				webDB.switchToFrame(InspectionDocumentsLocators.PendingInspectionFrame, ElementType.Xpath);
-				flag = webDB.waitForElement(InspectionDocumentsLocators.PendingSearchField, ElementType.Xpath);
+				flag = webDB.waitForElement(InspectionDocumentsLocators.VoucherLov, ElementType.Xpath);
+				commonFunc.searchAndSelectValueInFilters(InspectionDocumentsLocators.VoucherLov,
+						VariableHandler.getScoGrnNumber());
+				logs.logging("INFO", "Search Field Displayed");
+				webDB.switchToFrame(InspectionDocumentsLocators.PendingInspectionFrame, ElementType.Xpath);
+				commonFunc.hardWait(3000);
+				flag = webDB.waitForElement(InspectionDocumentsLocators.PendingInspectionSearchBtn, ElementType.Xpath);
 				if (flag) {
-					logs.logging("INFO", "Inspection Pending Icon IS Clicked");
-					webDB.sendTextToAnElement(InspectionDocumentsLocators.PendingSearchField,
-							VariableHandler.getScoGrnNumber(), ElementType.Xpath);
-					flag = webDB.waitForElement(InspectionDocumentsLocators.GoButton, ElementType.Xpath);
+					webDB.clickAnElement(InspectionDocumentsLocators.PendingInspectionSearchBtn, ElementType.Xpath);
+					logs.logging("INFO", "Document Search Successfully");
+					flag = webDB.waitForElement(InspectionDocumentsLocators.PendingInspectionSelectAllBtn,
+							ElementType.Xpath);
+					commonFunc.hardWait(3000);
 					if (flag) {
-						logs.logging("INFO", "Go Button IS Displayed");
-						webDB.clickAnElement(InspectionDocumentsLocators.GoButton, ElementType.Xpath);
-						flag = webDB.waitForElement(InspectionDocumentsLocators.InspectionCheckBox(DocNo),
+						flag = webDB.clickAnElement(InspectionDocumentsLocators.PendingInspectionSelectAllBtn,
 								ElementType.Xpath);
+						logs.logging("INFO", "Create QC Button Displayed");
+						flag = webDB.waitForElement(InspectionDocumentsLocators.CreateQCDoc, ElementType.Xpath);
 						if (flag) {
 							commonFunc.hardWait(3000);
-							logs.logging("INFO", "Inspection CheckBox Is Displayed");
-							webDB.clickAnElement(InspectionDocumentsLocators.InspectionCheckBox(DocNo),
-									ElementType.Xpath);
-							flag = webDB.waitForElement(InspectionDocumentsLocators.CreateQCDoc, ElementType.Xpath);
+							webDB.clickAnElement(InspectionDocumentsLocators.CreateQCDoc, ElementType.Xpath);
 							if (flag) {
+								logs.logging("INFO", "Ok Button Is Displayed");
 								commonFunc.hardWait(3000);
-								webDB.clickAnElement(InspectionDocumentsLocators.CreateQCDoc, ElementType.Xpath);
-								flag = webDB.waitForElement(InspectionDocumentsLocators.OKButton, ElementType.Xpath);
-								if (flag) {
-									logs.logging("INFO", "Ok Button Is Displayed");
-									webDB.clickAnElement(InspectionDocumentsLocators.OKButton, ElementType.Xpath);
-									webDB.switchToDefaultContent();
-									flag = webDB.waitForElement(InspectionDocumentsLocators.LocationId,
-											ElementType.Xpath);
+								webDB.clickAnElement(InspectionDocumentsLocators.OKButton, ElementType.Xpath);
+								webDB.switchToDefaultContent();
+								flag = webDB.waitForElement(InspectionDocumentsLocators.LocationId, ElementType.Xpath);
 									if (flag) {
 										String AcceptedValue = webDB.getDomPropertyFromElement(
 												InspectionDocumentsLocators.AcceptedQuantity, ElementType.Xpath,
@@ -918,7 +918,6 @@ public class InspectionDocumentFunctions {
 											if (flag) {
 												webDB.clickAnElement(InspectionDocumentsLocators.BackButton,
 														ElementType.Xpath);
-												verifyPendingInspectionDocuments(VariableHandler.getScoGrnNumber());
 											}
 										}
 									}
@@ -933,7 +932,6 @@ public class InspectionDocumentFunctions {
 					}
 				}
 			}
-		}
 		assertTrue(flag);
 	}
 

@@ -158,44 +158,52 @@ public class SubcontractOrderFunctions {
 					webDB.clickAnElement(SubcontractOrderLocators.SearchButton, ElementType.Xpath);
 					commonFunc.checkRefreshCellsDisappear();
 					commonFunc.hardWait(12000);
-					flag = webDB.waitForElement(SubcontractOrderLocators.CheckBox(DocNo), ElementType.Xpath);
+					flag = webDB.waitForElement(SubcontractOrderLocators.SCO_Pend_SelectALl, ElementType.Xpath);
 					if (flag) {
-						webDB.clickAnElement(SubcontractOrderLocators.CheckBox(DocNo), ElementType.Xpath);
-						commonFunc.hardWait(2000);
-						flag = webDB.waitForElement(SubcontractOrderLocators.Pending_CreateSCO_Button,
-								ElementType.Xpath);
+						webDB.doubleClickAnElement(SubcontractOrderLocators.SCO_Pend_SelectALl, ElementType.Xpath);
+						commonFunc.hardWait(1000);
+						flag = webDB.waitForElement(SubcontractOrderLocators.CheckBox(DocNo), ElementType.Xpath);
 						if (flag) {
+							webDB.clickAnElement(SubcontractOrderLocators.CheckBox(DocNo), ElementType.Xpath);
 							commonFunc.hardWait(2000);
-							logs.logging("INFO", "Create SubContract Order Doc Is Displayed");
-							webDB.clickAnElement(SubcontractOrderLocators.Pending_CreateSCO_Button, ElementType.Xpath);
-
-							flag = webDB.waitForElement(SubcontractOrderLocators.SubcontractorLovButton,
+							flag = webDB.waitForElement(SubcontractOrderLocators.Pending_CreateSCO_Button,
 									ElementType.Xpath);
 							if (flag) {
-								commonFunc.searchAndSelectValueInFilters(
-										SubcontractOrderLocators.SubcontractorLovButton, SupplierLocalRegistered);
-								webDB.switchToFrame(SubcontractOrderLocators.FrameProdPoc, ElementType.Xpath);
-								flag = webDB.waitForElement(SubcontractOrderLocators.OkButton, ElementType.Xpath);
+								commonFunc.hardWait(2000);
+								logs.logging("INFO", "Create SubContract Order Doc Is Displayed");
+								webDB.clickAnElement(SubcontractOrderLocators.Pending_CreateSCO_Button,
+										ElementType.Xpath);
+
+								flag = webDB.waitForElement(SubcontractOrderLocators.SubcontractorLovButton,
+										ElementType.Xpath);
 								if (flag) {
-									commonFunc.hardWait(2000);
-									logs.logging("INFO", "Ok Button Is Displayed");
-									webDB.clickAnElement(SubcontractOrderLocators.OkButton, ElementType.Xpath);
-									webDB.switchToDefaultContent();
-									flag = webDB.waitForElement(SubcontractOrderLocators.LocationId, ElementType.Xpath);
-//									storeSCODocumentsNumber();
-									if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
-										webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon,
-												ElementType.Xpath);
+									commonFunc.searchAndSelectValueInFilters(
+											SubcontractOrderLocators.SubcontractorLovButton, SupplierLocalRegistered);
+									webDB.switchToFrame(SubcontractOrderLocators.FrameProdPoc, ElementType.Xpath);
+									flag = webDB.waitForElement(SubcontractOrderLocators.OkButton, ElementType.Xpath);
+									if (flag) {
 										commonFunc.hardWait(2000);
-										String SCOdocno = webDB.getTextFromElement(
-												SubcontractOrderLocators.SubcontractDocNO, ElementType.Xpath);
-										logs.logging("INFO", "Get SCO DocNo Is: " + SCOdocno);
-										VariableHandler.setSCOdocno(SCOdocno);
-										commonFunc.hardWait(1000);
+										logs.logging("INFO", "Ok Button Is Displayed");
+										webDB.clickAnElement(SubcontractOrderLocators.OkButton, ElementType.Xpath);
+										webDB.switchToDefaultContent();
+										flag = webDB.waitForElement(SubcontractOrderLocators.LocationId,
+												ElementType.Xpath);
+//									storeSCODocumentsNumber();
+										if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon,
+												ElementType.Xpath)) {
+											webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon,
+													ElementType.Xpath);
+											commonFunc.hardWait(2000);
+											String SCOdocno = webDB.getTextFromElement(
+													SubcontractOrderLocators.SubcontractDocNO, ElementType.Xpath);
+											logs.logging("INFO", "Get SCO DocNo Is: " + SCOdocno);
+											VariableHandler.setSCOdocno(SCOdocno);
+											commonFunc.hardWait(1000);
+										}
 									}
 								}
-							}
 //							}
+							}
 						}
 					}
 				}
@@ -4508,42 +4516,51 @@ public class SubcontractOrderFunctions {
 					webDB.clickAnElement(SubcontractOrderLocators.Pend_SerialWise_SearchBtn, ElementType.Xpath);
 					commonFunc.checkRefreshCellsDisappear();
 					commonFunc.hardWait(12000);
-					flag = webDB.waitForElement(SubcontractOrderLocators.SerialCheckBox(DocNo), ElementType.Xpath);
+					flag = webDB.waitForElement(SubcontractOrderLocators.SCO_Pend_SelectALl, ElementType.Xpath);
 					if (flag) {
-						webDB.clickAnElement(SubcontractOrderLocators.SerialCheckBox(DocNo), ElementType.Xpath);
-						commonFunc.hardWait(2000);
-						flag = webDB.waitForElement(SubcontractOrderLocators.Pend_SerialWise_CreateSCOBtn,
-								ElementType.Xpath);
+						webDB.doubleClickAnElement(SubcontractOrderLocators.SCO_Pend_SelectALl, ElementType.Xpath);
+						commonFunc.hardWait(1000);
+						flag = webDB.waitForElement(SubcontractOrderLocators.SerialCheckBox(DocNo), ElementType.Xpath);
 						if (flag) {
+							webDB.clickAnElement(SubcontractOrderLocators.SerialCheckBox(DocNo), ElementType.Xpath);
 							commonFunc.hardWait(2000);
-							logs.logging("INFO", "Create SubContract Order Doc Is Displayed");
-							webDB.clickAnElement(SubcontractOrderLocators.Pend_SerialWise_CreateSCOBtn,
-									ElementType.Xpath);
-
-							flag = webDB.waitForElement(SubcontractOrderLocators.Pend_SerialWise_CreateSCO_SubconLOV,
+							flag = webDB.waitForElement(SubcontractOrderLocators.Pend_SerialWise_CreateSCOBtn,
 									ElementType.Xpath);
 							if (flag) {
-								commonFunc.searchAndSelectValueInFilters(
-										SubcontractOrderLocators.Pend_SerialWise_CreateSCO_SubconLOV, Sheetname);
-								webDB.switchToFrame(SubcontractOrderLocators.Pend_Serial_Iframe, ElementType.Xpath);
-								flag = webDB.waitForElement(SubcontractOrderLocators.Pend_SerialWise_CreateSCO_OKBtn,
+								commonFunc.hardWait(2000);
+								logs.logging("INFO", "Create SubContract Order Doc Is Displayed");
+								webDB.clickAnElement(SubcontractOrderLocators.Pend_SerialWise_CreateSCOBtn,
+										ElementType.Xpath);
+
+								flag = webDB.waitForElement(
+										SubcontractOrderLocators.Pend_SerialWise_CreateSCO_SubconLOV,
 										ElementType.Xpath);
 								if (flag) {
-									commonFunc.hardWait(2000);
-									logs.logging("INFO", "Ok Button Is Displayed");
-									webDB.clickAnElement(SubcontractOrderLocators.Pend_SerialWise_CreateSCO_OKBtn,
+									commonFunc.searchAndSelectValueInFilters(
+											SubcontractOrderLocators.Pend_SerialWise_CreateSCO_SubconLOV, Sheetname);
+									webDB.switchToFrame(SubcontractOrderLocators.Pend_Serial_Iframe, ElementType.Xpath);
+									flag = webDB.waitForElement(
+											SubcontractOrderLocators.Pend_SerialWise_CreateSCO_OKBtn,
 											ElementType.Xpath);
-									webDB.switchToDefaultContent();
-									flag = webDB.waitForElement(SubcontractOrderLocators.LocationId, ElementType.Xpath);
-									if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
-										webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon,
-												ElementType.Xpath);
+									if (flag) {
 										commonFunc.hardWait(2000);
-										String SCOdocno = webDB.getTextFromElement(
-												SubcontractOrderLocators.SubcontractDocNO, ElementType.Xpath);
-										logs.logging("INFO", "Get SCO DocNo Is: " + SCOdocno);
-										VariableHandler.setSCOdocno(SCOdocno);
-										commonFunc.hardWait(1000);
+										logs.logging("INFO", "Ok Button Is Displayed");
+										webDB.clickAnElement(SubcontractOrderLocators.Pend_SerialWise_CreateSCO_OKBtn,
+												ElementType.Xpath);
+										webDB.switchToDefaultContent();
+										flag = webDB.waitForElement(SubcontractOrderLocators.LocationId,
+												ElementType.Xpath);
+										if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon,
+												ElementType.Xpath)) {
+											webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon,
+													ElementType.Xpath);
+											commonFunc.hardWait(2000);
+											String SCOdocno = webDB.getTextFromElement(
+													SubcontractOrderLocators.SubcontractDocNO, ElementType.Xpath);
+											logs.logging("INFO", "Get SCO DocNo Is: " + SCOdocno);
+											VariableHandler.setSCOdocno(SCOdocno);
+											commonFunc.hardWait(1000);
+										}
 									}
 								}
 							}

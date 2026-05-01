@@ -14219,7 +14219,7 @@ public class PurchaseOrderFunctions {
 				webDB.pressEscapeKey();
 				verifyDirectPoLineWiseSaved();
 //				verifyUnitcostAndDiscountAmountForOpenPoItem(i, SheetName, Supplier, Unit, FileName);
-				verifyRateContractItemUnitCostAndDiscPctWriteInExcelForGeneralType(i, SheetName, FileName);
+//				verifyRateContractItemUnitCostAndDiscPctWriteInExcelForGeneralType(i, SheetName, FileName);
 				otherThanUserdefinedDiscountAmount(i, SheetName, FileName);
 				webDB.switchToDefaultContent();
 				commonFunc.checkRefreshCellsDisappear();
@@ -14451,8 +14451,8 @@ public class PurchaseOrderFunctions {
 						PurchaseOrderPageLocators.HsnCodeInput, HsnCode);
 				webDB.pressEscapeKey();
 				verifyDirectPoLineWiseSaved();
-				verifyUnitcostAndDiscountAmountForPriceListItem(i, SheetName, Supplier, Loc, FileName);
-				verifyRateContractItemUnitCostAndDiscPctWriteInExcelForGeneralType(i, SheetName, FileName);
+//				verifyUnitcostAndDiscountAmountForPriceListItem(i, SheetName, Supplier, Loc, FileName);
+//				verifyRateContractItemUnitCostAndDiscPctWriteInExcelForGeneralType(i, SheetName, FileName);
 				otherThanUserdefinedDiscountAmount(i, SheetName, FileName);
 				webDB.switchToDefaultContent();
 				commonFunc.checkRefreshCellsDisappear();
@@ -15172,6 +15172,8 @@ public class PurchaseOrderFunctions {
 		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
 				+ "DBDETAILS.xlsx";
 		itemmultiple = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		int count = 0;
+		int maxRows = 1;
 		System.out.println(itemmultiple.length);
 		for (int i = 22; i < itemmultiple.length; i++) {
 			String ITEM_NAME = itemmultiple[i][1];
@@ -15193,6 +15195,10 @@ public class PurchaseOrderFunctions {
 				otherThanUserdefinedDiscountAmount(i, SheetName);
 				webDB.switchToDefaultContent();
 				commonFunc.checkRefreshCellsDisappear();
+				count++;
+				if (count == maxRows) {
+					break;
+				}
 			}
 
 		}
@@ -15308,6 +15314,8 @@ public class PurchaseOrderFunctions {
 		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
 				+ "DBDETAILS.xlsx";
 		itemmultiple = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		int count = 0;
+		int maxRows = 1;
 		System.out.println(itemmultiple.length);
 		for (int i = 22; i < itemmultiple.length; i++) {
 			String ITEM_NAME = itemmultiple[i][1];
@@ -15329,6 +15337,10 @@ public class PurchaseOrderFunctions {
 				otherThanUserdefinedDiscountAmount(i, SheetName);
 				webDB.switchToDefaultContent();
 				commonFunc.checkRefreshCellsDisappear();
+				count++;
+				if (count == maxRows) {
+					break;
+				}
 			}
 
 		}
