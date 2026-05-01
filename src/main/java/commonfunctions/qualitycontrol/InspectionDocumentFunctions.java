@@ -910,32 +910,32 @@ public class InspectionDocumentFunctions {
 								webDB.clickAnElement(InspectionDocumentsLocators.OKButton, ElementType.Xpath);
 								webDB.switchToDefaultContent();
 								flag = webDB.waitForElement(InspectionDocumentsLocators.LocationId, ElementType.Xpath);
-									if (flag) {
-										String AcceptedValue = webDB.getDomPropertyFromElement(
-												InspectionDocumentsLocators.AcceptedQuantity, ElementType.Xpath,
-												commonFunc.getDataFromTestDataSheet("Value"));
-										if (AcceptedValue.equals(commonFunc.getDataFromTestDataSheet("ZeroValue"))) {
-											logs.logging("INFO",
-													"Inspection Documents Is Not Created Properly Retry Again....");
-											flag = webDB.waitForElement(InspectionDocumentsLocators.BackButton,
+								if (flag) {
+									String AcceptedValue = webDB.getDomPropertyFromElement(
+											InspectionDocumentsLocators.AcceptedQuantity, ElementType.Xpath,
+											commonFunc.getDataFromTestDataSheet("Value"));
+									if (AcceptedValue.equals(commonFunc.getDataFromTestDataSheet("ZeroValue"))) {
+										logs.logging("INFO",
+												"Inspection Documents Is Not Created Properly Retry Again....");
+										flag = webDB.waitForElement(InspectionDocumentsLocators.BackButton,
+												ElementType.Xpath);
+										if (flag) {
+											webDB.clickAnElement(InspectionDocumentsLocators.BackButton,
 													ElementType.Xpath);
-											if (flag) {
-												webDB.clickAnElement(InspectionDocumentsLocators.BackButton,
-														ElementType.Xpath);
-											}
 										}
 									}
-									storeInspectionDocumentsNumber();
-									if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
-										webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon,
-												ElementType.Xpath);
-									}
+								}
+								storeInspectionDocumentsNumber();
+								if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+									webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon,
+											ElementType.Xpath);
 								}
 							}
 						}
 					}
 				}
 			}
+		}
 		assertTrue(flag);
 	}
 
@@ -2036,7 +2036,7 @@ public class InspectionDocumentFunctions {
 	 * 
 	 * @author PremKumar.K-RMITS
 	 */
-	public void InspectionDocumentWithInspectionPlanForDifferentValues() {
+	public void inspectionDocumentWithInspectionPlanForDifferentValues() {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateInspectionDocumentsPage();
