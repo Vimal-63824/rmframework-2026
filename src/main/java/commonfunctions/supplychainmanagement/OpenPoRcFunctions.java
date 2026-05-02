@@ -96,8 +96,6 @@ public class OpenPoRcFunctions {
 				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("SimItem_ID"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigateOpenPORCPage();
 		verifyClickOpenPORcButton();
 		verifyCreateOpenPoDoc(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -109,21 +107,14 @@ public class OpenPoRcFunctions {
 		verifyHeaderSaveAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
-			commonFunc.logoutUser();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getOpenPoNumber(),
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
-
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
 			commonFunc.navigateOpenPORCPage();
 			verifyClickOpenPORcButton();
 		}
 		verifyOpenPoApprovalStatus(VariableHandler.getOpenPoNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		purchaseOrderFunc.verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -425,8 +416,6 @@ public class OpenPoRcFunctions {
 				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem2(commonFunc.getDataFromTestDataSheet("DissimItem_ID"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigateOpenPORCPage();
 		verifyClickOpenPORcButton();
 		verifyCreateOpenPoDoc(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -438,20 +427,14 @@ public class OpenPoRcFunctions {
 		verifyHeaderSaveAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
-			commonFunc.logoutUser();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getOpenPoNumber(),
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
 			commonFunc.navigateOpenPORCPage();
 			verifyClickOpenPORcButton();
 		}
 		verifyOpenPoApprovalStatus(VariableHandler.getOpenPoNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		purchaseOrderFunc.verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -476,8 +459,6 @@ public class OpenPoRcFunctions {
 				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("SimItem_ID"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigateOpenPORCPage();
 		verifyClickOpenPORcButton();
 		verifyCreateOpenPoDoc(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -489,20 +470,14 @@ public class OpenPoRcFunctions {
 		verifyHeaderSaveAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
-			commonFunc.logoutUser();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getOpenPoNumber(),
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
 			commonFunc.navigateOpenPORCPage();
 			verifyClickOpenPORcButton();
 		}
 		verifyOpenPoApprovalStatus(VariableHandler.getOpenPoNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		purchaseOrderFunc.verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -527,8 +502,6 @@ public class OpenPoRcFunctions {
 				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem2(commonFunc.getDataFromTestDataSheet("DissimItem_ID"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigateOpenPORCPage();
 		verifyClickOpenPORcButton();
 		verifyCreateOpenPoDoc(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -540,20 +513,14 @@ public class OpenPoRcFunctions {
 		verifyHeaderSaveAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
-			commonFunc.logoutUser();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getOpenPoNumber(),
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
 			commonFunc.navigateOpenPORCPage();
 			verifyClickOpenPORcButton();
 		}
 		verifyOpenPoApprovalStatus(VariableHandler.getOpenPoNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		purchaseOrderFunc.verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -612,8 +579,6 @@ public class OpenPoRcFunctions {
 				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("SimItem_ID"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigateOpenPORCPage();
 		verifyClickOpenPORcButton();
 		verifyCreateOpenPoDoc(commonFunc.getDataFromTestDataSheet("Loc16"),
@@ -625,20 +590,14 @@ public class OpenPoRcFunctions {
 		verifyHeaderSaveAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
-			commonFunc.logoutUser();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getOpenPoNumber(),
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
 			commonFunc.navigateOpenPORCPage();
 			verifyClickOpenPORcButton();
 		}
 		verifyOpenPoApprovalStatus(VariableHandler.getOpenPoNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		purchaseOrderFunc.verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc16"),
@@ -662,8 +621,6 @@ public class OpenPoRcFunctions {
 				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("DissimItem_ID"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigateOpenPORCPage();
 		verifyClickOpenPORcButton();
 		verifyCreateOpenPoDoc(commonFunc.getDataFromTestDataSheet("Loc16"),
@@ -675,20 +632,14 @@ public class OpenPoRcFunctions {
 		verifyHeaderSaveAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
-			commonFunc.logoutUser();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getOpenPoNumber(),
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
 			commonFunc.navigateOpenPORCPage();
 			verifyClickOpenPORcButton();
 		}
 		verifyOpenPoApprovalStatus(VariableHandler.getOpenPoNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		purchaseOrderFunc.verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc16"),
@@ -712,8 +663,6 @@ public class OpenPoRcFunctions {
 				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("GwlItem_Service"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigateOpenPORCPage();
 		verifyClickOpenPORcButton();
 		verifyCreateOpenPoDoc(commonFunc.getDataFromTestDataSheet("L0001"),
@@ -725,20 +674,14 @@ public class OpenPoRcFunctions {
 		verifyHeaderSaveAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
-			commonFunc.logoutUser();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getOpenPoNumber(),
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
 			commonFunc.navigateOpenPORCPage();
 			verifyClickOpenPORcButton();
 		}
 		verifyOpenPoApprovalStatus(VariableHandler.getOpenPoNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		purchaseOrderFunc.verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("L0001"),
@@ -932,8 +875,6 @@ public class OpenPoRcFunctions {
 				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("SimItem_ID"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigateOpenPORCPage();
 		verifyClickOpenPORcButton();
 		verifyCreateOpenPoDoc(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -945,24 +886,16 @@ public class OpenPoRcFunctions {
 		verifyHeaderSaveAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
-			commonFunc.logoutUser();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getOpenPoNumber(),
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
 			commonFunc.navigateOpenPORCPage();
 			verifyClickOpenPORcButton();
 		}
 		verifyOpenPoApprovalStatus(VariableHandler.getOpenPoNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("SimItem_ID"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigateOpenPORCPage();
 		verifyClickOpenPOAmendmentButton();
 		createOpenPoAmendDocuments();
@@ -971,21 +904,15 @@ public class OpenPoRcFunctions {
 		verifyOpenPoAmendHeaderSaveAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
-			commonFunc.logoutUser();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getOpenPOAmendNumber(),
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
 
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
 			commonFunc.navigateOpenPORCPage();
 			verifyClickOpenPOAmendmentButton();
 		}
 		verifyOpenPoAmendApprovalStatus(VariableHandler.getOpenPOAmendNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		purchaseOrderFunc.verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1225,8 +1152,6 @@ public class OpenPoRcFunctions {
 				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem2(commonFunc.getDataFromTestDataSheet("DissimItem_ID"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigateOpenPORCPage();
 		verifyClickOpenPORcButton();
 		verifyCreateOpenPoDoc(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1238,24 +1163,16 @@ public class OpenPoRcFunctions {
 		verifyHeaderSaveAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
-			commonFunc.logoutUser();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getOpenPoNumber(),
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
 			commonFunc.navigateOpenPORCPage();
 			verifyClickOpenPORcButton();
 		}
 		verifyOpenPoApprovalStatus(VariableHandler.getOpenPoNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem2(commonFunc.getDataFromTestDataSheet("DissimItem_ID"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigateOpenPORCPage();
 		verifyClickOpenPOAmendmentButton();
 		createOpenPoAmendDocuments();
@@ -1264,20 +1181,14 @@ public class OpenPoRcFunctions {
 		verifyOpenPoAmendHeaderSaveAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
-			commonFunc.logoutUser();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getOpenPOAmendNumber(),
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
 			commonFunc.navigateOpenPORCPage();
 			verifyClickOpenPOAmendmentButton();
 		}
 		verifyOpenPoAmendApprovalStatus(VariableHandler.getOpenPOAmendNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		purchaseOrderFunc.verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1302,8 +1213,6 @@ public class OpenPoRcFunctions {
 				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("SimItem_ID"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigateOpenPORCPage();
 		verifyClickOpenPORcButton();
 		verifyCreateOpenPoDoc(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1315,24 +1224,16 @@ public class OpenPoRcFunctions {
 		verifyHeaderSaveAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
-			commonFunc.logoutUser();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getOpenPoNumber(),
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
 			commonFunc.navigateOpenPORCPage();
 			verifyClickOpenPORcButton();
 		}
 		verifyOpenPoApprovalStatus(VariableHandler.getOpenPoNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("SimItem_ID"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigateOpenPORCPage();
 		verifyClickOpenPOAmendmentButton();
 		createOpenPoAmendDocuments();
@@ -1341,20 +1242,14 @@ public class OpenPoRcFunctions {
 		verifyOpenPoAmendHeaderSaveAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
-			commonFunc.logoutUser();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getOpenPOAmendNumber(),
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
 			commonFunc.navigateOpenPORCPage();
 			verifyClickOpenPOAmendmentButton();
 		}
 		verifyOpenPoAmendApprovalStatus(VariableHandler.getOpenPOAmendNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		purchaseOrderFunc.verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1378,8 +1273,6 @@ public class OpenPoRcFunctions {
 				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem2(commonFunc.getDataFromTestDataSheet("DissimItem_ID"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigateOpenPORCPage();
 		verifyClickOpenPORcButton();
 		verifyCreateOpenPoDoc(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1391,24 +1284,16 @@ public class OpenPoRcFunctions {
 		verifyHeaderSaveAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
-			commonFunc.logoutUser();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getOpenPoNumber(),
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
 			commonFunc.navigateOpenPORCPage();
 			verifyClickOpenPORcButton();
 		}
 		verifyOpenPoApprovalStatus(VariableHandler.getOpenPoNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem2(commonFunc.getDataFromTestDataSheet("DissimItem_ID"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigateOpenPORCPage();
 		verifyClickOpenPOAmendmentButton();
 		createOpenPoAmendDocuments();
@@ -1417,20 +1302,14 @@ public class OpenPoRcFunctions {
 		verifyOpenPoAmendHeaderSaveAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
-			commonFunc.logoutUser();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getOpenPOAmendNumber(),
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
 			commonFunc.navigateOpenPORCPage();
 			verifyClickOpenPOAmendmentButton();
 		}
 		verifyOpenPoAmendApprovalStatus(VariableHandler.getOpenPOAmendNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		purchaseOrderFunc.verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1454,8 +1333,6 @@ public class OpenPoRcFunctions {
 				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("SimItem_ID"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigateOpenPORCPage();
 		verifyClickOpenPORcButton();
 		verifyCreateOpenPoDoc(commonFunc.getDataFromTestDataSheet("Loc16"),
@@ -1467,24 +1344,16 @@ public class OpenPoRcFunctions {
 		verifyHeaderSaveAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
-			commonFunc.logoutUser();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getOpenPoNumber(),
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
 			commonFunc.navigateOpenPORCPage();
 			verifyClickOpenPORcButton();
 		}
 		verifyOpenPoApprovalStatus(VariableHandler.getOpenPoNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("SimItem_ID"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigateOpenPORCPage();
 		verifyClickOpenPOAmendmentButton();
 		createOpenPoAmendDocuments();
@@ -1493,20 +1362,14 @@ public class OpenPoRcFunctions {
 		verifyOpenPoAmendHeaderSaveAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
-			commonFunc.logoutUser();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getOpenPOAmendNumber(),
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
 			commonFunc.navigateOpenPORCPage();
 			verifyClickOpenPOAmendmentButton();
 		}
 		verifyOpenPoAmendApprovalStatus(VariableHandler.getOpenPOAmendNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		purchaseOrderFunc.verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc16"),
@@ -1531,8 +1394,6 @@ public class OpenPoRcFunctions {
 				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem2(commonFunc.getDataFromTestDataSheet("DissimItem_ID"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigateOpenPORCPage();
 		verifyClickOpenPORcButton();
 		verifyCreateOpenPoDoc(commonFunc.getDataFromTestDataSheet("Loc16"),
@@ -1544,24 +1405,16 @@ public class OpenPoRcFunctions {
 		verifyHeaderSaveAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
-			commonFunc.logoutUser();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getOpenPoNumber(),
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
 			commonFunc.navigateOpenPORCPage();
 			verifyClickOpenPORcButton();
 		}
 		verifyOpenPoApprovalStatus(VariableHandler.getOpenPoNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem2(commonFunc.getDataFromTestDataSheet("DissimItem_ID"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigateOpenPORCPage();
 		verifyClickOpenPOAmendmentButton();
 		createOpenPoAmendDocuments();
@@ -1570,20 +1423,14 @@ public class OpenPoRcFunctions {
 		verifyOpenPoAmendHeaderSaveAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
-			commonFunc.logoutUser();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getOpenPOAmendNumber(),
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
 			commonFunc.navigateOpenPORCPage();
 			verifyClickOpenPOAmendmentButton();
 		}
 		verifyOpenPoAmendApprovalStatus(VariableHandler.getOpenPOAmendNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		purchaseOrderFunc.verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc16"),
@@ -1607,8 +1454,6 @@ public class OpenPoRcFunctions {
 				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("GwlItem_Service"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigateOpenPORCPage();
 		verifyClickOpenPORcButton();
 		verifyCreateOpenPoDoc(commonFunc.getDataFromTestDataSheet("L0001"),
@@ -1620,24 +1465,16 @@ public class OpenPoRcFunctions {
 		verifyHeaderSaveAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
-			commonFunc.logoutUser();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getOpenPoNumber(),
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
 			commonFunc.navigateOpenPORCPage();
 			verifyClickOpenPORcButton();
 		}
 		verifyOpenPoApprovalStatus(VariableHandler.getOpenPoNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("GwlItem_Service"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigateOpenPORCPage();
 		verifyClickOpenPOAmendmentButton();
 		createOpenPoAmendDocuments();
@@ -1646,20 +1483,14 @@ public class OpenPoRcFunctions {
 		verifyOpenPoAmendHeaderSaveAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
-			commonFunc.logoutUser();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getOpenPOAmendNumber(),
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
 			commonFunc.navigateOpenPORCPage();
 			verifyClickOpenPOAmendmentButton();
 		}
 		verifyOpenPoAmendApprovalStatus(VariableHandler.getOpenPOAmendNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		purchaseOrderFunc.verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("L0001"),
@@ -1739,8 +1570,6 @@ public class OpenPoRcFunctions {
 				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("SimItem_ID"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigateOpenPORCPage();
 		verifyClickOpenPORcButton();
 		verifyCreateOpenPoDoc(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1752,20 +1581,14 @@ public class OpenPoRcFunctions {
 		verifyHeaderSaveAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
-			commonFunc.logoutUser();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getOpenPoNumber(),
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
 			commonFunc.navigateOpenPORCPage();
 			verifyClickOpenPORcButton();
 		}
 		verifyOpenPoApprovalStatus(VariableHandler.getOpenPoNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigateOpenPORCPage();
 		verifyClickOpenPOAmendmentButton();
 		createOpenPoAmendDocuments();
@@ -1775,20 +1598,14 @@ public class OpenPoRcFunctions {
 		verifyOpenPoAmendHeaderSaveAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
-			commonFunc.logoutUser();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getOpenPOAmendNumber(),
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
 			commonFunc.navigateOpenPORCPage();
 			verifyClickOpenPOAmendmentButton();
 		}
 		verifyOpenPoAmendApprovalStatus(VariableHandler.getOpenPOAmendNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		purchaseOrderFunc.verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1811,8 +1628,6 @@ public class OpenPoRcFunctions {
 				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem2(commonFunc.getDataFromTestDataSheet("DissimItem_ID"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigateOpenPORCPage();
 		verifyClickOpenPORcButton();
 		verifyCreateOpenPoDoc(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1824,20 +1639,14 @@ public class OpenPoRcFunctions {
 		verifyHeaderSaveAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
-			commonFunc.logoutUser();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getOpenPoNumber(),
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
 			commonFunc.navigateOpenPORCPage();
 			verifyClickOpenPORcButton();
 		}
 		verifyOpenPoApprovalStatus(VariableHandler.getOpenPoNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigateOpenPORCPage();
 		verifyClickOpenPOAmendmentButton();
 		createOpenPoAmendDocuments();
@@ -1847,20 +1656,14 @@ public class OpenPoRcFunctions {
 		verifyOpenPoAmendHeaderSaveAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
-			commonFunc.logoutUser();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getOpenPOAmendNumber(),
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
 			commonFunc.navigateOpenPORCPage();
 			verifyClickOpenPOAmendmentButton();
 		}
 		verifyOpenPoAmendApprovalStatus(VariableHandler.getOpenPOAmendNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		purchaseOrderFunc.verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1883,8 +1686,6 @@ public class OpenPoRcFunctions {
 				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("SimItem_ID"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigateOpenPORCPage();
 		verifyClickOpenPORcButton();
 		verifyCreateOpenPoDoc(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1896,20 +1697,14 @@ public class OpenPoRcFunctions {
 		verifyHeaderSaveAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
-			commonFunc.logoutUser();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getOpenPoNumber(),
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
 			commonFunc.navigateOpenPORCPage();
 			verifyClickOpenPORcButton();
 		}
 		verifyOpenPoApprovalStatus(VariableHandler.getOpenPoNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigateOpenPORCPage();
 		verifyClickOpenPOAmendmentButton();
 		createOpenPoAmendDocuments();
@@ -1919,20 +1714,14 @@ public class OpenPoRcFunctions {
 		verifyOpenPoAmendHeaderSaveAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
-			commonFunc.logoutUser();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getOpenPOAmendNumber(),
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
 			commonFunc.navigateOpenPORCPage();
 			verifyClickOpenPOAmendmentButton();
 		}
 		verifyOpenPoAmendApprovalStatus(VariableHandler.getOpenPOAmendNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.hardWait(3000);
 		commonFunc.clickCreateIcon();
@@ -1956,8 +1745,6 @@ public class OpenPoRcFunctions {
 				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem2(commonFunc.getDataFromTestDataSheet("DissimItem_ID"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigateOpenPORCPage();
 		verifyClickOpenPORcButton();
 		verifyCreateOpenPoDoc(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1969,20 +1756,14 @@ public class OpenPoRcFunctions {
 		verifyHeaderSaveAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
-			commonFunc.logoutUser();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getOpenPoNumber(),
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
 			commonFunc.navigateOpenPORCPage();
 			verifyClickOpenPORcButton();
 		}
 		verifyOpenPoApprovalStatus(VariableHandler.getOpenPoNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigateOpenPORCPage();
 		verifyClickOpenPOAmendmentButton();
 		createOpenPoAmendDocuments();
@@ -1992,20 +1773,14 @@ public class OpenPoRcFunctions {
 		verifyOpenPoAmendHeaderSaveAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
-			commonFunc.logoutUser();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getOpenPOAmendNumber(),
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
 			commonFunc.navigateOpenPORCPage();
 			verifyClickOpenPOAmendmentButton();
 		}
 		verifyOpenPoAmendApprovalStatus(VariableHandler.getOpenPOAmendNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		purchaseOrderFunc.verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -2052,8 +1827,6 @@ public class OpenPoRcFunctions {
 				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("SimItem_ID"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigateOpenPORCPage();
 		verifyClickOpenPORcButton();
 		verifyCreateOpenPoDoc(commonFunc.getDataFromTestDataSheet("Loc16"),
@@ -2065,20 +1838,14 @@ public class OpenPoRcFunctions {
 		verifyHeaderSaveAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
-			commonFunc.logoutUser();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getOpenPoNumber(),
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
 			commonFunc.navigateOpenPORCPage();
 			verifyClickOpenPORcButton();
 		}
 		verifyOpenPoApprovalStatus(VariableHandler.getOpenPoNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigateOpenPORCPage();
 		verifyClickOpenPOAmendmentButton();
 		createOpenPoAmendDocuments();
@@ -2088,20 +1855,14 @@ public class OpenPoRcFunctions {
 		verifyOpenPoAmendHeaderSaveAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
-			commonFunc.logoutUser();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getOpenPOAmendNumber(),
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
 			commonFunc.navigateOpenPORCPage();
 			verifyClickOpenPOAmendmentButton();
 		}
 		verifyOpenPoAmendApprovalStatus(VariableHandler.getOpenPOAmendNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		purchaseOrderFunc.verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc16"),
@@ -2124,8 +1885,6 @@ public class OpenPoRcFunctions {
 				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem2(commonFunc.getDataFromTestDataSheet("DissimItem_ID"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigateOpenPORCPage();
 		verifyClickOpenPORcButton();
 		verifyCreateOpenPoDoc(commonFunc.getDataFromTestDataSheet("Loc16"),
@@ -2137,20 +1896,14 @@ public class OpenPoRcFunctions {
 		verifyHeaderSaveAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
-			commonFunc.logoutUser();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getOpenPoNumber(),
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
 			commonFunc.navigateOpenPORCPage();
 			verifyClickOpenPORcButton();
 		}
 		verifyOpenPoApprovalStatus(VariableHandler.getOpenPoNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigateOpenPORCPage();
 		verifyClickOpenPOAmendmentButton();
 		createOpenPoAmendDocuments();
@@ -2160,20 +1913,14 @@ public class OpenPoRcFunctions {
 		verifyOpenPoAmendHeaderSaveAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
-			commonFunc.logoutUser();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getOpenPOAmendNumber(),
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
 			commonFunc.navigateOpenPORCPage();
 			verifyClickOpenPOAmendmentButton();
 		}
 		verifyOpenPoAmendApprovalStatus(VariableHandler.getOpenPOAmendNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		purchaseOrderFunc.verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc16"),
@@ -2195,8 +1942,6 @@ public class OpenPoRcFunctions {
 				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("GwlItem_Service"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigateOpenPORCPage();
 		verifyClickOpenPORcButton();
 		verifyCreateOpenPoDoc(commonFunc.getDataFromTestDataSheet("L0001"),
@@ -2208,20 +1953,14 @@ public class OpenPoRcFunctions {
 		verifyHeaderSaveAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
-			commonFunc.logoutUser();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getOpenPoNumber(),
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
 			commonFunc.navigateOpenPORCPage();
 			verifyClickOpenPORcButton();
 		}
 		verifyOpenPoApprovalStatus(VariableHandler.getOpenPoNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigateOpenPORCPage();
 		verifyClickOpenPOAmendmentButton();
 		createOpenPoAmendDocuments();
@@ -2231,20 +1970,14 @@ public class OpenPoRcFunctions {
 		verifyOpenPoAmendHeaderSaveAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
-			commonFunc.logoutUser();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getOpenPOAmendNumber(),
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
 			commonFunc.navigateOpenPORCPage();
 			verifyClickOpenPOAmendmentButton();
 		}
 		verifyOpenPoAmendApprovalStatus(VariableHandler.getOpenPOAmendNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		purchaseOrderFunc.verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("L0001"),
@@ -2266,8 +1999,6 @@ public class OpenPoRcFunctions {
 				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("SimItem_ID"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigateOpenPORCPage();
 		verifyClickOpenPORcButton();
 		verifyCreateOpenPoDoc(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -2279,20 +2010,14 @@ public class OpenPoRcFunctions {
 		verifyHeaderSaveAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
-			commonFunc.logoutUser();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getOpenPoNumber(),
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
 			commonFunc.navigateOpenPORCPage();
 			verifyClickOpenPORcButton();
 		}
 		verifyOpenPoApprovalStatus(VariableHandler.getOpenPoNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigateOpenPORCPage();
 		verifyClickOpenPOAmendmentButton();
 		createOpenPoAmendDocuments();
@@ -2306,20 +2031,14 @@ public class OpenPoRcFunctions {
 		verifyOpenPoAmendHeaderSaveAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
-			commonFunc.logoutUser();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getOpenPOAmendNumber(),
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
 			commonFunc.navigateOpenPORCPage();
 			verifyClickOpenPOAmendmentButton();
 		}
 		verifyOpenPoAmendApprovalStatus(VariableHandler.getOpenPOAmendNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		purchaseOrderFunc.verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -2344,8 +2063,6 @@ public class OpenPoRcFunctions {
 				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem2(commonFunc.getDataFromTestDataSheet("DissimItem_ID"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigateOpenPORCPage();
 		verifyClickOpenPORcButton();
 		verifyCreateOpenPoDoc(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -2357,20 +2074,14 @@ public class OpenPoRcFunctions {
 		verifyHeaderSaveAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
-			commonFunc.logoutUser();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getOpenPoNumber(),
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
 			commonFunc.navigateOpenPORCPage();
 			verifyClickOpenPORcButton();
 		}
 		verifyOpenPoApprovalStatus(VariableHandler.getOpenPoNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigateOpenPORCPage();
 		verifyClickOpenPOAmendmentButton();
 		createOpenPoAmendDocuments();
@@ -2384,20 +2095,14 @@ public class OpenPoRcFunctions {
 		verifyOpenPoAmendHeaderSaveAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
-			commonFunc.logoutUser();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getOpenPOAmendNumber(),
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
 			commonFunc.navigateOpenPORCPage();
 			verifyClickOpenPOAmendmentButton();
 		}
 		verifyOpenPoAmendApprovalStatus(VariableHandler.getOpenPOAmendNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		purchaseOrderFunc.verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -2422,8 +2127,6 @@ public class OpenPoRcFunctions {
 				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("SimItem_ID"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigateOpenPORCPage();
 		verifyClickOpenPORcButton();
 		verifyCreateOpenPoDoc(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -2435,20 +2138,14 @@ public class OpenPoRcFunctions {
 		verifyHeaderSaveAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
-			commonFunc.logoutUser();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getOpenPoNumber(),
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
 			commonFunc.navigateOpenPORCPage();
 			verifyClickOpenPORcButton();
 		}
 		verifyOpenPoApprovalStatus(VariableHandler.getOpenPoNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigateOpenPORCPage();
 		verifyClickOpenPOAmendmentButton();
 		createOpenPoAmendDocuments();
@@ -2462,20 +2159,14 @@ public class OpenPoRcFunctions {
 		verifyOpenPoAmendHeaderSaveAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
-			commonFunc.logoutUser();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getOpenPOAmendNumber(),
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
 			commonFunc.navigateOpenPORCPage();
 			verifyClickOpenPOAmendmentButton();
 		}
 		verifyOpenPoAmendApprovalStatus(VariableHandler.getOpenPOAmendNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		purchaseOrderFunc.verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -2500,8 +2191,6 @@ public class OpenPoRcFunctions {
 				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem2(commonFunc.getDataFromTestDataSheet("DissimItem_ID"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigateOpenPORCPage();
 		verifyClickOpenPORcButton();
 		verifyCreateOpenPoDoc(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -2513,20 +2202,14 @@ public class OpenPoRcFunctions {
 		verifyHeaderSaveAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
-			commonFunc.logoutUser();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getOpenPoNumber(),
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
 			commonFunc.navigateOpenPORCPage();
 			verifyClickOpenPORcButton();
 		}
 		verifyOpenPoApprovalStatus(VariableHandler.getOpenPoNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigateOpenPORCPage();
 		verifyClickOpenPOAmendmentButton();
 		createOpenPoAmendDocuments();
@@ -2540,20 +2223,14 @@ public class OpenPoRcFunctions {
 		verifyOpenPoAmendHeaderSaveAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
-			commonFunc.logoutUser();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getOpenPOAmendNumber(),
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
 			commonFunc.navigateOpenPORCPage();
 			verifyClickOpenPOAmendmentButton();
 		}
 		verifyOpenPoAmendApprovalStatus(VariableHandler.getOpenPOAmendNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		purchaseOrderFunc.verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -2578,8 +2255,6 @@ public class OpenPoRcFunctions {
 				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("SimItem_ID"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigateOpenPORCPage();
 		verifyClickOpenPORcButton();
 		verifyCreateOpenPoDoc(commonFunc.getDataFromTestDataSheet("Loc16"),
@@ -2591,20 +2266,14 @@ public class OpenPoRcFunctions {
 		verifyHeaderSaveAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
-			commonFunc.logoutUser();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getOpenPoNumber(),
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
 			commonFunc.navigateOpenPORCPage();
 			verifyClickOpenPORcButton();
 		}
 		verifyOpenPoApprovalStatus(VariableHandler.getOpenPoNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigateOpenPORCPage();
 		verifyClickOpenPOAmendmentButton();
 		createOpenPoAmendDocuments();
@@ -2618,20 +2287,14 @@ public class OpenPoRcFunctions {
 		verifyOpenPoAmendHeaderSaveAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
-			commonFunc.logoutUser();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getOpenPOAmendNumber(),
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
 			commonFunc.navigateOpenPORCPage();
 			verifyClickOpenPOAmendmentButton();
 		}
 		verifyOpenPoAmendApprovalStatus(VariableHandler.getOpenPOAmendNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		purchaseOrderFunc.verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc16"),
@@ -2656,8 +2319,6 @@ public class OpenPoRcFunctions {
 				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem2(commonFunc.getDataFromTestDataSheet("DissimItem_ID"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigateOpenPORCPage();
 		verifyClickOpenPORcButton();
 		verifyCreateOpenPoDoc(commonFunc.getDataFromTestDataSheet("Loc16"),
@@ -2669,20 +2330,14 @@ public class OpenPoRcFunctions {
 		verifyHeaderSaveAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
-			commonFunc.logoutUser();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getOpenPoNumber(),
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
 			commonFunc.navigateOpenPORCPage();
 			verifyClickOpenPORcButton();
 		}
 		verifyOpenPoApprovalStatus(VariableHandler.getOpenPoNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigateOpenPORCPage();
 		verifyClickOpenPOAmendmentButton();
 		createOpenPoAmendDocuments();
@@ -2696,20 +2351,14 @@ public class OpenPoRcFunctions {
 		verifyOpenPoAmendHeaderSaveAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
-			commonFunc.logoutUser();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getOpenPOAmendNumber(),
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
 			commonFunc.navigateOpenPORCPage();
 			verifyClickOpenPOAmendmentButton();
 		}
 		verifyOpenPoAmendApprovalStatus(VariableHandler.getOpenPOAmendNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		purchaseOrderFunc.verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc16"),
@@ -2733,8 +2382,6 @@ public class OpenPoRcFunctions {
 				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("GwlItem_Service"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigateOpenPORCPage();
 		verifyClickOpenPORcButton();
 		verifyCreateOpenPoDoc(commonFunc.getDataFromTestDataSheet("L0001"),
@@ -2746,20 +2393,14 @@ public class OpenPoRcFunctions {
 		verifyHeaderSaveAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
-			commonFunc.logoutUser();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getOpenPoNumber(),
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
 			commonFunc.navigateOpenPORCPage();
 			verifyClickOpenPORcButton();
 		}
 		verifyOpenPoApprovalStatus(VariableHandler.getOpenPoNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigateOpenPORCPage();
 		verifyClickOpenPOAmendmentButton();
 		createOpenPoAmendDocuments();
@@ -2773,20 +2414,14 @@ public class OpenPoRcFunctions {
 		verifyOpenPoAmendHeaderSaveAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
-			commonFunc.logoutUser();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getOpenPOAmendNumber(),
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
 			commonFunc.navigateOpenPORCPage();
 			verifyClickOpenPOAmendmentButton();
 		}
 		verifyOpenPoAmendApprovalStatus(VariableHandler.getOpenPOAmendNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		purchaseOrderFunc.verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("L0001"),
@@ -2932,8 +2567,6 @@ public class OpenPoRcFunctions {
 				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("SimItem_ID"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigateOpenPORCPage();
 		verifyClickOpenPORcButton();
 		verifyCreateOpenPoDoc(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -2948,20 +2581,14 @@ public class OpenPoRcFunctions {
 		verifyHeaderSaveAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
-			commonFunc.logoutUser();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getOpenPoNumber(),
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
 			commonFunc.navigateOpenPORCPage();
 			verifyClickOpenPORcButton();
 		}
 		verifyOpenPoApprovalStatus(VariableHandler.getOpenPoNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigateOpenPORCPage();
 		verifyClickOpenPOAmendmentButton();
 		createOpenPoAmendDocuments();
@@ -2970,18 +2597,14 @@ public class OpenPoRcFunctions {
 		verifyOpenPoAmendHeaderSaveAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
-			commonFunc.logoutUser();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getOpenPOAmendNumber(),
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
 			commonFunc.navigateOpenPORCPage();
 			verifyClickOpenPOAmendmentButton();
 		}
 		verifyOpenPoAmendApprovalStatus(VariableHandler.getOpenPOAmendNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		commonFunc.logoutUser();
 		assertTrue(flag);
 	}
 
@@ -2996,8 +2619,6 @@ public class OpenPoRcFunctions {
 				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem2(commonFunc.getDataFromTestDataSheet("DissimItem_ID"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigateOpenPORCPage();
 		verifyClickOpenPORcButton();
 		verifyCreateOpenPoDoc(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -3012,20 +2633,14 @@ public class OpenPoRcFunctions {
 		verifyHeaderSaveAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
-			commonFunc.logoutUser();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getOpenPoNumber(),
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
 			commonFunc.navigateOpenPORCPage();
 			verifyClickOpenPORcButton();
 		}
 		verifyOpenPoApprovalStatus(VariableHandler.getOpenPoNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigateOpenPORCPage();
 		verifyClickOpenPOAmendmentButton();
 		createOpenPoAmendDocuments();
@@ -3034,12 +2649,9 @@ public class OpenPoRcFunctions {
 		verifyOpenPoAmendHeaderSaveAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
-			commonFunc.logoutUser();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getOpenPOAmendNumber(),
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
 			commonFunc.navigateOpenPORCPage();
 			verifyClickOpenPOAmendmentButton();
 		}
@@ -3060,8 +2672,6 @@ public class OpenPoRcFunctions {
 				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("SimItem_ID"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigateOpenPORCPage();
 		verifyClickOpenPORcButton();
 		verifyCreateOpenPoDoc(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -3076,20 +2686,14 @@ public class OpenPoRcFunctions {
 		verifyHeaderSaveAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
-			commonFunc.logoutUser();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getOpenPoNumber(),
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
 			commonFunc.navigateOpenPORCPage();
 			verifyClickOpenPORcButton();
 		}
 		verifyOpenPoApprovalStatus(VariableHandler.getOpenPoNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigateOpenPORCPage();
 		verifyClickOpenPOAmendmentButton();
 		createOpenPoAmendDocuments();
@@ -3098,12 +2702,9 @@ public class OpenPoRcFunctions {
 		verifyOpenPoAmendHeaderSaveAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
-			commonFunc.logoutUser();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getOpenPOAmendNumber(),
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
 			commonFunc.navigateOpenPORCPage();
 			verifyClickOpenPOAmendmentButton();
 		}
@@ -3124,8 +2725,6 @@ public class OpenPoRcFunctions {
 				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem2(commonFunc.getDataFromTestDataSheet("DissimItem_ID"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigateOpenPORCPage();
 		verifyClickOpenPORcButton();
 		verifyCreateOpenPoDoc(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -3140,20 +2739,14 @@ public class OpenPoRcFunctions {
 		verifyHeaderSaveAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
-			commonFunc.logoutUser();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getOpenPoNumber(),
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
 			commonFunc.navigateOpenPORCPage();
 			verifyClickOpenPORcButton();
 		}
 		verifyOpenPoApprovalStatus(VariableHandler.getOpenPoNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigateOpenPORCPage();
 		verifyClickOpenPOAmendmentButton();
 		createOpenPoAmendDocuments();
@@ -3162,12 +2755,9 @@ public class OpenPoRcFunctions {
 		verifyOpenPoAmendHeaderSaveAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
-			commonFunc.logoutUser();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getOpenPOAmendNumber(),
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
 			commonFunc.navigateOpenPORCPage();
 			verifyClickOpenPOAmendmentButton();
 		}
@@ -3233,8 +2823,6 @@ public class OpenPoRcFunctions {
 				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("SimItem_ID"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigateOpenPORCPage();
 		verifyClickOpenPORcButton();
 		verifyCreateOpenPoDoc(commonFunc.getDataFromTestDataSheet("Loc16"),
@@ -3249,20 +2837,14 @@ public class OpenPoRcFunctions {
 		verifyHeaderSaveAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
-			commonFunc.logoutUser();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getOpenPoNumber(),
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
 			commonFunc.navigateOpenPORCPage();
 			verifyClickOpenPORcButton();
 		}
 		verifyOpenPoApprovalStatus(VariableHandler.getOpenPoNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigateOpenPORCPage();
 		verifyClickOpenPOAmendmentButton();
 		createOpenPoAmendDocuments();
@@ -3271,12 +2853,9 @@ public class OpenPoRcFunctions {
 		verifyOpenPoAmendHeaderSaveAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
-			commonFunc.logoutUser();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getOpenPOAmendNumber(),
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
 			commonFunc.navigateOpenPORCPage();
 			verifyClickOpenPOAmendmentButton();
 		}
@@ -3297,8 +2876,6 @@ public class OpenPoRcFunctions {
 				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem2(commonFunc.getDataFromTestDataSheet("DissimItem_ID"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigateOpenPORCPage();
 		verifyClickOpenPORcButton();
 		verifyCreateOpenPoDoc(commonFunc.getDataFromTestDataSheet("Loc16"),
@@ -3313,20 +2890,14 @@ public class OpenPoRcFunctions {
 		verifyHeaderSaveAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
-			commonFunc.logoutUser();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getOpenPoNumber(),
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
 			commonFunc.navigateOpenPORCPage();
 			verifyClickOpenPORcButton();
 		}
 		verifyOpenPoApprovalStatus(VariableHandler.getOpenPoNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigateOpenPORCPage();
 		verifyClickOpenPOAmendmentButton();
 		createOpenPoAmendDocuments();
@@ -3335,12 +2906,9 @@ public class OpenPoRcFunctions {
 		verifyOpenPoAmendHeaderSaveAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
-			commonFunc.logoutUser();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getOpenPOAmendNumber(),
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
 			commonFunc.navigateOpenPORCPage();
 			verifyClickOpenPOAmendmentButton();
 		}
@@ -3360,8 +2928,6 @@ public class OpenPoRcFunctions {
 				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("GwlItem_Service"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigateOpenPORCPage();
 		verifyClickOpenPORcButton();
 		verifyCreateOpenPoDoc(commonFunc.getDataFromTestDataSheet("L0001"),
@@ -3376,20 +2942,14 @@ public class OpenPoRcFunctions {
 		verifyHeaderSaveAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
-			commonFunc.logoutUser();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getOpenPoNumber(),
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
 			commonFunc.navigateOpenPORCPage();
 			verifyClickOpenPORcButton();
 		}
 		verifyOpenPoApprovalStatus(VariableHandler.getOpenPoNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigateOpenPORCPage();
 		verifyClickOpenPOAmendmentButton();
 		createOpenPoAmendDocuments();
@@ -3398,12 +2958,9 @@ public class OpenPoRcFunctions {
 		verifyOpenPoAmendHeaderSaveAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
-			commonFunc.logoutUser();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getOpenPOAmendNumber(),
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
 			commonFunc.navigateOpenPORCPage();
 			verifyClickOpenPOAmendmentButton();
 		}
@@ -3423,8 +2980,6 @@ public class OpenPoRcFunctions {
 				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("SimItem_ID"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigateOpenPORCPage();
 		verifyClickOpenPORcButton();
 		verifyCreateOpenPoDoc(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -3436,20 +2991,14 @@ public class OpenPoRcFunctions {
 		verifyHeaderSaveAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
-			commonFunc.logoutUser();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getOpenPoNumber(),
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
 			commonFunc.navigateOpenPORCPage();
 			verifyClickOpenPORcButton();
 		}
 		verifyOpenPoApprovalStatus(VariableHandler.getOpenPoNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigateOpenPORCPage();
 		verifyClickOpenPOAmendmentButton();
 		createOpenPoAmendDocuments();
@@ -3564,8 +3113,6 @@ public class OpenPoRcFunctions {
 				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("SimItem_ID"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigateOpenPORCPage();
 		verifyClickOpenPORcButton();
 		verifyCreateOpenPoDoc(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -3577,20 +3124,14 @@ public class OpenPoRcFunctions {
 		verifyHeaderSaveAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
-			commonFunc.logoutUser();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getOpenPoNumber(),
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
 			commonFunc.navigateOpenPORCPage();
 			verifyClickOpenPORcButton();
 		}
 		verifyOpenPoApprovalStatus(VariableHandler.getOpenPoNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigateOpenPORCPage();
 		verifyClickOpenPOAmendmentButton();
 		createOpenPoAmendDocuments();
@@ -3601,18 +3142,14 @@ public class OpenPoRcFunctions {
 		verifyOpenPoAmendHeaderSaveAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
-			commonFunc.logoutUser();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getOpenPOAmendNumber(),
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
 			commonFunc.navigateOpenPORCPage();
 			verifyClickOpenPOAmendmentButton();
 		}
 		verifyOpenPoAmendApprovalStatus(VariableHandler.getOpenPOAmendNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		commonFunc.logoutUser();
 		assertTrue(flag);
 	}
 
@@ -3627,8 +3164,6 @@ public class OpenPoRcFunctions {
 				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem2(commonFunc.getDataFromTestDataSheet("DissimItem_ID"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigateOpenPORCPage();
 		verifyClickOpenPORcButton();
 		verifyCreateOpenPoDoc(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -3640,20 +3175,14 @@ public class OpenPoRcFunctions {
 		verifyHeaderSaveAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
-			commonFunc.logoutUser();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getOpenPoNumber(),
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
 			commonFunc.navigateOpenPORCPage();
 			verifyClickOpenPORcButton();
 		}
 		verifyOpenPoApprovalStatus(VariableHandler.getOpenPoNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigateOpenPORCPage();
 		verifyClickOpenPOAmendmentButton();
 		createOpenPoAmendDocuments();
@@ -3664,18 +3193,14 @@ public class OpenPoRcFunctions {
 		verifyOpenPoAmendHeaderSaveAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
-			commonFunc.logoutUser();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getOpenPOAmendNumber(),
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
 			commonFunc.navigateOpenPORCPage();
 			verifyClickOpenPOAmendmentButton();
 		}
 		verifyOpenPoAmendApprovalStatus(VariableHandler.getOpenPOAmendNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		commonFunc.logoutUser();
 		assertTrue(flag);
 	}
 
@@ -3690,8 +3215,6 @@ public class OpenPoRcFunctions {
 				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("SimItem_ID"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigateOpenPORCPage();
 		verifyClickOpenPORcButton();
 		verifyCreateOpenPoDoc(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -3703,20 +3226,14 @@ public class OpenPoRcFunctions {
 		verifyHeaderSaveAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
-			commonFunc.logoutUser();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getOpenPoNumber(),
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
 			commonFunc.navigateOpenPORCPage();
 			verifyClickOpenPORcButton();
 		}
 		verifyOpenPoApprovalStatus(VariableHandler.getOpenPoNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigateOpenPORCPage();
 		verifyClickOpenPOAmendmentButton();
 		createOpenPoAmendDocuments();
@@ -3727,18 +3244,14 @@ public class OpenPoRcFunctions {
 		verifyOpenPoAmendHeaderSaveAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
-			commonFunc.logoutUser();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getOpenPOAmendNumber(),
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
 			commonFunc.navigateOpenPORCPage();
 			verifyClickOpenPOAmendmentButton();
 		}
 		verifyOpenPoAmendApprovalStatus(VariableHandler.getOpenPOAmendNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		commonFunc.logoutUser();
 		assertTrue(flag);
 	}
 
@@ -3753,8 +3266,6 @@ public class OpenPoRcFunctions {
 				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem2(commonFunc.getDataFromTestDataSheet("DissimItem_ID"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigateOpenPORCPage();
 		verifyClickOpenPORcButton();
 		verifyCreateOpenPoDoc(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -3766,20 +3277,14 @@ public class OpenPoRcFunctions {
 		verifyHeaderSaveAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
-			commonFunc.logoutUser();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getOpenPoNumber(),
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
 			commonFunc.navigateOpenPORCPage();
 			verifyClickOpenPORcButton();
 		}
 		verifyOpenPoApprovalStatus(VariableHandler.getOpenPoNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigateOpenPORCPage();
 		verifyClickOpenPOAmendmentButton();
 		createOpenPoAmendDocuments();
@@ -3790,18 +3295,14 @@ public class OpenPoRcFunctions {
 		verifyOpenPoAmendHeaderSaveAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
-			commonFunc.logoutUser();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getOpenPOAmendNumber(),
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
 			commonFunc.navigateOpenPORCPage();
 			verifyClickOpenPOAmendmentButton();
 		}
 		verifyOpenPoAmendApprovalStatus(VariableHandler.getOpenPOAmendNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		commonFunc.logoutUser();
 		assertTrue(flag);
 	}
 
@@ -3816,8 +3317,6 @@ public class OpenPoRcFunctions {
 				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("SimItem_ID"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigateOpenPORCPage();
 		verifyClickOpenPORcButton();
 		verifyCreateOpenPoDoc(commonFunc.getDataFromTestDataSheet("Loc16"),
@@ -3829,20 +3328,14 @@ public class OpenPoRcFunctions {
 		verifyHeaderSaveAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
-			commonFunc.logoutUser();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getOpenPoNumber(),
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
 			commonFunc.navigateOpenPORCPage();
 			verifyClickOpenPORcButton();
 		}
 		verifyOpenPoApprovalStatus(VariableHandler.getOpenPoNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigateOpenPORCPage();
 		verifyClickOpenPOAmendmentButton();
 		createOpenPoAmendDocuments();
@@ -3853,18 +3346,14 @@ public class OpenPoRcFunctions {
 		verifyOpenPoAmendHeaderSaveAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
-			commonFunc.logoutUser();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getOpenPOAmendNumber(),
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
 			commonFunc.navigateOpenPORCPage();
 			verifyClickOpenPOAmendmentButton();
 		}
 		verifyOpenPoAmendApprovalStatus(VariableHandler.getOpenPOAmendNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		commonFunc.logoutUser();
 		assertTrue(flag);
 	}
 
@@ -3879,8 +3368,6 @@ public class OpenPoRcFunctions {
 				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem2(commonFunc.getDataFromTestDataSheet("DissimItem_ID"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigateOpenPORCPage();
 		verifyClickOpenPORcButton();
 		verifyCreateOpenPoDoc(commonFunc.getDataFromTestDataSheet("Loc16"),
@@ -3892,20 +3379,14 @@ public class OpenPoRcFunctions {
 		verifyHeaderSaveAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
-			commonFunc.logoutUser();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getOpenPoNumber(),
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
 			commonFunc.navigateOpenPORCPage();
 			verifyClickOpenPORcButton();
 		}
 		verifyOpenPoApprovalStatus(VariableHandler.getOpenPoNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigateOpenPORCPage();
 		verifyClickOpenPOAmendmentButton();
 		createOpenPoAmendDocuments();
@@ -3916,18 +3397,14 @@ public class OpenPoRcFunctions {
 		verifyOpenPoAmendHeaderSaveAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
-			commonFunc.logoutUser();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getOpenPOAmendNumber(),
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
 			commonFunc.navigateOpenPORCPage();
 			verifyClickOpenPOAmendmentButton();
 		}
 		verifyOpenPoAmendApprovalStatus(VariableHandler.getOpenPOAmendNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		commonFunc.logoutUser();
 		assertTrue(flag);
 	}
 
@@ -3941,8 +3418,6 @@ public class OpenPoRcFunctions {
 				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("GwlItem_Service"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigateOpenPORCPage();
 		verifyClickOpenPORcButton();
 		verifyCreateOpenPoDoc(commonFunc.getDataFromTestDataSheet("L0001"),
@@ -3954,20 +3429,14 @@ public class OpenPoRcFunctions {
 		verifyHeaderSaveAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
-			commonFunc.logoutUser();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getOpenPoNumber(),
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
 			commonFunc.navigateOpenPORCPage();
 			verifyClickOpenPORcButton();
 		}
 		verifyOpenPoApprovalStatus(VariableHandler.getOpenPoNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigateOpenPORCPage();
 		verifyClickOpenPOAmendmentButton();
 		createOpenPoAmendDocuments();
@@ -3978,18 +3447,14 @@ public class OpenPoRcFunctions {
 		verifyOpenPoAmendHeaderSaveAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
-			commonFunc.logoutUser();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getOpenPOAmendNumber(),
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
 			commonFunc.navigateOpenPORCPage();
 			verifyClickOpenPOAmendmentButton();
 		}
 		verifyOpenPoAmendApprovalStatus(VariableHandler.getOpenPOAmendNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		commonFunc.logoutUser();
 		assertTrue(flag);
 	}
 

@@ -1388,19 +1388,11 @@ public class PurchaseOrderFunctions {
 		verifyTotalAmountCalculation();
 		verifyClickPostIcon();
 		verifyWaitingForApproval();
-		flag = commonFunc.logoutUser();
-		if (flag) {
-			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
-					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HariUsername"));
-			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
-				commonFunc.navigatePurchaseOrderPage();
-				verifyValidatePoStatus(VariableHandler.getPONumber(),
-						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-				flag = commonFunc.logoutUser();
-			}
-		}
+		commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
+				webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		commonFunc.navigatePurchaseOrderPage();
+		verifyValidatePoStatus(VariableHandler.getPONumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		return flag;
 	}
 
@@ -2970,12 +2962,9 @@ public class PurchaseOrderFunctions {
 	public void verifyApprovePOUsingAshokUser() {
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
-			flag = commonFunc.logoutUser();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
 			commonFunc.navigatePurchaseOrderPage();
 		}
 	}
@@ -5890,19 +5879,11 @@ public class PurchaseOrderFunctions {
 		}
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
-		flag = commonFunc.logoutUser();
-		if (flag) {
-			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPONumber(),
-					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HariUsername"));
-			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
-				commonFunc.navigatePurchaseOrderPage();
-				verifyValidatePoStatus(VariableHandler.getPONumber(),
-						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-				flag = commonFunc.logoutUser();
-			}
-		}
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPONumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		commonFunc.navigatePurchaseOrderPage();
+		verifyValidatePoStatus(VariableHandler.getPONumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		return flag;
 	}
 
@@ -8514,9 +8495,6 @@ public class PurchaseOrderFunctions {
 		PR_Func.saveHeaderAndClickPost();
 		PR_Func.searchPRAndCheckPRStatus(VariableHandler.getPRNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickPendingIcon();
 		clickPendingPRAndSearchPRNo();
@@ -8543,13 +8521,6 @@ public class PurchaseOrderFunctions {
 						String CDAmt = itemmultiple[i][16];
 						String TaxPercent = itemmultiple[i][20];
 						String cgst = itemmultiple[i][21];
-						String sgst = itemmultiple[i][22];
-						String Igst = itemmultiple[i][23];
-						String Utgst = itemmultiple[i][24];
-						String CessPercent = itemmultiple[i][25];
-						String Cess = itemmultiple[i][26];
-						String TaxAmount = itemmultiple[i][27];
-						String NetAmount = itemmultiple[i][28];
 						String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 						addHsnCode(item, PurchaseOrderPageLocators.HsnCodeLovButton,
 								PurchaseOrderPageLocators.HsnCodeInput, HsnCode);
@@ -8612,9 +8583,6 @@ public class PurchaseOrderFunctions {
 		PR_Func.saveHeaderAndClickPost();
 		PR_Func.searchPRAndCheckPRStatus(VariableHandler.getPRNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickPendingIcon();
 		clickPendingPRAndSearchPRNo();
@@ -8665,12 +8633,6 @@ public class PurchaseOrderFunctions {
 		verifyHeaderTickAndPost();
 		verifyApprovePOUsingAshokUser();
 		verifyValidatePoStatus(VariableHandler.getPONumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		flag = commonFunc.logoutUser();
-//		
-//		verifyPRtoPOWithMultipleItemInExcelSheetForMaterial(commonFunc.getDataFromTestDataSheet("HatsunSupplier"),
-//				commonFunc.getDataFromTestDataSheet("PRMaterialType"),
-//				webDB.getDataFromProperties("PRTOPOSimilarItemMaterialImpSheet"),
-//				commonFunc.getDataFromTestDataSheet("IrpPrefix"));
 	}
 
 	/**
@@ -8710,9 +8672,6 @@ public class PurchaseOrderFunctions {
 		PR_Func.saveHeaderAndClickPost();
 		PR_Func.searchPRAndCheckPRStatus(VariableHandler.getPRNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickPendingIcon();
 		clickPendingPRAndSearchPRNo();
@@ -8803,9 +8762,6 @@ public class PurchaseOrderFunctions {
 		PR_Func.saveHeaderAndClickPost();
 		PR_Func.searchPRAndCheckPRStatus(VariableHandler.getPRNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickPendingIcon();
 		clickPendingPRAndSearchPRNo();
@@ -8856,7 +8812,6 @@ public class PurchaseOrderFunctions {
 		verifyHeaderTickAndPost();
 		verifyApprovePOUsingAshokUser();
 		verifyValidatePoStatus(VariableHandler.getPONumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		flag = commonFunc.logoutUser();
 	}
 
 	/**
@@ -8984,19 +8939,11 @@ public class PurchaseOrderFunctions {
 		}
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
-		flag = commonFunc.logoutUser();
-		if (flag) {
-			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
-					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HariUsername"));
-			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
-				commonFunc.navigatePurchaseOrderPage();
-				verifyValidatePoStatus(VariableHandler.getPONumber(),
-						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-				flag = commonFunc.logoutUser();
-			}
-		}
+		commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
+				webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		commonFunc.navigatePurchaseOrderPage();
+		verifyValidatePoStatus(VariableHandler.getPONumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 
 		return flag;
 	}
@@ -9111,19 +9058,12 @@ public class PurchaseOrderFunctions {
 		}
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
+				webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		commonFunc.navigatePurchaseOrderPage();
+		verifyValidatePoStatus(VariableHandler.getPONumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
-		if (flag) {
-			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
-					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HariUsername"));
-			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
-				commonFunc.navigatePurchaseOrderPage();
-				verifyValidatePoStatus(VariableHandler.getPONumber(),
-						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-				flag = commonFunc.logoutUser();
-			}
-		}
 
 		return flag;
 	}
@@ -9193,19 +9133,12 @@ public class PurchaseOrderFunctions {
 		}
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
+				webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		commonFunc.navigatePurchaseOrderPage();
+		verifyValidatePoStatus(VariableHandler.getPONumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
-		if (flag) {
-			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
-					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HariUsername"));
-			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
-				commonFunc.navigatePurchaseOrderPage();
-				verifyValidatePoStatus(VariableHandler.getPONumber(),
-						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-				flag = commonFunc.logoutUser();
-			}
-		}
 
 		return flag;
 	}
@@ -9275,20 +9208,11 @@ public class PurchaseOrderFunctions {
 		}
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
-		flag = commonFunc.logoutUser();
-		if (flag) {
-			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
-					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HariUsername"));
-			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
-				commonFunc.navigatePurchaseOrderPage();
-				verifyValidatePoStatus(VariableHandler.getPONumber(),
-						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-				flag = commonFunc.logoutUser();
-			}
-		}
-
+		commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
+				webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		commonFunc.navigatePurchaseOrderPage();
+		verifyValidatePoStatus(VariableHandler.getPONumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		return flag;
 	}
 
@@ -9355,19 +9279,12 @@ public class PurchaseOrderFunctions {
 		}
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
+				webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		commonFunc.navigatePurchaseOrderPage();
+		verifyValidatePoStatus(VariableHandler.getPONumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
-		if (flag) {
-			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
-					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HariUsername"));
-			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
-				commonFunc.navigatePurchaseOrderPage();
-				verifyValidatePoStatus(VariableHandler.getPONumber(),
-						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-				flag = commonFunc.logoutUser();
-			}
-		}
 
 		return flag;
 	}
@@ -9517,19 +9434,12 @@ public class PurchaseOrderFunctions {
 		}
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
+				webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		commonFunc.navigatePurchaseOrderPage();
+		verifyValidatePoStatus(VariableHandler.getPONumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
-		if (flag) {
-			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
-					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HariUsername"));
-			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
-				commonFunc.navigatePurchaseOrderPage();
-				verifyValidatePoStatus(VariableHandler.getPONumber(),
-						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-				flag = commonFunc.logoutUser();
-			}
-		}
 
 		return flag;
 	}
@@ -9601,19 +9511,12 @@ public class PurchaseOrderFunctions {
 		}
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
+				webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		commonFunc.navigatePurchaseOrderPage();
+		verifyValidatePoStatus(VariableHandler.getPONumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
-		if (flag) {
-			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
-					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HariUsername"));
-			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
-				commonFunc.navigatePurchaseOrderPage();
-				verifyValidatePoStatus(VariableHandler.getPONumber(),
-						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-				flag = commonFunc.logoutUser();
-			}
-		}
 
 		return flag;
 	}
@@ -9682,19 +9585,12 @@ public class PurchaseOrderFunctions {
 		}
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
+				webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		commonFunc.navigatePurchaseOrderPage();
+		verifyValidatePoStatus(VariableHandler.getPONumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
-		if (flag) {
-			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
-					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HariUsername"));
-			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
-				commonFunc.navigatePurchaseOrderPage();
-				verifyValidatePoStatus(VariableHandler.getPONumber(),
-						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-				flag = commonFunc.logoutUser();
-			}
-		}
 
 		return flag;
 	}
@@ -9762,19 +9658,12 @@ public class PurchaseOrderFunctions {
 		}
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
+				webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		commonFunc.navigatePurchaseOrderPage();
+		verifyValidatePoStatus(VariableHandler.getPONumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
-		if (flag) {
-			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
-					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HariUsername"));
-			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
-				commonFunc.navigatePurchaseOrderPage();
-				verifyValidatePoStatus(VariableHandler.getPONumber(),
-						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-				flag = commonFunc.logoutUser();
-			}
-		}
 
 		return flag;
 	}
@@ -9843,20 +9732,12 @@ public class PurchaseOrderFunctions {
 		}
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
+				webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		commonFunc.navigatePurchaseOrderPage();
+		verifyValidatePoStatus(VariableHandler.getPONumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
-		if (flag) {
-			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
-					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HariUsername"));
-			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
-				commonFunc.navigatePurchaseOrderPage();
-				verifyValidatePoStatus(VariableHandler.getPONumber(),
-						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-				flag = commonFunc.logoutUser();
-			}
-		}
-
 		return flag;
 	}
 
@@ -9925,19 +9806,12 @@ public class PurchaseOrderFunctions {
 		}
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
+				webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		commonFunc.navigatePurchaseOrderPage();
+		verifyValidatePoStatus(VariableHandler.getPONumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
-		if (flag) {
-			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
-					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HariUsername"));
-			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
-				commonFunc.navigatePurchaseOrderPage();
-				verifyValidatePoStatus(VariableHandler.getPONumber(),
-						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-				flag = commonFunc.logoutUser();
-			}
-		}
 
 		return flag;
 	}
@@ -10007,19 +9881,12 @@ public class PurchaseOrderFunctions {
 		}
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
+				webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		commonFunc.navigatePurchaseOrderPage();
+		verifyValidatePoStatus(VariableHandler.getPONumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
-		if (flag) {
-			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
-					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HariUsername"));
-			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
-				commonFunc.navigatePurchaseOrderPage();
-				verifyValidatePoStatus(VariableHandler.getPONumber(),
-						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-				flag = commonFunc.logoutUser();
-			}
-		}
 
 		return flag;
 	}
@@ -10089,19 +9956,12 @@ public class PurchaseOrderFunctions {
 		}
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
+				webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		commonFunc.navigatePurchaseOrderPage();
+		verifyValidatePoStatus(VariableHandler.getPONumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
-		if (flag) {
-			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
-					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HariUsername"));
-			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
-				commonFunc.navigatePurchaseOrderPage();
-				verifyValidatePoStatus(VariableHandler.getPONumber(),
-						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-				flag = commonFunc.logoutUser();
-			}
-		}
 
 		return flag;
 	}
@@ -10170,19 +10030,12 @@ public class PurchaseOrderFunctions {
 		}
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
+				webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		commonFunc.navigatePurchaseOrderPage();
+		verifyValidatePoStatus(VariableHandler.getPONumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
-		if (flag) {
-			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
-					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HariUsername"));
-			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
-				commonFunc.navigatePurchaseOrderPage();
-				verifyValidatePoStatus(VariableHandler.getPONumber(),
-						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-				flag = commonFunc.logoutUser();
-			}
-		}
 
 		return flag;
 	}
@@ -10224,9 +10077,6 @@ public class PurchaseOrderFunctions {
 		PR_Func.saveHeaderAndClickPost();
 		PR_Func.searchPRAndCheckPRStatus(VariableHandler.getPRNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickPendingIcon();
 		clickPendingPRAndSearchPRNo();
@@ -10319,9 +10169,6 @@ public class PurchaseOrderFunctions {
 		PR_Func.saveHeaderAndClickPost();
 		PR_Func.searchPRAndCheckPRStatus(VariableHandler.getPRNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickPendingIcon();
 		clickPendingPRAndSearchPRNo();
@@ -10444,9 +10291,6 @@ public class PurchaseOrderFunctions {
 		PR_Func.saveHeaderAndClickPost();
 		PR_Func.searchPRAndCheckPRStatus(VariableHandler.getPRNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickPendingIcon();
 		clickPendingPRAndSearchPRNo();
@@ -10539,9 +10383,6 @@ public class PurchaseOrderFunctions {
 		PR_Func.saveHeaderAndClickPost();
 		PR_Func.searchPRAndCheckPRStatus(VariableHandler.getPRNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickPendingIcon();
 		clickPendingPRAndSearchPRNo();
@@ -10634,9 +10475,6 @@ public class PurchaseOrderFunctions {
 		PR_Func.saveHeaderAndClickPost();
 		PR_Func.searchPRAndCheckPRStatus(VariableHandler.getPRNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickPendingIcon();
 		clickPendingPRAndSearchPRNo();
@@ -10730,9 +10568,6 @@ public class PurchaseOrderFunctions {
 		PR_Func.saveHeaderAndClickPost();
 		PR_Func.searchPRAndCheckPRStatus(VariableHandler.getPRNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickPendingIcon();
 		clickPendingPRAndSearchPRNo();
@@ -10831,9 +10666,6 @@ public class PurchaseOrderFunctions {
 		PR_Func.saveHeaderAndClickPost();
 		PR_Func.searchPRAndCheckPRStatus(VariableHandler.getPRNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickPendingIcon();
 		clickPendingPRAndSearchPRNo();
@@ -10932,9 +10764,6 @@ public class PurchaseOrderFunctions {
 		PR_Func.saveHeaderAndClickPost();
 		PR_Func.searchPRAndCheckPRStatus(VariableHandler.getPRNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickPendingIcon();
 		clickPendingPRAndSearchPRNo();
@@ -11033,9 +10862,6 @@ public class PurchaseOrderFunctions {
 		PR_Func.saveHeaderAndClickPost();
 		PR_Func.searchPRAndCheckPRStatus(VariableHandler.getPRNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickPendingIcon();
 		clickPendingPRAndSearchPRNo();
@@ -11134,9 +10960,6 @@ public class PurchaseOrderFunctions {
 		PR_Func.saveHeaderAndClickPost();
 		PR_Func.searchPRAndCheckPRStatus(VariableHandler.getPRNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickPendingIcon();
 		clickPendingPRAndSearchPRNo();
@@ -11259,20 +11082,12 @@ public class PurchaseOrderFunctions {
 		}
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
+				webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		commonFunc.navigatePurchaseOrderPage();
+		verifyValidatePoStatus(VariableHandler.getPONumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
-		if (flag) {
-			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
-					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HariUsername"));
-			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
-				commonFunc.navigatePurchaseOrderPage();
-				verifyValidatePoStatus(VariableHandler.getPONumber(),
-						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-				flag = commonFunc.logoutUser();
-			}
-		}
-
 		return flag;
 	}
 
@@ -11341,19 +11156,12 @@ public class PurchaseOrderFunctions {
 		}
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
+				webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		commonFunc.navigatePurchaseOrderPage();
+		verifyValidatePoStatus(VariableHandler.getPONumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
-		if (flag) {
-			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
-					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HariUsername"));
-			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
-				commonFunc.navigatePurchaseOrderPage();
-				verifyValidatePoStatus(VariableHandler.getPONumber(),
-						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-				flag = commonFunc.logoutUser();
-			}
-		}
 
 		return flag;
 	}
@@ -11423,19 +11231,12 @@ public class PurchaseOrderFunctions {
 		}
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
+				webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		commonFunc.navigatePurchaseOrderPage();
+		verifyValidatePoStatus(VariableHandler.getPONumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
-		if (flag) {
-			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
-					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HariUsername"));
-			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
-				commonFunc.navigatePurchaseOrderPage();
-				verifyValidatePoStatus(VariableHandler.getPONumber(),
-						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-				flag = commonFunc.logoutUser();
-			}
-		}
 
 		return flag;
 	}
@@ -11505,19 +11306,12 @@ public class PurchaseOrderFunctions {
 		}
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
+				webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		commonFunc.navigatePurchaseOrderPage();
+		verifyValidatePoStatus(VariableHandler.getPONumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
-		if (flag) {
-			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
-					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HariUsername"));
-			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
-				commonFunc.navigatePurchaseOrderPage();
-				verifyValidatePoStatus(VariableHandler.getPONumber(),
-						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-				flag = commonFunc.logoutUser();
-			}
-		}
 
 		return flag;
 	}
@@ -11586,19 +11380,12 @@ public class PurchaseOrderFunctions {
 		}
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
+				webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		commonFunc.navigatePurchaseOrderPage();
+		verifyValidatePoStatus(VariableHandler.getPONumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
-		if (flag) {
-			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
-					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HariUsername"));
-			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
-				commonFunc.navigatePurchaseOrderPage();
-				verifyValidatePoStatus(VariableHandler.getPONumber(),
-						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-				flag = commonFunc.logoutUser();
-			}
-		}
 
 		return flag;
 	}
@@ -11668,19 +11455,12 @@ public class PurchaseOrderFunctions {
 		}
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
+				webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		commonFunc.navigatePurchaseOrderPage();
+		verifyValidatePoStatus(VariableHandler.getPONumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
-		if (flag) {
-			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
-					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HariUsername"));
-			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
-				commonFunc.navigatePurchaseOrderPage();
-				verifyValidatePoStatus(VariableHandler.getPONumber(),
-						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-				flag = commonFunc.logoutUser();
-			}
-		}
 
 		return flag;
 	}
@@ -11750,19 +11530,12 @@ public class PurchaseOrderFunctions {
 		}
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
+				webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		commonFunc.navigatePurchaseOrderPage();
+		verifyValidatePoStatus(VariableHandler.getPONumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
-		if (flag) {
-			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
-					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HariUsername"));
-			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
-				commonFunc.navigatePurchaseOrderPage();
-				verifyValidatePoStatus(VariableHandler.getPONumber(),
-						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-				flag = commonFunc.logoutUser();
-			}
-		}
 
 		return flag;
 	}
@@ -11832,19 +11605,12 @@ public class PurchaseOrderFunctions {
 		}
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
+				webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		commonFunc.navigatePurchaseOrderPage();
+		verifyValidatePoStatus(VariableHandler.getPONumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
-		if (flag) {
-			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
-					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HariUsername"));
-			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
-				commonFunc.navigatePurchaseOrderPage();
-				verifyValidatePoStatus(VariableHandler.getPONumber(),
-						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-				flag = commonFunc.logoutUser();
-			}
-		}
 
 		return flag;
 	}
@@ -11914,19 +11680,12 @@ public class PurchaseOrderFunctions {
 		}
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
+				webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		commonFunc.navigatePurchaseOrderPage();
+		verifyValidatePoStatus(VariableHandler.getPONumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
-		if (flag) {
-			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
-					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HariUsername"));
-			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
-				commonFunc.navigatePurchaseOrderPage();
-				verifyValidatePoStatus(VariableHandler.getPONumber(),
-						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-				flag = commonFunc.logoutUser();
-			}
-		}
 
 		return flag;
 	}
@@ -11995,19 +11754,12 @@ public class PurchaseOrderFunctions {
 		}
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
+				webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		commonFunc.navigatePurchaseOrderPage();
+		verifyValidatePoStatus(VariableHandler.getPONumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
-		if (flag) {
-			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
-					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HariUsername"));
-			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
-				commonFunc.navigatePurchaseOrderPage();
-				verifyValidatePoStatus(VariableHandler.getPONumber(),
-						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-				flag = commonFunc.logoutUser();
-			}
-		}
 
 		return flag;
 	}
@@ -12049,9 +11801,6 @@ public class PurchaseOrderFunctions {
 		PR_Func.saveHeaderAndClickPost();
 		PR_Func.searchPRAndCheckPRStatus(VariableHandler.getPRNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickPendingIcon();
 		clickPendingPRAndSearchPRNo();
@@ -12237,9 +11986,6 @@ public class PurchaseOrderFunctions {
 		PR_Func.saveHeaderAndClickPost();
 		PR_Func.searchPRAndCheckPRStatus(VariableHandler.getPRNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickPendingIcon();
 		clickPendingPRAndSearchPRNo();
@@ -12331,9 +12077,6 @@ public class PurchaseOrderFunctions {
 		PR_Func.saveHeaderAndClickPost();
 		PR_Func.searchPRAndCheckPRStatus(VariableHandler.getPRNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickPendingIcon();
 		clickPendingPRAndSearchPRNo();
@@ -12424,9 +12167,6 @@ public class PurchaseOrderFunctions {
 		PR_Func.saveHeaderAndClickPost();
 		PR_Func.searchPRAndCheckPRStatus(VariableHandler.getPRNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickPendingIcon();
 		clickPendingPRAndSearchPRNo();
@@ -12632,20 +12372,11 @@ public class PurchaseOrderFunctions {
 		}
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
-		flag = commonFunc.logoutUser();
-		if (flag) {
-			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
-					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HariUsername"));
-			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
-				commonFunc.navigatePurchaseOrderPage();
-				verifyValidatePoStatus(VariableHandler.getPONumber(),
-						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-				flag = commonFunc.logoutUser();
-			}
-		}
-
+		commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
+				webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		commonFunc.navigatePurchaseOrderPage();
+		verifyValidatePoStatus(VariableHandler.getPONumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		return flag;
 	}
 
@@ -12802,9 +12533,6 @@ public class PurchaseOrderFunctions {
 		PR_Func.saveHeaderAndClickPost();
 		PR_Func.searchPRAndCheckPRStatus(VariableHandler.getPRNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickPendingIcon();
 		clickPendingPRAndSearchPRNo();
@@ -12856,7 +12584,6 @@ public class PurchaseOrderFunctions {
 		verifyHeaderTickAndPost();
 		verifyApprovePOUsingAshokUser();
 		verifyValidatePoStatus(VariableHandler.getPONumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		flag = commonFunc.logoutUser();
 		return flag;
 	}
 

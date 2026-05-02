@@ -99,6 +99,11 @@ public class CommonFunctions {
 	public boolean enterUrl() {
 		webDB.enterURL(System.getProperty("url"));
 		flag = webDB.waitForElementUntilGivenTime(CommonUiLocators.LoginForm, ElementType.Xpath, 45);
+		if (!flag) {
+			logs.logging("INFO", "Retrying Navigate To URL");
+			webDB.navigateToUrl(System.getProperty("url"));
+			flag = webDB.waitForElementUntilGivenTime(CommonUiLocators.LoginForm, ElementType.Xpath, 45);
+		}
 		return flag;
 	}
 
@@ -2724,6 +2729,10 @@ public class CommonFunctions {
 		}
 		if ((Expected.equalsIgnoreCase("RAW MATERIAL WAREHOUSE") && Actual.equalsIgnoreCase("RM WH"))
 				|| (Actual.equalsIgnoreCase("RAW MATERIAL WAREHOUSE") && Expected.equalsIgnoreCase("RM WH"))) {
+			Actual = Expected;
+		}
+		if ((Expected.equalsIgnoreCase("FINISHED GOODS WAREHOUSE") && Actual.equalsIgnoreCase("FG WH"))
+				|| (Actual.equalsIgnoreCase("FINISHED GOODS WAREHOUSE") && Expected.equalsIgnoreCase("FG WH"))) {
 			Actual = Expected;
 		}
 		flag = (Actual.equalsIgnoreCase(Expected));

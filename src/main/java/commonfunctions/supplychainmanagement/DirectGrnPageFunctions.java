@@ -2759,37 +2759,12 @@ public class DirectGrnPageFunctions {
 	 * @author PremKumar.K-RMITS
 	 */
 	public void waitingForApproval() {
-		commonFunc.hardWait(3000);
-		if (webDB.verifyIsElementDisplayed(GrnLocators.DocAprovalIfrmae, ElementType.Xpath)) {
-			flag = true;
-			VariableHandler.setApprovalFlag(flag);
-			webDB.switchToFrame(PurchaseOrderPageLocators.WorkApprovalFrame, ElementType.Xpath);
-			logs.logging("INFO", "Switched To Workflow Frame");
-			commonFunc.searchAndSelectValueInFilters(PurchaseOrderPageLocators.ForwardApproval,
-					commonFunc.getDataFromTestDataSheet("AshokValue"));
-			commonFunc.hardWait(2000);
-			webDB.switchToFrame(PurchaseOrderPageLocators.WorkApprovalFrame, ElementType.Xpath);
-			logs.logging("INFO", "Switched To WorkFlow Frame");
-			flag = webDB.waitForElement(PurchaseOrderPageLocators.OkButtonFwdForQcDocument, ElementType.Xpath);
-			if (flag) {
-				webDB.clickAnElement(PurchaseOrderPageLocators.OkButtonFwdForQcDocument, ElementType.Xpath);
-				logs.logging("INFO", "Ok Button Is Clicked");
-				webDB.switchToDefaultContent();
-				flag = webDB.waitForClickElement(CommonUiLocators.LogoutIcon, ElementType.Xpath);
-				if (flag) {
-					commonFunc.hardWait(3000);
-					commonFunc.logoutUser();
-					commonFunc.validCommonLogin(System.getProperty("AshokUsername"),
-							System.getProperty("AshokPassword"));
-					approvalFunc.navigateToApprovals();
-					approvalFunc.filterDocumentsforApproval(VariableHandler.getIDNumber());
-					approvalFunc.verifyApproveWithDocNumber(VariableHandler.getIDNumber());
-					commonFunc.hardWait(3000);
-					logs.logging("INFO", "PASSED");
-					flag = commonFunc.logoutUser();
-				}
-			}
-		}
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		logs.logging("INFO", "Ok Button Is Clicked");
+		webDB.switchToDefaultContent();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getIDNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		assertTrue(flag);
 	}
 
@@ -7957,5 +7932,28 @@ public class DirectGrnPageFunctions {
 			}
 		}
 		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Is Used To Verify Direct Grn PriceList
+	 * 
+	 * @author Deepan-GWL
+	 * @throws IOException
+	 */
+	public void verifyCreationOfDirectGrnPriceListForIncomingInspection() {
+		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
+				"DuraiUsername");
+		commonFunc.naviagteGrnPage();
+		verifyGrnAdd();
+		verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("L0001"), commonFunc.getDataFromTestDataSheet("GRNPG"),
+				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
+				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
+		verifyDirectGRNAddLineDetails(webDB.getDataFromProperties("QualityInspectionSheet"),
+				webDB.getDataFromProperties("Insp-IncommingSheet"));
+		DirectGRNmultipleLotandSerialWithGeneralType(webDB.getDataFromProperties("QualityInspectionSheet"),
+				webDB.getDataFromProperties("Insp-IncommingSheet"));
+		GRNFunc.overAllSaveAndPost();
+		GRNFunc.waitingForApproval();
+
 	}
 }
