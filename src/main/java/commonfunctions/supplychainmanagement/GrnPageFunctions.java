@@ -231,7 +231,10 @@ public class GrnPageFunctions {
 			if (flag)
 				webDB.clickAnElement(GrnLocators.OverAllSave, ElementType.Xpath);
 			logs.logging("INFO", "Document Successfully Saved");
+			commonFunc.checkRefreshCellsDisappear();
+			commonFunc.checkRefreshCellsDisappear();
 			commonFunc.hardWait(2000);
+			webDB.verifyIsElementDisplayed(CommonUiLocators.PostToastMessage, ElementType.Xpath);
 			flag = webDB.waitForClickElement(GrnLocators.PostButton, ElementType.Xpath);
 			if (flag) {
 				webDB.clickAnElement(GrnLocators.PostButton, ElementType.Xpath);

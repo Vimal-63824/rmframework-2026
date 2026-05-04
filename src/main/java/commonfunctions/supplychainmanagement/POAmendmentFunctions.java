@@ -4947,37 +4947,29 @@ public class POAmendmentFunctions {
 		}
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
-		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
-		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
-			commonFunc.navigatePoAmendmentPage();
-			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
-					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
-			commonFunc.navigatePurchaseOrderPage();
-			verifyOpenPONumber(VariableHandler.getPONumber());
+		commonFunc.navigatePoAmendmentPage();
+		verifyValidatePOAStatus(VariableHandler.getPOANumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+		commonFunc.navigatePurchaseOrderPage();
+		verifyOpenPONumber(VariableHandler.getPONumber());
 
-			for (int j = 3; j < itemmultiple.length; j++) {
-				if (itemmultiple[j][0].equals(commonFunc.getDataFromTestDataSheet("FinalPO"))) {
-					for (int i = j + 3; i < itemmultiple.length; i++) {
-						String cgst = itemmultiple[i][21];
-						String item = itemmultiple[i][1];
-						String LineAmount = itemmultiple[i][18];
-						String TaxPercent = itemmultiple[i][20];
-						if (!(item.equals("") || item.equals(commonFunc.getDataFromTestDataSheet("Total")))) {
-							purchaseOrderFunctions.verifyLineAmountValidationAndPom(item, LineAmount);
-							purchaseOrderFunctions.taxValidation(item, TaxPercent, cgst);
-						}
+		for (int j = 3; j < itemmultiple.length; j++) {
+			if (itemmultiple[j][0].equals(commonFunc.getDataFromTestDataSheet("FinalPO"))) {
+				for (int i = j + 3; i < itemmultiple.length; i++) {
+					String cgst = itemmultiple[i][21];
+					String item = itemmultiple[i][1];
+					String LineAmount = itemmultiple[i][18];
+					String TaxPercent = itemmultiple[i][20];
+					if (!(item.equals("") || item.equals(commonFunc.getDataFromTestDataSheet("Total")))) {
+						purchaseOrderFunctions.verifyLineAmountValidationAndPom(item, LineAmount);
+						purchaseOrderFunctions.taxValidation(item, TaxPercent, cgst);
 					}
 				}
 			}
-			flag = commonFunc.logoutUser();
 		}
-
+		flag = commonFunc.logoutUser();
 	}
 
 	/**
@@ -7572,7 +7564,6 @@ public class POAmendmentFunctions {
 		}
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
-		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
@@ -8866,7 +8857,6 @@ public class POAmendmentFunctions {
 		}
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
-		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
