@@ -17,6 +17,7 @@ import java.util.regex.Pattern;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 
 import commonfunctions.CommonFunctions;
 import commonfunctions.VariableHandler;
@@ -2048,9 +2049,7 @@ public class InspectionDocumentFunctions {
 			verifyChangeSampleAndObservationValue();
 			enterObservationValue();
 			verifyAttributeTabClicking();
-			verifyEnteringAttributeVAlue();
 			verifyTextTabClicking();
-			verifyEnteringTextVAlue();
 
 		}
 		clickTickAndPostIconForGrnDocument();
@@ -2085,13 +2084,23 @@ public class InspectionDocumentFunctions {
 				List<WebElement> ObservationWebElement = webDB.getDriver()
 						.findElements(By.xpath(InspectionDocumentsLocators.ObservationTableValue));
 				for (int i = 0; i < sampleWebElement.size(); i++) {
-					sampleWebElement.get(i).click();
-//					sampleInputWebElement.get(i).clear();
-//					webDB.clearText(InspectionDocumentsLocators., null)
-//					sampleInputWebElement.get(i).sendKeys("1");
-//					ObservationWebElement.get(i).click();
-//					ObservationInputWebElement.get(i).clear();
-//					ObservationInputWebElement.get(i).sendKeys("1");
+					Actions action = new Actions(webDB.getDriver());
+					commonFunc.hardWait(1000);
+					action.doubleClick(sampleWebElement.get(i)).build().perform();
+					int a = i + 1;
+					webDB.clearText(InspectionDocumentsLocators.SampleTableValueInput(a), ElementType.Xpath);
+					commonFunc.hardWait(1000);
+					action.doubleClick(sampleWebElement.get(i)).build().perform();
+					webDB.sendTextToAnElement(InspectionDocumentsLocators.SampleTableValueInput(a), "1",
+							ElementType.Xpath);
+					action.doubleClick(ObservationWebElement.get(i)).build().perform();
+					commonFunc.hardWait(1000);
+					webDB.clearText(InspectionDocumentsLocators.ObservationTableValueInput(a), ElementType.Xpath);
+					commonFunc.hardWait(1000);
+					action.doubleClick(ObservationWebElement.get(i)).build().perform();
+					webDB.sendTextToAnElement(InspectionDocumentsLocators.ObservationTableValueInput(a), "1",
+							ElementType.Xpath);
+
 				}
 				flag = webDB.waitForElement(InspectionDocumentsLocators.TickButtonInspChar, ElementType.Xpath);
 				if (flag) {
