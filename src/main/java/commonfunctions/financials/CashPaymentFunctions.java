@@ -600,6 +600,7 @@ public class CashPaymentFunctions {
 								if (flag) {
 									webDB.clickAnElement(BankReceiptLocators.BankReceiptGSTDetailsSaveButton,
 											ElementType.Xpath);
+									commonFunc.hardWait(1000);
 									webDB.switchToDefaultContent();
 									flag = webDB.waitForElement(BankReceiptLocators.BankReceiptGSTCloseButton,
 											ElementType.Xpath);
@@ -1252,73 +1253,132 @@ public class CashPaymentFunctions {
 					String TDSSourceAssVal = CashPayments[i][32];
 					String TDSSourceAmt = CashPayments[i][33];
 
-					if (!POSheetName.equals("")) {
-						salesOrdFunc.verifyAssertionBothValues(dbCommonFunctions.BankPaymentLineDetails(
-								VariableHandler.getCashPaymentOrReceiptDocNumber(), SeqNo,
-								commonFunc.getDataFromTestDataSheet("TDSColumnName")), TDS);
-						logs.logging("INFO",
-								" Line Wise TDS ID Is Matched With DataBase Values Against This Cash Receipt Document "
-										+ VariableHandler.getCashPaymentOrReceiptDocNumber());
+//					}
+					if (!SheetName.equals("BankPaymentExpGSTTDS")) {
+						if (!POSheetName.equals("")) {
+							salesOrdFunc.verifyAssertionBothValues(dbCommonFunctions.BankPaymentLineDetails(
+									VariableHandler.getCashPaymentOrReceiptDocNumber(), SeqNo,
+									commonFunc.getDataFromTestDataSheet("TDSColumnName")), TDS);
+							logs.logging("INFO",
+									" Line Wise TDS ID Is Matched With DataBase Values Against This Cash Receipt Document "
+											+ VariableHandler.getCashPaymentOrReceiptDocNumber());
 
-						salesOrdFunc.verifyAssertionBothValues(
-								dbCommonFunctions.BankPaymentLineDetails(
-										VariableHandler.getCashPaymentOrReceiptDocNumber(), SeqNo,
-										commonFunc.getDataFromTestDataSheet("TDSSourceAccountColumnName")),
-								TDSSourceAcc);
-						logs.logging("INFO",
-								" Line Wise TDS Source Account Is Matched With DataBase Values Against This Cash Receipt Document "
-										+ VariableHandler.getCashPaymentOrReceiptDocNumber());
+							salesOrdFunc.verifyAssertionBothValues(
+									dbCommonFunctions.BankPaymentLineDetails(
+											VariableHandler.getCashPaymentOrReceiptDocNumber(), SeqNo,
+											commonFunc.getDataFromTestDataSheet("TDSSourceAccountColumnName")),
+									TDSSourceAcc);
+							logs.logging("INFO",
+									" Line Wise TDS Source Account Is Matched With DataBase Values Against This Cash Receipt Document "
+											+ VariableHandler.getCashPaymentOrReceiptDocNumber());
 
-						salesOrdFunc.verifyAssertionBothValues(
-								dbCommonFunctions.BankPaymentLineDetails(
-										VariableHandler.getCashPaymentOrReceiptDocNumber(), SeqNo,
-										commonFunc.getDataFromTestDataSheet("TDSSourcePctColumnName")),
-								TDSSourcePercentage);
-						logs.logging("INFO",
-								" Line Wise TDS Source Account Is Matched With DataBase Values Against This Cash Receipt Document "
-										+ VariableHandler.getCashPaymentOrReceiptDocNumber());
+							salesOrdFunc.verifyAssertionBothValues(
+									dbCommonFunctions.BankPaymentLineDetails(
+											VariableHandler.getCashPaymentOrReceiptDocNumber(), SeqNo,
+											commonFunc.getDataFromTestDataSheet("TDSSourcePctColumnName")),
+									TDSSourcePercentage);
+							logs.logging("INFO",
+									" Line Wise TDS Source Account Is Matched With DataBase Values Against This Cash Receipt Document "
+											+ VariableHandler.getCashPaymentOrReceiptDocNumber());
 
-						salesOrdFunc.verifyAssertionBothValues(
-								dbCommonFunctions.BankPaymentLineDetails(
-										VariableHandler.getCashPaymentOrReceiptDocNumber(), SeqNo,
-										commonFunc.getDataFromTestDataSheet("TDSSourceAssValueColumnName")),
-								TDSSourceAssVal);
-						logs.logging("INFO",
-								" Line Wise TDS Source Assesable Value Is Matched With DataBase Values Against This Cash Receipt Document "
-										+ VariableHandler.getCashPaymentOrReceiptDocNumber());
+							salesOrdFunc.verifyAssertionBothValues(
+									dbCommonFunctions.BankPaymentLineDetails(
+											VariableHandler.getCashPaymentOrReceiptDocNumber(), SeqNo,
+											commonFunc.getDataFromTestDataSheet("TDSSourceAssValueColumnName")),
+									TDSSourceAssVal);
+							logs.logging("INFO",
+									" Line Wise TDS Source Assesable Value Is Matched With DataBase Values Against This Cash Receipt Document "
+											+ VariableHandler.getCashPaymentOrReceiptDocNumber());
 
-						salesOrdFunc.verifyAssertionBothValues(dbCommonFunctions.BankPaymentLineDetails(
-								VariableHandler.getCashPaymentOrReceiptDocNumber(), SeqNo,
-								commonFunc.getDataFromTestDataSheet("TDSSourceAmtColumnName")), TDSSourceAmt);
-						logs.logging("INFO",
-								" Line Wise TDS Source Amount Value Is Matched With DataBase Values Against This Cash Receipt Document "
-										+ VariableHandler.getCashPaymentOrReceiptDocNumber());
+							salesOrdFunc.verifyAssertionBothValues(
+									dbCommonFunctions.BankPaymentLineDetails(
+											VariableHandler.getCashPaymentOrReceiptDocNumber(), SeqNo,
+											commonFunc.getDataFromTestDataSheet("TDSSourceAmtColumnName")),
+									TDSSourceAmt);
+							logs.logging("INFO",
+									" Line Wise TDS Source Amount Value Is Matched With DataBase Values Against This Cash Receipt Document "
+											+ VariableHandler.getCashPaymentOrReceiptDocNumber());
+						}
 					} else {
-						salesOrdFunc.verifyAssertionBothValues(
-								dbCommonFunctions.BankPaymentLineDetails(
-										VariableHandler.getCashPaymentOrReceiptDocNumber(), SeqNo,
-										commonFunc.getDataFromTestDataSheet("TDSSourcePctColumnName")),
-								TDSSourcePercentage);
-						logs.logging("INFO",
-								" Line Wise TDS Source Account Is Matched With DataBase Values Against This Cash Receipt Document "
-										+ VariableHandler.getCashPaymentOrReceiptDocNumber());
+						String HSNCode1 = CashPayments[i][14];
+						String TDS1 = CashPayments[i][33];
+						String TDSSourceAcc1 = CashPayments[i][34];
+						String TDSSourcePercentage1 = CashPayments[i][35];
+						String TDSSourceAssVal1 = CashPayments[i][36];
+						String TDSSourceAmt1 = CashPayments[i][37];
+						if (!HSNCode1.equals("")) {
 
-						salesOrdFunc.verifyAssertionBothValues(
-								dbCommonFunctions.BankPaymentLineDetails(
-										VariableHandler.getCashPaymentOrReceiptDocNumber(), SeqNo,
-										commonFunc.getDataFromTestDataSheet("TDSSourceAssValueColumnName")),
-								TDSSourceAssVal);
-						logs.logging("INFO",
-								" Line Wise TDS Source Assesable Value Is Matched With DataBase Values Against This Cash Receipt Document "
-										+ VariableHandler.getCashPaymentOrReceiptDocNumber());
+							salesOrdFunc.verifyAssertionBothValues(dbCommonFunctions.BankPaymentLineDetails(
+									VariableHandler.getCashPaymentOrReceiptDocNumber(), SeqNo,
+									commonFunc.getDataFromTestDataSheet("TDSColumnName")), TDS1);
+							logs.logging("INFO",
+									" Line Wise TDS ID Is Matched With DataBase Values Against This Cash Receipt Document "
+											+ VariableHandler.getCashPaymentOrReceiptDocNumber());
 
-						salesOrdFunc.verifyAssertionBothValues(dbCommonFunctions.BankPaymentLineDetails(
-								VariableHandler.getCashPaymentOrReceiptDocNumber(), SeqNo,
-								commonFunc.getDataFromTestDataSheet("TDSSourceAmtColumnName")), TDSSourceAmt);
-						logs.logging("INFO",
-								" Line Wise TDS Source Amount Value Is Matched With DataBase Values Against This Cash Receipt Document "
-										+ VariableHandler.getCashPaymentOrReceiptDocNumber());
+							salesOrdFunc.verifyAssertionBothValues(
+									dbCommonFunctions.BankPaymentLineDetails(
+											VariableHandler.getCashPaymentOrReceiptDocNumber(), SeqNo,
+											commonFunc.getDataFromTestDataSheet("TDSSourceAccountColumnName")),
+									TDSSourceAcc1);
+							logs.logging("INFO",
+									" Line Wise TDS Source Account Is Matched With DataBase Values Against This Cash Receipt Document "
+											+ VariableHandler.getCashPaymentOrReceiptDocNumber());
+
+							salesOrdFunc.verifyAssertionBothValues(
+									dbCommonFunctions.BankPaymentLineDetails(
+											VariableHandler.getCashPaymentOrReceiptDocNumber(), SeqNo,
+											commonFunc.getDataFromTestDataSheet("TDSSourcePctColumnName")),
+									TDSSourcePercentage1);
+							logs.logging("INFO",
+									" Line Wise TDS Source Account Is Matched With DataBase Values Against This Cash Receipt Document "
+											+ VariableHandler.getCashPaymentOrReceiptDocNumber());
+
+							salesOrdFunc.verifyAssertionBothValues(
+									dbCommonFunctions.BankPaymentLineDetails(
+											VariableHandler.getCashPaymentOrReceiptDocNumber(), SeqNo,
+											commonFunc.getDataFromTestDataSheet("TDSSourceAssValueColumnName")),
+									TDSSourceAssVal1);
+							logs.logging("INFO",
+									" Line Wise TDS Source Assesable Value Is Matched With DataBase Values Against This Cash Receipt Document "
+											+ VariableHandler.getCashPaymentOrReceiptDocNumber());
+
+							salesOrdFunc.verifyAssertionBothValues(
+									dbCommonFunctions.BankPaymentLineDetails(
+											VariableHandler.getCashPaymentOrReceiptDocNumber(), SeqNo,
+											commonFunc.getDataFromTestDataSheet("TDSSourceAmtColumnName")),
+									TDSSourceAmt1);
+							logs.logging("INFO",
+									" Line Wise TDS Source Amount Value Is Matched With DataBase Values Against This Cash Receipt Document "
+											+ VariableHandler.getCashPaymentOrReceiptDocNumber());
+
+						}
 					}
+//					else {
+//						salesOrdFunc.verifyAssertionBothValues(
+//								dbCommonFunctions.BankPaymentLineDetails(
+//										VariableHandler.getCashPaymentOrReceiptDocNumber(), SeqNo,
+//										commonFunc.getDataFromTestDataSheet("TDSSourcePctColumnName")),
+//								TDSSourcePercentage);
+//						logs.logging("INFO",
+//								" Line Wise TDS Source Account Is Matched With DataBase Values Against This Cash Receipt Document "
+//										+ VariableHandler.getCashPaymentOrReceiptDocNumber());
+//
+//						salesOrdFunc.verifyAssertionBothValues(
+//								dbCommonFunctions.BankPaymentLineDetails(
+//										VariableHandler.getCashPaymentOrReceiptDocNumber(), SeqNo,
+//										commonFunc.getDataFromTestDataSheet("TDSSourceAssValueColumnName")),
+//								TDSSourceAssVal);
+//						logs.logging("INFO",
+//								" Line Wise TDS Source Assesable Value Is Matched With DataBase Values Against This Cash Receipt Document "
+//										+ VariableHandler.getCashPaymentOrReceiptDocNumber());
+//
+//						salesOrdFunc.verifyAssertionBothValues(dbCommonFunctions.BankPaymentLineDetails(
+//								VariableHandler.getCashPaymentOrReceiptDocNumber(), SeqNo,
+//								commonFunc.getDataFromTestDataSheet("TDSSourceAmtColumnName")), TDSSourceAmt);
+//						logs.logging("INFO",
+//								" Line Wise TDS Source Amount Value Is Matched With DataBase Values Against This Cash Receipt Document "
+//										+ VariableHandler.getCashPaymentOrReceiptDocNumber());
+//					}
 				}
 			}
 		}

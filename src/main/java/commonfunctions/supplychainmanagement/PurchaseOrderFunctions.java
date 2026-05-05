@@ -32,6 +32,7 @@ import commonfunctions.financials.PurchaseBillsFunctions;
 import commonfunctions.ItemDetailsHandler.POLineDetailsName;
 import commonlocators.CommonUiLocators;
 import commonlocators.supplychainmanagement.ApprovalPageLocators;
+import commonlocators.supplychainmanagement.DirectGrnPageLocators;
 import commonlocators.supplychainmanagement.GrnLocators;
 import commonlocators.supplychainmanagement.OpenPoRcLocators;
 import commonlocators.supplychainmanagement.PurchaseOrderPageLocators;
@@ -53,6 +54,7 @@ public class PurchaseOrderFunctions {
 	private static DBCommonFunctions dbCommonFunc = new DBCommonFunctions();
 	private static PurchaseBillsFunctions PRfunck = new PurchaseBillsFunctions();
 	public ArrayList<String> MultiPODocumentNumber = new ArrayList<String>();
+	private static SalesOrderFunctions salesOrderFunctions = new SalesOrderFunctions();
 
 	/**
 	 * Verify Create Direct PO Adding Parameter
@@ -64,8 +66,13 @@ public class PurchaseOrderFunctions {
 	 */
 	public void verifyCreateDirectPOAddingParameters(String LocationId, String SupplierName, String POType) {
 		// verifyCLickPurchaseOrderFrame();
-		commonFunc.searchAndSelectValueInFilters(PurchaseOrderPageLocators.LocationIdButton, LocationId);
-		verifyCLickPurchaseOrderFrame();
+		commonFunc.checkRefreshCellsDisappear();
+		String GetTextLocation = webDB.getDomPropertyFromElement(PurchaseOrderPageLocators.LocationInputField,
+				ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
+		if(!GetTextLocation.equals(LocationId)) {
+			commonFunc.searchAndSelectValueInFilters(PurchaseOrderPageLocators.LocationIdButton, LocationId);
+			verifyCLickPurchaseOrderFrame();
+		}
 		flag = webDB.selectDropDownByValue(PurchaseOrderPageLocators.PoTypeSelect, POType, ElementType.Xpath);
 		if (flag) {
 //			commonFunc.checkRefreshCellsDisappear();
@@ -141,6 +148,44 @@ public class PurchaseOrderFunctions {
 	}
 
 	/**
+	 * Verify Create Item In Po
+	 * 
+	 * @author Deepan-GWL
+	 * @param Item
+	 */
+	public void verifyCreateItemInPoHK(String Item) {
+		flag = webDB.waitForElement(PurchaseOrderPageLocators.ItemAddButton, ElementType.Xpath);
+		if (flag) {
+			logs.logging("INFO", "Item Add Button Is Displayed Successfully");
+			webDB.clickAnElement(PurchaseOrderPageLocators.ItemAddButton, ElementType.Xpath);
+			flag = webDB.waitForElement(PurchaseOrderPageLocators.POPageItemTable, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Item Add Button Is Clicked");
+//				webDB.moveToElement(PurchaseOrderPageLocators.POPageItemTable, ElementType.Xpath);
+				webDB.clickAnElement(PurchaseOrderPageLocators.POPageItemTable, ElementType.Xpath);
+//				webDB.clickAnElementWithoutException(PurchaseOrderPageLocators.POPageItemTable, ElementType.Xpath);
+//				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.checkRefreshCellsDisappear();
+				if (!webDB.verifyIsElementDisplayed(PurchaseOrderPageLocators.ItemSelectButton, ElementType.Xpath)) {
+					webDB.clickAnElementWithoutException(PurchaseOrderPageLocators.POPageItemTable, ElementType.Xpath);
+				}
+				commonFunc.searchAndSelectValueInFilters(PurchaseOrderPageLocators.ItemSelectButton, Item);
+				flag = webDB.waitForElement(PurchaseOrderPageLocators.InputItemPO, ElementType.Xpath);
+				if (flag) {
+					String value = webDB.getAttributeFromElement(PurchaseOrderPageLocators.InputItemPO,
+							ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
+					logs.logging("INFO", "Get Text Item Name Value from Table Is: " + value);
+					flag = value.contains(Item);
+					if (flag) {
+						logs.logging("INFO", "Verified Item Value Successfully");
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
 	 * Verify Add Table Specs
 	 * 
 	 * @author Deepan-GWL
@@ -189,6 +234,33 @@ public class PurchaseOrderFunctions {
 					PurchaseOrderPageLocators.OrderedQuantityInput, quantity);
 			commonFunc.checkRefreshCellsDisappear();
 			verifyAddTableSpecs(PurchaseOrderPageLocators.UnitCost, PurchaseOrderPageLocators.UnitCostInput, unitcost);
+			webDB.waitForElement(PurchaseOrderPageLocators.PONumber, ElementType.Xpath);
+			String PONumbervalue = webDB.getDomPropertyFromElement(PurchaseOrderPageLocators.PONumber,
+					ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
+			logs.logging("INFO", "Get PO Number Is: " + PONumbervalue);
+			VariableHandler.setPONumber(PONumbervalue);
+			MultiPODocumentNumber.add(VariableHandler.getPONumber());
+		} catch (Exception e) {
+		}
+	}
+
+	/**
+	 * Verify Create Item In Po
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyAddItemInPOWithQuantityAndUnitCostHK(String quantity, String unitcost) {
+		try {
+			commonFunc.checkRefreshCellsDisappear();
+			salesOrderFunctions.verifyClickAndEnterValueInTableFields(PurchaseOrderPageLocators.OrderedQuantity,
+					PurchaseOrderPageLocators.OrderedQuantityInput, quantity);
+			webDB.pressTabKey();
+//			verifyAddTableSpecs(PurchaseOrderPageLocators.OrderedQuantity,
+//					PurchaseOrderPageLocators.OrderedQuantityInput, quantity);
+//			commonFunc.checkRefreshCellsDisappear();
+			salesOrderFunctions.verifyClickAndEnterValueInTableFields(PurchaseOrderPageLocators.UnitCost,
+					PurchaseOrderPageLocators.UnitCostInput, unitcost);
+			webDB.pressTabKey();
 			webDB.waitForElement(PurchaseOrderPageLocators.PONumber, ElementType.Xpath);
 			String PONumbervalue = webDB.getDomPropertyFromElement(PurchaseOrderPageLocators.PONumber,
 					ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
@@ -272,11 +344,36 @@ public class PurchaseOrderFunctions {
 		flag = webDB.waitForClickElement(PurchaseOrderPageLocators.DPOTickButton, ElementType.Xpath);
 		if (flag) {
 			logs.logging("INFO", "Tick Icon Is Displayed");
-			commonFunc.checkRefreshCellsDisappear();
+//			commonFunc.checkRefreshCellsDisappear();
 			webDB.clickAnElement(PurchaseOrderPageLocators.DPOTickButton, ElementType.Xpath);
 			webDB.switchToDefaultContent();
 			commonFunc.checkRefreshCellsDisappear();
 			commonFunc.checkSuccessToastMessageDisappear();
+			flag = webDB.waitForElement(PurchaseOrderPageLocators.ItemAddButton, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Verified Navigate To PO Edit Page");
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * Verify Tick Icon Create PO
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyTickIconcreatePOHK() {
+//		commonFunc.checkRefreshCellsDisappear();
+		webDB.switchToDefaultContent();
+		verifyCLickPurchaseOrderFrame();
+		flag = webDB.waitForClickElement(PurchaseOrderPageLocators.DPOTickButton, ElementType.Xpath);
+		if (flag) {
+			logs.logging("INFO", "Tick Icon Is Displayed");
+//			commonFunc.checkRefreshCellsDisappear();
+			webDB.clickAnElement(PurchaseOrderPageLocators.DPOTickButton, ElementType.Xpath);
+			webDB.switchToDefaultContent();
+			commonFunc.checkRefreshCellsDisappear();
+//			commonFunc.checkSuccessToastMessageDisappear();
 			flag = webDB.waitForElement(PurchaseOrderPageLocators.ItemAddButton, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Verified Navigate To PO Edit Page");
@@ -297,6 +394,28 @@ public class PurchaseOrderFunctions {
 			webDB.clickAnElement(PurchaseOrderPageLocators.TickIconPO, ElementType.Xpath);
 			commonFunc.checkRefreshCellsDisappear();
 			commonFunc.checkRefreshCellsDisappear();
+			if (webDB.verifyIsElementDisplayed(PurchaseOrderPageLocators.CloseToastIcon, ElementType.Xpath)) {
+				logs.logging("INFO", "Item Tick Icon Is Clicked");
+				webDB.clickAnElementWithoutException(PurchaseOrderPageLocators.CloseToastIcon, ElementType.Xpath);
+				logs.logging("INFO", "Toast Close Icon Is Clicked");
+			}
+			flag = webDB.waitForElement(PurchaseOrderPageLocators.HeaderTickIconPO, ElementType.Xpath);
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * Verify Tick Icon Create Item
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyTickIconcreateItemHK() {
+//		commonFunc.checkRefreshCellsDisappear();
+		flag = webDB.waitForElement(PurchaseOrderPageLocators.TickIconPO, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(PurchaseOrderPageLocators.TickIconPO, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
+//			commonFunc.checkRefreshCellsDisappear();
 			if (webDB.verifyIsElementDisplayed(PurchaseOrderPageLocators.CloseToastIcon, ElementType.Xpath)) {
 				logs.logging("INFO", "Item Tick Icon Is Clicked");
 				webDB.clickAnElementWithoutException(PurchaseOrderPageLocators.CloseToastIcon, ElementType.Xpath);
@@ -2101,7 +2220,7 @@ public class PurchaseOrderFunctions {
 		}
 		String SupplierName = webDB.getDomPropertyFromElement(PurchaseOrderPageLocators.SupplierName, ElementType.Xpath,
 				commonFunc.getDataFromTestDataSheet("Value"));
-		commonFunc.hardWait(1000);
+		commonFunc.hardWait(500);
 		String CurrencyValue = webDB.getDomPropertyFromElement(PurchaseOrderPageLocators.CurrencyInput,
 				ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
 //		WebElement prefixelement = webDB.getDriver().findElement(By.xpath(PurchaseOrderPageLocators.PoPfxSelect));
@@ -2109,6 +2228,37 @@ public class PurchaseOrderFunctions {
 //		for (WebElement Textprefix : selectprefix.getAllSelectedOptions()) {
 //			String PoPrefix = Textprefix.getText();
 		verifyTickIconcreatePO();
+//			verifyPoHeaderDetails(PoType, location, SupplierName, CurrencyValue, PoPrefix);
+//		}
+	}
+
+	/**
+	 * Verify Create Direct PO
+	 * 
+	 * @author Deepan-GWL
+	 * 
+	 */
+	public void verifyCreateDirectPOHK() {
+		webDB.waitForElement(CommonUiLocators.PoCreateFrame, ElementType.Xpath);
+		webDB.switchToFrame(CommonUiLocators.PoCreateFrame, ElementType.Xpath);
+		String PoType = null;
+		String location = webDB.getDomPropertyFromElement(PurchaseOrderPageLocators.LocationIdInput, ElementType.Xpath,
+				commonFunc.getDataFromTestDataSheet("Value"));
+		WebElement element = webDB.getDriver().findElement(By.xpath(PurchaseOrderPageLocators.PoTypeSelect));
+		Select select = new Select(element);
+		for (WebElement Text : select.getAllSelectedOptions()) {
+			PoType = Text.getText();
+		}
+		String SupplierName = webDB.getDomPropertyFromElement(PurchaseOrderPageLocators.SupplierName, ElementType.Xpath,
+				commonFunc.getDataFromTestDataSheet("Value"));
+		commonFunc.hardWait(500);
+		String CurrencyValue = webDB.getDomPropertyFromElement(PurchaseOrderPageLocators.CurrencyInput,
+				ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
+//		WebElement prefixelement = webDB.getDriver().findElement(By.xpath(PurchaseOrderPageLocators.PoPfxSelect));
+//		Select selectprefix = new Select(prefixelement);
+//		for (WebElement Textprefix : selectprefix.getAllSelectedOptions()) {
+//			String PoPrefix = Textprefix.getText();
+		verifyTickIconcreatePOHK();
 //			verifyPoHeaderDetails(PoType, location, SupplierName, CurrencyValue, PoPrefix);
 //		}
 	}
@@ -15822,7 +15972,7 @@ public class PurchaseOrderFunctions {
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("L0001"),
 				commonFunc.getDataFromTestDataSheet("AdvSupplier"),
 				commonFunc.getDataFromTestDataSheet("GeneralValue"));
-		verifyCreateDirectPO();
+		verifyCreateDirectPOHK();
 		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 		ExcelUtils excelUtils = new ExcelUtils();
 		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
@@ -15845,9 +15995,9 @@ public class PurchaseOrderFunctions {
 				String CDAmt = itemmultiple[i][16];
 				String TaxPercent = itemmultiple[i][20];
 				String cgst = itemmultiple[i][21];
-				verifyCreateItemInPo(item);
-				verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
-				verifyTickIconcreateItem();
+				verifyCreateItemInPoHK(item);
+				verifyAddItemInPOWithQuantityAndUnitCostHK(Quantity, UnitCost);
+				verifyTickIconcreateItemHK();
 				verifyLineAmountValidationAndPom(item, LineAmount);
 //				navigateToLineDetailPage(item);
 //				verifyEnterAmountForDiscountCalculation(TradePercentage, SplDiscPercentage, CashDiscPercentage);
@@ -15862,7 +16012,8 @@ public class PurchaseOrderFunctions {
 		}
 		VariableHandler.setMultiplePODocs(MultiPODocumentNumber);
 		verifyHeaderTickAndPost();
-		verifyWaitingForApproval();
+		salesOrderFunctions.forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
+//		verifyWaitingForApproval();
 		flag = commonFunc.logoutUser();
 		if (flag) {
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPONumber(),

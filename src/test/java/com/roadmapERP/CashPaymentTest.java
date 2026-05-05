@@ -125,7 +125,7 @@ public class CashPaymentTest extends RoadMapERPTest {
 	 * @throws IOException
 	 */
 	@Author("Harikrishna-RMITS")
-	@Test(priority = 7, groups = {
+	@Test(priority = 20, groups = {
 			"Cash Payments" }, description = " Payment Against Multi Party, Single Bill (Through Add button)")
 	public void CreateCashPaymentThroughAddButtonMultiPartySingleBill() throws IOException {
 		flag = cashPaymentFunc.CreateCashPaymentThroughLineAddButtonMultiPartySingleBill(
@@ -140,7 +140,7 @@ public class CashPaymentTest extends RoadMapERPTest {
 	 * @throws IOException
 	 */
 	@Author("Harikrishna-RMITS")
-	@Test(priority = 8, groups = {
+	@Test(priority = 21, groups = {
 			"Cash Payments" }, description = "Payment Against Multi Party, Single Bill (Get document)")
 	public void CreateCashPaymentThroughGetDocumentMultiPartySingleBill() throws IOException {
 		flag = cashPaymentFunc.CreateCashPaymentThroughGetDocumentMultiPartySingleBill(
@@ -155,7 +155,7 @@ public class CashPaymentTest extends RoadMapERPTest {
 	 * @throws IOException
 	 */
 	@Author("Harikrishna-RMITS")
-	@Test(priority = 9, groups = {
+	@Test(priority = 22, groups = {
 			"Cash Payments" }, description = " Payment Against Multi Party, Single Bill (Pending)")
 	public void CreateCashPaymentThroughPendingDocsMultiPartySingleBill() throws IOException {
 		flag = cashPaymentFunc.CreateCashPaymentThroughPendingDocumentMultiPartySingleBill(
@@ -282,7 +282,7 @@ public class CashPaymentTest extends RoadMapERPTest {
 		// TODO Covered in CreateCashPaymentWithExpenseAndWithoutGST() Method
 		logs.logging("INFO",
 				"This Scenario Is Already Covered In This Method CreateCashPaymentWithExpenseAndWithoutGST() ");
-		Assert.assertTrue(flag);
+//		Assert.assertTrue(flag);
 	}
 
 	/**
@@ -320,7 +320,7 @@ public class CashPaymentTest extends RoadMapERPTest {
 	 * @throws IOException
 	 */
 	@Author("Harikrishna-RMITS")
-	@Test(priority = 20, groups = {
+	@Test(priority = 7, groups = {
 			"Cash Payments" }, description = " Payment Against single Party, Multi Bill (Dr/Cr) (Through Add button)")
 	public void CreateaBnkPaymentSinglePartyMultiBillsThroughAddButtonWithMultiUnits() throws IOException {
 		flag = cashPaymentFunc
@@ -336,7 +336,7 @@ public class CashPaymentTest extends RoadMapERPTest {
 	 * @throws IOException
 	 */
 	@Author("Harikrishna-RMITS")
-	@Test(priority = 21, groups = {
+	@Test(priority = 8, groups = {
 			"Cash Payments" }, description = " Payment Against single Party, Multi Bill with multi unit (Dr/Cr) (Get document)")
 	public void CreateBankPaymentSinglePartyMultiBillsThroughGetDocumentWithMultiUnits() throws IOException {
 		flag = cashPaymentFunc.CreateCashPaymentThroughGetDocumentSPMBMultiUnits(webDB.getDataFromProperties("BPSPMB"));
@@ -351,7 +351,7 @@ public class CashPaymentTest extends RoadMapERPTest {
 	 * @throws IOException
 	 */
 	@Author("Harikrishna-RMITS")
-	@Test(priority = 22, groups = {
+	@Test(priority = 9, groups = {
 			"Cash Payments" }, description = "Payment Against single Party, Multi Bill with multi unit Dr/Cr) (Against Pending)")
 	public void CreateBankPaymentSinglePartyMultiBillsThroughPendingDocsWithMultiUnits() throws IOException {
 		flag = cashPaymentFunc.CreateCashPaymentThroughPendingDocsSPMBMultiUnits(webDB.getDataFromProperties("BPSPMB"));
