@@ -11819,7 +11819,7 @@ public class GrnPageFunctions {
 			flag = webDB.waitForClickElement(CommonUiLocators.ToastMessagePopup, ElementType.Xpath);
 		}
 		DirectGrnFunc.overAllSaveAndPost();
-		DirectGrnFunc.waitingForApproval();
+		waitingForApproval();
 		verifyReturnToGrnPageHeaderStatus();
 		aafterVerifyTheStatusDocumentMoveToQcOrMrvForDifferentLoc();
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
@@ -11840,7 +11840,7 @@ public class GrnPageFunctions {
 			flag = webDB.waitForClickElement(CommonUiLocators.ToastMessagePopup, ElementType.Xpath);
 		}
 		DirectGrnFunc.overAllSaveAndPost();
-		DirectGrnFunc.waitingForApproval();
+		waitingForApproval();
 		verifyReturnToGrnPageHeaderStatus();
 		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("PoToMrvSheet"),
 				webDB.getDataFromProperties("PoToMrvWithPoClosureSheet"));
@@ -11928,7 +11928,7 @@ public class GrnPageFunctions {
 			flag = webDB.waitForClickElement(CommonUiLocators.ToastMessagePopup, ElementType.Xpath);
 		}
 		DirectGrnFunc.overAllSaveAndPost();
-		DirectGrnFunc.waitingForApproval();
+		waitingForApproval();
 		verifyReturnToGrnPageHeaderStatus();
 		aafterVerifyTheStatusDocumentMoveToQcOrMrvForDifferentLoc();
 
@@ -11967,7 +11967,7 @@ public class GrnPageFunctions {
 			flag = webDB.waitForClickElement(CommonUiLocators.ToastMessagePopup, ElementType.Xpath);
 		}
 		DirectGrnFunc.overAllSaveAndPost();
-		DirectGrnFunc.waitingForApproval();
+		waitingForApproval();
 		verifyReturnToGrnPageHeaderStatus();
 		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("PoToMrvSheet"),
 				webDB.getDataFromProperties("PoToMrvWithPoClosureRcptQtySheet"));
@@ -12529,8 +12529,7 @@ public class GrnPageFunctions {
 		purchaseOrderFunc.verifyPRtoPOWithMultipleItemInExcelSheetWithTaxValidationForMoq(
 				commonFunc.getDataFromTestDataSheet("L49ID"), commonFunc.getDataFromTestDataSheet("L3"),
 				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
-				commonFunc.getDataFromTestDataSheet("PR_General"),
-				webDB.getDataFromProperties("PoToMRVWithReverseGRNPRAmdSheet"),
+				commonFunc.getDataFromTestDataSheet("PR_General"), webDB.getDataFromProperties("PoToMrvWMoqSheet"),
 				commonFunc.getDataFromTestDataSheet("PrefixL3"), webDB.getDataFromProperties("PoToMrvSheet3"),
 				commonFunc.getDataFromTestDataSheet("PrefixPoL3"));
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));

@@ -16,7 +16,7 @@ import commonfunctions.supplychainmanagement.POAmendmentFunctions;
 import utils.Mailer;
 import utils.WebDriverBase;
 
-public class POAmendmentTest extends RoadMapERPTest {
+public class POAmendmentTest1 extends RoadMapERPTest {
 	boolean flag = false;
 	static CommonFunctions commonFunc = new CommonFunctions();
 	static Mailer mail = new Mailer();
