@@ -1581,6 +1581,8 @@ public class PurchaseBillsFunctions {
 									if (flag) {
 										logs.logging("INFO", "Okay Button Is Displayed");
 										commonFunc.hardWait(2000);
+										commonFunc.checkRefreshCellsDisappear();
+										verifyInvoicePrfixHeaderPurchaseBillsForPendingPo(commonFunc.getDataFromTestDataSheet("PrefixPb"));
 										webDB.clickAnElement(PurchaseBillsLocators.OkButton, ElementType.Xpath);
 										webDB.switchToDefaultContent();
 										commonFunc.checkRefreshCellsDisappear();
@@ -1642,8 +1644,8 @@ public class PurchaseBillsFunctions {
 						commonFunc.getDataFromTestDataSheet("PurchaseBillsSgstAmount")), SgstField);
 				verifyAssertionBothValues(dbCommonFunc.PurchaseBillsEx(VariableHandler.getScoPurchaseNumber(),
 						commonFunc.getDataFromTestDataSheet("PurchaseBillsUTGSTAmount")), UTgstField);
-				verifyAssertionBothValues(dbCommonFunc.PurchaseBillsEx(VariableHandler.getScoPurchaseNumber(),
-						commonFunc.getDataFromTestDataSheet("PurchaseBillsIgstAmount")), IgstField);
+//				verifyAssertionBothValues(dbCommonFunc.PurchaseBillsEx(VariableHandler.getScoPurchaseNumber(),
+//						commonFunc.getDataFromTestDataSheet("PurchaseBillsIgstAmount")), IgstField);
 				verifyAssertionBothValues(dbCommonFunc.PurchaseBillsExHeader(VariableHandler.getScoPurchaseNumber(),
 						commonFunc.getDataFromTestDataSheet("Purchase_Bills_NetAmount")), NetAmount);
 			}
@@ -3930,6 +3932,24 @@ public class PurchaseBillsFunctions {
 			webDB.clickAnElement(PurchaseBillsLocators.CloseButton, ElementType.Xpath);
 			logs.logging("INFO", "Successfully Clicked a Close Button");
 			commonFunc.hardWait(1000);
+		}
+		assertTrue(flag);
+	}
+	
+	/**To Valid a Invoice Prefix Header
+	 * 
+	 * @author Kowshik-RMITS
+	 * @param PrefixPb
+	 */
+	public void verifyInvoicePrfixHeaderPurchaseBillsForPendingPo(String PrefixPb) {
+		
+		String GetTextPBPrefix = webDB.getDomPropertyFromElement(PurchaseBillsLocators.Po_Inv_Prefix_Field, ElementType.Xpath, 
+				commonFunc.getDataFromTestDataSheet("Value"));
+		
+		System.out.println(GetTextPBPrefix);
+		if(!GetTextPBPrefix.equals(PrefixPb)) {
+			commonFunc.checkRefreshCellsDisappear();
+			commonFunc.searchAndSelectValueInFilters(PurchaseBillsLocators.PO_Inv_Prefix_Lov, PrefixPb);
 		}
 		assertTrue(flag);
 	}

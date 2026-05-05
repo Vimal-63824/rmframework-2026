@@ -792,6 +792,7 @@ public class BankPaymentFunctions {
 	 */
 	public void choosePartyNameAndClickSearchButtonInPendingPartyDocs(ArrayList<String> VoucherNumber,
 			String SheetName) {
+		commonFunc.hardWait(500);
 		commonFunc.checkRefreshCellsDisappear();
 		flag = webDB.switchToFrame(BankPaymentLocators.BankPendingPartyDocumentsFrameName, ElementType.Xpath);
 		System.out.println(VoucherNumber.size());
@@ -806,6 +807,7 @@ public class BankPaymentFunctions {
 //				if (flag) {
 //					webDB.clickAnElement(BankPaymentLocators.BankPaymentPendingPartyDocumentSearchButton,
 //							ElementType.Xpath);
+				commonFunc.hardWait(200);
 				commonFunc.checkRefreshCellsDisappear();
 				commonFunc.searchAndSelectValueInFilters(BankPaymentLocators.BankPartyDocNumberLovButton,
 						VoucherNumber.get(i - 1));
@@ -820,6 +822,8 @@ public class BankPaymentFunctions {
 					String GetTextDocumentNumber = webDB.getTextFromElement(
 							BankPaymentLocators.PendingPayablesDocumentNumberField, ElementType.Xpath);
 					logs.logging("INFO", "Get Text Document Number Is " + GetTextDocumentNumber);
+					commonFunc.hardWait(500);
+					commonFunc.checkRefreshCellsDisappear();
 					if (GetTextDocumentNumber.equals(VoucherNumber.get(i - 1))) {
 						verifyPendingPayablesPBDocumentThroughGetDoc(SheetName, VoucherNumber.get(i - 1), i);
 						flag = webDB.waitForElement(
@@ -829,6 +833,7 @@ public class BankPaymentFunctions {
 							webDB.clickAnElement(
 									BankPaymentLocators.BPPendingPartyDocumentSelectCheckBox(VoucherNumber.get(i - 1)),
 									ElementType.Xpath);
+							commonFunc.hardWait(200);
 							commonFunc.checkRefreshCellsDisappear();
 							commonFunc.hardWait(3000);
 							flag = webDB.waitForElement(BankPaymentLocators.BankPendingPartyDocumentScreenOkButton,
@@ -885,6 +890,7 @@ public class BankPaymentFunctions {
 //				if (flag) {
 //					webDB.clickAnElement(BankPaymentLocators.BankPaymentPendingPartyDocumentSearchButton,
 //							ElementType.Xpath);
+				commonFunc.hardWait(200);
 				commonFunc.checkRefreshCellsDisappear();
 				commonFunc.searchAndSelectValueInFilters(BankPaymentLocators.BankPartyDocNumberLovButton,
 						VoucherNumber.get(i - 1));
@@ -894,6 +900,7 @@ public class BankPaymentFunctions {
 				if (flag) {
 					webDB.clickAnElement(BankPaymentLocators.BankPaymentPendingPartyDocumentSearchButton,
 							ElementType.Xpath);
+					commonFunc.hardWait(300);
 					commonFunc.checkRefreshCellsDisappear();
 					String GetTextDocumentNumber = webDB.getTextFromElement(
 							BankPaymentLocators.PendingPayablesDocumentNumberField, ElementType.Xpath);
@@ -1055,6 +1062,8 @@ public class BankPaymentFunctions {
 	 */
 	public void chooseDocumentNumberInPendingPayablesScreen(ArrayList<String> DocumentNumber, String Type,
 			String PayMode, String BankName, String CreationType, String SheetName) {
+		commonFunc.hardWait(500);
+		commonFunc.checkRefreshCellsDisappear();
 		flag = webDB.waitForElement(BankPaymentLocators.BankPendingPartyDocumentsFrameName, ElementType.Xpath);
 		if (flag) {
 			webDB.switchToFrame(BankPaymentLocators.BankPendingPartyDocumentsFrameName, ElementType.Xpath);
@@ -2718,7 +2727,7 @@ public class BankPaymentFunctions {
 			String SupplierID = BankPayments[i][2];
 			String GRNSheetName = BankPayments[i][4];
 			if (!SupplierID.equals("")) {
-				Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeImportSupplierHK(SupplierID, GRNSheetName);
+				Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName);
 			}
 		}
 		for (int i = 0; i < VariableHandler.getMultipleGRNDocs().size(); i++) {
