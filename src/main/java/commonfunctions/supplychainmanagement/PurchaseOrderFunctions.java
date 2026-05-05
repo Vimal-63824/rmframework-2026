@@ -5816,7 +5816,6 @@ public class PurchaseOrderFunctions {
 		verifyHeaderTickAndPost();
 		verifyApprovePOUsingAshokUser();
 		verifyValidatePoStatus(VariableHandler.getPONumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		flag = commonFunc.logoutUser();
 		return flag;
 	}
 
@@ -12627,19 +12626,11 @@ public class PurchaseOrderFunctions {
 		}
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
-		flag = commonFunc.logoutUser();
-		if (flag) {
-			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
-					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HariUsername"));
-			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
-				commonFunc.navigatePurchaseOrderPage();
-				verifyValidatePoStatus(VariableHandler.getPONumber(),
-						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-				flag = commonFunc.logoutUser();
-			}
-		}
+		commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
+				webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		commonFunc.navigatePurchaseOrderPage();
+		verifyValidatePoStatus(VariableHandler.getPONumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 
 		return flag;
 	}
@@ -12773,9 +12764,6 @@ public class PurchaseOrderFunctions {
 		PR_Func.saveHeaderAndClickPost();
 		PR_Func.searchPRAndCheckPRStatus(VariableHandler.getPRNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickPendingIcon();
 		clickPendingPRAndSearchPRNo();
@@ -12833,7 +12821,6 @@ public class PurchaseOrderFunctions {
 		verifyHeaderTickAndPost();
 		verifyApprovePOUsingAshokUser();
 		verifyValidatePoStatus(VariableHandler.getPONumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		flag = commonFunc.logoutUser();
 		return flag;
 	}
 
