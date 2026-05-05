@@ -39,7 +39,7 @@ public class SetupSalesLocators {
 	/** Locator Xpath */
 	public static final String SalesZoneLovSubTerritoryField = "//button[@id='C7712000598727858658_lov_btn']" ;
 	/** Locator Xpath */
-	public static final String SubTerritoryManagerLov= "//button[@id='C7493122892981486409_lov_btn']" ;
+	public static final String SubTerritoryManagerLov= "//BUTTON[@id='C7712000961173858661_lov_btn']" ;
 	/** Locator Xpath */
 	public static final String SaveButtonInSubTerritory = "//button[@data-testid='SaveButtonInSubTerritory']" ;
 

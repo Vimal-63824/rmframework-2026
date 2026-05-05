@@ -364,5 +364,9 @@ public class PurchaseBillsLocators {
 	}
 	/** @locatorType Xpath */
 	public static final String CreateGrnButton = "//button[@data-testid='GRNP_PEND_PUR_CRT_GRN']" ;
+	/** @locatorType Xpath */
+	public static final String PO_Inv_Prefix_Lov = "//button[@id='P116131005_INV_PFX_lov_btn']" ;
+	/** @locatorType Xpath */
+	public static final String Po_Inv_Prefix_Field = "//input[@id='P116131005_INV_PFX']" ;
 
 }

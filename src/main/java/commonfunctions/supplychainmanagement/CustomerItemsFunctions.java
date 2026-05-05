@@ -870,7 +870,7 @@ public class CustomerItemsFunctions {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateItemAssoScreen();
-		searchItemInUnitField(commonFunc.getDataFromTestDataSheet("UTGSTUnit"));
+		searchItemInUnitField(commonFunc.getDataFromTestDataSheet("UTGSTUnit1"));
 		searchItemInFindPage();
 		clickSearchButton();
 		searchedItem();
