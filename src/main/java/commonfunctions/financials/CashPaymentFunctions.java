@@ -65,7 +65,8 @@ public class CashPaymentFunctions {
 	String tomorrowDate = myDateObj.format(myFormatObj);
 	String[][] CashPayments = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 	ExcelUtils excelUtils = new ExcelUtils();
-	String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + "Financials.xlsx";
+	String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+			+ "Financials2.xlsx";
 	ArrayList<String> PBDocumentNumber = new ArrayList<String>();
 	public ArrayList<String> MultiAdvPaymentDocumentNumber = new ArrayList<String>();
 	String CPGrnExcelFileName = "DirectGrnDetailsHK2.xlsx";
