@@ -65,9 +65,11 @@ public class CashPaymentFunctions {
 	String tomorrowDate = myDateObj.format(myFormatObj);
 	String[][] CashPayments = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 	ExcelUtils excelUtils = new ExcelUtils();
-	String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + "Financials.xlsx";
+	String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+			+ "Financials2.xlsx";
 	ArrayList<String> PBDocumentNumber = new ArrayList<String>();
 	public ArrayList<String> MultiAdvPaymentDocumentNumber = new ArrayList<String>();
+	String CPGrnExcelFileName = "DirectGrnDetailsHK2.xlsx";
 
 	/**
 	 * This Method Used To Verify Store Purchase Voucher Number
@@ -3255,7 +3257,8 @@ public class CashPaymentFunctions {
 			String SupplierID = CashPayments[i][2];
 			String GRNSheetName = CashPayments[i][4];
 			if (!SupplierID.equals("")) {
-				Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName);
+				Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName,
+						CPGrnExcelFileName);
 			}
 		}
 		for (int i = 1; i <= VariableHandler.getMultipleGRNDocs().size(); i++) {
@@ -3289,7 +3292,8 @@ public class CashPaymentFunctions {
 			String SupplierID = CashPayments[i][2];
 			String GRNSheetName = CashPayments[i][4];
 			if (!SupplierID.equals("")) {
-				Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName);
+				Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName,
+						CPGrnExcelFileName);
 			}
 		}
 		for (int i = 1; i <= VariableHandler.getMultipleGRNDocs().size(); i++) {
@@ -3323,7 +3327,8 @@ public class CashPaymentFunctions {
 			String SupplierID = CashPayments[i][2];
 			String GRNSheetName = CashPayments[i][4];
 			if (!SupplierID.equals("")) {
-				Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName);
+				Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName,
+						CPGrnExcelFileName);
 			}
 		}
 		for (int i = 1; i <= VariableHandler.getMultipleGRNDocs().size(); i++) {
@@ -3357,7 +3362,8 @@ public class CashPaymentFunctions {
 		for (int i = 1; i <= 2; i++) {
 			String SupplierID = CashPayments[1][2];
 			String GRNSheetName = CashPayments[1][4];
-			Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName);
+			Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName,
+					CPGrnExcelFileName);
 		}
 		for (int i = 0; i < VariableHandler.getMultipleGRNDocs().size(); i++) {
 			String PbDocsNum = dbCommonFunctions.PBDocQuery(VariableHandler.getMultipleGRNDocs().get(i),
@@ -3389,7 +3395,8 @@ public class CashPaymentFunctions {
 		for (int i = 1; i <= 2; i++) {
 			String SupplierID = CashPayments[1][2];
 			String GRNSheetName = CashPayments[1][4];
-			Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName);
+			Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName,
+					CPGrnExcelFileName);
 		}
 		for (int i = 0; i < VariableHandler.getMultipleGRNDocs().size(); i++) {
 			String PbDocsNum = dbCommonFunctions.PBDocQuery(VariableHandler.getMultipleGRNDocs().get(i),
@@ -3421,7 +3428,8 @@ public class CashPaymentFunctions {
 		for (int i = 1; i <= 2; i++) {
 			String SupplierID = CashPayments[1][2];
 			String GRNSheetName = CashPayments[1][4];
-			Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName);
+			Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName,
+					CPGrnExcelFileName);
 		}
 		for (int i = 0; i < VariableHandler.getMultipleGRNDocs().size(); i++) {
 			String PbDocsNum = dbCommonFunctions.PBDocQuery(VariableHandler.getMultipleGRNDocs().get(i),
@@ -3456,7 +3464,8 @@ public class CashPaymentFunctions {
 			String SupplierID = CashPayments[i][2];
 			String GRNSheetName = CashPayments[i][4];
 			if (!SupplierID.equals("")) {
-				Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName);
+				Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName,
+						CPGrnExcelFileName);
 			}
 		}
 		for (int i = 0; i < VariableHandler.getMultipleGRNDocs().size(); i++) {
@@ -3491,7 +3500,8 @@ public class CashPaymentFunctions {
 			String SupplierID = CashPayments[i][2];
 			String GRNSheetName = CashPayments[i][4];
 			if (!SupplierID.equals("")) {
-				Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName);
+				Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName,
+						CPGrnExcelFileName);
 			}
 		}
 		for (int i = 0; i < VariableHandler.getMultipleGRNDocs().size(); i++) {
@@ -3526,7 +3536,8 @@ public class CashPaymentFunctions {
 			String SupplierID = CashPayments[i][2];
 			String GRNSheetName = CashPayments[i][4];
 			if (!SupplierID.equals("")) {
-				Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName);
+				Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName,
+						CPGrnExcelFileName);
 			}
 		}
 		for (int i = 0; i < VariableHandler.getMultipleGRNDocs().size(); i++) {
@@ -3563,7 +3574,8 @@ public class CashPaymentFunctions {
 			String GRNSheetName = CashPayments[i][4];
 			if (!SupplierID.equals("")) {
 				for (int i1 = 1; i1 <= 2; i1++) {
-					Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName);
+					Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName,
+							CPGrnExcelFileName);
 				}
 			}
 		}
@@ -3608,7 +3620,8 @@ public class CashPaymentFunctions {
 			String GRNSheetName = CashPayments[i][4];
 			if (!SupplierID.equals("")) {
 				for (int i1 = 1; i1 <= 2; i1++) {
-					Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName);
+					Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName,
+							CPGrnExcelFileName);
 				}
 			}
 		}
@@ -3653,7 +3666,8 @@ public class CashPaymentFunctions {
 			String GRNSheetName = CashPayments[i][4];
 			if (!SupplierID.equals("")) {
 				for (int i1 = 1; i1 <= 2; i1++) {
-					Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName);
+					Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName,
+							CPGrnExcelFileName);
 				}
 			}
 		}
@@ -3700,7 +3714,8 @@ public class CashPaymentFunctions {
 			String GRNSheetName = CashPayments[i][4];
 			if (!SupplierID.equals("")) {
 				for (int i1 = 1; i1 <= 2; i1++) {
-					Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName);
+					Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName,
+							CPGrnExcelFileName);
 				}
 			}
 		}
@@ -3745,7 +3760,8 @@ public class CashPaymentFunctions {
 			String GRNSheetName = CashPayments[i][4];
 			if (!SupplierID.equals("")) {
 				for (int i1 = 1; i1 <= 2; i1++) {
-					Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName);
+					Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName,
+							CPGrnExcelFileName);
 				}
 			}
 		}
@@ -3791,7 +3807,8 @@ public class CashPaymentFunctions {
 			String GRNSheetName = CashPayments[i][4];
 			if (!SupplierID.equals("")) {
 				for (int i1 = 1; i1 <= 2; i1++) {
-					Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName);
+					Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName,
+							CPGrnExcelFileName);
 				}
 			}
 		}
@@ -4072,7 +4089,7 @@ public class CashPaymentFunctions {
 			if (!SupplierID.equals("")) {
 				for (int i1 = 1; i1 <= 2; i1++) {
 					Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHKMultiUnits(SupplierID,
-							GRNSheetName, Location);
+							GRNSheetName, Location, CPGrnExcelFileName);
 				}
 			}
 		}
@@ -4135,7 +4152,7 @@ public class CashPaymentFunctions {
 			if (!SupplierID.equals("")) {
 				for (int i1 = 1; i1 <= 2; i1++) {
 					Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHKMultiUnits(SupplierID,
-							GRNSheetName, Location);
+							GRNSheetName, Location, CPGrnExcelFileName);
 				}
 			}
 		}
@@ -4181,7 +4198,7 @@ public class CashPaymentFunctions {
 			if (!SupplierID.equals("")) {
 				for (int i1 = 1; i1 <= 2; i1++) {
 					Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHKMultiUnits(SupplierID,
-							GRNSheetName, Location);
+							GRNSheetName, Location, CPGrnExcelFileName);
 				}
 			}
 		}
@@ -4263,11 +4280,11 @@ public class CashPaymentFunctions {
 
 		Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHKMultiUnits(
 				commonFunc.getDataFromTestDataSheet("GRNSupplier"), webDB.getDataFromProperties("DirectGrnGenUD"),
-				commonFunc.getDataFromTestDataSheet("Loc_100"));
+				commonFunc.getDataFromTestDataSheet("Loc_100"), CPGrnExcelFileName);
 
 		Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHKMultiUnits(
 				commonFunc.getDataFromTestDataSheet("GRNSupplier"), webDB.getDataFromProperties("DirectGrnGenUD50"),
-				commonFunc.getDataFromTestDataSheet("Location50"));
+				commonFunc.getDataFromTestDataSheet("Location50"), CPGrnExcelFileName);
 
 		for (int i = 0; i < VariableHandler.getMultipleGRNDocs().size(); i++) {
 			String PbDocsNum = dbCommonFunctions.PBDocQuery(VariableHandler.getMultipleGRNDocs().get(i),
@@ -4298,11 +4315,11 @@ public class CashPaymentFunctions {
 
 		Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHKMultiUnits(
 				commonFunc.getDataFromTestDataSheet("GRNSupplier"), webDB.getDataFromProperties("DirectGrnGenUD"),
-				commonFunc.getDataFromTestDataSheet("Loc_100"));
+				commonFunc.getDataFromTestDataSheet("Loc_100"), CPGrnExcelFileName);
 
 		Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHKMultiUnits(
 				commonFunc.getDataFromTestDataSheet("GRNSupplier"), webDB.getDataFromProperties("DirectGrnGenUD50"),
-				commonFunc.getDataFromTestDataSheet("Location50"));
+				commonFunc.getDataFromTestDataSheet("Location50"), CPGrnExcelFileName);
 
 		for (int i = 0; i < VariableHandler.getMultipleGRNDocs().size(); i++) {
 			String PbDocsNum = dbCommonFunctions.PBDocQuery(VariableHandler.getMultipleGRNDocs().get(i),
@@ -4333,11 +4350,11 @@ public class CashPaymentFunctions {
 
 		Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHKMultiUnits(
 				commonFunc.getDataFromTestDataSheet("GRNSupplier"), webDB.getDataFromProperties("DirectGrnGenUD"),
-				commonFunc.getDataFromTestDataSheet("Loc_100"));
+				commonFunc.getDataFromTestDataSheet("Loc_100"), CPGrnExcelFileName);
 
 		Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHKMultiUnits(
 				commonFunc.getDataFromTestDataSheet("GRNSupplier"), webDB.getDataFromProperties("DirectGrnGenUD50"),
-				commonFunc.getDataFromTestDataSheet("Location50"));
+				commonFunc.getDataFromTestDataSheet("Location50"), CPGrnExcelFileName);
 		for (int i = 0; i < VariableHandler.getMultipleGRNDocs().size(); i++) {
 			String PbDocsNum = dbCommonFunctions.PBDocQuery(VariableHandler.getMultipleGRNDocs().get(i),
 					commonFunc.getDataFromTestDataSheet("PBDocumentNoColumnName"));

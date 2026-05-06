@@ -70,6 +70,7 @@ public class BankPaymentFunctions {
 	ExcelUtils excelUtils = new ExcelUtils();
 	String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + "Financials.xlsx";
 	ArrayList<String> PBDocumentNumber = new ArrayList<String>();
+	String BPGrnExcelFileName = "DirectGrnDetailsHK.xlsx";
 //	SOMultipleline = excelUtils.readAllDataInExcel(Filepath, SheetName);
 //	for (int i = 4; i < SOMultipleline.length; i++) {
 
@@ -744,7 +745,8 @@ public class BankPaymentFunctions {
 			String SupplierID = BankPayments[i][2];
 			String GRNSheetName = BankPayments[i][4];
 			if (!SupplierID.equals("")) {
-				Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName);
+				Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName,
+						BPGrnExcelFileName);
 			}
 		}
 		for (int i = 1; i <= VariableHandler.getMultipleGRNDocs().size(); i++) {
@@ -962,7 +964,8 @@ public class BankPaymentFunctions {
 			String SupplierID = BankPayments[i][2];
 			String GRNSheetName = BankPayments[i][4];
 			if (!SupplierID.equals("")) {
-				Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName);
+				Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName,
+						BPGrnExcelFileName);
 			}
 		}
 		for (int i = 1; i <= VariableHandler.getMultipleGRNDocs().size(); i++) {
@@ -995,7 +998,8 @@ public class BankPaymentFunctions {
 		for (int i = 1; i <= 2; i++) {
 			String SupplierID = BankPayments[1][2];
 			String GRNSheetName = BankPayments[1][4];
-			Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName);
+			Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName,
+					BPGrnExcelFileName);
 		}
 		for (int i = 0; i < VariableHandler.getMultipleGRNDocs().size(); i++) {
 			String PbDocsNum = dbCommonFunctions.PBDocQuery(VariableHandler.getMultipleGRNDocs().get(i),
@@ -1331,7 +1335,8 @@ public class BankPaymentFunctions {
 			String SupplierID = BankPayments[i][2];
 			String GRNSheetName = BankPayments[i][4];
 			if (!SupplierID.equals("")) {
-				Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName);
+				Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName,
+						BPGrnExcelFileName);
 			}
 		}
 		for (int i = 1; i <= VariableHandler.getMultipleGRNDocs().size(); i++) {
@@ -1364,7 +1369,8 @@ public class BankPaymentFunctions {
 		for (int i = 1; i <= 2; i++) {
 			String SupplierID = BankPayments[1][2];
 			String GRNSheetName = BankPayments[1][4];
-			Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName);
+			Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName,
+					BPGrnExcelFileName);
 		}
 		for (int i = 0; i < VariableHandler.getMultipleGRNDocs().size(); i++) {
 			String PbDocsNum = dbCommonFunctions.PBDocQuery(VariableHandler.getMultipleGRNDocs().get(i),
@@ -2259,7 +2265,8 @@ public class BankPaymentFunctions {
 		for (int i = 1; i <= 2; i++) {
 			String SupplierID = BankPayments[1][2];
 			String GRNSheetName = BankPayments[1][4];
-			Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName);
+			Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName,
+					BPGrnExcelFileName);
 		}
 		for (int i = 0; i < VariableHandler.getMultipleGRNDocs().size(); i++) {
 			String PbDocsNum = dbCommonFunctions.PBDocQuery(VariableHandler.getMultipleGRNDocs().get(i),
@@ -2454,7 +2461,8 @@ public class BankPaymentFunctions {
 			String SupplierID = BankPayments[i][2];
 			String GRNSheetName = BankPayments[i][4];
 			if (!SupplierID.equals("")) {
-				Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName);
+				Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName,
+						BPGrnExcelFileName);
 			}
 		}
 		for (int i = 0; i < VariableHandler.getMultipleGRNDocs().size(); i++) {
@@ -2692,7 +2700,8 @@ public class BankPaymentFunctions {
 			String SupplierID = BankPayments[i][2];
 			String GRNSheetName = BankPayments[i][4];
 			if (!SupplierID.equals("")) {
-				Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName);
+				Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName,
+						BPGrnExcelFileName);
 			}
 		}
 		for (int i = 0; i < VariableHandler.getMultipleGRNDocs().size(); i++) {
@@ -2727,7 +2736,8 @@ public class BankPaymentFunctions {
 			String SupplierID = BankPayments[i][2];
 			String GRNSheetName = BankPayments[i][4];
 			if (!SupplierID.equals("")) {
-				Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName);
+				Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName,
+						BPGrnExcelFileName);
 			}
 		}
 		for (int i = 0; i < VariableHandler.getMultipleGRNDocs().size(); i++) {
@@ -2953,7 +2963,8 @@ public class BankPaymentFunctions {
 			String GRNSheetName = BankPayments[i][4];
 			if (!SupplierID.equals("")) {
 				for (int i1 = 1; i1 <= 2; i1++) {
-					Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName);
+					Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName,
+							BPGrnExcelFileName);
 				}
 			}
 		}
@@ -2999,7 +3010,8 @@ public class BankPaymentFunctions {
 			String GRNSheetName = BankPayments[i][4];
 			if (!SupplierID.equals("")) {
 				for (int i1 = 1; i1 <= 2; i1++) {
-					Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName);
+					Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName,
+							BPGrnExcelFileName);
 				}
 			}
 		}
@@ -3044,7 +3056,8 @@ public class BankPaymentFunctions {
 			String GRNSheetName = BankPayments[i][4];
 			if (!SupplierID.equals("")) {
 				for (int i1 = 1; i1 <= 2; i1++) {
-					Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName);
+					Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName,
+							BPGrnExcelFileName);
 				}
 			}
 		}
@@ -3089,7 +3102,8 @@ public class BankPaymentFunctions {
 			String GRNSheetName = BankPayments[i][4];
 			if (!SupplierID.equals("")) {
 				for (int i1 = 1; i1 <= 2; i1++) {
-					Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName);
+					Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName,
+							BPGrnExcelFileName);
 				}
 			}
 		}
@@ -3134,7 +3148,8 @@ public class BankPaymentFunctions {
 			String GRNSheetName = BankPayments[i][4];
 			if (!SupplierID.equals("")) {
 				for (int i1 = 1; i1 <= 2; i1++) {
-					Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName);
+					Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName,
+							BPGrnExcelFileName);
 				}
 			}
 		}
@@ -3476,7 +3491,8 @@ public class BankPaymentFunctions {
 			String GRNSheetName = BankPayments[i][4];
 			if (!SupplierID.equals("")) {
 				for (int i1 = 1; i1 <= 2; i1++) {
-					Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName);
+					Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName,
+							BPGrnExcelFileName);
 				}
 			}
 		}
@@ -4725,7 +4741,8 @@ public class BankPaymentFunctions {
 			String SupplierID = BankPayments[i][2];
 			String GRNSheetName = BankPayments[i][4];
 			if (!SupplierID.equals("")) {
-				Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeImportSupplierHK(SupplierID, GRNSheetName);
+				Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeImportSupplierHK(SupplierID, GRNSheetName,
+						BPGrnExcelFileName);
 			}
 		}
 		for (int i = 1; i <= VariableHandler.getMultipleGRNDocs().size(); i++) {
@@ -4759,7 +4776,8 @@ public class BankPaymentFunctions {
 			String SupplierID = BankPayments[i][2];
 			String GRNSheetName = BankPayments[i][4];
 			if (!SupplierID.equals("")) {
-				Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeImportSupplierHK(SupplierID, GRNSheetName);
+				Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeImportSupplierHK(SupplierID, GRNSheetName,
+						BPGrnExcelFileName);
 			}
 		}
 		for (int i = 1; i <= VariableHandler.getMultipleGRNDocs().size(); i++) {
@@ -4793,7 +4811,8 @@ public class BankPaymentFunctions {
 			String SupplierID = BankPayments[i][2];
 			String GRNSheetName = BankPayments[i][4];
 			if (!SupplierID.equals("")) {
-				Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeImportSupplierHK(SupplierID, GRNSheetName);
+				Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeImportSupplierHK(SupplierID, GRNSheetName,
+						BPGrnExcelFileName);
 			}
 		}
 		for (int i = 1; i <= VariableHandler.getMultipleGRNDocs().size(); i++) {
@@ -4827,7 +4846,8 @@ public class BankPaymentFunctions {
 		for (int i = 1; i <= 2; i++) {
 			String SupplierID = BankPayments[1][2];
 			String GRNSheetName = BankPayments[1][4];
-			Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeImportSupplierHK(SupplierID, GRNSheetName);
+			Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeImportSupplierHK(SupplierID, GRNSheetName,
+					BPGrnExcelFileName);
 		}
 		for (int i = 0; i < VariableHandler.getMultipleGRNDocs().size(); i++) {
 			String PbDocsNum = dbCommonFunctions.PBDocQuery(VariableHandler.getMultipleGRNDocs().get(i),
@@ -4859,7 +4879,8 @@ public class BankPaymentFunctions {
 		for (int i = 1; i <= 2; i++) {
 			String SupplierID = BankPayments[1][2];
 			String GRNSheetName = BankPayments[1][4];
-			Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeImportSupplierHK(SupplierID, GRNSheetName);
+			Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeImportSupplierHK(SupplierID, GRNSheetName,
+					BPGrnExcelFileName);
 		}
 		for (int i = 0; i < VariableHandler.getMultipleGRNDocs().size(); i++) {
 			String PbDocsNum = dbCommonFunctions.PBDocQuery(VariableHandler.getMultipleGRNDocs().get(i),
@@ -4891,7 +4912,8 @@ public class BankPaymentFunctions {
 		for (int i = 1; i <= 2; i++) {
 			String SupplierID = BankPayments[1][2];
 			String GRNSheetName = BankPayments[1][4];
-			Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeImportSupplierHK(SupplierID, GRNSheetName);
+			Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeImportSupplierHK(SupplierID, GRNSheetName,
+					BPGrnExcelFileName);
 		}
 		for (int i = 0; i < VariableHandler.getMultipleGRNDocs().size(); i++) {
 			String PbDocsNum = dbCommonFunctions.PBDocQuery(VariableHandler.getMultipleGRNDocs().get(i),
@@ -4926,7 +4948,8 @@ public class BankPaymentFunctions {
 			String SupplierID = BankPayments[i][2];
 			String GRNSheetName = BankPayments[i][4];
 			if (!SupplierID.equals("")) {
-				Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeImportSupplierHK(SupplierID, GRNSheetName);
+				Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeImportSupplierHK(SupplierID, GRNSheetName,
+						BPGrnExcelFileName);
 			}
 		}
 		for (int i = 0; i < VariableHandler.getMultipleGRNDocs().size(); i++) {
@@ -4961,7 +4984,8 @@ public class BankPaymentFunctions {
 			String SupplierID = BankPayments[i][2];
 			String GRNSheetName = BankPayments[i][4];
 			if (!SupplierID.equals("")) {
-				Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeImportSupplierHK(SupplierID, GRNSheetName);
+				Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeImportSupplierHK(SupplierID, GRNSheetName,
+						BPGrnExcelFileName);
 			}
 		}
 		for (int i = 0; i < VariableHandler.getMultipleGRNDocs().size(); i++) {
@@ -4996,7 +5020,8 @@ public class BankPaymentFunctions {
 			String SupplierID = BankPayments[i][2];
 			String GRNSheetName = BankPayments[i][4];
 			if (!SupplierID.equals("")) {
-				Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeImportSupplierHK(SupplierID, GRNSheetName);
+				Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeImportSupplierHK(SupplierID, GRNSheetName,
+						BPGrnExcelFileName);
 			}
 		}
 		commonFunc.validCommonLogin(System.getProperty("HKFinUsername"), System.getProperty("LoginPassword"),
@@ -5058,7 +5083,8 @@ public class BankPaymentFunctions {
 			String GRNSheetName = BankPayments[i][4];
 			if (!SupplierID.equals("")) {
 				for (int i1 = 1; i1 <= 2; i1++) {
-					Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeImportSupplierHK(SupplierID, GRNSheetName);
+					Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeImportSupplierHK(SupplierID, GRNSheetName,
+							BPGrnExcelFileName);
 				}
 			}
 		}
@@ -5103,7 +5129,8 @@ public class BankPaymentFunctions {
 			String GRNSheetName = BankPayments[i][4];
 			if (!SupplierID.equals("")) {
 				for (int i1 = 1; i1 <= 2; i1++) {
-					Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeImportSupplierHK(SupplierID, GRNSheetName);
+					Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeImportSupplierHK(SupplierID, GRNSheetName,
+							BPGrnExcelFileName);
 				}
 			}
 		}
@@ -5148,7 +5175,8 @@ public class BankPaymentFunctions {
 			String GRNSheetName = BankPayments[i][4];
 			if (!SupplierID.equals("")) {
 				for (int i1 = 1; i1 <= 2; i1++) {
-					Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeImportSupplierHK(SupplierID, GRNSheetName);
+					Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeImportSupplierHK(SupplierID, GRNSheetName,
+							BPGrnExcelFileName);
 				}
 			}
 		}
@@ -5195,7 +5223,8 @@ public class BankPaymentFunctions {
 			String GRNSheetName = BankPayments[i][4];
 			if (!SupplierID.equals("")) {
 				for (int i1 = 1; i1 <= 2; i1++) {
-					Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeImportSupplierHK(SupplierID, GRNSheetName);
+					Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeImportSupplierHK(SupplierID, GRNSheetName,
+							BPGrnExcelFileName);
 				}
 			}
 		}
@@ -5240,7 +5269,8 @@ public class BankPaymentFunctions {
 			String GRNSheetName = BankPayments[i][4];
 			if (!SupplierID.equals("")) {
 				for (int i1 = 1; i1 <= 2; i1++) {
-					Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeImportSupplierHK(SupplierID, GRNSheetName);
+					Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeImportSupplierHK(SupplierID, GRNSheetName,
+							BPGrnExcelFileName);
 				}
 			}
 		}
@@ -5287,7 +5317,8 @@ public class BankPaymentFunctions {
 			String GRNSheetName = BankPayments[i][4];
 			if (!SupplierID.equals("")) {
 				for (int i1 = 1; i1 <= 2; i1++) {
-					Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeImportSupplierHK(SupplierID, GRNSheetName);
+					Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeImportSupplierHK(SupplierID, GRNSheetName,
+							BPGrnExcelFileName);
 				}
 			}
 		}
@@ -5955,7 +5986,8 @@ public class BankPaymentFunctions {
 			String SupplierID = BankPayments[i][2];
 			String GRNSheetName = BankPayments[i][4];
 			if (!SupplierID.equals("")) {
-				Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName);
+				Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName,
+						BPGrnExcelFileName);
 			}
 		}
 		for (int i = 1; i <= VariableHandler.getMultipleGRNDocs().size(); i++) {
@@ -5988,7 +6020,8 @@ public class BankPaymentFunctions {
 			String SupplierID = BankPayments[i][2];
 			String GRNSheetName = BankPayments[i][4];
 			if (!SupplierID.equals("")) {
-				Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeImportSupplierHK(SupplierID, GRNSheetName);
+				Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeImportSupplierHK(SupplierID, GRNSheetName,
+						BPGrnExcelFileName);
 			}
 		}
 		for (int i = 1; i <= VariableHandler.getMultipleGRNDocs().size(); i++) {
@@ -6115,7 +6148,8 @@ public class BankPaymentFunctions {
 			String SupplierID = BankPayments[i][2];
 			String GRNSheetName = BankPayments[i][4];
 			if (!SupplierID.equals("")) {
-				Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName);
+				Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName,
+						BPGrnExcelFileName);
 			}
 		}
 		for (int i = 1; i <= VariableHandler.getMultipleGRNDocs().size(); i++) {
@@ -6149,7 +6183,8 @@ public class BankPaymentFunctions {
 			String SupplierID = BankPayments[i][2];
 			String GRNSheetName = BankPayments[i][4];
 			if (!SupplierID.equals("")) {
-				Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName);
+				Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName,
+						BPGrnExcelFileName);
 			}
 		}
 		for (int i = 1; i <= VariableHandler.getMultipleGRNDocs().size(); i++) {
@@ -6183,7 +6218,8 @@ public class BankPaymentFunctions {
 			String SupplierID = BankPayments[i][2];
 			String GRNSheetName = BankPayments[i][4];
 			if (!SupplierID.equals("")) {
-				Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName);
+				Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName,
+						BPGrnExcelFileName);
 			}
 		}
 		for (int i = 1; i <= VariableHandler.getMultipleGRNDocs().size(); i++) {
@@ -6217,7 +6253,8 @@ public class BankPaymentFunctions {
 		for (int i = 1; i <= 2; i++) {
 			String SupplierID = BankPayments[1][2];
 			String GRNSheetName = BankPayments[1][4];
-			Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName);
+			Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName,
+					BPGrnExcelFileName);
 		}
 		for (int i = 0; i < VariableHandler.getMultipleGRNDocs().size(); i++) {
 			String PbDocsNum = dbCommonFunctions.PBDocQuery(VariableHandler.getMultipleGRNDocs().get(i),
@@ -6249,7 +6286,8 @@ public class BankPaymentFunctions {
 		for (int i = 1; i <= 2; i++) {
 			String SupplierID = BankPayments[1][2];
 			String GRNSheetName = BankPayments[1][4];
-			Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName);
+			Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName,
+					BPGrnExcelFileName);
 		}
 		for (int i = 0; i < VariableHandler.getMultipleGRNDocs().size(); i++) {
 			String PbDocsNum = dbCommonFunctions.PBDocQuery(VariableHandler.getMultipleGRNDocs().get(i),
@@ -6281,7 +6319,8 @@ public class BankPaymentFunctions {
 		for (int i = 1; i <= 2; i++) {
 			String SupplierID = BankPayments[1][2];
 			String GRNSheetName = BankPayments[1][4];
-			Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName);
+			Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName,
+					BPGrnExcelFileName);
 		}
 		for (int i = 0; i < VariableHandler.getMultipleGRNDocs().size(); i++) {
 			String PbDocsNum = dbCommonFunctions.PBDocQuery(VariableHandler.getMultipleGRNDocs().get(i),
@@ -6317,7 +6356,8 @@ public class BankPaymentFunctions {
 			String SupplierID = BankPayments[i][2];
 			String GRNSheetName = BankPayments[i][4];
 			if (!SupplierID.equals("")) {
-				Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName);
+				Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName,
+						BPGrnExcelFileName);
 			}
 		}
 		for (int i = 0; i < VariableHandler.getMultipleGRNDocs().size(); i++) {
@@ -6353,7 +6393,8 @@ public class BankPaymentFunctions {
 			String SupplierID = BankPayments[i][2];
 			String GRNSheetName = BankPayments[i][4];
 			if (!SupplierID.equals("")) {
-				Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName);
+				Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName,
+						BPGrnExcelFileName);
 			}
 		}
 		for (int i = 0; i < VariableHandler.getMultipleGRNDocs().size(); i++) {
@@ -6389,7 +6430,8 @@ public class BankPaymentFunctions {
 			String SupplierID = BankPayments[i][2];
 			String GRNSheetName = BankPayments[i][4];
 			if (!SupplierID.equals("")) {
-				Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName);
+				Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName,
+						BPGrnExcelFileName);
 			}
 		}
 		for (int i = 0; i < VariableHandler.getMultipleGRNDocs().size(); i++) {
@@ -6427,7 +6469,8 @@ public class BankPaymentFunctions {
 			String GRNSheetName = BankPayments[i][4];
 			if (!SupplierID.equals("")) {
 				for (int i1 = 1; i1 <= 2; i1++) {
-					Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName);
+					Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName,
+							BPGrnExcelFileName);
 				}
 			}
 		}
@@ -6473,7 +6516,8 @@ public class BankPaymentFunctions {
 			String GRNSheetName = BankPayments[i][4];
 			if (!SupplierID.equals("")) {
 				for (int i1 = 1; i1 <= 2; i1++) {
-					Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName);
+					Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName,
+							BPGrnExcelFileName);
 				}
 			}
 		}
@@ -6518,7 +6562,8 @@ public class BankPaymentFunctions {
 			String GRNSheetName = BankPayments[i][4];
 			if (!SupplierID.equals("")) {
 				for (int i1 = 1; i1 <= 2; i1++) {
-					Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName);
+					Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName,
+							BPGrnExcelFileName);
 				}
 			}
 		}
@@ -6565,7 +6610,8 @@ public class BankPaymentFunctions {
 			String GRNSheetName = BankPayments[i][4];
 			if (!SupplierID.equals("")) {
 				for (int i1 = 1; i1 <= 2; i1++) {
-					Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName);
+					Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName,
+							BPGrnExcelFileName);
 				}
 			}
 		}
@@ -6611,7 +6657,8 @@ public class BankPaymentFunctions {
 			String GRNSheetName = BankPayments[i][4];
 			if (!SupplierID.equals("")) {
 				for (int i1 = 1; i1 <= 2; i1++) {
-					Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName);
+					Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName,
+							BPGrnExcelFileName);
 				}
 			}
 		}
@@ -6657,7 +6704,8 @@ public class BankPaymentFunctions {
 			String GRNSheetName = BankPayments[i][4];
 			if (!SupplierID.equals("")) {
 				for (int i1 = 1; i1 <= 2; i1++) {
-					Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName);
+					Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName,
+							BPGrnExcelFileName);
 				}
 			}
 		}
@@ -6700,7 +6748,8 @@ public class BankPaymentFunctions {
 			String SupplierID = BankPayments[i][2];
 			String GRNSheetName = BankPayments[i][4];
 			if (!SupplierID.equals("")) {
-				Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName);
+				Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(SupplierID, GRNSheetName,
+						BPGrnExcelFileName);
 			}
 		}
 		for (int i = 1; i <= VariableHandler.getMultipleGRNDocs().size(); i++) {
