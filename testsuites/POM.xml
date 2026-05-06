@@ -17,10 +17,10 @@
 			<class name="com.roadmapERP.GrnTest2"></class>
 			<class name="com.roadmapERP.GrnTest3"></class>
 			<class name="com.roadmapERP.OpenPoRcTest"></class>
-			<class name="com.roadmapERP.POAmendmentTest"></class>
+			<class name="com.roadmapERP.POAmendmentTest1"></class>
 			<class name="com.roadmapERP.POAmendmentTest2"></class>
 			<!--	<class name="com.roadmapERP.PoToGRNFOCTest"></class>-->
-			<class name="com.roadmapERP.PoToMRVTest"></class>
+			<class name="com.roadmapERP.PoToMRVTest1"></class>
 			<class name="com.roadmapERP.PoToMRVTest2"></class>
 			<class name="com.roadmapERP.PoToMRVTest3"></class>
 			<class name="com.roadmapERP.PriselistTest"></class>

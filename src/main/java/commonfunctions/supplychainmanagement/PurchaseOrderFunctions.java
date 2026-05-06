@@ -16512,6 +16512,10 @@ public class PurchaseOrderFunctions {
 				break;
 //					}
 			}
+			verifyHeaderTickAndPost();
+			verifyApprovePOUsingAshokUser();
+			verifyValidatePoStatus(VariableHandler.getPONumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+			flag = commonFunc.logoutUser();
 //		}
 		}
 		assertTrue(flag);

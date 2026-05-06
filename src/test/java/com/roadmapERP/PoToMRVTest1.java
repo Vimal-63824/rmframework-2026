@@ -20,7 +20,7 @@ import utils.Mailer;
 import utils.ReportLoger;
 import utils.WebDriverBase;
 
-public class PoToMRVTest extends RoadMapERPTest {
+public class PoToMRVTest1 extends RoadMapERPTest {
 	boolean flag = false;
 	static CommonFunctions commonFunc = new CommonFunctions();
 	static Mailer mail = new Mailer();
