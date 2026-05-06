@@ -3950,6 +3950,7 @@ public class PurchaseBillsFunctions {
 		if(!GetTextPBPrefix.equals(PrefixPb)) {
 			commonFunc.checkRefreshCellsDisappear();
 			commonFunc.searchAndSelectValueInFilters(PurchaseBillsLocators.PO_Inv_Prefix_Lov, PrefixPb);
+			webDB.switchToFrame(PurchaseBillsLocators.IframePendingPo, ElementType.Xpath);
 		}
 		assertTrue(flag);
 	}
