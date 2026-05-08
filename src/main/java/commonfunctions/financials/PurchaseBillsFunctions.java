@@ -872,7 +872,7 @@ public class PurchaseBillsFunctions {
 					commonFunc.checkRefreshCellsDisappear();
 					validAllowIgstCheckboxForTaxAmountCalculation();
 					// excelUtils.writeDataInExcel(filepath, SheetName, 2, 3, "2");
-					verifyTaxAmountForIgstAmountInDbValidationUpdated(SheetName);
+					verifyTaxAmountForIgstAmountInDbValidation(SheetName);
 				}
 			}
 		}
@@ -2762,8 +2762,22 @@ public class PurchaseBillsFunctions {
 					ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Realized Amount " + RealizedAmt + " Is Entered Successfully");
+				enterSaveButtonInBankRecipt();
 				commonFunc.checkRefreshCellsDisappear();
 			}
+		}
+		assertTrue(flag);
+	}
+	
+	/**To Click Save Button
+	 * 
+	 * @author Kowshik-RMITS
+	 */
+	public void enterSaveButtonInBankRecipt() {
+		flag = webDB.waitForElement(BankReceiptLocators.SaveButton, ElementType.Xpath);
+		if(flag) {
+			webDB.clickAnElement(BankReceiptLocators.SaveButton, ElementType.Xpath);
+			logs.logging("INFO", "Save Button is Clicked");
 		}
 		assertTrue(flag);
 	}
@@ -4375,7 +4389,6 @@ public class PurchaseBillsFunctions {
 		getGstClafInLocation();
 		getValueFromTaxAmountInLineDetails();
 		clickValidateAllowIgstFlag(commonFunc.getDataFromTestDataSheet("PurchaseBillsInterstate"));
-		movesToInvoiceTap();
 		createJvForRecord();
 		verifyLineDetailWithDbInPurchaseBills(webDB.getDataFromProperties("PurchaseBillsInterstate"));
 		clickPostButton();
@@ -6194,7 +6207,6 @@ public class PurchaseBillsFunctions {
 		openExpandButtonDirect();
 		getGstClafInLocation();
 		clickValidateAllowIgstFlag(webDB.getDataFromProperties("POSer_Pr_Interstate"));
-		movesToInvoiceTap();
 		createJvForRecord();
 		verifyLineDetailsWithDbValidationForAllowIGSTFlag(webDB.getDataFromProperties("POSer_Pr_Interstate"));
 		clickPostButton();
@@ -6899,7 +6911,7 @@ public class PurchaseBillsFunctions {
 		openExpandButtonDirect();
 		getGstClafInLocation();
 		movesToInvoiceTap();
-		clickValidateAllowIgstFlag(webDB.getDataFromProperties("purchaseBills_GRN"));
+		clickValidateAllowIgstFlag(webDB.getDataFromProperties("purchaseBills_GRN_igst"));
 		createJvForRecord();
 		verifyDbValidationForGrnPurchaseWithOutExpenses("purchaseBills_GRN");
 		clickPostButton();

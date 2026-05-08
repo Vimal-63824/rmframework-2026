@@ -341,4 +341,6 @@ public class BankReceiptLocators {
 	public static final String BRAdvPendingReceivablesDocumentSelectCheckBox(String VoucherNumber) {
 		return "//td[contains(text(),'" + VoucherNumber + "')]/../td[14]/*";
 	}
+	/** @locatorType Xpath */
+	public static final String SaveButton = "//button[@id='SAVE_BTN']" ;
 }
