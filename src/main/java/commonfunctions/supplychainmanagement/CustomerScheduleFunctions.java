@@ -172,32 +172,33 @@ public class CustomerScheduleFunctions {
 	 */
 	public void addQtyUnitAndMrpCost(String FirmQty, String UnitCost, String MrpPrice, String Discount, String EndDate,
 			String BucketType) {
-//		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.checkRefreshCellsDisappear();
 		salesOrderFunctions.verifyClickAndEnterValueInTableFields(CustomerScheduleLocators.CSLineWiseFirmQtyField,
 				CustomerScheduleLocators.CSLineWiseFirmQtyInputField, FirmQty);
 		webDB.pressTabKey();
-//		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.checkRefreshCellsDisappear();
 		salesOrderFunctions.verifyClickAndEnterValueInTableFields(CustomerScheduleLocators.CSLineWiseUnitPriceField,
 				CustomerScheduleLocators.CSLineWiseUnitPriceInputField, UnitCost);
 		webDB.pressTabKey();
-//		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.checkRefreshCellsDisappear();
 		salesOrderFunctions.verifyClickAndEnterValueInTableFields(CustomerScheduleLocators.CSLineWiseMRPField,
 				CustomerScheduleLocators.CSLineWiseMRPInputField, MrpPrice);
 		webDB.pressTabKey();
-//		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.checkRefreshCellsDisappear();
 		salesOrderFunctions.verifyClickAndEnterValueInTableFields(CustomerScheduleLocators.CSLineWiseDiscField,
 				CustomerScheduleLocators.CSLineWiseDiscInputField, Discount);
 		webDB.pressTabKey();
-//		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.checkRefreshCellsDisappear();
 		flag = webDB.waitForElement(CustomerScheduleLocators.CSLineWiseEndDateField, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(CustomerScheduleLocators.CSLineWiseEndDateField, ElementType.Xpath);
 			webDB.sendTextToAnElement(CustomerScheduleLocators.CSLineWiseEndDateInputField, EndDate, ElementType.Xpath);
 			webDB.pressTabKey();
-//			commonFunc.checkRefreshCellsDisappear();
+			commonFunc.checkRefreshCellsDisappear();
 			webDB.selectDropDownByValue(CustomerScheduleLocators.CSBucketTypeDropDown, BucketType, ElementType.Xpath);
 			webDB.pressTabKey();
-//			commonFunc.checkRefreshCellsDisappear();
+			commonFunc.hardWait(500);
+			commonFunc.checkRefreshCellsDisappear();
 		}
 		assertTrue(flag);
 	}
@@ -226,6 +227,8 @@ public class CustomerScheduleFunctions {
 	 * @author Harikrishna - RMITS
 	 */
 	public void clickLineWiseSaveButton() {
+		commonFunc.hardWait(500);
+		commonFunc.checkRefreshCellsDisappear();
 		flag = webDB.waitForElement(CustomerScheduleLocators.CSLineWiseSaveButton, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(CustomerScheduleLocators.CSLineWiseSaveButton, ElementType.Xpath);
@@ -582,6 +585,8 @@ public class CustomerScheduleFunctions {
 				webDB.clickAnElement(CustomerScheduleLocators.CSHsnCodeField, ElementType.Xpath);
 				commonFunc.searchAndSelectValueInFilters(CustomerScheduleLocators.CSHsnCodeLov, HSNCode);
 				webDB.pressTabKey();
+				commonFunc.hardWait(500);
+				commonFunc.checkRefreshCellsDisappear();
 			}
 		}
 		assertTrue(flag);
