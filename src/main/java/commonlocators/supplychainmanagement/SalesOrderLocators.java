@@ -741,4 +741,6 @@ public class SalesOrderLocators {
 
 	/** @Locator Xpath */
 	public static final String HeaderCPCcodeLovBtn = "//input[@data-testid='P191513134001_SOH_CC_ID']/following-sibling::button";
+	/** @Locator Xpath */
+	public static final String LineDetailBOMNoLov = "//input[contains(@id,'SOQ_BOM_NO')]/following-sibling::button";
 }

@@ -7257,4 +7257,68 @@ public class SalesOrderFunctions {
 		}
 		return flag;
 	}
+
+	/**
+	 * This Method Is Used To navigate To the Line Details Page (2) and Add BOM No
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void navigateToLineDetails2AndAddBOMNo(String BOMNo) {
+		flag = webDB.waitForElement(SalesOrderLocators.LinedetailsTab2, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(SalesOrderLocators.LinedetailsTab2, ElementType.Xpath);
+			flag = webDB.waitForElement(SalesOrderLocators.CustItemID, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Sucessfully Navigated To Line Details 2");
+				commonFunc.searchAndSelectValueInFilters(SalesOrderLocators.LineDetailBOMNoLov, BOMNo);
+				webDB.switchToFrame(SalesOrderLocators.LineDetailsFrame, ElementType.Xpath);
+				webDB.waitForElement(SalesOrderLocators.LineWiseDetailsSaveIcon, ElementType.Xpath);
+				webDB.clickAnElement(SalesOrderLocators.LineWiseDetailsSaveIcon, ElementType.Xpath);
+				webDB.switchToDefaultContent();
+				flag = webDB.waitForElement(SalesOrderLocators.SalesOrderHeaderSaveButton, ElementType.Xpath);
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is used to SO for MRP & Prod Order
+	 * 
+	 * @author Sakthi-GWL
+	 * @return boolean flag
+	 */
+	public boolean verifySalesOrderCreationForMRPAndProdOrder(int ReqQty, String BOMNo) {
+		excelUtils.writeDataInExcel(Filepath1, webDB.getDataFromProperties("ProdOrderWithSO"), 4, 6,
+				String.valueOf(ReqQty));
+		excelUtils.writeDataInExcel(Filepath1, webDB.getDataFromProperties("ProdOrderWithSO"), 4, 43, BOMNo);
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("AdminUsername"));
+		commonFunc.navigateSalesOrderPage();
+		checkSOMControl(webDB.getDataFromProperties("So"));
+		verifyCreationOfSalesOrderHeader(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("SO_General"),
+				commonFunc.getDataFromTestDataSheet("Customer"));
+		salesOrderDBHeaderValidation(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("Customer"),
+				commonFunc.getDataFromTestDataSheet("CustomerDesc"), commonFunc.getDataFromTestDataSheet("SO_General"));
+		checkSOHeaderDetailsDataBaseValuesWithUIValues();
+		addSalesOrderLineThroughExcelUD(webDB.getDataFromProperties("ProdOrderWithSO"),
+				commonFunc.getDataFromTestDataSheet("SO_General"), commonFunc.getDataFromTestDataSheet("SI_HSNCode"),
+				commonFunc.getDataFromTestDataSheet("Customer"));
+		navigateToLineDetailsPage1(1);
+		navigateToLineDetails2AndAddBOMNo(BOMNo);
+		clickPostButton();
+		flag = forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
+		if (flag) {
+			verifySalesOrderDocumentStatusEntryCompletedWithDB();
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSONumber(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
+			flag = commonFunc.logoutUser();
+			if (flag) {
+				verifySalesOrderDocumentStatusApprovedWithDB();
+			}
+		}
+		return flag;
+	}
 }

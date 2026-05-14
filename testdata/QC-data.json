@@ -1001,7 +1001,6 @@
 	"BomOutsideAndInsideWithMaterial": "BOM-2526-0000171",
 	"ProdOrderNonStandard": "Production Order - Non Standard",
 	"GWL_Item(SOStandard)": "GWL_SO(Standard)_Item",
-	"BomAllInside": "BOM-2526-0001156",
 	"BomOutsideAndInsideForMultiple": "BOM00/00345/25-26",
 	"BomAllProcessBoth": "BOM-2526-0000073",
 	"T1001": "T1001",
@@ -1352,7 +1351,6 @@
 	"SoDesc-BOMItem": "GWL-SO-BOMITEM-10001",
 	"SoDescNumber": "SORD-2526-00432",
 	"ProdAgainstSOQuantity": "10",
-	"BomAllOutside": "BOM-2526-0000170",
 	"WholeInsItem": "GWL - ITEM - WHOLE INS",
 	"PartialInsItem": "GWL - ITEM - PARTIAL INS (RM)",
 	"MaterialReturnPrefix": "MRTN",
@@ -2060,5 +2058,11 @@
 	"FG-BOM-Item1": "GWL - BOM ITEM - 227358",
 	"FG-BOM-Item2": "GWL - BOM ITEM - 199365",
 	"PrefixPb":"PB",
-	"KV_CAREERS": "KV CAREERS INTR-UR(AR)"
+	"KV_CAREERS": "KV CAREERS INTR-UR(AR)",
+	"BomAllInside": "BOM-2627-0000070",
+	"BomAllOutside": "BOM-2627-0000125",
+	"BomFirstInRestOut": "BOM-2627-0000126",
+	"BomFirstOutRestIn": "BOM-2627-0000127",
+	"BomFirstOutRestBoth": "BOM-2627-0000128",
+	"BomAllBoth": "BOM-2627-0000152"
 }
