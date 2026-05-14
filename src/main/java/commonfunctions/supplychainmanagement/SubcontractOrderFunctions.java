@@ -4516,10 +4516,10 @@ public class SubcontractOrderFunctions {
 					webDB.clickAnElement(SubcontractOrderLocators.Pend_SerialWise_SearchBtn, ElementType.Xpath);
 					commonFunc.checkRefreshCellsDisappear();
 					commonFunc.hardWait(12000);
-					flag = webDB.waitForElement(SubcontractOrderLocators.SCO_Pend_SelectALl, ElementType.Xpath);
-					if (flag) {
-						webDB.doubleClickAnElement(SubcontractOrderLocators.SCO_Pend_SelectALl, ElementType.Xpath);
-						commonFunc.hardWait(1000);
+//					flag = webDB.waitForElement(SubcontractOrderLocators.SCO_Pend_SelectALl, ElementType.Xpath);
+//					if (flag) {
+//						webDB.doubleClickAnElement(SubcontractOrderLocators.SCO_Pend_SelectALl, ElementType.Xpath);
+//						commonFunc.hardWait(1000);
 						flag = webDB.waitForElement(SubcontractOrderLocators.SerialCheckBox(DocNo), ElementType.Xpath);
 						if (flag) {
 							webDB.clickAnElement(SubcontractOrderLocators.SerialCheckBox(DocNo), ElementType.Xpath);
@@ -4568,7 +4568,7 @@ public class SubcontractOrderFunctions {
 					}
 				}
 			}
-		}
+		
 		assertTrue(flag);
 	}
 
@@ -8274,8 +8274,8 @@ public class SubcontractOrderFunctions {
 	 * @author Vimal - RMITS
 	 */
 	public void createSerialitemSubcontractOrderFromPendingWithProjectUTGSTRegistered() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("VimalUsername"), System.getProperty("LoginPassword"),
+				"VimalUsername");
 		commonFunc.navigateToProductionOrderScreen();
 		ProductionordertFunc.clickAddIconInCreationProductionOrder();
 		createProdOrderAndProductionOrderWithSORefParameters(commonFunc.getDataFromTestDataSheet("UTGSTLocation1"),
@@ -8344,8 +8344,8 @@ public class SubcontractOrderFunctions {
 	 * @author Vimal - RMITS
 	 */
 	public void createSubcontractOrderFromPendingWithConversionFactorinGRN_PRTypeUTGSTUnRegistered() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("VimalUsername"), System.getProperty("LoginPassword"),
+				"VimalUsername");
 		commonFunc.navigateToProductionOrderScreen();
 		ProductionordertFunc.clickAddIconInCreationProductionOrder();
 		createProdOrderAndProductionOrderParameters(commonFunc.getDataFromTestDataSheet("UTGSTLocation1"),
@@ -8414,8 +8414,8 @@ public class SubcontractOrderFunctions {
 	 * @author Vimal - RMITS
 	 */
 	public void createSubcontractOrderFromPendingWithSalesOrderRefUTGSTUnregistered() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("VimalUsername"), System.getProperty("LoginPassword"),
+				"VimalUsername");
 		commonFunc.navigateToProductionOrderScreen();
 		ProductionordertFunc.clickAddIconInCreationProductionOrder();
 		createProdOrderAndProductionOrderWithSORefParameters(commonFunc.getDataFromTestDataSheet("UTGSTLocation1"),
@@ -8484,8 +8484,8 @@ public class SubcontractOrderFunctions {
 	 * @author Vimal - RMITS
 	 */
 	public void createSubcontractOrderFromPendingWithSalesOrderRefandConvFactorUTGSTUnRegistered() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("VimalUsername"), System.getProperty("LoginPassword"),
+				"VimalUsername");
 		commonFunc.navigateToProductionOrderScreen();
 		ProductionordertFunc.clickAddIconInCreationProductionOrder();
 		createProdOrderAndProductionOrderWithSORefParameters(commonFunc.getDataFromTestDataSheet("UTGSTLocation1"),
@@ -8598,8 +8598,8 @@ public class SubcontractOrderFunctions {
 	 * @author Vimal - RMITS
 	 */
 	public void createSubcontractOrderFromPendingWithProjectUTGSTUnRegistered() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("VimalUsername"), System.getProperty("LoginPassword"),
+				"VimalUsername");
 		commonFunc.navigateToProductionOrderScreen();
 		ProductionordertFunc.clickAddIconInCreationProductionOrder();
 		createProdOrderAndProductionOrderWithSORefParameters(commonFunc.getDataFromTestDataSheet("UTGSTLocation1"),
@@ -8668,8 +8668,8 @@ public class SubcontractOrderFunctions {
 	 * @author Vimal - RMITS
 	 */
 	public void createDirectSerialItemSubcontractOrderWithBOMForStandardTypeUTGSTUnregistered() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("VimalUsername"), System.getProperty("LoginPassword"),
+				"VimalUsername");
 		commonFunc.navigateToSubcontractOrder();
 		clickingAddIconForSCO();
 		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("UTGSTLocation1"),
@@ -8699,8 +8699,8 @@ public class SubcontractOrderFunctions {
 	 * @author Vimal - RMITS
 	 */
 	public void createDirectSerialItemSubcontractOrderForValueAdditionTypeUTGSTUnregistered() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("VimalUsername"), System.getProperty("LoginPassword"),
+				"VimalUsername");
 		commonFunc.navigateToSubcontractOrder();
 		clickingAddIconForSCO();
 		insertingSubcontractParametersForValueAdditionType(commonFunc.getDataFromTestDataSheet("UTGSTLocation1"),
@@ -8755,8 +8755,8 @@ public class SubcontractOrderFunctions {
 	 * @author Vimal - RMITS
 	 */
 	public void directSerialItemSubcontractOrderWithBOMForStandardTypeInSalesOrderRefUTGSTUnregistered() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("VimalUsername"), System.getProperty("LoginPassword"),
+				"VimalUsername");
 		commonFunc.navigateToSubcontractOrder();
 		clickingAddIconForSCO();
 		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("UTGSTLocation1"),
@@ -8810,8 +8810,8 @@ public class SubcontractOrderFunctions {
 	 * @author Vimal - RMITS
 	 */
 	public void directSerialItemSubcontractOrderWithBOMForStandardTypeWithProjectUTGSTUnregistered() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("VimalUsername"), System.getProperty("LoginPassword"),
+				"VimalUsername");
 		commonFunc.navigateToSubcontractOrder();
 		clickingAddIconForSCO();
 		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("UTGSTLocation1"),
@@ -8865,8 +8865,8 @@ public class SubcontractOrderFunctions {
 	 * @author Vimal - RMITS
 	 */
 	public void createDirectSerialItemSubcontractOrderWithBOMForStandardTypeUTGSTRegistered() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("VimalUsername"), System.getProperty("LoginPassword"),
+				"VimalUsername");
 		commonFunc.navigateToSubcontractOrder();
 		clickingAddIconForSCO();
 		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("UTGSTLocation1"),
@@ -8896,8 +8896,8 @@ public class SubcontractOrderFunctions {
 	 * @author Vimal - RMITS
 	 */
 	public void createDirectSerialItemSubcontractOrderForValueAdditionTypeUTGSTRegistered() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("VimalUsername"), System.getProperty("LoginPassword"),
+				"VimalUsername");
 		commonFunc.navigateToSubcontractOrder();
 		clickingAddIconForSCO();
 		insertingSubcontractParametersForValueAdditionType(commonFunc.getDataFromTestDataSheet("UTGSTLocation1"),
@@ -8952,8 +8952,8 @@ public class SubcontractOrderFunctions {
 	 * @author Vimal - RMITS
 	 */
 	public void directSerialItemSubcontractOrderWithBOMForStandardTypeInSalesOrderRefUTGSTRegistered() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("VimalUsername"), System.getProperty("LoginPassword"),
+				"VimalUsername");
 		commonFunc.navigateToSubcontractOrder();
 		clickingAddIconForSCO();
 		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("UTGSTLocation1"),
@@ -9007,8 +9007,8 @@ public class SubcontractOrderFunctions {
 	 * @author Vimal - RMITS
 	 */
 	public void directSerialItemSubcontractOrderWithBOMForStandardTypeWithProjectUTGSTRegistered() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("VimalUsername"), System.getProperty("LoginPassword"),
+				"VimalUsername");
 		commonFunc.navigateToSubcontractOrder();
 		clickingAddIconForSCO();
 		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("UTGSTLocation1"),
@@ -9062,8 +9062,8 @@ public class SubcontractOrderFunctions {
 	 * @author Vimal - RMITS
 	 */
 	public void createDirectSerialItemSubcontractOrderWithBOMForStandardTypeLocalRegistered() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("VimalUsername"), System.getProperty("LoginPassword"),
+				"VimalUsername");
 		commonFunc.navigateToSubcontractOrder();
 		clickingAddIconForSCO();
 		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -9093,8 +9093,8 @@ public class SubcontractOrderFunctions {
 	 * @author Vimal - RMITS
 	 */
 	public void createDirectSerialItemSubcontractOrderForValueAdditionTypeLocalRegistered() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("VimalUsername"), System.getProperty("LoginPassword"),
+				"VimalUsername");
 		commonFunc.navigateToSubcontractOrder();
 		clickingAddIconForSCO();
 		insertingSubcontractParametersForValueAdditionType(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -9204,8 +9204,8 @@ public class SubcontractOrderFunctions {
 	 * @author Vimal - RMITS
 	 */
 	public void directSerialItemSubcontractOrderWithBOMForStandardTypeWithProjectLocalRegistered() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("VimalUsername"), System.getProperty("LoginPassword"),
+				"VimalUsername");
 		commonFunc.navigateToSubcontractOrder();
 		clickingAddIconForSCO();
 		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -9259,8 +9259,8 @@ public class SubcontractOrderFunctions {
 	 * @author Vimal - RMITS
 	 */
 	public void createDirectSerialItemSubcontractOrderWithBOMForStandardTypeLocalUnRegistered() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("VimalUsername"), System.getProperty("LoginPassword"),
+				"VimalUsername");
 		commonFunc.navigateToSubcontractOrder();
 		clickingAddIconForSCO();
 		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -9290,8 +9290,8 @@ public class SubcontractOrderFunctions {
 	 * @author Vimal - RMITS
 	 */
 	public void createDirectSerialItemSubcontractOrderForValueAdditionTypeLocalUnRegistered() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("VimalUsername"), System.getProperty("LoginPassword"),
+				"VimalUsername");
 		commonFunc.navigateToSubcontractOrder();
 		clickingAddIconForSCO();
 		insertingSubcontractParametersForValueAdditionType(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -9346,8 +9346,8 @@ public class SubcontractOrderFunctions {
 	 * @author Vimal - RMITS
 	 */
 	public void directSerialItemSubcontractOrderWithBOMForStandardTypeInSalesOrderRefLocalUnRegistered() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("VimalUsername"), System.getProperty("LoginPassword"),
+				"VimalUsername");
 		commonFunc.navigateToSubcontractOrder();
 		clickingAddIconForSCO();
 		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -9401,8 +9401,8 @@ public class SubcontractOrderFunctions {
 	 * @author Vimal - RMITS
 	 */
 	public void directSerialItemSubcontractOrderWithBOMForStandardTypeWithProjectLocalUnRegistered() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("VimalUsername"), System.getProperty("LoginPassword"),
+				"VimalUsername");
 		commonFunc.navigateToSubcontractOrder();
 		clickingAddIconForSCO();
 		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -9456,8 +9456,8 @@ public class SubcontractOrderFunctions {
 	 * @author Vimal - RMITS
 	 */
 	public void createSerialItemSubcontractOrderFromPendingWithSalesOrderRefInterstateUnRegistered() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("VimalUsername"), System.getProperty("LoginPassword"),
+				"VimalUsername");
 		commonFunc.navigateToProductionOrderScreen();
 		ProductionordertFunc.clickAddIconInCreationProductionOrder();
 		createProdOrderAndProductionOrderWithSORefParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -9574,8 +9574,8 @@ public class SubcontractOrderFunctions {
 	 * @author Vimal - RMITS
 	 */
 	public void createSerialitemSubcontractOrderFromPendingWithProjectInterstateUnRegistered() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("VimalUsername"), System.getProperty("LoginPassword"),
+				"VimalUsername");
 		commonFunc.navigateToProductionOrderScreen();
 		ProductionordertFunc.clickAddIconInCreationProductionOrder();
 		createProdOrderAndProductionOrderWithSORefParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -9645,8 +9645,8 @@ public class SubcontractOrderFunctions {
 	 * @author Vimal - RMITS
 	 */
 	public void createSerialItemSubcontractOrderFromPendingWithSalesOrderRefInterstateRegistered() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("VimalUsername"), System.getProperty("LoginPassword"),
+				"VimalUsername");
 		commonFunc.navigateToProductionOrderScreen();
 		ProductionordertFunc.clickAddIconInCreationProductionOrder();
 		createProdOrderAndProductionOrderWithSORefParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -9764,8 +9764,8 @@ public class SubcontractOrderFunctions {
 	 * @author Vimal - RMITS
 	 */
 	public void createSerialitemSubcontractOrderFromPendingWithProjectInterstateRegistered() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("VimalUsername"), System.getProperty("LoginPassword"),
+				"VimalUsername");
 		commonFunc.navigateToProductionOrderScreen();
 		ProductionordertFunc.clickAddIconInCreationProductionOrder();
 		createProdOrderAndProductionOrderWithSORefParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -9835,8 +9835,8 @@ public class SubcontractOrderFunctions {
 	 * @author Vimal - RMITS
 	 */
 	public void createDirectSerialItemSubcontractOrderWithBOMForStandardTypeInterstateRegistered() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("VimalUsername"), System.getProperty("LoginPassword"),
+				"VimalUsername");
 		commonFunc.navigateToSubcontractOrder();
 		clickingAddIconForSCO();
 		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -9867,8 +9867,8 @@ public class SubcontractOrderFunctions {
 	 * @author Vimal - RMITS
 	 */
 	public void createDirectSerialItemSubcontractOrderForValueAdditionTypeInterstateRegistered() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("VimalUsername"), System.getProperty("LoginPassword"),
+				"VimalUsername");
 		commonFunc.navigateToSubcontractOrder();
 		clickingAddIconForSCO();
 		insertingSubcontractParametersForValueAdditionType(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -9924,8 +9924,8 @@ public class SubcontractOrderFunctions {
 	 * @author Vimal - RMITS
 	 */
 	public void directSerialItemSubcontractOrderWithBOMForStandardTypeInSalesOrderRefInterstateRegistered() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("VimalUsername"), System.getProperty("LoginPassword"),
+				"VimalUsername");
 		commonFunc.navigateToSubcontractOrder();
 		clickingAddIconForSCO();
 		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -9980,8 +9980,8 @@ public class SubcontractOrderFunctions {
 	 * @author Vimal - RMITS
 	 */
 	public void directSerialItemSubcontractOrderWithBOMForStandardTypeWithProjectInterstateRegistered() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("VimalUsername"), System.getProperty("LoginPassword"),
+				"VimalUsername");
 		commonFunc.navigateToSubcontractOrder();
 		clickingAddIconForSCO();
 		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -10517,8 +10517,8 @@ public class SubcontractOrderFunctions {
 	 * @return boolean
 	 */
 	public boolean createProductionOrderFromSubcontractorderToGRNWithGateEntryTypePR() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("VimalUsername"), System.getProperty("LoginPassword"),
+				"VimalUsername");
 		commonFunc.navigateToProductionOrderScreen();
 		ProductionordertFunc.clickAddIconInCreationProductionOrder();
 		createProdOrderAndProductionOrderParameters(commonFunc.getDataFromTestDataSheet("L49ID"),
@@ -11279,8 +11279,8 @@ public class SubcontractOrderFunctions {
 	 * @return boolean
 	 */
 	public boolean createProductionOrderFromSubcontractorderToGRNWithGateEntryTypeCS() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("VimalUsername"), System.getProperty("LoginPassword"),
+				"VimalUsername");
 		commonFunc.navigateToProductionOrderScreen();
 		ProductionordertFunc.clickAddIconInCreationProductionOrder();
 		createProdOrderAndProductionOrderParameters(commonFunc.getDataFromTestDataSheet("L49ID"),
@@ -11355,8 +11355,8 @@ public class SubcontractOrderFunctions {
 	 * @return boolean
 	 */
 	public boolean createProductionOrderFromSubcontractorderToGRNQCEnableWithGateEntryTypePR() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("VimalUsername"), System.getProperty("LoginPassword"),
+				"VimalUsername");
 		commonFunc.navigateToProductionOrderScreen();
 		ProductionordertFunc.clickAddIconInCreationProductionOrder();
 		createProdOrderAndProductionOrderParameters(commonFunc.getDataFromTestDataSheet("L49ID"),
@@ -11438,8 +11438,8 @@ public class SubcontractOrderFunctions {
 	 * @return boolean
 	 */
 	public boolean createProductionOrderFromSubcontractorderToGRNWithQCEnableGateEntryTypeUP() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("VimalUsername"), System.getProperty("LoginPassword"),
+				"VimalUsername");
 		commonFunc.navigateToProductionOrderScreen();
 		ProductionordertFunc.clickAddIconInCreationProductionOrder();
 		createProdOrderAndProductionOrderParameters(commonFunc.getDataFromTestDataSheet("L49ID"),
@@ -11636,8 +11636,8 @@ public class SubcontractOrderFunctions {
 	 * @return boolean
 	 */
 	public boolean createProductionOrderFromSubcontractorderToGRNQCEnableWithGateEntryTypeUS() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("VimalUsername"), System.getProperty("LoginPassword"),
+				"VimalUsername");
 		commonFunc.navigateToProductionOrderScreen();
 		ProductionordertFunc.clickAddIconInCreationProductionOrder();
 		createProdOrderAndProductionOrderParameters(commonFunc.getDataFromTestDataSheet("L49ID"),
@@ -11917,8 +11917,8 @@ public class SubcontractOrderFunctions {
 	 * @return boolean
 	 */
 	public boolean directSubcontractorderToGRNTypePR() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("VimalUsername"), System.getProperty("LoginPassword"),
+				"VimalUsername");
 		commonFunc.navigateToSubcontractOrder();
 		clickingAddIconForSCO();
 		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -11975,8 +11975,8 @@ public class SubcontractOrderFunctions {
 	 * @return boolean
 	 */
 	public boolean directSubcontractorderToGRNTypeCS() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("VimalUsername"), System.getProperty("LoginPassword"),
+				"VimalUsername");
 		commonFunc.navigateToSubcontractOrder();
 		clickingAddIconForSCO();
 		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -12033,8 +12033,8 @@ public class SubcontractOrderFunctions {
 	 * @return boolean
 	 */
 	public boolean directSubcontractorderToGRNWithGateEntryTypePR() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("VimalUsername"), System.getProperty("LoginPassword"),
+				"VimalUsername");
 		commonFunc.navigateToSubcontractOrder();
 		clickingAddIconForSCO();
 		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("L49ID"),
@@ -12094,8 +12094,8 @@ public class SubcontractOrderFunctions {
 	 * @return boolean
 	 */
 	public boolean directSubcontractorderToGRNWithGateEntryTypeCS() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("VimalUsername"), System.getProperty("LoginPassword"),
+				"VimalUsername");
 		commonFunc.navigateToSubcontractOrder();
 		clickingAddIconForSCO();
 		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("L49ID"),
@@ -12157,8 +12157,8 @@ public class SubcontractOrderFunctions {
 	 * @return boolean
 	 */
 	public boolean directSubcontractorderToGRNWithQCTypePR() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("VimalUsername"), System.getProperty("LoginPassword"),
+				"VimalUsername");
 		commonFunc.navigateToSubcontractOrder();
 		clickingAddIconForSCO();
 		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -12223,8 +12223,8 @@ public class SubcontractOrderFunctions {
 	 * @return boolean
 	 */
 	public boolean directSubcontractorderToGRNWithQCEnableGateEntryTypePR() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("VimalUsername"), System.getProperty("LoginPassword"),
+				"VimalUsername");
 		commonFunc.navigateToSubcontractOrder();
 		clickingAddIconForSCO();
 		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("L49ID"),
@@ -12293,8 +12293,8 @@ public class SubcontractOrderFunctions {
 	 * @return boolean
 	 */
 	public boolean pendingSerialSubcontractOrderToGRNWithOutGateEntryPRtype() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("VimalUsername"), System.getProperty("LoginPassword"),
+				"VimalUsername");
 		commonFunc.navigateToProductionOrderScreen();
 		ProductionordertFunc.clickAddIconInCreationProductionOrder();
 		createProdOrderAndProductionOrderParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -12364,8 +12364,8 @@ public class SubcontractOrderFunctions {
 	 * @return boolean
 	 */
 	public boolean pendingSerialSubcontractOrderToGRNWithOutGateEntryUPtype() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("VimalUsername"), System.getProperty("LoginPassword"),
+				"VimalUsername");
 		commonFunc.navigateToProductionOrderScreen();
 		ProductionordertFunc.clickAddIconInCreationProductionOrder();
 		createProdOrderAndProductionOrderParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -12524,8 +12524,8 @@ public class SubcontractOrderFunctions {
 	 * @return boolean
 	 */
 	public boolean pendingSerialSubcontractOrderToGRNWithOutGateEntryUStype() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("VimalUsername"), System.getProperty("LoginPassword"),
+				"VimalUsername");
 		commonFunc.navigateToProductionOrderScreen();
 		ProductionordertFunc.clickAddIconInCreationProductionOrder();
 		createProdOrderAndProductionOrderParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -12640,8 +12640,8 @@ public class SubcontractOrderFunctions {
 	 * @return boolean
 	 */
 	public boolean pendingSerialSubcontractOrderToGRNWithOutGateEntryCStype() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("VimalUsername"), System.getProperty("LoginPassword"),
+				"VimalUsername");
 		commonFunc.navigateToProductionOrderScreen();
 		ProductionordertFunc.clickAddIconInCreationProductionOrder();
 		createProdOrderAndProductionOrderParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -12712,8 +12712,8 @@ public class SubcontractOrderFunctions {
 	 * @return boolean
 	 */
 	public boolean pendingSerialSubcontractOrderToGRNWithGateEntryPRtype() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("VimalUsername"), System.getProperty("LoginPassword"),
+				"VimalUsername");
 		commonFunc.navigateToProductionOrderScreen();
 		ProductionordertFunc.clickAddIconInCreationProductionOrder();
 		createProdOrderAndProductionOrderParameters(commonFunc.getDataFromTestDataSheet("L49ID"),
@@ -12788,8 +12788,8 @@ public class SubcontractOrderFunctions {
 	 * @return boolean
 	 */
 	public boolean pendingSerialSubcontractOrderToGRNWithGateEntryUPtype() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("VimalUsername"), System.getProperty("LoginPassword"),
+				"VimalUsername");
 		commonFunc.navigateToProductionOrderScreen();
 		ProductionordertFunc.clickAddIconInCreationProductionOrder();
 		createProdOrderAndProductionOrderParameters(commonFunc.getDataFromTestDataSheet("L49ID"),
@@ -12962,8 +12962,8 @@ public class SubcontractOrderFunctions {
 	 * @return boolean
 	 */
 	public boolean pendingSerialSubcontractOrderToGRNWithGateEntryUStype() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("VimalUsername"), System.getProperty("LoginPassword"),
+				"VimalUsername");
 		commonFunc.navigateToProductionOrderScreen();
 		ProductionordertFunc.clickAddIconInCreationProductionOrder();
 		createProdOrderAndProductionOrderParameters(commonFunc.getDataFromTestDataSheet("L49ID"),
@@ -13087,8 +13087,8 @@ public class SubcontractOrderFunctions {
 	 * @return boolean
 	 */
 	public boolean pendingSerialSubcontractOrderToGRNWithGateEntryCStype() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("VimalUsername"), System.getProperty("LoginPassword"),
+				"VimalUsername");
 		commonFunc.navigateToProductionOrderScreen();
 		ProductionordertFunc.clickAddIconInCreationProductionOrder();
 		createProdOrderAndProductionOrderParameters(commonFunc.getDataFromTestDataSheet("L49ID"),
@@ -13163,8 +13163,8 @@ public class SubcontractOrderFunctions {
 	 * @return boolean
 	 */
 	public boolean pendingSerialSubcontractOrderToGRNWithOutGateEntryPRtypeQCEnable() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("VimalUsername"), System.getProperty("LoginPassword"),
+				"VimalUsername");
 		commonFunc.navigateToProductionOrderScreen();
 		ProductionordertFunc.clickAddIconInCreationProductionOrder();
 		createProdOrderAndProductionOrderParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -13243,8 +13243,8 @@ public class SubcontractOrderFunctions {
 	 * @return boolean
 	 */
 	public boolean pendingSerialSubcontractOrderToGRNWithOutGateEntryUPtypeQCEnable() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("VimalUsername"), System.getProperty("LoginPassword"),
+				"VimalUsername");
 		commonFunc.navigateToProductionOrderScreen();
 		ProductionordertFunc.clickAddIconInCreationProductionOrder();
 		createProdOrderAndProductionOrderParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -13561,8 +13561,8 @@ public class SubcontractOrderFunctions {
 	 * @return boolean
 	 */
 	public boolean pendingSerialSubcontractOrderToGRNWithOutGateEntryCStypeQCEnable() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("VimalUsername"), System.getProperty("LoginPassword"),
+				"VimalUsername");
 		commonFunc.navigateToProductionOrderScreen();
 		ProductionordertFunc.clickAddIconInCreationProductionOrder();
 		createProdOrderAndProductionOrderParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -13642,8 +13642,8 @@ public class SubcontractOrderFunctions {
 	 * @return boolean
 	 */
 	public boolean pendingSerialSubcontractOrderToGRNWithGateEntryPRtypeQCenable() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("VimalUsername"), System.getProperty("LoginPassword"),
+				"VimalUsername");
 		commonFunc.navigateToProductionOrderScreen();
 		ProductionordertFunc.clickAddIconInCreationProductionOrder();
 		createProdOrderAndProductionOrderParameters(commonFunc.getDataFromTestDataSheet("L49ID"),
@@ -13727,8 +13727,8 @@ public class SubcontractOrderFunctions {
 	 * @return boolean
 	 */
 	public boolean pendingSerialSubcontractOrderToGRNWithGateEntryUPtypeQCenable() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("VimalUsername"), System.getProperty("LoginPassword"),
+				"VimalUsername");
 		commonFunc.navigateToProductionOrderScreen();
 		ProductionordertFunc.clickAddIconInCreationProductionOrder();
 		createProdOrderAndProductionOrderParameters(commonFunc.getDataFromTestDataSheet("L49ID"),
@@ -13926,8 +13926,8 @@ public class SubcontractOrderFunctions {
 	 * @return boolean
 	 */
 	public boolean pendingSerialSubcontractOrderToGRNWithGateEntryUStypeQCenable() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("VimalUsername"), System.getProperty("LoginPassword"),
+				"VimalUsername");
 		commonFunc.navigateToProductionOrderScreen();
 		ProductionordertFunc.clickAddIconInCreationProductionOrder();
 		createProdOrderAndProductionOrderParameters(commonFunc.getDataFromTestDataSheet("L49ID"),
@@ -14161,8 +14161,8 @@ public class SubcontractOrderFunctions {
 	 * @author Vimal - RMITS
 	 */
 	public void directSerialItemSubcontractOrdertoGRNwithoutGateEntryforPRtype() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("VimalUsername"), System.getProperty("LoginPassword"),
+				"VimalUsername");
 		commonFunc.navigateToSubcontractOrder();
 		clickingAddIconForSCO();
 		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -14217,8 +14217,8 @@ public class SubcontractOrderFunctions {
 	 * @author Vimal - RMITS
 	 */
 	public void directSerialItemSubcontractOrdertoGRNwithoutGateEntryforCStype() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("VimalUsername"), System.getProperty("LoginPassword"),
+				"VimalUsername");
 		commonFunc.navigateToSubcontractOrder();
 		clickingAddIconForSCO();
 		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -14274,8 +14274,8 @@ public class SubcontractOrderFunctions {
 	 * @author Vimal - RMITS
 	 */
 	public void directSerialItemSubcontractOrdertoGRNwithGateEntryforPRtype() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("VimalUsername"), System.getProperty("LoginPassword"),
+				"VimalUsername");
 		commonFunc.navigateToSubcontractOrder();
 		clickingAddIconForSCO();
 		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("L49ID"),
@@ -14334,8 +14334,8 @@ public class SubcontractOrderFunctions {
 	 * @author Vimal - RMITS
 	 */
 	public void directSerialItemSubcontractOrdertoGRNwithGateEntryforCStype() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("VimalUsername"), System.getProperty("LoginPassword"),
+				"VimalUsername");
 		commonFunc.navigateToSubcontractOrder();
 		clickingAddIconForSCO();
 		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("L49ID"),
@@ -14403,8 +14403,8 @@ public class SubcontractOrderFunctions {
 	 * @author Vimal - RMITS
 	 */
 	public void directSerialItemSubcontractOrdertoGRNwithoutGateEntryforPRtypeQCenable() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("VimalUsername"), System.getProperty("LoginPassword"),
+				"VimalUsername");
 		commonFunc.navigateToSubcontractOrder();
 		clickingAddIconForSCO();
 		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -14467,8 +14467,8 @@ public class SubcontractOrderFunctions {
 	 * @author Vimal - RMITS
 	 */
 	public void directSerialItemSubcontractOrdertoGRNwithGateEntryforPRtypeQCenable() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("VimalUsername"), System.getProperty("LoginPassword"),
+				"VimalUsername");
 		commonFunc.navigateToSubcontractOrder();
 		clickingAddIconForSCO();
 		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("L49ID"),
@@ -15552,8 +15552,8 @@ public class SubcontractOrderFunctions {
 	 * @author Vimal - RMITS
 	 */
 	public void createReworkSubcontractOrderForStandardReworkType() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("VimalUsername"), System.getProperty("LoginPassword"),
+				"VimalUsername");
 		commonFunc.navigateToProductionOrderScreen();
 		ProductionordertFunc.clickAddIconInCreationProductionOrder();
 		createProdOrderAndProductionOrderParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -15835,8 +15835,8 @@ public class SubcontractOrderFunctions {
 	 * @author Vimal - RMITS
 	 */
 	public void createRepairreworkorderforSubcontractPrimaryrejection() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("VimalUsername"), System.getProperty("LoginPassword"),
+				"VimalUsername");
 		commonFunc.navigateToProductionOrderScreen();
 		ProductionordertFunc.clickAddIconInCreationProductionOrder();
 		createProdOrderAndProductionOrderParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -15935,8 +15935,8 @@ public class SubcontractOrderFunctions {
 	 * @author Vimal - RMITS
 	 */
 	public void createScrapreworkorderforSubcontractPrimaryrejection() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("VimalUsername"), System.getProperty("LoginPassword"),
+				"VimalUsername");
 		commonFunc.navigateToProductionOrderScreen();
 		ProductionordertFunc.clickAddIconInCreationProductionOrder();
 		createProdOrderAndProductionOrderParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -16166,8 +16166,8 @@ public class SubcontractOrderFunctions {
 	 * @return boolean
 	 */
 	public boolean pendingSubcontractOrdertoGRNwithGateEntryforSDStype() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("VimalUsername"), System.getProperty("LoginPassword"),
+				"VimalUsername");
 		commonFunc.navigateToProductionOrderScreen();
 		ProductionordertFunc.clickAddIconInCreationProductionOrder();
 		createProdOrderAndProductionOrderParameters(commonFunc.getDataFromTestDataSheet("L49ID"),
@@ -16302,8 +16302,8 @@ public class SubcontractOrderFunctions {
 	 * @return boolean
 	 */
 	public boolean pendingSerialItemSubcontractOrdertoGRNwithoutGateEntryforPRtypeQCItems() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("VimalUsername"), System.getProperty("LoginPassword"),
+				"VimalUsername");
 		commonFunc.navigateToProductionOrderScreen();
 		ProductionordertFunc.clickAddIconInCreationProductionOrder();
 		createProdOrderAndProductionOrderParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -16430,8 +16430,8 @@ public class SubcontractOrderFunctions {
 	 * @return boolean
 	 */
 	public boolean pendingSerialSubcontractOrdertoGRNwithGateEntryforSDStype() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("VimalUsername"), System.getProperty("LoginPassword"),
+				"VimalUsername");
 		commonFunc.navigateToProductionOrderScreen();
 		ProductionordertFunc.clickAddIconInCreationProductionOrder();
 		createProdOrderAndProductionOrderParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -16566,8 +16566,8 @@ public class SubcontractOrderFunctions {
 	 * @return boolean
 	 */
 	public void createDirectSerialGRNWithSubcontractReferance() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("VimalUsername"), System.getProperty("LoginPassword"),
+				"VimalUsername");
 		commonFunc.navigateToSubcontractOrder();
 		clickingAddIconForSCO();
 		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -16626,8 +16626,8 @@ public class SubcontractOrderFunctions {
 	 * @return boolean
 	 */
 	public void directSubcontractOrdertoGRNwithoutGateEntryforSDStypeQCItem() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("VimalUsername"), System.getProperty("LoginPassword"),
+				"VimalUsername");
 		commonFunc.navigateToSubcontractOrder();
 		clickingAddIconForSCO();
 		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -16739,8 +16739,8 @@ public class SubcontractOrderFunctions {
 	 * @author Vimal - RMITS
 	 */
 	public void directSerialItemSubcontractOrdertoGRNwithGateEntryforSDStypeQCenable() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		commonFunc.validCommonLogin(System.getProperty("VimalUsername"), System.getProperty("LoginPassword"),
+				"VimalUsername");
 		commonFunc.navigateToSubcontractOrder();
 		clickingAddIconForSCO();
 		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("L49ID"),

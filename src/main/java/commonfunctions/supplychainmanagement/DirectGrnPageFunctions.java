@@ -3197,10 +3197,10 @@ public class DirectGrnPageFunctions {
 	 * @author Durai-RMITS
 	 * @throws IOException
 	 */
-	public void verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(String Supplier, String SheetName)
-			throws IOException {
-		verifyDirectGRNStockQtyAndCostForQualityWhHK(SheetName);
-		verifyDirectGRNStockQtyAndCostForSourceWHHK(SheetName);
+	public void verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(String Supplier, String SheetName,
+			String FileName) throws IOException {
+		verifyDirectGRNStockQtyAndCostForQualityWhHK(SheetName, FileName);
+		verifyDirectGRNStockQtyAndCostForSourceWHHK(SheetName, FileName);
 		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
 				System.getProperty("DuraiUsername"));
 		commonFunc.naviagteGrnPage();
@@ -3208,14 +3208,14 @@ public class DirectGrnPageFunctions {
 		verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("GRNPG"), Supplier,
 				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
-		verifyDirectGRNAddLineDetailsHK(SheetName);
+		verifyDirectGRNAddLineDetailsHK(SheetName, FileName);
 		clickGenLotSerialButtonInHeader();
 //		DirectGRNmultipleLotandSerialWithGeneralType(SheetName);
 		VariableHandler.setMultipleGRNDocs(MultiGRNDocs);
 		GRNFunc.clickPostButton();
 		GRNFunc.waitingForApprovalHK(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 //		GRNFunc.verifyReturnToGrnPageHeaderStatus();
-		verifyDirectGRNExpectedStockQtAndCostyForQualityWHHK(SheetName);
+		verifyDirectGRNExpectedStockQtAndCostyForQualityWHHK(SheetName, FileName);
 		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrv();
 //		commonFunc.hardWait(2000);
 //		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(SheetName);
@@ -3228,23 +3228,23 @@ public class DirectGrnPageFunctions {
 	 * @throws IOException
 	 */
 	public void verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHKMultiUnits(String Supplier, String SheetName,
-			String Location) throws IOException {
-		verifyDirectGRNStockQtyAndCostForQualityWh(SheetName);
-		verifyDirectGRNStockQtyAndCostForSourceWH(SheetName);
+			String Location, String FileName) throws IOException {
+		verifyDirectGRNStockQtyAndCostForQualityWhHK(SheetName, FileName);
+		verifyDirectGRNStockQtyAndCostForSourceWHHK(SheetName, FileName);
 		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
 				System.getProperty("DuraiUsername"));
 		commonFunc.naviagteGrnPage();
 		verifyGrnAdd();
 		verifyGrnAddDetails(Location, commonFunc.getDataFromTestDataSheet("GRNPG"), Supplier,
 				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
-		verifyDirectGRNAddLineDetails(SheetName);
+		verifyDirectGRNAddLineDetailsHK(SheetName, FileName);
 		clickGenLotSerialButtonInHeader();
 //		DirectGRNmultipleLotandSerialWithGeneralType(SheetName);
 		VariableHandler.setMultipleGRNDocs(MultiGRNDocs);
 		GRNFunc.clickPostButton();
 		GRNFunc.waitingForApprovalHK(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 //		GRNFunc.verifyReturnToGrnPageHeaderStatus();
-		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(SheetName);
+		verifyDirectGRNExpectedStockQtAndCostyForQualityWHHK(SheetName, FileName);
 		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrv();
 //		commonFunc.hardWait(2000);
 //		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(SheetName);
@@ -3256,10 +3256,10 @@ public class DirectGrnPageFunctions {
 	 * @author Durai-RMITS
 	 * @throws IOException
 	 */
-	public void verifyCreationOfDirectGrnSameUomGeneralTypeImportSupplierHK(String Supplier, String SheetName)
-			throws IOException {
-		verifyDirectGRNStockQtyAndCostForQualityWh(SheetName);
-		verifyDirectGRNStockQtyAndCostForSourceWH(SheetName);
+	public void verifyCreationOfDirectGrnSameUomGeneralTypeImportSupplierHK(String Supplier, String SheetName,
+			String FileName) throws IOException {
+		verifyDirectGRNStockQtyAndCostForQualityWhHK(SheetName, FileName);
+		verifyDirectGRNStockQtyAndCostForSourceWHHK(SheetName, FileName);
 		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
 				System.getProperty("DuraiUsername"));
 		commonFunc.naviagteGrnPage();
@@ -3267,7 +3267,7 @@ public class DirectGrnPageFunctions {
 		verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("GRNPG"), Supplier,
 				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
-		verifyDirectGRNAddLineDetails(SheetName);
+		verifyDirectGRNAddLineDetailsHK(SheetName, FileName);
 		clickGenLotSerialButtonInHeader();
 		clickImportLRButton();
 		enterBOEAndBOD(commonFunc.getDataFromTestDataSheet("SupplierBillNumber"), Today);
@@ -4283,11 +4283,10 @@ public class DirectGrnPageFunctions {
 	 * 
 	 * @author PremKumar.K-RMITS
 	 */
-	public void verifyDirectGRNExpectedStockQtAndCostyForQualityWHHK(String SheetName) {
+	public void verifyDirectGRNExpectedStockQtAndCostyForQualityWHHK(String SheetName, String FileName) {
 		String[][] ItemDetails = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 		ExcelUtils excelUtils = new ExcelUtils();
-		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
-				+ "DirectGrnDetailsHK.xlsx";
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
 		ItemDetails = excelUtils.readAllDataInExcel(Filepath, SheetName);
 		for (int i = 22; i < ItemDetails.length; i++) {
 			String ItemId = ItemDetails[i][1];
@@ -4391,11 +4390,10 @@ public class DirectGrnPageFunctions {
 	 * @author PremKumar.K-RMITS
 	 */
 
-	public void verifyDirectGRNStockQtyAndCostForQualityWhHK(String SheetName) throws IOException {
+	public void verifyDirectGRNStockQtyAndCostForQualityWhHK(String SheetName, String FileName) throws IOException {
 		String[][] ItemMultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 		ExcelUtils excelUtils = new ExcelUtils();
-		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
-				+ "DirectGrnDetailsHK.xlsx";
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
 		ItemMultiple = excelUtils.readAllDataInExcel(Filepath, SheetName);
 		logs.logging("INFO", "Before Stock Qty For This Item ");
 		for (int i = 22; i < ItemMultiple.length; i++) {
@@ -4466,11 +4464,10 @@ public class DirectGrnPageFunctions {
 	 * 
 	 * @author PremKumar.K-RMITS
 	 */
-	public void verifyDirectGRNStockQtyAndCostForSourceWHHK(String SheetName) throws IOException {
+	public void verifyDirectGRNStockQtyAndCostForSourceWHHK(String SheetName, String FileName) throws IOException {
 		String[][] ItemMultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 		ExcelUtils excelUtils = new ExcelUtils();
-		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
-				+ "DirectGrnDetailsHK.xlsx";
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
 		ItemMultiple = excelUtils.readAllDataInExcel(Filepath, SheetName);
 		logs.logging("INFO", "Before Stock Qty For This Item ");
 		for (int i = 22; i < ItemMultiple.length; i++) {
@@ -4748,11 +4745,10 @@ public class DirectGrnPageFunctions {
 	 *
 	 */
 
-	public void verifyDiscountAmountForDirectGRNHK(int i2, String SheetName) {
+	public void verifyDiscountAmountForDirectGRNHK(int i2, String SheetName, String FileName) {
 		String[][] GRNMultipleline = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 		ExcelUtils excelUtils = new ExcelUtils();
-		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
-				+ "DirectGrnDetailsHK.xlsx";
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
 		GRNMultipleline = excelUtils.readAllDataInExcel(Filepath, SheetName);
 		for (int i = i2; i <= i2; i++) {
 			String ItemId = GRNMultipleline[i2][1];
@@ -5036,7 +5032,7 @@ public class DirectGrnPageFunctions {
 	 * @author Durai-RMITS
 	 * @throws IOException
 	 */
-	public void verifyDirectGRNAddLineDetailsHK(String SheetName) {
+	public void verifyDirectGRNAddLineDetailsHK(String SheetName, String FileName) {
 		flag = webDB.waitForElement(GrnLocators.GrnDocNumber, ElementType.Xpath);
 		if (flag) {
 			commonFunc.hardWait(200);
@@ -5048,8 +5044,7 @@ public class DirectGrnPageFunctions {
 			String[][] GRNMultipleline = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 			ExcelUtils excelUtils = new ExcelUtils();
 
-			String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
-					+ "DirectGrnDetailsHK.xlsx";
+			String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
 			GRNMultipleline = excelUtils.readAllDataInExcel(Filepath, SheetName);
 			for (int i = 22; i < GRNMultipleline.length; i++) {
 				String ITEM_NAME = GRNMultipleline[i][1];
@@ -5066,7 +5061,7 @@ public class DirectGrnPageFunctions {
 					verifyClickingReceiptQuantityHK(QTY);
 					verifyClickingCostHK(COST);
 					verifyClickingSaveLineHK();
-					verifyDirectGRNAddingDiscountHK(i, SheetName);
+					verifyDirectGRNAddingDiscountHK(i, SheetName, FileName);
 				}
 			}
 		}
@@ -5155,12 +5150,11 @@ public class DirectGrnPageFunctions {
 	 * 
 	 * @author Durai-RMITS
 	 */
-	public void verifyDirectGRNAddingDiscountHK(int i1, String SheetName) {
+	public void verifyDirectGRNAddingDiscountHK(int i1, String SheetName, String FileName) {
 
 		String[][] PRMultipleline = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 		ExcelUtils excelUtils = new ExcelUtils();
-		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
-				+ "DirectGrnDetailsHK.xlsx";
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
 		PRMultipleline = excelUtils.readAllDataInExcel(Filepath, SheetName);
 		System.out.println(PRMultipleline.length);
 		for (int i = i1; i <= i1; i++) {
@@ -5214,11 +5208,11 @@ public class DirectGrnPageFunctions {
 										webDB.clickAnElement(DirectGrnPageLocators.GrnLineDetailsSave,
 												ElementType.Xpath);
 										logs.logging("INFO", "Details Is Saved");
-										commonFunc.hardWait(500);
+										commonFunc.hardWait(800);
 										webDB.pressEscapeKey();
 										webDB.switchToDefaultContent();
 										commonFunc.checkRefreshCellsDisappear();
-										verifyDiscountAmountForDirectGRNHK(i1, SheetName);
+										verifyDiscountAmountForDirectGRNHK(i1, SheetName, FileName);
 
 									}
 								}
@@ -7932,5 +7926,28 @@ public class DirectGrnPageFunctions {
 			}
 		}
 		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Is Used To Verify Direct Grn PriceList
+	 * 
+	 * @author Deepan-GWL
+	 * @throws IOException
+	 */
+	public void verifyCreationOfDirectGrnPriceListForIncomingInspection() {
+		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
+				"DuraiUsername");
+		commonFunc.naviagteGrnPage();
+		verifyGrnAdd();
+		verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("L0001"), commonFunc.getDataFromTestDataSheet("GRNPG"),
+				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
+				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
+		verifyDirectGRNAddLineDetails(webDB.getDataFromProperties("QualityInspectionSheet"),
+				webDB.getDataFromProperties("Insp-IncommingSheet"));
+		DirectGRNmultipleLotandSerialWithGeneralType(webDB.getDataFromProperties("QualityInspectionSheet"),
+				webDB.getDataFromProperties("Insp-IncommingSheet"));
+		GRNFunc.overAllSaveAndPost();
+		GRNFunc.waitingForApproval();
+
 	}
 }

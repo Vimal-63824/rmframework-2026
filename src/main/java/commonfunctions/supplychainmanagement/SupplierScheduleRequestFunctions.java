@@ -42,8 +42,6 @@ public class SupplierScheduleRequestFunctions {
 				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("SimItem_ID"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigateOpenPORCPage();
 		openPoRcFunc.verifyClickOpenPORcButton();
 		openPoRcFunc.verifyCreateOpenPoDoc(commonFunc.getDataFromTestDataSheet("L49"),
@@ -56,30 +54,23 @@ public class SupplierScheduleRequestFunctions {
 		openPoRcFunc.verifyHeaderSaveAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalPageFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
-			commonFunc.logoutUser();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getOpenPoNumber(),
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("L3"),
 					System.getProperty("HariUsername"));
-
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
 			commonFunc.navigateOpenPORCPage();
 			openPoRcFunc.verifyClickOpenPORcButton();
 		}
 		openPoRcFunc.verifyOpenPoApprovalStatus(VariableHandler.getOpenPoNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		commonFunc.logoutUser();
 		verifySSRCreateAndPostDocuments();
 		supplierScheduleOrderFunc
 				.verifyMovePendingAndPostDocuments(commonFunc.getDataFromTestDataSheet("PraxairSupplier"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigateToGateEntryDocument();
 		gateEntryPageFunc.verifyToCreateGateEntryFromPendingSSODocNumber();
 		gateEntryPageFunc.verifygateEntryDetailsPoWithSSO();
 		gateEntryPageFunc.verifyCreatingGetextForGateEntryDocNumber();
 		commonFunc.checkRefreshCellsDisappear();
 		gateEntryPageFunc.verifyToOverAllSaveAndPostTheGateEntryDocument();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigateToGateEntryDocument();
 		gateEntryPageFunc.searchAndVerifyStatusOfGENo(VariableHandler.getGateEntryNumber(),
 				commonFunc.getDataFromTestDataSheet("CompletedStatus"));
@@ -89,14 +80,11 @@ public class SupplierScheduleRequestFunctions {
 				webDB.getDataFromProperties("PoToMrvSheet"));
 		grnPageFunc.verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("PoToMRVWoQSUomSSOSheet"),
 				webDB.getDataFromProperties("PoToMrvSheet"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		grnPageFunc.clickPendingGEAndSearchGENo();
 		grnPageFunc.clickSelectAllGEButtonWithSt();
 		grnPageFunc.createGrnWithGeButton();
 		grnPageFunc.clickOkButton();
-
 		grnPageFunc.multipleLotAndSerialItemWithPoToMrvSheet(webDB.getDataFromProperties("PoToMRVWoQSUomSSOSheet"),
 				webDB.getDataFromProperties("PoToMrvSheet"));
 		grnPageFunc.lotSerialQtyApportion();
@@ -357,8 +345,6 @@ public class SupplierScheduleRequestFunctions {
 				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("SimItem_ID"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigateOpenPORCPage();
 		openPoRcFunc.verifyClickOpenPORcButton();
 		openPoRcFunc.verifyCreateOpenPoDoc(commonFunc.getDataFromTestDataSheet("L49"),
@@ -370,30 +356,23 @@ public class SupplierScheduleRequestFunctions {
 		openPoRcFunc.verifyHeaderSaveAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalPageFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
-			commonFunc.logoutUser();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getOpenPoNumber(),
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("L3"),
 					System.getProperty("HariUsername"));
-
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
 			commonFunc.navigateOpenPORCPage();
 			openPoRcFunc.verifyClickOpenPORcButton();
 		}
 		openPoRcFunc.verifyOpenPoApprovalStatus(VariableHandler.getOpenPoNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		commonFunc.logoutUser();
 		verifySSRCreateAndPostDocuments();
 		supplierScheduleOrderFunc
 				.verifyMovePendingAndPostDocuments(commonFunc.getDataFromTestDataSheet("WalmartSupId"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigateToGateEntryDocument();
 		gateEntryPageFunc.verifyToCreateGateEntryFromPendingSSODocNumber();
 		gateEntryPageFunc.verifygateEntryDetailsPoWithSSO();
 		gateEntryPageFunc.verifyCreatingGetextForGateEntryDocNumber();
 		commonFunc.checkRefreshCellsDisappear();
 		gateEntryPageFunc.verifyToOverAllSaveAndPostTheGateEntryDocument();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigateToGateEntryDocument();
 		gateEntryPageFunc.searchAndVerifyStatusOfGENo(VariableHandler.getGateEntryNumber(),
 				commonFunc.getDataFromTestDataSheet("CompletedStatus"));
@@ -403,14 +382,11 @@ public class SupplierScheduleRequestFunctions {
 				webDB.getDataFromProperties("PoToMrvSheet"));
 		grnPageFunc.verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("PoToMRVWoQSUomSSOSheet"),
 				webDB.getDataFromProperties("PoToMrvSheet"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		grnPageFunc.clickPendingGEAndSearchGENo();
 		grnPageFunc.clickSelectAllGEButtonWithSt();
 		grnPageFunc.createGrnWithGeButton();
 		grnPageFunc.clickOkButton();
-
 		grnPageFunc.multipleLotAndSerialItemWithPoToMrvSheet(webDB.getDataFromProperties("PoToMRVWoQSUomSSOSheet"),
 				webDB.getDataFromProperties("PoToMrvSheet"));
 		grnPageFunc.lotSerialQtyApportion();

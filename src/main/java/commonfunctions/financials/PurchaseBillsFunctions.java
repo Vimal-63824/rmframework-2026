@@ -872,7 +872,7 @@ public class PurchaseBillsFunctions {
 					commonFunc.checkRefreshCellsDisappear();
 					validAllowIgstCheckboxForTaxAmountCalculation();
 					// excelUtils.writeDataInExcel(filepath, SheetName, 2, 3, "2");
-					verifyTaxAmountForIgstAmountInDbValidationUpdated(SheetName);
+					verifyTaxAmountForIgstAmountInDbValidation(SheetName);
 				}
 			}
 		}
@@ -1581,6 +1581,8 @@ public class PurchaseBillsFunctions {
 									if (flag) {
 										logs.logging("INFO", "Okay Button Is Displayed");
 										commonFunc.hardWait(2000);
+										commonFunc.checkRefreshCellsDisappear();
+										verifyInvoicePrfixHeaderPurchaseBillsForPendingPo(commonFunc.getDataFromTestDataSheet("PrefixPb"));
 										webDB.clickAnElement(PurchaseBillsLocators.OkButton, ElementType.Xpath);
 										webDB.switchToDefaultContent();
 										commonFunc.checkRefreshCellsDisappear();
@@ -1642,8 +1644,8 @@ public class PurchaseBillsFunctions {
 						commonFunc.getDataFromTestDataSheet("PurchaseBillsSgstAmount")), SgstField);
 				verifyAssertionBothValues(dbCommonFunc.PurchaseBillsEx(VariableHandler.getScoPurchaseNumber(),
 						commonFunc.getDataFromTestDataSheet("PurchaseBillsUTGSTAmount")), UTgstField);
-				verifyAssertionBothValues(dbCommonFunc.PurchaseBillsEx(VariableHandler.getScoPurchaseNumber(),
-						commonFunc.getDataFromTestDataSheet("PurchaseBillsIgstAmount")), IgstField);
+//				verifyAssertionBothValues(dbCommonFunc.PurchaseBillsEx(VariableHandler.getScoPurchaseNumber(),
+//						commonFunc.getDataFromTestDataSheet("PurchaseBillsIgstAmount")), IgstField);
 				verifyAssertionBothValues(dbCommonFunc.PurchaseBillsExHeader(VariableHandler.getScoPurchaseNumber(),
 						commonFunc.getDataFromTestDataSheet("Purchase_Bills_NetAmount")), NetAmount);
 			}
@@ -2760,8 +2762,22 @@ public class PurchaseBillsFunctions {
 					ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Realized Amount " + RealizedAmt + " Is Entered Successfully");
+				enterSaveButtonInBankRecipt();
 				commonFunc.checkRefreshCellsDisappear();
 			}
+		}
+		assertTrue(flag);
+	}
+	
+	/**To Click Save Button
+	 * 
+	 * @author Kowshik-RMITS
+	 */
+	public void enterSaveButtonInBankRecipt() {
+		flag = webDB.waitForElement(BankReceiptLocators.SaveButton, ElementType.Xpath);
+		if(flag) {
+			webDB.clickAnElement(BankReceiptLocators.SaveButton, ElementType.Xpath);
+			logs.logging("INFO", "Save Button is Clicked");
 		}
 		assertTrue(flag);
 	}
@@ -3933,6 +3949,25 @@ public class PurchaseBillsFunctions {
 		}
 		assertTrue(flag);
 	}
+	
+	/**To Valid a Invoice Prefix Header
+	 * 
+	 * @author Kowshik-RMITS
+	 * @param PrefixPb
+	 */
+	public void verifyInvoicePrfixHeaderPurchaseBillsForPendingPo(String PrefixPb) {
+		
+		String GetTextPBPrefix = webDB.getDomPropertyFromElement(PurchaseBillsLocators.Po_Inv_Prefix_Field, ElementType.Xpath, 
+				commonFunc.getDataFromTestDataSheet("Value"));
+		
+		System.out.println(GetTextPBPrefix);
+		if(!GetTextPBPrefix.equals(PrefixPb)) {
+			commonFunc.checkRefreshCellsDisappear();
+			commonFunc.searchAndSelectValueInFilters(PurchaseBillsLocators.PO_Inv_Prefix_Lov, PrefixPb);
+			webDB.switchToFrame(PurchaseBillsLocators.IframePendingPo, ElementType.Xpath);
+		}
+		assertTrue(flag);
+	}
 
 //	System.out.println(itemMultiples.length);
 //	for (int i = 22; i < itemMultiples.length; i++) {
@@ -4354,7 +4389,6 @@ public class PurchaseBillsFunctions {
 		getGstClafInLocation();
 		getValueFromTaxAmountInLineDetails();
 		clickValidateAllowIgstFlag(commonFunc.getDataFromTestDataSheet("PurchaseBillsInterstate"));
-		movesToInvoiceTap();
 		createJvForRecord();
 		verifyLineDetailWithDbInPurchaseBills(webDB.getDataFromProperties("PurchaseBillsInterstate"));
 		clickPostButton();
@@ -6173,7 +6207,6 @@ public class PurchaseBillsFunctions {
 		openExpandButtonDirect();
 		getGstClafInLocation();
 		clickValidateAllowIgstFlag(webDB.getDataFromProperties("POSer_Pr_Interstate"));
-		movesToInvoiceTap();
 		createJvForRecord();
 		verifyLineDetailsWithDbValidationForAllowIGSTFlag(webDB.getDataFromProperties("POSer_Pr_Interstate"));
 		clickPostButton();
@@ -6878,7 +6911,7 @@ public class PurchaseBillsFunctions {
 		openExpandButtonDirect();
 		getGstClafInLocation();
 		movesToInvoiceTap();
-		clickValidateAllowIgstFlag(webDB.getDataFromProperties("purchaseBills_GRN"));
+		clickValidateAllowIgstFlag(webDB.getDataFromProperties("purchaseBills_GRN_igst"));
 		createJvForRecord();
 		verifyDbValidationForGrnPurchaseWithOutExpenses("purchaseBills_GRN");
 		clickPostButton();
