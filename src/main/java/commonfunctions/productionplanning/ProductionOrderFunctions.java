@@ -9568,7 +9568,7 @@ public class ProductionOrderFunctions {
 					commonFunc.getDataFromTestDataSheet("ProdOrderStandard"),
 					commonFunc.getDataFromTestDataSheet("PROPrefix"),
 					commonFunc.getDataFromTestDataSheet("ManufactureType"),
-					commonFunc.getDataFromTestDataSheet("BomAllBothPartialQnty"), String.valueOf(ReqQuantity));
+					commonFunc.getDataFromTestDataSheet("BomAllBoth"), String.valueOf(ReqQuantity));
 			clickSaveIconInCreationProductionOrder();
 			verifyHeaderValidationInProductionOrderWithDB(FileName, SheetName);
 			verifyProductionOrderMREventAndRestOP(null, null, MoveType);
@@ -9786,7 +9786,7 @@ public class ProductionOrderFunctions {
 					commonFunc.getDataFromTestDataSheet("ProdOrderStandard"),
 					commonFunc.getDataFromTestDataSheet("PROPrefix"),
 					commonFunc.getDataFromTestDataSheet("ManufactureType"),
-					commonFunc.getDataFromTestDataSheet("BomAllBothPartialQnty"), String.valueOf(ReqQuantity));
+					commonFunc.getDataFromTestDataSheet("BomAllBoth"), String.valueOf(ReqQuantity));
 			clickSaveIconInCreationProductionOrder();
 			verifyHeaderValidationInProductionOrderWithDB(FileName, SheetName);
 			verifyProductionOrderMREventAndRestOP(null, null, MoveType);
@@ -10036,7 +10036,6 @@ public class ProductionOrderFunctions {
 			return false;
 		}
 	}
-	
 
 	/**
 	 * This method used to Manual Production order with Move Type - Item
@@ -10060,7 +10059,7 @@ public class ProductionOrderFunctions {
 					commonFunc.getDataFromTestDataSheet("ProdOrderStandard"),
 					commonFunc.getDataFromTestDataSheet("PROPrefix"),
 					commonFunc.getDataFromTestDataSheet("ManufactureType"),
-					commonFunc.getDataFromTestDataSheet("BomAllBothPartialQnty"),String.valueOf(ReqQuantity));
+					commonFunc.getDataFromTestDataSheet("BomAllBoth"), String.valueOf(ReqQuantity));
 			clickSaveIconInCreationProductionOrder();
 			verifyHeaderValidationInProductionOrderWithDB(FileName, SheetName);
 			verifyProductionOrderMREventAndRestOP(null, null, MoveType);
@@ -10263,6 +10262,2008 @@ public class ProductionOrderFunctions {
 		} catch (Exception e) {
 			logs.logging("INFO",
 					"Exception occurs while executing 'verifyProdOrderWithoutSOAllBothPartialQuantityMoveTypeItem': "
+							+ e);
+			return false;
+		}
+	}
+
+	
+	/**
+	 * This method used to Production Order against sales Order with move type -
+	 * single?
+	 * 
+	 * @author Sakthi-GWL
+	 * @return boolean flag
+	 */
+	public boolean verifyProdOrderAgainstSOAllInsideMoveTypeSingle() {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		LocalDate date = LocalDate.now();
+		String MRPName = "TEST MRP - " + RandomStringUtils.randomNumeric(3);
+		String Today = date.format(formatter);
+		LocalDate nextmonthdate = LocalDate.now().plusMonths(1);
+		String NextMonthToday = nextmonthdate.format(formatter);
+		String FGItem = commonFunc.getDataFromTestDataSheet("FG-10001-Item");
+		String RMItem = commonFunc.getDataFromTestDataSheet("RM-10001-Item");
+		LocalDate previousDate = LocalDate.now().minusDays(1);
+		String YesterDay = previousDate.format(formatter);
+		int ReqQuantity = 4;
+		String BOMNo = commonFunc.getDataFromTestDataSheet("BomAllInside");
+		try {
+			saleOrderFunc.verifySalesOrderCreationForMRPAndProdOrder(ReqQuantity, BOMNo);
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+					"AdminUsername");
+			commonFunc.navigateToMRPScreenInProdPlanning();
+			mrpFunc.clickAddIconInMRP();
+			mrpFunc.fillDetailsInMRPCreationAndClickTickIcon(Today, MRPName, Today, "ALL");
+			mrpFunc.clickAddLinePlusIconInSources();
+			mrpFunc.enterUnitCutOffDateInSourcesLine(commonFunc.getDataFromTestDataSheet("Unit_100"), NextMonthToday);
+			mrpFunc.clickSalesOrderDemandCheckBoxInSourceLines();
+			mrpFunc.clickSaveIconInSourcesTab();
+			mrpFunc.clickLoadDemandButtonInMRP();
+			mrpFunc.navigateToDemandTabInMRPScreen();
+			mrpFunc.searchSONumberInDemandAndSelectSOItems(VariableHandler.getSONumber());
+			mrpFunc.clickCheckExceptionAndSaveHeaderInMRP();
+			mrpFunc.navigateToExceptionTabInMRPScreen();
+			mrpFunc.validateNoExceptionDataShownInTableData();
+			mrpFunc.clickRunMRPButton();
+			mrpFunc.navigateToResultsTabInMRPScreen();
+			mrpFunc.verifyUnitResultsDetails(new String[] { commonFunc.getDataFromTestDataSheet("Unit_100"),
+					commonFunc.getDataFromTestDataSheet("Unit_100") });
+			mrpFunc.verifyItemResultsDetails(new String[] { FGItem, RMItem });
+			mrpFunc.verifyUOMResultsDetails(new String[] { commonFunc.getDataFromTestDataSheet("UomNos"),
+					commonFunc.getDataFromTestDataSheet("Kgs") });
+			mrpFunc.clickHeaderSaveAndClickPost();
+			if (!VariableHandler.getApprovalFlag()) {
+				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+				commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getMRPNumber(),
+						webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+						System.getProperty("HariUsername"));
+			}
+			commonFunc.navigateToMRPScreenInProdPlanning();
+			mrpFunc.checkStatusOfMRP(VariableHandler.getMRPNumber(),
+					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+			mrpFunc.searchAndClickMRPNoInFindPage(VariableHandler.getMRPNumber());
+			mrpFunc.clickReleaseButtonInMRP();
+			mrpFunc.chooseOrderTypeFromAndToDateInReleaseDetails("All", YesterDay, Today);
+			mrpFunc.clickReleaseButtonInReleaseFrame();
+			mrpFunc.checkStatusOfMRP(VariableHandler.getMRPNumber(),
+					commonFunc.getDataFromTestDataSheet("ReleasedStatus"));
+			commonFunc.navigateToProductionOrderInProdPlanning();
+			searchAndVerifyStatusOfMRPNo(VariableHandler.getMRPNumber(),
+					commonFunc.getDataFromTestDataSheet("UnreleasedStatus"));
+			webDB.navigateToRefresh();
+			searchAndSelectProductionOrderWithDocNo(VariableHandler.getProductionOrderNumber());
+			verifyWriteBeforeStockForFGAndRawMaterials(webDB.getDataFromProperties("PMFFileName"),
+					webDB.getDataFromProperties("AllInsideSheetName-Single"));
+			verifyHeaderValidationInProductionOrderWithDB(webDB.getDataFromProperties("PMFFileName"),
+					webDB.getDataFromProperties("AllInsideSheetName-Single"));
+			verifyProductionOrderMREventAndRestOP(null, null, commonFunc.getDataFromTestDataSheet("Emp_MaritalStatus"));
+			verifyProcessType(commonFunc.getDataFromTestDataSheet("InsideType"),
+					commonFunc.getDataFromTestDataSheet("InsideType"));
+			verifyRoutingValidationInProductionOrderWithDB(webDB.getDataFromProperties("PMFFileName"),
+					webDB.getDataFromProperties("AllInsideSheetName-Single"));
+			verifyRawMaterialsValidationInProductionOrderWithDB(webDB.getDataFromProperties("PMFFileName"),
+					webDB.getDataFromProperties("AllInsideSheetName-Single"));
+			navigateToRoutingSubTab();
+			storeRoutingProcessAndProcessType();
+			storeRoutingProcessAndConsumptionAndRecipientWareHouse();
+			clickHeaderSaveAndPostProdOrder();
+			if (!VariableHandler.getApprovalFlag()) {
+				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+				commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+						VariableHandler.getProductionOrderNumber(), webDB.getDataFromProperties("HodEmpId"),
+						commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+			}
+			commonFunc.navigateToProductionOrderInProdPlanning();
+			searchAndVerifyStatusOfPONo(VariableHandler.getProductionOrderNumber(),
+					commonFunc.getDataFromTestDataSheet("Inprogress"));
+			int StartIndexSheet = 0;
+			int AllocStartIndex = 0;
+			for (int i = 0; i < VariableHandler.getProcessAndWarehousesBOM().length; i++) {
+				String ProcessName = VariableHandler.getProcessAndProcessType()[i][0];
+				String ProcessType = VariableHandler.getProcessAndProcessType()[i][1];
+				logs.logging("INFO", "Executing Process: " + (i + 1) + ". " + ProcessName);
+				logs.logging("INFO", "ProcessType: " + ProcessType);
+				StartIndexSheet = (i == 0) ? 35 : (i == 1) ? 45 : (i == 2) ? 56 : 0;
+				AllocStartIndex = (i == 0) ? 10 : (i == 1) ? 17 : (i == 2) ? 24 : 0;
+				productionOrderInsideSingleMoveType(StartIndexSheet, AllocStartIndex,
+						webDB.getDataFromProperties("PMFFileName"),
+						webDB.getDataFromProperties("AllInsideSheetName-Single"));
+			}
+			commonFunc.navigateToProductionOrderInProdPlanning();
+			searchAndVerifyStatusOfPONo(VariableHandler.getProductionOrderNumber(),
+					commonFunc.getDataFromTestDataSheet("CompletedStatus"));
+			verifyValidationOfAfterStockUnitCostAndQuantityInFGItem(webDB.getDataFromProperties("PMFFileName"),
+					webDB.getDataFromProperties("AllInsideSheetName-Single"));
+			flag = commonFunc.logoutUser();
+			return flag;
+		} catch (Exception e) {
+			logs.logging("INFO",
+					"Exception occur while executing 'verifyProdOrderAgainstSOAllInsideMoveTypeSingle': " + e);
+			return false;
+		}
+	}
+
+	/**
+	 * This method used to Production Order against sales Order with move type -
+	 * multiple?
+	 * 
+	 * @author Sakthi-GWL
+	 * @return boolean flag
+	 */
+	public boolean verifyProdOrderAgainstSOAllInsideMoveTypeMultiple() {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		LocalDate date = LocalDate.now();
+		String MRPName = "TEST MRP - " + RandomStringUtils.randomNumeric(3);
+		String Today = date.format(formatter);
+		LocalDate nextmonthdate = LocalDate.now().plusMonths(1);
+		String NextMonthToday = nextmonthdate.format(formatter);
+		String FGItem = commonFunc.getDataFromTestDataSheet("FG-10001-Item");
+		String RMItem = commonFunc.getDataFromTestDataSheet("RM-10001-Item");
+		LocalDate previousDate = LocalDate.now().minusDays(1);
+		String YesterDay = previousDate.format(formatter);
+		int ReqQuantity = 4;
+		String BOMNo = commonFunc.getDataFromTestDataSheet("BomAllInside");
+		try {
+			saleOrderFunc.verifySalesOrderCreationForMRPAndProdOrder(ReqQuantity, BOMNo);
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+					"AdminUsername");
+			commonFunc.navigateToMRPScreenInProdPlanning();
+			mrpFunc.clickAddIconInMRP();
+			mrpFunc.fillDetailsInMRPCreationAndClickTickIcon(Today, MRPName, Today, "ALL");
+			mrpFunc.clickAddLinePlusIconInSources();
+			mrpFunc.enterUnitCutOffDateInSourcesLine(commonFunc.getDataFromTestDataSheet("Unit_100"), NextMonthToday);
+			mrpFunc.clickSalesOrderDemandCheckBoxInSourceLines();
+			mrpFunc.clickSaveIconInSourcesTab();
+			mrpFunc.clickLoadDemandButtonInMRP();
+			mrpFunc.navigateToDemandTabInMRPScreen();
+			mrpFunc.searchSONumberInDemandAndSelectSOItems(VariableHandler.getSONumber());
+			mrpFunc.clickCheckExceptionAndSaveHeaderInMRP();
+			mrpFunc.navigateToExceptionTabInMRPScreen();
+			mrpFunc.validateNoExceptionDataShownInTableData();
+			mrpFunc.clickRunMRPButton();
+			mrpFunc.navigateToResultsTabInMRPScreen();
+			mrpFunc.verifyUnitResultsDetails(new String[] { commonFunc.getDataFromTestDataSheet("Unit_100"),
+					commonFunc.getDataFromTestDataSheet("Unit_100") });
+			mrpFunc.verifyItemResultsDetails(new String[] { FGItem, RMItem });
+			mrpFunc.verifyUOMResultsDetails(new String[] { commonFunc.getDataFromTestDataSheet("UomNos"),
+					commonFunc.getDataFromTestDataSheet("Kgs") });
+			mrpFunc.clickHeaderSaveAndClickPost();
+			if (!VariableHandler.getApprovalFlag()) {
+				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+				commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getMRPNumber(),
+						webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+						System.getProperty("HariUsername"));
+			}
+			commonFunc.navigateToMRPScreenInProdPlanning();
+			mrpFunc.checkStatusOfMRP(VariableHandler.getMRPNumber(),
+					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+			mrpFunc.searchAndClickMRPNoInFindPage(VariableHandler.getMRPNumber());
+			mrpFunc.clickReleaseButtonInMRP();
+			mrpFunc.chooseOrderTypeFromAndToDateInReleaseDetails("All", YesterDay, Today);
+			mrpFunc.clickReleaseButtonInReleaseFrame();
+			mrpFunc.checkStatusOfMRP(VariableHandler.getMRPNumber(),
+					commonFunc.getDataFromTestDataSheet("ReleasedStatus"));
+			commonFunc.navigateToProductionOrderInProdPlanning();
+			searchAndVerifyStatusOfMRPNo(VariableHandler.getMRPNumber(),
+					commonFunc.getDataFromTestDataSheet("UnreleasedStatus"));
+			webDB.navigateToRefresh();
+			searchAndSelectProductionOrderWithDocNo(VariableHandler.getProductionOrderNumber());
+			verifyWriteBeforeStockForFGAndRawMaterials(webDB.getDataFromProperties("PMFFileName"),
+					webDB.getDataFromProperties("AllInsideSheetName-Multiple"));
+			verifyHeaderValidationInProductionOrderWithDB(webDB.getDataFromProperties("PMFFileName"),
+					webDB.getDataFromProperties("AllInsideSheetName-Multiple"));
+			verifyProductionOrderMREventAndRestOP(null, null, commonFunc.getDataFromTestDataSheet("MultipleType"));
+			verifyProcessType(commonFunc.getDataFromTestDataSheet("InsideType"),
+					commonFunc.getDataFromTestDataSheet("InsideType"));
+			verifyRoutingValidationInProductionOrderWithDB(webDB.getDataFromProperties("PMFFileName"),
+					webDB.getDataFromProperties("AllInsideSheetName-Multiple"));
+			verifyRawMaterialsValidationInProductionOrderWithDB(webDB.getDataFromProperties("PMFFileName"),
+					webDB.getDataFromProperties("AllInsideSheetName-Multiple"));
+			navigateToRoutingSubTab();
+			storeRoutingProcessAndProcessType();
+			storeRoutingProcessAndConsumptionAndRecipientWareHouse();
+			clickHeaderSaveAndPostProdOrder();
+			if (!VariableHandler.getApprovalFlag()) {
+				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+				commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+						VariableHandler.getProductionOrderNumber(), webDB.getDataFromProperties("HodEmpId"),
+						commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+			}
+			commonFunc.navigateToProductionOrderInProdPlanning();
+			searchAndVerifyStatusOfPONo(VariableHandler.getProductionOrderNumber(),
+					commonFunc.getDataFromTestDataSheet("Inprogress"));
+			int StartIndexSheet = 0;
+			int AllocStartIndex = 0;
+			for (int i = 0; i < 2; i++) {
+				String ProcessName = VariableHandler.getProcessAndProcessType()[i][0];
+				String ProcessType = VariableHandler.getProcessAndProcessType()[i][1];
+				logs.logging("INFO", "Executing Process: " + (i + 1) + ". " + ProcessName);
+				logs.logging("INFO", "ProcessType: " + ProcessType);
+				StartIndexSheet = (i == 0) ? 35 : (i == 1) ? 45 : 0;
+				AllocStartIndex = (i == 0) ? 10 : (i == 1) ? 17 : (i == 2) ? 24 : 0;
+				productionOrderInsideMultipleMoveType(i, StartIndexSheet, AllocStartIndex,
+						webDB.getDataFromProperties("PMFFileName"),
+						webDB.getDataFromProperties("AllInsideSheetName-Multiple"));
+			}
+			commonFunc.navigateToProductionOrderInProdPlanning();
+			searchAndVerifyStatusOfPONo(VariableHandler.getProductionOrderNumber(),
+					commonFunc.getDataFromTestDataSheet("CompletedStatus"));
+			verifyValidationOfAfterStockUnitCostAndQuantityInFGItem(webDB.getDataFromProperties("PMFFileName"),
+					webDB.getDataFromProperties("AllInsideSheetName-Multiple"));
+			flag = commonFunc.logoutUser();
+			return flag;
+		} catch (Exception e) {
+			logs.logging("INFO",
+					"Exception occur while executing 'verifyProdOrderAgainstSOAllInsideMoveTypeMultiple': " + e);
+			return false;
+		}
+	}
+
+	/**
+	 * This method used to Production Order against sales Order with move type -
+	 * Item?
+	 * 
+	 * @author Sakthi-GWL
+	 * @return boolean flag
+	 */
+	public boolean verifyProdOrderAgainstSOAllInsideMoveTypeItem() {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		LocalDate date = LocalDate.now();
+		String MRPName = "TEST MRP - " + RandomStringUtils.randomNumeric(3);
+		String Today = date.format(formatter);
+		LocalDate nextmonthdate = LocalDate.now().plusMonths(1);
+		String NextMonthToday = nextmonthdate.format(formatter);
+		String FGItem = commonFunc.getDataFromTestDataSheet("FG-10001-Item");
+		String RMItem = commonFunc.getDataFromTestDataSheet("RM-10001-Item");
+		LocalDate previousDate = LocalDate.now().minusDays(1);
+		String YesterDay = previousDate.format(formatter);
+		int ReqQuantity = 4;
+		String BOMNo = commonFunc.getDataFromTestDataSheet("BomAllInside");
+		try {
+			saleOrderFunc.verifySalesOrderCreationForMRPAndProdOrder(ReqQuantity, BOMNo);
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+					"AdminUsername");
+			commonFunc.navigateToMRPScreenInProdPlanning();
+			mrpFunc.clickAddIconInMRP();
+			mrpFunc.fillDetailsInMRPCreationAndClickTickIcon(Today, MRPName, Today, "ALL");
+			mrpFunc.clickAddLinePlusIconInSources();
+			mrpFunc.enterUnitCutOffDateInSourcesLine(commonFunc.getDataFromTestDataSheet("Unit_100"), NextMonthToday);
+			mrpFunc.clickSalesOrderDemandCheckBoxInSourceLines();
+			mrpFunc.clickSaveIconInSourcesTab();
+			mrpFunc.clickLoadDemandButtonInMRP();
+			mrpFunc.navigateToDemandTabInMRPScreen();
+			mrpFunc.searchSONumberInDemandAndSelectSOItems(VariableHandler.getSONumber());
+			mrpFunc.clickCheckExceptionAndSaveHeaderInMRP();
+			mrpFunc.navigateToExceptionTabInMRPScreen();
+			mrpFunc.validateNoExceptionDataShownInTableData();
+			mrpFunc.clickRunMRPButton();
+			mrpFunc.navigateToResultsTabInMRPScreen();
+			mrpFunc.verifyUnitResultsDetails(new String[] { commonFunc.getDataFromTestDataSheet("Unit_100"),
+					commonFunc.getDataFromTestDataSheet("Unit_100") });
+			mrpFunc.verifyItemResultsDetails(new String[] { FGItem, RMItem });
+			mrpFunc.verifyUOMResultsDetails(new String[] { commonFunc.getDataFromTestDataSheet("UomNos"),
+					commonFunc.getDataFromTestDataSheet("Kgs") });
+			mrpFunc.clickHeaderSaveAndClickPost();
+			if (!VariableHandler.getApprovalFlag()) {
+				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+				commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getMRPNumber(),
+						webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+						System.getProperty("HariUsername"));
+			}
+			commonFunc.navigateToMRPScreenInProdPlanning();
+			mrpFunc.checkStatusOfMRP(VariableHandler.getMRPNumber(),
+					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+			mrpFunc.searchAndClickMRPNoInFindPage(VariableHandler.getMRPNumber());
+			mrpFunc.clickReleaseButtonInMRP();
+			mrpFunc.chooseOrderTypeFromAndToDateInReleaseDetails("All", YesterDay, Today);
+			mrpFunc.clickReleaseButtonInReleaseFrame();
+			mrpFunc.checkStatusOfMRP(VariableHandler.getMRPNumber(),
+					commonFunc.getDataFromTestDataSheet("ReleasedStatus"));
+			commonFunc.navigateToProductionOrderInProdPlanning();
+			searchAndVerifyStatusOfMRPNo(VariableHandler.getMRPNumber(),
+					commonFunc.getDataFromTestDataSheet("UnreleasedStatus"));
+			webDB.navigateToRefresh();
+			searchAndSelectProductionOrderWithDocNo(VariableHandler.getProductionOrderNumber());
+			verifyWriteBeforeStockForFGAndRawMaterials(webDB.getDataFromProperties("PMFFileName"),
+					webDB.getDataFromProperties("AllInsideSheetName-Item"));
+			verifyHeaderValidationInProductionOrderWithDB(webDB.getDataFromProperties("PMFFileName"),
+					webDB.getDataFromProperties("AllInsideSheetName-Item"));
+			verifyProductionOrderMREventAndRestOP(null, null, commonFunc.getDataFromTestDataSheet("ItemType"));
+			verifyProcessType(commonFunc.getDataFromTestDataSheet("InsideType"),
+					commonFunc.getDataFromTestDataSheet("InsideType"));
+			verifyRoutingValidationInProductionOrderWithDB(webDB.getDataFromProperties("PMFFileName"),
+					webDB.getDataFromProperties("AllInsideSheetName-Item"));
+			verifyRawMaterialsValidationInProductionOrderWithDB(webDB.getDataFromProperties("PMFFileName"),
+					webDB.getDataFromProperties("AllInsideSheetName-Item"));
+			navigateToRoutingSubTab();
+			storeRoutingProcessAndProcessType();
+			storeRoutingProcessAndConsumptionAndRecipientWareHouse();
+			clickHeaderSaveAndPostProdOrder();
+			if (!VariableHandler.getApprovalFlag()) {
+				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+				commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+						VariableHandler.getProductionOrderNumber(), webDB.getDataFromProperties("HodEmpId"),
+						commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+			}
+			commonFunc.navigateToProductionOrderInProdPlanning();
+			searchAndVerifyStatusOfPONo(VariableHandler.getProductionOrderNumber(),
+					commonFunc.getDataFromTestDataSheet("Inprogress"));
+			int StartIndexSheet = 0;
+			int AllocStartIndex = 0;
+			for (int i = 0; i < 1; i++) {
+				String ProcessName = VariableHandler.getProcessAndProcessType()[i][0];
+				String ProcessType = VariableHandler.getProcessAndProcessType()[i][1];
+				logs.logging("INFO", "Executing Process: " + (i + 1) + ". " + ProcessName);
+				logs.logging("INFO", "ProcessType: " + ProcessType);
+				StartIndexSheet = (i == 0) ? 35 : 0;
+				AllocStartIndex = (i == 0) ? 10 : (i == 1) ? 17 : (i == 2) ? 24 : 0;
+				productionOrderInsideItemMoveType(StartIndexSheet, AllocStartIndex,
+						webDB.getDataFromProperties("PMFFileName"),
+						webDB.getDataFromProperties("AllInsideSheetName-Item"));
+			}
+			commonFunc.navigateToProductionOrderInProdPlanning();
+			searchAndVerifyStatusOfPONo(VariableHandler.getProductionOrderNumber(),
+					commonFunc.getDataFromTestDataSheet("CompletedStatus"));
+			verifyValidationOfAfterStockUnitCostAndQuantityInFGItem(webDB.getDataFromProperties("PMFFileName"),
+					webDB.getDataFromProperties("AllInsideSheetName-Item"));
+			flag = commonFunc.logoutUser();
+			return flag;
+		} catch (Exception e) {
+			logs.logging("INFO",
+					"Exception occur while executing 'verifyProdOrderAgainstSOAllInsideMoveTypeItem': " + e);
+			return false;
+		}
+	}
+
+	/**
+	 * This method used to Production Order against sales Order with move type -
+	 * single?
+	 * 
+	 * @author Sakthi-GWL
+	 * @return boolean flag
+	 */
+	public boolean verifyProdOrderAgainstSOAllOutsideMoveTypeSingle() {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		LocalDate date = LocalDate.now();
+		String MRPName = "TEST MRP - " + RandomStringUtils.randomNumeric(3);
+		String Today = date.format(formatter);
+		LocalDate nextmonthdate = LocalDate.now().plusMonths(1);
+		String NextMonthToday = nextmonthdate.format(formatter);
+		String FGItem = commonFunc.getDataFromTestDataSheet("FG-10001-Item");
+		String RMItem = commonFunc.getDataFromTestDataSheet("RM-10001-Item");
+		LocalDate previousDate = LocalDate.now().minusDays(1);
+		String YesterDay = previousDate.format(formatter);
+		int ReqQuantity = 4;
+		String BOMNo = commonFunc.getDataFromTestDataSheet("BomAllOutside");
+		try {
+			saleOrderFunc.verifySalesOrderCreationForMRPAndProdOrder(ReqQuantity, BOMNo);
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+					"AdminUsername");
+			commonFunc.navigateToMRPScreenInProdPlanning();
+			mrpFunc.clickAddIconInMRP();
+			mrpFunc.fillDetailsInMRPCreationAndClickTickIcon(Today, MRPName, Today, "ALL");
+			mrpFunc.clickAddLinePlusIconInSources();
+			mrpFunc.enterUnitCutOffDateInSourcesLine(commonFunc.getDataFromTestDataSheet("Unit_100"), NextMonthToday);
+			mrpFunc.clickSalesOrderDemandCheckBoxInSourceLines();
+			mrpFunc.clickSaveIconInSourcesTab();
+			mrpFunc.clickLoadDemandButtonInMRP();
+			mrpFunc.navigateToDemandTabInMRPScreen();
+			mrpFunc.searchSONumberInDemandAndSelectSOItems(VariableHandler.getSONumber());
+			mrpFunc.clickCheckExceptionAndSaveHeaderInMRP();
+			mrpFunc.navigateToExceptionTabInMRPScreen();
+			mrpFunc.validateNoExceptionDataShownInTableData();
+			mrpFunc.clickRunMRPButton();
+			mrpFunc.navigateToResultsTabInMRPScreen();
+			mrpFunc.verifyUnitResultsDetails(new String[] { commonFunc.getDataFromTestDataSheet("Unit_100"),
+					commonFunc.getDataFromTestDataSheet("Unit_100") });
+			mrpFunc.verifyItemResultsDetails(new String[] { FGItem, RMItem });
+			mrpFunc.verifyUOMResultsDetails(new String[] { commonFunc.getDataFromTestDataSheet("UomNos"),
+					commonFunc.getDataFromTestDataSheet("Kgs") });
+			mrpFunc.clickHeaderSaveAndClickPost();
+			if (!VariableHandler.getApprovalFlag()) {
+				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+				commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getMRPNumber(),
+						webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+						System.getProperty("HariUsername"));
+			}
+			commonFunc.navigateToMRPScreenInProdPlanning();
+			mrpFunc.checkStatusOfMRP(VariableHandler.getMRPNumber(),
+					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+			mrpFunc.searchAndClickMRPNoInFindPage(VariableHandler.getMRPNumber());
+			mrpFunc.clickReleaseButtonInMRP();
+			mrpFunc.chooseOrderTypeFromAndToDateInReleaseDetails("All", YesterDay, Today);
+			mrpFunc.clickReleaseButtonInReleaseFrame();
+			mrpFunc.checkStatusOfMRP(VariableHandler.getMRPNumber(),
+					commonFunc.getDataFromTestDataSheet("ReleasedStatus"));
+			commonFunc.navigateToProductionOrderInProdPlanning();
+			searchAndVerifyStatusOfMRPNo(VariableHandler.getMRPNumber(),
+					commonFunc.getDataFromTestDataSheet("UnreleasedStatus"));
+			webDB.navigateToRefresh();
+			searchAndSelectProductionOrderWithDocNo(VariableHandler.getProductionOrderNumber());
+			verifyWriteBeforeStockForFGAndRawMaterials(webDB.getDataFromProperties("PMFFileName"),
+					webDB.getDataFromProperties("AllOutsideSheetName-Single"));
+			verifyHeaderValidationInProductionOrderWithDB(webDB.getDataFromProperties("PMFFileName"),
+					webDB.getDataFromProperties("AllOutsideSheetName-Single"));
+			verifyProductionOrderMREventAndRestOP(null, null, commonFunc.getDataFromTestDataSheet("Emp_MaritalStatus"));
+			verifyProcessType(commonFunc.getDataFromTestDataSheet("OutsideType"),
+					commonFunc.getDataFromTestDataSheet("OutsideType"));
+			verifyRoutingValidationInProductionOrderWithDB(webDB.getDataFromProperties("PMFFileName"),
+					webDB.getDataFromProperties("AllOutsideSheetName-Single"));
+			verifyRawMaterialsValidationInProductionOrderWithDB(webDB.getDataFromProperties("PMFFileName"),
+					webDB.getDataFromProperties("AllOutsideSheetName-Single"));
+			navigateToRoutingSubTab();
+			storeRoutingProcessAndProcessType();
+			storeRoutingProcessAndConsumptionAndRecipientWareHouse();
+			clickHeaderSaveAndPostProdOrder();
+			if (!VariableHandler.getApprovalFlag()) {
+				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+				commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+						VariableHandler.getProductionOrderNumber(), webDB.getDataFromProperties("HodEmpId"),
+						commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+			}
+			commonFunc.navigateToProductionOrderInProdPlanning();
+			searchAndVerifyStatusOfPONo(VariableHandler.getProductionOrderNumber(),
+					commonFunc.getDataFromTestDataSheet("Inprogress"));
+			for (int i = 0; i < VariableHandler.getProcessAndWarehousesBOM().length; i++) {
+				String ProcessName = VariableHandler.getProcessAndProcessType()[i][0];
+				String ProcessType = VariableHandler.getProcessAndProcessType()[i][1];
+				logs.logging("INFO", "Executing Process: " + (i + 1) + ". " + ProcessName);
+				logs.logging("INFO", "ProcessType: " + ProcessType);
+				productionOrderOutsideSingleMoveType(webDB.getDataFromProperties("PMFFileName"),
+						webDB.getDataFromProperties("AllOutsideSheetName-Single"));
+			}
+			commonFunc.navigateToProductionOrderInProdPlanning();
+			searchAndVerifyStatusOfPONo(VariableHandler.getProductionOrderNumber(),
+					commonFunc.getDataFromTestDataSheet("CompletedStatus"));
+			verifyValidationOfAfterStockUnitCostAndQuantityInFGItem(webDB.getDataFromProperties("PMFFileName"),
+					webDB.getDataFromProperties("AllOutsideSheetName-Single"));
+			flag = commonFunc.logoutUser();
+			return flag;
+		} catch (Exception e) {
+			logs.logging("INFO",
+					"Exception occur while executing 'verifyProdOrderAgainstSOAllOutsideMoveTypeSingle': " + e);
+			return false;
+		}
+	}
+
+	/**
+	 * This method used to Production Order against sales Order with move type -
+	 * multiple?
+	 * 
+	 * @author Sakthi-GWL
+	 * @return boolean flag
+	 */
+	public boolean verifyProdOrderAgainstSOAllOutsideMoveTypeMultiple() {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		LocalDate date = LocalDate.now();
+		String MRPName = "TEST MRP - " + RandomStringUtils.randomNumeric(3);
+		String Today = date.format(formatter);
+		LocalDate nextmonthdate = LocalDate.now().plusMonths(1);
+		String NextMonthToday = nextmonthdate.format(formatter);
+		String FGItem = commonFunc.getDataFromTestDataSheet("FG-10001-Item");
+		String RMItem = commonFunc.getDataFromTestDataSheet("RM-10001-Item");
+		LocalDate previousDate = LocalDate.now().minusDays(1);
+		String YesterDay = previousDate.format(formatter);
+		int ReqQuantity = 4;
+		String BOMNo = commonFunc.getDataFromTestDataSheet("BomAllOutside");
+		try {
+			saleOrderFunc.verifySalesOrderCreationForMRPAndProdOrder(ReqQuantity, BOMNo);
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+					"AdminUsername");
+			commonFunc.navigateToMRPScreenInProdPlanning();
+			mrpFunc.clickAddIconInMRP();
+			mrpFunc.fillDetailsInMRPCreationAndClickTickIcon(Today, MRPName, Today, "ALL");
+			mrpFunc.clickAddLinePlusIconInSources();
+			mrpFunc.enterUnitCutOffDateInSourcesLine(commonFunc.getDataFromTestDataSheet("Unit_100"), NextMonthToday);
+			mrpFunc.clickSalesOrderDemandCheckBoxInSourceLines();
+			mrpFunc.clickSaveIconInSourcesTab();
+			mrpFunc.clickLoadDemandButtonInMRP();
+			mrpFunc.navigateToDemandTabInMRPScreen();
+			mrpFunc.searchSONumberInDemandAndSelectSOItems(VariableHandler.getSONumber());
+			mrpFunc.clickCheckExceptionAndSaveHeaderInMRP();
+			mrpFunc.navigateToExceptionTabInMRPScreen();
+			mrpFunc.validateNoExceptionDataShownInTableData();
+			mrpFunc.clickRunMRPButton();
+			mrpFunc.navigateToResultsTabInMRPScreen();
+			mrpFunc.verifyUnitResultsDetails(new String[] { commonFunc.getDataFromTestDataSheet("Unit_100"),
+					commonFunc.getDataFromTestDataSheet("Unit_100") });
+			mrpFunc.verifyItemResultsDetails(new String[] { FGItem, RMItem });
+			mrpFunc.verifyUOMResultsDetails(new String[] { commonFunc.getDataFromTestDataSheet("UomNos"),
+					commonFunc.getDataFromTestDataSheet("Kgs") });
+			mrpFunc.clickHeaderSaveAndClickPost();
+			if (!VariableHandler.getApprovalFlag()) {
+				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+				commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getMRPNumber(),
+						webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+						System.getProperty("HariUsername"));
+			}
+			commonFunc.navigateToMRPScreenInProdPlanning();
+			mrpFunc.checkStatusOfMRP(VariableHandler.getMRPNumber(),
+					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+			mrpFunc.searchAndClickMRPNoInFindPage(VariableHandler.getMRPNumber());
+			mrpFunc.clickReleaseButtonInMRP();
+			mrpFunc.chooseOrderTypeFromAndToDateInReleaseDetails("All", YesterDay, Today);
+			mrpFunc.clickReleaseButtonInReleaseFrame();
+			mrpFunc.checkStatusOfMRP(VariableHandler.getMRPNumber(),
+					commonFunc.getDataFromTestDataSheet("ReleasedStatus"));
+			commonFunc.navigateToProductionOrderInProdPlanning();
+			searchAndVerifyStatusOfMRPNo(VariableHandler.getMRPNumber(),
+					commonFunc.getDataFromTestDataSheet("UnreleasedStatus"));
+			webDB.navigateToRefresh();
+			searchAndSelectProductionOrderWithDocNo(VariableHandler.getProductionOrderNumber());
+			verifyWriteBeforeStockForFGAndRawMaterials(webDB.getDataFromProperties("PMFFileName"),
+					webDB.getDataFromProperties("AllOutsideSheetName-Multiple"));
+			verifyHeaderValidationInProductionOrderWithDB(webDB.getDataFromProperties("PMFFileName"),
+					webDB.getDataFromProperties("AllOutsideSheetName-Multiple"));
+			verifyProductionOrderMREventAndRestOP(null, null, commonFunc.getDataFromTestDataSheet("MultipleType"));
+			verifyProcessType(commonFunc.getDataFromTestDataSheet("OutsideType"),
+					commonFunc.getDataFromTestDataSheet("OutsideType"));
+			verifyRoutingValidationInProductionOrderWithDB(webDB.getDataFromProperties("PMFFileName"),
+					webDB.getDataFromProperties("AllOutsideSheetName-Multiple"));
+			verifyRawMaterialsValidationInProductionOrderWithDB(webDB.getDataFromProperties("PMFFileName"),
+					webDB.getDataFromProperties("AllOutsideSheetName-Multiple"));
+			navigateToRoutingSubTab();
+			storeRoutingProcessAndProcessType();
+			storeRoutingProcessAndConsumptionAndRecipientWareHouse();
+			clickHeaderSaveAndPostProdOrder();
+			if (!VariableHandler.getApprovalFlag()) {
+				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+				commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+						VariableHandler.getProductionOrderNumber(), webDB.getDataFromProperties("HodEmpId"),
+						commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+			}
+			commonFunc.navigateToProductionOrderInProdPlanning();
+			searchAndVerifyStatusOfPONo(VariableHandler.getProductionOrderNumber(),
+					commonFunc.getDataFromTestDataSheet("Inprogress"));
+			int StartIndex = 0;
+			for (int i = 0; i < 2; i++) {
+				String ProcessName = VariableHandler.getProcessAndProcessType()[i][0];
+				logs.logging("INFO", "Executing Process: " + (i + 1) + ". " + ProcessName);
+				productionOrderOutsideMultipleMoveType(i, StartIndex, webDB.getDataFromProperties("PMFFileName"),
+						webDB.getDataFromProperties("AllOutsideSheetName-Multiple"));
+			}
+			commonFunc.navigateToProductionOrderInProdPlanning();
+			searchAndVerifyStatusOfPONo(VariableHandler.getProductionOrderNumber(),
+					commonFunc.getDataFromTestDataSheet("CompletedStatus"));
+			verifyValidationOfAfterStockUnitCostAndQuantityInFGItem(webDB.getDataFromProperties("PMFFileName"),
+					webDB.getDataFromProperties("AllOutsideSheetName-Multiple"));
+			flag = commonFunc.logoutUser();
+			return flag;
+		} catch (Exception e) {
+			logs.logging("INFO",
+					"Exception occur while executing 'verifyProdOrderAgainstSOAllOutsideMoveTypeMultiple': " + e);
+			return false;
+		}
+	}
+
+	/**
+	 * This method used to Production Order against sales Order with move type -
+	 * item?
+	 * 
+	 * @author Sakthi-GWL
+	 * @return boolean flag
+	 */
+	public boolean verifyProdOrderAgainstSOAllOutsideMoveTypeItem() {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		LocalDate date = LocalDate.now();
+		String MRPName = "TEST MRP - " + RandomStringUtils.randomNumeric(3);
+		String Today = date.format(formatter);
+		LocalDate nextmonthdate = LocalDate.now().plusMonths(1);
+		String NextMonthToday = nextmonthdate.format(formatter);
+		String FGItem = commonFunc.getDataFromTestDataSheet("FG-10001-Item");
+		String RMItem = commonFunc.getDataFromTestDataSheet("RM-10001-Item");
+		LocalDate previousDate = LocalDate.now().minusDays(1);
+		String YesterDay = previousDate.format(formatter);
+		int ReqQuantity = 4;
+		String BOMNo = commonFunc.getDataFromTestDataSheet("BomAllOutside");
+		try {
+			saleOrderFunc.verifySalesOrderCreationForMRPAndProdOrder(ReqQuantity, BOMNo);
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+					"AdminUsername");
+			commonFunc.navigateToMRPScreenInProdPlanning();
+			mrpFunc.clickAddIconInMRP();
+			mrpFunc.fillDetailsInMRPCreationAndClickTickIcon(Today, MRPName, Today, "ALL");
+			mrpFunc.clickAddLinePlusIconInSources();
+			mrpFunc.enterUnitCutOffDateInSourcesLine(commonFunc.getDataFromTestDataSheet("Unit_100"), NextMonthToday);
+			mrpFunc.clickSalesOrderDemandCheckBoxInSourceLines();
+			mrpFunc.clickSaveIconInSourcesTab();
+			mrpFunc.clickLoadDemandButtonInMRP();
+			mrpFunc.navigateToDemandTabInMRPScreen();
+			mrpFunc.searchSONumberInDemandAndSelectSOItems(VariableHandler.getSONumber());
+			mrpFunc.clickCheckExceptionAndSaveHeaderInMRP();
+			mrpFunc.navigateToExceptionTabInMRPScreen();
+			mrpFunc.validateNoExceptionDataShownInTableData();
+			mrpFunc.clickRunMRPButton();
+			mrpFunc.navigateToResultsTabInMRPScreen();
+			mrpFunc.verifyUnitResultsDetails(new String[] { commonFunc.getDataFromTestDataSheet("Unit_100"),
+					commonFunc.getDataFromTestDataSheet("Unit_100") });
+			mrpFunc.verifyItemResultsDetails(new String[] { FGItem, RMItem });
+			mrpFunc.verifyUOMResultsDetails(new String[] { commonFunc.getDataFromTestDataSheet("UomNos"),
+					commonFunc.getDataFromTestDataSheet("Kgs") });
+			mrpFunc.clickHeaderSaveAndClickPost();
+			if (!VariableHandler.getApprovalFlag()) {
+				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+				commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getMRPNumber(),
+						webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+						System.getProperty("HariUsername"));
+			}
+			commonFunc.navigateToMRPScreenInProdPlanning();
+			mrpFunc.checkStatusOfMRP(VariableHandler.getMRPNumber(),
+					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+			mrpFunc.searchAndClickMRPNoInFindPage(VariableHandler.getMRPNumber());
+			mrpFunc.clickReleaseButtonInMRP();
+			mrpFunc.chooseOrderTypeFromAndToDateInReleaseDetails("All", YesterDay, Today);
+			mrpFunc.clickReleaseButtonInReleaseFrame();
+			mrpFunc.checkStatusOfMRP(VariableHandler.getMRPNumber(),
+					commonFunc.getDataFromTestDataSheet("ReleasedStatus"));
+			commonFunc.navigateToProductionOrderInProdPlanning();
+			searchAndVerifyStatusOfMRPNo(VariableHandler.getMRPNumber(),
+					commonFunc.getDataFromTestDataSheet("UnreleasedStatus"));
+			webDB.navigateToRefresh();
+			searchAndSelectProductionOrderWithDocNo(VariableHandler.getProductionOrderNumber());
+			verifyWriteBeforeStockForFGAndRawMaterials(webDB.getDataFromProperties("PMFFileName"),
+					webDB.getDataFromProperties("AllOutsideSheetName-Item"));
+			verifyHeaderValidationInProductionOrderWithDB(webDB.getDataFromProperties("PMFFileName"),
+					webDB.getDataFromProperties("AllOutsideSheetName-Item"));
+			verifyProductionOrderMREventAndRestOP(null, null, commonFunc.getDataFromTestDataSheet("ItemType"));
+			verifyProcessType(commonFunc.getDataFromTestDataSheet("OutsideType"),
+					commonFunc.getDataFromTestDataSheet("OutsideType"));
+			verifyRoutingValidationInProductionOrderWithDB(webDB.getDataFromProperties("PMFFileName"),
+					webDB.getDataFromProperties("AllOutsideSheetName-Item"));
+			verifyRawMaterialsValidationInProductionOrderWithDB(webDB.getDataFromProperties("PMFFileName"),
+					webDB.getDataFromProperties("AllOutsideSheetName-Item"));
+			navigateToRoutingSubTab();
+			storeRoutingProcessAndProcessType();
+			storeRoutingProcessAndConsumptionAndRecipientWareHouse();
+			clickHeaderSaveAndPostProdOrder();
+			if (!VariableHandler.getApprovalFlag()) {
+				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+				commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+						VariableHandler.getProductionOrderNumber(), webDB.getDataFromProperties("HodEmpId"),
+						commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+			}
+			commonFunc.navigateToProductionOrderInProdPlanning();
+			searchAndVerifyStatusOfPONo(VariableHandler.getProductionOrderNumber(),
+					commonFunc.getDataFromTestDataSheet("Inprogress"));
+			for (int i = 0; i < 1; i++) {
+				String ProcessName = VariableHandler.getProcessAndProcessType()[i][0];
+				logs.logging("INFO", "Executing Process: " + (i + 1) + ". " + ProcessName);
+				productionOrderOutsideItemMoveType(webDB.getDataFromProperties("PMFFileName"),
+						webDB.getDataFromProperties("AllOutsideSheetName-Item"));
+			}
+			commonFunc.navigateToProductionOrderInProdPlanning();
+			searchAndVerifyStatusOfPONo(VariableHandler.getProductionOrderNumber(),
+					commonFunc.getDataFromTestDataSheet("CompletedStatus"));
+			verifyValidationOfAfterStockUnitCostAndQuantityInFGItem(webDB.getDataFromProperties("PMFFileName"),
+					webDB.getDataFromProperties("AllOutsideSheetName-Item"));
+			flag = commonFunc.logoutUser();
+			return flag;
+		} catch (Exception e) {
+			logs.logging("INFO",
+					"Exception occur while executing 'verifyProdOrderAgainstSOAllOutsideMoveTypeItem': " + e);
+			return false;
+		}
+	}
+
+	/**
+	 * This method used to Production Order against sales Order with move type -
+	 * single
+	 * 
+	 * @author Sakthi-GWL
+	 * @return boolean flag
+	 */
+	public boolean verifyProdOrderAgainstSOFirstInsideRestOutsideMoveTypeSingle() {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		LocalDate date = LocalDate.now();
+		String MRPName = "TEST MRP - " + RandomStringUtils.randomNumeric(3);
+		String Today = date.format(formatter);
+		LocalDate nextmonthdate = LocalDate.now().plusMonths(1);
+		String NextMonthToday = nextmonthdate.format(formatter);
+		String FGItem = commonFunc.getDataFromTestDataSheet("FG-10001-Item");
+		String RMItem = commonFunc.getDataFromTestDataSheet("RM-10001-Item");
+		LocalDate previousDate = LocalDate.now().minusDays(1);
+		String YesterDay = previousDate.format(formatter);
+		int ReqQuantity = 4;
+		String BOMNo = commonFunc.getDataFromTestDataSheet("BomFirstInRestOut");
+		String MoveType = commonFunc.getDataFromTestDataSheet("Emp_MaritalStatus");
+		String FileName = webDB.getDataFromProperties("PMFFileName");
+		String SheetName = webDB.getDataFromProperties("FirstInRestOutSheetName-Single");
+		try {
+			saleOrderFunc.verifySalesOrderCreationForMRPAndProdOrder(ReqQuantity, BOMNo);
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+					"AdminUsername");
+			commonFunc.navigateToMRPScreenInProdPlanning();
+			mrpFunc.clickAddIconInMRP();
+			mrpFunc.fillDetailsInMRPCreationAndClickTickIcon(Today, MRPName, Today, "ALL");
+			mrpFunc.clickAddLinePlusIconInSources();
+			mrpFunc.enterUnitCutOffDateInSourcesLine(commonFunc.getDataFromTestDataSheet("Unit_100"), NextMonthToday);
+			mrpFunc.clickSalesOrderDemandCheckBoxInSourceLines();
+			mrpFunc.clickSaveIconInSourcesTab();
+			mrpFunc.clickLoadDemandButtonInMRP();
+			mrpFunc.navigateToDemandTabInMRPScreen();
+			mrpFunc.searchSONumberInDemandAndSelectSOItems(VariableHandler.getSONumber());
+			mrpFunc.clickCheckExceptionAndSaveHeaderInMRP();
+			mrpFunc.navigateToExceptionTabInMRPScreen();
+			mrpFunc.validateNoExceptionDataShownInTableData();
+			mrpFunc.clickRunMRPButton();
+			mrpFunc.navigateToResultsTabInMRPScreen();
+			mrpFunc.verifyUnitResultsDetails(new String[] { commonFunc.getDataFromTestDataSheet("Unit_100"),
+					commonFunc.getDataFromTestDataSheet("Unit_100") });
+			mrpFunc.verifyItemResultsDetails(new String[] { FGItem, RMItem });
+			mrpFunc.verifyUOMResultsDetails(new String[] { commonFunc.getDataFromTestDataSheet("UomNos"),
+					commonFunc.getDataFromTestDataSheet("Kgs") });
+			mrpFunc.clickHeaderSaveAndClickPost();
+			if (!VariableHandler.getApprovalFlag()) {
+				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+				commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getMRPNumber(),
+						webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+						System.getProperty("HariUsername"));
+			}
+			commonFunc.navigateToMRPScreenInProdPlanning();
+			mrpFunc.checkStatusOfMRP(VariableHandler.getMRPNumber(),
+					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+			mrpFunc.searchAndClickMRPNoInFindPage(VariableHandler.getMRPNumber());
+			mrpFunc.clickReleaseButtonInMRP();
+			mrpFunc.chooseOrderTypeFromAndToDateInReleaseDetails("All", YesterDay, Today);
+			mrpFunc.clickReleaseButtonInReleaseFrame();
+			mrpFunc.checkStatusOfMRP(VariableHandler.getMRPNumber(),
+					commonFunc.getDataFromTestDataSheet("ReleasedStatus"));
+			commonFunc.navigateToProductionOrderInProdPlanning();
+			searchAndVerifyStatusOfMRPNo(VariableHandler.getMRPNumber(),
+					commonFunc.getDataFromTestDataSheet("UnreleasedStatus"));
+			webDB.navigateToRefresh();
+			searchAndSelectProductionOrderWithDocNo(VariableHandler.getProductionOrderNumber());
+			verifyWriteBeforeStockForFGAndRawMaterials(FileName, SheetName);
+			verifyHeaderValidationInProductionOrderWithDB(FileName, SheetName);
+			verifyProductionOrderMREventAndRestOP(null, null, MoveType);
+			verifyProcessType(commonFunc.getDataFromTestDataSheet("InsideType"),
+					commonFunc.getDataFromTestDataSheet("OutsideType"));
+			verifyRoutingValidationInProductionOrderWithDB(FileName, SheetName);
+			verifyRawMaterialsValidationInProductionOrderWithDB(FileName, SheetName);
+			navigateToRoutingSubTab();
+			storeRoutingProcessAndProcessType();
+			storeRoutingProcessAndConsumptionAndRecipientWareHouse();
+			clickHeaderSaveAndPostProdOrder();
+			if (!VariableHandler.getApprovalFlag()) {
+				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+				commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+						VariableHandler.getProductionOrderNumber(), webDB.getDataFromProperties("HodEmpId"),
+						commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+			}
+			commonFunc.navigateToProductionOrderInProdPlanning();
+			searchAndVerifyStatusOfPONo(VariableHandler.getProductionOrderNumber(),
+					commonFunc.getDataFromTestDataSheet("Inprogress"));
+			int StartIndex = 0;
+			int AllocIndex = 0;
+			a: for (int i = 0; i < VariableHandler.getProcessAndWarehousesBOM().length; i++) {
+				String ProcessName = VariableHandler.getProcessAndProcessType()[i][0];
+				String ProcessType = VariableHandler.getProcessAndProcessType()[i][1];
+				logs.logging("INFO", "Executing Process: " + (i + 1) + ". " + ProcessName);
+				logs.logging("INFO", "ProcessType: " + ProcessType);
+				if (ProcessType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("InsideType"))
+						&& MoveType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("Emp_MaritalStatus"))) {
+					StartIndex = (i == 0) ? 35 : (i == 1) ? 45 : (i == 2) ? 56 : 0;
+					AllocIndex = (i == 0) ? 10 : (i == 1) ? 17 : (i == 2) ? 24 : 0;
+					productionOrderInsideSingleMoveType(StartIndex, AllocIndex, FileName, SheetName);
+				} else if (ProcessType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("InsideType"))
+						&& MoveType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("MultipleType"))) {
+					StartIndex = (i == 0) ? 35 : (i == 1) ? 45 : 0;
+					AllocIndex = (i == 0) ? 10 : (i == 1) ? 17 : (i == 2) ? 24 : 0;
+					productionOrderInsideMultipleMoveType(i, StartIndex, AllocIndex, FileName, SheetName);
+					if (i > 1) {
+						break a;
+					}
+				} else if (ProcessType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("InsideType"))
+						&& MoveType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("ItemType"))) {
+					StartIndex = (i == 0) ? 35 : 0;
+					AllocIndex = (i == 0) ? 10 : (i == 1) ? 17 : (i == 2) ? 24 : 0;
+					productionOrderInsideItemMoveType(StartIndex, AllocIndex, FileName, SheetName);
+					if (i > 0) {
+						break a;
+					}
+				} else if (ProcessType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("OutsideType"))
+						&& MoveType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("Emp_MaritalStatus"))) {
+					productionOrderOutsideSingleMoveType(FileName, SheetName);
+				} else if (ProcessType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("OutsideType"))
+						&& MoveType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("MultipleType"))) {
+					productionOrderOutsideMultipleMoveType(i, StartIndex, FileName, SheetName);
+					if (i > 1) {
+						break a;
+					}
+				} else if (ProcessType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("OutsideType"))
+						&& MoveType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("ItemType"))) {
+					productionOrderOutsideItemMoveType(FileName, SheetName);
+					if (i > 0) {
+						break a;
+					}
+				}
+			}
+			commonFunc.navigateToProductionOrderInProdPlanning();
+			searchAndVerifyStatusOfPONo(VariableHandler.getProductionOrderNumber(),
+					commonFunc.getDataFromTestDataSheet("CompletedStatus"));
+			verifyValidationOfAfterStockUnitCostAndQuantityInFGItem(FileName, SheetName);
+			flag = commonFunc.logoutUser();
+			return flag;
+		} catch (Exception e) {
+			logs.logging("INFO",
+					"Exception occur while executing 'verifyProdOrderAgainstSOFirstInsideRestOutsideMoveTypeSingle': "
+							+ e);
+			return false;
+		}
+	}
+
+	/**
+	 * This method used to Production Order against sales Order with move type -
+	 * multiple
+	 * 
+	 * @author Sakthi-GWL
+	 * @return boolean flag
+	 */
+	public boolean verifyProdOrderAgainstSOFirstInsideRestOutsideMoveTypeMultiple() {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		LocalDate date = LocalDate.now();
+		String MRPName = "TEST MRP - " + RandomStringUtils.randomNumeric(3);
+		String Today = date.format(formatter);
+		LocalDate nextmonthdate = LocalDate.now().plusMonths(1);
+		String NextMonthToday = nextmonthdate.format(formatter);
+		String FGItem = commonFunc.getDataFromTestDataSheet("FG-10001-Item");
+		String RMItem = commonFunc.getDataFromTestDataSheet("RM-10001-Item");
+		LocalDate previousDate = LocalDate.now().minusDays(1);
+		String YesterDay = previousDate.format(formatter);
+		int ReqQuantity = 4;
+		String BOMNo = commonFunc.getDataFromTestDataSheet("BomFirstInRestOut");
+		String MoveType = commonFunc.getDataFromTestDataSheet("MultipleType");
+		String FileName = webDB.getDataFromProperties("PMFFileName");
+		String SheetName = webDB.getDataFromProperties("FirstInRestOutSheetName-Multiple");
+		try {
+			saleOrderFunc.verifySalesOrderCreationForMRPAndProdOrder(ReqQuantity, BOMNo);
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+					"AdminUsername");
+			commonFunc.navigateToMRPScreenInProdPlanning();
+			mrpFunc.clickAddIconInMRP();
+			mrpFunc.fillDetailsInMRPCreationAndClickTickIcon(Today, MRPName, Today, "ALL");
+			mrpFunc.clickAddLinePlusIconInSources();
+			mrpFunc.enterUnitCutOffDateInSourcesLine(commonFunc.getDataFromTestDataSheet("Unit_100"), NextMonthToday);
+			mrpFunc.clickSalesOrderDemandCheckBoxInSourceLines();
+			mrpFunc.clickSaveIconInSourcesTab();
+			mrpFunc.clickLoadDemandButtonInMRP();
+			mrpFunc.navigateToDemandTabInMRPScreen();
+			mrpFunc.searchSONumberInDemandAndSelectSOItems(VariableHandler.getSONumber());
+			mrpFunc.clickCheckExceptionAndSaveHeaderInMRP();
+			mrpFunc.navigateToExceptionTabInMRPScreen();
+			mrpFunc.validateNoExceptionDataShownInTableData();
+			mrpFunc.clickRunMRPButton();
+			mrpFunc.navigateToResultsTabInMRPScreen();
+			mrpFunc.verifyUnitResultsDetails(new String[] { commonFunc.getDataFromTestDataSheet("Unit_100"),
+					commonFunc.getDataFromTestDataSheet("Unit_100") });
+			mrpFunc.verifyItemResultsDetails(new String[] { FGItem, RMItem });
+			mrpFunc.verifyUOMResultsDetails(new String[] { commonFunc.getDataFromTestDataSheet("UomNos"),
+					commonFunc.getDataFromTestDataSheet("Kgs") });
+			mrpFunc.clickHeaderSaveAndClickPost();
+			if (!VariableHandler.getApprovalFlag()) {
+				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+				commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getMRPNumber(),
+						webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+						System.getProperty("HariUsername"));
+			}
+			commonFunc.navigateToMRPScreenInProdPlanning();
+			mrpFunc.checkStatusOfMRP(VariableHandler.getMRPNumber(),
+					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+			mrpFunc.searchAndClickMRPNoInFindPage(VariableHandler.getMRPNumber());
+			mrpFunc.clickReleaseButtonInMRP();
+			mrpFunc.chooseOrderTypeFromAndToDateInReleaseDetails("All", YesterDay, Today);
+			mrpFunc.clickReleaseButtonInReleaseFrame();
+			mrpFunc.checkStatusOfMRP(VariableHandler.getMRPNumber(),
+					commonFunc.getDataFromTestDataSheet("ReleasedStatus"));
+			commonFunc.navigateToProductionOrderInProdPlanning();
+			searchAndVerifyStatusOfMRPNo(VariableHandler.getMRPNumber(),
+					commonFunc.getDataFromTestDataSheet("UnreleasedStatus"));
+			webDB.navigateToRefresh();
+			searchAndSelectProductionOrderWithDocNo(VariableHandler.getProductionOrderNumber());
+			verifyWriteBeforeStockForFGAndRawMaterials(FileName, SheetName);
+			verifyHeaderValidationInProductionOrderWithDB(FileName, SheetName);
+			verifyProductionOrderMREventAndRestOP(null, null, MoveType);
+			verifyProcessType(commonFunc.getDataFromTestDataSheet("InsideType"),
+					commonFunc.getDataFromTestDataSheet("OutsideType"));
+			verifyRoutingValidationInProductionOrderWithDB(FileName, SheetName);
+			verifyRawMaterialsValidationInProductionOrderWithDB(FileName, SheetName);
+			navigateToRoutingSubTab();
+			storeRoutingProcessAndProcessType();
+			storeRoutingProcessAndConsumptionAndRecipientWareHouse();
+			clickHeaderSaveAndPostProdOrder();
+			if (!VariableHandler.getApprovalFlag()) {
+				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+				commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+						VariableHandler.getProductionOrderNumber(), webDB.getDataFromProperties("HodEmpId"),
+						commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+			}
+			commonFunc.navigateToProductionOrderInProdPlanning();
+			searchAndVerifyStatusOfPONo(VariableHandler.getProductionOrderNumber(),
+					commonFunc.getDataFromTestDataSheet("Inprogress"));
+			int StartIndex = 0;
+			int AllocIndex = 0;
+			a: for (int i = 0; i < VariableHandler.getProcessAndWarehousesBOM().length; i++) {
+				String ProcessName = VariableHandler.getProcessAndProcessType()[i][0];
+				String ProcessType = VariableHandler.getProcessAndProcessType()[i][1];
+				logs.logging("INFO", "Executing Process: " + (i + 1) + ". " + ProcessName);
+				logs.logging("INFO", "ProcessType: " + ProcessType);
+				if (ProcessType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("InsideType"))
+						&& MoveType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("Emp_MaritalStatus"))) {
+					StartIndex = (i == 0) ? 35 : (i == 1) ? 45 : (i == 2) ? 56 : 0;
+					AllocIndex = (i == 0) ? 10 : (i == 1) ? 17 : (i == 2) ? 24 : 0;
+					productionOrderInsideSingleMoveType(StartIndex, AllocIndex, FileName, SheetName);
+				} else if (ProcessType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("InsideType"))
+						&& MoveType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("MultipleType"))) {
+					StartIndex = (i == 0) ? 35 : (i == 1) ? 45 : 0;
+					AllocIndex = (i == 0) ? 10 : (i == 1) ? 17 : (i == 2) ? 24 : 0;
+					productionOrderInsideMultipleMoveType(i, StartIndex, AllocIndex, FileName, SheetName);
+					if (i > 1) {
+						break a;
+					}
+				} else if (ProcessType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("InsideType"))
+						&& MoveType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("ItemType"))) {
+					StartIndex = (i == 0) ? 35 : 0;
+					AllocIndex = (i == 0) ? 10 : (i == 1) ? 17 : (i == 2) ? 24 : 0;
+					productionOrderInsideItemMoveType(StartIndex, AllocIndex, FileName, SheetName);
+					if (i > 0) {
+						break a;
+					}
+				} else if (ProcessType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("OutsideType"))
+						&& MoveType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("Emp_MaritalStatus"))) {
+					productionOrderOutsideSingleMoveType(FileName, SheetName);
+				} else if (ProcessType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("OutsideType"))
+						&& MoveType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("MultipleType"))) {
+					productionOrderOutsideMultipleMoveType(i, StartIndex, FileName, SheetName);
+					if (i > 1) {
+						break a;
+					}
+				} else if (ProcessType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("OutsideType"))
+						&& MoveType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("ItemType"))) {
+					productionOrderOutsideItemMoveType(FileName, SheetName);
+					if (i > 0) {
+						break a;
+					}
+				}
+			}
+			commonFunc.navigateToProductionOrderInProdPlanning();
+			searchAndVerifyStatusOfPONo(VariableHandler.getProductionOrderNumber(),
+					commonFunc.getDataFromTestDataSheet("CompletedStatus"));
+			verifyValidationOfAfterStockUnitCostAndQuantityInFGItem(FileName, SheetName);
+			flag = commonFunc.logoutUser();
+			return flag;
+		} catch (Exception e) {
+			logs.logging("INFO",
+					"Exception occur while executing 'verifyProdOrderAgainstSOFirstInsideRestOutsideMoveTypeMultiple': "
+							+ e);
+			return false;
+		}
+	}
+
+	/**
+	 * This method used to Production Order against sales Order with move type -
+	 * item
+	 * 
+	 * @author Sakthi-GWL
+	 * @return boolean flag
+	 */
+	public boolean verifyProdOrderAgainstSOFirstInsideRestOutsideMoveTypeItem() {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		LocalDate date = LocalDate.now();
+		String MRPName = "TEST MRP - " + RandomStringUtils.randomNumeric(3);
+		String Today = date.format(formatter);
+		LocalDate nextmonthdate = LocalDate.now().plusMonths(1);
+		String NextMonthToday = nextmonthdate.format(formatter);
+		String FGItem = commonFunc.getDataFromTestDataSheet("FG-10001-Item");
+		String RMItem = commonFunc.getDataFromTestDataSheet("RM-10001-Item");
+		LocalDate previousDate = LocalDate.now().minusDays(1);
+		String YesterDay = previousDate.format(formatter);
+		int ReqQuantity = 4;
+		String BOMNo = commonFunc.getDataFromTestDataSheet("BomFirstInRestOut");
+		String MoveType = commonFunc.getDataFromTestDataSheet("ItemType");
+		String FileName = webDB.getDataFromProperties("PMFFileName");
+		String SheetName = webDB.getDataFromProperties("FirstInRestOutSheetName-Item");
+		try {
+			saleOrderFunc.verifySalesOrderCreationForMRPAndProdOrder(ReqQuantity, BOMNo);
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+					"AdminUsername");
+			commonFunc.navigateToMRPScreenInProdPlanning();
+			mrpFunc.clickAddIconInMRP();
+			mrpFunc.fillDetailsInMRPCreationAndClickTickIcon(Today, MRPName, Today, "ALL");
+			mrpFunc.clickAddLinePlusIconInSources();
+			mrpFunc.enterUnitCutOffDateInSourcesLine(commonFunc.getDataFromTestDataSheet("Unit_100"), NextMonthToday);
+			mrpFunc.clickSalesOrderDemandCheckBoxInSourceLines();
+			mrpFunc.clickSaveIconInSourcesTab();
+			mrpFunc.clickLoadDemandButtonInMRP();
+			mrpFunc.navigateToDemandTabInMRPScreen();
+			mrpFunc.searchSONumberInDemandAndSelectSOItems(VariableHandler.getSONumber());
+			mrpFunc.clickCheckExceptionAndSaveHeaderInMRP();
+			mrpFunc.navigateToExceptionTabInMRPScreen();
+			mrpFunc.validateNoExceptionDataShownInTableData();
+			mrpFunc.clickRunMRPButton();
+			mrpFunc.navigateToResultsTabInMRPScreen();
+			mrpFunc.verifyUnitResultsDetails(new String[] { commonFunc.getDataFromTestDataSheet("Unit_100"),
+					commonFunc.getDataFromTestDataSheet("Unit_100") });
+			mrpFunc.verifyItemResultsDetails(new String[] { FGItem, RMItem });
+			mrpFunc.verifyUOMResultsDetails(new String[] { commonFunc.getDataFromTestDataSheet("UomNos"),
+					commonFunc.getDataFromTestDataSheet("Kgs") });
+			mrpFunc.clickHeaderSaveAndClickPost();
+			if (!VariableHandler.getApprovalFlag()) {
+				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+				commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getMRPNumber(),
+						webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+						System.getProperty("HariUsername"));
+			}
+			commonFunc.navigateToMRPScreenInProdPlanning();
+			mrpFunc.checkStatusOfMRP(VariableHandler.getMRPNumber(),
+					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+			mrpFunc.searchAndClickMRPNoInFindPage(VariableHandler.getMRPNumber());
+			mrpFunc.clickReleaseButtonInMRP();
+			mrpFunc.chooseOrderTypeFromAndToDateInReleaseDetails("All", YesterDay, Today);
+			mrpFunc.clickReleaseButtonInReleaseFrame();
+			mrpFunc.checkStatusOfMRP(VariableHandler.getMRPNumber(),
+					commonFunc.getDataFromTestDataSheet("ReleasedStatus"));
+			commonFunc.navigateToProductionOrderInProdPlanning();
+			searchAndVerifyStatusOfMRPNo(VariableHandler.getMRPNumber(),
+					commonFunc.getDataFromTestDataSheet("UnreleasedStatus"));
+			webDB.navigateToRefresh();
+			searchAndSelectProductionOrderWithDocNo(VariableHandler.getProductionOrderNumber());
+			verifyWriteBeforeStockForFGAndRawMaterials(FileName, SheetName);
+			verifyHeaderValidationInProductionOrderWithDB(FileName, SheetName);
+			verifyProductionOrderMREventAndRestOP(null, null, MoveType);
+			verifyProcessType(commonFunc.getDataFromTestDataSheet("InsideType"),
+					commonFunc.getDataFromTestDataSheet("OutsideType"));
+			verifyRoutingValidationInProductionOrderWithDB(FileName, SheetName);
+			verifyRawMaterialsValidationInProductionOrderWithDB(FileName, SheetName);
+			navigateToRoutingSubTab();
+			storeRoutingProcessAndProcessType();
+			storeRoutingProcessAndConsumptionAndRecipientWareHouse();
+			clickHeaderSaveAndPostProdOrder();
+			if (!VariableHandler.getApprovalFlag()) {
+				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+				commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+						VariableHandler.getProductionOrderNumber(), webDB.getDataFromProperties("HodEmpId"),
+						commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+			}
+			commonFunc.navigateToProductionOrderInProdPlanning();
+			searchAndVerifyStatusOfPONo(VariableHandler.getProductionOrderNumber(),
+					commonFunc.getDataFromTestDataSheet("Inprogress"));
+			int StartIndex = 0;
+			int AllocIndex = 0;
+			a: for (int i = 0; i < VariableHandler.getProcessAndWarehousesBOM().length; i++) {
+				String ProcessName = VariableHandler.getProcessAndProcessType()[i][0];
+				String ProcessType = VariableHandler.getProcessAndProcessType()[i][1];
+				logs.logging("INFO", "Executing Process: " + (i + 1) + ". " + ProcessName);
+				logs.logging("INFO", "ProcessType: " + ProcessType);
+				if (ProcessType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("InsideType"))
+						&& MoveType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("Emp_MaritalStatus"))) {
+					StartIndex = (i == 0) ? 35 : (i == 1) ? 45 : (i == 2) ? 56 : 0;
+					AllocIndex = (i == 0) ? 10 : (i == 1) ? 17 : (i == 2) ? 24 : 0;
+					productionOrderInsideSingleMoveType(StartIndex, AllocIndex, FileName, SheetName);
+				} else if (ProcessType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("InsideType"))
+						&& MoveType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("MultipleType"))) {
+					StartIndex = (i == 0) ? 35 : (i == 1) ? 45 : 0;
+					AllocIndex = (i == 0) ? 10 : (i == 1) ? 17 : (i == 2) ? 24 : 0;
+					productionOrderInsideMultipleMoveType(i, StartIndex, AllocIndex, FileName, SheetName);
+					if (i > 1) {
+						break a;
+					}
+				} else if (ProcessType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("InsideType"))
+						&& MoveType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("ItemType"))) {
+					StartIndex = (i == 0) ? 35 : 0;
+					AllocIndex = (i == 0) ? 10 : (i == 1) ? 17 : (i == 2) ? 24 : 0;
+					productionOrderInsideItemMoveType(StartIndex, AllocIndex, FileName, SheetName);
+					if (i > 0) {
+						break a;
+					}
+				} else if (ProcessType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("OutsideType"))
+						&& MoveType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("Emp_MaritalStatus"))) {
+					productionOrderOutsideSingleMoveType(FileName, SheetName);
+				} else if (ProcessType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("OutsideType"))
+						&& MoveType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("MultipleType"))) {
+					productionOrderOutsideMultipleMoveType(i, StartIndex, FileName, SheetName);
+					if (i > 1) {
+						break a;
+					}
+				} else if (ProcessType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("OutsideType"))
+						&& MoveType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("ItemType"))) {
+					productionOrderOutsideItemMoveType(FileName, SheetName);
+					if (i > 0) {
+						break a;
+					}
+				}
+			}
+			commonFunc.navigateToProductionOrderInProdPlanning();
+			searchAndVerifyStatusOfPONo(VariableHandler.getProductionOrderNumber(),
+					commonFunc.getDataFromTestDataSheet("CompletedStatus"));
+			verifyValidationOfAfterStockUnitCostAndQuantityInFGItem(FileName, SheetName);
+			flag = commonFunc.logoutUser();
+			return flag;
+		} catch (Exception e) {
+			logs.logging("INFO",
+					"Exception occur while executing 'verifyProdOrderAgainstSOFirstInsideRestOutsideMoveTypeMultiple': "
+							+ e);
+			return false;
+		}
+	}
+
+	/**
+	 * This method used to Production Order against sales Order with move type -
+	 * single
+	 * 
+	 * @author Sakthi-GWL
+	 * @return boolean flag
+	 */
+	public boolean verifyProdOrderAgainstSOFirstOutsideRestInsideMoveTypeSingle() {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		LocalDate date = LocalDate.now();
+		String MRPName = "TEST MRP - " + RandomStringUtils.randomNumeric(3);
+		String Today = date.format(formatter);
+		LocalDate nextmonthdate = LocalDate.now().plusMonths(1);
+		String NextMonthToday = nextmonthdate.format(formatter);
+		String FGItem = commonFunc.getDataFromTestDataSheet("FG-10001-Item");
+		String RMItem = commonFunc.getDataFromTestDataSheet("RM-10001-Item");
+		LocalDate previousDate = LocalDate.now().minusDays(1);
+		String YesterDay = previousDate.format(formatter);
+		int ReqQuantity = 4;
+		String BOMNo = commonFunc.getDataFromTestDataSheet("BomFirstOutRestIn");
+		String MoveType = commonFunc.getDataFromTestDataSheet("Emp_MaritalStatus");
+		String FileName = webDB.getDataFromProperties("PMFFileName");
+		String SheetName = webDB.getDataFromProperties("FirstOutRestInSheetName-Single");
+		try {
+			saleOrderFunc.verifySalesOrderCreationForMRPAndProdOrder(ReqQuantity, BOMNo);
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+					"AdminUsername");
+			commonFunc.navigateToMRPScreenInProdPlanning();
+			mrpFunc.clickAddIconInMRP();
+			mrpFunc.fillDetailsInMRPCreationAndClickTickIcon(Today, MRPName, Today, "ALL");
+			mrpFunc.clickAddLinePlusIconInSources();
+			mrpFunc.enterUnitCutOffDateInSourcesLine(commonFunc.getDataFromTestDataSheet("Unit_100"), NextMonthToday);
+			mrpFunc.clickSalesOrderDemandCheckBoxInSourceLines();
+			mrpFunc.clickSaveIconInSourcesTab();
+			mrpFunc.clickLoadDemandButtonInMRP();
+			mrpFunc.navigateToDemandTabInMRPScreen();
+			mrpFunc.searchSONumberInDemandAndSelectSOItems(VariableHandler.getSONumber());
+			mrpFunc.clickCheckExceptionAndSaveHeaderInMRP();
+			mrpFunc.navigateToExceptionTabInMRPScreen();
+			mrpFunc.validateNoExceptionDataShownInTableData();
+			mrpFunc.clickRunMRPButton();
+			mrpFunc.navigateToResultsTabInMRPScreen();
+			mrpFunc.verifyUnitResultsDetails(new String[] { commonFunc.getDataFromTestDataSheet("Unit_100"),
+					commonFunc.getDataFromTestDataSheet("Unit_100") });
+			mrpFunc.verifyItemResultsDetails(new String[] { FGItem, RMItem });
+			mrpFunc.verifyUOMResultsDetails(new String[] { commonFunc.getDataFromTestDataSheet("UomNos"),
+					commonFunc.getDataFromTestDataSheet("Kgs") });
+			mrpFunc.clickHeaderSaveAndClickPost();
+			if (!VariableHandler.getApprovalFlag()) {
+				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+				commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getMRPNumber(),
+						webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+						System.getProperty("HariUsername"));
+			}
+			commonFunc.navigateToMRPScreenInProdPlanning();
+			mrpFunc.checkStatusOfMRP(VariableHandler.getMRPNumber(),
+					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+			mrpFunc.searchAndClickMRPNoInFindPage(VariableHandler.getMRPNumber());
+			mrpFunc.clickReleaseButtonInMRP();
+			mrpFunc.chooseOrderTypeFromAndToDateInReleaseDetails("All", YesterDay, Today);
+			mrpFunc.clickReleaseButtonInReleaseFrame();
+			mrpFunc.checkStatusOfMRP(VariableHandler.getMRPNumber(),
+					commonFunc.getDataFromTestDataSheet("ReleasedStatus"));
+			commonFunc.navigateToProductionOrderInProdPlanning();
+			searchAndVerifyStatusOfMRPNo(VariableHandler.getMRPNumber(),
+					commonFunc.getDataFromTestDataSheet("UnreleasedStatus"));
+			webDB.navigateToRefresh();
+			searchAndSelectProductionOrderWithDocNo(VariableHandler.getProductionOrderNumber());
+			verifyWriteBeforeStockForFGAndRawMaterials(FileName, SheetName);
+			verifyHeaderValidationInProductionOrderWithDB(FileName, SheetName);
+			verifyProductionOrderMREventAndRestOP(null, null, MoveType);
+			verifyProcessType(commonFunc.getDataFromTestDataSheet("OutsideType"),
+					commonFunc.getDataFromTestDataSheet("InsideType"));
+			verifyRoutingValidationInProductionOrderWithDB(FileName, SheetName);
+			verifyRawMaterialsValidationInProductionOrderWithDB(FileName, SheetName);
+			navigateToRoutingSubTab();
+			storeRoutingProcessAndProcessType();
+			storeRoutingProcessAndConsumptionAndRecipientWareHouse();
+			clickHeaderSaveAndPostProdOrder();
+			if (!VariableHandler.getApprovalFlag()) {
+				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+				commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+						VariableHandler.getProductionOrderNumber(), webDB.getDataFromProperties("HodEmpId"),
+						commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+			}
+			commonFunc.navigateToProductionOrderInProdPlanning();
+			searchAndVerifyStatusOfPONo(VariableHandler.getProductionOrderNumber(),
+					commonFunc.getDataFromTestDataSheet("Inprogress"));
+			int StartIndex = 0;
+			int AllocIndex = 0;
+			a: for (int i = 0; i < VariableHandler.getProcessAndWarehousesBOM().length; i++) {
+				String ProcessName = VariableHandler.getProcessAndProcessType()[i][0];
+				String ProcessType = VariableHandler.getProcessAndProcessType()[i][1];
+				logs.logging("INFO", "Executing Process: " + (i + 1) + ". " + ProcessName);
+				logs.logging("INFO", "ProcessType: " + ProcessType);
+				if (ProcessType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("InsideType"))
+						&& MoveType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("Emp_MaritalStatus"))) {
+					StartIndex = (i == 0) ? 35 : (i == 1) ? 45 : (i == 2) ? 56 : 0;
+					AllocIndex = (i == 0) ? 10 : (i == 1) ? 17 : (i == 2) ? 24 : 0;
+					productionOrderInsideSingleMoveType(StartIndex, AllocIndex, FileName, SheetName);
+				} else if (ProcessType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("InsideType"))
+						&& MoveType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("MultipleType"))) {
+					StartIndex = (i == 0) ? 35 : (i == 1) ? 45 : 0;
+					AllocIndex = (i == 0) ? 10 : (i == 1) ? 17 : (i == 2) ? 24 : 0;
+					productionOrderInsideMultipleMoveType(i, StartIndex, AllocIndex, FileName, SheetName);
+					if (i > 1) {
+						break a;
+					}
+				} else if (ProcessType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("InsideType"))
+						&& MoveType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("ItemType"))) {
+					StartIndex = (i == 0) ? 35 : 0;
+					AllocIndex = (i == 0) ? 10 : (i == 1) ? 17 : (i == 2) ? 24 : 0;
+					productionOrderInsideItemMoveType(StartIndex, AllocIndex, FileName, SheetName);
+					if (i > 0) {
+						break a;
+					}
+				} else if (ProcessType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("OutsideType"))
+						&& MoveType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("Emp_MaritalStatus"))) {
+					productionOrderOutsideSingleMoveType(FileName, SheetName);
+				} else if (ProcessType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("OutsideType"))
+						&& MoveType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("MultipleType"))) {
+					productionOrderOutsideMultipleMoveType(i, StartIndex, FileName, SheetName);
+					if (i > 1) {
+						break a;
+					}
+				} else if (ProcessType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("OutsideType"))
+						&& MoveType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("ItemType"))) {
+					productionOrderOutsideItemMoveType(FileName, SheetName);
+					if (i > 0) {
+						break a;
+					}
+				}
+			}
+			commonFunc.navigateToProductionOrderInProdPlanning();
+			searchAndVerifyStatusOfPONo(VariableHandler.getProductionOrderNumber(),
+					commonFunc.getDataFromTestDataSheet("CompletedStatus"));
+			verifyValidationOfAfterStockUnitCostAndQuantityInFGItem(FileName, SheetName);
+			flag = commonFunc.logoutUser();
+			return flag;
+		} catch (Exception e) {
+			logs.logging("INFO",
+					"Exception occur while executing 'verifyProdOrderAgainstSOFirstOutsideRestInsideMoveTypeSingle': "
+							+ e);
+			return false;
+		}
+	}
+
+	/**
+	 * This method used to Production Order against sales Order with move type -
+	 * multiple
+	 * 
+	 * @author Sakthi-GWL
+	 * @return boolean flag
+	 */
+	public boolean verifyProdOrderAgainstSOFirstOutsideRestInsideMoveTypeMultiple() {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		LocalDate date = LocalDate.now();
+		String MRPName = "TEST MRP - " + RandomStringUtils.randomNumeric(3);
+		String Today = date.format(formatter);
+		LocalDate nextmonthdate = LocalDate.now().plusMonths(1);
+		String NextMonthToday = nextmonthdate.format(formatter);
+		String FGItem = commonFunc.getDataFromTestDataSheet("FG-10001-Item");
+		String RMItem = commonFunc.getDataFromTestDataSheet("RM-10001-Item");
+		LocalDate previousDate = LocalDate.now().minusDays(1);
+		String YesterDay = previousDate.format(formatter);
+		int ReqQuantity = 4;
+		String BOMNo = commonFunc.getDataFromTestDataSheet("BomFirstOutRestIn");
+		String MoveType = commonFunc.getDataFromTestDataSheet("MultipleType");
+		String FileName = webDB.getDataFromProperties("PMFFileName");
+		String SheetName = webDB.getDataFromProperties("FirstOutRestInSheetName-Multiple");
+		try {
+			saleOrderFunc.verifySalesOrderCreationForMRPAndProdOrder(ReqQuantity, BOMNo);
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+					"AdminUsername");
+			commonFunc.navigateToMRPScreenInProdPlanning();
+			mrpFunc.clickAddIconInMRP();
+			mrpFunc.fillDetailsInMRPCreationAndClickTickIcon(Today, MRPName, Today, "ALL");
+			mrpFunc.clickAddLinePlusIconInSources();
+			mrpFunc.enterUnitCutOffDateInSourcesLine(commonFunc.getDataFromTestDataSheet("Unit_100"), NextMonthToday);
+			mrpFunc.clickSalesOrderDemandCheckBoxInSourceLines();
+			mrpFunc.clickSaveIconInSourcesTab();
+			mrpFunc.clickLoadDemandButtonInMRP();
+			mrpFunc.navigateToDemandTabInMRPScreen();
+			mrpFunc.searchSONumberInDemandAndSelectSOItems(VariableHandler.getSONumber());
+			mrpFunc.clickCheckExceptionAndSaveHeaderInMRP();
+			mrpFunc.navigateToExceptionTabInMRPScreen();
+			mrpFunc.validateNoExceptionDataShownInTableData();
+			mrpFunc.clickRunMRPButton();
+			mrpFunc.navigateToResultsTabInMRPScreen();
+			mrpFunc.verifyUnitResultsDetails(new String[] { commonFunc.getDataFromTestDataSheet("Unit_100"),
+					commonFunc.getDataFromTestDataSheet("Unit_100") });
+			mrpFunc.verifyItemResultsDetails(new String[] { FGItem, RMItem });
+			mrpFunc.verifyUOMResultsDetails(new String[] { commonFunc.getDataFromTestDataSheet("UomNos"),
+					commonFunc.getDataFromTestDataSheet("Kgs") });
+			mrpFunc.clickHeaderSaveAndClickPost();
+			if (!VariableHandler.getApprovalFlag()) {
+				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+				commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getMRPNumber(),
+						webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+						System.getProperty("HariUsername"));
+			}
+			commonFunc.navigateToMRPScreenInProdPlanning();
+			mrpFunc.checkStatusOfMRP(VariableHandler.getMRPNumber(),
+					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+			mrpFunc.searchAndClickMRPNoInFindPage(VariableHandler.getMRPNumber());
+			mrpFunc.clickReleaseButtonInMRP();
+			mrpFunc.chooseOrderTypeFromAndToDateInReleaseDetails("All", YesterDay, Today);
+			mrpFunc.clickReleaseButtonInReleaseFrame();
+			mrpFunc.checkStatusOfMRP(VariableHandler.getMRPNumber(),
+					commonFunc.getDataFromTestDataSheet("ReleasedStatus"));
+			commonFunc.navigateToProductionOrderInProdPlanning();
+			searchAndVerifyStatusOfMRPNo(VariableHandler.getMRPNumber(),
+					commonFunc.getDataFromTestDataSheet("UnreleasedStatus"));
+			webDB.navigateToRefresh();
+			searchAndSelectProductionOrderWithDocNo(VariableHandler.getProductionOrderNumber());
+			verifyWriteBeforeStockForFGAndRawMaterials(FileName, SheetName);
+			verifyHeaderValidationInProductionOrderWithDB(FileName, SheetName);
+			verifyProductionOrderMREventAndRestOP(null, null, MoveType);
+			verifyProcessType(commonFunc.getDataFromTestDataSheet("OutsideType"),
+					commonFunc.getDataFromTestDataSheet("InsideType"));
+			verifyRoutingValidationInProductionOrderWithDB(FileName, SheetName);
+			verifyRawMaterialsValidationInProductionOrderWithDB(FileName, SheetName);
+			navigateToRoutingSubTab();
+			storeRoutingProcessAndProcessType();
+			storeRoutingProcessAndConsumptionAndRecipientWareHouse();
+			clickHeaderSaveAndPostProdOrder();
+			if (!VariableHandler.getApprovalFlag()) {
+				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+				commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+						VariableHandler.getProductionOrderNumber(), webDB.getDataFromProperties("HodEmpId"),
+						commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+			}
+			commonFunc.navigateToProductionOrderInProdPlanning();
+			searchAndVerifyStatusOfPONo(VariableHandler.getProductionOrderNumber(),
+					commonFunc.getDataFromTestDataSheet("Inprogress"));
+			int StartIndex = 0;
+			int AllocIndex = 0;
+			a: for (int i = 0; i < VariableHandler.getProcessAndWarehousesBOM().length; i++) {
+				String ProcessName = VariableHandler.getProcessAndProcessType()[i][0];
+				String ProcessType = VariableHandler.getProcessAndProcessType()[i][1];
+				logs.logging("INFO", "Executing Process: " + (i + 1) + ". " + ProcessName);
+				logs.logging("INFO", "ProcessType: " + ProcessType);
+				if (ProcessType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("InsideType"))
+						&& MoveType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("Emp_MaritalStatus"))) {
+					StartIndex = (i == 0) ? 35 : (i == 1) ? 45 : (i == 2) ? 56 : 0;
+					AllocIndex = (i == 0) ? 10 : (i == 1) ? 17 : (i == 2) ? 24 : 0;
+					productionOrderInsideSingleMoveType(StartIndex, AllocIndex, FileName, SheetName);
+				} else if (ProcessType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("InsideType"))
+						&& MoveType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("MultipleType"))) {
+					StartIndex = (i == 0) ? 35 : (i == 1) ? 45 : 0;
+					AllocIndex = (i == 0) ? 10 : (i == 1) ? 17 : (i == 2) ? 24 : 0;
+					productionOrderInsideMultipleMoveType(i, StartIndex, AllocIndex, FileName, SheetName);
+					if (i > 1) {
+						break a;
+					}
+				} else if (ProcessType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("InsideType"))
+						&& MoveType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("ItemType"))) {
+					StartIndex = (i == 0) ? 35 : 0;
+					AllocIndex = (i == 0) ? 10 : (i == 1) ? 17 : (i == 2) ? 24 : 0;
+					productionOrderInsideItemMoveType(StartIndex, AllocIndex, FileName, SheetName);
+					if (i > 0) {
+						break a;
+					}
+				} else if (ProcessType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("OutsideType"))
+						&& MoveType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("Emp_MaritalStatus"))) {
+					productionOrderOutsideSingleMoveType(FileName, SheetName);
+				} else if (ProcessType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("OutsideType"))
+						&& MoveType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("MultipleType"))) {
+					productionOrderOutsideMultipleMoveType(i, StartIndex, FileName, SheetName);
+					if (i > 1) {
+						break a;
+					}
+				} else if (ProcessType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("OutsideType"))
+						&& MoveType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("ItemType"))) {
+					productionOrderOutsideItemMoveType(FileName, SheetName);
+					if (i > 0) {
+						break a;
+					}
+				}
+			}
+			commonFunc.navigateToProductionOrderInProdPlanning();
+			searchAndVerifyStatusOfPONo(VariableHandler.getProductionOrderNumber(),
+					commonFunc.getDataFromTestDataSheet("CompletedStatus"));
+			verifyValidationOfAfterStockUnitCostAndQuantityInFGItem(FileName, SheetName);
+			flag = commonFunc.logoutUser();
+			return flag;
+		} catch (Exception e) {
+			logs.logging("INFO",
+					"Exception occur while executing 'verifyProdOrderAgainstSOFirstOutsideRestInsideMoveTypeMultiple': "
+							+ e);
+			return false;
+		}
+	}
+
+	/**
+	 * This method used to Production Order against sales Order with move type -
+	 * item
+	 * 
+	 * @author Sakthi-GWL
+	 * @return boolean flag
+	 */
+	public boolean verifyProdOrderAgainstSOFirstOutsideRestInsideMoveTypeItem() {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		LocalDate date = LocalDate.now();
+		String MRPName = "TEST MRP - " + RandomStringUtils.randomNumeric(3);
+		String Today = date.format(formatter);
+		LocalDate nextmonthdate = LocalDate.now().plusMonths(1);
+		String NextMonthToday = nextmonthdate.format(formatter);
+		String FGItem = commonFunc.getDataFromTestDataSheet("FG-10001-Item");
+		String RMItem = commonFunc.getDataFromTestDataSheet("RM-10001-Item");
+		LocalDate previousDate = LocalDate.now().minusDays(1);
+		String YesterDay = previousDate.format(formatter);
+		int ReqQuantity = 4;
+		String BOMNo = commonFunc.getDataFromTestDataSheet("BomFirstOutRestIn");
+		String MoveType = commonFunc.getDataFromTestDataSheet("ItemType");
+		String FileName = webDB.getDataFromProperties("PMFFileName");
+		String SheetName = webDB.getDataFromProperties("FirstOutRestInSheetName-Item");
+		try {
+			saleOrderFunc.verifySalesOrderCreationForMRPAndProdOrder(ReqQuantity, BOMNo);
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+					"AdminUsername");
+			commonFunc.navigateToMRPScreenInProdPlanning();
+			mrpFunc.clickAddIconInMRP();
+			mrpFunc.fillDetailsInMRPCreationAndClickTickIcon(Today, MRPName, Today, "ALL");
+			mrpFunc.clickAddLinePlusIconInSources();
+			mrpFunc.enterUnitCutOffDateInSourcesLine(commonFunc.getDataFromTestDataSheet("Unit_100"), NextMonthToday);
+			mrpFunc.clickSalesOrderDemandCheckBoxInSourceLines();
+			mrpFunc.clickSaveIconInSourcesTab();
+			mrpFunc.clickLoadDemandButtonInMRP();
+			mrpFunc.navigateToDemandTabInMRPScreen();
+			mrpFunc.searchSONumberInDemandAndSelectSOItems(VariableHandler.getSONumber());
+			mrpFunc.clickCheckExceptionAndSaveHeaderInMRP();
+			mrpFunc.navigateToExceptionTabInMRPScreen();
+			mrpFunc.validateNoExceptionDataShownInTableData();
+			mrpFunc.clickRunMRPButton();
+			mrpFunc.navigateToResultsTabInMRPScreen();
+			mrpFunc.verifyUnitResultsDetails(new String[] { commonFunc.getDataFromTestDataSheet("Unit_100"),
+					commonFunc.getDataFromTestDataSheet("Unit_100") });
+			mrpFunc.verifyItemResultsDetails(new String[] { FGItem, RMItem });
+			mrpFunc.verifyUOMResultsDetails(new String[] { commonFunc.getDataFromTestDataSheet("UomNos"),
+					commonFunc.getDataFromTestDataSheet("Kgs") });
+			mrpFunc.clickHeaderSaveAndClickPost();
+			if (!VariableHandler.getApprovalFlag()) {
+				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+				commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getMRPNumber(),
+						webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+						System.getProperty("HariUsername"));
+			}
+			commonFunc.navigateToMRPScreenInProdPlanning();
+			mrpFunc.checkStatusOfMRP(VariableHandler.getMRPNumber(),
+					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+			mrpFunc.searchAndClickMRPNoInFindPage(VariableHandler.getMRPNumber());
+			mrpFunc.clickReleaseButtonInMRP();
+			mrpFunc.chooseOrderTypeFromAndToDateInReleaseDetails("All", YesterDay, Today);
+			mrpFunc.clickReleaseButtonInReleaseFrame();
+			mrpFunc.checkStatusOfMRP(VariableHandler.getMRPNumber(),
+					commonFunc.getDataFromTestDataSheet("ReleasedStatus"));
+			commonFunc.navigateToProductionOrderInProdPlanning();
+			searchAndVerifyStatusOfMRPNo(VariableHandler.getMRPNumber(),
+					commonFunc.getDataFromTestDataSheet("UnreleasedStatus"));
+			webDB.navigateToRefresh();
+			searchAndSelectProductionOrderWithDocNo(VariableHandler.getProductionOrderNumber());
+			verifyWriteBeforeStockForFGAndRawMaterials(FileName, SheetName);
+			verifyHeaderValidationInProductionOrderWithDB(FileName, SheetName);
+			verifyProductionOrderMREventAndRestOP(null, null, MoveType);
+			verifyProcessType(commonFunc.getDataFromTestDataSheet("OutsideType"),
+					commonFunc.getDataFromTestDataSheet("InsideType"));
+			verifyRoutingValidationInProductionOrderWithDB(FileName, SheetName);
+			verifyRawMaterialsValidationInProductionOrderWithDB(FileName, SheetName);
+			navigateToRoutingSubTab();
+			storeRoutingProcessAndProcessType();
+			storeRoutingProcessAndConsumptionAndRecipientWareHouse();
+			clickHeaderSaveAndPostProdOrder();
+			if (!VariableHandler.getApprovalFlag()) {
+				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+				commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+						VariableHandler.getProductionOrderNumber(), webDB.getDataFromProperties("HodEmpId"),
+						commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+			}
+			commonFunc.navigateToProductionOrderInProdPlanning();
+			searchAndVerifyStatusOfPONo(VariableHandler.getProductionOrderNumber(),
+					commonFunc.getDataFromTestDataSheet("Inprogress"));
+			int StartIndex = 0;
+			int AllocIndex = 0;
+			a: for (int i = 0; i < VariableHandler.getProcessAndWarehousesBOM().length; i++) {
+				String ProcessName = VariableHandler.getProcessAndProcessType()[i][0];
+				String ProcessType = VariableHandler.getProcessAndProcessType()[i][1];
+				logs.logging("INFO", "Executing Process: " + (i + 1) + ". " + ProcessName);
+				logs.logging("INFO", "ProcessType: " + ProcessType);
+				if (ProcessType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("InsideType"))
+						&& MoveType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("Emp_MaritalStatus"))) {
+					StartIndex = (i == 0) ? 35 : (i == 1) ? 45 : (i == 2) ? 56 : 0;
+					AllocIndex = (i == 0) ? 10 : (i == 1) ? 17 : (i == 2) ? 24 : 0;
+					productionOrderInsideSingleMoveType(StartIndex, AllocIndex, FileName, SheetName);
+				} else if (ProcessType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("InsideType"))
+						&& MoveType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("MultipleType"))) {
+					StartIndex = (i == 0) ? 35 : (i == 1) ? 45 : 0;
+					AllocIndex = (i == 0) ? 10 : (i == 1) ? 17 : (i == 2) ? 24 : 0;
+					productionOrderInsideMultipleMoveType(i, StartIndex, AllocIndex, FileName, SheetName);
+					if (i > 1) {
+						break a;
+					}
+				} else if (ProcessType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("InsideType"))
+						&& MoveType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("ItemType"))) {
+					StartIndex = (i == 0) ? 35 : 0;
+					AllocIndex = (i == 0) ? 10 : (i == 1) ? 17 : (i == 2) ? 24 : 0;
+					productionOrderInsideItemMoveType(StartIndex, AllocIndex, FileName, SheetName);
+					if (i > 0) {
+						break a;
+					}
+				} else if (ProcessType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("OutsideType"))
+						&& MoveType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("Emp_MaritalStatus"))) {
+					productionOrderOutsideSingleMoveType(FileName, SheetName);
+				} else if (ProcessType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("OutsideType"))
+						&& MoveType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("MultipleType"))) {
+					productionOrderOutsideMultipleMoveType(i, StartIndex, FileName, SheetName);
+					if (i > 1) {
+						break a;
+					}
+				} else if (ProcessType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("OutsideType"))
+						&& MoveType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("ItemType"))) {
+					productionOrderOutsideItemMoveType(FileName, SheetName);
+					if (i > 0) {
+						break a;
+					}
+				}
+			}
+			commonFunc.navigateToProductionOrderInProdPlanning();
+			searchAndVerifyStatusOfPONo(VariableHandler.getProductionOrderNumber(),
+					commonFunc.getDataFromTestDataSheet("CompletedStatus"));
+			verifyValidationOfAfterStockUnitCostAndQuantityInFGItem(FileName, SheetName);
+			flag = commonFunc.logoutUser();
+			return flag;
+		} catch (Exception e) {
+			logs.logging("INFO",
+					"Exception occur while executing 'verifyProdOrderAgainstSOFirstOutsideRestInsideMoveTypeMultiple': "
+							+ e);
+			return false;
+		}
+	}
+
+	/**
+	 * This method used to Production Order against sales Order with move type -
+	 * single
+	 * 
+	 * @author Sakthi-GWL
+	 * @return boolean flag
+	 */
+	public boolean verifyProdOrderAgainstSOFirstOutsideRestBothMoveTypeSingle() {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		LocalDate date = LocalDate.now();
+		String MRPName = "TEST MRP - " + RandomStringUtils.randomNumeric(3);
+		String Today = date.format(formatter);
+		LocalDate nextmonthdate = LocalDate.now().plusMonths(1);
+		String NextMonthToday = nextmonthdate.format(formatter);
+		String FGItem = commonFunc.getDataFromTestDataSheet("FG-10001-Item");
+		String RMItem = commonFunc.getDataFromTestDataSheet("RM-10001-Item");
+		LocalDate previousDate = LocalDate.now().minusDays(1);
+		String YesterDay = previousDate.format(formatter);
+		int ReqQuantity = 4;
+		String BOMNo = commonFunc.getDataFromTestDataSheet("BomFirstOutRestBoth");
+		String MoveType = commonFunc.getDataFromTestDataSheet("Emp_MaritalStatus");
+		String FileName = webDB.getDataFromProperties("PMFFileName");
+		String SheetName = webDB.getDataFromProperties("FirstOutRestBothSheetName-Single");
+		try {
+			saleOrderFunc.verifySalesOrderCreationForMRPAndProdOrder(ReqQuantity, BOMNo);
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+					"AdminUsername");
+			commonFunc.navigateToMRPScreenInProdPlanning();
+			mrpFunc.clickAddIconInMRP();
+			mrpFunc.fillDetailsInMRPCreationAndClickTickIcon(Today, MRPName, Today, "ALL");
+			mrpFunc.clickAddLinePlusIconInSources();
+			mrpFunc.enterUnitCutOffDateInSourcesLine(commonFunc.getDataFromTestDataSheet("Unit_100"), NextMonthToday);
+			mrpFunc.clickSalesOrderDemandCheckBoxInSourceLines();
+			mrpFunc.clickSaveIconInSourcesTab();
+			mrpFunc.clickLoadDemandButtonInMRP();
+			mrpFunc.navigateToDemandTabInMRPScreen();
+			mrpFunc.searchSONumberInDemandAndSelectSOItems(VariableHandler.getSONumber());
+			mrpFunc.clickCheckExceptionAndSaveHeaderInMRP();
+			mrpFunc.navigateToExceptionTabInMRPScreen();
+			mrpFunc.validateNoExceptionDataShownInTableData();
+			mrpFunc.clickRunMRPButton();
+			mrpFunc.navigateToResultsTabInMRPScreen();
+			mrpFunc.verifyUnitResultsDetails(new String[] { commonFunc.getDataFromTestDataSheet("Unit_100"),
+					commonFunc.getDataFromTestDataSheet("Unit_100") });
+			mrpFunc.verifyItemResultsDetails(new String[] { FGItem, RMItem });
+			mrpFunc.verifyUOMResultsDetails(new String[] { commonFunc.getDataFromTestDataSheet("UomNos"),
+					commonFunc.getDataFromTestDataSheet("Kgs") });
+			mrpFunc.clickHeaderSaveAndClickPost();
+			if (!VariableHandler.getApprovalFlag()) {
+				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+				commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getMRPNumber(),
+						webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+						System.getProperty("HariUsername"));
+			}
+			commonFunc.navigateToMRPScreenInProdPlanning();
+			mrpFunc.checkStatusOfMRP(VariableHandler.getMRPNumber(),
+					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+			mrpFunc.searchAndClickMRPNoInFindPage(VariableHandler.getMRPNumber());
+			mrpFunc.clickReleaseButtonInMRP();
+			mrpFunc.chooseOrderTypeFromAndToDateInReleaseDetails("All", YesterDay, Today);
+			mrpFunc.clickReleaseButtonInReleaseFrame();
+			mrpFunc.checkStatusOfMRP(VariableHandler.getMRPNumber(),
+					commonFunc.getDataFromTestDataSheet("ReleasedStatus"));
+			commonFunc.navigateToProductionOrderInProdPlanning();
+			searchAndVerifyStatusOfMRPNo(VariableHandler.getMRPNumber(),
+					commonFunc.getDataFromTestDataSheet("UnreleasedStatus"));
+			webDB.navigateToRefresh();
+			searchAndSelectProductionOrderWithDocNo(VariableHandler.getProductionOrderNumber());
+			verifyWriteBeforeStockForFGAndRawMaterials(FileName, SheetName);
+			verifyHeaderValidationInProductionOrderWithDB(FileName, SheetName);
+			verifyProductionOrderMREventAndRestOP(null, null, MoveType);
+			verifyProcessType(commonFunc.getDataFromTestDataSheet("OutsideType"),
+					commonFunc.getDataFromTestDataSheet("BothType"));
+			verifyRoutingValidationInProductionOrderWithDB(FileName, SheetName);
+			verifyRawMaterialsValidationInProductionOrderWithDB(FileName, SheetName);
+			navigateToRoutingSubTab();
+			storeRoutingProcessAndProcessType();
+			storeRoutingProcessAndConsumptionAndRecipientWareHouse();
+			clickHeaderSaveAndPostProdOrder();
+			if (!VariableHandler.getApprovalFlag()) {
+				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+				commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+						VariableHandler.getProductionOrderNumber(), webDB.getDataFromProperties("HodEmpId"),
+						commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+			}
+			commonFunc.navigateToProductionOrderInProdPlanning();
+			searchAndVerifyStatusOfPONo(VariableHandler.getProductionOrderNumber(),
+					commonFunc.getDataFromTestDataSheet("Inprogress"));
+			int StartIndex = 0;
+			int AllocIndex = 0;
+			a: for (int i = 0; i < VariableHandler.getProcessAndWarehousesBOM().length; i++) {
+				String ProcessName = VariableHandler.getProcessAndProcessType()[i][0];
+				String ProcessType = VariableHandler.getProcessAndProcessType()[i][1];
+				logs.logging("INFO", "Executing Process: " + (i + 1) + ". " + ProcessName);
+				logs.logging("INFO", "ProcessType: " + ProcessType);
+				if (ProcessType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("InsideType"))
+						&& MoveType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("Emp_MaritalStatus"))) {
+					StartIndex = (i == 0) ? 35 : (i == 1) ? 45 : (i == 2) ? 56 : 0;
+					AllocIndex = (i == 0) ? 10 : (i == 1) ? 17 : (i == 2) ? 24 : 0;
+					productionOrderInsideSingleMoveType(StartIndex, AllocIndex, FileName, SheetName);
+				} else if (ProcessType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("InsideType"))
+						&& MoveType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("MultipleType"))) {
+					StartIndex = (i == 0) ? 35 : (i == 1) ? 45 : 0;
+					AllocIndex = (i == 0) ? 10 : (i == 1) ? 17 : (i == 2) ? 24 : 0;
+					productionOrderInsideMultipleMoveType(i, StartIndex, AllocIndex, FileName, SheetName);
+					if (i > 1) {
+						break a;
+					}
+				} else if (ProcessType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("InsideType"))
+						&& MoveType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("ItemType"))) {
+					StartIndex = (i == 0) ? 35 : 0;
+					AllocIndex = (i == 0) ? 10 : (i == 1) ? 17 : (i == 2) ? 24 : 0;
+					productionOrderInsideItemMoveType(StartIndex, AllocIndex, FileName, SheetName);
+					if (i > 0) {
+						break a;
+					}
+				} else if (ProcessType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("OutsideType"))
+						&& MoveType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("Emp_MaritalStatus"))) {
+					productionOrderOutsideSingleMoveType(FileName, SheetName);
+				} else if (ProcessType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("OutsideType"))
+						&& MoveType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("MultipleType"))) {
+					productionOrderOutsideMultipleMoveType(i, StartIndex, FileName, SheetName);
+					if (i > 1) {
+						break a;
+					}
+				} else if (ProcessType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("OutsideType"))
+						&& MoveType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("ItemType"))) {
+					productionOrderOutsideItemMoveType(FileName, SheetName);
+					if (i > 0) {
+						break a;
+					}
+				}
+			}
+			commonFunc.navigateToProductionOrderInProdPlanning();
+			searchAndVerifyStatusOfPONo(VariableHandler.getProductionOrderNumber(),
+					commonFunc.getDataFromTestDataSheet("CompletedStatus"));
+			verifyValidationOfAfterStockUnitCostAndQuantityInFGItem(FileName, SheetName);
+			flag = commonFunc.logoutUser();
+			return flag;
+		} catch (Exception e) {
+			logs.logging("INFO",
+					"Exception occur while executing 'verifyProdOrderAgainstSOFirstOutsideRestBothMoveTypeSingle': "
+							+ e);
+			return false;
+		}
+	}
+
+	/**
+	 * This method used to Production Order against sales Order with move type -
+	 * multiple
+	 * 
+	 * @author Sakthi-GWL
+	 * @return boolean flag
+	 */
+	public boolean verifyProdOrderAgainstSOFirstOutsideRestBothMoveTypeMultiple() {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		LocalDate date = LocalDate.now();
+		String MRPName = "TEST MRP - " + RandomStringUtils.randomNumeric(3);
+		String Today = date.format(formatter);
+		LocalDate nextmonthdate = LocalDate.now().plusMonths(1);
+		String NextMonthToday = nextmonthdate.format(formatter);
+		String FGItem = commonFunc.getDataFromTestDataSheet("FG-10001-Item");
+		String RMItem = commonFunc.getDataFromTestDataSheet("RM-10001-Item");
+		LocalDate previousDate = LocalDate.now().minusDays(1);
+		String YesterDay = previousDate.format(formatter);
+		int ReqQuantity = 4;
+		String BOMNo = commonFunc.getDataFromTestDataSheet("BomFirstOutRestBoth");
+		String MoveType = commonFunc.getDataFromTestDataSheet("MultipleType");
+		String FileName = webDB.getDataFromProperties("PMFFileName");
+		String SheetName = webDB.getDataFromProperties("FirstOutRestBothSheetName-Multiple");
+		try {
+			saleOrderFunc.verifySalesOrderCreationForMRPAndProdOrder(ReqQuantity, BOMNo);
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+					"AdminUsername");
+			commonFunc.navigateToMRPScreenInProdPlanning();
+			mrpFunc.clickAddIconInMRP();
+			mrpFunc.fillDetailsInMRPCreationAndClickTickIcon(Today, MRPName, Today, "ALL");
+			mrpFunc.clickAddLinePlusIconInSources();
+			mrpFunc.enterUnitCutOffDateInSourcesLine(commonFunc.getDataFromTestDataSheet("Unit_100"), NextMonthToday);
+			mrpFunc.clickSalesOrderDemandCheckBoxInSourceLines();
+			mrpFunc.clickSaveIconInSourcesTab();
+			mrpFunc.clickLoadDemandButtonInMRP();
+			mrpFunc.navigateToDemandTabInMRPScreen();
+			mrpFunc.searchSONumberInDemandAndSelectSOItems(VariableHandler.getSONumber());
+			mrpFunc.clickCheckExceptionAndSaveHeaderInMRP();
+			mrpFunc.navigateToExceptionTabInMRPScreen();
+			mrpFunc.validateNoExceptionDataShownInTableData();
+			mrpFunc.clickRunMRPButton();
+			mrpFunc.navigateToResultsTabInMRPScreen();
+			mrpFunc.verifyUnitResultsDetails(new String[] { commonFunc.getDataFromTestDataSheet("Unit_100"),
+					commonFunc.getDataFromTestDataSheet("Unit_100") });
+			mrpFunc.verifyItemResultsDetails(new String[] { FGItem, RMItem });
+			mrpFunc.verifyUOMResultsDetails(new String[] { commonFunc.getDataFromTestDataSheet("UomNos"),
+					commonFunc.getDataFromTestDataSheet("Kgs") });
+			mrpFunc.clickHeaderSaveAndClickPost();
+			if (!VariableHandler.getApprovalFlag()) {
+				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+				commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getMRPNumber(),
+						webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+						System.getProperty("HariUsername"));
+			}
+			commonFunc.navigateToMRPScreenInProdPlanning();
+			mrpFunc.checkStatusOfMRP(VariableHandler.getMRPNumber(),
+					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+			mrpFunc.searchAndClickMRPNoInFindPage(VariableHandler.getMRPNumber());
+			mrpFunc.clickReleaseButtonInMRP();
+			mrpFunc.chooseOrderTypeFromAndToDateInReleaseDetails("All", YesterDay, Today);
+			mrpFunc.clickReleaseButtonInReleaseFrame();
+			mrpFunc.checkStatusOfMRP(VariableHandler.getMRPNumber(),
+					commonFunc.getDataFromTestDataSheet("ReleasedStatus"));
+			commonFunc.navigateToProductionOrderInProdPlanning();
+			searchAndVerifyStatusOfMRPNo(VariableHandler.getMRPNumber(),
+					commonFunc.getDataFromTestDataSheet("UnreleasedStatus"));
+			webDB.navigateToRefresh();
+			searchAndSelectProductionOrderWithDocNo(VariableHandler.getProductionOrderNumber());
+			verifyWriteBeforeStockForFGAndRawMaterials(FileName, SheetName);
+			verifyHeaderValidationInProductionOrderWithDB(FileName, SheetName);
+			verifyProductionOrderMREventAndRestOP(null, null, MoveType);
+			verifyProcessType(commonFunc.getDataFromTestDataSheet("OutsideType"),
+					commonFunc.getDataFromTestDataSheet("BothType"));
+			verifyRoutingValidationInProductionOrderWithDB(FileName, SheetName);
+			verifyRawMaterialsValidationInProductionOrderWithDB(FileName, SheetName);
+			navigateToRoutingSubTab();
+			storeRoutingProcessAndProcessType();
+			storeRoutingProcessAndConsumptionAndRecipientWareHouse();
+			clickHeaderSaveAndPostProdOrder();
+			if (!VariableHandler.getApprovalFlag()) {
+				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+				commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+						VariableHandler.getProductionOrderNumber(), webDB.getDataFromProperties("HodEmpId"),
+						commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+			}
+			commonFunc.navigateToProductionOrderInProdPlanning();
+			searchAndVerifyStatusOfPONo(VariableHandler.getProductionOrderNumber(),
+					commonFunc.getDataFromTestDataSheet("Inprogress"));
+			int StartIndex = 0;
+			int AllocIndex = 0;
+			a: for (int i = 0; i < VariableHandler.getProcessAndWarehousesBOM().length; i++) {
+				String ProcessName = VariableHandler.getProcessAndProcessType()[i][0];
+				String ProcessType = VariableHandler.getProcessAndProcessType()[i][1];
+				logs.logging("INFO", "Executing Process: " + (i + 1) + ". " + ProcessName);
+				logs.logging("INFO", "ProcessType: " + ProcessType);
+				if (ProcessType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("InsideType"))
+						&& MoveType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("Emp_MaritalStatus"))) {
+					StartIndex = (i == 0) ? 35 : (i == 1) ? 45 : (i == 2) ? 56 : 0;
+					AllocIndex = (i == 0) ? 10 : (i == 1) ? 17 : (i == 2) ? 24 : 0;
+					productionOrderInsideSingleMoveType(StartIndex, AllocIndex, FileName, SheetName);
+				} else if (ProcessType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("InsideType"))
+						&& MoveType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("MultipleType"))) {
+					StartIndex = (i == 0) ? 35 : (i == 1) ? 45 : 0;
+					AllocIndex = (i == 0) ? 10 : (i == 1) ? 17 : (i == 2) ? 24 : 0;
+					productionOrderInsideMultipleMoveType(i, StartIndex, AllocIndex, FileName, SheetName);
+					if (i > 1) {
+						break a;
+					}
+				} else if (ProcessType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("InsideType"))
+						&& MoveType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("ItemType"))) {
+					StartIndex = (i == 0) ? 35 : 0;
+					AllocIndex = (i == 0) ? 10 : (i == 1) ? 17 : (i == 2) ? 24 : 0;
+					productionOrderInsideItemMoveType(StartIndex, AllocIndex, FileName, SheetName);
+					if (i > 0) {
+						break a;
+					}
+				} else if (ProcessType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("OutsideType"))
+						&& MoveType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("Emp_MaritalStatus"))) {
+					productionOrderOutsideSingleMoveType(FileName, SheetName);
+				} else if (ProcessType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("OutsideType"))
+						&& MoveType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("MultipleType"))) {
+					productionOrderOutsideMultipleMoveType(i, StartIndex, FileName, SheetName);
+					if (i > 1) {
+						break a;
+					}
+				} else if (ProcessType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("OutsideType"))
+						&& MoveType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("ItemType"))) {
+					productionOrderOutsideItemMoveType(FileName, SheetName);
+					if (i > 0) {
+						break a;
+					}
+				}
+			}
+			commonFunc.navigateToProductionOrderInProdPlanning();
+			searchAndVerifyStatusOfPONo(VariableHandler.getProductionOrderNumber(),
+					commonFunc.getDataFromTestDataSheet("CompletedStatus"));
+			verifyValidationOfAfterStockUnitCostAndQuantityInFGItem(FileName, SheetName);
+			flag = commonFunc.logoutUser();
+			return flag;
+		} catch (Exception e) {
+			logs.logging("INFO",
+					"Exception occur while executing 'verifyProdOrderAgainstSOFirstOutsideRestBothMoveTypeMultiple': "
+							+ e);
+			return false;
+		}
+	}
+
+	/**
+	 * This method used to Production Order against sales Order with move type -
+	 * item
+	 * 
+	 * @author Sakthi-GWL
+	 * @return boolean flag
+	 */
+	public boolean verifyProdOrderAgainstSOFirstOutsideRestBothMoveTypeItem() {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		LocalDate date = LocalDate.now();
+		String MRPName = "TEST MRP - " + RandomStringUtils.randomNumeric(3);
+		String Today = date.format(formatter);
+		LocalDate nextmonthdate = LocalDate.now().plusMonths(1);
+		String NextMonthToday = nextmonthdate.format(formatter);
+		String FGItem = commonFunc.getDataFromTestDataSheet("FG-10001-Item");
+		String RMItem = commonFunc.getDataFromTestDataSheet("RM-10001-Item");
+		LocalDate previousDate = LocalDate.now().minusDays(1);
+		String YesterDay = previousDate.format(formatter);
+		int ReqQuantity = 4;
+		String BOMNo = commonFunc.getDataFromTestDataSheet("BomFirstOutRestBoth");
+		String MoveType = commonFunc.getDataFromTestDataSheet("ItemType");
+		String FileName = webDB.getDataFromProperties("PMFFileName");
+		String SheetName = webDB.getDataFromProperties("FirstOutRestBothSheetName-Item");
+		try {
+			saleOrderFunc.verifySalesOrderCreationForMRPAndProdOrder(ReqQuantity, BOMNo);
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+					"AdminUsername");
+			commonFunc.navigateToMRPScreenInProdPlanning();
+			mrpFunc.clickAddIconInMRP();
+			mrpFunc.fillDetailsInMRPCreationAndClickTickIcon(Today, MRPName, Today, "ALL");
+			mrpFunc.clickAddLinePlusIconInSources();
+			mrpFunc.enterUnitCutOffDateInSourcesLine(commonFunc.getDataFromTestDataSheet("Unit_100"), NextMonthToday);
+			mrpFunc.clickSalesOrderDemandCheckBoxInSourceLines();
+			mrpFunc.clickSaveIconInSourcesTab();
+			mrpFunc.clickLoadDemandButtonInMRP();
+			mrpFunc.navigateToDemandTabInMRPScreen();
+			mrpFunc.searchSONumberInDemandAndSelectSOItems(VariableHandler.getSONumber());
+			mrpFunc.clickCheckExceptionAndSaveHeaderInMRP();
+			mrpFunc.navigateToExceptionTabInMRPScreen();
+			mrpFunc.validateNoExceptionDataShownInTableData();
+			mrpFunc.clickRunMRPButton();
+			mrpFunc.navigateToResultsTabInMRPScreen();
+			mrpFunc.verifyUnitResultsDetails(new String[] { commonFunc.getDataFromTestDataSheet("Unit_100"),
+					commonFunc.getDataFromTestDataSheet("Unit_100") });
+			mrpFunc.verifyItemResultsDetails(new String[] { FGItem, RMItem });
+			mrpFunc.verifyUOMResultsDetails(new String[] { commonFunc.getDataFromTestDataSheet("UomNos"),
+					commonFunc.getDataFromTestDataSheet("Kgs") });
+			mrpFunc.clickHeaderSaveAndClickPost();
+			if (!VariableHandler.getApprovalFlag()) {
+				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+				commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getMRPNumber(),
+						webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+						System.getProperty("HariUsername"));
+			}
+			commonFunc.navigateToMRPScreenInProdPlanning();
+			mrpFunc.checkStatusOfMRP(VariableHandler.getMRPNumber(),
+					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+			mrpFunc.searchAndClickMRPNoInFindPage(VariableHandler.getMRPNumber());
+			mrpFunc.clickReleaseButtonInMRP();
+			mrpFunc.chooseOrderTypeFromAndToDateInReleaseDetails("All", YesterDay, Today);
+			mrpFunc.clickReleaseButtonInReleaseFrame();
+			mrpFunc.checkStatusOfMRP(VariableHandler.getMRPNumber(),
+					commonFunc.getDataFromTestDataSheet("ReleasedStatus"));
+			commonFunc.navigateToProductionOrderInProdPlanning();
+			searchAndVerifyStatusOfMRPNo(VariableHandler.getMRPNumber(),
+					commonFunc.getDataFromTestDataSheet("UnreleasedStatus"));
+			webDB.navigateToRefresh();
+			searchAndSelectProductionOrderWithDocNo(VariableHandler.getProductionOrderNumber());
+			verifyWriteBeforeStockForFGAndRawMaterials(FileName, SheetName);
+			verifyHeaderValidationInProductionOrderWithDB(FileName, SheetName);
+			verifyProductionOrderMREventAndRestOP(null, null, MoveType);
+			verifyProcessType(commonFunc.getDataFromTestDataSheet("OutsideType"),
+					commonFunc.getDataFromTestDataSheet("BothType"));
+			verifyRoutingValidationInProductionOrderWithDB(FileName, SheetName);
+			verifyRawMaterialsValidationInProductionOrderWithDB(FileName, SheetName);
+			navigateToRoutingSubTab();
+			storeRoutingProcessAndProcessType();
+			storeRoutingProcessAndConsumptionAndRecipientWareHouse();
+			clickHeaderSaveAndPostProdOrder();
+			if (!VariableHandler.getApprovalFlag()) {
+				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+				commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+						VariableHandler.getProductionOrderNumber(), webDB.getDataFromProperties("HodEmpId"),
+						commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+			}
+			commonFunc.navigateToProductionOrderInProdPlanning();
+			searchAndVerifyStatusOfPONo(VariableHandler.getProductionOrderNumber(),
+					commonFunc.getDataFromTestDataSheet("Inprogress"));
+			int StartIndex = 0;
+			int AllocIndex = 0;
+			a: for (int i = 0; i < VariableHandler.getProcessAndWarehousesBOM().length; i++) {
+				String ProcessName = VariableHandler.getProcessAndProcessType()[i][0];
+				String ProcessType = VariableHandler.getProcessAndProcessType()[i][1];
+				logs.logging("INFO", "Executing Process: " + (i + 1) + ". " + ProcessName);
+				logs.logging("INFO", "ProcessType: " + ProcessType);
+				if (ProcessType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("InsideType"))
+						&& MoveType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("Emp_MaritalStatus"))) {
+					StartIndex = (i == 0) ? 35 : (i == 1) ? 45 : (i == 2) ? 56 : 0;
+					AllocIndex = (i == 0) ? 10 : (i == 1) ? 17 : (i == 2) ? 24 : 0;
+					productionOrderInsideSingleMoveType(StartIndex, AllocIndex, FileName, SheetName);
+				} else if (ProcessType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("InsideType"))
+						&& MoveType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("MultipleType"))) {
+					StartIndex = (i == 0) ? 35 : (i == 1) ? 45 : 0;
+					AllocIndex = (i == 0) ? 10 : (i == 1) ? 17 : (i == 2) ? 24 : 0;
+					productionOrderInsideMultipleMoveType(i, StartIndex, AllocIndex, FileName, SheetName);
+					if (i > 1) {
+						break a;
+					}
+				} else if (ProcessType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("InsideType"))
+						&& MoveType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("ItemType"))) {
+					StartIndex = (i == 0) ? 35 : 0;
+					AllocIndex = (i == 0) ? 10 : (i == 1) ? 17 : (i == 2) ? 24 : 0;
+					productionOrderInsideItemMoveType(StartIndex, AllocIndex, FileName, SheetName);
+					if (i > 0) {
+						break a;
+					}
+				} else if (ProcessType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("OutsideType"))
+						&& MoveType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("Emp_MaritalStatus"))) {
+					productionOrderOutsideSingleMoveType(FileName, SheetName);
+				} else if (ProcessType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("OutsideType"))
+						&& MoveType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("MultipleType"))) {
+					productionOrderOutsideMultipleMoveType(i, StartIndex, FileName, SheetName);
+					if (i > 1) {
+						break a;
+					}
+				} else if (ProcessType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("OutsideType"))
+						&& MoveType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("ItemType"))) {
+					productionOrderOutsideItemMoveType(FileName, SheetName);
+					if (i > 0) {
+						break a;
+					}
+				}
+			}
+			commonFunc.navigateToProductionOrderInProdPlanning();
+			searchAndVerifyStatusOfPONo(VariableHandler.getProductionOrderNumber(),
+					commonFunc.getDataFromTestDataSheet("CompletedStatus"));
+			verifyValidationOfAfterStockUnitCostAndQuantityInFGItem(FileName, SheetName);
+			flag = commonFunc.logoutUser();
+			return flag;
+		} catch (Exception e) {
+			logs.logging("INFO",
+					"Exception occur while executing 'verifyProdOrderAgainstSOFirstOutsideRestBothMoveTypeMultiple': "
 							+ e);
 			return false;
 		}
