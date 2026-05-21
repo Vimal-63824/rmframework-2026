@@ -897,6 +897,16 @@ public class CompletionProductionOrderFunctions {
 							webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
 						}
 					}
+					if (!flag) {
+						String TotalMsg = webDB.getTextFromElement(CommonUiLocators.PostToastMessage,
+								ElementType.Xpath);
+						System.out.println("Before Text: " + TotalMsg);
+						TotalMsg = TotalMsg.replace("Process Completion Record Created.", "").trim();
+						TotalMsg = TotalMsg.replace("-", "").trim();
+						System.out.println(TotalMsg);
+						System.out.println("After Text: " + TotalMsg);
+						VariableHandler.setProductionCompletionOrderNo(TotalMsg);
+					}
 				}
 			}
 		}

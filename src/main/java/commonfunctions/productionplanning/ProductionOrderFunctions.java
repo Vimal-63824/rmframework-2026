@@ -7770,6 +7770,7 @@ public class ProductionOrderFunctions {
 		if (i == 0) {
 			completionProductionOrderFunc.selectPendingMultipleProdOrderAndClickCreateCompletionProcessWithNoButton(
 					VariableHandler.getProductionOrderNumber());
+			
 		} else {
 			completionProductionOrderFunc.selectPendingMultipleProdOrderAndClickCreateCompletionProcess(
 					VariableHandler.getProductionOrderNumber());
