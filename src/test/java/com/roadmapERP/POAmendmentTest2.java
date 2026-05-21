@@ -717,6 +717,21 @@ public class POAmendmentTest2 extends RoadMapERPTest {
 	}
 
 	/**
+	 * Direct PO - Import Supplier - General Items with Dissimilar Stock and
+	 * Supplier UOM?
+	 * 
+	 * @author Deepan-GWL
+	 * 
+	 */
+	@Author("Deepan-GWL")
+	@Test(priority = 48, groups = {
+			"Purchase Order Amendment" }, description = "Direct PO - Import Supplier - General Items with Dissimilar Stock and Supplier UOM?")
+	public void VerifyCloseshortPoAmendDirectPOImportGeneralDissimilarStockAndSupplierUom() {
+		poAmendmentFunc
+				.verifyPoAmendCloseshortDirectPOImportGeneralWithDissimilarStockAndSupplierUOMWithMultipleItemWithExcelInput();
+	}
+
+	/**
 	 * Verify After Method
 	 * 
 	 * @author Deepan-GWL

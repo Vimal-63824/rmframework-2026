@@ -34,4 +34,8 @@ public class ApprovedSupplierPOLocators {
 
 	/** @locatorType XPATH */
 	public static final String LeadTimeInput = "//input[@data-testid='P367018501_SUPRPROD_LEAD_TIME']";
+	/** @locatorType XPATH */
+	public static final String ApprovedSupplierPoCheckBox = "//input[@data-testid='P36719401_PRODPLNT_APP_SUP_PUR_F']";
+	/** @locatorType XPATH */
+	public static final String GrnInspectionSelect = "//select[@data-testid='P36719401_PRODPLNT_CRIT_TYPE_3']";
 }

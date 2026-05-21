@@ -133,7 +133,7 @@ public class CustomerItemsFunctions {
 			webDB.clickAnElement(CommonUiLocators.QualityTab, ElementType.Xpath);
 			flag = webDB.waitForElement(CommonUiLocators.TypeDropDown, ElementType.Xpath);
 			if (flag) {
-				webDB.clickAnElement(CommonUiLocators.TypeDropDown, ElementType.Xpath);
+//				webDB.clickAnElement(CommonUiLocators.TypeDropDown, ElementType.Xpath);
 				flag = webDB.selectDropDownByText(CommonUiLocators.TypeDropDown, QcFlag, ElementType.Xpath);
 				if (flag) {
 					logs.logging("INFO", "Successfully Changed a Type" + QcFlag);
