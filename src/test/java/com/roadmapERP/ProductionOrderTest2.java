@@ -1,7 +1,6 @@
 package com.roadmapERP;
 
 import java.lang.reflect.Method;
-
 /**
  * @author Sakthi-GWL
  * @company Galaxy Weblinks May 12, 2026
@@ -10,7 +9,6 @@ import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
-
 import commonfunctions.Author;
 import commonfunctions.productionplanning.ProductionOrderFunctions;
 
@@ -465,6 +463,48 @@ public class ProductionOrderTest2 extends RoadMapERPTest {
 			"Prod Order" }, description = "77 Manual Production order with Move Type - Item (FIRST OUT REST BOTH)")
 	public void VerifyProdOrderAgainstSOFirstOutsideRestBothMoveTypeItem() {
 		flag = prodOrderFunc.verifyProdOrderAgainstSOFirstOutsideRestBothMoveTypeItem();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Manual production order against Sales Order (Both - Partial Qty Inside /
+	 * Partial Outside)
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	@Author("Sakthi-GWL")
+	@Test(priority = 34, groups = {
+			"Prod Order" }, description = "78 Manual Production order with Move Type - Single (Both - Partial Qty Inside / Partial Outside)")
+	public void VerifyProdOrderAgainstSOAllBothPartialQuantityMoveTypeSingle() {
+		flag = prodOrderFunc.verifyProdOrderAgainstSOAllBothPartialQuantityMoveTypeSingle();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Manual production order against Sales Order (Both - Partial Qty Inside /
+	 * Partial Outside)
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	@Author("Sakthi-GWL")
+	@Test(priority = 35, groups = {
+			"Prod Order" }, description = "79 Manual Production order with Move Type - Multiple (Both - Partial Qty Inside / Partial Outside)")
+	public void VerifyProdOrderAgainstSOAllBothPartialQuantityMoveTypeMultiple() {
+		flag = prodOrderFunc.verifyProdOrderAgainstSOAllBothPartialQuantityMoveTypeMultiple();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Manual production order against Sales Order (Both - Partial Qty Inside /
+	 * Partial Outside)
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	@Author("Sakthi-GWL")
+	@Test(priority = 36, groups = {
+			"Prod Order" }, description = "80 Manual Production order with Move Type - Item (Both - Partial Qty Inside / Partial Outside)")
+	public void VerifyProdOrderAgainstSOAllBothPartialQuantityMoveTypeItem() {
+		flag = prodOrderFunc.verifyProdOrderAgainstSOAllBothPartialQuantityMoveTypeItem();
 		Assert.assertTrue(flag);
 	}
 
