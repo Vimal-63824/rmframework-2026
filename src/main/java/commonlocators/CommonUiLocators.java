@@ -432,4 +432,6 @@ public class CommonUiLocators {
 	public static final String SubcontractCSFindAddIcon = "//button[@id='B1881864447764329204']";
 	/** @locatorType Xpath */
 	public static final String SSRAddButton = "//button[@id='B2390197649305356147']";
+	/** @locatorType Xpath */
+	public static final String FinalInspectionCheckBox = "//input[@data-testid='P36719401_PRODPLNT_FPI_FLAG_3']";
 }

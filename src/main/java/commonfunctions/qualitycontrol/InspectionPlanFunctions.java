@@ -250,16 +250,16 @@ public class InspectionPlanFunctions {
 			webDB.doubleClickAnElement(InspectionPlanLocators.CharacteristicsTableData, ElementType.Xpath);
 			commonFunc.searchAndSelectValueInFilters(InspectionPlanLocators.CharacteristicsTableLovButton, Character);
 			logs.logging("INFO", "Character Selected in Lines of Inspection Plan: " + Character);
-			flag = webDB.waitForElement(InspectionPlanLocators.ProcessIdTableData, ElementType.Xpath);
-			if (flag) {
-				webDB.clickAnElement(InspectionPlanLocators.ProcessIdTableData, ElementType.Xpath);
-				commonFunc.searchAndSelectValueInFilters(InspectionPlanLocators.ProcessIdTableLovButton, ProcessId);
-				logs.logging("INFO", "Process Id Selected in Lines of Inspection Plan: " + ProcessId);
-				commonPayrollFunc.addDetailInTableWithoutLovButton(InspectionPlanLocators.ModInspectionTableData,
-						InspectionPlanLocators.ModInspectionTableInput, Mod);
-				logs.logging("INFO", "Mod of Inspection Entered in Lines of Inspection Plan: " + Mod);
-			}
+//			flag = webDB.waitForElement(InspectionPlanLocators.ProcessIdTableData, ElementType.Xpath);
+//			if (flag) {
+//				webDB.doubleClickAnElement(InspectionPlanLocators.ProcessIdTableData, ElementType.Xpath);
+//				commonFunc.searchAndSelectValueInFilters(InspectionPlanLocators.ProcessIdTableLovButton, ProcessId);
+			logs.logging("INFO", "Process Id Selected in Lines of Inspection Plan: " + ProcessId);
+			commonPayrollFunc.addDetailInTableWithoutLovButton(InspectionPlanLocators.ModInspectionTableData,
+					InspectionPlanLocators.ModInspectionTableInput, Mod);
+			logs.logging("INFO", "Mod of Inspection Entered in Lines of Inspection Plan: " + Mod);
 		}
+//		}
 		assertTrue(flag);
 	}
 
@@ -600,8 +600,7 @@ public class InspectionPlanFunctions {
 				commonFunc.navigateToCompletionProductionOrderInProdPlanning();
 				completionProductionOrderFunc.clickPendingIconInCompletionProcess();
 				completionProductionOrderFunc.selectComplProdOrderDocUsingProdNoInPending(
-						commonFunc.getDataFromTestDataSheet("Loc_100"),
-						VariableHandler.getProductionOrderNumber());
+						commonFunc.getDataFromTestDataSheet("Loc_100"), VariableHandler.getProductionOrderNumber());
 				completionProductionOrderFunc
 						.selectShiftAndSaveHeaderInCompletion(commonFunc.getDataFromTestDataSheet("Shift_100"));
 				completionProductionOrderFunc.clickPostButtonInCompletionProcess();
@@ -816,8 +815,7 @@ public class InspectionPlanFunctions {
 				commonFunc.navigateToCompletionProductionOrderInProdPlanning();
 				completionProductionOrderFunc.clickPendingIconInCompletionProcess();
 				completionProductionOrderFunc.selectComplProdOrderDocUsingProdNoInPending(
-						commonFunc.getDataFromTestDataSheet("Loc_100"),
-						VariableHandler.getProductionOrderNumber());
+						commonFunc.getDataFromTestDataSheet("Loc_100"), VariableHandler.getProductionOrderNumber());
 				completionProductionOrderFunc
 						.selectShiftAndSaveHeaderInCompletion(commonFunc.getDataFromTestDataSheet("Shift_100"));
 				completionProductionOrderFunc.clickPostButtonInCompletionProcess();
@@ -1037,8 +1035,7 @@ public class InspectionPlanFunctions {
 				commonFunc.navigateToCompletionProductionOrderInProdPlanning();
 				completionProductionOrderFunc.clickPendingIconInCompletionProcess();
 				completionProductionOrderFunc.selectComplProdOrderDocUsingProdNoInPending(
-						commonFunc.getDataFromTestDataSheet("Loc_100"),
-						VariableHandler.getProductionOrderNumber());
+						commonFunc.getDataFromTestDataSheet("Loc_100"), VariableHandler.getProductionOrderNumber());
 				completionProductionOrderFunc
 						.selectShiftAndSaveHeaderInCompletion(commonFunc.getDataFromTestDataSheet("Shift_100"));
 				completionProductionOrderFunc.clickPostButtonInCompletionProcess();
@@ -1086,5 +1083,304 @@ public class InspectionPlanFunctions {
 			logs.logging("INFO", "Exception occur while executing 'verifyInspectionPlanFinalInspection': " + e);
 			return false;
 		}
+	}
+
+	/**
+	 * This Method Is Used To Verify Create Inspection Plan
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyCreateInspectionPlan() {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		LocalDate date = LocalDate.now();
+		String Today = date.format(formatter);
+		commonFunc.navigateInspectionPlan();
+		clickAddIconAndClickIncomingInInsPlan();
+		fillLocationItemAndPlanNameInHeader(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				VariableHandler.getItemName(), commonFunc.getDataFromTestDataSheet("AutomationPlanText"));
+		fillFromToDateAndInspectionType(Today, Today, commonFunc.getDataFromTestDataSheet("SingleItemText"));
+		clickCreationTickIconInHeader();
+		clickAddLinesInspectionPlan();
+		fillCharacteristicsProcessIdModOfIns(commonFunc.getDataFromTestDataSheet("Radical_CharText"),
+				commonFunc.getDataFromTestDataSheet("GwlProcess1"),
+				commonFunc.getDataFromTestDataSheet("RefText_Test"));
+		fillUnitofMeasureAndStdOperatorAndSpecValue(commonFunc.getDataFromTestDataSheet("Kgs"), "ET", "30");
+		fillNoOfSampleAndObservations("1", "1");
+		clickSaveLinesInspectionPlan();
+		clickAddLinesInspectionPlan();
+		fillCharacteristicsProcessIdModOfIns(commonFunc.getDataFromTestDataSheet("VisualQC_CharText"),
+				commonFunc.getDataFromTestDataSheet("GwlProcess1"),
+				commonFunc.getDataFromTestDataSheet("RefText_Test"));
+		fillUnitofMeasureAndStdValText(commonFunc.getDataFromTestDataSheet("Kgs"), "30");
+		fillNoOfSampleAndObservations("1", "1");
+		clickSaveLinesInspectionPlan();
+		clickAddLinesInspectionPlan();
+		fillCharacteristicsProcessIdModOfIns(commonFunc.getDataFromTestDataSheet("Surface_CharText"),
+				commonFunc.getDataFromTestDataSheet("GwlProcess1"),
+				commonFunc.getDataFromTestDataSheet("RefText_Test"));
+		fillUnitofMeasureAndAttributeSpec(commonFunc.getDataFromTestDataSheet("Kgs"),
+				commonFunc.getDataFromTestDataSheet("RubberTypeText"));
+		fillNoOfSampleAndObservations("1", "1");
+		clickSaveLinesInspectionPlan();
+		clickSaveHeaderInInspectionPlan();
+		clickPostButtonInInspectionPlan();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+					VariableHandler.getInspectionPlanDocNo(), webDB.getDataFromProperties("HodEmpId"),
+					commonFunc.getDataFromTestDataSheet("Loc_100"), System.getProperty("HariUsername"));
+		}
+	}
+
+	/**
+	 * This method used to click add and Incoming Inspection Plan
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void clickAddIconAndClickIncomingInInsPlan() {
+		flag = webDB.waitForElement(InspectionPlanLocators.AddIconInFindPage, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(InspectionPlanLocators.AddIconInFindPage, ElementType.Xpath);
+			switchInsPlanCreateIframe();
+			flag = webDB.waitForElement(InspectionPlanLocators.CreateIncomingButton, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(InspectionPlanLocators.CreateIncomingButton, ElementType.Xpath);
+				webDB.switchToDefaultContent();
+				flag = webDB.waitForElement(InspectionPlanLocators.HeaderLocationLovBtn, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Inspection Plan 'Inprocess' Type Created Successfully");
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Verify Inspection Plan For Inprocess
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyCreateInspectionPlanForInprocess() {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		LocalDate date = LocalDate.now();
+		String Today = date.format(formatter);
+		commonFunc.navigateInspectionPlan();
+		clickAddIconAndClickInprocessInInsPlan();
+		fillLocationItemAndPlanNameInHeader(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				VariableHandler.getItemName(), commonFunc.getDataFromTestDataSheet("AutomationPlanText"));
+		fillFromToDateAndInspectionTypeInProcess(Today, Today, commonFunc.getDataFromTestDataSheet("SingleItemText"));
+		clickCreationTickIconInHeader();
+		clickAddLinesInspectionPlan();
+		fillCharacteristicsProcessIdModOfInsForInProcess(commonFunc.getDataFromTestDataSheet("Radical_CharText"),
+				commonFunc.getDataFromTestDataSheet("GwlProcess1"),
+				commonFunc.getDataFromTestDataSheet("RefText_Test"));
+		fillUnitofMeasureAndStdOperatorAndSpecValueForInProcess(commonFunc.getDataFromTestDataSheet("Kgs"), "ET", "30");
+		fillNoOfSampleAndObservationsForInProcess("1", "1");
+		clickSaveLinesInspectionPlan();
+		clickAddLinesInspectionPlan();
+		fillCharacteristicsProcessIdModOfInsForInProcess(commonFunc.getDataFromTestDataSheet("VisualQC_CharText"),
+				commonFunc.getDataFromTestDataSheet("GwlProcess1"),
+				commonFunc.getDataFromTestDataSheet("RefText_Test"));
+		fillUnitofMeasureAndStdValTextForInProcess(commonFunc.getDataFromTestDataSheet("Kgs"), "30");
+		fillNoOfSampleAndObservationsForInProcess("1", "1");
+		clickSaveLinesInspectionPlan();
+		clickAddLinesInspectionPlan();
+		fillCharacteristicsProcessIdModOfInsForInProcess(commonFunc.getDataFromTestDataSheet("Surface_CharText"),
+				commonFunc.getDataFromTestDataSheet("GwlProcess1"),
+				commonFunc.getDataFromTestDataSheet("RefText_Test"));
+		fillUnitofMeasureAndAttributeSpecForInProcess(commonFunc.getDataFromTestDataSheet("Kgs"),
+				commonFunc.getDataFromTestDataSheet("RubberTypeText"));
+		fillNoOfSampleAndObservationsForInProcess("1", "1");
+		clickSaveLinesInspectionPlan();
+		clickSaveHeaderInInspectionPlan();
+		clickPostButtonInInspectionPlan();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+					VariableHandler.getInspectionPlanDocNo(), webDB.getDataFromProperties("HodEmpId"),
+					commonFunc.getDataFromTestDataSheet("Loc_100"), System.getProperty("HariUsername"));
+		}
+	}
+
+	/**
+	 * This method used to fill Details in Inspection Plan For In Process
+	 * 
+	 * @author Deepan-GWL
+	 * @param FromDate
+	 * @param ToDate
+	 * @param Type
+	 */
+	public void fillFromToDateAndInspectionTypeInProcess(String FromDate, String ToDate, String Type) {
+		commonPayrollFunc.addDetailInTableWithoutLovButton(InspectionPlanLocators.HeaderDateFromInput,
+				InspectionPlanLocators.HeaderDateFromInput, FromDate);
+		logs.logging("INFO", "From Date Entered in Header of Inspection Plan: " + FromDate);
+		commonPayrollFunc.addDetailInTableWithoutLovButton(InspectionPlanLocators.HeaderDateToInput,
+				InspectionPlanLocators.HeaderDateToInput, ToDate);
+		logs.logging("INFO", "To Date Entered in Header of Inspection Plan: " + ToDate);
+		flag = webDB.waitForElement(InspectionPlanLocators.HeaderPlanTypeSelectInProcess, ElementType.Xpath);
+		if (flag) {
+			flag = webDB.selectDropDownByText(InspectionPlanLocators.HeaderPlanTypeSelectInProcess, "Single item",
+					ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Plan Type Selected in header of Inspection Plan: " + Type);
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This method used to fill Details in Inspection Plan For InProcess
+	 * 
+	 * @author Deepan-GWL
+	 * @param Character
+	 * @param ProcessId
+	 * @param Mod
+	 */
+	public void fillCharacteristicsProcessIdModOfInsForInProcess(String Character, String ProcessId, String Mod) {
+		flag = webDB.waitForElement(InspectionPlanLocators.CharacteristicsTableData, ElementType.Xpath);
+		if (flag) {
+			webDB.doubleClickAnElement(InspectionPlanLocators.CharacteristicsTableData, ElementType.Xpath);
+			commonFunc.searchAndSelectValueInFilters(InspectionPlanLocators.CharacteristicsTableLovButton, Character);
+			logs.logging("INFO", "Character Selected in Lines of Inspection Plan: " + Character);
+			flag = webDB.waitForElement(InspectionPlanLocators.ProcessIdTableData, ElementType.Xpath);
+			if (flag) {
+				webDB.doubleClickAnElement(InspectionPlanLocators.ProcessIdTableData, ElementType.Xpath);
+				commonFunc.searchAndSelectValueInFilters(InspectionPlanLocators.ProcessIdTableLovButton, ProcessId);
+				logs.logging("INFO", "Process Id Selected in Lines of Inspection Plan: " + ProcessId);
+				commonPayrollFunc.addDetailInTableWithoutLovButton(InspectionPlanLocators.ModInspectionTableData,
+						InspectionPlanLocators.ModInspectionTableInput, Mod);
+				logs.logging("INFO", "Mod of Inspection Entered in Lines of Inspection Plan: " + Mod);
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This method used to fill Details in Inspection Plan For InProcess
+	 * 
+	 * @author Deepan-GWL
+	 * @param UOM
+	 * @param StdOperator
+	 * @param SpecValue
+	 */
+	public void fillUnitofMeasureAndStdOperatorAndSpecValueForInProcess(String UOM, String StdOperator,
+			String SpecValue) {
+		flag = webDB.waitForElement(InspectionPlanLocators.UOMTableDataInProcess, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(InspectionPlanLocators.UOMTableDataInProcess, ElementType.Xpath);
+			flag = webDB.waitForElement(InspectionPlanLocators.UOMTableSelectInProcess, ElementType.Xpath);
+			if (flag) {
+				flag = webDB.selectDropDownByText(InspectionPlanLocators.UOMTableSelectInProcess, UOM,
+						ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "UOM Selected in Lines of Inspection Plan: " + UOM);
+					flag = webDB.waitForElement(InspectionPlanLocators.StdOperatorDataInProcess, ElementType.Xpath);
+					if (flag) {
+						webDB.clickAnElement(InspectionPlanLocators.StdOperatorDataInProcess, ElementType.Xpath);
+						flag = webDB.waitForElement(InspectionPlanLocators.StdOperatorSelectInProcess,
+								ElementType.Xpath);
+						if (flag) {
+							flag = webDB.selectDropDownByValue(InspectionPlanLocators.StdOperatorSelectInProcess,
+									StdOperator, ElementType.Xpath);
+							if (flag) {
+								logs.logging("INFO",
+										"Std Operator Selected in Lines of Inspection Plan: " + StdOperator);
+								commonPayrollFunc.addDetailInTableWithoutLovButton(
+										InspectionPlanLocators.SpecValueTableDataInProcess,
+										InspectionPlanLocators.SpecValueTableInputInProcess, SpecValue);
+								logs.logging("INFO", "Spec Value Entered in Lines of Inspection Plan: " + SpecValue);
+							}
+						}
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This method used to fill Details in Inspection Plan For In Process
+	 * 
+	 * @author Deepan-GWL
+	 * @param UOM
+	 * @param StdValText
+	 */
+	public void fillUnitofMeasureAndStdValTextForInProcess(String UOM, String StdValText) {
+		flag = webDB.waitForElement(InspectionPlanLocators.UOMTableDataInProcess, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(InspectionPlanLocators.UOMTableDataInProcess, ElementType.Xpath);
+			flag = webDB.waitForElement(InspectionPlanLocators.UOMTableSelectInProcess, ElementType.Xpath);
+			if (flag) {
+				flag = webDB.selectDropDownByText(InspectionPlanLocators.UOMTableSelectInProcess, UOM,
+						ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "UOM Selected in Lines of Inspection Plan: " + UOM);
+					commonPayrollFunc.addDetailInTableWithoutLovButton(
+							InspectionPlanLocators.StdValTextTableDataInProcess,
+							InspectionPlanLocators.StdValTextTableInputInProcess, StdValText);
+					logs.logging("INFO", "Std Value Text Entered in Lines of Inspection Plan: " + StdValText);
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This method used to fill Details in Inspection Plan
+	 * 
+	 * @author Deepan-GWL
+	 * @param UOM
+	 * @param Attribute
+	 */
+	public void fillUnitofMeasureAndAttributeSpecForInProcess(String UOM, String Attribute) {
+		flag = webDB.waitForElement(InspectionPlanLocators.AttributeSpecTableDataInProcess, ElementType.Xpath);
+		if (flag) {
+			webDB.doubleClickAnElement(InspectionPlanLocators.AttributeSpecTableDataInProcess, ElementType.Xpath);
+			commonFunc.searchAndSelectValueInFilters(InspectionPlanLocators.AttributeSpecTableLovButtonInProcess,
+					Attribute);
+			logs.logging("INFO", "Attribute Spec Selected in Lines of Inspection Plan: " + Attribute);
+			flag = webDB.waitForElement(InspectionPlanLocators.UOMTableDataInProcess, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(InspectionPlanLocators.UOMTableDataInProcess, ElementType.Xpath);
+				flag = webDB.waitForElement(InspectionPlanLocators.UOMTableSelectInProcess, ElementType.Xpath);
+				if (flag) {
+					flag = webDB.selectDropDownByText(InspectionPlanLocators.UOMTableSelectInProcess, UOM,
+							ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "UOM Selected in Lines of Inspection Plan: " + UOM);
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Entering Higher And Lower Spec Value
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void enteringHigherAndLowerSpecValue() {
+		commonPayrollFunc.addDetailInTableWithoutLovButton(InspectionPlanLocators.HigherMaxTableData,
+				InspectionPlanLocators.HigherMaxTableInput, "20");
+		commonPayrollFunc.addDetailInTableWithoutLovButton(InspectionPlanLocators.LowerMinTableData,
+				InspectionPlanLocators.LowerMinTableInput, "20");
+	}
+
+	/**
+	 * This method used to fill Details in Inspection Plan For In Process
+	 * 
+	 * @author Deepan-GWL
+	 * @param UOM
+	 * @param Attribute
+	 */
+	public void fillNoOfSampleAndObservationsForInProcess(String sampleCount, String ObservationCount) {
+		commonPayrollFunc.addDetailInTableWithoutLovButton(InspectionPlanLocators.NoOfSampleDataInProcess,
+				InspectionPlanLocators.NoOfSampleInputInProcess, sampleCount);
+		logs.logging("INFO", "Sample Count entered in Lines of Inspection Plan: " + sampleCount);
+		commonPayrollFunc.addDetailInTableWithoutLovButton(InspectionPlanLocators.NoOfObservationDataInProcess,
+				InspectionPlanLocators.NoOfObservationInputInProcess, ObservationCount);
+		logs.logging("INFO", "Observation Count entered in Lines of Inspection Plan: " + ObservationCount);
+		assertTrue(flag);
 	}
 }

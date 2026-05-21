@@ -28,6 +28,7 @@ public class ApprovedSupplierPOFunctions {
 	static ApprovalPageFunctions approvalFunc = new ApprovalPageFunctions();
 	static PurchaseOrderFunctions purchaseOrderFunc = new PurchaseOrderFunctions();
 	static OpenPoRcFunctions openPoRcFunctions = new OpenPoRcFunctions();
+	private static CustomerItemsFunctions customerItemFunc = new CustomerItemsFunctions();
 
 	/**
 	 * This Method Is Used tO Verify Create Approved Supplier For Item
@@ -291,4 +292,100 @@ public class ApprovedSupplierPOFunctions {
 		assertTrue(flag);
 	}
 
+	/**
+	 * This Method Is Used To Verify Approved Supplier PO
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyApprovedSupplierPO() {
+		verifyItemUnitAssociation();
+		commonFunc.navigateToApprovedSupplierPOTab();
+		verifyCreateApprovedSupplier(commonFunc.getDataFromTestDataSheet("Unit_100"),
+				commonFunc.getDataFromTestDataSheet("Apps"), commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
+				VariableHandler.getItemName(), commonFunc.getDataFromTestDataSheet("UserDefinedGeneral"),
+				commonFunc.getDataFromTestDataSheet("HsnService"),
+				commonFunc.getDataFromTestDataSheet("LeaveElgblDays"));
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
+			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getAppsNumber(),
+					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
+		}
+	}
+
+	/**
+	 * This method Is Used To Click Approved Supplier In Item Unit Association
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void clickApprovedSupplierInItemUnitAsso() {
+//		flag = webDB.waitForElement(ApprovedSupplierPOLocators.ApprovedSupplierPoCheckBox, ElementType.Xpath);
+//		if (flag) {
+//		commonFunc.hardWait(1500);
+		webDB.clickAnElement(ApprovedSupplierPOLocators.ApprovedSupplierPoCheckBox, ElementType.Xpath);
+		commonFunc.checkRefreshCellsDisappear();
+		flag = webDB.isElementSelected(ApprovedSupplierPOLocators.ApprovedSupplierPoCheckBox, ElementType.Xpath);
+//	}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Verify Change GRN Inspection TO Always
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyChangeGRNInspectionToAlways() {
+		webDB.selectDropDownByText(ApprovedSupplierPOLocators.GrnInspectionSelect,
+				commonFunc.getDataFromTestDataSheet("Always"), ElementType.Xpath);
+	}
+
+	/**
+	 * This Method Is Used To Verify Change GRN Inspection TO Always
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyItemUnitAssociation() {
+		commonFunc.navigateItemAssoScreen();
+		customerItemFunc.searchItemInUnitField(commonFunc.getDataFromTestDataSheet("Unit_100"));
+		customerItemFunc.searchItemInFindPage();
+		customerItemFunc.clickSearchButton();
+		customerItemFunc.searchedItem();
+		clickApprovedSupplierInItemUnitAsso();
+		customerItemFunc.changesNotApplicabeType(commonFunc.getDataFromTestDataSheet("QcFlag"));
+		verifyChangeGRNInspectionToAlways();
+		customerItemFunc.clickSaveButton();
+		commonFunc.checkRefreshCellsDisappear();
+	}
+
+	/**
+	 * This Method Is Used To Verify Item Unit Association For Final Inspection
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyItemUnitAssociationForFinalInnspection() {
+		commonFunc.navigateItemAssoScreen();
+		customerItemFunc.searchItemInUnitField(commonFunc.getDataFromTestDataSheet("Unit_100"));
+		customerItemFunc.searchItemInFindPage();
+		customerItemFunc.clickSearchButton();
+		customerItemFunc.searchedItem();
+		clickApprovedSupplierInItemUnitAsso();
+		customerItemFunc.changesNotApplicabeType(commonFunc.getDataFromTestDataSheet("QcFlag"));
+		verifyClickFinalInspectionCheckBox();
+		customerItemFunc.clickSaveButton();
+		commonFunc.checkRefreshCellsDisappear();
+
+	}
+
+	/**
+	 * This Method Is Used To Verify Click Final Inspection CheckBox
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyClickFinalInspectionCheckBox() {
+		webDB.clickAnElement(CommonUiLocators.FinalInspectionCheckBox, ElementType.Xpath);
+		commonFunc.hardWait(2000);
+		commonFunc.checkRefreshCellsDisappear();
+		flag = webDB.isElementSelected(CommonUiLocators.FinalInspectionCheckBox, ElementType.Xpath);
+		assertTrue(flag);
+	}
 }
