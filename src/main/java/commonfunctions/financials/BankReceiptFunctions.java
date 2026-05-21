@@ -57,7 +57,8 @@ public class BankReceiptFunctions {
 	String tomorrowDate = myDateObj.format(myFormatObj);
 	String[][] BankReceipts = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 	ExcelUtils excelUtils = new ExcelUtils();
-	String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + "Financials.xlsx";
+	String BRFilepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+			+ "Financials.xlsx";
 	ArrayList<String> PBDocumentNumber = new ArrayList<String>();
 //	SOMultipleline = excelUtils.readAllDataInExcel(Filepath, SheetName);
 //	for (int i = 4; i < SOMultipleline.length; i++) {
@@ -475,7 +476,7 @@ public class BankReceiptFunctions {
 //				if (flag) {
 //					webDB.clickAnElement(BankPaymentLocators.BankPaymentPendingPartyDocumentSearchButton,
 //							ElementType.Xpath);
-					commonFunc.checkRefreshCellsDisappear();
+				commonFunc.checkRefreshCellsDisappear();
 				commonFunc.searchAndSelectValueInFilters(BankReceiptLocators.BankReceiptDocNumberLovButton,
 						VoucherNumber.get(i - 1));
 				webDB.switchToFrame(BankReceiptLocators.BankReceiptPendingReceivablesFrameName, ElementType.Xpath);
@@ -1002,7 +1003,7 @@ public class BankReceiptFunctions {
 				VariableHandler.getBankPaymentOrReceiptDocNumber());
 		bankpaymentfunc.verifyBankPaymentDetailsWithDB(BankName,
 				commonFunc.getDataFromTestDataSheet("BankReceiptPrefix"), Currency);
-		BankReceipts = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		BankReceipts = excelUtils.readAllDataInExcel(BRFilepath, SheetName);
 		for (int i = 1; i < BankReceipts.length; i++) {
 			String GLAccountDesc = BankReceipts[i][1];
 			String PartyName = BankReceipts[i][3];
@@ -1023,10 +1024,10 @@ public class BankReceiptFunctions {
 				clickBRLineWiseAddButton(i);
 				clickPendingReceivablesInBR();
 				if (!Currency.equals("INR")) {
-					excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, dbCommonFunctions.ExchangeRateDetails(
+					excelUtils.writeDataInExcel(BRFilepath, SheetName, i, 11, dbCommonFunctions.ExchangeRateDetails(
 							Currency, commonFunc.getDataFromTestDataSheet("ExportSalesEXRateColumnName")));
 				} else {
-					excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, "1");
+					excelUtils.writeDataInExcel(BRFilepath, SheetName, i, 11, "1");
 				}
 				selectSalesInvoiceDocumentInPendingBankReceiptMPSI(PartyName,
 						VariableHandler.getMultipleSIDocs().get(i - 1), SheetName, i);
@@ -1076,7 +1077,7 @@ public class BankReceiptFunctions {
 				VariableHandler.getBankPaymentOrReceiptDocNumber());
 		bankpaymentfunc.verifyBankPaymentDetailsWithDB(BankName,
 				commonFunc.getDataFromTestDataSheet("BankReceiptPrefix"), Currency);
-		BankReceipts = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		BankReceipts = excelUtils.readAllDataInExcel(BRFilepath, SheetName);
 		for (int i = 1; i < BankReceipts.length; i++) {
 			String GLAccountDesc = BankReceipts[i][1];
 			String PartyName = BankReceipts[i][3];
@@ -1097,10 +1098,10 @@ public class BankReceiptFunctions {
 				clickBRLineWiseAddButton(i);
 				clickPendingReceivablesInBR();
 				if (!Currency.equals("INR")) {
-					excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, dbCommonFunctions.ExchangeRateDetails(
+					excelUtils.writeDataInExcel(BRFilepath, SheetName, i, 11, dbCommonFunctions.ExchangeRateDetails(
 							Currency, commonFunc.getDataFromTestDataSheet("ExportSalesEXRateColumnName")));
 				} else {
-					excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, "1");
+					excelUtils.writeDataInExcel(BRFilepath, SheetName, i, 11, "1");
 				}
 				selectSalesInvoiceDocumentInPendingBankReceipt(PartyName, VariableHandler.getMultipleSIDocs(),
 						SheetName);
@@ -1108,29 +1109,29 @@ public class BankReceiptFunctions {
 				if (Currency.equals("INR")) {
 					if (BankName.equals("JP MORGAN CHASE")) {
 						for (int k = 1; k <= VariableHandler.getMultipleSIDocs().size(); k++) {
-							excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalINR"), 1, 5 + k,
+							excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalINR"), 1, 5 + k,
 									dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(k - 1),
 											commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
-							excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalINR"), 2, 5 + k,
+							excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalINR"), 2, 5 + k,
 									dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(k - 1),
 											commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
 						}
 					} else {
 						for (int j = 1; j <= VariableHandler.getMultipleSIDocs().size(); j++) {
-							excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("Journal"), 1, 5 + j,
+							excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("Journal"), 1, 5 + j,
 									dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(j - 1),
 											commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
-							excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("Journal"), 2, 5 + j,
+							excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("Journal"), 2, 5 + j,
 									dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(j - 1),
 											commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
 						}
 					}
 				} else {
 					for (int j = 1; j <= VariableHandler.getMultipleSIDocs().size(); j++) {
-						excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalUSD"), 1, 5 + j,
+						excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalUSD"), 1, 5 + j,
 								dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(j - 1),
 										commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
-						excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalUSD"), 2, 5 + j,
+						excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalUSD"), 2, 5 + j,
 								dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(j - 1),
 										commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
 					}
@@ -1146,25 +1147,25 @@ public class BankReceiptFunctions {
 		if (Currency.equals("INR")) {
 			if (BankName.equals("JP MORGAN CHASE")) {
 				verifyJournalAmountWithDB(webDB.getDataFromProperties("JournalINR"),
-						VariableHandler.getBankPaymentOrReceiptDocNumber());
+						VariableHandler.getBankPaymentOrReceiptDocNumber(), BRFilepath);
 				for (int j = 1; j <= VariableHandler.getMultipleSIDocs().size(); j++) {
-					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalINR"), 1, 5 + j, "0");
-					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalINR"), 2, 5 + j, "0");
+					excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalINR"), 1, 5 + j, "0");
+					excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalINR"), 2, 5 + j, "0");
 				}
 			} else {
 				verifyJournalAmountWithDB(webDB.getDataFromProperties("Journal"),
-						VariableHandler.getBankPaymentOrReceiptDocNumber());
+						VariableHandler.getBankPaymentOrReceiptDocNumber(), BRFilepath);
 				for (int j = 1; j <= VariableHandler.getMultipleSIDocs().size(); j++) {
-					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("Journal"), 1, 5 + j, "0");
-					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("Journal"), 2, 5 + j, "0");
+					excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("Journal"), 1, 5 + j, "0");
+					excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("Journal"), 2, 5 + j, "0");
 				}
 			}
 		} else {
 			verifyJournalAmountWithDB(webDB.getDataFromProperties("JournalUSD"),
-					VariableHandler.getBankPaymentOrReceiptDocNumber());
+					VariableHandler.getBankPaymentOrReceiptDocNumber(), BRFilepath);
 			for (int j = 1; j <= VariableHandler.getMultipleSIDocs().size(); j++) {
-				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalUSD"), 1, 5 + j, "0");
-				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalUSD"), 2, 5 + j, "0");
+				excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalUSD"), 1, 5 + j, "0");
+				excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalUSD"), 2, 5 + j, "0");
 			}
 		}
 		verifyOverallHeaderAmountWithDB(SheetName);
@@ -1212,41 +1213,41 @@ public class BankReceiptFunctions {
 			String BaseCURCY = BankReceipts[i][13];
 			if (!GLAccountDesc.equals("")) {
 				if (!Currency.equals("INR")) {
-					excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, dbCommonFunctions.ExchangeRateDetails(
+					excelUtils.writeDataInExcel(BRFilepath, SheetName, i, 11, dbCommonFunctions.ExchangeRateDetails(
 							Currency, commonFunc.getDataFromTestDataSheet("ExportSalesEXRateColumnName")));
-					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalUSD"), i - 1, 10,
+					excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalUSD"), i - 1, 10,
 							dbCommonFunctions.ExchangeRateDetails(Currency,
 									commonFunc.getDataFromTestDataSheet("ExportSalesEXRateColumnName")));
 				} else {
-					excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, "1");
+					excelUtils.writeDataInExcel(BRFilepath, SheetName, i, 11, "1");
 				}
 				verifyBankReceiptLineDetailsWithDB(SheetName, i);
 				if (Currency.equals("INR")) {
 					if (BankName.equals("JP MORGAN CHASE")) {
 						for (int k = 1; k <= VariableHandler.getMultipleSIDocs().size(); k++) {
-							excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalINR"), 1, 5 + k,
+							excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalINR"), 1, 5 + k,
 									dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(k - 1),
 											commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
-							excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalINR"), 2, 5 + k,
+							excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalINR"), 2, 5 + k,
 									dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(k - 1),
 											commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
 						}
 					} else {
 						for (int j = 1; j <= VariableHandler.getMultipleSIDocs().size(); j++) {
-							excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("Journal"), 1, 5 + j,
+							excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("Journal"), 1, 5 + j,
 									dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(j - 1),
 											commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
-							excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("Journal"), 2, 5 + j,
+							excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("Journal"), 2, 5 + j,
 									dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(j - 1),
 											commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
 						}
 					}
 				} else {
 					for (int j = 1; j <= VariableHandler.getMultipleSIDocs().size(); j++) {
-						excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalUSD"), 1, 5 + j,
+						excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalUSD"), 1, 5 + j,
 								dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(j - 1),
 										commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
-						excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalUSD"), 2, 5 + j,
+						excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalUSD"), 2, 5 + j,
 								dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(j - 1),
 										commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
 					}
@@ -1262,25 +1263,25 @@ public class BankReceiptFunctions {
 		if (Currency.equals("INR")) {
 			if (BankName.equals("JP MORGAN CHASE")) {
 				verifyJournalAmountWithDB(webDB.getDataFromProperties("JournalINR"),
-						VariableHandler.getBankPaymentOrReceiptDocNumber());
+						VariableHandler.getBankPaymentOrReceiptDocNumber(), BRFilepath);
 				for (int j = 1; j <= VariableHandler.getMultipleSIDocs().size(); j++) {
-					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalINR"), 1, 5 + j, "0");
-					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalINR"), 2, 5 + j, "0");
+					excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalINR"), 1, 5 + j, "0");
+					excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalINR"), 2, 5 + j, "0");
 				}
 			} else {
 				verifyJournalAmountWithDB(webDB.getDataFromProperties("Journal"),
-						VariableHandler.getBankPaymentOrReceiptDocNumber());
+						VariableHandler.getBankPaymentOrReceiptDocNumber(), BRFilepath);
 				for (int j = 1; j <= VariableHandler.getMultipleSIDocs().size(); j++) {
-					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("Journal"), 1, 5 + j, "0");
-					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("Journal"), 2, 5 + j, "0");
+					excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("Journal"), 1, 5 + j, "0");
+					excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("Journal"), 2, 5 + j, "0");
 				}
 			}
 		} else {
 			verifyJournalAmountWithDB(webDB.getDataFromProperties("JournalUSD"),
-					VariableHandler.getBankPaymentOrReceiptDocNumber());
+					VariableHandler.getBankPaymentOrReceiptDocNumber(), BRFilepath);
 			for (int j = 1; j <= VariableHandler.getMultipleSIDocs().size(); j++) {
-				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalUSD"), 1, 5 + j, "0");
-				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalUSD"), 2, 5 + j, "0");
+				excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalUSD"), 1, 5 + j, "0");
+				excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalUSD"), 2, 5 + j, "0");
 			}
 		}
 		verifyOverallHeaderAmountWithDB(SheetName);
@@ -1324,41 +1325,41 @@ public class BankReceiptFunctions {
 			String BaseCURCY = BankReceipts[i][13];
 			if (!GLAccountDesc.equals("")) {
 				if (!Currency.equals("INR")) {
-					excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, dbCommonFunctions.ExchangeRateDetails(
+					excelUtils.writeDataInExcel(BRFilepath, SheetName, i, 11, dbCommonFunctions.ExchangeRateDetails(
 							Currency, commonFunc.getDataFromTestDataSheet("ExportSalesEXRateColumnName")));
-					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalUSD"), i - 1, 10,
+					excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalUSD"), i - 1, 10,
 							dbCommonFunctions.ExchangeRateDetails(Currency,
 									commonFunc.getDataFromTestDataSheet("ExportSalesEXRateColumnName")));
 				} else {
-					excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, "1");
+					excelUtils.writeDataInExcel(BRFilepath, SheetName, i, 11, "1");
 				}
 				verifyBankReceiptLineDetailsWithDB(SheetName, i);
 				if (Currency.equals("INR")) {
 					if (BankName.equals("JP MORGAN CHASE")) {
 						for (int k = 1; k <= VariableHandler.getMultipleSIDocs().size(); k++) {
-							excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalINR"), 1, 5 + k,
+							excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalINR"), 1, 5 + k,
 									dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(k - 1),
 											commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
-							excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalINR"), 2, 5 + k,
+							excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalINR"), 2, 5 + k,
 									dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(k - 1),
 											commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
 						}
 					} else {
 						for (int j = 1; j <= VariableHandler.getMultipleSIDocs().size(); j++) {
-							excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("Journal"), 1, 5 + j,
+							excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("Journal"), 1, 5 + j,
 									dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(j - 1),
 											commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
-							excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("Journal"), 2, 5 + j,
+							excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("Journal"), 2, 5 + j,
 									dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(j - 1),
 											commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
 						}
 					}
 				} else {
 					for (int j = 1; j <= VariableHandler.getMultipleSIDocs().size(); j++) {
-						excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalUSD"), 1, 5 + j,
+						excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalUSD"), 1, 5 + j,
 								dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(j - 1),
 										commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
-						excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalUSD"), 2, 5 + j,
+						excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalUSD"), 2, 5 + j,
 								dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(j - 1),
 										commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
 					}
@@ -1374,25 +1375,25 @@ public class BankReceiptFunctions {
 		if (Currency.equals("INR")) {
 			if (BankName.equals("JP MORGAN CHASE")) {
 				verifyJournalAmountWithDB(webDB.getDataFromProperties("JournalINR"),
-						VariableHandler.getBankPaymentOrReceiptDocNumber());
+						VariableHandler.getBankPaymentOrReceiptDocNumber(), BRFilepath);
 				for (int j = 1; j <= VariableHandler.getMultipleSIDocs().size(); j++) {
-					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalINR"), 1, 5 + j, "0");
-					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalINR"), 2, 5 + j, "0");
+					excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalINR"), 1, 5 + j, "0");
+					excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalINR"), 2, 5 + j, "0");
 				}
 			} else {
 				verifyJournalAmountWithDB(webDB.getDataFromProperties("Journal"),
-						VariableHandler.getBankPaymentOrReceiptDocNumber());
+						VariableHandler.getBankPaymentOrReceiptDocNumber(), BRFilepath);
 				for (int j = 1; j <= VariableHandler.getMultipleSIDocs().size(); j++) {
-					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("Journal"), 1, 5 + j, "0");
-					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("Journal"), 2, 5 + j, "0");
+					excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("Journal"), 1, 5 + j, "0");
+					excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("Journal"), 2, 5 + j, "0");
 				}
 			}
 		} else {
 			verifyJournalAmountWithDB(webDB.getDataFromProperties("JournalUSD"),
-					VariableHandler.getBankPaymentOrReceiptDocNumber());
+					VariableHandler.getBankPaymentOrReceiptDocNumber(), BRFilepath);
 			for (int j = 1; j <= VariableHandler.getMultipleSIDocs().size(); j++) {
-				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalUSD"), 1, 5 + j, "0");
-				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalUSD"), 2, 5 + j, "0");
+				excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalUSD"), 1, 5 + j, "0");
+				excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalUSD"), 2, 5 + j, "0");
 			}
 		}
 		verifyOverallHeaderAmountWithDB(SheetName);
@@ -1429,7 +1430,7 @@ public class BankReceiptFunctions {
 				VariableHandler.getBankPaymentOrReceiptDocNumber());
 		bankpaymentfunc.verifyBankPaymentDetailsWithDB(BankName,
 				commonFunc.getDataFromTestDataSheet("BankReceiptPrefix"), Currency);
-		BankReceipts = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		BankReceipts = excelUtils.readAllDataInExcel(BRFilepath, SheetName);
 		for (int i = 1; i < BankReceipts.length; i++) {
 			String GLAccountDesc = BankReceipts[i][1];
 			String PartyName = BankReceipts[i][3];
@@ -1451,10 +1452,10 @@ public class BankReceiptFunctions {
 				clickPendingReceivablesInBR();
 				selectSalesInvoiceDocumentInPendingBankReceiptMPMI(PartyName, VariableHandler.getMultipleSIDocs(), i);
 				if (!Currency.equals("INR")) {
-					excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, dbCommonFunctions.ExchangeRateDetails(
+					excelUtils.writeDataInExcel(BRFilepath, SheetName, i, 11, dbCommonFunctions.ExchangeRateDetails(
 							Currency, commonFunc.getDataFromTestDataSheet("ExportSalesEXRateColumnName")));
 				} else {
-					excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, "1");
+					excelUtils.writeDataInExcel(BRFilepath, SheetName, i, 11, "1");
 				}
 				verifyBankReceiptLineDetailsWithDB(SheetName, i);
 			}
@@ -1502,7 +1503,7 @@ public class BankReceiptFunctions {
 				VariableHandler.getBankPaymentOrReceiptDocNumber());
 		bankpaymentfunc.verifyBankPaymentDetailsWithDB(BankName,
 				commonFunc.getDataFromTestDataSheet("BankReceiptPrefix"), Currency);
-		BankReceipts = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		BankReceipts = excelUtils.readAllDataInExcel(BRFilepath, SheetName);
 		for (int i = 1; i < BankReceipts.length; i++) {
 			String GLAccountDesc = BankReceipts[i][1];
 			String PartyName = BankReceipts[i][3];
@@ -1529,10 +1530,10 @@ public class BankReceiptFunctions {
 				clickViewDetailsSaveButton();
 				clickBankViewDetailsCloseButton();
 				if (!Currency.equals("INR")) {
-					excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, dbCommonFunctions.ExchangeRateDetails(
+					excelUtils.writeDataInExcel(BRFilepath, SheetName, i, 11, dbCommonFunctions.ExchangeRateDetails(
 							Currency, commonFunc.getDataFromTestDataSheet("ExportSalesEXRateColumnName")));
 				} else {
-					excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, "1");
+					excelUtils.writeDataInExcel(BRFilepath, SheetName, i, 11, "1");
 				}
 				verifyBankReceiptLineDetailsWithDB(SheetName, i);
 			}
@@ -1588,29 +1589,30 @@ public class BankReceiptFunctions {
 			String BaseCURCY = BankReceipts[i][13];
 			if (!GLAccountDesc.equals("")) {
 				if (!Currency.equals("INR")) {
-					excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, dbCommonFunctions.ExchangeRateDetails(
+					excelUtils.writeDataInExcel(BRFilepath, SheetName, i, 11, dbCommonFunctions.ExchangeRateDetails(
 							Currency, commonFunc.getDataFromTestDataSheet("ExportSalesEXRateColumnName")));
 				} else {
-					excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, "1");
+					excelUtils.writeDataInExcel(BRFilepath, SheetName, i, 11, "1");
 				}
 				verifyBankReceiptLineDetailsWithDB(SheetName, i);
 				if (Currency.equals("INR")) {
 					if (BankName.equals("JP MORGAN CHASE")) {
-						excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalMultiINR"), 1, 5 + i,
-								dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(i - 1),
+						excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalMultiINR"), 1,
+								5 + i, dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(i - 1),
 										commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
 						for (int j = 1; j <= VariableHandler.getMultipleSIDocs().size(); j++) {
-							excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalMultiINR"), j + 1,
-									6, dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(j - 1),
+							excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalMultiINR"),
+									j + 1, 6,
+									dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(j - 1),
 											commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
 						}
 					} else {
-						excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalMulti"), 1, 5 + i,
+						excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalMulti"), 1, 5 + i,
 								dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(i - 1),
 										commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
 						for (int j = 1; j <= VariableHandler.getMultipleSIDocs().size(); j++) {
-							excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalMulti"), j + 1, 6,
-									dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(j - 1),
+							excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalMulti"), j + 1,
+									6, dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(j - 1),
 											commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
 						}
 					}
@@ -1626,22 +1628,22 @@ public class BankReceiptFunctions {
 		if (Currency.equals("INR")) {
 			if (BankName.equals("JP MORGAN CHASE")) {
 				verifyJournalAmountWithDB(webDB.getDataFromProperties("JournalMultiINR"),
-						VariableHandler.getBankPaymentOrReceiptDocNumber());
+						VariableHandler.getBankPaymentOrReceiptDocNumber(), BRFilepath);
 				for (int j = 1; j <= VariableHandler.getMultipleSIDocs().size(); j++) {
-					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalMultiINR"), 1, 5 + j,
+					excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalMultiINR"), 1, 5 + j,
 							"0");
-					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalMultiINR"), j + 1, 6,
+					excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalMultiINR"), j + 1, 6,
 							"0");
-					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalMultiINR"), j + 1, 7,
+					excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalMultiINR"), j + 1, 7,
 							"0");
 				}
 			} else {
 				verifyJournalAmountWithDB(webDB.getDataFromProperties("JournalMulti"),
-						VariableHandler.getBankPaymentOrReceiptDocNumber());
+						VariableHandler.getBankPaymentOrReceiptDocNumber(), BRFilepath);
 				for (int j = 1; j <= VariableHandler.getMultipleSIDocs().size(); j++) {
-					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalMulti"), 1, 5 + j, "0");
-					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalMulti"), j + 1, 6, "0");
-					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalMulti"), j + 1, 7, "0");
+					excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalMulti"), 1, 5 + j, "0");
+					excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalMulti"), j + 1, 6, "0");
+					excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalMulti"), j + 1, 7, "0");
 				}
 			}
 		}
@@ -1689,20 +1691,20 @@ public class BankReceiptFunctions {
 			String BaseCURCY = BankReceipts[i][13];
 			if (!GLAccountDesc.equals("")) {
 				if (!Currency.equals("INR")) {
-					excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, dbCommonFunctions.ExchangeRateDetails(
+					excelUtils.writeDataInExcel(BRFilepath, SheetName, i, 11, dbCommonFunctions.ExchangeRateDetails(
 							Currency, commonFunc.getDataFromTestDataSheet("ExportSalesEXRateColumnName")));
-					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalMultiUSD"), 0, 10,
+					excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalMultiUSD"), 0, 10,
 							dbCommonFunctions.ExchangeRateDetails(Currency,
 									commonFunc.getDataFromTestDataSheet("ExportSalesEXRateColumnName")));
 				} else {
-					excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, "1");
+					excelUtils.writeDataInExcel(BRFilepath, SheetName, i, 11, "1");
 				}
 				verifyBankReceiptLineDetailsWithDB(SheetName, i);
-				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalMultiUSD"), 1, 5 + i,
+				excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalMultiUSD"), 1, 5 + i,
 						dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(i - 1),
 								commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
 				for (int j = 1; j <= VariableHandler.getMultipleSIDocs().size(); j++) {
-					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalMultiUSD"), j + 1, 6,
+					excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalMultiUSD"), j + 1, 6,
 							dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(j - 1),
 									commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
 				}
@@ -1713,11 +1715,11 @@ public class BankReceiptFunctions {
 		}
 		clickCreateJournalButtonInBR();
 		verifyJournalAmountWithDB(webDB.getDataFromProperties("JournalMultiUSD"),
-				VariableHandler.getBankPaymentOrReceiptDocNumber());
+				VariableHandler.getBankPaymentOrReceiptDocNumber(), BRFilepath);
 		for (int j = 1; j <= VariableHandler.getMultipleSIDocs().size(); j++) {
-			excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalMultiUSD"), 1, 5 + j, "0");
-			excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalMultiUSD"), j + 1, 6, "0");
-			excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalMultiUSD"), j + 1, 6, "0");
+			excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalMultiUSD"), 1, 5 + j, "0");
+			excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalMultiUSD"), j + 1, 6, "0");
+			excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalMultiUSD"), j + 1, 6, "0");
 		}
 		verifyOverallHeaderAmountWithDB(SheetName);
 		clearDataInExcel(SheetName);
@@ -1761,29 +1763,30 @@ public class BankReceiptFunctions {
 			String BaseCURCY = BankReceipts[i][13];
 			if (!GLAccountDesc.equals("")) {
 				if (!Currency.equals("INR")) {
-					excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, dbCommonFunctions.ExchangeRateDetails(
+					excelUtils.writeDataInExcel(BRFilepath, SheetName, i, 11, dbCommonFunctions.ExchangeRateDetails(
 							Currency, commonFunc.getDataFromTestDataSheet("ExportSalesEXRateColumnName")));
 				} else {
-					excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, "1");
+					excelUtils.writeDataInExcel(BRFilepath, SheetName, i, 11, "1");
 				}
 				verifyBankReceiptLineDetailsWithDB(SheetName, i);
 				if (Currency.equals("INR")) {
 					if (BankName.equals("JP MORGAN CHASE")) {
-						excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalMultiINR"), 1, 5 + i,
-								dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(i - 1),
+						excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalMultiINR"), 1,
+								5 + i, dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(i - 1),
 										commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
 						for (int j = 1; j <= VariableHandler.getMultipleSIDocs().size(); j++) {
-							excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalMultiINR"), j + 1,
-									6, dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(j - 1),
+							excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalMultiINR"),
+									j + 1, 6,
+									dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(j - 1),
 											commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
 						}
 					} else {
-						excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalMulti"), 1, 5 + i,
+						excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalMulti"), 1, 5 + i,
 								dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(i - 1),
 										commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
 						for (int j = 1; j <= VariableHandler.getMultipleSIDocs().size(); j++) {
-							excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalMulti"), j + 1, 6,
-									dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(j - 1),
+							excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalMulti"), j + 1,
+									6, dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(j - 1),
 											commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
 						}
 					}
@@ -1799,22 +1802,22 @@ public class BankReceiptFunctions {
 		if (Currency.equals("INR")) {
 			if (BankName.equals("JP MORGAN CHASE")) {
 				verifyJournalAmountWithDB(webDB.getDataFromProperties("JournalMultiINR"),
-						VariableHandler.getBankPaymentOrReceiptDocNumber());
+						VariableHandler.getBankPaymentOrReceiptDocNumber(), BRFilepath);
 				for (int j = 1; j <= VariableHandler.getMultipleSIDocs().size(); j++) {
-					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalMultiINR"), 1, 5 + j,
+					excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalMultiINR"), 1, 5 + j,
 							"0");
-					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalMultiINR"), j + 1, 6,
+					excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalMultiINR"), j + 1, 6,
 							"0");
-					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalMultiINR"), j + 1, 6,
+					excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalMultiINR"), j + 1, 6,
 							"0");
 				}
 			} else {
 				verifyJournalAmountWithDB(webDB.getDataFromProperties("JournalMulti"),
-						VariableHandler.getBankPaymentOrReceiptDocNumber());
+						VariableHandler.getBankPaymentOrReceiptDocNumber(), BRFilepath);
 				for (int j = 1; j <= VariableHandler.getMultipleSIDocs().size(); j++) {
-					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalMulti"), 1, 5 + j, "0");
-					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalMulti"), j + 1, 6, "0");
-					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalMulti"), j + 1, 6, "0");
+					excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalMulti"), 1, 5 + j, "0");
+					excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalMulti"), j + 1, 6, "0");
+					excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalMulti"), j + 1, 6, "0");
 				}
 			}
 		}
@@ -1859,20 +1862,20 @@ public class BankReceiptFunctions {
 			String BaseCURCY = BankReceipts[i][13];
 			if (!GLAccountDesc.equals("")) {
 				if (!Currency.equals("INR")) {
-					excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, dbCommonFunctions.ExchangeRateDetails(
+					excelUtils.writeDataInExcel(BRFilepath, SheetName, i, 11, dbCommonFunctions.ExchangeRateDetails(
 							Currency, commonFunc.getDataFromTestDataSheet("ExportSalesEXRateColumnName")));
-					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalMultiUSD"), 0, 10,
+					excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalMultiUSD"), 0, 10,
 							dbCommonFunctions.ExchangeRateDetails(Currency,
 									commonFunc.getDataFromTestDataSheet("ExportSalesEXRateColumnName")));
 				} else {
-					excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, "1");
+					excelUtils.writeDataInExcel(BRFilepath, SheetName, i, 11, "1");
 				}
 				verifyBankReceiptLineDetailsWithDB(SheetName, i);
-				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalMultiUSD"), 1, 5 + i,
+				excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalMultiUSD"), 1, 5 + i,
 						dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(i - 1),
 								commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
 				for (int j = 1; j <= VariableHandler.getMultipleSIDocs().size(); j++) {
-					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalMultiUSD"), j + 1, 6,
+					excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalMultiUSD"), j + 1, 6,
 							dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(j - 1),
 									commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
 				}
@@ -1883,11 +1886,11 @@ public class BankReceiptFunctions {
 		}
 		clickCreateJournalButtonInBR();
 		verifyJournalAmountWithDB(webDB.getDataFromProperties("JournalMultiUSD"),
-				VariableHandler.getBankPaymentOrReceiptDocNumber());
+				VariableHandler.getBankPaymentOrReceiptDocNumber(), BRFilepath);
 		for (int j = 1; j <= VariableHandler.getMultipleSIDocs().size(); j++) {
-			excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalMultiUSD"), 1, 5 + j, "0");
-			excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalMultiUSD"), j + 1, 6, "0");
-			excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalMultiUSD"), j + 1, 6, "0");
+			excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalMultiUSD"), 1, 5 + j, "0");
+			excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalMultiUSD"), j + 1, 6, "0");
+			excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalMultiUSD"), j + 1, 6, "0");
 		}
 		verifyOverallHeaderAmountWithDB(SheetName);
 		clearDataInExcel(SheetName);
@@ -1933,10 +1936,10 @@ public class BankReceiptFunctions {
 			String BaseCURCY = BankReceipts[i][13];
 			if (!GLAccountDesc.equals("")) {
 				if (!Currency.equals("INR")) {
-					excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, dbCommonFunctions.ExchangeRateDetails(
+					excelUtils.writeDataInExcel(BRFilepath, SheetName, i, 11, dbCommonFunctions.ExchangeRateDetails(
 							Currency, commonFunc.getDataFromTestDataSheet("ExportSalesEXRateColumnName")));
 				} else {
-					excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, "1");
+					excelUtils.writeDataInExcel(BRFilepath, SheetName, i, 11, "1");
 				}
 				verifyBankReceiptLineDetailsWithDB(SheetName, i);
 			}
@@ -1945,29 +1948,29 @@ public class BankReceiptFunctions {
 			}
 			if (Currency.equals("INR")) {
 				if (BankName.equals("JP MORGAN CHASE")) {
-					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalMPMIINR"), 2, 6,
+					excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalMPMIINR"), 2, 6,
 							dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(0),
 									commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
-					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalMPMIINR"), 2, 7,
+					excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalMPMIINR"), 2, 7,
 							dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(1),
 									commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
-					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalMPMIINR"), 3, 6,
+					excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalMPMIINR"), 3, 6,
 							dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(2),
 									commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
-					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalMPMIINR"), 3, 7,
+					excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalMPMIINR"), 3, 7,
 							dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(3),
 									commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
 				} else {
-					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalMPMI"), 2, 6,
+					excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalMPMI"), 2, 6,
 							dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(0),
 									commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
-					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalMPMI"), 2, 7,
+					excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalMPMI"), 2, 7,
 							dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(1),
 									commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
-					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalMPMI"), 3, 6,
+					excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalMPMI"), 3, 6,
 							dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(2),
 									commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
-					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalMPMI"), 3, 7,
+					excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalMPMI"), 3, 7,
 							dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(3),
 									commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
 				}
@@ -1979,18 +1982,18 @@ public class BankReceiptFunctions {
 		if (Currency.equals("INR")) {
 			if (BankName.equals("JP MORGAN CHASE")) {
 				verifyJournalAmountWithDB(webDB.getDataFromProperties("JournalMPMIINR"),
-						VariableHandler.getBankPaymentOrReceiptDocNumber());
-				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalMPMIINR"), 2, 6, "0");
-				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalMPMIINR"), 2, 7, "0");
-				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalMPMIINR"), 3, 6, "0");
-				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalMPMIINR"), 3, 7, "0");
+						VariableHandler.getBankPaymentOrReceiptDocNumber(), BRFilepath);
+				excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalMPMIINR"), 2, 6, "0");
+				excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalMPMIINR"), 2, 7, "0");
+				excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalMPMIINR"), 3, 6, "0");
+				excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalMPMIINR"), 3, 7, "0");
 			} else {
 				verifyJournalAmountWithDB(webDB.getDataFromProperties("JournalMPMI"),
-						VariableHandler.getBankPaymentOrReceiptDocNumber());
-				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalMPMI"), 2, 6, "0");
-				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalMPMI"), 2, 7, "0");
-				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalMPMI"), 3, 6, "0");
-				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalMPMI"), 3, 7, "0");
+						VariableHandler.getBankPaymentOrReceiptDocNumber(), BRFilepath);
+				excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalMPMI"), 2, 6, "0");
+				excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalMPMI"), 2, 7, "0");
+				excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalMPMI"), 3, 6, "0");
+				excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalMPMI"), 3, 7, "0");
 			}
 		}
 		verifyOverallHeaderAmountWithDB(SheetName);
@@ -2038,39 +2041,39 @@ public class BankReceiptFunctions {
 			String BaseCURCY = BankReceipts[i][13];
 			if (!GLAccountDesc.equals("")) {
 				if (!Currency.equals("INR")) {
-					excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, dbCommonFunctions.ExchangeRateDetails(
+					excelUtils.writeDataInExcel(BRFilepath, SheetName, i, 11, dbCommonFunctions.ExchangeRateDetails(
 							Currency, commonFunc.getDataFromTestDataSheet("ExportSalesEXRateColumnName")));
-					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalMPMIUSD"), 0, 10,
+					excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalMPMIUSD"), 0, 10,
 							dbCommonFunctions.ExchangeRateDetails(Currency,
 									commonFunc.getDataFromTestDataSheet("ExportSalesEXRateColumnName")));
 				} else {
-					excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, "1");
+					excelUtils.writeDataInExcel(BRFilepath, SheetName, i, 11, "1");
 				}
 				verifyBankReceiptLineDetailsWithDB(SheetName, i);
 			}
 			if (!Currency.equals("INR") || (BankName.equals("JP MORGAN CHASE"))) {
 				enterRealizedAmountInBRHeader(BaseCURCY);
 			}
-			excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalMPMIUSD"), 2, 6,
+			excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalMPMIUSD"), 2, 6,
 					dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(0),
 							commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
-			excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalMPMIUSD"), 2, 7,
+			excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalMPMIUSD"), 2, 7,
 					dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(1),
 							commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
-			excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalMPMIUSD"), 3, 6,
+			excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalMPMIUSD"), 3, 6,
 					dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(2),
 							commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
-			excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalMPMIUSD"), 3, 7,
+			excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalMPMIUSD"), 3, 7,
 					dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(3),
 							commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
 		}
 		clickCreateJournalButtonInBR();
 		verifyJournalAmountWithDB(webDB.getDataFromProperties("JournalMPMIUSD"),
-				VariableHandler.getBankPaymentOrReceiptDocNumber());
-		excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalMPMIUSD"), 2, 6, "0");
-		excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalMPMIUSD"), 2, 7, "0");
-		excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalMPMIUSD"), 3, 6, "0");
-		excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalMPMIUSD"), 3, 7, "0");
+				VariableHandler.getBankPaymentOrReceiptDocNumber(), BRFilepath);
+		excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalMPMIUSD"), 2, 6, "0");
+		excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalMPMIUSD"), 2, 7, "0");
+		excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalMPMIUSD"), 3, 6, "0");
+		excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalMPMIUSD"), 3, 7, "0");
 		verifyOverallHeaderAmountWithDB(SheetName);
 		clearDataInExcel(SheetName);
 		clickPostButton();
@@ -2113,39 +2116,39 @@ public class BankReceiptFunctions {
 			String BaseCURCY = BankReceipts[i][13];
 			if (!GLAccountDesc.equals("")) {
 				if (!Currency.equals("INR")) {
-					excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, dbCommonFunctions.ExchangeRateDetails(
+					excelUtils.writeDataInExcel(BRFilepath, SheetName, i, 11, dbCommonFunctions.ExchangeRateDetails(
 							Currency, commonFunc.getDataFromTestDataSheet("ExportSalesEXRateColumnName")));
-					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalMPMIUSD"), 0, 10,
+					excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalMPMIUSD"), 0, 10,
 							dbCommonFunctions.ExchangeRateDetails(Currency,
 									commonFunc.getDataFromTestDataSheet("ExportSalesEXRateColumnName")));
 				} else {
-					excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, "1");
+					excelUtils.writeDataInExcel(BRFilepath, SheetName, i, 11, "1");
 				}
 				verifyBankReceiptLineDetailsWithDB(SheetName, i);
 			}
 			if (!Currency.equals("INR") || (BankName.equals("JP MORGAN CHASE"))) {
 				enterRealizedAmountInBRHeader(BaseCURCY);
 			}
-			excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalMPMIUSD"), 2, 6,
+			excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalMPMIUSD"), 2, 6,
 					dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(0),
 							commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
-			excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalMPMIUSD"), 2, 7,
+			excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalMPMIUSD"), 2, 7,
 					dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(1),
 							commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
-			excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalMPMIUSD"), 3, 6,
+			excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalMPMIUSD"), 3, 6,
 					dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(2),
 							commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
-			excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalMPMIUSD"), 3, 7,
+			excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalMPMIUSD"), 3, 7,
 					dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(3),
 							commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
 		}
 		clickCreateJournalButtonInBR();
 		verifyJournalAmountWithDB(webDB.getDataFromProperties("JournalMPMIUSD"),
-				VariableHandler.getBankPaymentOrReceiptDocNumber());
-		excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalMPMIUSD"), 2, 6, "0");
-		excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalMPMIUSD"), 2, 7, "0");
-		excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalMPMIUSD"), 3, 6, "0");
-		excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalMPMIUSD"), 3, 7, "0");
+				VariableHandler.getBankPaymentOrReceiptDocNumber(), BRFilepath);
+		excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalMPMIUSD"), 2, 6, "0");
+		excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalMPMIUSD"), 2, 7, "0");
+		excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalMPMIUSD"), 3, 6, "0");
+		excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalMPMIUSD"), 3, 7, "0");
 		verifyOverallHeaderAmountWithDB(SheetName);
 		clearDataInExcel(SheetName);
 		clickPostButton();
@@ -2187,10 +2190,10 @@ public class BankReceiptFunctions {
 			String BaseCURCY = BankReceipts[i][13];
 			if (!GLAccountDesc.equals("")) {
 				if (!Currency.equals("INR")) {
-					excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, dbCommonFunctions.ExchangeRateDetails(
+					excelUtils.writeDataInExcel(BRFilepath, SheetName, i, 11, dbCommonFunctions.ExchangeRateDetails(
 							Currency, commonFunc.getDataFromTestDataSheet("ExportSalesEXRateColumnName")));
 				} else {
-					excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, "1");
+					excelUtils.writeDataInExcel(BRFilepath, SheetName, i, 11, "1");
 				}
 				verifyBankReceiptLineDetailsWithDB(SheetName, i);
 			}
@@ -2199,29 +2202,29 @@ public class BankReceiptFunctions {
 			}
 			if (Currency.equals("INR")) {
 				if (BankName.equals("JP MORGAN CHASE")) {
-					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalMPMIINR"), 2, 6,
+					excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalMPMIINR"), 2, 6,
 							dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(0),
 									commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
-					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalMPMIINR"), 2, 7,
+					excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalMPMIINR"), 2, 7,
 							dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(1),
 									commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
-					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalMPMIINR"), 3, 6,
+					excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalMPMIINR"), 3, 6,
 							dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(2),
 									commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
-					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalMPMIINR"), 3, 7,
+					excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalMPMIINR"), 3, 7,
 							dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(3),
 									commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
 				} else {
-					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalMPMI"), 2, 6,
+					excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalMPMI"), 2, 6,
 							dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(0),
 									commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
-					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalMPMI"), 2, 7,
+					excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalMPMI"), 2, 7,
 							dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(1),
 									commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
-					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalMPMI"), 3, 6,
+					excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalMPMI"), 3, 6,
 							dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(2),
 									commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
-					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalMPMI"), 3, 7,
+					excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalMPMI"), 3, 7,
 							dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(3),
 									commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
 				}
@@ -2233,18 +2236,18 @@ public class BankReceiptFunctions {
 		if (Currency.equals("INR")) {
 			if (BankName.equals("JP MORGAN CHASE")) {
 				verifyJournalAmountWithDB(webDB.getDataFromProperties("JournalMPMIINR"),
-						VariableHandler.getBankPaymentOrReceiptDocNumber());
-				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalMPMIINR"), 2, 6, "0");
-				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalMPMIINR"), 2, 7, "0");
-				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalMPMIINR"), 3, 6, "0");
-				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalMPMIINR"), 3, 7, "0");
+						VariableHandler.getBankPaymentOrReceiptDocNumber(), BRFilepath);
+				excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalMPMIINR"), 2, 6, "0");
+				excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalMPMIINR"), 2, 7, "0");
+				excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalMPMIINR"), 3, 6, "0");
+				excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalMPMIINR"), 3, 7, "0");
 			} else {
 				verifyJournalAmountWithDB(webDB.getDataFromProperties("JournalMPMI"),
-						VariableHandler.getBankPaymentOrReceiptDocNumber());
-				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalMPMI"), 2, 6, "0");
-				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalMPMI"), 2, 7, "0");
-				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalMPMI"), 3, 6, "0");
-				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalMPMI"), 3, 7, "0");
+						VariableHandler.getBankPaymentOrReceiptDocNumber(), BRFilepath);
+				excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalMPMI"), 2, 6, "0");
+				excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalMPMI"), 2, 7, "0");
+				excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalMPMI"), 3, 6, "0");
+				excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalMPMI"), 3, 7, "0");
 			}
 		}
 		verifyOverallHeaderAmountWithDB(SheetName);
@@ -2287,7 +2290,7 @@ public class BankReceiptFunctions {
 		clickPendingReceivablesInBR();
 		chooseDocumentNumberAndClickSearchButtonInPendingReceivablesMPMI(VariableHandler.getMultipleSIDocs(),
 				SheetName);
-		BankReceipts = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		BankReceipts = excelUtils.readAllDataInExcel(BRFilepath, SheetName);
 		for (int i = 1; i < BankReceipts.length; i++) {
 			String GLAccountDesc = BankReceipts[i][1];
 			String PartyName = BankReceipts[i][3];
@@ -2311,11 +2314,11 @@ public class BankReceiptFunctions {
 					String GLAccountDesc1 = BankReceipts[j][1];
 					if (!GLAccountDesc1.equals("")) {
 						if (!Currency.equals("INR")) {
-							excelUtils.writeDataInExcel(Filepath, SheetName, i, 11,
+							excelUtils.writeDataInExcel(BRFilepath, SheetName, i, 11,
 									dbCommonFunctions.ExchangeRateDetails(Currency,
 											commonFunc.getDataFromTestDataSheet("ExportSalesEXRateColumnName")));
 						} else {
-							excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, "1");
+							excelUtils.writeDataInExcel(BRFilepath, SheetName, i, 11, "1");
 						}
 						verifyBankReceiptLineDetailsWithDB(SheetName, i);
 					}
@@ -2326,29 +2329,29 @@ public class BankReceiptFunctions {
 			}
 			if (Currency.equals("INR")) {
 				if (BankName.equals("JP MORGAN CHASE")) {
-					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalNRINR"), 2, 6,
+					excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalNRINR"), 2, 6,
 							dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(0),
 									commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
-					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalNRINR"), 2, 7,
+					excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalNRINR"), 2, 7,
 							dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(1),
 									commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
-					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalNRINR"), 3, 6,
+					excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalNRINR"), 3, 6,
 							dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(2),
 									commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
-					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalNRINR"), 3, 7,
+					excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalNRINR"), 3, 7,
 							dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(3),
 									commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
 				} else {
-					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalNR"), 2, 6,
+					excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalNR"), 2, 6,
 							dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(0),
 									commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
-					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalNR"), 2, 7,
+					excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalNR"), 2, 7,
 							dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(1),
 									commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
-					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalNR"), 3, 6,
+					excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalNR"), 3, 6,
 							dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(2),
 									commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
-					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalNR"), 3, 7,
+					excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalNR"), 3, 7,
 							dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(3),
 									commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
 				}
@@ -2360,18 +2363,18 @@ public class BankReceiptFunctions {
 		if (Currency.equals("INR")) {
 			if (BankName.equals("JP MORGAN CHASE")) {
 				verifyJournalAmountWithDB(webDB.getDataFromProperties("JournalNRINR"),
-						VariableHandler.getBankPaymentOrReceiptDocNumber());
-				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalNRINR"), 2, 6, "0");
-				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalNRINR"), 2, 7, "0");
-				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalNRINR"), 3, 6, "0");
-				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalNRINR"), 3, 7, "0");
+						VariableHandler.getBankPaymentOrReceiptDocNumber(), BRFilepath);
+				excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalNRINR"), 2, 6, "0");
+				excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalNRINR"), 2, 7, "0");
+				excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalNRINR"), 3, 6, "0");
+				excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalNRINR"), 3, 7, "0");
 			} else {
 				verifyJournalAmountWithDB(webDB.getDataFromProperties("JournalNR"),
-						VariableHandler.getBankPaymentOrReceiptDocNumber());
-				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalNR"), 2, 6, "0");
-				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalNR"), 2, 7, "0");
-				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalNR"), 3, 6, "0");
-				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalNR"), 3, 7, "0");
+						VariableHandler.getBankPaymentOrReceiptDocNumber(), BRFilepath);
+				excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalNR"), 2, 6, "0");
+				excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalNR"), 2, 7, "0");
+				excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalNR"), 3, 6, "0");
+				excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalNR"), 3, 7, "0");
 			}
 		}
 		verifyOverallHeaderAmountWithDB(SheetName);
@@ -2415,7 +2418,7 @@ public class BankReceiptFunctions {
 		clickPendingReceivablesInBR();
 		chooseDocumentNumberAndClickSearchButtonInPendingReceivablesMPMI(VariableHandler.getMultipleSIDocs(),
 				SheetName);
-		BankReceipts = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		BankReceipts = excelUtils.readAllDataInExcel(BRFilepath, SheetName);
 		for (int i = 1; i < BankReceipts.length; i++) {
 			String GLAccountDesc = BankReceipts[i][1];
 			String PartyName = BankReceipts[i][3];
@@ -2439,14 +2442,14 @@ public class BankReceiptFunctions {
 					String GLAccountDesc1 = BankReceipts[j][1];
 					if (!GLAccountDesc1.equals("")) {
 						if (!Currency.equals("INR")) {
-							excelUtils.writeDataInExcel(Filepath, SheetName, i, 11,
+							excelUtils.writeDataInExcel(BRFilepath, SheetName, i, 11,
 									dbCommonFunctions.ExchangeRateDetails(Currency,
 											commonFunc.getDataFromTestDataSheet("ExportSalesEXRateColumnName")));
-							excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalNRUSD"), 0, 11,
+							excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalNRUSD"), 0, 11,
 									dbCommonFunctions.ExchangeRateDetails(Currency,
 											commonFunc.getDataFromTestDataSheet("ExportSalesEXRateColumnName")));
 						} else {
-							excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, "1");
+							excelUtils.writeDataInExcel(BRFilepath, SheetName, i, 11, "1");
 						}
 						verifyBankReceiptLineDetailsWithDB(SheetName, i);
 					}
@@ -2455,26 +2458,26 @@ public class BankReceiptFunctions {
 			if (!Currency.equals("INR") || (BankName.equals("JP MORGAN CHASE"))) {
 				enterRealizedAmountInBRHeader(BaseCURCY);
 			}
-			excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalNRUSD"), 2, 6,
+			excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalNRUSD"), 2, 6,
 					dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(0),
 							commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
-			excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalNRUSD"), 2, 7,
+			excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalNRUSD"), 2, 7,
 					dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(1),
 							commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
-			excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalNRUSD"), 3, 6,
+			excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalNRUSD"), 3, 6,
 					dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(2),
 							commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
-			excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalNRUSD"), 3, 7,
+			excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalNRUSD"), 3, 7,
 					dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(3),
 							commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
 		}
 		clickCreateJournalButtonInBR();
 		verifyJournalAmountWithDB(webDB.getDataFromProperties("JournalNRUSD"),
-				VariableHandler.getBankPaymentOrReceiptDocNumber());
-		excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalNRUSD"), 2, 6, "0");
-		excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalNRUSD"), 2, 7, "0");
-		excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalNRUSD"), 3, 6, "0");
-		excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalNRUSD"), 3, 7, "0");
+				VariableHandler.getBankPaymentOrReceiptDocNumber(), BRFilepath);
+		excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalNRUSD"), 2, 6, "0");
+		excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalNRUSD"), 2, 7, "0");
+		excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalNRUSD"), 3, 6, "0");
+		excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalNRUSD"), 3, 7, "0");
 		verifyOverallHeaderAmountWithDB(SheetName);
 		clearDataInExcel(SheetName);
 		clickPostButton();
@@ -2513,7 +2516,7 @@ public class BankReceiptFunctions {
 		commonFunc.checkRefreshCellsDisappear();
 		sendReferenceNumberInBR(commonFunc.getDataFromTestDataSheet("Reference Number"));
 		clickBRHeaderWiseSaveButton();
-		BankReceipts = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		BankReceipts = excelUtils.readAllDataInExcel(BRFilepath, SheetName);
 		for (int i = 1; i < BankReceipts.length; i++) {
 			String GLAccountDesc = BankReceipts[i][1];
 			String PartyName = BankReceipts[i][3];
@@ -2537,11 +2540,11 @@ public class BankReceiptFunctions {
 					String GLAccountDesc1 = BankReceipts[j][1];
 					if (!GLAccountDesc1.equals("")) {
 						if (!Currency.equals("INR")) {
-							excelUtils.writeDataInExcel(Filepath, SheetName, i, 11,
+							excelUtils.writeDataInExcel(BRFilepath, SheetName, i, 11,
 									dbCommonFunctions.ExchangeRateDetails(Currency,
 											commonFunc.getDataFromTestDataSheet("ExportSalesEXRateColumnName")));
 						} else {
-							excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, "1");
+							excelUtils.writeDataInExcel(BRFilepath, SheetName, i, 11, "1");
 						}
 						verifyBankReceiptLineDetailsWithDB(SheetName, i);
 					}
@@ -2552,29 +2555,29 @@ public class BankReceiptFunctions {
 			}
 			if (Currency.equals("INR")) {
 				if (BankName.equals("JP MORGAN CHASE")) {
-					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalNRINR"), 2, 6,
+					excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalNRINR"), 2, 6,
 							dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(0),
 									commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
-					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalNRINR"), 2, 7,
+					excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalNRINR"), 2, 7,
 							dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(1),
 									commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
-					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalNRINR"), 3, 6,
+					excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalNRINR"), 3, 6,
 							dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(2),
 									commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
-					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalNRINR"), 3, 7,
+					excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalNRINR"), 3, 7,
 							dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(3),
 									commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
 				} else {
-					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalNR"), 2, 6,
+					excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalNR"), 2, 6,
 							dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(0),
 									commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
-					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalNR"), 2, 7,
+					excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalNR"), 2, 7,
 							dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(1),
 									commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
-					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalNR"), 3, 6,
+					excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalNR"), 3, 6,
 							dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(2),
 									commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
-					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalNR"), 3, 7,
+					excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalNR"), 3, 7,
 							dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(3),
 									commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
 				}
@@ -2586,18 +2589,18 @@ public class BankReceiptFunctions {
 		if (Currency.equals("INR")) {
 			if (BankName.equals("JP MORGAN CHASE")) {
 				verifyJournalAmountWithDB(webDB.getDataFromProperties("JournalNRINR"),
-						VariableHandler.getBankPaymentOrReceiptDocNumber());
-				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalNRINR"), 2, 6, "0");
-				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalNRINR"), 2, 7, "0");
-				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalNRINR"), 3, 6, "0");
-				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalNRINR"), 3, 7, "0");
+						VariableHandler.getBankPaymentOrReceiptDocNumber(), BRFilepath);
+				excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalNRINR"), 2, 6, "0");
+				excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalNRINR"), 2, 7, "0");
+				excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalNRINR"), 3, 6, "0");
+				excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalNRINR"), 3, 7, "0");
 			} else {
 				verifyJournalAmountWithDB(webDB.getDataFromProperties("JournalNR"),
-						VariableHandler.getBankPaymentOrReceiptDocNumber());
-				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalNR"), 2, 6, "0");
-				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalNR"), 2, 7, "0");
-				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalNR"), 3, 6, "0");
-				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalNR"), 3, 7, "0");
+						VariableHandler.getBankPaymentOrReceiptDocNumber(), BRFilepath);
+				excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalNR"), 2, 6, "0");
+				excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalNR"), 2, 7, "0");
+				excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalNR"), 3, 6, "0");
+				excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalNR"), 3, 7, "0");
 			}
 		}
 		verifyOverallHeaderAmountWithDB(SheetName);
@@ -2637,7 +2640,7 @@ public class BankReceiptFunctions {
 		commonFunc.checkRefreshCellsDisappear();
 		sendReferenceNumberInBR(commonFunc.getDataFromTestDataSheet("Reference Number"));
 		clickBRHeaderWiseSaveButton();
-		BankReceipts = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		BankReceipts = excelUtils.readAllDataInExcel(BRFilepath, SheetName);
 		for (int i = 1; i < BankReceipts.length; i++) {
 			String GLAccountDesc = BankReceipts[i][1];
 			String PartyName = BankReceipts[i][3];
@@ -2661,14 +2664,14 @@ public class BankReceiptFunctions {
 					String GLAccountDesc1 = BankReceipts[j][1];
 					if (!GLAccountDesc1.equals("")) {
 						if (!Currency.equals("INR")) {
-							excelUtils.writeDataInExcel(Filepath, SheetName, i, 11,
+							excelUtils.writeDataInExcel(BRFilepath, SheetName, i, 11,
 									dbCommonFunctions.ExchangeRateDetails(Currency,
 											commonFunc.getDataFromTestDataSheet("ExportSalesEXRateColumnName")));
-							excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalNRUSD"), 0, 11,
+							excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalNRUSD"), 0, 11,
 									dbCommonFunctions.ExchangeRateDetails(Currency,
 											commonFunc.getDataFromTestDataSheet("ExportSalesEXRateColumnName")));
 						} else {
-							excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, "1");
+							excelUtils.writeDataInExcel(BRFilepath, SheetName, i, 11, "1");
 						}
 						verifyBankReceiptLineDetailsWithDB(SheetName, i);
 					}
@@ -2677,26 +2680,26 @@ public class BankReceiptFunctions {
 			if (!Currency.equals("INR") || (BankName.equals("JP MORGAN CHASE"))) {
 				enterRealizedAmountInBRHeader(BaseCURCY);
 			}
-			excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalNRUSD"), 2, 6,
+			excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalNRUSD"), 2, 6,
 					dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(0),
 							commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
-			excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalNRUSD"), 2, 7,
+			excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalNRUSD"), 2, 7,
 					dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(1),
 							commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
-			excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalNRUSD"), 3, 6,
+			excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalNRUSD"), 3, 6,
 					dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(2),
 							commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
-			excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalNRUSD"), 3, 7,
+			excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalNRUSD"), 3, 7,
 					dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(3),
 							commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
 		}
 		clickCreateJournalButtonInBR();
 		verifyJournalAmountWithDB(webDB.getDataFromProperties("JournalNRUSD"),
-				VariableHandler.getBankPaymentOrReceiptDocNumber());
-		excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalNRUSD"), 2, 6, "0");
-		excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalNRUSD"), 2, 7, "0");
-		excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalNRUSD"), 3, 6, "0");
-		excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalNRUSD"), 3, 7, "0");
+				VariableHandler.getBankPaymentOrReceiptDocNumber(), BRFilepath);
+		excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalNRUSD"), 2, 6, "0");
+		excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalNRUSD"), 2, 7, "0");
+		excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalNRUSD"), 3, 6, "0");
+		excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalNRUSD"), 3, 7, "0");
 		verifyOverallHeaderAmountWithDB(SheetName);
 		clearDataInExcel(SheetName);
 		clickPostButton();
@@ -2720,7 +2723,7 @@ public class BankReceiptFunctions {
 	public void BRSinglePartySingleInvoiceThroughAddButton(String SheetName) {
 		salesInvoiceFunc.verifyDirectSalesInvoiceBR(webDB.getDataFromProperties("BRSPSI"),
 				commonFunc.getDataFromTestDataSheet("CustomerName"));
-		excelUtils.writeDataInExcel(Filepath, SheetName, 1, 26,
+		excelUtils.writeDataInExcel(BRFilepath, SheetName, 1, 26,
 				dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(0),
 						commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
 		verifyCustomerDocumentWithDBAfterSI(VariableHandler.getMultipleSIDocs());
@@ -2738,7 +2741,7 @@ public class BankReceiptFunctions {
 	public void BRSinglePartySingleInvoiceThroughGetDocument(String SheetName) {
 		salesInvoiceFunc.verifyDirectSalesInvoiceBR(webDB.getDataFromProperties("BRSPSI"),
 				commonFunc.getDataFromTestDataSheet("CustomerName"));
-		excelUtils.writeDataInExcel(Filepath, SheetName, 1, 26,
+		excelUtils.writeDataInExcel(BRFilepath, SheetName, 1, 26,
 				dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(0),
 						commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
 		verifyCustomerDocumentWithDBAfterSI(VariableHandler.getMultipleSIDocs());
@@ -2756,7 +2759,7 @@ public class BankReceiptFunctions {
 	public void BRSinglePartySingleInvoiceThroughPendingDocs(String SheetName) {
 		salesInvoiceFunc.verifyDirectSalesInvoiceBR(webDB.getDataFromProperties("BRSPSI"),
 				commonFunc.getDataFromTestDataSheet("CustomerName"));
-		excelUtils.writeDataInExcel(Filepath, SheetName, 1, 26,
+		excelUtils.writeDataInExcel(BRFilepath, SheetName, 1, 26,
 				dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(0),
 						commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
 		verifyCustomerDocumentWithDBAfterSI(VariableHandler.getMultipleSIDocs());
@@ -2772,7 +2775,7 @@ public class BankReceiptFunctions {
 	 * @param SheetName
 	 */
 	public void BRSinglePartyMultiInvoiceThroughAddButton(String SheetName) {
-		BankReceipts = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		BankReceipts = excelUtils.readAllDataInExcel(BRFilepath, SheetName);
 		for (int i = 1; i < BankReceipts.length; i++) {
 			String Customer = BankReceipts[i][2];
 			String SISheetName = BankReceipts[i][4];
@@ -2793,7 +2796,7 @@ public class BankReceiptFunctions {
 	 * @param SheetName
 	 */
 	public void BRSinglePartyMultiInvoiceThroughGetDocument(String SheetName) {
-		BankReceipts = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		BankReceipts = excelUtils.readAllDataInExcel(BRFilepath, SheetName);
 		for (int i = 1; i < BankReceipts.length; i++) {
 			String Customer = BankReceipts[i][2];
 			String SISheetName = BankReceipts[i][4];
@@ -2814,7 +2817,7 @@ public class BankReceiptFunctions {
 	 * @param SheetName
 	 */
 	public void BRSinglePartyMultiInvoiceThroughPendingDocs(String SheetName) {
-		BankReceipts = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		BankReceipts = excelUtils.readAllDataInExcel(BRFilepath, SheetName);
 		for (int i = 1; i < BankReceipts.length; i++) {
 			String Customer = BankReceipts[i][2];
 			String SISheetName = BankReceipts[i][4];
@@ -2835,13 +2838,13 @@ public class BankReceiptFunctions {
 	 * @param SheetName
 	 */
 	public void BRMultiPartySingleInvoiceThroughAddButton(String SheetName) {
-		BankReceipts = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		BankReceipts = excelUtils.readAllDataInExcel(BRFilepath, SheetName);
 		for (int i = 1; i < BankReceipts.length; i++) {
 			String Customer = BankReceipts[i][2];
 			String SISheetName = BankReceipts[i][4];
 			if (!Customer.equals("")) {
 				salesInvoiceFunc.verifyDirectSalesInvoiceBR(SISheetName, Customer);
-				excelUtils.writeDataInExcel(Filepath, SheetName, i, 25 + i,
+				excelUtils.writeDataInExcel(BRFilepath, SheetName, i, 25 + i,
 						dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(i - 1),
 								commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
 			}
@@ -2859,13 +2862,13 @@ public class BankReceiptFunctions {
 	 * @param SheetName
 	 */
 	public void BRMultiPartySingleInvoiceThroughGetDocument(String SheetName) {
-		BankReceipts = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		BankReceipts = excelUtils.readAllDataInExcel(BRFilepath, SheetName);
 		for (int i = 1; i < BankReceipts.length; i++) {
 			String Customer = BankReceipts[i][2];
 			String SISheetName = BankReceipts[i][4];
 			if (!Customer.equals("")) {
 				salesInvoiceFunc.verifyDirectSalesInvoiceBR(SISheetName, Customer);
-				excelUtils.writeDataInExcel(Filepath, SheetName, i, 25 + i,
+				excelUtils.writeDataInExcel(BRFilepath, SheetName, i, 25 + i,
 						dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(i - 1),
 								commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
 			}
@@ -2883,13 +2886,13 @@ public class BankReceiptFunctions {
 	 * @param SheetName
 	 */
 	public void BRMultiPartySingleInvoiceThroughPendingDocs(String SheetName) {
-		BankReceipts = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		BankReceipts = excelUtils.readAllDataInExcel(BRFilepath, SheetName);
 		for (int i = 1; i < BankReceipts.length; i++) {
 			String Customer = BankReceipts[i][2];
 			String SISheetName = BankReceipts[i][4];
 			if (!Customer.equals("")) {
 				salesInvoiceFunc.verifyDirectSalesInvoiceBR(SISheetName, Customer);
-				excelUtils.writeDataInExcel(Filepath, SheetName, i, 25 + i,
+				excelUtils.writeDataInExcel(BRFilepath, SheetName, i, 25 + i,
 						dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(i - 1),
 								commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
 			}
@@ -2907,7 +2910,7 @@ public class BankReceiptFunctions {
 	 * @param SheetName
 	 */
 	public void BRMultiPartyMultiInvoiceThroughAddButton(String SheetName) {
-		BankReceipts = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		BankReceipts = excelUtils.readAllDataInExcel(BRFilepath, SheetName);
 		for (int i = 1; i < BankReceipts.length; i++) {
 			String Customer = BankReceipts[i][2];
 			String SISheetName = BankReceipts[i][4];
@@ -2928,7 +2931,7 @@ public class BankReceiptFunctions {
 	 * @param SheetName
 	 */
 	public void BRMultiPartyMultiInvoiceThroughGetDocument(String SheetName) {
-		BankReceipts = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		BankReceipts = excelUtils.readAllDataInExcel(BRFilepath, SheetName);
 		for (int i = 1; i < BankReceipts.length; i++) {
 			String Customer = BankReceipts[i][2];
 			String SISheetName = BankReceipts[i][4];
@@ -2949,7 +2952,7 @@ public class BankReceiptFunctions {
 	 * @param SheetName
 	 */
 	public void BRMultiPartyMultiInvoiceThroughPendingDocs(String SheetName) {
-		BankReceipts = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		BankReceipts = excelUtils.readAllDataInExcel(BRFilepath, SheetName);
 		for (int i = 1; i < BankReceipts.length; i++) {
 			String Customer = BankReceipts[i][2];
 			String SISheetName = BankReceipts[i][4];
@@ -2970,7 +2973,7 @@ public class BankReceiptFunctions {
 	 * @param SheetName
 	 */
 	public void BRMultiPartyMultiInvoiceThroughAddButtonWithNewRef(String SheetName) {
-		BankReceipts = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		BankReceipts = excelUtils.readAllDataInExcel(BRFilepath, SheetName);
 		for (int i = 1; i < BankReceipts.length; i++) {
 			String Customer = BankReceipts[i][2];
 			String SISheetName = BankReceipts[i][4];
@@ -2991,7 +2994,7 @@ public class BankReceiptFunctions {
 	 * @param SheetName
 	 */
 	public void BRMultiPartyMultiInvoiceThroughGetDocumentWithNewref(String SheetName) {
-		BankReceipts = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		BankReceipts = excelUtils.readAllDataInExcel(BRFilepath, SheetName);
 		for (int i = 1; i < BankReceipts.length; i++) {
 			String Customer = BankReceipts[i][2];
 			String SISheetName = BankReceipts[i][4];
@@ -3012,7 +3015,7 @@ public class BankReceiptFunctions {
 	 * @param SheetName
 	 */
 	public void BRMultiPartyMultiInvoiceThroughPendingDocsWithNewRef(String SheetName) {
-		BankReceipts = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		BankReceipts = excelUtils.readAllDataInExcel(BRFilepath, SheetName);
 		for (int i = 1; i < BankReceipts.length; i++) {
 			String Customer = BankReceipts[i][2];
 			String SISheetName = BankReceipts[i][4];
@@ -3034,7 +3037,7 @@ public class BankReceiptFunctions {
 	 * @param VoucherNumber
 	 */
 	public void verifyPendingReceivablesSIDocumentWithDB(String SheetName, String VoucherNumber) {
-		BankReceipts = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		BankReceipts = excelUtils.readAllDataInExcel(BRFilepath, SheetName);
 		for (int i = 1; i < BankReceipts.length; i++) {
 			String PartyID = BankReceipts[i][2];
 			String PartyName = BankReceipts[i][3];
@@ -3120,7 +3123,7 @@ public class BankReceiptFunctions {
 	 * @param i1
 	 */
 	public void verifyPendingReceivablesSIDocumentThroughGetDocWithDB(String SheetName, String VoucherNumber, int i1) {
-		BankReceipts = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		BankReceipts = excelUtils.readAllDataInExcel(BRFilepath, SheetName);
 		for (int i = i1; i <= i1; i++) {
 			String PartyID = BankReceipts[i][2];
 			String PartyName = BankReceipts[i][3];
@@ -3218,7 +3221,7 @@ public class BankReceiptFunctions {
 	 */
 	public void verifyPendingReceivablesSIDocumentThroughGetDocWithDB123(String SheetName, String VoucherNumber,
 			int i1) {
-		BankReceipts = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		BankReceipts = excelUtils.readAllDataInExcel(BRFilepath, SheetName);
 //		int a= i1*1;
 		for (int i = (i1 + 1) / 2; i <= (i1 + 1) / 2; i++) {
 			System.out.println(i);
@@ -3318,7 +3321,7 @@ public class BankReceiptFunctions {
 	 * @param i1
 	 */
 	public void verifyPendingReceivablesSIDocumentMPSIWithDB(String SheetName, String VoucherNumber, int i1) {
-		BankReceipts = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		BankReceipts = excelUtils.readAllDataInExcel(BRFilepath, SheetName);
 		for (int i = i1; i <= i1; i++) {
 			String PartyID = BankReceipts[i][2];
 			String PartyName = BankReceipts[i][3];
@@ -3409,7 +3412,7 @@ public class BankReceiptFunctions {
 	 */
 	public void verifyBankReceiptLineDetailsWithDB(String SheetName, int i1) {
 
-		BankReceipts = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		BankReceipts = excelUtils.readAllDataInExcel(BRFilepath, SheetName);
 		for (int i = i1; i <= i1; i++) {
 			String GLAccountDesc = BankReceipts[i][1];
 			String PartyID = BankReceipts[i][2];
@@ -3582,7 +3585,7 @@ public class BankReceiptFunctions {
 	 * @param SheetName
 	 */
 	public void verifyOverallHeaderAmountWithDB(String SheetName) {
-		BankReceipts = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		BankReceipts = excelUtils.readAllDataInExcel(BRFilepath, SheetName);
 		for (int i = 1; i < BankReceipts.length; i++) {
 			String GLAccountDesc = BankReceipts[i][1];
 			String ChargeAmt = BankReceipts[i][8];
@@ -3636,7 +3639,7 @@ public class BankReceiptFunctions {
 			String GLAccountDesc = BankReceipts[i][1];
 			if (!GLAccountDesc.equals("")) {
 				for (int j = 1; j <= 2; j++) {
-					excelUtils.writeDataInExcel(Filepath, SheetName, i, 25 + j, "0");
+					excelUtils.writeDataInExcel(BRFilepath, SheetName, i, 25 + j, "0");
 				}
 			}
 		}
@@ -3690,7 +3693,7 @@ public class BankReceiptFunctions {
 	public void BRSinglePartySingleInvoiceThroughAddButtonUSD(String SheetName) {
 		salesInvoiceFunc.verifyDirectSalesInvoiceExportBR(webDB.getDataFromProperties("BRSPSIE"),
 				commonFunc.getDataFromTestDataSheet("Export_Customer_Name"));
-		excelUtils.writeDataInExcel(Filepath, SheetName, 1, 26,
+		excelUtils.writeDataInExcel(BRFilepath, SheetName, 1, 26,
 				dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(0),
 						commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
 		verifyCustomerDocumentWithDBAfterSI(VariableHandler.getMultipleSIDocs());
@@ -3708,7 +3711,7 @@ public class BankReceiptFunctions {
 	public void BRSinglePartySingleInvoiceThroughGetDocumentUSD(String SheetName) {
 		salesInvoiceFunc.verifyDirectSalesInvoiceExportBR(webDB.getDataFromProperties("BRSPSIE"),
 				commonFunc.getDataFromTestDataSheet("Export_Customer_Name"));
-		excelUtils.writeDataInExcel(Filepath, SheetName, 1, 26,
+		excelUtils.writeDataInExcel(BRFilepath, SheetName, 1, 26,
 				dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(0),
 						commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
 		verifyCustomerDocumentWithDBAfterSI(VariableHandler.getMultipleSIDocs());
@@ -3726,7 +3729,7 @@ public class BankReceiptFunctions {
 	public void BRSinglePartySingleInvoiceThroughPendingDocsUSD(String SheetName) {
 		salesInvoiceFunc.verifyDirectSalesInvoiceExportBR(webDB.getDataFromProperties("BRSPSIE"),
 				commonFunc.getDataFromTestDataSheet("Export_Customer_Name"));
-		excelUtils.writeDataInExcel(Filepath, SheetName, 1, 26,
+		excelUtils.writeDataInExcel(BRFilepath, SheetName, 1, 26,
 				dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(0),
 						commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
 		verifyCustomerDocumentWithDBAfterSI(VariableHandler.getMultipleSIDocs());
@@ -3743,7 +3746,7 @@ public class BankReceiptFunctions {
 	 * @param SheetName
 	 */
 	public void BRSinglePartyMultiInvoiceThroughAddButtonUSD(String SheetName) {
-		BankReceipts = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		BankReceipts = excelUtils.readAllDataInExcel(BRFilepath, SheetName);
 		for (int i = 1; i < BankReceipts.length; i++) {
 			String Customer = BankReceipts[i][2];
 			String SISheetName = BankReceipts[i][4];
@@ -3764,7 +3767,7 @@ public class BankReceiptFunctions {
 	 * @param SheetName
 	 */
 	public void BRSinglePartyMultiInvoiceThroughGetDocumentUSD(String SheetName) {
-		BankReceipts = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		BankReceipts = excelUtils.readAllDataInExcel(BRFilepath, SheetName);
 		for (int i = 1; i < BankReceipts.length; i++) {
 			String Customer = BankReceipts[i][2];
 			String SISheetName = BankReceipts[i][4];
@@ -3785,7 +3788,7 @@ public class BankReceiptFunctions {
 	 * @param SheetName
 	 */
 	public void BRSinglePartyMultiInvoiceThroughPendingDocsUSD(String SheetName) {
-		BankReceipts = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		BankReceipts = excelUtils.readAllDataInExcel(BRFilepath, SheetName);
 		for (int i = 1; i < BankReceipts.length; i++) {
 			String Customer = BankReceipts[i][2];
 			String SISheetName = BankReceipts[i][4];
@@ -3807,13 +3810,13 @@ public class BankReceiptFunctions {
 	 * @param SheetName
 	 */
 	public void BRMultiPartySingleInvoiceThroughAddButtonUSD(String SheetName) {
-		BankReceipts = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		BankReceipts = excelUtils.readAllDataInExcel(BRFilepath, SheetName);
 		for (int i = 1; i < BankReceipts.length; i++) {
 			String Customer = BankReceipts[i][2];
 			String SISheetName = BankReceipts[i][4];
 			if (!Customer.equals("")) {
 				salesInvoiceFunc.verifyDirectSalesInvoiceExportBR(SISheetName, Customer);
-				excelUtils.writeDataInExcel(Filepath, SheetName, i, 25 + i,
+				excelUtils.writeDataInExcel(BRFilepath, SheetName, i, 25 + i,
 						dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(i - 1),
 								commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
 			}
@@ -3831,13 +3834,13 @@ public class BankReceiptFunctions {
 	 * @param SheetName
 	 */
 	public void BRMultiPartySingleInvoiceThroughGetDocumentUSD(String SheetName) {
-		BankReceipts = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		BankReceipts = excelUtils.readAllDataInExcel(BRFilepath, SheetName);
 		for (int i = 1; i < BankReceipts.length; i++) {
 			String Customer = BankReceipts[i][2];
 			String SISheetName = BankReceipts[i][4];
 			if (!Customer.equals("")) {
 				salesInvoiceFunc.verifyDirectSalesInvoiceExportBR(SISheetName, Customer);
-				excelUtils.writeDataInExcel(Filepath, SheetName, i, 25 + i,
+				excelUtils.writeDataInExcel(BRFilepath, SheetName, i, 25 + i,
 						dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(i - 1),
 								commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
 			}
@@ -3855,13 +3858,13 @@ public class BankReceiptFunctions {
 	 * @param SheetName
 	 */
 	public void BRMultiPartySingleInvoiceThroughPendingDocsUSD(String SheetName) {
-		BankReceipts = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		BankReceipts = excelUtils.readAllDataInExcel(BRFilepath, SheetName);
 		for (int i = 1; i < BankReceipts.length; i++) {
 			String Customer = BankReceipts[i][2];
 			String SISheetName = BankReceipts[i][4];
 			if (!Customer.equals("")) {
 				salesInvoiceFunc.verifyDirectSalesInvoiceExportBR(SISheetName, Customer);
-				excelUtils.writeDataInExcel(Filepath, SheetName, i, 25 + i,
+				excelUtils.writeDataInExcel(BRFilepath, SheetName, i, 25 + i,
 						dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(i - 1),
 								commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
 			}
@@ -3880,7 +3883,7 @@ public class BankReceiptFunctions {
 	 * @param SheetName
 	 */
 	public void BRMultiPartyMultiInvoiceThroughAddButtonUSD(String SheetName) {
-		BankReceipts = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		BankReceipts = excelUtils.readAllDataInExcel(BRFilepath, SheetName);
 		for (int i = 1; i < BankReceipts.length; i++) {
 			String Customer = BankReceipts[i][2];
 			String SISheetName = BankReceipts[i][4];
@@ -3901,7 +3904,7 @@ public class BankReceiptFunctions {
 	 * @param SheetName
 	 */
 	public void BRMultiPartyMultiInvoiceThroughGetDocumentUSD(String SheetName) {
-		BankReceipts = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		BankReceipts = excelUtils.readAllDataInExcel(BRFilepath, SheetName);
 		for (int i = 1; i < BankReceipts.length; i++) {
 			String Customer = BankReceipts[i][2];
 			String SISheetName = BankReceipts[i][4];
@@ -3922,7 +3925,7 @@ public class BankReceiptFunctions {
 	 * @param SheetName
 	 */
 	public void BRMultiPartyMultiInvoiceThroughPendingDocsUSD(String SheetName) {
-		BankReceipts = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		BankReceipts = excelUtils.readAllDataInExcel(BRFilepath, SheetName);
 		for (int i = 1; i < BankReceipts.length; i++) {
 			String Customer = BankReceipts[i][2];
 			String SISheetName = BankReceipts[i][4];
@@ -3944,7 +3947,7 @@ public class BankReceiptFunctions {
 	 * @param SheetName
 	 */
 	public void BRMultiPartyMultiInvoiceThroughAddButtonWithNewRefUSD(String SheetName) {
-		BankReceipts = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		BankReceipts = excelUtils.readAllDataInExcel(BRFilepath, SheetName);
 		for (int i = 1; i < BankReceipts.length; i++) {
 			String Customer = BankReceipts[i][2];
 			String SISheetName = BankReceipts[i][4];
@@ -3965,7 +3968,7 @@ public class BankReceiptFunctions {
 	 * @param SheetName
 	 */
 	public void BRMultiPartyMultiInvoiceThroughGetDocumentWithNewrefUSD(String SheetName) {
-		BankReceipts = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		BankReceipts = excelUtils.readAllDataInExcel(BRFilepath, SheetName);
 		for (int i = 1; i < BankReceipts.length; i++) {
 			String Customer = BankReceipts[i][2];
 			String SISheetName = BankReceipts[i][4];
@@ -3986,7 +3989,7 @@ public class BankReceiptFunctions {
 	 * @param SheetName
 	 */
 	public void BRMultiPartyMultiInvoiceThroughPendingDocsWithNewRefUSD(String SheetName) {
-		BankReceipts = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		BankReceipts = excelUtils.readAllDataInExcel(BRFilepath, SheetName);
 		for (int i = 1; i < BankReceipts.length; i++) {
 			String Customer = BankReceipts[i][2];
 			String SISheetName = BankReceipts[i][4];
@@ -4072,7 +4075,7 @@ public class BankReceiptFunctions {
 		clickPDCFlagInBR();
 		changeReferenceDateInBR(tomorrowDate);
 		clickBRHeaderWiseSaveButton();
-		BankReceipts = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		BankReceipts = excelUtils.readAllDataInExcel(BRFilepath, SheetName);
 		for (int i = 1; i < BankReceipts.length; i++) {
 			String GLAccountDesc = BankReceipts[i][1];
 			String PartyName = BankReceipts[i][3];
@@ -4096,10 +4099,10 @@ public class BankReceiptFunctions {
 				clickViewDetailsSaveButton();
 				clickBankViewDetailsCloseButton();
 				if (!Currency.equals("INR")) {
-					excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, dbCommonFunctions.ExchangeRateDetails(
+					excelUtils.writeDataInExcel(BRFilepath, SheetName, i, 11, dbCommonFunctions.ExchangeRateDetails(
 							Currency, commonFunc.getDataFromTestDataSheet("ExportSalesEXRateColumnName")));
 				} else {
-					excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, "1");
+					excelUtils.writeDataInExcel(BRFilepath, SheetName, i, 11, "1");
 				}
 				verifyBankReceiptLineDetailsWithDB(SheetName, i);
 			}
@@ -4111,7 +4114,7 @@ public class BankReceiptFunctions {
 		checkARMControlReceivedFromRqrdFlag();
 		clickCreateJournalButtonInBR();
 		verifyJournalAmountWithDB(webDB.getDataFromProperties("JournalPDC"),
-				VariableHandler.getBankPaymentOrReceiptDocNumber());
+				VariableHandler.getBankPaymentOrReceiptDocNumber(), BRFilepath);
 		verifyOverallHeaderAmountWithDB(SheetName);
 		clearDataInExcel(SheetName);
 		clickPostButton();
@@ -4200,7 +4203,7 @@ public class BankReceiptFunctions {
 	public void BankReceiptSIWithCharges(String SheetName) {
 		salesInvoiceFunc.verifyDirectSalesInvoiceBR(webDB.getDataFromProperties("BRSPSI"),
 				commonFunc.getDataFromTestDataSheet("CustomerName"));
-		excelUtils.writeDataInExcel(Filepath, SheetName, 1, 26,
+		excelUtils.writeDataInExcel(BRFilepath, SheetName, 1, 26,
 				dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(0),
 						commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
 		BankReceiptThroughAddButtonWithCharges(SheetName, commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
@@ -4216,7 +4219,7 @@ public class BankReceiptFunctions {
 	public void BankReceiptSIWithChargesUSD(String SheetName) {
 		salesInvoiceFunc.verifyDirectSalesInvoiceExportBR(webDB.getDataFromProperties("BRSPSIE"),
 				commonFunc.getDataFromTestDataSheet("Export_Customer_Name"));
-		excelUtils.writeDataInExcel(Filepath, SheetName, 1, 26,
+		excelUtils.writeDataInExcel(BRFilepath, SheetName, 1, 26,
 				dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(0),
 						commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
 		BankReceiptThroughAddButtonWithCharges(SheetName, commonFunc.getDataFromTestDataSheet("BankTransCurcyUSD"),
@@ -4247,7 +4250,7 @@ public class BankReceiptFunctions {
 		clickGetDocumentInBRHeader();
 		clickPendingReceivablesInBR();
 		chooseDocumentNumberAndClickSearchButtonInPendingReceivables(VariableHandler.getMultipleSIDocs(), SheetName);
-		BankReceipts = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		BankReceipts = excelUtils.readAllDataInExcel(BRFilepath, SheetName);
 		for (int i = 1; i < BankReceipts.length; i++) {
 			String GLAccountDesc = BankReceipts[i][1];
 			String PartyName = BankReceipts[i][3];
@@ -4271,20 +4274,20 @@ public class BankReceiptFunctions {
 					clickChargesFlagInBR();
 					clickBRLineWiseSaveButton();
 					if (!Currency.equals("INR")) {
-						excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, dbCommonFunctions.ExchangeRateDetails(
+						excelUtils.writeDataInExcel(BRFilepath, SheetName, i, 11, dbCommonFunctions.ExchangeRateDetails(
 								Currency, commonFunc.getDataFromTestDataSheet("ExportSalesEXRateColumnName")));
 					} else {
-						excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, "1");
+						excelUtils.writeDataInExcel(BRFilepath, SheetName, i, 11, "1");
 					}
 				} else {
 					if (!Currency.equals("INR")) {
-						excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, dbCommonFunctions.ExchangeRateDetails(
+						excelUtils.writeDataInExcel(BRFilepath, SheetName, i, 11, dbCommonFunctions.ExchangeRateDetails(
 								Currency, commonFunc.getDataFromTestDataSheet("ExportSalesEXRateColumnName")));
-						excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalBankUSD"), 0, 10,
+						excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalBankUSD"), 0, 10,
 								dbCommonFunctions.ExchangeRateDetails(Currency,
 										commonFunc.getDataFromTestDataSheet("ExportSalesEXRateColumnName")));
 					} else {
-						excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, "1");
+						excelUtils.writeDataInExcel(BRFilepath, SheetName, i, 11, "1");
 					}
 				}
 				verifyBankReceiptLineDetailsWithDB(SheetName, i);
@@ -4293,11 +4296,11 @@ public class BankReceiptFunctions {
 				enterRealizedAmountInBRHeader(BaseCURCY);
 			}
 			if (Currency.equals("INR")) {
-				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalBank"), 2, 6,
+				excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalBank"), 2, 6,
 						dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(0),
 								commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
 			} else {
-				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalBankUSD"), 2, 6,
+				excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalBankUSD"), 2, 6,
 						dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(0),
 								commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
 			}
@@ -4308,12 +4311,12 @@ public class BankReceiptFunctions {
 		clickCreateJournalButtonInBR();
 		if (Currency.equals("INR")) {
 			verifyJournalAmountWithDB(webDB.getDataFromProperties("JournalBank"),
-					VariableHandler.getBankPaymentOrReceiptDocNumber());
-			excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalBank"), 2, 6, "0");
+					VariableHandler.getBankPaymentOrReceiptDocNumber(), BRFilepath);
+			excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalBank"), 2, 6, "0");
 		} else {
 			verifyJournalAmountWithDB(webDB.getDataFromProperties("JournalBankUSD"),
-					VariableHandler.getBankPaymentOrReceiptDocNumber());
-			excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalBankUSD"), 2, 6, "0");
+					VariableHandler.getBankPaymentOrReceiptDocNumber(), BRFilepath);
+			excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalBankUSD"), 2, 6, "0");
 		}
 		verifyOverallHeaderAmountWithDB(SheetName);
 		clearDataInExcel(SheetName);
@@ -4401,7 +4404,7 @@ public class BankReceiptFunctions {
 				VariableHandler.getBankPaymentOrReceiptDocNumber());
 		bankpaymentfunc.verifyBankPaymentDetailsWithDB(BankName,
 				commonFunc.getDataFromTestDataSheet("BankReceiptPrefix"), Currency);
-		BankReceipts = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		BankReceipts = excelUtils.readAllDataInExcel(BRFilepath, SheetName);
 		for (int i = 1; i < BankReceipts.length; i++) {
 			String GLAccountDesc = BankReceipts[i][1];
 			String PartyName = BankReceipts[i][3];
@@ -4428,13 +4431,13 @@ public class BankReceiptFunctions {
 				chooseLineWiseDRCRInBR(LineWiseDRCR);
 				clickBRLineWiseSaveButton();
 				if (!Currency.equals("INR")) {
-					excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, dbCommonFunctions.ExchangeRateDetails(
+					excelUtils.writeDataInExcel(BRFilepath, SheetName, i, 11, dbCommonFunctions.ExchangeRateDetails(
 							Currency, commonFunc.getDataFromTestDataSheet("ExportSalesEXRateColumnName")));
-					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalREVUSD"), 0, 10,
+					excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalREVUSD"), 0, 10,
 							dbCommonFunctions.ExchangeRateDetails(Currency,
 									commonFunc.getDataFromTestDataSheet("ExportSalesEXRateColumnName")));
 				} else {
-					excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, "1");
+					excelUtils.writeDataInExcel(BRFilepath, SheetName, i, 11, "1");
 				}
 				verifyBankReceiptLineDetailsWithDB(SheetName, i);
 			}
@@ -4447,10 +4450,10 @@ public class BankReceiptFunctions {
 		clickCreateJournalButtonInBR();
 		if (Currency.equals("INR")) {
 			verifyJournalAmountWithDB(webDB.getDataFromProperties("JournalREV"),
-					VariableHandler.getBankPaymentOrReceiptDocNumber());
+					VariableHandler.getBankPaymentOrReceiptDocNumber(), BRFilepath);
 		} else {
 			verifyJournalAmountWithDB(webDB.getDataFromProperties("JournalREVUSD"),
-					VariableHandler.getBankPaymentOrReceiptDocNumber());
+					VariableHandler.getBankPaymentOrReceiptDocNumber(), BRFilepath);
 		}
 		verifyOverallHeaderAmountWithDB(SheetName);
 		clearDataInExcel(SheetName);
@@ -4490,7 +4493,7 @@ public class BankReceiptFunctions {
 				VariableHandler.getBankPaymentOrReceiptDocNumber());
 		bankpaymentfunc.verifyBankPaymentDetailsWithDB(commonFunc.getDataFromTestDataSheet("BankName"),
 				commonFunc.getDataFromTestDataSheet("BankReceiptPrefix"), Currency);
-		BankReceipts = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		BankReceipts = excelUtils.readAllDataInExcel(BRFilepath, SheetName);
 		for (int i = 1; i < BankReceipts.length; i++) {
 			String GLAccountDesc = BankReceipts[i][1];
 			String PartyName = BankReceipts[i][3];
@@ -4520,10 +4523,10 @@ public class BankReceiptFunctions {
 				clickLineWiseGSTIconInBR(i);
 				enterValuesInGSTScreen(StateCode, GSTSupplierName, GSTIN, Today, BillNumber);
 				if (!Currency.equals("INR")) {
-					excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, dbCommonFunctions.ExchangeRateDetails(
+					excelUtils.writeDataInExcel(BRFilepath, SheetName, i, 11, dbCommonFunctions.ExchangeRateDetails(
 							Currency, commonFunc.getDataFromTestDataSheet("ExportSalesEXRateColumnName")));
 				} else {
-					excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, "1");
+					excelUtils.writeDataInExcel(BRFilepath, SheetName, i, 11, "1");
 				}
 				verifyBankReceiptLineDetailsWithDB(SheetName, i);
 			}
@@ -4535,7 +4538,7 @@ public class BankReceiptFunctions {
 		checkARMControlReceivedFromRqrdFlag();
 		clickCreateJournalButtonInBR();
 		verifyJournalAmountWithDB(webDB.getDataFromProperties("JournalREVGST"),
-				VariableHandler.getBankPaymentOrReceiptDocNumber());
+				VariableHandler.getBankPaymentOrReceiptDocNumber(), BRFilepath);
 		verifyOverallHeaderAmountWithDB(SheetName);
 		clearDataInExcel(SheetName);
 		clickPostButton();
@@ -4670,7 +4673,7 @@ public class BankReceiptFunctions {
 	public void BRSinglePartySingleInvoiceThroughAddButtonBankCurcyUSD(String SheetName) {
 		salesInvoiceFunc.verifyDirectSalesInvoiceBR(webDB.getDataFromProperties("BRSPSI"),
 				commonFunc.getDataFromTestDataSheet("CustomerName"));
-		excelUtils.writeDataInExcel(Filepath, SheetName, 1, 26,
+		excelUtils.writeDataInExcel(BRFilepath, SheetName, 1, 26,
 				dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(0),
 						commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
 		verifyCustomerDocumentWithDBAfterSI(VariableHandler.getMultipleSIDocs());
@@ -4688,7 +4691,7 @@ public class BankReceiptFunctions {
 	public void BRSinglePartySingleInvoiceThroughGetDocumentBankCurcyUSD(String SheetName) {
 		salesInvoiceFunc.verifyDirectSalesInvoiceBR(webDB.getDataFromProperties("BRSPSI"),
 				commonFunc.getDataFromTestDataSheet("CustomerName"));
-		excelUtils.writeDataInExcel(Filepath, SheetName, 1, 26,
+		excelUtils.writeDataInExcel(BRFilepath, SheetName, 1, 26,
 				dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(0),
 						commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
 		verifyCustomerDocumentWithDBAfterSI(VariableHandler.getMultipleSIDocs());
@@ -4706,7 +4709,7 @@ public class BankReceiptFunctions {
 	public void BRSinglePartySingleInvoiceThroughPendingDocsBankCurcyUSD(String SheetName) {
 		salesInvoiceFunc.verifyDirectSalesInvoiceBR(webDB.getDataFromProperties("BRSPSI"),
 				commonFunc.getDataFromTestDataSheet("CustomerName"));
-		excelUtils.writeDataInExcel(Filepath, SheetName, 1, 26,
+		excelUtils.writeDataInExcel(BRFilepath, SheetName, 1, 26,
 				dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(0),
 						commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
 		verifyCustomerDocumentWithDBAfterSI(VariableHandler.getMultipleSIDocs());
@@ -4723,7 +4726,7 @@ public class BankReceiptFunctions {
 	 * @param SheetName
 	 */
 	public void BRSinglePartyMultiInvoiceThroughAddButtonBankCurcyUSD(String SheetName) {
-		BankReceipts = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		BankReceipts = excelUtils.readAllDataInExcel(BRFilepath, SheetName);
 		for (int i = 1; i < BankReceipts.length; i++) {
 			String Customer = BankReceipts[i][2];
 			String SISheetName = BankReceipts[i][4];
@@ -4744,7 +4747,7 @@ public class BankReceiptFunctions {
 	 * @param SheetName
 	 */
 	public void BRSinglePartyMultiInvoiceThroughGetDocumentBankCurcyUSD(String SheetName) {
-		BankReceipts = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		BankReceipts = excelUtils.readAllDataInExcel(BRFilepath, SheetName);
 		for (int i = 1; i < BankReceipts.length; i++) {
 			String Customer = BankReceipts[i][2];
 			String SISheetName = BankReceipts[i][4];
@@ -4765,7 +4768,7 @@ public class BankReceiptFunctions {
 	 * @param SheetName
 	 */
 	public void BRSinglePartyMultiInvoiceThroughPendingDocsBankCurcyUSD(String SheetName) {
-		BankReceipts = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		BankReceipts = excelUtils.readAllDataInExcel(BRFilepath, SheetName);
 		for (int i = 1; i < BankReceipts.length; i++) {
 			String Customer = BankReceipts[i][2];
 			String SISheetName = BankReceipts[i][4];
@@ -4787,13 +4790,13 @@ public class BankReceiptFunctions {
 	 * @param SheetName
 	 */
 	public void BRMultiPartySingleInvoiceThroughAddButtonBankCurcyUSD(String SheetName) {
-		BankReceipts = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		BankReceipts = excelUtils.readAllDataInExcel(BRFilepath, SheetName);
 		for (int i = 1; i < BankReceipts.length; i++) {
 			String Customer = BankReceipts[i][2];
 			String SISheetName = BankReceipts[i][4];
 			if (!Customer.equals("")) {
 				salesInvoiceFunc.verifyDirectSalesInvoiceBR(SISheetName, Customer);
-				excelUtils.writeDataInExcel(Filepath, SheetName, i, 25 + i,
+				excelUtils.writeDataInExcel(BRFilepath, SheetName, i, 25 + i,
 						dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(i - 1),
 								commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
 			}
@@ -4811,13 +4814,13 @@ public class BankReceiptFunctions {
 	 * @param SheetName
 	 */
 	public void BRMultiPartySingleInvoiceThroughGetDocumentBankCurcyUSD(String SheetName) {
-		BankReceipts = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		BankReceipts = excelUtils.readAllDataInExcel(BRFilepath, SheetName);
 		for (int i = 1; i < BankReceipts.length; i++) {
 			String Customer = BankReceipts[i][2];
 			String SISheetName = BankReceipts[i][4];
 			if (!Customer.equals("")) {
 				salesInvoiceFunc.verifyDirectSalesInvoiceBR(SISheetName, Customer);
-				excelUtils.writeDataInExcel(Filepath, SheetName, i, 25 + i,
+				excelUtils.writeDataInExcel(BRFilepath, SheetName, i, 25 + i,
 						dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(i - 1),
 								commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
 			}
@@ -4835,13 +4838,13 @@ public class BankReceiptFunctions {
 	 * @param SheetName
 	 */
 	public void BRMultiPartySingleInvoiceThroughPendingDocsBankCurcyUSD(String SheetName) {
-		BankReceipts = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		BankReceipts = excelUtils.readAllDataInExcel(BRFilepath, SheetName);
 		for (int i = 1; i < BankReceipts.length; i++) {
 			String Customer = BankReceipts[i][2];
 			String SISheetName = BankReceipts[i][4];
 			if (!Customer.equals("")) {
 				salesInvoiceFunc.verifyDirectSalesInvoiceBR(SISheetName, Customer);
-				excelUtils.writeDataInExcel(Filepath, SheetName, i, 25 + i,
+				excelUtils.writeDataInExcel(BRFilepath, SheetName, i, 25 + i,
 						dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(i - 1),
 								commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
 			}
@@ -4860,7 +4863,7 @@ public class BankReceiptFunctions {
 	 * @param SheetName
 	 */
 	public void BRMultiPartyMultiInvoiceThroughAddButtonBankCurcyUSD(String SheetName) {
-		BankReceipts = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		BankReceipts = excelUtils.readAllDataInExcel(BRFilepath, SheetName);
 		for (int i = 1; i < BankReceipts.length; i++) {
 			String Customer = BankReceipts[i][2];
 			String SISheetName = BankReceipts[i][4];
@@ -4881,7 +4884,7 @@ public class BankReceiptFunctions {
 	 * @param SheetName
 	 */
 	public void BRMultiPartyMultiInvoiceThroughGetDocumentBankUSD(String SheetName) {
-		BankReceipts = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		BankReceipts = excelUtils.readAllDataInExcel(BRFilepath, SheetName);
 		for (int i = 1; i < BankReceipts.length; i++) {
 			String Customer = BankReceipts[i][2];
 			String SISheetName = BankReceipts[i][4];
@@ -4902,7 +4905,7 @@ public class BankReceiptFunctions {
 	 * @param SheetName
 	 */
 	public void BRMultiPartyMultiInvoiceThroughPendingDocsBankCurcyUSD(String SheetName) {
-		BankReceipts = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		BankReceipts = excelUtils.readAllDataInExcel(BRFilepath, SheetName);
 		for (int i = 1; i < BankReceipts.length; i++) {
 			String Customer = BankReceipts[i][2];
 			String SISheetName = BankReceipts[i][4];
@@ -4924,7 +4927,7 @@ public class BankReceiptFunctions {
 	 * @param SheetName
 	 */
 	public void BRMultiPartyMultiInvoiceThroughAddButtonWithNewRefBankCurcyUSD(String SheetName) {
-		BankReceipts = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		BankReceipts = excelUtils.readAllDataInExcel(BRFilepath, SheetName);
 		for (int i = 1; i < BankReceipts.length; i++) {
 			String Customer = BankReceipts[i][2];
 			String SISheetName = BankReceipts[i][4];
@@ -4945,7 +4948,7 @@ public class BankReceiptFunctions {
 	 * @param SheetName
 	 */
 	public void BRMultiPartyMultiInvoiceThroughGetDocumentWithNewrefBankCurcyUSD(String SheetName) {
-		BankReceipts = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		BankReceipts = excelUtils.readAllDataInExcel(BRFilepath, SheetName);
 		for (int i = 1; i < BankReceipts.length; i++) {
 			String Customer = BankReceipts[i][2];
 			String SISheetName = BankReceipts[i][4];
@@ -4966,7 +4969,7 @@ public class BankReceiptFunctions {
 	 * @param SheetName
 	 */
 	public void BRMultiPartyMultiInvoiceThroughPendingDocsWithNewRefBankCurcyUSD(String SheetName) {
-		BankReceipts = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		BankReceipts = excelUtils.readAllDataInExcel(BRFilepath, SheetName);
 		for (int i = 1; i < BankReceipts.length; i++) {
 			String Customer = BankReceipts[i][2];
 			String SISheetName = BankReceipts[i][4];
@@ -4990,7 +4993,7 @@ public class BankReceiptFunctions {
 	public void BankReceiptSIWithChargesBankCurcyUSD(String SheetName) {
 		salesInvoiceFunc.verifyDirectSalesInvoiceBR(webDB.getDataFromProperties("BRSPSI"),
 				commonFunc.getDataFromTestDataSheet("CustomerName"));
-		excelUtils.writeDataInExcel(Filepath, SheetName, 1, 26,
+		excelUtils.writeDataInExcel(BRFilepath, SheetName, 1, 26,
 				dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(0),
 						commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
 		verifyCustomerDocumentWithDBAfterSI(VariableHandler.getMultipleSIDocs());
@@ -5330,7 +5333,7 @@ public class BankReceiptFunctions {
 				VariableHandler.getBankPaymentOrReceiptDocNumber());
 		bankpaymentfunc.verifyBankPaymentDetailsWithDB(BankName,
 				commonFunc.getDataFromTestDataSheet("BankReceiptPrefix"), Currency);
-		BankReceipts = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		BankReceipts = excelUtils.readAllDataInExcel(BRFilepath, SheetName);
 		for (int i = 1; i < BankReceipts.length; i++) {
 			String GLAccountDesc = BankReceipts[i][1];
 			String PartyName = BankReceipts[i][3];
@@ -5351,10 +5354,10 @@ public class BankReceiptFunctions {
 				clickBRLineWiseAddButton(i);
 				clickPendingReceivablesAdvnaceInBR();
 				if (!Currency.equals("INR")) {
-					excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, dbCommonFunctions.ExchangeRateDetails(
+					excelUtils.writeDataInExcel(BRFilepath, SheetName, i, 11, dbCommonFunctions.ExchangeRateDetails(
 							Currency, commonFunc.getDataFromTestDataSheet("ExportSalesEXRateColumnName")));
 				} else {
-					excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, "1");
+					excelUtils.writeDataInExcel(BRFilepath, SheetName, i, 11, "1");
 				}
 				selectAdvanceDocumentInPendingReceivablesAdvance(PartyName, VariableHandler.getMultipleAdvRecDocs(),
 						SheetName);
@@ -5408,16 +5411,16 @@ public class BankReceiptFunctions {
 		clickPendingReceivablesAdvnaceInBR();
 		chooseAdvanceDocumentNumberAndClickSearchButtonInPendingReceivablesAdvance(
 				VariableHandler.getMultipleAdvRecDocs(), SheetName);
-		BankReceipts = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		BankReceipts = excelUtils.readAllDataInExcel(BRFilepath, SheetName);
 		for (int i = 1; i < BankReceipts.length; i++) {
 			String GLAccountDesc = BankReceipts[i][1];
 			String BaseCURCY = BankReceipts[i][13];
 			if (!GLAccountDesc.equals("")) {
 				if (!Currency.equals("INR")) {
-					excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, dbCommonFunctions.ExchangeRateDetails(
+					excelUtils.writeDataInExcel(BRFilepath, SheetName, i, 11, dbCommonFunctions.ExchangeRateDetails(
 							Currency, commonFunc.getDataFromTestDataSheet("ExportSalesEXRateColumnName")));
 				} else {
-					excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, "1");
+					excelUtils.writeDataInExcel(BRFilepath, SheetName, i, 11, "1");
 				}
 //				verifyBankReceiptLineDetailsWithDB(SheetName, i);
 			}
@@ -5465,34 +5468,34 @@ public class BankReceiptFunctions {
 		commonFunc.checkRefreshCellsDisappear();
 		sendReferenceNumberInBR(commonFunc.getDataFromTestDataSheet("Reference Number"));
 		clickBRHeaderWiseSaveButton();
-		BankReceipts = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		BankReceipts = excelUtils.readAllDataInExcel(BRFilepath, SheetName);
 		for (int i = 1; i < BankReceipts.length; i++) {
 			String GLAccountDesc = BankReceipts[i][1];
 			String BaseCURCY = BankReceipts[i][16];
 			if (!GLAccountDesc.equals("")) {
 				if (!Currency.equals("INR")) {
-					excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, dbCommonFunctions.ExchangeRateDetails(
+					excelUtils.writeDataInExcel(BRFilepath, SheetName, i, 11, dbCommonFunctions.ExchangeRateDetails(
 							Currency, commonFunc.getDataFromTestDataSheet("ExportSalesEXRateColumnName")));
 					for (int j = 1; j <= VariableHandler.getMultipleSoDocs().size(); j++) {
 						verifyBankReceiptAdvanceLineDetailsWithDB(SheetName, i,
 								VariableHandler.getMultipleSoDocs().get(i - 1));
-						excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalUSD"), 1, 5 + j,
+						excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalUSD"), 1, 5 + j,
 								dbCommonFunctions.SOAdvanceDetails(VariableHandler.getMultipleSoDocs().get(j - 1),
 										commonFunc.getDataFromTestDataSheet("SODBAdvToBeReceivedColumnName")));
-						excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalUSD"), 2, 5 + j,
+						excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalUSD"), 2, 5 + j,
 								dbCommonFunctions.SOAdvanceDetails(VariableHandler.getMultipleSoDocs().get(j - 1),
 										commonFunc.getDataFromTestDataSheet("SODBAdvToBeReceivedColumnName")));
 					}
 				} else {
-					excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, "1");
+					excelUtils.writeDataInExcel(BRFilepath, SheetName, i, 11, "1");
 				}
 				for (int j = 1; j <= VariableHandler.getMultipleSoDocs().size(); j++) {
 					verifyBankReceiptAdvanceLineDetailsWithDB(SheetName, i,
 							VariableHandler.getMultipleSoDocs().get(i - 1));
-					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("Journal"), 1, 5 + j,
+					excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("Journal"), 1, 5 + j,
 							dbCommonFunctions.SOAdvanceDetails(VariableHandler.getMultipleSoDocs().get(j - 1),
 									commonFunc.getDataFromTestDataSheet("SODBAdvToBeReceivedColumnName")));
-					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("Journal"), 2, 5 + j,
+					excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("Journal"), 2, 5 + j,
 							dbCommonFunctions.SOAdvanceDetails(VariableHandler.getMultipleSoDocs().get(j - 1),
 									commonFunc.getDataFromTestDataSheet("SODBAdvToBeReceivedColumnName")));
 				}
@@ -5506,17 +5509,17 @@ public class BankReceiptFunctions {
 		clickCreateJournalButtonInBR();
 		if (Currency.equals("INR")) {
 			verifyJournalAmountWithDB(webDB.getDataFromProperties("Journal"),
-					VariableHandler.getBankPaymentOrReceiptDocNumber());
+					VariableHandler.getBankPaymentOrReceiptDocNumber(), BRFilepath);
 			for (int j = 1; j <= VariableHandler.getMultipleSoDocs().size(); j++) {
-				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("Journal"), 1, 5 + j, "0");
-				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("Journal"), 2, 5 + j, "0");
+				excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("Journal"), 1, 5 + j, "0");
+				excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("Journal"), 2, 5 + j, "0");
 			}
 		} else {
 			verifyJournalAmountWithDB(webDB.getDataFromProperties("JournalUSD"),
-					VariableHandler.getBankPaymentOrReceiptDocNumber());
+					VariableHandler.getBankPaymentOrReceiptDocNumber(), BRFilepath);
 			for (int j = 1; j <= VariableHandler.getMultipleSoDocs().size(); j++) {
-				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalUSD"), 1, 5 + j, "0");
-				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalUSD"), 2, 5 + j, "0");
+				excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalUSD"), 1, 5 + j, "0");
+				excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalUSD"), 2, 5 + j, "0");
 			}
 		}
 		verifyOverallHeaderAmountWithDB(SheetName);
@@ -5555,24 +5558,24 @@ public class BankReceiptFunctions {
 		commonFunc.checkRefreshCellsDisappear();
 		sendReferenceNumberInBR(commonFunc.getDataFromTestDataSheet("Reference Number"));
 		clickBRHeaderWiseSaveButton();
-		BankReceipts = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		BankReceipts = excelUtils.readAllDataInExcel(BRFilepath, SheetName);
 		for (int i = 1; i < BankReceipts.length; i++) {
 			String GLAccountDesc = BankReceipts[i][1];
 			String BaseCURCY = BankReceipts[i][16];
 			if (!GLAccountDesc.equals("")) {
 				if (!Currency.equals("INR")) {
-					excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, dbCommonFunctions.ExchangeRateDetails(
+					excelUtils.writeDataInExcel(BRFilepath, SheetName, i, 11, dbCommonFunctions.ExchangeRateDetails(
 							Currency, commonFunc.getDataFromTestDataSheet("ExportSalesEXRateColumnName")));
 				} else {
-					excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, "1");
+					excelUtils.writeDataInExcel(BRFilepath, SheetName, i, 11, "1");
 				}
 				for (int j = 1; j <= VariableHandler.getMultipleSoDocs().size(); j++) {
 					verifyBankReceiptAdvanceLineDetailsWithDB(SheetName, i,
 							VariableHandler.getMultipleSoDocs().get(i - 1));
-					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalINR"), 1, 5 + j,
+					excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalINR"), 1, 5 + j,
 							dbCommonFunctions.SOAdvanceDetails(VariableHandler.getMultipleSoDocs().get(j - 1),
 									commonFunc.getDataFromTestDataSheet("SODBAdvToBeReceivedColumnName")));
-					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalINR"), 2, 5 + j,
+					excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalINR"), 2, 5 + j,
 							dbCommonFunctions.SOAdvanceDetails(VariableHandler.getMultipleSoDocs().get(j - 1),
 									commonFunc.getDataFromTestDataSheet("SODBAdvToBeReceivedColumnName")));
 				}
@@ -5585,10 +5588,10 @@ public class BankReceiptFunctions {
 		checkARMControlReceivedFromRqrdFlag();
 		clickCreateJournalButtonInBR();
 		verifyJournalAmountWithDB(webDB.getDataFromProperties("JournalINR"),
-				VariableHandler.getBankPaymentOrReceiptDocNumber());
+				VariableHandler.getBankPaymentOrReceiptDocNumber(), BRFilepath);
 		for (int j = 1; j <= VariableHandler.getMultipleSoDocs().size(); j++) {
-			excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalINR"), 1, 5 + j, "0");
-			excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("JournalINR"), 2, 5 + j, "0");
+			excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalINR"), 1, 5 + j, "0");
+			excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("JournalINR"), 2, 5 + j, "0");
 		}
 		verifyOverallHeaderAmountWithDB(SheetName);
 		clearDataInExcel(SheetName);
@@ -5610,8 +5613,8 @@ public class BankReceiptFunctions {
 	 * @author Harikrishna - RMITS
 	 * @param SheetName
 	 */
-	public void verifyJournalAmountWithDB(String SheetName, String DocumentNumber) {
-		BankReceipts = excelUtils.readAllDataInExcel(Filepath, SheetName);
+	public void verifyJournalAmountWithDB(String SheetName, String DocumentNumber, String FileName) {
+		BankReceipts = excelUtils.readAllDataInExcel(FileName, SheetName);
 		for (int i = 1; i < BankReceipts.length; i++) {
 			String Unit = BankReceipts[i][1];
 			String GLAccountNumber = BankReceipts[i][2];
@@ -5695,7 +5698,7 @@ public class BankReceiptFunctions {
 		salesOrdFunc.advanceSalesOrder();
 		VariableHandler.setMultipleSoDocs(salesOrdFunc.MultipleSO);
 		VariableHandler.setMultipleAdvRecDocs(salesOrdFunc.MultiAdvReceiptDocumentNumber);
-		excelUtils.writeDataInExcel(Filepath, SheetName, 1, 26,
+		excelUtils.writeDataInExcel(BRFilepath, SheetName, 1, 26,
 				dbCommonFunctions.SOAdvanceDetails(VariableHandler.getMultipleSoDocs().get(0),
 						commonFunc.getDataFromTestDataSheet("SODBAdvToBeReceivedColumnName")));
 		AdvanceBankReceiptThroughPendingDocs(commonFunc.getDataFromTestDataSheet("CreationTypeSingle"), SheetName,
@@ -5747,10 +5750,10 @@ public class BankReceiptFunctions {
 		}
 		VariableHandler.setMultipleSoDocs(salesOrdFunc.MultipleSO);
 		VariableHandler.setMultipleAdvRecDocs(salesOrdFunc.MultiAdvReceiptDocumentNumber);
-		excelUtils.writeDataInExcel(Filepath, SheetName, 1, 26,
+		excelUtils.writeDataInExcel(BRFilepath, SheetName, 1, 26,
 				dbCommonFunctions.SOAdvanceDetails(VariableHandler.getMultipleSoDocs().get(0),
 						commonFunc.getDataFromTestDataSheet("SODBAdvToBeReceivedColumnName")));
-		excelUtils.writeDataInExcel(Filepath, SheetName, 1, 27,
+		excelUtils.writeDataInExcel(BRFilepath, SheetName, 1, 27,
 				dbCommonFunctions.SOAdvanceDetails(VariableHandler.getMultipleSoDocs().get(1),
 						commonFunc.getDataFromTestDataSheet("SODBAdvToBeReceivedColumnName")));
 		AdvanceBankReceiptThroughPendingDocs(commonFunc.getDataFromTestDataSheet("CreationTypeSingle"), SheetName,
@@ -5796,7 +5799,7 @@ public class BankReceiptFunctions {
 		salesOrdFunc.advanceSalesOrderExport();
 		VariableHandler.setMultipleSoDocs(salesOrdFunc.MultipleSO);
 		VariableHandler.setMultipleAdvRecDocs(salesOrdFunc.MultiAdvReceiptDocumentNumber);
-		excelUtils.writeDataInExcel(Filepath, SheetName, 1, 26,
+		excelUtils.writeDataInExcel(BRFilepath, SheetName, 1, 26,
 				dbCommonFunctions.SOAdvanceDetails(VariableHandler.getMultipleSoDocs().get(0),
 						commonFunc.getDataFromTestDataSheet("SODBAdvToBeReceivedColumnName")));
 		AdvanceBankReceiptThroughPendingDocs(commonFunc.getDataFromTestDataSheet("CreationTypeSingle"), SheetName,
@@ -5815,7 +5818,7 @@ public class BankReceiptFunctions {
 	 */
 	public void verifyPendingReceivablesAdvanceSODocumentThroughGetDocWithDB(String SheetName, String VoucherNumber,
 			int i1, String SalesOrder) {
-		BankReceipts = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		BankReceipts = excelUtils.readAllDataInExcel(BRFilepath, SheetName);
 		for (int i = i1; i <= i1; i++) {
 			String PartyID = BankReceipts[i][2];
 			String PartyName = BankReceipts[i][3];
@@ -5901,7 +5904,7 @@ public class BankReceiptFunctions {
 	 */
 	public void verifyBankReceiptAdvanceLineDetailsWithDB(String SheetName, int i1, String SalesOrder) {
 
-		BankReceipts = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		BankReceipts = excelUtils.readAllDataInExcel(BRFilepath, SheetName);
 		for (int i = i1; i <= i1; i++) {
 			String GLAccountDesc = BankReceipts[i][1];
 			String PartyID = BankReceipts[i][2];
@@ -6118,10 +6121,10 @@ public class BankReceiptFunctions {
 		}
 		VariableHandler.setMultipleSoDocs(salesOrdFunc.MultipleSO);
 		VariableHandler.setMultipleAdvRecDocs(salesOrdFunc.MultiAdvReceiptDocumentNumber);
-		excelUtils.writeDataInExcel(Filepath, SheetName, 1, 26,
+		excelUtils.writeDataInExcel(BRFilepath, SheetName, 1, 26,
 				dbCommonFunctions.SOAdvanceDetails(VariableHandler.getMultipleSoDocs().get(0),
 						commonFunc.getDataFromTestDataSheet("SODBAdvToBeReceivedColumnName")));
-		excelUtils.writeDataInExcel(Filepath, SheetName, 1, 27,
+		excelUtils.writeDataInExcel(BRFilepath, SheetName, 1, 27,
 				dbCommonFunctions.SOAdvanceDetails(VariableHandler.getMultipleSoDocs().get(1),
 						commonFunc.getDataFromTestDataSheet("SODBAdvToBeReceivedColumnName")));
 		AdvanceBankReceiptThroughPendingDocs(commonFunc.getDataFromTestDataSheet("CreationTypeSingle"), SheetName,
@@ -6302,7 +6305,7 @@ public class BankReceiptFunctions {
 		salesOrdFunc.advanceSalesOrder();
 		VariableHandler.setMultipleSoDocs(salesOrdFunc.MultipleSO);
 		VariableHandler.setMultipleAdvRecDocs(salesOrdFunc.MultiAdvReceiptDocumentNumber);
-		excelUtils.writeDataInExcel(Filepath, SheetName, 1, 26,
+		excelUtils.writeDataInExcel(BRFilepath, SheetName, 1, 26,
 				dbCommonFunctions.SOAdvanceDetails(VariableHandler.getMultipleSoDocs().get(0),
 						commonFunc.getDataFromTestDataSheet("SODBAdvToBeReceivedColumnName")));
 		AdvanceBankReceiptThroughAddButton(SheetName, commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
@@ -6320,7 +6323,7 @@ public class BankReceiptFunctions {
 		salesOrdFunc.advanceSalesOrder();
 		VariableHandler.setMultipleSoDocs(salesOrdFunc.MultipleSO);
 		VariableHandler.setMultipleAdvRecDocs(salesOrdFunc.MultiAdvReceiptDocumentNumber);
-		excelUtils.writeDataInExcel(Filepath, SheetName, 1, 26,
+		excelUtils.writeDataInExcel(BRFilepath, SheetName, 1, 26,
 				dbCommonFunctions.SOAdvanceDetails(VariableHandler.getMultipleSoDocs().get(0),
 						commonFunc.getDataFromTestDataSheet("SODBAdvToBeReceivedColumnName")));
 		AdvanceBankReceiptThroughGetDocument(SheetName, commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
@@ -6338,7 +6341,7 @@ public class BankReceiptFunctions {
 		salesOrdFunc.advanceSalesOrder();
 		VariableHandler.setMultipleSoDocs(salesOrdFunc.MultipleSO);
 		VariableHandler.setMultipleAdvRecDocs(salesOrdFunc.MultiAdvReceiptDocumentNumber);
-		excelUtils.writeDataInExcel(Filepath, SheetName, 1, 26,
+		excelUtils.writeDataInExcel(BRFilepath, SheetName, 1, 26,
 				dbCommonFunctions.SOAdvanceDetails(VariableHandler.getMultipleSoDocs().get(0),
 						commonFunc.getDataFromTestDataSheet("SODBAdvToBeReceivedColumnName")));
 		AdvanceBankReceiptThroughPendingDocsBankUSD(commonFunc.getDataFromTestDataSheet("CreationTypeSingle"),
@@ -6359,10 +6362,10 @@ public class BankReceiptFunctions {
 		}
 		VariableHandler.setMultipleSoDocs(salesOrdFunc.MultipleSO);
 		VariableHandler.setMultipleAdvRecDocs(salesOrdFunc.MultiAdvReceiptDocumentNumber);
-		excelUtils.writeDataInExcel(Filepath, SheetName, 1, 26,
+		excelUtils.writeDataInExcel(BRFilepath, SheetName, 1, 26,
 				dbCommonFunctions.SOAdvanceDetails(VariableHandler.getMultipleSoDocs().get(0),
 						commonFunc.getDataFromTestDataSheet("SODBAdvToBeReceivedColumnName")));
-		excelUtils.writeDataInExcel(Filepath, SheetName, 1, 27,
+		excelUtils.writeDataInExcel(BRFilepath, SheetName, 1, 27,
 				dbCommonFunctions.SOAdvanceDetails(VariableHandler.getMultipleSoDocs().get(1),
 						commonFunc.getDataFromTestDataSheet("SODBAdvToBeReceivedColumnName")));
 		AdvanceBankReceiptThroughAddButton(SheetName, commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
@@ -6382,10 +6385,10 @@ public class BankReceiptFunctions {
 		}
 		VariableHandler.setMultipleSoDocs(salesOrdFunc.MultipleSO);
 		VariableHandler.setMultipleAdvRecDocs(salesOrdFunc.MultiAdvReceiptDocumentNumber);
-		excelUtils.writeDataInExcel(Filepath, SheetName, 1, 26,
+		excelUtils.writeDataInExcel(BRFilepath, SheetName, 1, 26,
 				dbCommonFunctions.SOAdvanceDetails(VariableHandler.getMultipleSoDocs().get(0),
 						commonFunc.getDataFromTestDataSheet("SODBAdvToBeReceivedColumnName")));
-		excelUtils.writeDataInExcel(Filepath, SheetName, 1, 27,
+		excelUtils.writeDataInExcel(BRFilepath, SheetName, 1, 27,
 				dbCommonFunctions.SOAdvanceDetails(VariableHandler.getMultipleSoDocs().get(1),
 						commonFunc.getDataFromTestDataSheet("SODBAdvToBeReceivedColumnName")));
 		AdvanceBankReceiptThroughGetDocument(SheetName, commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
@@ -6405,10 +6408,10 @@ public class BankReceiptFunctions {
 		}
 		VariableHandler.setMultipleSoDocs(salesOrdFunc.MultipleSO);
 		VariableHandler.setMultipleAdvRecDocs(salesOrdFunc.MultiAdvReceiptDocumentNumber);
-		excelUtils.writeDataInExcel(Filepath, SheetName, 1, 26,
+		excelUtils.writeDataInExcel(BRFilepath, SheetName, 1, 26,
 				dbCommonFunctions.SOAdvanceDetails(VariableHandler.getMultipleSoDocs().get(0),
 						commonFunc.getDataFromTestDataSheet("SODBAdvToBeReceivedColumnName")));
-		excelUtils.writeDataInExcel(Filepath, SheetName, 1, 27,
+		excelUtils.writeDataInExcel(BRFilepath, SheetName, 1, 27,
 				dbCommonFunctions.SOAdvanceDetails(VariableHandler.getMultipleSoDocs().get(1),
 						commonFunc.getDataFromTestDataSheet("SODBAdvToBeReceivedColumnName")));
 		AdvanceBankReceiptThroughPendingDocsBankUSD(commonFunc.getDataFromTestDataSheet("CreationTypeSingle"),
@@ -6437,7 +6440,7 @@ public class BankReceiptFunctions {
 				VariableHandler.getBankPaymentOrReceiptDocNumber());
 		bankpaymentfunc.verifyBankPaymentDetailsWithDB(BankName,
 				commonFunc.getDataFromTestDataSheet("BankReceiptPrefix"), Currency);
-		BankReceipts = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		BankReceipts = excelUtils.readAllDataInExcel(BRFilepath, SheetName);
 		for (int i = 1; i < BankReceipts.length; i++) {
 			String GLAccountDesc = BankReceipts[i][1];
 			String PartyName = BankReceipts[i][3];
@@ -6464,10 +6467,10 @@ public class BankReceiptFunctions {
 				clickViewDetailsSaveButton();
 				clickBankViewDetailsCloseButton();
 				if (!Currency.equals("INR")) {
-					excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, dbCommonFunctions.ExchangeRateDetails(
+					excelUtils.writeDataInExcel(BRFilepath, SheetName, i, 11, dbCommonFunctions.ExchangeRateDetails(
 							Currency, commonFunc.getDataFromTestDataSheet("ExportSalesEXRateColumnName")));
 				} else {
-					excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, "1");
+					excelUtils.writeDataInExcel(BRFilepath, SheetName, i, 11, "1");
 				}
 				verifyBankReceiptLineDetailsWithDB(SheetName, i);
 			}
@@ -6481,17 +6484,17 @@ public class BankReceiptFunctions {
 		if (Currency.equals("INR")) {
 			if (BankName.equals("JP MORGAN CHASE")) {
 				verifyJournalAmountWithDB(webDB.getDataFromProperties("JournalINRAdvNR"),
-						VariableHandler.getBankPaymentOrReceiptDocNumber());
+						VariableHandler.getBankPaymentOrReceiptDocNumber(), BRFilepath);
 			} else {
 				verifyJournalAmountWithDB(webDB.getDataFromProperties("BRAdvJournalNR"),
-						VariableHandler.getBankPaymentOrReceiptDocNumber());
+						VariableHandler.getBankPaymentOrReceiptDocNumber(), BRFilepath);
 			}
 		} else {
-			excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("BRAdvJournalUSDNR"), 0, 10,
+			excelUtils.writeDataInExcel(BRFilepath, webDB.getDataFromProperties("BRAdvJournalUSDNR"), 0, 10,
 					dbCommonFunctions.ExchangeRateDetails(Currency,
 							commonFunc.getDataFromTestDataSheet("ExportSalesEXRateColumnName")));
 			verifyJournalAmountWithDB(webDB.getDataFromProperties("BRAdvJournalUSDNR"),
-					VariableHandler.getBankPaymentOrReceiptDocNumber());
+					VariableHandler.getBankPaymentOrReceiptDocNumber(), BRFilepath);
 		}
 		verifyOverallHeaderAmountWithDB(SheetName);
 		clearDataInExcel(SheetName);

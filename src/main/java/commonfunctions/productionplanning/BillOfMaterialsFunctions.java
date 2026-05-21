@@ -1475,11 +1475,14 @@ public class BillOfMaterialsFunctions {
 	public boolean verifyCreateBOMItemMultipleSubAssembly() {
 		String BOMName = commonFunc.getDataFromTestDataSheet("BomNamePreposition")
 				+ RandomStringUtils.randomAlphanumeric(4);
+		String BOMName2 = commonFunc.getDataFromTestDataSheet("BomNamePreposition")
+				+ RandomStringUtils.randomAlphanumeric(4);
+		String BOMName3 = commonFunc.getDataFromTestDataSheet("BomNamePreposition")
+				+ RandomStringUtils.randomAlphanumeric(4);
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 		LocalDate date = LocalDate.now();
 		String Today = date.format(formatter);
-		String RMItem1 = commonFunc.getDataFromTestDataSheet("FG-BOM-Item1");
-		String RMItem2 = commonFunc.getDataFromTestDataSheet("FG-BOM-Item2");
+		String RMItem = commonFunc.getDataFromTestDataSheet("RM-10001-Item");
 		try {
 			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 					"AdminUsername");
@@ -1507,29 +1510,101 @@ public class BillOfMaterialsFunctions {
 					commonFunc.getDataFromTestDataSheet("WIPU100_WH"));
 			navigateToMaterialsSubTab();
 			clickAddLineIconInMaterialTab();
-			fillProcessItemUOMInMaterial(commonFunc.getDataFromTestDataSheet("GwlProcess1Desc"), RMItem1,
-					commonFunc.getDataFromTestDataSheet("UomNos"));
-			fillReqQntyConvFactorAndSourceWHInMaterial("3", "1", commonFunc.getDataFromTestDataSheet("FinishedGoodWH"));
+			fillProcessItemUOMInMaterial(commonFunc.getDataFromTestDataSheet("GwlProcess1Desc"), RMItem,
+					commonFunc.getDataFromTestDataSheet("Kgs"));
+			fillReqQntyConvFactorAndSourceWHInMaterial("3", "1", commonFunc.getDataFromTestDataSheet("RMU100_WH"));
 			clickSaveLineIconInMaterialTab();
-			validateLineDetailsWithDB("1", "1", commonFunc.getDataFromTestDataSheet("GwlProcess1"), RMItem1,
-					commonFunc.getDataFromTestDataSheet("FinishedGoodWH"), commonFunc.getDataFromTestDataSheet("UomNos"));
+			validateLineDetailsWithDB("1", "1", commonFunc.getDataFromTestDataSheet("GwlProcess1"), RMItem,
+					commonFunc.getDataFromTestDataSheet("RMU100_WH"), commonFunc.getDataFromTestDataSheet("Kgs"));
+			clickHeaderSaveAndPostButtonInBOM();
+			if (!VariableHandler.getApprovalFlag()) {
+				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+				commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getBOMNumber(),
+						webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+						System.getProperty("HariUsername"));
+			}
+			navigateToBOMBySearchAndClickBOMNo(VariableHandler.getBOMNumber());
+			chooseBOMTypeAndSaveHeader(commonFunc.getDataFromTestDataSheet("PrimaryType"));
+			String BOMItem1 = VariableHandler.getItemName();
+			commonFunc.navigateItemPage();
+			priceListFunc.searchItemAndCopyWithName(commonFunc.getDataFromTestDataSheet("GwlBomItem1001"),
+					"GWL - BOM ITEM - ");
+			commonFunc.navigateToBillOfMaterialsPage();
+			clickAddIconAndFillUnitBOMNameAndItem(commonFunc.getDataFromTestDataSheet("Unit_100"), BOMName2,
+					VariableHandler.getItemName());
+			enterEffFromToDateAndSaveHeader(Today, Today);
+			validateHeaderDetailsWithDB(VariableHandler.getItemName(), BOMName2, Today, Today);
+			navigateToRoutingSubTab();
+			clickAddLineIconInRoutingTab();
+			fillProcSeqNoOprnNoAndProcessIdInRouting("1", "1", commonFunc.getDataFromTestDataSheet("GwlProcess1"));
+			fillTypeAndWorkCenterInRouting(commonFunc.getDataFromTestDataSheet("InsideType"),
+					commonFunc.getDataFromTestDataSheet("GwlAutomationArea"));
+			clickSaveLineIconInRoutingTab();
+			clickDetailsForAddedProcessInBOM(commonFunc.getDataFromTestDataSheet("GwlProcess1"));
+			chooseConsumptionAndReceiptWHInViewDetails(commonFunc.getDataFromTestDataSheet("WIPU100_WH"),
+					commonFunc.getDataFromTestDataSheet("WIPU100_WH"));
+			validateRoutingDetailsWithDB("1", commonFunc.getDataFromTestDataSheet("GwlProcess1"),
+					commonFunc.getDataFromTestDataSheet("InsideType"),
+					commonFunc.getDataFromTestDataSheet("GwlAutomationArea"),
+					commonFunc.getDataFromTestDataSheet("WIPU100_WH"),
+					commonFunc.getDataFromTestDataSheet("WIPU100_WH"));
+			navigateToMaterialsSubTab();
 			clickAddLineIconInMaterialTab();
-			fillProcessItemUOMInMaterial(commonFunc.getDataFromTestDataSheet("GwlProcess1Desc"), RMItem2,
+			fillProcessItemUOMInMaterial(commonFunc.getDataFromTestDataSheet("GwlProcess1Desc"), RMItem,
+					commonFunc.getDataFromTestDataSheet("Kgs"));
+			fillReqQntyConvFactorAndSourceWHInMaterial("3", "1", commonFunc.getDataFromTestDataSheet("RMU100_WH"));
+			clickSaveLineIconInMaterialTab();
+			validateLineDetailsWithDB("1", "1", commonFunc.getDataFromTestDataSheet("GwlProcess1"), RMItem,
+					commonFunc.getDataFromTestDataSheet("RMU100_WH"), commonFunc.getDataFromTestDataSheet("Kgs"));
+			clickHeaderSaveAndPostButtonInBOM();
+			if (!VariableHandler.getApprovalFlag()) {
+				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+				commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getBOMNumber(),
+						webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+						System.getProperty("HariUsername"));
+			}
+			navigateToBOMBySearchAndClickBOMNo(VariableHandler.getBOMNumber());
+			chooseBOMTypeAndSaveHeader(commonFunc.getDataFromTestDataSheet("PrimaryType"));
+			String BOMItem2 = VariableHandler.getItemName();
+			commonFunc.navigateItemPage();
+			priceListFunc.searchItemAndCopyWithName(commonFunc.getDataFromTestDataSheet("GwlBomItem1001"),
+					"GWL - BOM ITEM - ");
+			commonFunc.navigateToBillOfMaterialsPage();
+			clickAddIconAndFillUnitBOMNameAndItem(commonFunc.getDataFromTestDataSheet("Unit_100"), BOMName3,
+					VariableHandler.getItemName());
+			enterEffFromToDateAndSaveHeader(Today, Today);
+			validateHeaderDetailsWithDB(VariableHandler.getItemName(), BOMName3, Today, Today);
+			navigateToRoutingSubTab();
+			clickAddLineIconInRoutingTab();
+			fillProcSeqNoOprnNoAndProcessIdInRouting("1", "1", commonFunc.getDataFromTestDataSheet("GwlProcess1"));
+			fillTypeAndWorkCenterInRouting(commonFunc.getDataFromTestDataSheet("InsideType"),
+					commonFunc.getDataFromTestDataSheet("GwlAutomationArea"));
+			clickSaveLineIconInRoutingTab();
+			clickDetailsForAddedProcessInBOM(commonFunc.getDataFromTestDataSheet("GwlProcess1"));
+			chooseConsumptionAndReceiptWHInViewDetails(commonFunc.getDataFromTestDataSheet("WIPU100_WH"),
+					commonFunc.getDataFromTestDataSheet("WIPU100_WH"));
+			validateRoutingDetailsWithDB("1", commonFunc.getDataFromTestDataSheet("GwlProcess1"),
+					commonFunc.getDataFromTestDataSheet("InsideType"),
+					commonFunc.getDataFromTestDataSheet("GwlAutomationArea"),
+					commonFunc.getDataFromTestDataSheet("WIPU100_WH"),
+					commonFunc.getDataFromTestDataSheet("WIPU100_WH"));
+			navigateToMaterialsSubTab();
+			clickAddLineIconInMaterialTab();
+			fillProcessItemUOMInMaterial(commonFunc.getDataFromTestDataSheet("GwlProcess1Desc"), BOMItem1,
 					commonFunc.getDataFromTestDataSheet("UomNos"));
 			fillReqQntyConvFactorAndSourceWHInMaterial("3", "1", commonFunc.getDataFromTestDataSheet("FinishedGoodWH"));
 			clickSaveLineIconInMaterialTab();
-			validateLineDetailsWithDB("1", "2", commonFunc.getDataFromTestDataSheet("GwlProcess1"), RMItem2,
-					commonFunc.getDataFromTestDataSheet("FinishedGoodWH"), commonFunc.getDataFromTestDataSheet("UomNos"));
-			navigateToBORSubTab();
-			clickAddLineIconInBORTab();
-			fillLineSnoAndProcessIdInBORTab("1", commonFunc.getDataFromTestDataSheet("GwlProcess1Desc"));
-			fillResourceTypeAndResourceInBORTab(commonFunc.getDataFromTestDataSheet("ResourceText"),
-					commonFunc.getDataFromTestDataSheet("AutomationResource"));
-			fillSetupHrsMinAndSetupLotQntyInBORTab("0", "15", "0");
-			fillCycleTimeUnitOrHrsMinAndSecInBORTab("3", "0", "0", "0");
-			fillCycleTimeBatchQntyAndHrsInBORTab("0", "0");
-			fillLagPriorityAndNoOfUnitsInBORTab("0", "1", "3");
-			clickSaveLineIconInBORTab();
+			validateLineDetailsWithDB("1", "1", commonFunc.getDataFromTestDataSheet("GwlProcess1"), BOMItem1,
+					commonFunc.getDataFromTestDataSheet("FinishedGoodWH"),
+					commonFunc.getDataFromTestDataSheet("UomNos"));
+			clickAddLineIconInMaterialTab();
+			fillProcessItemUOMInMaterial(commonFunc.getDataFromTestDataSheet("GwlProcess1Desc"), BOMItem2,
+					commonFunc.getDataFromTestDataSheet("UomNos"));
+			fillReqQntyConvFactorAndSourceWHInMaterial("3", "1", commonFunc.getDataFromTestDataSheet("FinishedGoodWH"));
+			clickSaveLineIconInMaterialTab();
+			validateLineDetailsWithDB("1", "2", commonFunc.getDataFromTestDataSheet("GwlProcess1"), BOMItem2,
+					commonFunc.getDataFromTestDataSheet("FinishedGoodWH"),
+					commonFunc.getDataFromTestDataSheet("UomNos"));
 			clickHeaderSaveAndPostButtonInBOM();
 			if (!VariableHandler.getApprovalFlag()) {
 				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
