@@ -10,6 +10,7 @@
 			<class name="com.roadmapERP.BillOfMaterialsMRPTest"></class>
 			<class name="com.roadmapERP.MaterialRequestTest"></class>
 			<class name="com.roadmapERP.ProductionAndShopFloorSetupTest"></class>
+			<class name="com.roadmapERP.ProductionOrderTest2"></class>
 			<!--			<class name="com.roadmapERP.ProductionOrderTest" ></class>-->
 			<!--			<class name="com.roadmapERP.QualityInspectionTest" ></class>-->
 		</classes>
