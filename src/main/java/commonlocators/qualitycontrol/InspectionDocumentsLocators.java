@@ -130,5 +130,9 @@ public class InspectionDocumentsLocators {
 
 	/** @locatorType Xpath */
 	public static final String TickButtonInspChar = "//button[@data-testid='Char_SAVE']";
+	/** @locatorType Xpath */
+	public static final String ProductionOrderNoLovButton = "//input[@data-testid='P20171310150_PROD_ORD_NO']/following-sibling::button";
+	/** @locatorType Xpath */
+	public static final String InspectionPlanLovButton = "//input[@data-testid='P20171310201_TQHD_INSP_PLAN_NO_1']/following-sibling::button";
 
 }

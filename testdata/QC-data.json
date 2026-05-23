@@ -1316,8 +1316,8 @@
 	"GRNItem": "ROAU-RM-KDK-01",
 	"GrnSourceVoucherNumber": "GRNP/00101/25-26",
 	"BomItem-2244": "GWL - BOM ITEM - 2244",
-	"AutomationPlanText": "Automation Plan",
-	"SingleItemText": "Single item",
+	"AutomationPlanText": "AUTOMATION PLAN",
+	"SingleItemText": "Single Item",
 	"Surface_CharText": "SURFACE",
 	"RubberTypeText": "RUBBER TYPE",
 	"Radical_CharText": "RADICAL",
@@ -2057,12 +2057,15 @@
 	"SO_CPC_Code": "GERERAL",
 	"FG-BOM-Item1": "GWL - BOM ITEM - 227358",
 	"FG-BOM-Item2": "GWL - BOM ITEM - 199365",
-	"PrefixPb":"PB",
+	"PrefixPb": "PB",
 	"KV_CAREERS": "KV CAREERS INTR-UR(AR)",
 	"BomAllInside": "BOM-2627-0000070",
 	"BomAllOutside": "BOM-2627-0000125",
 	"BomFirstInRestOut": "BOM-2627-0000126",
 	"BomFirstOutRestIn": "BOM-2627-0000127",
 	"BomFirstOutRestBoth": "BOM-2627-0000128",
-	"BomAllBoth": "BOM-2627-0000152"
+	"BomAllBoth": "BOM-2627-0000152",
+	"Always": "Always",
+	"GWL_Item_Inspection": "GWL_Item_Inspection_Inprocess_Fg_01",
+	"GWL_Item_Inspection_Rm": "GWL_Item_Inspection_Inprocess_Rm_01"
 }

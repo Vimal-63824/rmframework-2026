@@ -26,6 +26,51 @@ public class QualityInspectionTest extends RoadMapERPTest {
 	private static int previousStatus = ITestResult.SUCCESS;
 
 	/**
+	 * Define Inspection Plan - InComing inspection?
+	 * 
+	 * @author Deepan-GWL
+	 */
+	@Author("Deepan-GWL")
+	@Test(priority = 1, groups = { "Ins Plan" }, description = "Define Inspection Plan - InComing inspection?")
+	public void VerifyInspectionPlanWithIncoming() {
+		InsDocFunc.verifyInspectionDocumentsIncoming();
+	}
+
+	/**
+	 * Define Inspection Plan - In Process for manufacturing process ?
+	 * 
+	 * @author Deepan-GWL
+	 */
+	@Author("Deepan-GWL")
+	@Test(priority = 2, groups = {
+			"Ins Plan" }, description = "Define Inspection Plan - In Process for manufacturing process ?")
+	public void VerifyInspectionPlanWithInProcessForManufacturing() {
+		InsDocFunc.verifyInspectionPlanWithInprocessForManufacturing();
+	}
+
+	/**
+	 * Define Inspection Plan - Final inspection?
+	 * 
+	 * @author Deepan-GWL
+	 */
+	@Author("Deepan-GWL")
+	@Test(priority = 3, groups = { "Ins Plan" }, description = "Define Inspection Plan - Final inspection?")
+	public void VerifyInspectionPlanWithFinalInspection() {
+		InsDocFunc.verifyInspectionPlanWithFinalInspection();
+	}
+
+	/**
+	 * Define Inspection Plan - Pre Dispatch?
+	 * 
+	 * @author Deepan-GWL
+	 */
+	@Author("Deepan-GWL")
+	@Test(priority = 3, groups = { "Ins Plan" }, description = "Define Inspection Plan - Pre Dispatch?")
+	public void VerifyInspectionPlanWithPreDispatch() {
+		InsDocFunc.verifyInspectionPlanWithPreDispatch();
+	}
+
+	/**
 	 * Define Inspection Plan - In Process for manufacturing process
 	 * 
 	 * @author Sakthi-GWL
@@ -127,4 +172,5 @@ public class QualityInspectionTest extends RoadMapERPTest {
 			commonFunc.verifyAfterMethod();
 		}
 	}
+
 }

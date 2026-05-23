@@ -851,7 +851,10 @@ public class MaterialIssuanceVoucherFunctions {
 		ExcelUtils excelUtils = new ExcelUtils();
 		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
 		TotalData = excelUtils.readAllDataInExcel(Filepath, SheetName);
-		for (int i = StartIndex; i <= (StartIndex + 6); i++) {
+		for (int i = StartIndex; i < TotalData.length; i++) {
+//			if (TotalData[i][0].equalsIgnoreCase("SFG")) {
+//				break;
+//			}
 			String RMItem = TotalData[i][4];
 			String RMWH = commonFunc.getDataFromTestDataSheet("RM WH");
 			String LotQuantity = dbCommonFunctions.validateLotSerialWithRMItemWarehouse(RMItem, RMWH,
@@ -875,7 +878,10 @@ public class MaterialIssuanceVoucherFunctions {
 		ExcelUtils excelUtils = new ExcelUtils();
 		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
 		TotalData = excelUtils.readAllDataInExcel(Filepath, SheetName);
-		for (int i = StartIndex; i <= (StartIndex + 6); i++) {
+		for (int i = StartIndex; i <= TotalData.length; i++) {
+//			if (TotalData[i][0].equalsIgnoreCase("SFG")) {
+//				break;
+//			}
 			String SheetValue = TotalData[i][15];
 			String RMItem = TotalData[i][4];
 			String RMWH = commonFunc.getDataFromTestDataSheet("RM WH");
