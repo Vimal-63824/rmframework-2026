@@ -460,7 +460,7 @@ public class CustomerScheduleFunctions {
 			flag = webDB.waitForElement(PricelistPageLocators.ItemSearchBtn, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Search Button is clicked ");
-				verifySearchButtonClicking();
+				verifySearchButtonClicking(Item1);
 				verifyClickingGeneralTab();
 				verifyGenerateItemSim(commonFunc.getDataFromTestDataSheet("CSItem"));
 				verifyItemPost();
@@ -474,14 +474,14 @@ public class CustomerScheduleFunctions {
 	 * 
 	 * @author Harikrishna - RMITS
 	 */
-	public void verifySearchButtonClicking() {
+	public void verifySearchButtonClicking(String Item) {
 		flag = webDB.waitForElement(PricelistPageLocators.ItemSearchBtn, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(PricelistPageLocators.ItemSearchBtn, ElementType.Xpath);
 			logs.logging("INFO", "Search Button is clicked");
-			flag = webDB.waitForElement(PricelistPageLocators.ItemDrillDownBtn, ElementType.Xpath);
+			flag = webDB.waitForElement(PricelistPageLocators.ItemDrillDown(Item), ElementType.Xpath);
 			if (flag) {
-				webDB.clickAnElement(PricelistPageLocators.ItemDrillDownBtn, ElementType.Xpath);
+				webDB.clickAnElement(PricelistPageLocators.ItemDrillDown(Item), ElementType.Xpath);
 				logs.logging("INFO", "Drill Down item");
 			}
 		}

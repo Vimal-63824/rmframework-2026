@@ -189,6 +189,11 @@ public class PricelistPageLocators {
 	public static final String PRLFindTableData(int i) {
 		return "//table[@id='1457343167982292320_orig']/tbody/tr/td[" + i + "]";
 	}
+	
+	/** @locatorType Xpath */
+	public static final String ItemDrillDown(String DocNo) {
+		return "//table[contains(@aria-label,'Result(s)')]/tbody/tr/td[2]/a[text()='" + DocNo + "']";
+	}
 
 	/** @locatorType Xpath */
 	public static final String PricelistAddFrame = "//iframe[@title='Price List Entry ']";

@@ -537,7 +537,7 @@ public class SalesOrderLocators {
 	/** @locatorType Xpath */
 	public static final String MultiCloseShortFilterRefreshButton = "//button[@data-testid='MultiCloseShortFilterRefreshButton']";
 	/** @locatorType Xpath */
-	public static final String MultiCloseShortCheckBoxInputField = "//table[@id='3185852485537798364_orig']/tbody/tr/td[14]/input";
+	public static final String MultiCloseShortCheckBoxInputField = "//table[contains(@aria-label,'Multi Closeshot')]/tbody/tr/td/input";
 	/** @locatorType Xpath */
 	public static final String MultiCloseShortPostButton = "//button[@data-testid='MultiCloseShortPostButton']";
 	/** @locatorType Xpath */
