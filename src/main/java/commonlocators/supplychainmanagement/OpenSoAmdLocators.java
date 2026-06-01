@@ -19,7 +19,7 @@ public class OpenSoAmdLocators {
 	/** @locatorType Xpath */
 	public static final String CurrentRateGObtn = "//button[contains(@id,'Contract_search_button')]";
 	/** @locatorType Xpath */
-	public static final String currentRateDefault = "//table[@id='3098543355007876385_orig']/tbody/tr[2]/td[13]";
+	public static final String currentRateDefault = "//table[contains(@aria-label,'PENDING')]/tbody/tr/td[13]/input";
 	/** @locatorType Xpath */
 	public static final String soAmdBtn = "//span[contains(text(),'SO Amendment')]";
 	/** @locatorType Xpath */
