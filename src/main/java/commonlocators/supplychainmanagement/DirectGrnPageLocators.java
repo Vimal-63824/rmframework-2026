@@ -24,27 +24,27 @@ public class DirectGrnPageLocators {
 	/** @locatorType Xpath */
 	public static final String GrnLineItemLov = "//input[@data-testid='PORL_PROD_ID_REV']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String GrnLineItemField = "//*[@id='add_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[3]";
+	public static final String GrnLineItemField = "//table[@class='a-GV-table']/tbody/tr/td[3]";
 	/** @locatorType Xpath */
-	public static final String GrnLineHsnField = "//*[@id='add_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[7]";
+	public static final String GrnLineHsnField = "//table[@class='a-GV-table']/tbody/tr/td[7]";
 	/** @locatorType Xpath */
 	public static final String GrnLineHsnLov = "//input[@data-testid='PORL_HSN_CODE']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String GrnLineSupQtyInput = "//*[@id='add_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[8]//input";
+	public static final String GrnLineSupQtyInput = "//input[@id='C4741147491331263419']";
 	/** @locatorType Xpath */
 	public static final String GrnLineSupQtyInputHK = "//input[@id='C4741147491331263419']";
 	/** @locatorType Xpath */
-	public static final String GrnLineSupQty = "//*[@id='add_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[8]";
+	public static final String GrnLineSupQty = "//table[@class='a-GV-table']/tbody/tr/td[8]";
 	/** @locatorType Xpath */
-	public static final String GrnLineRcpQty = "//*[@id='add_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[9]";
+	public static final String GrnLineRcpQty = "//table[@class='a-GV-table']/tbody/tr/td[9]";
 	/** @locatorType Xpath */
-	public static final String GrnLineRcpQtyInput = "//*[@id='add_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[9]//input";
+	public static final String GrnLineRcpQtyInput = "//input[@id='C4741181645480263711']";
 	/** @locatorType Xpath */
 	public static final String GrnLineRcpQtyInputHK = "//input[@id='C4741181645480263711']";
 	/** @locatorType Xpath */
-	public static final String GrnLineCost = "//*[@id='add_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[13]";
+	public static final String GrnLineCost = "//table[@class='a-GV-table']/tbody/tr/td[13]";
 	/** @locatorType Xpath */
-	public static final String GrnLineCostInput = "//*[@id='add_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[13]//input";
+	public static final String GrnLineCostInput = "//input[@data-testid='PORL_SC_UNIT_COST']";
 	/** @locatorType Xpath */
 	public static final String GrnLineCostInputHK = "//input[@data-testid='PORL_SC_UNIT_COST']";
 	/** @locatorType Xpath */
@@ -98,7 +98,7 @@ public class DirectGrnPageLocators {
 	/** @locatorType Xpath */
 	public static final String DefectPrimaryQty = "//*[@id='defect_st_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[4]";
 	/** @locatorType Xpath */
-	public static final String GrnLineDetails = "//*[@id='add_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[24]/a/span";
+	public static final String GrnLineDetails = "//table[@class='a-GV-table']/tbody/tr/td[25]";
 	/** @locatorType Xpath */
 	public static final String GrnLineTrdDisc = "//input[@id='P161513110301_PORL_TRD_DISC_PCT']";
 	/** @locatorType Xpath */
@@ -131,13 +131,13 @@ public class DirectGrnPageLocators {
 	}
 
 	/** @locatorType Xpath */
-	public static final String LocId = "//button[@id='P1615131103_UNIT_LOCATION_lov_btn']";
+	public static final String LocId = "//input[@data-testid=\"P1615131103_UNIT_LOCATION\"]/following-sibling::button";
 	/** @locatorType Xpath */
 	public static final String Unit = "//button[@id='P1615131103_UNIT_lov_btn']";
 	/** @locatorType Xpath */
-	public static final String GRNNO = "//button[@id='P1615131103_GRN_NO_lov_btn']";
+	public static final String GRNNO = "//input[@data-testid=\"P1615131103_GRN_NO\"]/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String SupplierNameLovButton = "//button[@id='P1615131103_SUPPLIER_lov_btn']";
+	public static final String SupplierNameLovButton = "//input[@data-testid=\"P1615131103_SUPPLIER\"]/following-sibling::button";
 	/** @locatorType Xpath */
 	public static final String ItemId = "//button[@id='P1615131103_ITEM_lov_btn']";
 	/** @locatorType Xpath */
