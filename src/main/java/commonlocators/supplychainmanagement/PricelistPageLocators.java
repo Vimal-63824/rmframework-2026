@@ -28,7 +28,7 @@ public class PricelistPageLocators {
 	/** @locatorType Xpath */
 	public static final String FindCreateButton = "//button[@data-testid='Create20']";
 	/** @locatorType Xpath */
-	public static final String DiscountField = "//*[@id='price_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[14]";
+	public static final String DiscountField = "//table[@class='a-GV-table']/tbody/tr/td[14]";
 	/** @locatorType Xpath */
 	public static final String Discountinput = "//input[@data-testid='PSPL_DISC_PCT']";
 	/** @locatorType Xpath */
@@ -48,7 +48,7 @@ public class PricelistPageLocators {
 	/** @locatorType Xpath */
 	public static final String Pricelist_HeaderItem = "//td[@class='a-GV-cell u-tS'][4]";
 	/** @locatorType Xpath */
-	public static final String PricelistDocNum = "//*[@id='price_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[4]";
+	public static final String PricelistDocNum = "//table[@class='a-GV-table']/tbody/tr/td[4]";
 	/** @locatorType Xpath */
 	public static final String Successmsg = "//*[@id=\"t_Alert_Success\"]/div/div[2]/div/h6";
 	/** @locatorType Xpath */
@@ -64,7 +64,7 @@ public class PricelistPageLocators {
 	/** @locatorType Xpath */
 	public static final String Refindsearchok = "//*[@id=\"PLE_search_button\"]/span";
 	/** @locatorType Xpath */
-	public static final String CancellStatus = "//*[@id=\'3105343585305727316_orig\']/tbody/tr[2]/td[22]/div";
+	public static final String CancellStatus = "//table[contains(@aria-label,'Result(s)')]/tbody/tr/td[22]";
 	/** @locatorType Xpath */
 	public static final String FindLocLov = "//input[@data-testid='P1615131025212_LOCATION']/following-sibling::button";
 	/** @locatorType Xpath */
@@ -88,7 +88,7 @@ public class PricelistPageLocators {
 	/** @locatorType Xpath */
 	public static final String FindDocNumsearchField = "//*[@id=\"PopupLov_1615131025212_P1615131025212_DOCP_NO_dlg\"]/div[1]/input";
 	/** @locatorType Xpath */
-	public static final String FindDocNumDrilldown = "#\\33 105343585305727316_orig > tbody > tr:nth-child(2) > td:nth-child(6) > a";
+	public static final String FindDocNumDrilldown = "//table[contains(@aria-label,'Result(s)')]/tbody/tr/td[6]";
 	/** @locatorType Xpath */
 	public static final String AmendmentButton = "//*[@id=\"price_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[18]/a/span";
 	/** @locatorType Xpath */
@@ -127,7 +127,6 @@ public class PricelistPageLocators {
 	public static final String PRLISTSelectCheckBox(String PRLISTNum) {
 		return "//td[contains(text(),'" + PRLISTNum + "')]/../td[1]/*";
 	}
-
 	/** @locatorType Xpath */
 	public static final String ItemMasterAdd = "//*[@id=\"B1287636716616788407\"]/span";
 	/** @locatorType Xpath */
@@ -188,6 +187,11 @@ public class PricelistPageLocators {
 	/** @locatorType Xpath */
 	public static final String PRLFindTableData(int i) {
 		return "//table[@id='1457343167982292320_orig']/tbody/tr/td[" + i + "]";
+	}
+	
+	/** @locatorType Xpath */
+	public static final String ItemDrillDown(String DocNo) {
+		return "//table[contains(@aria-label,'Result(s)')]/tbody/tr/td[2]/a[text()='" + DocNo + "']";
 	}
 
 	/** @locatorType Xpath */
