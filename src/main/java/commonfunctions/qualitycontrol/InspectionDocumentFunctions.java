@@ -1782,7 +1782,7 @@ public class InspectionDocumentFunctions {
 		try {
 			String alertText = VariableHandler.getIDAlertMessage();
 			logs.logging("INFO", "Alert text: " + alertText);
-			String pattern = "Pend\\. Inspection Request Moved\\s*-\\s*IDPO-\\d{4}-\\d{4}\\s*to\\s*IDPO-\\d{4}-\\d{4}";
+			String pattern = "Pend\\. Inspection Request Moved\\s*-\\s*IDPO-\\d{4}-\\d{4}\\s*~\\s*IDPO-\\d{4}-\\d{4}";
 			if (alertText.matches(".*" + pattern + ".*")) {
 				documentSearchAndSelectLovForFindPage();
 				commonFunc.logoutUser();
@@ -1831,7 +1831,7 @@ public class InspectionDocumentFunctions {
 				int endNum = Integer.parseInt(toNum);
 				ArrayList<String> allDocumentNumbers = new ArrayList<>();
 				for (int i = startNum; i <= endNum; i++) {
-					String generatedDocumentNumber = "IDPO-" + "2526-" + String.format("%04d", i);
+					String generatedDocumentNumber = "IDPO-" + "2627-" + String.format("%04d", i);
 					allDocumentNumbers.add(generatedDocumentNumber);
 				}
 				VariableHandler.setAllDocumentNumber(allDocumentNumbers);
@@ -2228,8 +2228,6 @@ public class InspectionDocumentFunctions {
 		verifyTextTabClicking();
 		clickTickAndPostIconForGrnDocument();
 		waitingForApproval();
-		String alertText = VariableHandler.getIDAlertMessage();
-		logs.logging("INFO", "Alert text: " + alertText);
 		assertTrue(flag);
 	}
 
@@ -2377,6 +2375,65 @@ public class InspectionDocumentFunctions {
 	 */
 	public void verifyInspectionPlanWithPreDispatch() {
 		salesInvoiceFunc.verifyDirectSalesInvoiceForPreDispatch();
+		commonFunc.navigateInspectionDocumentsPage();
+		pendingInspectionRequestDocumentToCreateInspectionDocument(VariableHandler.getSIdocno());
+		inspectionPlanNumberCheckingInInspectionDocument();
+//		verifyGetInspectionPlanNumber();
+//		verifyChangeSampleAndObservationValue();
+//		enterObservationValue();
+//		verifyAttributeTabClicking();
+//		verifyTextTabClicking();
+		clickTickAndPostIconForGrnDocument();
+		waitingForApproval();
+	}
+
+	/**
+	 * This Methods Is Used To Create Inspection Document From Pending Inspection
+	 * Request
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void pendingInspectionRequestDocumentToCreateInspectionDocument(String VoucherNo) {
+		flag = webDB.waitForElement(CommonUiLocators.PendingInspectionDocuments, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(CommonUiLocators.PendingInspectionDocuments, ElementType.Xpath);
+			flag = webDB.waitForElement(InspectionDocumentsLocators.PendingInspectionFrame, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Pending Inspection Documents Is Displayed");
+				webDB.switchToFrame(InspectionDocumentsLocators.PendingInspectionFrame, ElementType.Xpath);
+				flag = webDB.waitForElement(InspectionDocumentsLocators.VoucherLov, ElementType.Xpath);
+				commonFunc.searchAndSelectValueInFilters(InspectionDocumentsLocators.VoucherLov, VoucherNo);
+				logs.logging("INFO", "Search Field Displayed");
+				webDB.switchToFrame(InspectionDocumentsLocators.PendingInspectionFrame, ElementType.Xpath);
+				commonFunc.hardWait(3000);
+				flag = webDB.waitForElement(InspectionDocumentsLocators.PendingInspectionSearchBtn, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(InspectionDocumentsLocators.PendingInspectionSearchBtn, ElementType.Xpath);
+					logs.logging("INFO", "Document Search Successfully");
+					flag = webDB.waitForElement(InspectionDocumentsLocators.PendingInspectionSelectAllBtn,
+							ElementType.Xpath);
+					commonFunc.hardWait(3000);
+					if (flag) {
+						flag = webDB.clickAnElement(InspectionDocumentsLocators.PendingInspectionSelectAllBtn,
+								ElementType.Xpath);
+						logs.logging("INFO", "Create QC Button Displayed");
+						flag = webDB.waitForElement(InspectionDocumentsLocators.CreateQCDoc, ElementType.Xpath);
+						if (flag) {
+							commonFunc.hardWait(3000);
+							webDB.clickAnElement(InspectionDocumentsLocators.CreateQCDoc, ElementType.Xpath);
+							if (flag) {
+								logs.logging("INFO", "Ok Button Is Displayed");
+								commonFunc.hardWait(3000);
+								webDB.clickAnElement(InspectionDocumentsLocators.OKButton, ElementType.Xpath);
+								webDB.switchToDefaultContent();
+								flag = webDB.waitForElement(InspectionDocumentsLocators.LocationId, ElementType.Xpath);
+							}
+						}
+					}
+				}
+			}
+		}
+		assertTrue(flag);
 	}
 
 }
