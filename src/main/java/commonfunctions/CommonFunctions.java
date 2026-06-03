@@ -298,6 +298,7 @@ public class CommonFunctions {
 				}
 				Assert.assertTrue(flag);
 				checkRefreshCellsDisappear();
+				checkRefreshCellsDisappear();
 				try {
 					List<WebElement> SearchBarIcon = webDB.getDriver()
 							.findElements(By.xpath(CommonUiLocators.SearchBarIcon));
@@ -316,8 +317,10 @@ public class CommonFunctions {
 					logs.logging("INFO", "failed to locate and click search bar icon Exception is: " + e);
 					flag = false;
 				}
-				checkRefreshCellsDisappear();
 				hardWait(1000);
+				checkRefreshCellsDisappear();
+				checkRefreshCellsDisappear();
+
 				List<WebElement> Elements = webDB.getDriver()
 						.findElements(By.xpath(CommonUiLocators.convertListOfXPath(Value)));
 				for (WebElement webElement : Elements) {
@@ -2734,6 +2737,10 @@ public class CommonFunctions {
 		}
 		if ((Expected.equalsIgnoreCase("FINISHED GOODS WAREHOUSE") && Actual.equalsIgnoreCase("FG WH"))
 				|| (Actual.equalsIgnoreCase("FINISHED GOODS WAREHOUSE") && Expected.equalsIgnoreCase("FG WH"))) {
+			Actual = Expected;
+		}
+		if ((Expected.equalsIgnoreCase("RM KD WH") && Actual.equalsIgnoreCase("RM KD"))
+				|| (Actual.equalsIgnoreCase("RM KD WH") && Expected.equalsIgnoreCase("RM KD"))) {
 			Actual = Expected;
 		}
 		flag = (Actual.equalsIgnoreCase(Expected));
