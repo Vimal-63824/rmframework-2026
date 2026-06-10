@@ -7486,7 +7486,7 @@ public class GrnPageFunctions {
 //		verifyStockQtyAndCostForSourceWH(SheetName);
 		verifyStockQtyAndCostForQualityWhForStockTransferType(SheetName);
 		verifyStockQtyAndCostForSourceWHForStocktransferType(SheetName);
-		POfunc.verifyToCreatePoForStockTransferRateContractSameStockandSupplierUomWithAndWithoutInspection(SheetName);
+		POfunc.verifyToCreatePoForStockTransferRateContractSameStockandSupplierUomWithAndWithoutInspectionForPurchaseBill(SheetName);
 		verifyToStockTransferSaleOrderDocumentPost();
 		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSalesOrdertDocNumber(),
