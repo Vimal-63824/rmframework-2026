@@ -6278,16 +6278,16 @@ public class BankReceiptFunctions {
 		logs.logging("INFO", " Exchange Rate Is Matched With The Bank Receipt Voucher And Customer Document Report");
 
 		salesOrdFunc.verifyAssertionBothValues(
-				dbCommonFunctions.customerDocumentQuery(DocumentNumber,
-						commonFunc.getDataFromTestDataSheet("CDSITotAmtColumnName")),
+				dbCommonFunctions.customerDocumentQueryTotalAMT(DocumentNumber,
+						commonFunc.getDataFromTestDataSheet("CDSIMatAmtColumnNameHK")),
 				dbCommonFunctions.BRVHeaderQuery(DocumentNumber,
 						commonFunc.getDataFromTestDataSheet("BRVTransAmtColumnName")));
 		logs.logging("INFO",
 				" Sales Invoice Total Amount Is Matched With The Bank Receipt Voucher And Customer Document Report");
 
 		salesOrdFunc.verifyAssertionBothValues(
-				dbCommonFunctions.customerDocumentQuery(DocumentNumber,
-						commonFunc.getDataFromTestDataSheet("CDSIMatAmtColumnName")),
+				dbCommonFunctions.customerDocumentQueryTotalAMT(DocumentNumber,
+						commonFunc.getDataFromTestDataSheet("CDSIMatAmtColumnNameHK")),
 				dbCommonFunctions.BRVHeaderQuery(DocumentNumber,
 						commonFunc.getDataFromTestDataSheet("BRVTransAmtColumnName")));
 		logs.logging("INFO",
