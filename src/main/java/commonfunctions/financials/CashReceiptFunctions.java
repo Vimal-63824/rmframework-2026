@@ -2901,7 +2901,7 @@ public class CashReceiptFunctions {
 		bankreceiptfunc.verifyCustomerDocumentWithDBAfterSI(VariableHandler.getMultipleSIDocs());
 		CashReceiptThroughAddButtonMPMI(SheetName, commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
 				commonFunc.getDataFromTestDataSheet("CashierName"));
-//		bankreceiptfunc.verifyCustomerDocumentWithDBAfterBRV(VariableHandler.getCashPaymentOrReceiptDocNumber());
+		bankreceiptfunc.verifyCustomerDocumentWithDBAfterBRV(VariableHandler.getCashPaymentOrReceiptDocNumber());
 	}
 
 	/**

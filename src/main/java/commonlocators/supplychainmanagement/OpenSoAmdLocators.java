@@ -88,7 +88,7 @@ public class OpenSoAmdLocators {
 	/** @locatorType Xpath */
 	public static final String CgstFieldLineDetails = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[14]";
 	/** @locatorType Xpath */
-	public static final String SgstFieldLineDetails = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[15";
+	public static final String SgstFieldLineDetails = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[15]";
 	/** @locatorType Xpath */
 	public static final String UTgstFieldLineDetails = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[16]";
 

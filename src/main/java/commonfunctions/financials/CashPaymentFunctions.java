@@ -4222,7 +4222,7 @@ public class CashPaymentFunctions {
 								commonFunc.getDataFromTestDataSheet("PBNetAmount")));
 			}
 		}
-		CPThroughPendingDocsMPMB(commonFunc.getDataFromTestDataSheet("CreationTypeSingle"), SheetName,
+		CPThroughPendingDocsMPMB(commonFunc.getDataFromTestDataSheet("CreationTypeMerge"), SheetName,
 				commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
 				commonFunc.getDataFromTestDataSheet("CashierName"));
 		return flag;
