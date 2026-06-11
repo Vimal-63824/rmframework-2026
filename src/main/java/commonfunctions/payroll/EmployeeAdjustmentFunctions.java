@@ -368,6 +368,7 @@ public class EmployeeAdjustmentFunctions {
 				if (flag) {
 					clickSaveIconInAdjustmentTable();
 					commonFunc.checkRefreshCellsDisappear();
+					commonFunc.hardWait(1000);
 					flag = webDB.waitForElement(EmployeeAdjustmentLocators.AdjustmentTableProcessHoldData,
 							ElementType.Xpath);
 					if (flag) {
@@ -436,6 +437,7 @@ public class EmployeeAdjustmentFunctions {
 	private void clickSaveIconInAdjustmentTable() {
 		flag = webDB.waitForClickElement(EmployeeAdjustmentLocators.AdjustmentSaveIcon, ElementType.Xpath);
 		if (flag) {
+			commonFunc.checkRefreshCellsDisappear();
 			webDB.scrollToAnElement(EmployeeAdjustmentLocators.AdjustmentSaveIcon, ElementType.Xpath);
 			webDB.moveToElement(EmployeeAdjustmentLocators.AdjustmentSaveIcon, ElementType.Xpath);
 			webDB.clickAnElement(EmployeeAdjustmentLocators.AdjustmentSaveIcon, ElementType.Xpath);
