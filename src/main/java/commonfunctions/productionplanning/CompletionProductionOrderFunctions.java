@@ -19,7 +19,7 @@ import commonfunctions.CommonFunctions;
 import commonfunctions.DBCommonFunctions;
 import commonfunctions.VariableHandler;
 import commonlocators.CommonUiLocators;
-import commonlocators.supplychainmanagement.CompletionProductionOrderLocators;
+import commonlocators.productionplanning.CompletionProductionOrderLocators;
 import utils.ExcelUtils;
 import utils.ReportLoger;
 import utils.WebDriverBase;
@@ -64,6 +64,50 @@ public class CompletionProductionOrderFunctions {
 			webDB.switchToFrame(CompletionProductionOrderLocators.PendingProdOrderIframe, ElementType.Xpath);
 			flag = webDB.waitForElement(CompletionProductionOrderLocators.PendingProdOrderSearchGoBtn,
 					ElementType.Xpath);
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method used to switch to Allow Exception Iframe
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void switchToAllowExceptionIframe() {
+		flag = webDB.waitForElement(CompletionProductionOrderLocators.AllowExceptionIframe, ElementType.Xpath);
+		if (flag) {
+			webDB.switchToFrame(CompletionProductionOrderLocators.AllowExceptionIframe, ElementType.Xpath);
+			flag = webDB.waitForElement(CompletionProductionOrderLocators.AllowExceptionPostButton, ElementType.Xpath);
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This method used to search Production Order Number in Pending Allow Exception
+	 * and Click CheckBox
+	 * 
+	 * @author Sakthi-GWL
+	 * @param ProdOrderNo
+	 */
+	public void searchProdOrderNoAndSelectCheckBoxInAllowException(String ProdOrderNo) {
+		commonFunc.verifyAddTableSpecs(CompletionProductionOrderLocators.PendingSearchInput,
+				CompletionProductionOrderLocators.PendingSearchInput, ProdOrderNo);
+		logs.logging("INFO", "Pending Search Input Entered for Allow Exception: " + ProdOrderNo);
+		flag = webDB.waitForElement(CompletionProductionOrderLocators.PendingSearchGoButton, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(CompletionProductionOrderLocators.PendingSearchGoButton, ElementType.Xpath);
+			webDB.clickAnElement(CompletionProductionOrderLocators.PendingSearchGoButton, ElementType.Xpath);
+			flag = webDB.waitForElement(CompletionProductionOrderLocators.AllowExceptionSelectCheckBox(ProdOrderNo),
+					ElementType.Xpath);
+			if (flag) {
+				webDB.moveToElement(CompletionProductionOrderLocators.AllowExceptionSelectCheckBox(ProdOrderNo),
+						ElementType.Xpath);
+				flag = webDB.clickAnElement(CompletionProductionOrderLocators.AllowExceptionSelectCheckBox(ProdOrderNo),
+						ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Production Order CheckBox Clicked in Allow Exception: " + ProdOrderNo);
+				}
+			}
 		}
 		assertTrue(flag);
 	}

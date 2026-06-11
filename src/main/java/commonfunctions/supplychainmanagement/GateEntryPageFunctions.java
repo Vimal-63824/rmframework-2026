@@ -1481,10 +1481,12 @@ public class GateEntryPageFunctions {
 	 */
 	public void searchAndVerifyStatusOfGENo(String GEONo, String ExpectedStatus) {
 		commonFunc.clearFiltersInFindPage();
-		commonFunc.searchAndSelectValueInFilters(GateEntryPageLocators.FindGateEntryNoLovBtn, GEONo);
+		commonFunc.checkRefreshCellsDisappear();
+		//commonFunc.searchAndSelectValueInFilters(GateEntryPageLocators.FindGateEntryNoLovBtn, GEONo);
 		flag = webDB.waitForElement(GateEntryPageLocators.HeaderLabelButton, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(GateEntryPageLocators.HeaderLabelButton, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
 			flag = webDB.waitForElement(GateEntryPageLocators.SearchButton, ElementType.Xpath);
 			if (flag) {
 				webDB.clickAnElement(GateEntryPageLocators.SearchButton, ElementType.Xpath);
