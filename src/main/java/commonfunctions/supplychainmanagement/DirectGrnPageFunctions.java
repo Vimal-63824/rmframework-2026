@@ -7935,8 +7935,6 @@ public class DirectGrnPageFunctions {
 	 * @throws IOException
 	 */
 	public void verifyCreationOfDirectGrnPriceListForIncomingInspection() {
-		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
-				"DuraiUsername");
 		commonFunc.naviagteGrnPage();
 		verifyGrnAdd();
 		verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("L0001"), commonFunc.getDataFromTestDataSheet("GRNPG"),

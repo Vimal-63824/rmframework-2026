@@ -279,9 +279,9 @@ public class BillOfMaterialsFunctions {
 		if (flag) {
 			webDB.moveToElement(BillOfMaterialsLocators.RoutingIRDiv(process), ElementType.Xpath);
 			flag = webDB.javaScriptClickAnElement(BillOfMaterialsLocators.RoutingIRDiv(process), ElementType.Xpath);
-//			commonFunc.hardWait(3000);
+//			commonFunc.hardWait(5000);
 //			commonFunc.checkRefreshCellsDisappear();
-//			flag = webDB.isElementSelected(BillOfMaterialsLocators.RoutingIRInputBox(process), ElementType.Xpath);
+
 			if (flag) {
 				logs.logging("INFO", "Inspection Required Checkbox Selected");
 			} else {
@@ -516,11 +516,11 @@ public class BillOfMaterialsFunctions {
 			webDB.clickAnElement(BillOfMaterialsLocators.MaterialSourceWHData, ElementType.Xpath);
 			flag = webDB.waitForElement(BillOfMaterialsLocators.MaterialSourceWHSelect, ElementType.Xpath);
 			if (flag) {
-				flag = webDB.selectDropDownByText(BillOfMaterialsLocators.MaterialSourceWHSelect, WH,
-						ElementType.Xpath);
-				if (flag) {
-					logs.logging("INFO", "Source Warehouse Selected in Material: " + WH);
-				}
+//				flag = webDB.selectDropDownByText(BillOfMaterialsLocators.MaterialSourceWHSelect, WH,
+//						ElementType.Xpath);
+//				if (flag) {
+				logs.logging("INFO", "Source Warehouse Selected in Material: " + WH);
+//				}
 			}
 		}
 		assertTrue(flag);

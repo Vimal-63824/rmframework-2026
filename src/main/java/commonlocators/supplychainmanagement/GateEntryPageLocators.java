@@ -109,31 +109,31 @@ public class GateEntryPageLocators {
 	/** @locatorType Xpath */
 	public static final String DirectGateAddLine = "//*[@id=\"B4689423975622198221\"]/span";
 	/** @locatorType Xpath */
-	public static final String DirectGatePartyField = "//*[@id=\"ge_line_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[4]";
+	public static final String DirectGatePartyField = "//table[@class=\"a-GV-table\"]/tbody/tr/td[4]";
 	/** @locatorType Xpath */
-	public static final String DirectGatePartyLov = "//*[@id=\"C17888823131016135870_lov_btn\"]/span";
+	public static final String DirectGatePartyLov = "//input[@data-testid=\"GELN_SUPLR_ID\"]/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String DirectGateLineSave = "//*[@id=\"B4689424388819198221\"]/span";
+	public static final String DirectGateLineSave = "//button[@data-testid=\"Save_Line\"]";
 	/** @locatorType Xpath */
-	public static final String DirectGateItemLineAdd = "//*[@id=\"B4689492063308198927\"]/span";
+	public static final String DirectGateItemLineAdd = "//button[@data-testid=\"Add_Detail\"]";
 	/** @locatorType Xpath */
 	public static final String DirectGateItemLineField = "//*[@id=\"ge_dtl_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[3]";
 	/** @locatorType Xpath */
-	public static final String DirectGateItemLineLov = "//*[@id=\"C366718486666488945_lov_btn\"]/span";
+	public static final String DirectGateItemLineLov = "//input[@data-testid=\"GEDL_PROD_ID_REV\"]/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String DirectGateQtyInput = "//input[@id='C17899950311714374466']";
+	public static final String DirectGateQtyInput = "//input[@data-testid=\"GEDL_QTY\"]";
 	/** @locatorType Xpath */
 	public static final String DirectGateQtyField = "//*[@id=\"ge_dtl_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[10]";
 	/** @locatorType Xpath */
 	public static final String DirectGateCostField = "//*[@id=\"ge_dtl_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[12]";
 	/** @locatorType Xpath */
-	public static final String DirectGateCostInput = "//input[@id='C17899951028321374473']";
+	public static final String DirectGateCostInput = "//input[@data-testid=\"GEDL_UNIT_COST\"]";
 	/** @locatorType Xpath */
-	public static final String DirectGateItemLineSave = "//*[@id=\"B4689492505510198929\"]/span";
+	public static final String DirectGateItemLineSave = "//button[@data-testid=\"Save_Detail\"]";
 	/** @locatorType Xpath */
-	public static final String DirectGateOverallSave = "//*[@id=\"B4689658598549199211\"]/span";
+	public static final String DirectGateOverallSave = "//button[@data-testid=\"SAVE\"]";
 	/** @locatorType Xpath */
-	public static final String DirectGatePost = "//*[@id=\"B4689659760922199213\"]/span";
+	public static final String DirectGatePost = "//button[@data-testid=\"Post\"]";
 	/** @locatorType Xpath */
 	public static final String DirectGateUnloadBtn = "//*[@id=\"P751310201_GEHD_ACT\"]/div/div/div[2]/label";
 	/** @locatorType Xpath */

@@ -73,7 +73,7 @@ public class InspectionDocumentsLocators {
 	/** @locatorType Xpath */
 	public static final String InspectionDocumentNumberLov = "//*[@id='P2017131020_QC_NO_1_lov_btn']";
 	/** @locatorType Xpath */
-	public static final String InspectionDocumentNumberDrillDown = "//table[@id='13223345160630821616_orig']/tbody[1]/tr[2]/td[7]";
+	public static final String InspectionDocumentNumberDrillDown = "//table[contains(@aria-label,'Result (s)')]/tbody/tr[2]/td[7]/a";
 	/** @locatorType Xpath */
 	public static final String FindPageSearchBtn = "//button[@data-testid='Find_line']";
 
@@ -130,5 +130,9 @@ public class InspectionDocumentsLocators {
 
 	/** @locatorType Xpath */
 	public static final String TickButtonInspChar = "//button[@data-testid='Char_SAVE']";
+	/** @locatorType Xpath */
+	public static final String ProductionOrderNoLovButton = "//input[@data-testid='P20171310150_PROD_ORD_NO']/following-sibling::button";
+	/** @locatorType Xpath */
+	public static final String InspectionPlanLovButton = "//input[@data-testid='P20171310201_TQHD_INSP_PLAN_NO_1']/following-sibling::button";
 
 }

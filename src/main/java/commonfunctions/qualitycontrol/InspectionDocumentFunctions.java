@@ -15,20 +15,27 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
 import commonfunctions.CommonFunctions;
 import commonfunctions.VariableHandler;
+import commonfunctions.productionplanning.BillOfMaterialsFunctions;
+import commonfunctions.productionplanning.ProductionOrderFunctions;
 import commonfunctions.supplychainmanagement.ApprovalPageFunctions;
+import commonfunctions.supplychainmanagement.ApprovedSupplierPOFunctions;
 import commonfunctions.supplychainmanagement.DirectGrnPageFunctions;
 import commonfunctions.supplychainmanagement.GrnPageFunctions;
 import commonfunctions.supplychainmanagement.MaterialIssuanceVoucherFunctions;
 import commonfunctions.supplychainmanagement.MaterialRequestFunctions;
 import commonfunctions.supplychainmanagement.MaterialReturnFunctions;
+import commonfunctions.supplychainmanagement.PricelistPageFunctions;
+import commonfunctions.supplychainmanagement.SalesInvoiceFunctions;
 import commonlocators.CommonUiLocators;
 import commonlocators.qualitycontrol.InspectionDocumentsLocators;
+import commonlocators.qualitycontrol.InspectionPlanLocators;
 import commonlocators.supplychainmanagement.DirectGrnPageLocators;
 import commonlocators.supplychainmanagement.GrnLocators;
 import commonlocators.supplychainmanagement.MaterialReceiptVoucherLocators;
@@ -50,6 +57,12 @@ public class InspectionDocumentFunctions {
 	private static MaterialIssuanceVoucherFunctions materialIssuanceVoucherFunc = new MaterialIssuanceVoucherFunctions();
 	private static DirectGrnPageFunctions directGrnPageFunc = new DirectGrnPageFunctions();
 	private static GrnPageFunctions grnPageFunc = new GrnPageFunctions();
+	private static PricelistPageFunctions priceListFunctions = new PricelistPageFunctions();
+	private static InspectionPlanFunctions inspectionPlanFunc = new InspectionPlanFunctions();
+	private static ApprovedSupplierPOFunctions approvedSupplierPoFunc = new ApprovedSupplierPOFunctions();
+	private static BillOfMaterialsFunctions bomFunc = new BillOfMaterialsFunctions();
+	private static ProductionOrderFunctions productionOrderFunc = new ProductionOrderFunctions();
+	private static SalesInvoiceFunctions salesInvoiceFunc = new SalesInvoiceFunctions();
 
 	/**
 	 * Verify Pending Inspection Documents
@@ -349,7 +362,7 @@ public class InspectionDocumentFunctions {
 					commonFunc.hardWait(3000);
 					webDB.doubleClickAnElement(InspectionDocumentsLocators.Observationvalue(i), ElementType.Xpath);
 					commonFunc.hardWait(3000);
-					webDB.sendTextToAnElement(InspectionDocumentsLocators.ObservationValueInput, "10",
+					webDB.sendTextToAnElement(InspectionDocumentsLocators.ObservationValueInput, "30",
 							ElementType.Xpath);
 					logs.logging("INFO", "Value Tab Is Clicked");
 					commonFunc.hardWait(3000);
@@ -1769,7 +1782,7 @@ public class InspectionDocumentFunctions {
 		try {
 			String alertText = VariableHandler.getIDAlertMessage();
 			logs.logging("INFO", "Alert text: " + alertText);
-			String pattern = "Pend\\. Inspection Request Moved\\s*-\\s*IDPO-\\d{4}-\\d{4}\\s*to\\s*IDPO-\\d{4}-\\d{4}";
+			String pattern = "Pend\\. Inspection Request Moved\\s*-\\s*IDPO-\\d{4}-\\d{4}\\s*~\\s*IDPO-\\d{4}-\\d{4}";
 			if (alertText.matches(".*" + pattern + ".*")) {
 				documentSearchAndSelectLovForFindPage();
 				commonFunc.logoutUser();
@@ -1818,7 +1831,7 @@ public class InspectionDocumentFunctions {
 				int endNum = Integer.parseInt(toNum);
 				ArrayList<String> allDocumentNumbers = new ArrayList<>();
 				for (int i = startNum; i <= endNum; i++) {
-					String generatedDocumentNumber = "IDPO-" + "2526-" + String.format("%04d", i);
+					String generatedDocumentNumber = "IDPO-" + "2627-" + String.format("%04d", i);
 					allDocumentNumbers.add(generatedDocumentNumber);
 				}
 				VariableHandler.setAllDocumentNumber(allDocumentNumbers);
@@ -2112,8 +2125,315 @@ public class InspectionDocumentFunctions {
 		assertTrue(flag);
 	}
 
+	/**
+	 * This Method Is Used To Verify Inspection Documents Incoming
+	 * 
+	 * @author Deepan-GWL
+	 */
 	public void verifyInspectionDocumentsIncoming() {
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.navigateItemPage();
+		priceListFunctions.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("SimItem_ID"));
+		inspectionPlanFunc.verifyCreateInspectionPlan();
+		approvedSupplierPoFunc.verifyApprovedSupplierPO();
+		verifyAddItemNameInSheet(webDB.getDataFromProperties("QualityInspectionSheet"),
+				webDB.getDataFromProperties("Insp-IncommingSheet"));
 		directGrnPageFunc.verifyCreationOfDirectGrnPriceListForIncomingInspection();
 		grnPageFunc.aafterVerifyTheStatusInspectionDocumentMoveToQcOrMrv();
 	}
+
+	/**
+	 * 
+	 * This Method Is Used To Add Item Name In Sheet
+	 * 
+	 * @author Deepan-GWL
+	 * @param FileName
+	 * @param SheetName
+	 */
+	public void verifyAddItemNameInSheet(String FileName, String SheetName) {
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
+		excelUtils.writeDataInExcel(Filepath, SheetName, 3, 1, VariableHandler.getItemName());
+	}
+
+	/**
+	 * This Method Is Used To Verify Inspetion Plan With In Process
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyInspectionPlanWithInprocessForManufacturing() {
+		String BOMName = commonFunc.getDataFromTestDataSheet("BomNamePreposition") + RandomStringUtils.randomNumeric(4);
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		LocalDate date = LocalDate.now();
+		String Today = date.format(formatter);
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		String RawMaterial = commonFunc.getDataFromTestDataSheet("GWL_Item_Inspection_Rm");
+		commonFunc.navigateItemPage();
+		priceListFunctions.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("GWL_Item_Inspection"));
+		String FinishedMaterial = VariableHandler.getItemName();
+		commonFunc.navigateToBillOfMaterialsPage();
+		bomFunc.clickAddIconAndFillUnitBOMNameAndItem(commonFunc.getDataFromTestDataSheet("Unit_100"), BOMName,
+				FinishedMaterial);
+		bomFunc.enterEffFromToDateAndSaveHeader(Today, Today);
+		bomFunc.navigateToRoutingSubTab();
+		bomFunc.clickAddLineIconInRoutingTab();
+		bomFunc.fillProcSeqNoOprnNoAndProcessIdInRouting("1", "1", commonFunc.getDataFromTestDataSheet("GwlProcess1"));
+		bomFunc.fillTypeAndWorkCenterInRouting(commonFunc.getDataFromTestDataSheet("InsideType"),
+				commonFunc.getDataFromTestDataSheet("GwlAutomationArea"));
+		bomFunc.clickIRFlagInRoutingTabForProcess(commonFunc.getDataFromTestDataSheet("GwlProcess1"));
+		bomFunc.clickSaveLineIconInRoutingTab();
+		bomFunc.clickIRFlagInRoutingTabForProcess(commonFunc.getDataFromTestDataSheet("GwlProcess1"));
+		bomFunc.clickSaveLineIconInRoutingTab();
+		bomFunc.clickDetailsForAddedProcessInBOM(commonFunc.getDataFromTestDataSheet("GwlProcess1"));
+		bomFunc.chooseConsumptionAndReceiptWHInViewDetails(commonFunc.getDataFromTestDataSheet("WIPU100_WH"),
+				commonFunc.getDataFromTestDataSheet("WIPU100_WH"));
+		bomFunc.navigateToMaterialsSubTab();
+		bomFunc.clickAddLineIconInMaterialTab();
+		bomFunc.fillProcessItemUOMInMaterial(commonFunc.getDataFromTestDataSheet("GwlProcess1Desc"), RawMaterial,
+				commonFunc.getDataFromTestDataSheet("Kgs"));
+		bomFunc.fillReqQntyConvFactorAndSourceWHInMaterial("3", "1", commonFunc.getDataFromTestDataSheet("RMU100_WH"));
+		bomFunc.clickSaveLineIconInMaterialTab();
+		bomFunc.clickHeaderSaveAndPostButtonInBOM();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getBOMNumber(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
+		}
+		commonFunc.navigateToBillOfMaterialsPage();
+		bomFunc.searchBOMNoAndVerifyStatus(VariableHandler.getBOMNumber(),
+				commonFunc.getDataFromTestDataSheet("ActiveStatus"));
+		inspectionPlanFunc.verifyCreateInspectionPlanForInprocess();
+		productionOrderFunc.verifyProdOrderWithoutSOAllInsideMoveTypeSingleWithInspectionPlan();
+	}
+
+	/**
+	 * This Methods Is Used To Create Inspection Document With inspection Plan From
+	 * GRN
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+	public void inspectionDocumentWithInspectionPlanForDifferentValuesForProductionType() {
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.navigateInspectionDocumentsPage();
+		pendingInspectionRequestDocumentToCreateInspectionDocumentForProduction();
+		inspectionPlanNumberCheckingInInspectionDocument();
+		verifyGetInspectionPlanNumber();
+		verifyChangeSampleAndObservationValue();
+		enterObservationValue();
+		verifyAttributeTabClicking();
+		verifyTextTabClicking();
+		clickTickAndPostIconForGrnDocument();
+		waitingForApproval();
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Verify Get Inspection Plan Number
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyGetInspectionPlanNumber() {
+		flag = webDB.waitForElement(InspectionDocumentsLocators.InspectiondocumentShowMore, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(InspectionDocumentsLocators.InspectiondocumentShowMore, ElementType.Xpath);
+			flag = webDB.waitForElement(InspectionDocumentsLocators.InspectionPlanNumber, ElementType.Xpath);
+			flag = webDB.waitForElement(InspectionDocumentsLocators.InspectionPlanLovButton, ElementType.Xpath);
+			if (flag) {
+				commonFunc.searchAndSelectValueInFilters(InspectionDocumentsLocators.InspectionPlanLovButton,
+						commonFunc.getDataFromTestDataSheet("AutomationPlanText"));
+				flag = webDB.waitForElement(InspectionDocumentsLocators.InspectiondocumentShowLess, ElementType.Xpath);
+				if (flag) {
+					flag = webDB.clickAnElement(InspectionDocumentsLocators.InspectiondocumentShowLess,
+							ElementType.Xpath);
+					flag = webDB.waitForElement(InspectionDocumentsLocators.HeaderTickIcon, ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Header Tick Icon Is Displayed");
+						webDB.clickAnElement(InspectionDocumentsLocators.HeaderTickIcon, ElementType.Xpath);
+						commonFunc.checkRefreshCellsDisappear();
+						if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+							webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+						}
+					}
+				}
+			}
+		}
+
+	}
+
+	/**
+	 * This Methods Is Used To Create Inspection Document From Pending Inspection
+	 * Request
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void pendingInspectionRequestDocumentToCreateInspectionDocumentForProduction() {
+		flag = webDB.waitForElement(CommonUiLocators.PendingInspectionDocuments, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(CommonUiLocators.PendingInspectionDocuments, ElementType.Xpath);
+			flag = webDB.waitForElement(InspectionDocumentsLocators.PendingInspectionFrame, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Pending Inspection Documents Is Displayed");
+				webDB.switchToFrame(InspectionDocumentsLocators.PendingInspectionFrame, ElementType.Xpath);
+				flag = webDB.waitForElement(InspectionDocumentsLocators.ProductionOrderNoLovButton, ElementType.Xpath);
+				commonFunc.searchAndSelectValueInFilters(InspectionDocumentsLocators.ProductionOrderNoLovButton,
+						VariableHandler.getProductionOrderNumber());
+				logs.logging("INFO", "Search Field Displayed");
+				webDB.switchToFrame(InspectionDocumentsLocators.PendingInspectionFrame, ElementType.Xpath);
+				commonFunc.hardWait(3000);
+				flag = webDB.waitForElement(InspectionDocumentsLocators.PendingInspectionSearchBtn, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(InspectionDocumentsLocators.PendingInspectionSearchBtn, ElementType.Xpath);
+					logs.logging("INFO", "Document Search Successfully");
+					flag = webDB.waitForElement(InspectionDocumentsLocators.PendingInspectionSelectAllBtn,
+							ElementType.Xpath);
+					commonFunc.hardWait(3000);
+					if (flag) {
+						flag = webDB.clickAnElement(InspectionDocumentsLocators.PendingInspectionSelectAllBtn,
+								ElementType.Xpath);
+						logs.logging("INFO", "Create QC Button Displayed");
+						flag = webDB.waitForElement(InspectionDocumentsLocators.CreateQCDoc, ElementType.Xpath);
+						if (flag) {
+							commonFunc.hardWait(3000);
+							webDB.clickAnElement(InspectionDocumentsLocators.CreateQCDoc, ElementType.Xpath);
+							if (flag) {
+								logs.logging("INFO", "Ok Button Is Displayed");
+								commonFunc.hardWait(3000);
+								webDB.clickAnElement(InspectionDocumentsLocators.OKButton, ElementType.Xpath);
+								webDB.switchToDefaultContent();
+								flag = webDB.waitForElement(InspectionDocumentsLocators.LocationId, ElementType.Xpath);
+							}
+						}
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Verify Inspection Plan With Final Inspection
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyInspectionPlanWithFinalInspection() {
+		String BOMName = commonFunc.getDataFromTestDataSheet("BomNamePreposition") + RandomStringUtils.randomNumeric(4);
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		LocalDate date = LocalDate.now();
+		String Today = date.format(formatter);
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		String RawMaterial = commonFunc.getDataFromTestDataSheet("GWL_Item_Inspection_Rm");
+		commonFunc.navigateItemPage();
+		priceListFunctions.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("GWL_Item_Inspection"));
+		approvedSupplierPoFunc.verifyItemUnitAssociationForFinalInnspection();
+
+		String FinishedMaterial = VariableHandler.getItemName();
+		commonFunc.navigateToBillOfMaterialsPage();
+		bomFunc.clickAddIconAndFillUnitBOMNameAndItem(commonFunc.getDataFromTestDataSheet("Unit_100"), BOMName,
+				FinishedMaterial);
+		bomFunc.enterEffFromToDateAndSaveHeader(Today, Today);
+		bomFunc.navigateToRoutingSubTab();
+		bomFunc.clickAddLineIconInRoutingTab();
+		bomFunc.fillProcSeqNoOprnNoAndProcessIdInRouting("1", "1", commonFunc.getDataFromTestDataSheet("GwlProcess1"));
+		bomFunc.fillTypeAndWorkCenterInRouting(commonFunc.getDataFromTestDataSheet("InsideType"),
+				commonFunc.getDataFromTestDataSheet("GwlAutomationArea"));
+		bomFunc.clickIRFlagInRoutingTabForProcess(commonFunc.getDataFromTestDataSheet("GwlProcess1"));
+		bomFunc.clickSaveLineIconInRoutingTab();
+		bomFunc.clickIRFlagInRoutingTabForProcess(commonFunc.getDataFromTestDataSheet("GwlProcess1"));
+		bomFunc.clickSaveLineIconInRoutingTab();
+		bomFunc.clickDetailsForAddedProcessInBOM(commonFunc.getDataFromTestDataSheet("GwlProcess1"));
+		bomFunc.chooseConsumptionAndReceiptWHInViewDetails(commonFunc.getDataFromTestDataSheet("WIPU100_WH"),
+				commonFunc.getDataFromTestDataSheet("WIPU100_WH"));
+		bomFunc.navigateToMaterialsSubTab();
+		bomFunc.clickAddLineIconInMaterialTab();
+		bomFunc.fillProcessItemUOMInMaterial(commonFunc.getDataFromTestDataSheet("GwlProcess1Desc"), RawMaterial,
+				commonFunc.getDataFromTestDataSheet("Kgs"));
+		bomFunc.fillReqQntyConvFactorAndSourceWHInMaterial("3", "1", commonFunc.getDataFromTestDataSheet("RMU100_WH"));
+		bomFunc.clickSaveLineIconInMaterialTab();
+		bomFunc.clickHeaderSaveAndPostButtonInBOM();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getBOMNumber(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
+		}
+		commonFunc.navigateToBillOfMaterialsPage();
+		bomFunc.searchBOMNoAndVerifyStatus(VariableHandler.getBOMNumber(),
+				commonFunc.getDataFromTestDataSheet("ActiveStatus"));
+		inspectionPlanFunc.verifyCreateInspectionPlanForInprocess();
+		productionOrderFunc.verifyProdOrderWithoutSOAllInsideMoveTypeSingleWithFinalInspection();
+	}
+
+	/**
+	 * This Method Is Used To Verify Inspection Plan WIth Pre Dispatch
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyInspectionPlanWithPreDispatch() {
+		salesInvoiceFunc.verifyDirectSalesInvoiceForPreDispatch();
+		commonFunc.navigateInspectionDocumentsPage();
+		pendingInspectionRequestDocumentToCreateInspectionDocument(VariableHandler.getSIdocno());
+		inspectionPlanNumberCheckingInInspectionDocument();
+//		verifyGetInspectionPlanNumber();
+//		verifyChangeSampleAndObservationValue();
+//		enterObservationValue();
+//		verifyAttributeTabClicking();
+//		verifyTextTabClicking();
+		clickTickAndPostIconForGrnDocument();
+		waitingForApproval();
+	}
+
+	/**
+	 * This Methods Is Used To Create Inspection Document From Pending Inspection
+	 * Request
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void pendingInspectionRequestDocumentToCreateInspectionDocument(String VoucherNo) {
+		flag = webDB.waitForElement(CommonUiLocators.PendingInspectionDocuments, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(CommonUiLocators.PendingInspectionDocuments, ElementType.Xpath);
+			flag = webDB.waitForElement(InspectionDocumentsLocators.PendingInspectionFrame, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Pending Inspection Documents Is Displayed");
+				webDB.switchToFrame(InspectionDocumentsLocators.PendingInspectionFrame, ElementType.Xpath);
+				flag = webDB.waitForElement(InspectionDocumentsLocators.VoucherLov, ElementType.Xpath);
+				commonFunc.searchAndSelectValueInFilters(InspectionDocumentsLocators.VoucherLov, VoucherNo);
+				logs.logging("INFO", "Search Field Displayed");
+				webDB.switchToFrame(InspectionDocumentsLocators.PendingInspectionFrame, ElementType.Xpath);
+				commonFunc.hardWait(3000);
+				flag = webDB.waitForElement(InspectionDocumentsLocators.PendingInspectionSearchBtn, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(InspectionDocumentsLocators.PendingInspectionSearchBtn, ElementType.Xpath);
+					logs.logging("INFO", "Document Search Successfully");
+					flag = webDB.waitForElement(InspectionDocumentsLocators.PendingInspectionSelectAllBtn,
+							ElementType.Xpath);
+					commonFunc.hardWait(3000);
+					if (flag) {
+						flag = webDB.clickAnElement(InspectionDocumentsLocators.PendingInspectionSelectAllBtn,
+								ElementType.Xpath);
+						logs.logging("INFO", "Create QC Button Displayed");
+						flag = webDB.waitForElement(InspectionDocumentsLocators.CreateQCDoc, ElementType.Xpath);
+						if (flag) {
+							commonFunc.hardWait(3000);
+							webDB.clickAnElement(InspectionDocumentsLocators.CreateQCDoc, ElementType.Xpath);
+							if (flag) {
+								logs.logging("INFO", "Ok Button Is Displayed");
+								commonFunc.hardWait(3000);
+								webDB.clickAnElement(InspectionDocumentsLocators.OKButton, ElementType.Xpath);
+								webDB.switchToDefaultContent();
+								flag = webDB.waitForElement(InspectionDocumentsLocators.LocationId, ElementType.Xpath);
+							}
+						}
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
 }

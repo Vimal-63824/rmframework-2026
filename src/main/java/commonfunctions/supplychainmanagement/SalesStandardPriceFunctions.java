@@ -639,7 +639,8 @@ public class SalesStandardPriceFunctions {
 	 * @author Kowshik-RMITS
 	 */
 	public void clickActiveButton() {
-		commonFunc.hardWait(4000);
+		//commonFunc.hardWait(4000);
+		commonFunc.checkRefreshCellsDisappear();
 		flag = webDB.waitForElement(SalesStandardPriceLocators.ActiveButton, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(SalesStandardPriceLocators.ActiveButton, ElementType.Xpath);

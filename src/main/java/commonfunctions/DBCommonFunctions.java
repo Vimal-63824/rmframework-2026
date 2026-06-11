@@ -1804,6 +1804,20 @@ public class DBCommonFunctions {
 				commonFunc.getDataFromTestDataSheet("SONO"), SONo, DBHeaderColumnValue);
 		return value;
 	}
+	
+	/**
+	 * ARM Control
+	 * 
+	 * @author Harikrishna -RMITS
+	 * @param SONo
+	 * @param HeaderValue
+	 * @return String Value
+	 */
+	public String customerDocumentQueryTotalAMT(String SONo, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery(getDataFromDBTestDataSheet("CustomerDocumentTOTQuery"),
+				commonFunc.getDataFromTestDataSheet("SONO"), SONo, DBHeaderColumnValue);
+		return value;
+	}
 
 	/**
 	 * ARM Control
