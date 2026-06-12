@@ -42,7 +42,7 @@ import commonlocators.productionplanning.ProductionOrderLocators;
 import commonlocators.qualitycontrol.InspectionPlanLocators;
 import commonlocators.qualitycontrol.InspectionRequestLocators;
 import commonlocators.supplychainmanagement.ApprovalPageLocators;
-import commonlocators.supplychainmanagement.CompletionProductionOrderLocators;
+import commonlocators.productionplanning.CompletionProductionOrderLocators;
 import commonlocators.supplychainmanagement.CustomerItemsLocators;
 import commonlocators.supplychainmanagement.CustomerScheduleLocators;
 import commonlocators.supplychainmanagement.GateEntryPageLocators;
