@@ -1500,9 +1500,9 @@ public class CompletionProductionOrderFunctions {
 				commonFunc.verifyAssertionBothValues(dbCommonFunctions.validateCompProductionOrderHeaderDetails(
 						commonFunc.getDataFromTestDataSheet("CompProcessHeaderShift")), Shift);
 				logs.logging("INFO", "Verified Header Shift and DB Value Matched: " + Shift);
-//				commonFunc.verifyAssertionBothValues(dbCommonFunctions.validateCompProductionOrderHeaderDetails(
-//						commonFunc.getDataFromTestDataSheet("CompProcessHeaderProcessId")), Process);
-//				logs.logging("INFO", "Verified Header Target Process and DB Value Matched: " + Process);
+				commonFunc.verifyAssertionBothValues(dbCommonFunctions.validateCompProductionOrderHeaderDetails(
+						commonFunc.getDataFromTestDataSheet("CompProcessHeaderProcessId")), Process);
+				logs.logging("INFO", "Verified Header Target Process and DB Value Matched: " + Process);
 				commonFunc.verifyAssertionBothValues(dbCommonFunctions.validateCompProductionOrderHeaderDetails(
 						commonFunc.getDataFromTestDataSheet("CompProcessHeaderFGUom")), UOM);
 				logs.logging("INFO", "Verified Header FG UOM and DB Value Matched: " + UOM);
