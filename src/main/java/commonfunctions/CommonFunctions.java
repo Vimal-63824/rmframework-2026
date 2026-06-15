@@ -3292,4 +3292,60 @@ public class CommonFunctions {
 		navigateToSearchTab(webDB.getDataFromProperties("PostDatedCheque"),
 				BankPaymentLocators.PDCVoucherNumberLovButton);
 	}
+
+	/**
+	 * This method used to Send and Select Lov Button in table data
+	 *
+	 * @author Sakthi-GWL
+	 * @param DataLocator
+	 * @param LOVLocator
+	 * @param Value
+	 */
+	public void verifyAddTableLovValue(String DataLocator, String LOVLocator, String Value) {
+		flag = webDB.waitForElement(DataLocator, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(DataLocator, ElementType.Xpath);
+			webDB.doubleClickAnElement(DataLocator, ElementType.Xpath);
+			searchAndSelectValueInFilters(LOVLocator, Value);
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * Verify Add Table Specs
+	 * 
+	 * @author Deepan-GWL
+	 * @param Tablespec
+	 * @param InputParameter
+	 * @param Enteredvalue
+	 */
+	public void verifyAddTableSpecsClearField(String Tablespec, String InputParameter, String Enteredvalue) {
+		checkRefreshCellsDisappear();
+		flag = webDB.waitForElement(Tablespec, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(Tablespec, ElementType.Xpath);
+			webDB.doubleClickAnElement(Tablespec, ElementType.Xpath);
+//			logs.logging("INFO", "Table Input Box Is Clicked");
+			webDB.waitForElement(InputParameter, ElementType.Xpath);
+			webDB.clearTextField(InputParameter, ElementType.Xpath);
+//			logs.logging("INFO", "Clear Text Field The Input Value");
+			flag = webDB.waitForElement(Tablespec, ElementType.Xpath);
+			if (flag) {
+				webDB.moveToElement(Tablespec, ElementType.Xpath);
+				webDB.doubleClickAnElement(Tablespec, ElementType.Xpath);
+				checkRefreshCellsDisappear();
+				webDB.waitForElement(InputParameter, ElementType.Xpath);
+				flag = webDB.sendTextToAnElement(InputParameter, Enteredvalue, ElementType.Xpath);
+				logs.logging("INFO", "Entered Value Is: " + Enteredvalue + " in 'verifyAddTableSpecs'");
+//				String value = webDB.getAttributeFromElement(InputParameter, ElementType.Xpath,
+//						getDataFromTestDataSheet("Value"));
+////				logs.logging("INFO", "Get Attribute Value Is: " + value);
+//				flag = value.contains(Enteredvalue);
+				if (flag) {
+//					logs.logging("INFO", "Verified Entered Value With Get Attribute Value");
+				}
+			}
+		}
+		assertTrue(flag);
+	}
 }

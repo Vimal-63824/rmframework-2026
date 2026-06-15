@@ -804,4 +804,6 @@ public class SalesInvoiceLocators {
 	public static final String RW_SCO_Create_OK_Btn = "//button[@data-testid='RW_SCO_OK_Btn']";
 	/** @Locator XPATH */
 	public static final String RW_Pend_Outside_Supl_Lov = "//input[@data-testid='Rework_Prim_SUP_Lov']/following-sibling::button";
+	/** @Locator XPATH */
+	public static final String CreatePreDispatchButton = "//button[@data-testid='Cre_pre_disp']";
 }

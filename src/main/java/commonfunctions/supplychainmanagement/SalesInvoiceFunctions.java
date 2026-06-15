@@ -7991,7 +7991,8 @@ public class SalesInvoiceFunctions {
 		verifyHeaderTickIcon();
 		commonFunc.checkRefreshCellsDisappear();
 		CustomerDetailsVerification(commonFunc.getDataFromTestDataSheet("CustomerName"));
-		AddingUserDefinedItemLineFromReadingExcelSheet(webDB.getDataFromProperties("DBSales"));
+		addingUserDefinedItemLineFromReadingExcelSheet(webDB.getDataFromProperties("Ins-PreDispatchSheet"),
+				webDB.getDataFromProperties("QualityInspectionSheet"));
 		commonFunc.checkRefreshCellsDisappear();
 		verifyAllocLSbatch();
 		commonFunc.checkRefreshCellsDisappear();
@@ -8000,6 +8001,7 @@ public class SalesInvoiceFunctions {
 		verifyCreateInvoiceNo();
 		commonFunc.checkRefreshCellsDisappear();
 		VariableHandler.setMultipleSIDocs(MultiSIDocNumber);
+		verifyClickCreatePreDispatchButton();
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
@@ -8022,7 +8024,7 @@ public class SalesInvoiceFunctions {
 		itemMultiples = excelUtils.readAllDataInExcel(Filepath, SheetName);
 		System.out.println(itemMultiples.length);
 		for (int i = 4; i < itemMultiples.length; i++) {
-			salesOrderFunctions.StockQtyUpdateInExcelSI(i, ArrayList, SheetName);
+			salesOrderFunctions.StockQtyUpdateInExcelSI(i, ArrayList, SheetName, FileName);
 			String Item = itemMultiples[i][1];
 			String SalesGL_Acct = itemMultiples[i][35];
 			String InvoiceQty = itemMultiples[i][6];
@@ -8087,5 +8089,24 @@ public class SalesInvoiceFunctions {
 			}
 		}
 		VariableHandler.setExpectedStockQty2(ArrayList);
+	}
+
+	/**
+	 * This Method Is Used To Verify Click Create PreDispatch Button
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyClickCreatePreDispatchButton() {
+		flag = webDB.waitForElement(SalesInvoiceLocators.CreatePreDispatchButton, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(SalesInvoiceLocators.CreatePreDispatchButton, ElementType.Xpath);
+			commonFunc.hardWait(2000);
+			commonFunc.checkRefreshCellsDisappear();
+			logs.logging("INFO", "Create PreDispatch Button Is Clicked");
+			if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+				webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+			}
+			commonFunc.checkRefreshCellsDisappear();
+		}
 	}
 }

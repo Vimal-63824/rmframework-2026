@@ -41,14 +41,20 @@ public class CompletionProductionOrderFunctions {
 		flag = webDB.waitForElement(CompletionProductionOrderLocators.ComplProdOrderAllocateDeAllocateBtn,
 				ElementType.Xpath);
 		if (flag) {
+			String value = webDB.getAttributeFromElement(
+					CompletionProductionOrderLocators.ComplProdOrderAllocateDeAllocateBtn, ElementType.Xpath,
+					"onclick");
+			System.out.println("Value " + value);
 			if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
 				webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
 			}
-			webDB.moveToElement(CompletionProductionOrderLocators.ComplProdOrderAllocateDeAllocateBtn,
-					ElementType.Xpath);
-			webDB.clickAnElement(CompletionProductionOrderLocators.ComplProdOrderAllocateDeAllocateBtn,
-					ElementType.Xpath);
-			flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+			if (value.contains("Allocate")) {
+				webDB.moveToElement(CompletionProductionOrderLocators.ComplProdOrderAllocateDeAllocateBtn,
+						ElementType.Xpath);
+				webDB.clickAnElement(CompletionProductionOrderLocators.ComplProdOrderAllocateDeAllocateBtn,
+						ElementType.Xpath);
+				flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+			}
 		}
 		assertTrue(flag);
 	}
@@ -1413,6 +1419,9 @@ public class CompletionProductionOrderFunctions {
 					|| OprnNo.equalsIgnoreCase("Completion") || OprnNo.equalsIgnoreCase("SFG")) {
 				break a;
 			}
+			if (Integer.parseInt(SeqNo) > 7) {
+				SeqNo = String.valueOf(Integer.parseInt(SeqNo) - 7);
+			}
 			commonFunc.verifyAssertionBothValues(dbCommonFunctions.validateCompProductionOrderLinesDetails(SeqNo,
 					OprnNo, commonFunc.getDataFromTestDataSheet("CompProcessLinesUnit")), Unit);
 			logs.logging("INFO", "Verified Unit and DB Value Matched: " + Unit);
@@ -1509,6 +1518,7 @@ public class CompletionProductionOrderFunctions {
 				commonFunc.verifyAssertionBothValues(dbCommonFunctions.validateCompProductionOrderHeaderDetails(
 						commonFunc.getDataFromTestDataSheet("CompProcessHeaderRcptWarehouse")), RcptWH);
 				logs.logging("INFO", "Verified Receipt Warehouse and DB Value Matched: " + RcptWH);
+				System.out.println("I value " + i + " completionqty " + CompQty);
 				commonFunc.verifyAssertionBothValues(dbCommonFunctions.validateCompProductionOrderHeaderDetails(
 						commonFunc.getDataFromTestDataSheet("CompProcessHeaderCompQty")), CompQty);
 				logs.logging("INFO", "Verified Process Completion Quantity and DB Value Matched: " + CompQty);
@@ -1560,5 +1570,124 @@ public class CompletionProductionOrderFunctions {
 			commonFunc.verifyAssertionBothValues(DBRMName, RMItem);
 			logs.logging("INFO", "Verified Prod Id in Stock Transaction and DB Value Matched: " + RMItem);
 		}
+	}
+
+	/**
+	 * This method used to fill consumptions line details in production completion
+	 *
+	 * @author Deepan-GWL
+	 */
+	public void fillActuaConsumptionAsExcessInProductionCompletion() {
+		webDB.waitForElement(CompletionProductionOrderLocators.ProdCompLineActualConsumptionQtyData, ElementType.Xpath);
+		List<WebElement> RowElement = webDB
+				.getListOfElements(CompletionProductionOrderLocators.ActualConsTableDataInLines, ElementType.Xpath);
+		commonFunc.checkRefreshCellsDisappear();
+		for (int i = 0; i < RowElement.size(); i++) {
+			WebElement element = RowElement.get(i);
+			int value = Integer.parseInt(element.getText()) + 10;
+			System.out.println(value);
+			try {
+				Actions action = new Actions(WebDriverBase.getDriver());
+				action.scrollToElement(element).moveToElement(element).doubleClick(element).build().perform();
+			} catch (Exception e) {
+
+			}
+			flag = webDB.waitForElement(CompletionProductionOrderLocators.ProdCompLineActualConsumptionQtyInput,
+					ElementType.Xpath);
+			if (flag) {
+				webDB.clearText(CompletionProductionOrderLocators.ProdCompLineActualConsumptionQtyInput,
+						ElementType.Xpath);
+				flag = webDB.sendTextToAnElement(
+						CompletionProductionOrderLocators.ProdCompLineActualConsumptionQtyInput, String.valueOf(value),
+						ElementType.Xpath);
+			}
+			commonFunc.checkRefreshCellsDisappear();
+			if (i == 4) {
+				clickSaveIconConsumptionInProdCompletion();
+				webDB.moveToElement(CompletionProductionOrderLocators.ActualConsTableNextIconPagination,
+						ElementType.Xpath);
+				webDB.clickAnElement(CompletionProductionOrderLocators.ActualConsTableNextIconPagination,
+						ElementType.Xpath);
+				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.checkRefreshCellsDisappear();
+				RowElement = webDB.getListOfElements(CompletionProductionOrderLocators.ActualConsTableDataInLines,
+						ElementType.Xpath);
+				i = -1;
+			}
+		}
+		clickSaveIconConsumptionInProdCompletion();
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method used to click Add Icon in Consumption Lines Production Completion
+	 *
+	 * @author Deepan-GWL
+	 */
+	public void clickAddIconConsumptionInProdCompletion() {
+		flag = webDB.waitForElement(CompletionProductionOrderLocators.ProdCompConsumptionAddIcon, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(CompletionProductionOrderLocators.ProdCompConsumptionAddIcon, ElementType.Xpath);
+			flag = webDB.waitForElement(CompletionProductionOrderLocators.ProdCompLineConsumptionWHData,
+					ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Add Icon Clicked in Consumption Lines");
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method used to click Save Icon in Consumption Lines Production
+	 * Completion
+	 *
+	 * @author Deepan-GWL
+	 */
+	public void clickSaveIconConsumptionInProdCompletion() {
+		flag = webDB.waitForElement(CompletionProductionOrderLocators.ProdCompConsumptionSaveIcon, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(CompletionProductionOrderLocators.ProdCompConsumptionSaveIcon, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+			if (flag) {
+				commonFunc.checkSuccessToastMessageDisappear();
+				if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+					webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+				}
+				logs.logging("INFO", "Save Icon Clicked in Consumption Lines");
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This method used to fill consumptions line details in production completion
+	 *
+	 * @author Deepan-GWL
+	 * @param WH
+	 * @param Item
+	 * @param UOM
+	 * @param ReqrdQty
+	 * @param ActualConsQty
+	 */
+	public void fillConsumptionLinesInProductionCompletion(String WH, String Item, String UOM, String ReqrdQty,
+			String ActualConsQty) {
+		commonFunc.verifyAddTableLovValue(CompletionProductionOrderLocators.ProdCompLineConsumptionWHData,
+				CompletionProductionOrderLocators.ProdCompLineConsumptionWHLovBtn, WH);
+		logs.logging("INFO", "Cons.Warehouse selected in Consumption: " + WH);
+		commonFunc.verifyAddTableLovValue(CompletionProductionOrderLocators.ProdCompLineItemsData,
+				CompletionProductionOrderLocators.ProdCompLineItemsLovBtn, Item);
+		logs.logging("INFO", "Item selected in Consumption: " + Item);
+		commonFunc.verifyAddTableLovValue(CompletionProductionOrderLocators.ProdCompLineUOMData,
+				CompletionProductionOrderLocators.ProdCompLineUOMLovBtn, UOM);
+		logs.logging("INFO", "UOM selected in Consumption: " + UOM);
+//		commonFunc.verifyAddTableSpecs(CompletionProductionOrderLocators.ProdCompLineRequiredQtyData,
+//				CompletionProductionOrderLocators.ProdCompLineRequiredQtyInput, ReqrdQty);
+//		logs.logging("INFO", "Required Quantity Entered in Consumption: " + ReqrdQty);
+		commonFunc.verifyAddTableSpecsClearField(CompletionProductionOrderLocators.ProdCompLineActualConsumptionQtyData,
+				CompletionProductionOrderLocators.ProdCompLineActualConsumptionQtyData, ActualConsQty);
+		webDB.clickAnElement(CompletionProductionOrderLocators.ProdCompLineUOMData, ElementType.Xpath);
+		commonFunc.verifyAddTableSpecsClearField(CompletionProductionOrderLocators.ProdCompLineActualConsumptionQtyData,
+				CompletionProductionOrderLocators.ProdCompLineActualConsumptionQtyData, ActualConsQty);
+		logs.logging("INFO", "Actual ConsumpFtion Quantity Entered in Consumption: " + ActualConsQty);
 	}
 }

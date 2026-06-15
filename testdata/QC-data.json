@@ -2068,5 +2068,9 @@
 	"BomAllBoth": "BOM-2627-0000152",
 	"Always": "Always",
 	"GWL_Item_Inspection": "GWL_Item_Inspection_Inprocess_Fg_01",
-	"GWL_Item_Inspection_Rm": "GWL_Item_Inspection_Inprocess_Rm_01"
+	"GWL_Item_Inspection_Rm": "GWL_Item_Inspection_Inprocess_Rm_01",
+	"POWRWOMRC": "BOM-2627-0000693",
+	"BomAllInsideWoRes": "BOM-2627-0000722",
+	"BomAllInsideWoResMT": "BOM-2627-0000804",
+	"BomPoCl":"BOM-2627-0000899"
 }
