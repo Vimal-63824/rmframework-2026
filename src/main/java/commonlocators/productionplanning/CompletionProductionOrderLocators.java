@@ -1,4 +1,4 @@
-package commonlocators.supplychainmanagement;
+package commonlocators.productionplanning;
 
 /**
  * @author Sakthi-GWL
@@ -160,7 +160,8 @@ public class CompletionProductionOrderLocators {
 
 	/** @locatorType XPATH */
 	public static final String MultipleProcessCreateCheckBox(String No) {
-		return "//table[contains(@aria-label,'Process Details')]/tbody//td[text()='" + No + "']/../td/input[@type='checkbox']";
+		return "//table[contains(@aria-label,'Process Details')]/tbody//td[text()='" + No
+				+ "']/../td/input[@type='checkbox']";
 	}
 
 	/** @locatorType XPATH */
@@ -266,7 +267,7 @@ public class CompletionProductionOrderLocators {
 	public static final String PendingMRSelectAllBtn(String prodNo) {
 		return "//table/tbody//td[text()='" + prodNo + "']/../td/input[contains(@id,'checkbox')]";
 	}
-	
+
 	/** @locatorType XPATH */
 	public static final String PendingMRQuantityInut(String prodNo) {
 		return "//table/tbody//td[text()='" + prodNo + "']/../td/input[contains(@id,'inputField')]";
@@ -294,5 +295,21 @@ public class CompletionProductionOrderLocators {
 	public static final String CreateMROkButton = "//button[@data-testid='CreateCompletionProcessOkBtn']";
 	/** @locatorType XPATH */
 	public static final String Pending_InsideProcCreateBtn = "//div[@id='PEND_ORD']//button[@data-testid='CompletionProcessPendingIcon']";
+	/** @locatorType XPATH */
+	public static final String AllowExceptionButton = "//span[text()='Allow Exception']/parent::button";
+	/** @locatorType XPATH */
+	public static final String AllowExceptionIframe = "//iframe[@title='Prod. Comp. Entry (Process Wise) Allow Exception']";
+	/** @locatorType XPATH */
+	public static final String PendingSearchInput = "//input[@id='PEND_search_field']";
+	/** @locatorType XPATH */
+	public static final String PendingSearchGoButton = "//button[@id='PEND_search_button']";
+	/** @locatorType XPATH */
+	public static final String AllowExceptionPostButton = "//span[text()='Post']/parent::button";
+
+	/** @locatorType XPATH */
+	public static final String AllowExceptionSelectCheckBox(String ProdOrder) {
+		return "//table[contains(@aria-label,'PROD_TRANS_HIST_VIEW')]//tbody/tr/td[text()='" + ProdOrder
+				+ "']/../td/input";
+	}
 
 }

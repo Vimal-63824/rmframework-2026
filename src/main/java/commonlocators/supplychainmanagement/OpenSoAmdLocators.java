@@ -33,9 +33,9 @@ public class OpenSoAmdLocators {
 	/** @locatorType Xpath */
 	public static final String ToastCloseIcon = "//button[@title='Close']";
 	/** @locatorType Xpath */
-	public static final String revField = "//table[@class='a-GV-table']/tbody/tr/td[7]";
+	public static final String revField = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[7]";
 	/** @locatorType Xpath */
-	public static final String MrpField = "//table[@class='a-GV-table']/tbody/tr/td[8]";
+	public static final String MrpField = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[10]";
 	/** @locatorType Xpath */
 	public static final String Mrpprice = "//input[@data-testid='SRCALN_MRP_PRICE']";
 	/** @locatorType Xpath */
@@ -57,7 +57,7 @@ public class OpenSoAmdLocators {
 	/** @locatorType Xpath */
 	public static final String PriceClassChange = "//select[@data-testid='SRCALN_CLASS_ID']";
 	/** @locatorType Xpath */
-	public static final String PriceClassClick = "//table[@class='a-GV-table']/tbody/tr/td[21]";
+	public static final String PriceClassClick = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[21]";
 	/** @locatorType Xpath */
 	public static final String AdditionofItemRadioButton = "//label[contains(text(),'Addition of Item')]";
 	/** @locatorType Xpath */
@@ -65,11 +65,11 @@ public class OpenSoAmdLocators {
 	/** @locatorType Xpath */
 	public static final String AddButtoninAdditionType = "//BUTTON[@data-testid='OSO_Lines_Add_Button']";
 	/** @locatorType Xpath */
-	public static final String ItemClickField = "//table[@class='a-GV-table']/tbody/tr/td[3]";
+	public static final String ItemClickField = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[3]";
 	/** @locatorType Xpath */
 	public static final String ItemLovButton = "//input[@data-testid='PROD_REV_DUM']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String DiscFieldClick = "//table[@class='a-GV-table']/tbody/tr/td[9]";
+	public static final String DiscFieldClick = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[9]\r\n";
 	/** @locatorType Xpath */
 	public static final String DiscPercentInsert = "//input[@data-testid='SRCALN_DISC_PCT']";
 	/** @locatorType Xpath */
@@ -79,18 +79,18 @@ public class OpenSoAmdLocators {
 	/** @locatorType Xpath */
 	public static final String SearchButton = "//button[@data-testid='Find_line']";
 	/** @locatorType Xpath */
-	public static final String HsnCodeField = "//table[@class='a-GV-table']/tbody/tr/td[11]";
+	public static final String HsnCodeField = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[11]";
 	/** @locatorType Xpath */
 	public static final String HsnCodeLov = "//input[@data-testid='SRCALN_HSN_CODE']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String IgstFieldInLineDetails = "//table[@class='a-GV-table']/tbody/tr/td[13]";
+	public static final String IgstFieldInLineDetails = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[13]";
 
 	/** @locatorType Xpath */
-	public static final String CgstFieldLineDetails = "//table[@class='a-GV-table']/tbody/tr/td[14]]";
+	public static final String CgstFieldLineDetails = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[14]";
 	/** @locatorType Xpath */
-	public static final String SgstFieldLineDetails = "//table[@class='a-GV-table']/tbody/tr/td[15]";
+	public static final String SgstFieldLineDetails = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[15]";
 	/** @locatorType Xpath */
-	public static final String UTgstFieldLineDetails = "//table[@class='a-GV-table']/tbody/tr/td[16]";
+	public static final String UTgstFieldLineDetails = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[16]";
 
 	/** @locatorType Xpath */
 	public static final String CurcyField = "//*[@id='P1915131013016_SRCAHD_CURCY_ID']";
@@ -111,17 +111,17 @@ public class OpenSoAmdLocators {
 	/** @locatorType Xpath */
 	public static final String OpenSoDocumentNumber = "//input[@data-testid='P1915131013016_SRCAHD_CONTR_NO']";
 	/** @locatorType Xpath */
-	public static final String RevPriceField = "//table[@class='a-GV-table']/tbody/tr/td[7]";
+	public static final String RevPriceField = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[7]";
 	/** @locatorType Xpath */
-	public static final String TaxPercent = "//table[@class='a-GV-table']/tbody/tr/td[12]";
+	public static final String TaxPercent = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[12]";
 	/** @locatorType Xpath */
 	public static final String ItemIDField = " //td[@class='a-GV-cell u-tS a-GV-frozen a-GV-frozen--start3']";
 	/** @locatorType Xpath */
-	public static final String ItemDescField = "//table[@class='a-GV-table']/tbody/tr/td[5]";
+	public static final String ItemDescField = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[5]";
 	/** @locatorType Xpath */
-	public static final String ItemUOM = "//table[@class='a-GV-table']/tbody/tr/td[6]]";
+	public static final String ItemUOM = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[6]";
 	/** @locatorType Xpath */
-	public static final String ExistingPrice = "//table[@class='a-GV-table']/tbody/tr/td[8]";
+	public static final String ExistingPrice = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[8]";
 
 	public static final String CurrentRateContractSelectAll = "//*[@id=\"check_all\"]";
 	/** @locatorType Xpath */
@@ -169,7 +169,7 @@ public class OpenSoAmdLocators {
 				+ i + "]/input";
 	}
 	/** @locatorType Xpath */
-	public static final String PriceClassField = "//table[@class='a-GV-table']/tbody/tr/td[21]" ;
+	public static final String PriceClassField = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[21]" ;
 	/** @locatorType Xpath */
 	public static final String PriceClassSelect = "//select[@data-testid='SRCALN_CLASS_ID']" ;
 

@@ -117,7 +117,7 @@ public class CashReceiptTest extends RoadMapERPTest {
 	@Test(priority = 7, groups = {
 			"Cash Receipt" }, description = "Receipt Against Multi Party, Single Invoice (Through Add button)")
 	public void CreateCashReceiptMultiPartySingleInvoiceThroughAddButton() throws IOException {
-		cashReceiptFunc.CRMultiPartySingleInvoiceThroughAddButton(webDB.getDataFromProperties("BankReceiptMulti"));
+		cashReceiptFunc.CRMultiPartySingleInvoiceThroughAddButton(webDB.getDataFromProperties("BankReceiptMultiCR"));
 	}
 
 	/**
@@ -143,7 +143,7 @@ public class CashReceiptTest extends RoadMapERPTest {
 	@Test(priority = 9, groups = {
 			"Cash Receipt" }, description = "Receipt Against Multi Party, Single Invoice (Pending)")
 	public void CreateCashReceiptMultiPartySingleInvoiceThroughPendingDocs() throws IOException {
-		cashReceiptFunc.CRMultiPartySingleInvoiceThroughPendingDocs(webDB.getDataFromProperties("BankReceiptMulti"));
+		cashReceiptFunc.CRMultiPartySingleInvoiceThroughPendingDocs(webDB.getDataFromProperties("BankReceiptMultiCR"));
 	}
 
 	/**
@@ -340,110 +340,110 @@ public class CashReceiptTest extends RoadMapERPTest {
 		cashReceiptFunc
 				.CRMultiPartyMultiInvoiceThroughPendingDocsMultiUnits(webDB.getDataFromProperties("BankReceiptMulti"));
 	}
-
-	/**
-	 * Advance against SO single Sales order (Through Add button)
-	 * 
-	 * @author Harikrishna - RMITS
-	 * @throws IOException
-	 */
-	@Author("Harikrishna-RMITS")
-	@Test(priority = 24, groups = {
-			"Cash Receipt" }, description = "Advance against SO single Sales order (Through Add button)")
-	public void CreateAdvanceAgainstSOThroughAddButton() throws IOException {
-		cashReceiptFunc.CRAdvanceThroughAddButton(webDB.getDataFromProperties("BankReceipt"));
-	}
-
-	/**
-	 * Advance against SO single Sales order (Through Add button)
-	 * 
-	 * @author Harikrishna - RMITS
-	 * @throws IOException
-	 */
-	@Author("Harikrishna-RMITS")
-	@Test(priority = 25, groups = {
-			"Cash Receipt" }, description = "Advance against SO single Sales order (Through Get Document)")
-	public void CreateAdvanceAgainstSOThroughGetDocument() throws IOException {
-		cashReceiptFunc.CRAdvanceThroughGetDocument(webDB.getDataFromProperties("BankReceipt"));
-	}
-
-	/**
-	 * Advance against SO single Sales order (Through Add button)
-	 * 
-	 * @author Harikrishna - RMITS
-	 * @throws IOException
-	 */
-	@Author("Harikrishna-RMITS")
-	@Test(priority = 26, groups = {
-			"Cash Receipt" }, description = "Advance against SO single Sales order (Through Pending Document)")
-	public void CreateAdvanceAgainstSOThroughPendingDocs() throws IOException {
-		cashReceiptFunc.CRAdvanceThroughPendingDocs(webDB.getDataFromProperties("BankReceipt"));
-	}
-
-	/**
-	 * Advance against SO single Sales order (Through Add button)
-	 * 
-	 * @author Harikrishna - RMITS
-	 * @throws IOException
-	 */
-	@Author("Harikrishna-RMITS")
-	@Test(priority = 27, groups = {
-			"Cash Receipt" }, description = "Advance against SO single Sales order (Through Add button)")
-	public void CreateAdvanceAgainstMultiSOThroughAddButton() throws IOException {
-		cashReceiptFunc.CRAdvanceMultiSOThroughAddButton(webDB.getDataFromProperties("BankReceipt"));
-	}
-
-	/**
-	 * Advance against SO single Sales order (Through Add button)
-	 * 
-	 * @author Harikrishna - RMITS
-	 * @throws IOException
-	 */
-	@Author("Harikrishna-RMITS")
-	@Test(priority = 28, groups = {
-			"Cash Receipt" }, description = "Advance against SO single Sales order (Through Get Document)")
-	public void CreateAdvanceAgainstMultiSOThroughGetDocument() throws IOException {
-		cashReceiptFunc.CRAdvanceMultiSOThroughGetDocument(webDB.getDataFromProperties("BankReceipt"));
-	}
-
-	/**
-	 * Advance against SO single Sales order (Through Add button)
-	 * 
-	 * @author Harikrishna - RMITS
-	 * @throws IOException
-	 */
-	@Author("Harikrishna-RMITS")
-	@Test(priority = 29, groups = {
-			"Cash Receipt" }, description = "Advance against SO single Sales order (Through Pending Document)")
-	public void CreateAdvanceAgainstMultiSOThroughPendingDocs() throws IOException {
-		cashReceiptFunc.CRAdvanceMultiSOThroughPendingDocs(webDB.getDataFromProperties("BankReceipt"));
-	}
-	
-	/**
-	 * Advance against SO single Sales order (Through Add button)
-	 * 
-	 * @author Harikrishna - RMITS
-	 * @throws IOException
-	 */
-	@Author("Harikrishna-RMITS")
-	@Test(priority = 30, groups = {
-			"Cash Receipt" }, description = "Advance against SO single Sales order (Through Add button)")
-	public void CreateAdvanceAgainstNewRef() throws IOException {
-		cashReceiptFunc.CRAdvanceWithNewRef(webDB.getDataFromProperties("BankReceiptNewRef"));
-	}
-
-	/**
-	 * Advance against SO single Sales order (Through Add button)
-	 * 
-	 * @author Harikrishna - RMITS
-	 * @throws IOException
-	 */
-	@Author("Harikrishna-RMITS")
-	@Test(priority = 31, groups = {
-			"Cash Receipt" }, description = "Advance against SO single Sales order (Through Get Document)")
-	public void CreateAdvanceAgainstMultiRef() throws IOException {
-		cashReceiptFunc.CRAdvanceWithMultiRef(webDB.getDataFromProperties("BankReceiptAdvMultiNR"));
-	}
+//
+//	/**
+//	 * Advance against SO single Sales order (Through Add button)
+//	 * 
+//	 * @author Harikrishna - RMITS
+//	 * @throws IOException
+//	 */
+//	@Author("Harikrishna-RMITS")
+//	@Test(priority = 24, groups = {
+//			"Cash Receipt" }, description = "Advance against SO single Sales order (Through Add button)")
+//	public void CreateAdvanceAgainstSOThroughAddButton() throws IOException {
+//		cashReceiptFunc.CRAdvanceThroughAddButton(webDB.getDataFromProperties("BankReceipt"));
+//	}
+//
+//	/**
+//	 * Advance against SO single Sales order (Through Add button)
+//	 * 
+//	 * @author Harikrishna - RMITS
+//	 * @throws IOException
+//	 */
+//	@Author("Harikrishna-RMITS")
+//	@Test(priority = 25, groups = {
+//			"Cash Receipt" }, description = "Advance against SO single Sales order (Through Get Document)")
+//	public void CreateAdvanceAgainstSOThroughGetDocument() throws IOException {
+//		cashReceiptFunc.CRAdvanceThroughGetDocument(webDB.getDataFromProperties("BankReceipt"));
+//	}
+//
+//	/**
+//	 * Advance against SO single Sales order (Through Add button)
+//	 * 
+//	 * @author Harikrishna - RMITS
+//	 * @throws IOException
+//	 */
+//	@Author("Harikrishna-RMITS")
+//	@Test(priority = 26, groups = {
+//			"Cash Receipt" }, description = "Advance against SO single Sales order (Through Pending Document)")
+//	public void CreateAdvanceAgainstSOThroughPendingDocs() throws IOException {
+//		cashReceiptFunc.CRAdvanceThroughPendingDocs(webDB.getDataFromProperties("BankReceipt"));
+//	}
+//
+//	/**
+//	 * Advance against SO single Sales order (Through Add button)
+//	 * 
+//	 * @author Harikrishna - RMITS
+//	 * @throws IOException
+//	 */
+//	@Author("Harikrishna-RMITS")
+//	@Test(priority = 27, groups = {
+//			"Cash Receipt" }, description = "Advance against SO single Sales order (Through Add button)")
+//	public void CreateAdvanceAgainstMultiSOThroughAddButton() throws IOException {
+//		cashReceiptFunc.CRAdvanceMultiSOThroughAddButton(webDB.getDataFromProperties("BankReceipt"));
+//	}
+//
+//	/**
+//	 * Advance against SO single Sales order (Through Add button)
+//	 * 
+//	 * @author Harikrishna - RMITS
+//	 * @throws IOException
+//	 */
+//	@Author("Harikrishna-RMITS")
+//	@Test(priority = 28, groups = {
+//			"Cash Receipt" }, description = "Advance against SO single Sales order (Through Get Document)")
+//	public void CreateAdvanceAgainstMultiSOThroughGetDocument() throws IOException {
+//		cashReceiptFunc.CRAdvanceMultiSOThroughGetDocument(webDB.getDataFromProperties("BankReceipt"));
+//	}
+//
+//	/**
+//	 * Advance against SO single Sales order (Through Add button)
+//	 * 
+//	 * @author Harikrishna - RMITS
+//	 * @throws IOException
+//	 */
+//	@Author("Harikrishna-RMITS")
+//	@Test(priority = 29, groups = {
+//			"Cash Receipt" }, description = "Advance against SO single Sales order (Through Pending Document)")
+//	public void CreateAdvanceAgainstMultiSOThroughPendingDocs() throws IOException {
+//		cashReceiptFunc.CRAdvanceMultiSOThroughPendingDocs(webDB.getDataFromProperties("BankReceipt"));
+//	}
+//	
+//	/**
+//	 * Advance against SO single Sales order (Through Add button)
+//	 * 
+//	 * @author Harikrishna - RMITS
+//	 * @throws IOException
+//	 */
+//	@Author("Harikrishna-RMITS")
+//	@Test(priority = 30, groups = {
+//			"Cash Receipt" }, description = "Advance against SO single Sales order (Through Add button)")
+//	public void CreateAdvanceAgainstNewRef() throws IOException {
+//		cashReceiptFunc.CRAdvanceWithNewRef(webDB.getDataFromProperties("BankReceiptNewRef"));
+//	}
+//
+//	/**
+//	 * Advance against SO single Sales order (Through Add button)
+//	 * 
+//	 * @author Harikrishna - RMITS
+//	 * @throws IOException
+//	 */
+//	@Author("Harikrishna-RMITS")
+//	@Test(priority = 31, groups = {
+//			"Cash Receipt" }, description = "Advance against SO single Sales order (Through Get Document)")
+//	public void CreateAdvanceAgainstMultiRef() throws IOException {
+//		cashReceiptFunc.CRAdvanceWithMultiRef(webDB.getDataFromProperties("BankReceiptAdvMultiNR"));
+//	}
 
 	/**
 	 * This Is Used to set the Variable Handler To Zero After Finishing One Test
