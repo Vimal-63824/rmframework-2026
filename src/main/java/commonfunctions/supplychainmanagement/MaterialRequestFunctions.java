@@ -1136,6 +1136,11 @@ public class MaterialRequestFunctions {
 					|| SeqNo.equalsIgnoreCase("Completion")) {
 				break a;
 			}
+			if (Integer.parseInt(LineNo) > 7 && Integer.parseInt(LineNo) <= 14) {
+				LineNo = String.valueOf(Integer.parseInt(LineNo) - 7);
+			} else if (Integer.parseInt(LineNo) > 14) {
+				LineNo = String.valueOf(Integer.parseInt(LineNo) - 14);
+			}
 			commonFunc.verifyAssertionBothValues(dbCommonFunctions.validateMaterialRequestLinesDetails(SeqNo, LineNo,
 					commonFunc.getDataFromTestDataSheet("MaterialRequestUnit")), Unit);
 			logs.logging("INFO", "Verified Unit and DB Value Matched: " + Unit);

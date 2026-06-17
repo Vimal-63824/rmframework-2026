@@ -16352,7 +16352,7 @@ public class PurchaseOrderFunctions {
 		verifyHeaderTickAndPost();
 		verifyApprovePOUsingAshokUser();
 		verifyValidatePoStatus(VariableHandler.getPONumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		flag = commonFunc.logoutUser();
+//		flag = commonFunc.logoutUser();
 		return flag;
 	}
 

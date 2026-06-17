@@ -65,7 +65,7 @@ public class CompletionProductionOrderLocators {
 
 	/** @locatorType XPATH */
 	public static final String CompletionTransNumber(String Number) {
-		return "//table[@id='16501786899999762915_orig']//a[text()='" + Number + "']";
+		return "//div[@id='SL_data_panel']//table[contains(@id,'orig')]//a[text()='" + Number + "']";
 	}
 
 	/** @locatorType XPATH */
@@ -311,5 +311,33 @@ public class CompletionProductionOrderLocators {
 		return "//table[contains(@aria-label,'PROD_TRANS_HIST_VIEW')]//tbody/tr/td[text()='" + ProdOrder
 				+ "']/../td/input";
 	}
+
+	public static final String ProdCompLineActualConsumptionQtyData = "(//div[@id='consumption_ig_grid_vc']//table//tbody/tr/td[11])[1]";
+	/** @locatorType XPATH */
+	public static final String ActualConsTableDataInLines = "//div[@id='consumption_ig_grid_vc']//table/tbody/tr/td[11]";
+	/** @locatorType XPATH */
+	public static final String ActualConsTableNextIconPagination = "//div[@aria-label='Pagination']//button[@title='Next']";
+	/** @locatorType XPATH */
+	public static final String ProdCompLineActualConsumptionQtyInput = "(//div[@id='consumption_ig_grid_vc']//table//tbody/tr/td[11]//input)[1]";
+	/** @locatorType XPATH */
+	public static final String ProdCompConsumptionAddIcon = "//button[@title='Cons Add']";
+	/** @locatorType XPATH */
+	public static final String ProdCompConsumptionSaveIcon = "//button[@title='Cons Add']/following-sibling::button[@title='Save']";
+	/** @locatorType XPATH */
+	public static final String ProdCompLineRequiredQtyData = "(//div[@id='consumption_ig_grid_vc']//table//tbody/tr/td[10])[1]";
+	/** @locatorType XPATH */
+	public static final String ProdCompLineRequiredQtyInput = "(//div[@id='consumption_ig_grid_vc']//table//tbody/tr/td[10]//input)[1]";
+	/** @locatorType XPATH */
+	public static final String ProdCompLineConsumptionWHData = "(//div[@id='consumption_ig_grid_vc']//table//tbody/tr/td[2])[1]";
+	/** @locatorType XPATH */
+	public static final String ProdCompLineConsumptionWHLovBtn = "(//div[@id='consumption_ig_grid_vc']//table//tbody/tr/td[2]//button)[1]";
+	/** @locatorType XPATH */
+	public static final String ProdCompLineItemsData = "(//div[@id='consumption_ig_grid_vc']//table//tbody/tr/td[3])[1]";
+	/** @locatorType XPATH */
+	public static final String ProdCompLineItemsLovBtn = "(//div[@id='consumption_ig_grid_vc']//table//tbody/tr/td[3]//button)[1]";
+	/** @locatorType XPATH */
+	public static final String ProdCompLineUOMData = "(//div[@id='consumption_ig_grid_vc']//table//tbody/tr/td[6])[1]";
+	/** @locatorType XPATH */
+	public static final String ProdCompLineUOMLovBtn = "(//div[@id='consumption_ig_grid_vc']//table//tbody/tr/td[6]//button)[1]";
 
 }
