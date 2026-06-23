@@ -7948,4 +7948,19 @@ public class DirectGrnPageFunctions {
 		GRNFunc.waitingForApproval();
 
 	}
+
+	/**
+	 * This Methods Is Used To Document Number To
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+	public void waitingForApprovalForGRN() {
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		logs.logging("INFO", "Ok Button Is Clicked");
+		webDB.switchToDefaultContent();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		assertTrue(flag);
+	}
 }
