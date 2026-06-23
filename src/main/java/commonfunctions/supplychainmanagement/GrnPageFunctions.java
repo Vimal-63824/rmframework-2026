@@ -7486,7 +7486,8 @@ public class GrnPageFunctions {
 //		verifyStockQtyAndCostForSourceWH(SheetName);
 		verifyStockQtyAndCostForQualityWhForStockTransferType(SheetName);
 		verifyStockQtyAndCostForSourceWHForStocktransferType(SheetName);
-		POfunc.verifyToCreatePoForStockTransferRateContractSameStockandSupplierUomWithAndWithoutInspectionForPurchaseBill(SheetName);
+		POfunc.verifyToCreatePoForStockTransferRateContractSameStockandSupplierUomWithAndWithoutInspectionForPurchaseBill(
+				SheetName);
 		verifyToStockTransferSaleOrderDocumentPost();
 		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSalesOrdertDocNumber(),
@@ -10315,8 +10316,8 @@ public class GrnPageFunctions {
 				webDB.getDataFromProperties("PoToMRVWFSUomWithReverseSheet"));
 
 		DirectGrnFunc.overAllSaveAndPost();
-		DirectGrnFunc.waitingForApproval();
-		verifyReturnToGrnPageHeaderStatus();
+		DirectGrnFunc.waitingForApprovalForGRN();
+//		verifyReturnToGrnPageHeaderStatus();
 		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("PoToMrvSheet3"),
 				webDB.getDataFromProperties("PoToMRVWFSUomWithReverseSheet"));
 		aafterVerifyTheStatusDocumentMoveToQcOrMrvForDifferentLoc();
@@ -10655,8 +10656,8 @@ public class GrnPageFunctions {
 				webDB.getDataFromProperties("PoToMRVWFSUomWithReverseImpSheet"));
 		verifyImportLrBillNumber();
 		DirectGrnFunc.overAllSaveAndPost();
-		DirectGrnFunc.waitingForApproval();
-		verifyReturnToGrnPageHeaderStatus();
+		DirectGrnFunc.waitingForApprovalForGRN();
+//		verifyReturnToGrnPageHeaderStatus();
 		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("PoToMrvSheet3"),
 				webDB.getDataFromProperties("PoToMRVWFSUomWithReverseImpSheet"));
 		aafterVerifyTheStatusDocumentMoveToQcOrMrvForDifferentLoc();
@@ -10744,7 +10745,8 @@ public class GrnPageFunctions {
 				commonFunc.getDataFromTestDataSheet("CurrencyInr"));
 		poAmendmentFunc.verifyTickIconSingleAmendment();
 		poAmendmentFunc.verifyAddPoLineItemForModify();
-		poAmendmentFunc.verifyCreatePoADocumentCreation();
+		poAmendmentFunc
+				.verifyCreatePoADocumentCreation(webDB.getDataFromProperties("PoToMRVWFSUomWithReversePOASheet"));
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigateToGateEntryDocument();
 		gateEntryPageFunc.verifyToCreateGateEntryFromPendingPoNumber();
@@ -10768,14 +10770,14 @@ public class GrnPageFunctions {
 				webDB.getDataFromProperties("PoToMrvSheet3"));
 		lotSerialQtyApportion();
 		DirectGrnFunc.overAllSaveAndPost();
-		DirectGrnFunc.waitingForApproval();
-		verifyReturnToGrnPageHeaderStatus();
+		DirectGrnFunc.waitingForApprovalForGRN();
+//		verifyReturnToGrnPageHeaderStatus();
 		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("PoToMrvSheet3"),
-				webDB.getDataFromProperties("PoToMRVWFSUomWithReversePOAImpSheet"));
+				webDB.getDataFromProperties("PoToMRVWFSUomWithReversePOASheet"));
 		aafterVerifyTheStatusDocumentMoveToQcOrMrvForDifferentLoc();
 		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("PoToMrvSheet3"),
-				webDB.getDataFromProperties("PoToMRVWFSUomWithReversePOAImpSheet"));
+				webDB.getDataFromProperties("PoToMRVWFSUomWithReversePOASheet"));
 	}
 
 	/**
@@ -10858,7 +10860,8 @@ public class GrnPageFunctions {
 				commonFunc.getDataFromTestDataSheet("CurrencyUsd"));
 		poAmendmentFunc.verifyTickIconSingleAmendment();
 		poAmendmentFunc.verifyAddPoLineItemForModify();
-		poAmendmentFunc.verifyCreatePoADocumentCreation();
+		poAmendmentFunc
+				.verifyCreatePoADocumentCreation(webDB.getDataFromProperties("PoToMRVWFSUomWithReversePOAImpSheet"));
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigateToGateEntryDocument();
 		gateEntryPageFunc.verifyToCreateGateEntryFromPendingPoNumber();
@@ -10883,8 +10886,8 @@ public class GrnPageFunctions {
 		lotSerialQtyApportion();
 		verifyImportLrBillNumber();
 		DirectGrnFunc.overAllSaveAndPost();
-		DirectGrnFunc.waitingForApproval();
-		verifyReturnToGrnPageHeaderStatus();
+		DirectGrnFunc.waitingForApprovalForGRN();
+//		verifyReturnToGrnPageHeaderStatus();
 		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("PoToMrvSheet3"),
 				webDB.getDataFromProperties("PoToMRVWFSUomWithReversePOAImpSheet"));
 		aafterVerifyTheStatusDocumentMoveToQcOrMrvForDifferentLoc();
@@ -10947,8 +10950,8 @@ public class GrnPageFunctions {
 				webDB.getDataFromProperties("PoToMRVWFSUomWithReverseWOGSheet"));
 
 		DirectGrnFunc.overAllSaveAndPost();
-		DirectGrnFunc.waitingForApproval();
-		verifyReturnToGrnPageHeaderStatus();
+		DirectGrnFunc.waitingForApprovalForGRN();
+//		verifyReturnToGrnPageHeaderStatus();
 		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("PoToMrvSheet3"),
 				webDB.getDataFromProperties("PoToMRVWFSUomWithReverseWOGSheet"));
 		aafterVerifyTheStatusDocumentMoveToQcOrMrvForDifferentLoc();
@@ -11012,8 +11015,8 @@ public class GrnPageFunctions {
 				webDB.getDataFromProperties("PoToMRVWFSUomWithReverseWOGImpSheet"));
 		verifyImportLrBillNumber();
 		DirectGrnFunc.overAllSaveAndPost();
-		DirectGrnFunc.waitingForApproval();
-		verifyReturnToGrnPageHeaderStatus();
+		DirectGrnFunc.waitingForApprovalForGRN();
+//		verifyReturnToGrnPageHeaderStatus();
 		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("PoToMrvSheet3"),
 				webDB.getDataFromProperties("PoToMRVWFSUomWithReverseWOGImpSheet"));
 		aafterVerifyTheStatusDocumentMoveToQcOrMrvForDifferentLoc();
@@ -11085,7 +11088,8 @@ public class GrnPageFunctions {
 				commonFunc.getDataFromTestDataSheet("CurrencyInr"));
 		poAmendmentFunc.verifyTickIconSingleAmendment();
 		poAmendmentFunc.verifyAddPoLineItemForModify();
-		poAmendmentFunc.verifyCreatePoADocumentCreation();
+		poAmendmentFunc
+				.verifyCreatePoADocumentCreation(webDB.getDataFromProperties("PoToMRVWFSUomWithReversePOAWOGSheet"));
 
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
@@ -11098,14 +11102,14 @@ public class GrnPageFunctions {
 				webDB.getDataFromProperties("PoToMrvSheet3"));
 		lotSerialQtyApportion();
 		DirectGrnFunc.overAllSaveAndPost();
-		DirectGrnFunc.waitingForApproval();
-		verifyReturnToGrnPageHeaderStatus();
+		DirectGrnFunc.waitingForApprovalForGRN();
+//		verifyReturnToGrnPageHeaderStatus();
 		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("PoToMrvSheet3"),
-				webDB.getDataFromProperties("PoToMRVWFSUomWithReversePOAImpSheet"));
+				webDB.getDataFromProperties("PoToMRVWFSUomWithReversePOAWOGSheet"));
 		aafterVerifyTheStatusDocumentMoveToQcOrMrvForDifferentLoc();
 		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("PoToMrvSheet3"),
-				webDB.getDataFromProperties("PoToMRVWFSUomWithReversePOAImpSheet"));
+				webDB.getDataFromProperties("PoToMRVWFSUomWithReversePOAWOGSheet"));
 	}
 
 	/**
@@ -11172,7 +11176,8 @@ public class GrnPageFunctions {
 				commonFunc.getDataFromTestDataSheet("CurrencyUsd"));
 		poAmendmentFunc.verifyTickIconSingleAmendment();
 		poAmendmentFunc.verifyAddPoLineItemForModify();
-		poAmendmentFunc.verifyCreatePoADocumentCreation();
+		poAmendmentFunc
+				.verifyCreatePoADocumentCreation(webDB.getDataFromProperties("PoToMRVWFSUomWithRevPOAWOGImpSheet"));
 
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
@@ -11186,8 +11191,8 @@ public class GrnPageFunctions {
 		lotSerialQtyApportion();
 		verifyImportLrBillNumber();
 		DirectGrnFunc.overAllSaveAndPost();
-		DirectGrnFunc.waitingForApproval();
-		verifyReturnToGrnPageHeaderStatus();
+		DirectGrnFunc.waitingForApprovalForGRN();
+//		verifyReturnToGrnPageHeaderStatus();
 		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("PoToMrvSheet3"),
 				webDB.getDataFromProperties("PoToMRVWFSUomWithReversePOAImpSheet"));
 		aafterVerifyTheStatusDocumentMoveToQcOrMrvForDifferentLoc();

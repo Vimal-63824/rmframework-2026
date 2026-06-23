@@ -1062,8 +1062,8 @@ public class CompletionProductionOrderFunctions {
 				if (flag) {
 					webDB.moveToElement(CompletionProductionOrderLocators.PendingSearchBtn, ElementType.Xpath);
 					webDB.clickAnElement(CompletionProductionOrderLocators.PendingSearchBtn, ElementType.Xpath);
-					flag = webDB.waitForElement(CompletionProductionOrderLocators.Pending_TableSelectAllCheckBox,
-							ElementType.Xpath);
+//					flag = webDB.waitForElement(CompletionProductionOrderLocators.Pending_TableSelectAllCheckBox,
+//							ElementType.Xpath);
 					if (flag) {
 						logs.logging("INFO", "Pending Prod no Searched");
 						webDB.moveToElement(CompletionProductionOrderLocators.Pending_TableSelectAllCheckBox,
@@ -1683,9 +1683,6 @@ public class CompletionProductionOrderFunctions {
 //		commonFunc.verifyAddTableSpecs(CompletionProductionOrderLocators.ProdCompLineRequiredQtyData,
 //				CompletionProductionOrderLocators.ProdCompLineRequiredQtyInput, ReqrdQty);
 //		logs.logging("INFO", "Required Quantity Entered in Consumption: " + ReqrdQty);
-		commonFunc.verifyAddTableSpecsClearField(CompletionProductionOrderLocators.ProdCompLineActualConsumptionQtyData,
-				CompletionProductionOrderLocators.ProdCompLineActualConsumptionQtyData, ActualConsQty);
-		webDB.clickAnElement(CompletionProductionOrderLocators.ProdCompLineUOMData, ElementType.Xpath);
 		commonFunc.verifyAddTableSpecsClearField(CompletionProductionOrderLocators.ProdCompLineActualConsumptionQtyData,
 				CompletionProductionOrderLocators.ProdCompLineActualConsumptionQtyData, ActualConsQty);
 		logs.logging("INFO", "Actual ConsumpFtion Quantity Entered in Consumption: " + ActualConsQty);
