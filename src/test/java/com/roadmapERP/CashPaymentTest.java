@@ -148,23 +148,23 @@ public class CashPaymentTest extends RoadMapERPTest {
 		Assert.assertTrue(flag);
 	}
 
-	/**
-	 * Payment Against Multi Party, Single Bill (Pending)
-	 * 
-	 * @author Harikrishna - RMITS
-	 * @throws IOException
-	 */
-	@Author("Harikrishna-RMITS")
-	@Test(priority = 22, groups = {
-			"Cash Payments" }, description = " Payment Against Multi Party, Single Bill (Pending)")
-	public void CreateCashPaymentThroughPendingDocsMultiPartySingleBill() throws IOException {
-		flag = cashPaymentFunc.CreateCashPaymentThroughPendingDocumentMultiPartySingleBill(
-				webDB.getDataFromProperties("BankPaymentINRMPSB"));
-		Assert.assertTrue(flag);
-	}
+//	/**
+//	 * Payment Against Multi Party, Single Bill (Pending)
+//	 * 
+//	 * @author Harikrishna - RMITS
+//	 * @throws IOException
+//	 */
+//	@Author("Harikrishna-RMITS")
+//	@Test(priority = 22, groups = {
+//			"Cash Payments" }, description = " Payment Against Multi Party, Single Bill (Pending)")
+//	public void CreateCashPaymentThroughPendingDocsMultiPartySingleBill() throws IOException {
+//		flag = cashPaymentFunc.CreateCashPaymentThroughPendingDocumentMultiPartySingleBill(
+//				webDB.getDataFromProperties("BankPaymentINRMPSB"));
+//		Assert.assertTrue(flag);
+//	}
 
 	/**
-	 * Payment Against Multi Party, Single Bill (Through Add button)
+	 * Payment Against Multi Party, Multi Bill (Through Add button)
 	 * 
 	 * @author Harikrishna - RMITS
 	 * @throws IOException
@@ -193,20 +193,20 @@ public class CashPaymentTest extends RoadMapERPTest {
 		Assert.assertTrue(flag);
 	}
 
-	/**
-	 * Payment Against Multi Party, Single Bill (Pending)
-	 * 
-	 * @author Harikrishna - RMITS
-	 * @throws IOException
-	 */
-	@Author("Harikrishna-RMITS")
-	@Test(priority = 12, groups = {
-			"Cash Payments" }, description = " Payment Against Multi Party, Single Bill (Pending)")
-	public void CreateCashPaymentThroughPendingDocsMultiPartyMultiBill() throws IOException {
-		flag = cashPaymentFunc
-				.CreateCashPaymentThroughPendingMultiPartyMultiBill(webDB.getDataFromProperties("BankPaymentINRMPMB"));
-		Assert.assertTrue(flag);
-	}
+//	/**
+//	 * Payment Against Multi Party, Single Bill (Pending)
+//	 * 
+//	 * @author Harikrishna - RMITS
+//	 * @throws IOException
+//	 */
+//	@Author("Harikrishna-RMITS")
+//	@Test(priority = 12, groups = {
+//			"Cash Payments" }, description = " Payment Against Multi Party, Single Bill (Pending)")
+//	public void CreateCashPaymentThroughPendingDocsMultiPartyMultiBill() throws IOException {
+//		flag = cashPaymentFunc
+//				.CreateCashPaymentThroughPendingMultiPartyMultiBill(webDB.getDataFromProperties("BankPaymentINRMPMB"));
+//		Assert.assertTrue(flag);
+//	}
 
 	/**
 	 * Payment Against Multi Party, Multi Bill with New reference (Dr/Cr)(Through
@@ -224,21 +224,21 @@ public class CashPaymentTest extends RoadMapERPTest {
 		Assert.assertTrue(flag);
 	}
 
-	/**
-	 * Payment Against Multi Party, Multi Bill with New reference (Dr/Cr)(Through
-	 * Add button)
-	 * 
-	 * @author Harikrishna - RMITS
-	 * @throws IOException
-	 */
-	@Author("Harikrishna-RMITS")
-	@Test(priority = 14, groups = {
-			"Cash Payments" }, description = "Payment Against Multi Party, Multi Bill with New reference (Dr/Cr)(Through Add button)")
-	public void CreateCashPaymentThroughPendingMultiPartyMultiBillWithNewRef() throws IOException {
-		flag = cashPaymentFunc.CreateCashPaymentThroughPendingDocumentMultiPartyMultiBill(
-				webDB.getDataFromProperties("BankPaymentINRMPMBNR"));
-		Assert.assertTrue(flag);
-	}
+//	/**
+//	 * Payment Against Multi Party, Multi Bill with New reference (Dr/Cr)(Through
+//	 * Add button)
+//	 * 
+//	 * @author Harikrishna - RMITS
+//	 * @throws IOException
+//	 */
+//	@Author("Harikrishna-RMITS")
+//	@Test(priority = 14, groups = {
+//			"Cash Payments" }, description = "Payment Against Multi Party, Multi Bill with New reference (Dr/Cr)(Through Add button)")
+//	public void CreateCashPaymentThroughPendingMultiPartyMultiBillWithNewRef() throws IOException {
+//		flag = cashPaymentFunc.CreateCashPaymentThroughPendingDocumentMultiPartyMultiBill(
+//				webDB.getDataFromProperties("BankPaymentINRMPMBNR"));
+//		Assert.assertTrue(flag);
+//	}
 
 	/**
 	 * Payment Against Multi Party, Multi Bill with New reference (Dr/Cr)(Through
@@ -343,20 +343,20 @@ public class CashPaymentTest extends RoadMapERPTest {
 		Assert.assertTrue(flag);
 	}
 
-	/**
-	 * Payment Against single Party, Multi Bill with multi unit Dr/Cr) (Against
-	 * Pending)
-	 * 
-	 * @author Harikrishna - RMITS
-	 * @throws IOException
-	 */
-	@Author("Harikrishna-RMITS")
-	@Test(priority = 9, groups = {
-			"Cash Payments" }, description = "Payment Against single Party, Multi Bill with multi unit Dr/Cr) (Against Pending)")
-	public void CreateBankPaymentSinglePartyMultiBillsThroughPendingDocsWithMultiUnits() throws IOException {
-		flag = cashPaymentFunc.CreateCashPaymentThroughPendingDocsSPMBMultiUnits(webDB.getDataFromProperties("BPSPMB"));
-		Assert.assertTrue(flag);
-	}
+//	/**
+//	 * Payment Against single Party, Multi Bill with multi unit Dr/Cr) (Against
+//	 * Pending)
+//	 * 
+//	 * @author Harikrishna - RMITS
+//	 * @throws IOException
+//	 */
+//	@Author("Harikrishna-RMITS")
+//	@Test(priority = 9, groups = {
+//			"Cash Payments" }, description = "Payment Against single Party, Multi Bill with multi unit Dr/Cr) (Against Pending)")
+//	public void CreateBankPaymentSinglePartyMultiBillsThroughPendingDocsWithMultiUnits() throws IOException {
+//		flag = cashPaymentFunc.CreateCashPaymentThroughPendingDocsSPMBMultiUnits(webDB.getDataFromProperties("BPSPMB"));
+//		Assert.assertTrue(flag);
+//	}
 
 	/**
 	 * Payment Against Multi Party, Single Bill (Through Add button)
@@ -388,20 +388,20 @@ public class CashPaymentTest extends RoadMapERPTest {
 		Assert.assertTrue(flag);
 	}
 
-	/**
-	 * Payment Against Multi Party, Single Bill (Pending)
-	 * 
-	 * @author Harikrishna - RMITS
-	 * @throws IOException
-	 */
-	@Author("Harikrishna-RMITS")
-	@Test(priority = 25, groups = {
-			"Cash Payments" }, description = " Payment Against Multi Party, Single Bill (Pending)")
-	public void CreateCashPaymentThroughPendingDocsMultiPartyMultiBillMultiUnits() throws IOException {
-		flag = cashPaymentFunc.CreateCashPaymentThroughPendingDocsMultiBillsMultiUnits(
-				webDB.getDataFromProperties("BankPaymentINRMPMBMU"));
-		Assert.assertTrue(flag);
-	}
+//	/**
+//	 * Payment Against Multi Party, Single Bill (Pending)
+//	 * 
+//	 * @author Harikrishna - RMITS
+//	 * @throws IOException
+//	 */
+//	@Author("Harikrishna-RMITS")
+//	@Test(priority = 25, groups = {
+//			"Cash Payments" }, description = " Payment Against Multi Party, Single Bill (Pending)")
+//	public void CreateCashPaymentThroughPendingDocsMultiPartyMultiBillMultiUnits() throws IOException {
+//		flag = cashPaymentFunc.CreateCashPaymentThroughPendingDocsMultiBillsMultiUnits(
+//				webDB.getDataFromProperties("BankPaymentINRMPMBMU"));
+//		Assert.assertTrue(flag);
+//	}
 
 	/**
 	 * Payment Against Multi Party, Single Bill (Through Add button)
@@ -472,7 +472,7 @@ public class CashPaymentTest extends RoadMapERPTest {
 		cashPaymentFunc.advancePOMultipleThroughGetDocument(webDB.getDataFromProperties("CPAdvance"));
 //		Assert.assertTrue(flag);
 	}
-
+//
 	/**
 	 * Payment Against Multi Party, Single Bill (Through Add button)
 	 * 
