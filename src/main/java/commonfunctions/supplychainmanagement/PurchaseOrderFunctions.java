@@ -13638,6 +13638,7 @@ public class PurchaseOrderFunctions {
 				commonFunc.getDataFromTestDataSheet("Value"));
 		logs.logging("INFO", "Get PO Number Is: " + PONumbervalue);
 		VariableHandler.setPONumber(PONumbervalue);
+		MultiPODocumentNumber.add(VariableHandler.getPONumber());
 		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 		ExcelUtils excelUtils = new ExcelUtils();
 		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
