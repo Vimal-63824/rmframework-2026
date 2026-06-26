@@ -11879,13 +11879,12 @@ public class POAmendmentFunctions {
 	 * @author Deepan-GWL
 	 * 
 	 */
-	public void verifyCreatePoADocumentCreation() {
+	public void verifyCreatePoADocumentCreation(String SheetName) {
 		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 		ExcelUtils excelUtils = new ExcelUtils();
 		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
-				+ "PoToMrv2.xlsx";
-		itemmultiple = excelUtils.readAllDataInExcel(Filepath,
-				webDB.getDataFromProperties("PoToMRVWFSUomWithReversePOASheet"));
+				+ "PoToMrv3.xlsx";
+		itemmultiple = excelUtils.readAllDataInExcel(Filepath, SheetName);
 		for (int j = 3; j < itemmultiple.length; j++) {
 			if (itemmultiple[j][0].equals(commonFunc.getDataFromTestDataSheet("PurchaseOrderAmendment"))) {
 				for (int i = j + 2; i < itemmultiple.length; i++) {

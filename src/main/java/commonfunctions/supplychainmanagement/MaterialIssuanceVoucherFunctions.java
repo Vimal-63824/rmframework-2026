@@ -815,6 +815,9 @@ public class MaterialIssuanceVoucherFunctions {
 			String SITValue = TotalData[i][17];
 			String RMItem = TotalData[i][4];
 			String RMWH = TotalData[i][6];
+			if (QOHValue.equals("")) {
+				break;
+			}
 			String DBQOHValve = dbCommonFunctions.validateStockTransactionWithRMInMIV(RMItem,
 					commonFunc.getDataFromTestDataSheet("QOHValue"),
 					commonFunc.getDataFromTestDataSheet("TransQuantityHeader"));
@@ -879,9 +882,9 @@ public class MaterialIssuanceVoucherFunctions {
 		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
 		TotalData = excelUtils.readAllDataInExcel(Filepath, SheetName);
 		for (int i = StartIndex; i <= TotalData.length; i++) {
-//			if (TotalData[i][0].equalsIgnoreCase("SFG")) {
-//				break;
-//			}
+			if (TotalData[i][14].equalsIgnoreCase("")) {
+				break;
+			}
 			String SheetValue = TotalData[i][15];
 			String RMItem = TotalData[i][4];
 			String RMWH = commonFunc.getDataFromTestDataSheet("RM WH");
@@ -908,9 +911,9 @@ public class MaterialIssuanceVoucherFunctions {
 		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
 		TotalData = excelUtils.readAllDataInExcel(Filepath, SheetName);
 		for (int i = StartIndex; i < StartIndex + 7; i++) {
-//			if (TotalData[i][0].equalsIgnoreCase("SFG")) {
-//				break;
-//			}
+			if (TotalData[i][14].equalsIgnoreCase("")) {
+				break;
+			}
 			String SheetValue = TotalData[i][15];
 			String RMItem = TotalData[i][4];
 			String RMWH = Warehouse;
