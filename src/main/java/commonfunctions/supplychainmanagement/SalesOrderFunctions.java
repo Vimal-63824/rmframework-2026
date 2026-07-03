@@ -426,11 +426,15 @@ public class SalesOrderFunctions {
 		flag = webDB.waitForElement(SalesOrderLocators.HeaderCancelButton, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(SalesOrderLocators.HeaderCancelButton, ElementType.Xpath);
-			flag = webDB.waitForElementUntilGivenTime(SalesOrderLocators.NoteAlertMessage, ElementType.Xpath, 45);
+			flag = webDB.waitForElementUntilGivenTime(SalesOrderLocators.SOCancelAlert, ElementType.Xpath, 30);
 			if (flag) {
-				logs.logging("INFO", "Note Alert Is Displayed And Sales Order Document Is Cancelled.");
-				if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
-					webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+				webDB.clickAnElement(SalesOrderLocators.SOCancelAlert, ElementType.Xpath);
+				flag = webDB.waitForElementUntilGivenTime(SalesOrderLocators.NoteAlertMessage, ElementType.Xpath, 45);
+				if (flag) {
+					logs.logging("INFO", "Note Alert Is Displayed And Sales Order Document Is Cancelled.");
+					if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+						webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+					}
 				}
 			}
 		}
@@ -451,6 +455,7 @@ public class SalesOrderFunctions {
 			flag = webDB.waitForElement(SalesOrderLocators.FindHeaderRadioButton, ElementType.Xpath);
 			if (flag) {
 				webDB.clickAnElement(SalesOrderLocators.FindHeaderRadioButton, ElementType.Xpath);
+				commonFunc.checkRefreshCellsDisappear();
 				flag = webDB.waitForElement(SalesOrderLocators.FindSearchButton, ElementType.Xpath);
 				if (flag) {
 					webDB.clickAnElement(SalesOrderLocators.FindSearchButton, ElementType.Xpath);
