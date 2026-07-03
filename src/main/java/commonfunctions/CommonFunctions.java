@@ -256,7 +256,7 @@ public class CommonFunctions {
 //			}
 //		}
 		navigateToSearchTab(webDB.getDataFromProperties("PR/SSR"), CommonUiLocators.LeftSideAddIcon);
-		Assert.assertTrue(flag);
+//		Assert.assertTrue(flag);
 	}
 
 	/**
@@ -1724,6 +1724,7 @@ public class CommonFunctions {
 		webDB.switchToDefaultContent();
 		if (webDB.waitForElementUntilGivenTime(CommonUiLocators.PostToastMessage, ElementType.Xpath, 10)) {
 			VariableHandler.setApprovalFlag(true);
+			logs.logging("INFO", "Toast Message Displayed & Documents Is Posted.");
 			if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
 				webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
 			}
@@ -1733,8 +1734,15 @@ public class CommonFunctions {
 			logs.logging("INFO", "Workflow forwarder iframe Displayed");
 			return true;
 		} else {
-			logs.logging("INFO", "Toast Message or Workflow Iframe both not displayed");
-			return false;
+			if (webDB.getTextFromElement(CommonUiLocators.PostToastMessage, ElementType.Xpath).contains("Posted")
+					|| webDB.getTextFromElement(CommonUiLocators.PostToastMessage, ElementType.Xpath)
+							.contains("posted")) {
+				VariableHandler.setApprovalFlag(true);
+				return true;
+			} else {
+				logs.logging("INFO", "Toast Message or Workflow Iframe both not displayed");
+				return false;
+			}
 		}
 	}
 

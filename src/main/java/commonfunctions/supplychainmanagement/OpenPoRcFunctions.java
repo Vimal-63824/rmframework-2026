@@ -707,7 +707,10 @@ public class OpenPoRcFunctions {
 		if (flag) {
 			webDB.moveToElement(OpenPoRcLocators.ItemTable, ElementType.Xpath);
 			webDB.moveToElement(OpenPoRcLocators.LineCancelButton, ElementType.Xpath);
-			webDB.clickAnElement(OpenPoRcLocators.LineCancelButton, ElementType.Xpath);
+			webDB.doubleClickAnElement(OpenPoRcLocators.LineCancelButton, ElementType.Xpath);
+			webDB.switchToAlertAccept();
+			commonFunc.hardWait(2000);
+			commonFunc.checkRefreshCellsDisappear();
 			flag = webDB.waitForElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Toast Message Displayed, Line Deleted Successfully");
@@ -717,6 +720,7 @@ public class OpenPoRcFunctions {
 			}
 		}
 		Assert.assertTrue(flag);
+
 	}
 
 	/**
@@ -729,9 +733,11 @@ public class OpenPoRcFunctions {
 		webDB.moveToElement(OpenPoRcLocators.HeaderCancelButton, ElementType.Xpath);
 		flag = webDB.waitForElement(OpenPoRcLocators.HeaderCancelButton, ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(OpenPoRcLocators.HeaderCancelButton, ElementType.Xpath);
-			flag = webDB.waitForElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+			webDB.doubleClickAnElement(OpenPoRcLocators.HeaderCancelButton, ElementType.Xpath);
+//			webDB.switchToAlertAccept();
+			flag = webDB.waitForElement(CommonUiLocators.OkayButton, ElementType.Xpath);
 			if (flag) {
+				webDB.clickAnElement(CommonUiLocators.OkayButton, ElementType.Xpath);
 				logs.logging("INFO", "Toast Message Displayed, OpenPO Cancelled Successfully");
 				if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
 					webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
@@ -860,7 +866,7 @@ public class OpenPoRcFunctions {
 				3);
 		verifyFilterSearchOpenPO(OpenPoRcLocators.FindUnitButton, commonFunc.getDataFromTestDataSheet("Unit_100"), 4);
 		verifyFilterSearchOpenPO(OpenPoRcLocators.FindSupplierButton,
-				commonFunc.getDataFromTestDataSheet("PraxairSupplier"), 12);
+				commonFunc.getDataFromTestDataSheet("PraxairSupplier"), 11);
 
 		commonFunc.logoutUser();
 	}

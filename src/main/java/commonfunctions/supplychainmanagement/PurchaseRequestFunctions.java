@@ -1794,8 +1794,6 @@ public class PurchaseRequestFunctions {
 	 * @param Location
 	 */
 	public void verifyPrAmendment(String Location, String Quantity) {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"HodUsername");
 		commonFunc.navigatePurchaseRequestCloseShortPage();
 		clickAddIconPurchaseRequestCloseShort();
 		fillFormDetailsInPurchaseRequestCloseShort(Location, VariableHandler.getPRNumber(),
@@ -1807,8 +1805,6 @@ public class PurchaseRequestFunctions {
 
 		searchDocNumberAndCheckPRCloseShortStatus(VariableHandler.getPRCloseShortDocNumber(),
 				commonFunc.getDataFromTestDataSheet("PostedStatus"));
-		commonFunc.logoutUser();
-
 	}
 
 	/**
