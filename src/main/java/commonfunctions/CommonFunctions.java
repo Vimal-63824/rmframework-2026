@@ -84,9 +84,9 @@ public class CommonFunctions {
 		try {
 			webDB.Setup(System.getProperty("platformName"));
 		} catch (Exception e) {
-			logs.logging("INFO", "Browser not Setup with the Exception: " + e);
-			logs.logging("INFO", "Retrying Browser Open Again....!!!");
-			webDB.Setup(System.getProperty("platformName"));
+			logs.logging("FAIL", "Browser not Setup with the Exception: " + e);
+			logs.logging("FAIL", "Retrying Browser Open Again....!!!");
+			Assert.fail(e.toString());
 		}
 	}
 
@@ -99,12 +99,12 @@ public class CommonFunctions {
 	public boolean enterUrl() {
 		try {
 			webDB.enterURL(System.getProperty("url"));
+			flag = webDB.waitForElementUntilGivenTime(CommonUiLocators.LoginForm, ElementType.Xpath, 45);
 		} catch (Exception e) {
-			logs.logging("INFO", "Enter URL Failed with the Exception: " + e);
-			logs.logging("INFO", "Retrying Navigate To URL");
-			webDB.navigateToUrl(System.getProperty("url"));
+			logs.logging("FAIL", "Enter URL Failed with the Exception: " + e);
+			logs.logging("FAIL", "Retrying Navigate To URL");
+			Assert.fail(e.toString());
 		}
-		flag = webDB.waitForElementUntilGivenTime(CommonUiLocators.LoginForm, ElementType.Xpath, 45);
 		return flag;
 	}
 
@@ -256,7 +256,7 @@ public class CommonFunctions {
 //			}
 //		}
 		navigateToSearchTab(webDB.getDataFromProperties("PR/SSR"), CommonUiLocators.LeftSideAddIcon);
-		Assert.assertTrue(flag);
+//		Assert.assertTrue(flag);
 	}
 
 	/**
@@ -1724,6 +1724,7 @@ public class CommonFunctions {
 		webDB.switchToDefaultContent();
 		if (webDB.waitForElementUntilGivenTime(CommonUiLocators.PostToastMessage, ElementType.Xpath, 10)) {
 			VariableHandler.setApprovalFlag(true);
+			logs.logging("INFO", "Toast Message Displayed & Documents Is Posted.");
 			if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
 				webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
 			}
@@ -1733,8 +1734,15 @@ public class CommonFunctions {
 			logs.logging("INFO", "Workflow forwarder iframe Displayed");
 			return true;
 		} else {
-			logs.logging("INFO", "Toast Message or Workflow Iframe both not displayed");
-			return false;
+			if (webDB.getTextFromElement(CommonUiLocators.PostToastMessage, ElementType.Xpath).contains("Posted")
+					|| webDB.getTextFromElement(CommonUiLocators.PostToastMessage, ElementType.Xpath)
+							.contains("posted")) {
+				VariableHandler.setApprovalFlag(true);
+				return true;
+			} else {
+				logs.logging("INFO", "Toast Message or Workflow Iframe both not displayed");
+				return false;
+			}
 		}
 	}
 

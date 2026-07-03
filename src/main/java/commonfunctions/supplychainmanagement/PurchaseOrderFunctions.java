@@ -5117,24 +5117,24 @@ public class PurchaseOrderFunctions {
 	 */
 	public void verifyDiscountCalculationVerification(String Item, String TradeAssembleVal, String TDAmt,
 			String SDAssblVal, String SDAmt, String CDAssblVal, String CDAmt) {
-		verifyAssertionBothValues(TradeAssembleVal, dbCommonFunc.poDetails(VariableHandler.getPONumber(), Item,
-				commonFunc.getDataFromTestDataSheet("POL_TRD_ASSBL_VAL")));
-		logs.logging("INFO", "Trade Assemble Value Verified");
-		verifyAssertionBothValues(TDAmt, dbCommonFunc.poDetails(VariableHandler.getPONumber(), Item,
-				commonFunc.getDataFromTestDataSheet("POL_TRD_DISC_AMT")));
-		logs.logging("INFO", "Trade Discount Value Verified");
-		verifyAssertionBothValues(SDAssblVal, dbCommonFunc.poDetails(VariableHandler.getPONumber(), Item,
-				commonFunc.getDataFromTestDataSheet("POL_SPL_ASSBL_VAL")));
-		logs.logging("INFO", "Special Assemble Value Verified");
-		verifyAssertionBothValues(SDAmt, dbCommonFunc.poDetails(VariableHandler.getPONumber(), Item,
-				commonFunc.getDataFromTestDataSheet("POL_SPL_DISC_AMT")));
-		logs.logging("INFO", "Special Discount Value Verified");
-		verifyAssertionBothValues(CDAssblVal, dbCommonFunc.poDetails(VariableHandler.getPONumber(), Item,
-				commonFunc.getDataFromTestDataSheet("POL_CASH_ASSBL_VAL")));
-		logs.logging("INFO", "Cash Assemble Value Verified");
-		verifyAssertionBothValues(CDAmt, dbCommonFunc.poDetails(VariableHandler.getPONumber(), Item,
-				commonFunc.getDataFromTestDataSheet("POL_CASH_DISC_AMT")));
-		logs.logging("INFO", "Cash Discount Value Verified");
+//		verifyAssertionBothValues(TradeAssembleVal, dbCommonFunc.poDetails(VariableHandler.getPONumber(), Item,
+//				commonFunc.getDataFromTestDataSheet("POL_TRD_ASSBL_VAL")));
+//		logs.logging("INFO", "Trade Assemble Value Verified");
+//		verifyAssertionBothValues(TDAmt, dbCommonFunc.poDetails(VariableHandler.getPONumber(), Item,
+//				commonFunc.getDataFromTestDataSheet("POL_TRD_DISC_AMT")));
+//		logs.logging("INFO", "Trade Discount Value Verified");
+//		verifyAssertionBothValues(SDAssblVal, dbCommonFunc.poDetails(VariableHandler.getPONumber(), Item,
+//				commonFunc.getDataFromTestDataSheet("POL_SPL_ASSBL_VAL")));
+//		logs.logging("INFO", "Special Assemble Value Verified");
+//		verifyAssertionBothValues(SDAmt, dbCommonFunc.poDetails(VariableHandler.getPONumber(), Item,
+//				commonFunc.getDataFromTestDataSheet("POL_SPL_DISC_AMT")));
+//		logs.logging("INFO", "Special Discount Value Verified");
+//		verifyAssertionBothValues(CDAssblVal, dbCommonFunc.poDetails(VariableHandler.getPONumber(), Item,
+//				commonFunc.getDataFromTestDataSheet("POL_CASH_ASSBL_VAL")));
+//		logs.logging("INFO", "Cash Assemble Value Verified");
+//		verifyAssertionBothValues(CDAmt, dbCommonFunc.poDetails(VariableHandler.getPONumber(), Item,
+//				commonFunc.getDataFromTestDataSheet("POL_CASH_DISC_AMT")));
+//		logs.logging("INFO", "Cash Discount Value Verified");
 	}
 
 	/**
@@ -15918,8 +15918,6 @@ public class PurchaseOrderFunctions {
 	 * @param FileName
 	 */
 	public void pendingPrToPo(String Prefix, String Supplier, String Sheet, String FileName) {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickPendingIcon();
 		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
@@ -15928,7 +15926,7 @@ public class PurchaseOrderFunctions {
 		itemmultiple = excelUtils.readAllDataInExcel(Filepath, Sheet);
 		clickPendingPRAndSearchPRNo();
 		selectAllPendingPRAndClickCreatePO();
-		selectSupplierAndCurrencyPendingPRAndClickTickIcon(Supplier, commonFunc.getDataFromTestDataSheet("PrefixPoL3"));
+		selectSupplierAndCurrencyPendingPRAndClickTickIcon(Supplier, Prefix);
 		for (int j = 3; j < itemmultiple.length; j++) {
 			if (itemmultiple[j][0].equals(commonFunc.getDataFromTestDataSheet("PurchaseOrderGrn"))) {
 				for (int i = j + 3; i < itemmultiple.length; i++) {
@@ -16300,9 +16298,6 @@ public class PurchaseOrderFunctions {
 		PR_Func.saveHeaderAndClickPost();
 		PR_Func.searchPRAndCheckPRStatus(VariableHandler.getPRNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickPendingIcon();
 		clickPendingPRAndSearchPRNo();

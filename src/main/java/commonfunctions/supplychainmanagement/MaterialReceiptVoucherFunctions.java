@@ -1135,10 +1135,10 @@ public class MaterialReceiptVoucherFunctions {
 			if (alertText.matches(".*" + pattern + ".*")) {
 				System.out.println("Specific receipt document alert found, proceeding with the process.");
 				searchAndSelectLovForMrvDocumentFindPage();
-				commonFunc.logoutUser();
+//				commonFunc.logoutUser();
 			} else {
 				System.out.println("Other alert detected, no action taken.");
-				commonFunc.logoutUser();
+//				commonFunc.logoutUser();
 			}
 		} catch (Exception e) {
 			System.out.println("No alert appeared or other error: " + e.getMessage());

@@ -47,10 +47,14 @@ public class ApprovalPageFunctions {
 			flag = webDB.waitForElement(ApprovalPageLocators.ApprovalNotifyOption, ElementType.Xpath);
 			if (flag) {
 				webDB.clickAnElement(ApprovalPageLocators.ApprovalNotifyOption, ElementType.Xpath);
-				flag = webDB.waitForElementUntilGivenTime(ApprovalPageLocators.SearchBoxContainer, ElementType.Xpath,
-						45);
-				if (flag)
-					logs.logging("INFO", "Navigated to Doc Approvals page successfully");
+				flag = webDB.waitForElement(ApprovalPageLocators.FindSearchButton, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(ApprovalPageLocators.FindSearchButton, ElementType.Xpath);
+					flag = webDB.waitForElementUntilGivenTime(ApprovalPageLocators.SearchBoxContainer,
+							ElementType.Xpath, 45);
+					if (flag)
+						logs.logging("INFO", "Navigated to Doc Approvals page successfully");
+				}
 			}
 		}
 		Assert.assertTrue(flag);
