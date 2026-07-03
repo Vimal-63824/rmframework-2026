@@ -1105,6 +1105,7 @@ public class BankReceiptFunctions {
 				}
 				selectSalesInvoiceDocumentInPendingBankReceipt(PartyName, VariableHandler.getMultipleSIDocs(),
 						SheetName);
+				commonFunc.checkRefreshCellsDisappear();
 				verifyBankReceiptLineDetailsWithDB(SheetName, i);
 				if (Currency.equals("INR")) {
 					if (BankName.equals("JP MORGAN CHASE")) {
