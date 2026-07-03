@@ -4020,7 +4020,7 @@ public class PurchaseBillsFunctions {
 		openExpandButtonDirect();
 		getGstClafInLocation();
 		getValueFromTaxAmountInLineDetails();
-		clickValidateAllowIgstFlag(webDB.getDataFromProperties("PurchaseBillsInterstate"));
+		clickValidateAllowIgstFlag(webDB.getDataFromProperties("Purchase_Bills_Allow_IGST"));
 		movesToInvoiceTap();
 		getValueFromTaxAmountInLineDetails();
 		createJvForRecord();
@@ -4144,7 +4144,7 @@ public class PurchaseBillsFunctions {
 		openExpandButtonDirect();
 		getGstClafInLocation();
 		getValueFromTaxAmountInLineDetails();
-		clickValidateAllowIgstFlag(webDB.getDataFromProperties("PurchaseBillsInterstate"));
+		clickValidateAllowIgstFlag(webDB.getDataFromProperties("Purchase_Bills_Allow_IGST"));
 		movesToInvoiceTap();
 		getValueFromTaxAmountInLineDetails();
 		createJvForRecord();
@@ -4342,7 +4342,7 @@ public class PurchaseBillsFunctions {
 		ClickSaveButton();
 		openExpandButtonDirect();
 		getGstClafInLocation();
-		clickValidateAllowIgstFlag(webDB.getDataFromProperties("PurchaseBillsInterstate"));
+		clickValidateAllowIgstFlag(webDB.getDataFromProperties("Purchase_Bills_Allow_IGST"));
 		movesToInvoiceTap();
 		getValueFromTaxAmountInLineDetails();
 		createJvForRecord();
@@ -4388,7 +4388,9 @@ public class PurchaseBillsFunctions {
 		openExpandButtonDirect();
 		getGstClafInLocation();
 		getValueFromTaxAmountInLineDetails();
-		clickValidateAllowIgstFlag(commonFunc.getDataFromTestDataSheet("PurchaseBillsInterstate"));
+		clickValidateAllowIgstFlag(commonFunc.getDataFromTestDataSheet("Purchase_Bills_Allow_IGST"));
+		movesToInvoiceTap();
+		getValueFromTaxAmountInLineDetails();
 		createJvForRecord();
 		verifyLineDetailWithDbInPurchaseBills(webDB.getDataFromProperties("PurchaseBillsInterstate"));
 		clickPostButton();
