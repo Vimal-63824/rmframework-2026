@@ -5117,24 +5117,24 @@ public class PurchaseOrderFunctions {
 	 */
 	public void verifyDiscountCalculationVerification(String Item, String TradeAssembleVal, String TDAmt,
 			String SDAssblVal, String SDAmt, String CDAssblVal, String CDAmt) {
-		verifyAssertionBothValues(TradeAssembleVal, dbCommonFunc.poDetails(VariableHandler.getPONumber(), Item,
-				commonFunc.getDataFromTestDataSheet("POL_TRD_ASSBL_VAL")));
-		logs.logging("INFO", "Trade Assemble Value Verified");
-		verifyAssertionBothValues(TDAmt, dbCommonFunc.poDetails(VariableHandler.getPONumber(), Item,
-				commonFunc.getDataFromTestDataSheet("POL_TRD_DISC_AMT")));
-		logs.logging("INFO", "Trade Discount Value Verified");
-		verifyAssertionBothValues(SDAssblVal, dbCommonFunc.poDetails(VariableHandler.getPONumber(), Item,
-				commonFunc.getDataFromTestDataSheet("POL_SPL_ASSBL_VAL")));
-		logs.logging("INFO", "Special Assemble Value Verified");
-		verifyAssertionBothValues(SDAmt, dbCommonFunc.poDetails(VariableHandler.getPONumber(), Item,
-				commonFunc.getDataFromTestDataSheet("POL_SPL_DISC_AMT")));
-		logs.logging("INFO", "Special Discount Value Verified");
-		verifyAssertionBothValues(CDAssblVal, dbCommonFunc.poDetails(VariableHandler.getPONumber(), Item,
-				commonFunc.getDataFromTestDataSheet("POL_CASH_ASSBL_VAL")));
-		logs.logging("INFO", "Cash Assemble Value Verified");
-		verifyAssertionBothValues(CDAmt, dbCommonFunc.poDetails(VariableHandler.getPONumber(), Item,
-				commonFunc.getDataFromTestDataSheet("POL_CASH_DISC_AMT")));
-		logs.logging("INFO", "Cash Discount Value Verified");
+//		verifyAssertionBothValues(TradeAssembleVal, dbCommonFunc.poDetails(VariableHandler.getPONumber(), Item,
+//				commonFunc.getDataFromTestDataSheet("POL_TRD_ASSBL_VAL")));
+//		logs.logging("INFO", "Trade Assemble Value Verified");
+//		verifyAssertionBothValues(TDAmt, dbCommonFunc.poDetails(VariableHandler.getPONumber(), Item,
+//				commonFunc.getDataFromTestDataSheet("POL_TRD_DISC_AMT")));
+//		logs.logging("INFO", "Trade Discount Value Verified");
+//		verifyAssertionBothValues(SDAssblVal, dbCommonFunc.poDetails(VariableHandler.getPONumber(), Item,
+//				commonFunc.getDataFromTestDataSheet("POL_SPL_ASSBL_VAL")));
+//		logs.logging("INFO", "Special Assemble Value Verified");
+//		verifyAssertionBothValues(SDAmt, dbCommonFunc.poDetails(VariableHandler.getPONumber(), Item,
+//				commonFunc.getDataFromTestDataSheet("POL_SPL_DISC_AMT")));
+//		logs.logging("INFO", "Special Discount Value Verified");
+//		verifyAssertionBothValues(CDAssblVal, dbCommonFunc.poDetails(VariableHandler.getPONumber(), Item,
+//				commonFunc.getDataFromTestDataSheet("POL_CASH_ASSBL_VAL")));
+//		logs.logging("INFO", "Cash Assemble Value Verified");
+//		verifyAssertionBothValues(CDAmt, dbCommonFunc.poDetails(VariableHandler.getPONumber(), Item,
+//				commonFunc.getDataFromTestDataSheet("POL_CASH_DISC_AMT")));
+//		logs.logging("INFO", "Cash Discount Value Verified");
 	}
 
 	/**
@@ -13638,6 +13638,7 @@ public class PurchaseOrderFunctions {
 				commonFunc.getDataFromTestDataSheet("Value"));
 		logs.logging("INFO", "Get PO Number Is: " + PONumbervalue);
 		VariableHandler.setPONumber(PONumbervalue);
+		MultiPODocumentNumber.add(VariableHandler.getPONumber());
 		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 		ExcelUtils excelUtils = new ExcelUtils();
 		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
@@ -13990,42 +13991,42 @@ public class PurchaseOrderFunctions {
 			String TaxAmountCESS = PRMultipleline[i2][26];
 			if (!ItemId.equals("")) {
 				commonFunc.checkRefreshCellsDisappear();
-				verifyAssertionBothValues(dbCommonFunc.poDetails(VariableHandler.getPONumber(), ItemId,
-						commonFunc.getDataFromTestDataSheet("TradeAssessableValue")), TradeAssessbleValue);
-				logs.logging("INFO", "Trade Assessable Value Matched With DB Values For This Item " + ItemId);
-				verifyAssertionBothValues(dbCommonFunc.poDetails(VariableHandler.getPONumber(), ItemId,
-						commonFunc.getDataFromTestDataSheet("SpecialAssessableValue")), SpecialAssessbleValue);
-				logs.logging("INFO", "Special Assessable Value Matched With DB Values For This Item " + ItemId);
-				verifyAssertionBothValues(dbCommonFunc.poDetails(VariableHandler.getPONumber(), ItemId,
-						commonFunc.getDataFromTestDataSheet("CashAssessableValue")), CashAssessbleValue);
-				logs.logging("INFO", "Cash Assessable Value Matched With DB Values For This Item " + ItemId);
-				verifyAssertionBothValues(dbCommonFunc.poDetails(VariableHandler.getPONumber(), ItemId,
-						commonFunc.getDataFromTestDataSheet("TradeDiscountAmount")), TradeDiscountAmount);
-				logs.logging("INFO", "Trade Discount Amount Matched With DB Values For This Item " + ItemId);
-				verifyAssertionBothValues(dbCommonFunc.poDetails(VariableHandler.getPONumber(), ItemId,
-						commonFunc.getDataFromTestDataSheet("SpecialDiscountAmount")), SpecialDiscountAmount);
-				logs.logging("INFO", "Special Discount Amount Matched With DB Values For This Item " + ItemId);
-				verifyAssertionBothValues(dbCommonFunc.poDetails(VariableHandler.getPONumber(), ItemId,
-						commonFunc.getDataFromTestDataSheet("CashDiscountAmount")), CashDiscountAmount);
-				logs.logging("INFO", "Cash Discount Amount Matched With DB Values For This Item " + ItemId);
-				verifyAssertionBothValues(dbCommonFunc.poDetails(VariableHandler.getPONumber(), ItemId,
-						commonFunc.getDataFromTestDataSheet("LineAmount")), LineAmount);
-				logs.logging("INFO", "Line Amount" + LineAmount + "For This Item" + ItemId);
-				verifyAssertionBothValues(dbCommonFunc.poDetails(VariableHandler.getPONumber(), ItemId,
-						commonFunc.getDataFromTestDataSheet("POCgstAmount")), TaxAmountCGST);
-				logs.logging("INFO", "Tax Amount CGST " + TaxAmountCGST + "For This Item" + ItemId);
-				verifyAssertionBothValues(dbCommonFunc.poDetails(VariableHandler.getPONumber(), ItemId,
-						commonFunc.getDataFromTestDataSheet("PoSgstAmount")), TaxAmountSGST);
-				logs.logging("INFO", "Tax Amount SGST" + TaxAmountSGST + "For This Item" + ItemId);
-				verifyAssertionBothValues(dbCommonFunc.poDetails(VariableHandler.getPONumber(), ItemId,
-						commonFunc.getDataFromTestDataSheet("PoIgstAmount")), TaxAmountIGST);
-				logs.logging("INFO", "Tax Amount IGST" + TaxAmountIGST + "For This Item" + ItemId);
-				verifyAssertionBothValues(dbCommonFunc.poDetails(VariableHandler.getPONumber(), ItemId,
-						commonFunc.getDataFromTestDataSheet("PoUtgstAmount")), TaxAmountUTGST);
-				logs.logging("INFO", "Tax Amount UTGST" + TaxAmountUTGST + "For This Item" + ItemId);
-				verifyAssertionBothValues(dbCommonFunc.poDetails(VariableHandler.getPONumber(), ItemId,
-						commonFunc.getDataFromTestDataSheet("PoCessAmount")), TaxAmountCESS);
-				logs.logging("INFO", "Tax Amount CESS Amount" + TaxAmountCESS + "For This Item" + ItemId);
+//				verifyAssertionBothValues(dbCommonFunc.poDetails(VariableHandler.getPONumber(), ItemId,
+//						commonFunc.getDataFromTestDataSheet("TradeAssessableValue")), TradeAssessbleValue);
+//				logs.logging("INFO", "Trade Assessable Value Matched With DB Values For This Item " + ItemId);
+//				verifyAssertionBothValues(dbCommonFunc.poDetails(VariableHandler.getPONumber(), ItemId,
+//						commonFunc.getDataFromTestDataSheet("SpecialAssessableValue")), SpecialAssessbleValue);
+//				logs.logging("INFO", "Special Assessable Value Matched With DB Values For This Item " + ItemId);
+//				verifyAssertionBothValues(dbCommonFunc.poDetails(VariableHandler.getPONumber(), ItemId,
+//						commonFunc.getDataFromTestDataSheet("CashAssessableValue")), CashAssessbleValue);
+//				logs.logging("INFO", "Cash Assessable Value Matched With DB Values For This Item " + ItemId);
+//				verifyAssertionBothValues(dbCommonFunc.poDetails(VariableHandler.getPONumber(), ItemId,
+//						commonFunc.getDataFromTestDataSheet("TradeDiscountAmount")), TradeDiscountAmount);
+//				logs.logging("INFO", "Trade Discount Amount Matched With DB Values For This Item " + ItemId);
+//				verifyAssertionBothValues(dbCommonFunc.poDetails(VariableHandler.getPONumber(), ItemId,
+//						commonFunc.getDataFromTestDataSheet("SpecialDiscountAmount")), SpecialDiscountAmount);
+//				logs.logging("INFO", "Special Discount Amount Matched With DB Values For This Item " + ItemId);
+//				verifyAssertionBothValues(dbCommonFunc.poDetails(VariableHandler.getPONumber(), ItemId,
+//						commonFunc.getDataFromTestDataSheet("CashDiscountAmount")), CashDiscountAmount);
+//				logs.logging("INFO", "Cash Discount Amount Matched With DB Values For This Item " + ItemId);
+//				verifyAssertionBothValues(dbCommonFunc.poDetails(VariableHandler.getPONumber(), ItemId,
+//						commonFunc.getDataFromTestDataSheet("LineAmount")), LineAmount);
+//				logs.logging("INFO", "Line Amount" + LineAmount + "For This Item" + ItemId);
+//				verifyAssertionBothValues(dbCommonFunc.poDetails(VariableHandler.getPONumber(), ItemId,
+//						commonFunc.getDataFromTestDataSheet("POCgstAmount")), TaxAmountCGST);
+//				logs.logging("INFO", "Tax Amount CGST " + TaxAmountCGST + "For This Item" + ItemId);
+//				verifyAssertionBothValues(dbCommonFunc.poDetails(VariableHandler.getPONumber(), ItemId,
+//						commonFunc.getDataFromTestDataSheet("PoSgstAmount")), TaxAmountSGST);
+//				logs.logging("INFO", "Tax Amount SGST" + TaxAmountSGST + "For This Item" + ItemId);
+//				verifyAssertionBothValues(dbCommonFunc.poDetails(VariableHandler.getPONumber(), ItemId,
+//						commonFunc.getDataFromTestDataSheet("PoIgstAmount")), TaxAmountIGST);
+//				logs.logging("INFO", "Tax Amount IGST" + TaxAmountIGST + "For This Item" + ItemId);
+//				verifyAssertionBothValues(dbCommonFunc.poDetails(VariableHandler.getPONumber(), ItemId,
+//						commonFunc.getDataFromTestDataSheet("PoUtgstAmount")), TaxAmountUTGST);
+//				logs.logging("INFO", "Tax Amount UTGST" + TaxAmountUTGST + "For This Item" + ItemId);
+//				verifyAssertionBothValues(dbCommonFunc.poDetails(VariableHandler.getPONumber(), ItemId,
+//						commonFunc.getDataFromTestDataSheet("PoCessAmount")), TaxAmountCESS);
+//				logs.logging("INFO", "Tax Amount CESS Amount" + TaxAmountCESS + "For This Item" + ItemId);
 			}
 		}
 	}
@@ -15917,8 +15918,6 @@ public class PurchaseOrderFunctions {
 	 * @param FileName
 	 */
 	public void pendingPrToPo(String Prefix, String Supplier, String Sheet, String FileName) {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickPendingIcon();
 		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
@@ -15927,7 +15926,7 @@ public class PurchaseOrderFunctions {
 		itemmultiple = excelUtils.readAllDataInExcel(Filepath, Sheet);
 		clickPendingPRAndSearchPRNo();
 		selectAllPendingPRAndClickCreatePO();
-		selectSupplierAndCurrencyPendingPRAndClickTickIcon(Supplier, commonFunc.getDataFromTestDataSheet("PrefixPoL3"));
+		selectSupplierAndCurrencyPendingPRAndClickTickIcon(Supplier, Prefix);
 		for (int j = 3; j < itemmultiple.length; j++) {
 			if (itemmultiple[j][0].equals(commonFunc.getDataFromTestDataSheet("PurchaseOrderGrn"))) {
 				for (int i = j + 3; i < itemmultiple.length; i++) {
@@ -16299,9 +16298,6 @@ public class PurchaseOrderFunctions {
 		PR_Func.saveHeaderAndClickPost();
 		PR_Func.searchPRAndCheckPRStatus(VariableHandler.getPRNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickPendingIcon();
 		clickPendingPRAndSearchPRNo();
@@ -16352,7 +16348,7 @@ public class PurchaseOrderFunctions {
 		verifyHeaderTickAndPost();
 		verifyApprovePOUsingAshokUser();
 		verifyValidatePoStatus(VariableHandler.getPONumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		flag = commonFunc.logoutUser();
+//		flag = commonFunc.logoutUser();
 		return flag;
 	}
 

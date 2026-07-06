@@ -138,7 +138,10 @@ public class SalesStandardPriceFunctions {
 		insertMaxDisc(Max_Disc_Value);
 		insertPriceClass(commonFunc.getDataFromTestDataSheet("priceClassName"));
 		clickSaveButton();
+		webDB.navigateToRefresh();
+		commonFunc.checkRefreshCellsDisappear();
 		StdPriceDbValidation();
+		
 		clickActiveButton();
 		commonFunc.hardWait(2000);
 		commonFunc.logoutUser();
@@ -624,7 +627,7 @@ public class SalesStandardPriceFunctions {
 		if (flag) {
 			webDB.moveToElement(SalesStandardPriceLocators.SaveButton, ElementType.Xpath);
 			webDB.javaScriptClickAnElement(SalesStandardPriceLocators.SaveButton, ElementType.Xpath);
-			flag = webDB.waitForElement(SalesStandardPriceLocators.ActiveButton, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Successfully Saved a Record ");
 				commonFunc.hardWait(2000);
@@ -639,8 +642,9 @@ public class SalesStandardPriceFunctions {
 	 * @author Kowshik-RMITS
 	 */
 	public void clickActiveButton() {
-		//commonFunc.hardWait(4000);
-		commonFunc.checkRefreshCellsDisappear();
+//		commonFunc.hardWait(2000);
+//		commonFunc.checkRefreshCellsDisappear();
+		webDB.navigateToRefresh();
 		flag = webDB.waitForElement(SalesStandardPriceLocators.ActiveButton, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(SalesStandardPriceLocators.ActiveButton, ElementType.Xpath);

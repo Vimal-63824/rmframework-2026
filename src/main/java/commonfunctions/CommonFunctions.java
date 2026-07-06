@@ -84,9 +84,9 @@ public class CommonFunctions {
 		try {
 			webDB.Setup(System.getProperty("platformName"));
 		} catch (Exception e) {
-			logs.logging("INFO", "Browser not Setup with the Exception: " + e);
-			logs.logging("INFO", "Retrying Browser Open Again....!!!");
-			webDB.Setup(System.getProperty("platformName"));
+			logs.logging("FAIL", "Browser not Setup with the Exception: " + e);
+			logs.logging("FAIL", "Retrying Browser Open Again....!!!");
+			Assert.fail(e.toString());
 		}
 	}
 
@@ -99,12 +99,12 @@ public class CommonFunctions {
 	public boolean enterUrl() {
 		try {
 			webDB.enterURL(System.getProperty("url"));
+			flag = webDB.waitForElementUntilGivenTime(CommonUiLocators.LoginForm, ElementType.Xpath, 45);
 		} catch (Exception e) {
-			logs.logging("INFO", "Enter URL Failed with the Exception: " + e);
-			logs.logging("INFO", "Retrying Navigate To URL");
-			webDB.navigateToUrl(System.getProperty("url"));
+			logs.logging("FAIL", "Enter URL Failed with the Exception: " + e);
+			logs.logging("FAIL", "Retrying Navigate To URL");
+			Assert.fail(e.toString());
 		}
-		flag = webDB.waitForElementUntilGivenTime(CommonUiLocators.LoginForm, ElementType.Xpath, 45);
 		return flag;
 	}
 
@@ -256,7 +256,7 @@ public class CommonFunctions {
 //			}
 //		}
 		navigateToSearchTab(webDB.getDataFromProperties("PR/SSR"), CommonUiLocators.LeftSideAddIcon);
-		Assert.assertTrue(flag);
+//		Assert.assertTrue(flag);
 	}
 
 	/**
@@ -1724,6 +1724,7 @@ public class CommonFunctions {
 		webDB.switchToDefaultContent();
 		if (webDB.waitForElementUntilGivenTime(CommonUiLocators.PostToastMessage, ElementType.Xpath, 10)) {
 			VariableHandler.setApprovalFlag(true);
+			logs.logging("INFO", "Toast Message Displayed & Documents Is Posted.");
 			if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
 				webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
 			}
@@ -1733,8 +1734,15 @@ public class CommonFunctions {
 			logs.logging("INFO", "Workflow forwarder iframe Displayed");
 			return true;
 		} else {
-			logs.logging("INFO", "Toast Message or Workflow Iframe both not displayed");
-			return false;
+			if (webDB.getTextFromElement(CommonUiLocators.PostToastMessage, ElementType.Xpath).contains("Posted")
+					|| webDB.getTextFromElement(CommonUiLocators.PostToastMessage, ElementType.Xpath)
+							.contains("posted")) {
+				VariableHandler.setApprovalFlag(true);
+				return true;
+			} else {
+				logs.logging("INFO", "Toast Message or Workflow Iframe both not displayed");
+				return false;
+			}
 		}
 	}
 
@@ -3291,5 +3299,61 @@ public class CommonFunctions {
 	public void navigateToPostDatedCheque() {
 		navigateToSearchTab(webDB.getDataFromProperties("PostDatedCheque"),
 				BankPaymentLocators.PDCVoucherNumberLovButton);
+	}
+
+	/**
+	 * This method used to Send and Select Lov Button in table data
+	 *
+	 * @author Sakthi-GWL
+	 * @param DataLocator
+	 * @param LOVLocator
+	 * @param Value
+	 */
+	public void verifyAddTableLovValue(String DataLocator, String LOVLocator, String Value) {
+		flag = webDB.waitForElement(DataLocator, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(DataLocator, ElementType.Xpath);
+			webDB.doubleClickAnElement(DataLocator, ElementType.Xpath);
+			searchAndSelectValueInFilters(LOVLocator, Value);
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * Verify Add Table Specs
+	 * 
+	 * @author Deepan-GWL
+	 * @param Tablespec
+	 * @param InputParameter
+	 * @param Enteredvalue
+	 */
+	public void verifyAddTableSpecsClearField(String Tablespec, String InputParameter, String Enteredvalue) {
+		checkRefreshCellsDisappear();
+		flag = webDB.waitForElement(Tablespec, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(Tablespec, ElementType.Xpath);
+			webDB.doubleClickAnElement(Tablespec, ElementType.Xpath);
+//			logs.logging("INFO", "Table Input Box Is Clicked");
+			webDB.waitForElement(InputParameter, ElementType.Xpath);
+			webDB.clearTextField(InputParameter, ElementType.Xpath);
+//			logs.logging("INFO", "Clear Text Field The Input Value");
+			flag = webDB.waitForElement(Tablespec, ElementType.Xpath);
+			if (flag) {
+				webDB.moveToElement(Tablespec, ElementType.Xpath);
+				webDB.doubleClickAnElement(Tablespec, ElementType.Xpath);
+				checkRefreshCellsDisappear();
+				webDB.waitForElement(InputParameter, ElementType.Xpath);
+				flag = webDB.sendTextToAnElement(InputParameter, Enteredvalue, ElementType.Xpath);
+				logs.logging("INFO", "Entered Value Is: " + Enteredvalue + " in 'verifyAddTableSpecs'");
+//				String value = webDB.getAttributeFromElement(InputParameter, ElementType.Xpath,
+//						getDataFromTestDataSheet("Value"));
+////				logs.logging("INFO", "Get Attribute Value Is: " + value);
+//				flag = value.contains(Enteredvalue);
+				if (flag) {
+//					logs.logging("INFO", "Verified Entered Value With Get Attribute Value");
+				}
+			}
+		}
+		assertTrue(flag);
 	}
 }

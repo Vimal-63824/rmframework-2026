@@ -240,50 +240,41 @@ public class DirectGrnPageFunctions {
 		if (SupBillNo.equals("000")) {
 			SupBillNo = "10";
 		}
+		LocalDate date = LocalDate.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		String Today = date.format(formatter);
 		String DCNO = BillNo + SupBillNo;
-
-		flag = webDB.waitForElement(DirectGrnPageLocators.AddHeaderFrame, ElementType.Xpath);
+		VerifyToClickGrnFrame();
+		flag = webDB.waitForElement(DirectGrnPageLocators.GrnLocLov, ElementType.Xpath);
 		if (flag) {
-			webDB.switchToFrame(DirectGrnPageLocators.AddHeaderFrame, ElementType.Xpath);
-			logs.logging("INFO", "Switched To Frame");
-			flag = webDB.waitForElement(DirectGrnPageLocators.GrnLocLov, ElementType.Xpath);
+			commonFunc.searchAndSelectValueInFilters(DirectGrnPageLocators.GrnLocLov, Location);
+			logs.logging("INFO", "Location Is Entered:" + Location);
+			VerifyToClickGrnFrame();
+			flag = webDB.waitForElement(DirectGrnPageLocators.GrnType, ElementType.Xpath);
 			if (flag) {
-				commonFunc.searchAndSelectValueInFilters(DirectGrnPageLocators.GrnLocLov, Location);
-				logs.logging("INFO", "Location Is Entered:" + Location);
-				flag = webDB.waitForElement(DirectGrnPageLocators.AddHeaderFrame, ElementType.Xpath);
+				webDB.selectDropDownByValue(DirectGrnPageLocators.GrnType, Type, ElementType.Xpath);
+				logs.logging("INFO", "Type Is Entered:" + Type);
+				flag = webDB.waitForElement(DirectGrnPageLocators.GrnSupplierLov, ElementType.Xpath);
 				if (flag) {
-					webDB.switchToFrame(DirectGrnPageLocators.AddHeaderFrame, ElementType.Xpath);
-					logs.logging("INFO", "Switched To Frame");
-					flag = webDB.waitForElement(DirectGrnPageLocators.GrnType, ElementType.Xpath);
+					commonFunc.searchAndSelectValueInFilters(DirectGrnPageLocators.GrnSupplierLov, Supplier);
+					logs.logging("INFO", "Supplier Is Entered:" + Supplier);
+					VerifyToClickGrnFrame();
+					flag = webDB.waitForElement(DirectGrnPageLocators.GrnSupplierBillNo, ElementType.Xpath);
 					if (flag) {
-						webDB.selectDropDownByValue(DirectGrnPageLocators.GrnType, Type, ElementType.Xpath);
-						logs.logging("INFO", "Type Is Entered:" + Type);
-						flag = webDB.waitForElement(DirectGrnPageLocators.GrnSupplierLov, ElementType.Xpath);
+						webDB.sendTextToAnElement(DirectGrnPageLocators.GrnSupplierBillNo, DCNO, ElementType.Xpath);
+						logs.logging("INFO", "Supplier Bill NO Is Entered");
+						flag = webDB.waitForElement(DirectGrnPageLocators.GrnDcNo, ElementType.Xpath);
 						if (flag) {
-							commonFunc.searchAndSelectValueInFilters(DirectGrnPageLocators.GrnSupplierLov, Supplier);
-							logs.logging("INFO", "Supplier Is Entered:" + Supplier);
-							flag = webDB.waitForElement(DirectGrnPageLocators.AddHeaderFrame, ElementType.Xpath);
+							webDB.sendTextToAnElement(DirectGrnPageLocators.GrnDcNo, DCNO, ElementType.Xpath);
+							logs.logging("INFO", "DC NO Is Entered");
+							commonFunc.verifyAddTableSpecsClearField(DirectGrnPageLocators.DCDateInput,
+									DirectGrnPageLocators.DCDateInput, Today);
+							flag = webDB.waitForElement(DirectGrnPageLocators.GrnCreate, ElementType.Xpath);
 							if (flag) {
-								webDB.switchToFrame(DirectGrnPageLocators.AddHeaderFrame, ElementType.Xpath);
-								logs.logging("INFO", "Switched To Frame");
-								flag = webDB.waitForElement(DirectGrnPageLocators.GrnSupplierBillNo, ElementType.Xpath);
-								if (flag) {
-									webDB.sendTextToAnElement(DirectGrnPageLocators.GrnSupplierBillNo, DCNO,
-											ElementType.Xpath);
-									logs.logging("INFO", "Supplier Bill NO Is Entered");
-									flag = webDB.waitForElement(DirectGrnPageLocators.GrnDcNo, ElementType.Xpath);
-									if (flag) {
-										webDB.sendTextToAnElement(DirectGrnPageLocators.GrnDcNo, DCNO,
-												ElementType.Xpath);
-										logs.logging("INFO", "DC NO Is Entered");
-										flag = webDB.waitForElement(DirectGrnPageLocators.GrnCreate, ElementType.Xpath);
-										if (flag) {
-											webDB.clickAnElement(DirectGrnPageLocators.GrnCreate, ElementType.Xpath);
-											logs.logging("INFO", "GRN Is Created");
-											webDB.switchToDefaultContent();
-										}
-									}
-								}
+								webDB.clickAnElement(DirectGrnPageLocators.GrnCreate, ElementType.Xpath);
+								logs.logging("INFO", "GRN Is Created");
+								webDB.switchToDefaultContent();
+								flag = webDB.waitForElement(GrnLocators.GrnDocNumber, ElementType.Xpath);
 							}
 						}
 					}
@@ -7947,5 +7938,20 @@ public class DirectGrnPageFunctions {
 		GRNFunc.overAllSaveAndPost();
 		GRNFunc.waitingForApproval();
 
+	}
+
+	/**
+	 * This Methods Is Used To Document Number To
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+	public void waitingForApprovalForGRN() {
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		logs.logging("INFO", "Ok Button Is Clicked");
+		webDB.switchToDefaultContent();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		assertTrue(flag);
 	}
 }

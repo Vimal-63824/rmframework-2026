@@ -239,9 +239,9 @@ public class PricelistPageFunctions {
 	 */
 	public void verifyCreationOfPriceListAmendmentDomesticSimilarUom() {
 		verifyCreationOfPriceListDomesticSimilarUomAmd();
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+//		commonFunc.logoutUser();
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 		commonFunc.navigatePricelistPage();
 		verifyDocNoInFindPage(VariableHandler.getPRLISTNumber());
 		verifyDrilldownTheDocNum();
@@ -448,8 +448,8 @@ public class PricelistPageFunctions {
 				"AdminUsername");
 		commonFunc.navigateItemPage();
 		verifySearchOfItem3(commonFunc.getDataFromTestDataSheet("AmdSimItem_ID"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 		commonFunc.navigatePricelistPage();
 		clickAddIconFillDetailsOfPriceList(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("DomSupplier_ID"), VariableHandler.getItemName(),
@@ -1268,9 +1268,9 @@ public class PricelistPageFunctions {
 	 * @author Durai-RMITS
 	 */
 	public void verifyDrilldownTheDocNum() {
-		flag = webDB.waitForElement(PricelistPageLocators.FindDocNumDrilldown, ElementType.CssSelector);
+		flag = webDB.waitForElement(PricelistPageLocators.FindDocNumDrilldown, ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(PricelistPageLocators.FindDocNumDrilldown, ElementType.CssSelector);
+			webDB.clickAnElement(PricelistPageLocators.FindDocNumDrilldown, ElementType.Xpath);
 			logs.logging("INFO", "Document NO is clicked");
 			flag = webDB.waitForElement(PricelistPageLocators.PricelistDocNum, ElementType.Xpath);
 			if (flag) {

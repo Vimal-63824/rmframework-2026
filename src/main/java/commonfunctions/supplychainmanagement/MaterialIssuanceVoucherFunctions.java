@@ -815,6 +815,9 @@ public class MaterialIssuanceVoucherFunctions {
 			String SITValue = TotalData[i][17];
 			String RMItem = TotalData[i][4];
 			String RMWH = TotalData[i][6];
+			if (QOHValue.equals("")) {
+				break;
+			}
 			String DBQOHValve = dbCommonFunctions.validateStockTransactionWithRMInMIV(RMItem,
 					commonFunc.getDataFromTestDataSheet("QOHValue"),
 					commonFunc.getDataFromTestDataSheet("TransQuantityHeader"));
@@ -879,9 +882,9 @@ public class MaterialIssuanceVoucherFunctions {
 		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
 		TotalData = excelUtils.readAllDataInExcel(Filepath, SheetName);
 		for (int i = StartIndex; i <= TotalData.length; i++) {
-//			if (TotalData[i][0].equalsIgnoreCase("SFG")) {
-//				break;
-//			}
+			if (TotalData[i][14].equalsIgnoreCase("")) {
+				break;
+			}
 			String SheetValue = TotalData[i][15];
 			String RMItem = TotalData[i][4];
 			String RMWH = commonFunc.getDataFromTestDataSheet("RM WH");
@@ -890,6 +893,63 @@ public class MaterialIssuanceVoucherFunctions {
 			commonFunc.verifyAssertionBothValues(LotQuantity, SheetValue);
 			logs.logging("INFO", "Verified RMItem: " + RMItem + " Lot Quanity After = " + LotQuantity);
 
+		}
+	}
+
+	/**
+	 * This method used to validate after lot serial quantity in test data sheet
+	 * 
+	 * @author Deepan-GWL
+	 * @param FileName
+	 * @param SheetName
+	 */
+	public void verifyAfterLotQuantityInLotSerialValidationForRawMaterials(String FileName, String SheetName,
+			int StartIndex, String Warehouse) {
+		logs.logging("INFO", "****After Validation Lot Serial Quantity DB Validation in MIV****");
+		String[][] TotalData = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
+		TotalData = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		for (int i = StartIndex; i < StartIndex + 7; i++) {
+			if (TotalData[i][14].equalsIgnoreCase("")) {
+				break;
+			}
+			String SheetValue = TotalData[i][15];
+			String RMItem = TotalData[i][4];
+			String RMWH = Warehouse;
+			String LotQuantity = dbCommonFunctions.validateLotSerialWithRMItemWarehouse(RMItem, RMWH,
+					commonFunc.getDataFromTestDataSheet("LotSerialQtyHand"));
+			System.out.println("Lot  Qty " + LotQuantity + " sheetvalue " + SheetValue);
+			commonFunc.verifyAssertionBothValues(LotQuantity, SheetValue);
+			logs.logging("INFO", "Verified RMItem: " + RMItem + " Lot Quanity After = " + LotQuantity);
+
+		}
+	}
+
+	/**
+	 * This method used to write lot quantity in test data sheet
+	 * 
+	 * @author Deepan-GWL
+	 * @param FileName
+	 * @param SheetName
+	 */
+	public void verifyWriteBeforeLotQuantityInLotForRawMaterials(String FileName, String SheetName, int StartIndex,
+			String WareHouse) {
+		logs.logging("INFO", "****Writing Before Lot Serial Quantity DB Validation in MIV****");
+		String[][] TotalData = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
+		TotalData = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		for (int i = StartIndex; i < TotalData.length; i++) {
+//			if (TotalData[i][0].equalsIgnoreCase("SFG")) {
+//				break;
+//			}
+			String RMItem = TotalData[i][4];
+			String RMWH = WareHouse;
+			String LotQuantity = dbCommonFunctions.validateLotSerialWithRMItemWarehouse(RMItem, RMWH,
+					commonFunc.getDataFromTestDataSheet("LotSerialQtyHand"));
+			logs.logging("INFO", "For RMItem: " + RMItem + " Lot Quanity Before = " + LotQuantity);
+			excelUtils.writeDataInExcel(Filepath, SheetName, i, 14, LotQuantity);
 		}
 	}
 }

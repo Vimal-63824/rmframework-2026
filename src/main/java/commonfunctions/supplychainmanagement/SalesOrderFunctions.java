@@ -426,11 +426,15 @@ public class SalesOrderFunctions {
 		flag = webDB.waitForElement(SalesOrderLocators.HeaderCancelButton, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(SalesOrderLocators.HeaderCancelButton, ElementType.Xpath);
-			flag = webDB.waitForElementUntilGivenTime(SalesOrderLocators.NoteAlertMessage, ElementType.Xpath, 45);
+			flag = webDB.waitForElementUntilGivenTime(SalesOrderLocators.SOCancelAlert, ElementType.Xpath, 30);
 			if (flag) {
-				logs.logging("INFO", "Note Alert Is Displayed And Sales Order Document Is Cancelled.");
-				if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
-					webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+				webDB.clickAnElement(SalesOrderLocators.SOCancelAlert, ElementType.Xpath);
+				flag = webDB.waitForElementUntilGivenTime(SalesOrderLocators.NoteAlertMessage, ElementType.Xpath, 45);
+				if (flag) {
+					logs.logging("INFO", "Note Alert Is Displayed And Sales Order Document Is Cancelled.");
+					if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+						webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+					}
 				}
 			}
 		}
@@ -451,6 +455,7 @@ public class SalesOrderFunctions {
 			flag = webDB.waitForElement(SalesOrderLocators.FindHeaderRadioButton, ElementType.Xpath);
 			if (flag) {
 				webDB.clickAnElement(SalesOrderLocators.FindHeaderRadioButton, ElementType.Xpath);
+				commonFunc.checkRefreshCellsDisappear();
 				flag = webDB.waitForElement(SalesOrderLocators.FindSearchButton, ElementType.Xpath);
 				if (flag) {
 					webDB.clickAnElement(SalesOrderLocators.FindSearchButton, ElementType.Xpath);
@@ -7320,5 +7325,88 @@ public class SalesOrderFunctions {
 			}
 		}
 		return flag;
+	}
+
+	/**
+	 * This Method Used For Reading DataBase Value For Before Stock Quantity
+	 * 
+	 * @author Vimal - RMITS
+	 * @param i1
+	 * @param ArrayList
+	 * @param SheetName
+	 */
+	public void StockQtyUpdateInExcelSI(int i1, ArrayList<String> ArrayList, String SheetName, String FileName) {
+		String[][] SODiscountDetails = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
+		SODiscountDetails = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		for (int i = i1; i <= i1; i++) {
+			String ItemId = SODiscountDetails[i1][1];
+			String WareHouse = SODiscountDetails[i1][34];
+			if (!ItemId.equals("")) {
+				String BeforeStockQty = dbCommonFunctions.StockQuery1(WareHouse, ItemId,
+						commonFunc.getDataFromTestDataSheet("StockQtyDBColumnName"));
+				logs.logging("INFO", "Before Stock Qty For This Item " + ItemId + "Is : " + BeforeStockQty);
+//				double stockQtyValue = Double.parseDouble(BeforeStockQty);
+//				DecimalFormat df = new DecimalFormat("0.00");
+//				String formattedNumber = df.format(stockQtyValue);
+				excelUtils.writeDataInExcel(Filepath, SheetName, i, 32, BeforeStockQty);
+				ExcelStockQtyFormulaEvaluatorSI(i1, ItemId, ArrayList, SheetName, FileName);
+			}
+		}
+	}
+
+	/**
+	 * This Method Is used To get The Stock Qty From The Formula Cell
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @param i
+	 * @param Item
+	 * @param ArrayList
+	 * @param SheetName
+	 */
+	public void ExcelStockQtyFormulaEvaluatorSI(int i, String Item, ArrayList<String> ArrayList, String SheetName,
+			String FileName) {
+		try {
+			String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
+			FileInputStream fis = new FileInputStream(new File(Filepath));
+			XSSFWorkbook workbook = new XSSFWorkbook(fis);
+			XSSFSheet sheet = workbook.getSheet(SheetName);
+			FormulaEvaluator formulaEvaluator = workbook.getCreationHelper().createFormulaEvaluator();
+			Row row = sheet.getRow(i); // Row 0 (first row)
+			Cell cell = row.getCell(33); // Column 0 (first column, A1)
+			if (cell.getCellType() == CellType.FORMULA) {
+				CellValue cellValue = formulaEvaluator.evaluate(cell);
+				if (cellValue.getCellType() == CellType.NUMERIC) {
+					double cellNumericValue = cellValue.getNumberValue();
+					if (cellNumericValue == Math.floor(cellNumericValue)) {
+						// It's a whole number
+						System.out.println("Formula result: " + (int) cellNumericValue);
+						int ExpectedStockQtyInt = (int) cellNumericValue;
+						String ExpectedStockQtyAsString = String.valueOf(ExpectedStockQtyInt);
+						VariableHandler.setExpectedStockQty(ExpectedStockQtyAsString);
+						logs.logging("INFO",
+								"Expected Stock Qty After Posting the Sales Invoice Document For This Item " + Item
+										+ " Is : " + VariableHandler.getExpectedStockQty());
+						ArrayList.add(VariableHandler.getExpectedStockQty());
+					} else {
+						System.out.println("Formula result: " + cellNumericValue);
+						String ExpectedStockQtyAsString = String.valueOf(cellNumericValue);
+						VariableHandler.setExpectedStockQty(ExpectedStockQtyAsString);
+						logs.logging("INFO",
+								"Expected Stock Qty After Posting the Sales Invoice Document For This Item " + Item
+										+ " Is : " + VariableHandler.getExpectedStockQty());
+						ArrayList.add(VariableHandler.getExpectedStockQty());
+					}
+				}
+			} else {
+				System.out.println("Cell does not contain a formula.");
+			}
+			workbook.close();
+			fis.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+			assertTrue(flag);
+		}
 	}
 }

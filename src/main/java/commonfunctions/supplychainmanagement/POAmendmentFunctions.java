@@ -11879,13 +11879,12 @@ public class POAmendmentFunctions {
 	 * @author Deepan-GWL
 	 * 
 	 */
-	public void verifyCreatePoADocumentCreation() {
+	public void verifyCreatePoADocumentCreation(String SheetName) {
 		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 		ExcelUtils excelUtils = new ExcelUtils();
 		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
-				+ "PoToMrv2.xlsx";
-		itemmultiple = excelUtils.readAllDataInExcel(Filepath,
-				webDB.getDataFromProperties("PoToMRVWFSUomWithReversePOASheet"));
+				+ "PoToMrv3.xlsx";
+		itemmultiple = excelUtils.readAllDataInExcel(Filepath, SheetName);
 		for (int j = 3; j < itemmultiple.length; j++) {
 			if (itemmultiple[j][0].equals(commonFunc.getDataFromTestDataSheet("PurchaseOrderAmendment"))) {
 				for (int i = j + 2; i < itemmultiple.length; i++) {
@@ -11927,8 +11926,8 @@ public class POAmendmentFunctions {
 	 * @param FileName
 	 */
 	public void poDocumentCloseshort(String Location, String SheetName, String FileName) {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername-Admin");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(Location, VariableHandler.getPONumber(),
@@ -11953,16 +11952,16 @@ public class POAmendmentFunctions {
 		}
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
-		commonFunc.logoutUser();
+//		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
+//			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-			flag = commonFunc.logoutUser();
+//			flag = commonFunc.logoutUser();
 		}
 	}
 }

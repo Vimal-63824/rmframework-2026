@@ -1892,7 +1892,7 @@ public class PurchaseBillsFunctions {
 		for (int i = 4; i < PurchaseBills.length; i++) {
 			String SeqNumber = Integer.toString(i - 3);
 			String Item = PurchaseBills[i][1];
-			String IgstTaxAmount = PurchaseBills[i][25];
+			String IgstTaxAmount = PurchaseBills[i][26];
 			if (!Item.equals("")) {
 				verifyAssertionBothValues(
 						dbCommonFunc.PurchaseBillsItemWithExpOrdBy(VariableHandler.getScoPurchaseNumber(), SeqNumber,
@@ -4020,7 +4020,7 @@ public class PurchaseBillsFunctions {
 		openExpandButtonDirect();
 		getGstClafInLocation();
 		getValueFromTaxAmountInLineDetails();
-		clickValidateAllowIgstFlag(webDB.getDataFromProperties("PurchaseBillsInterstate"));
+		clickValidateAllowIgstFlag(webDB.getDataFromProperties("Purchase_Bills_Allow_IGST"));
 		movesToInvoiceTap();
 		getValueFromTaxAmountInLineDetails();
 		createJvForRecord();
@@ -4144,7 +4144,7 @@ public class PurchaseBillsFunctions {
 		openExpandButtonDirect();
 		getGstClafInLocation();
 		getValueFromTaxAmountInLineDetails();
-		clickValidateAllowIgstFlag(webDB.getDataFromProperties("PurchaseBillsInterstate"));
+		clickValidateAllowIgstFlag(webDB.getDataFromProperties("Purchase_Bills_Allow_IGST"));
 		movesToInvoiceTap();
 		getValueFromTaxAmountInLineDetails();
 		createJvForRecord();
@@ -4342,7 +4342,7 @@ public class PurchaseBillsFunctions {
 		ClickSaveButton();
 		openExpandButtonDirect();
 		getGstClafInLocation();
-		clickValidateAllowIgstFlag(webDB.getDataFromProperties("PurchaseBillsInterstate"));
+		clickValidateAllowIgstFlag(webDB.getDataFromProperties("Purchase_Bills_Allow_IGST"));
 		movesToInvoiceTap();
 		getValueFromTaxAmountInLineDetails();
 		createJvForRecord();
@@ -4388,7 +4388,9 @@ public class PurchaseBillsFunctions {
 		openExpandButtonDirect();
 		getGstClafInLocation();
 		getValueFromTaxAmountInLineDetails();
-		clickValidateAllowIgstFlag(commonFunc.getDataFromTestDataSheet("PurchaseBillsInterstate"));
+		clickValidateAllowIgstFlag(commonFunc.getDataFromTestDataSheet("Purchase_Bills_Allow_IGST"));
+		movesToInvoiceTap();
+		getValueFromTaxAmountInLineDetails();
 		createJvForRecord();
 		verifyLineDetailWithDbInPurchaseBills(webDB.getDataFromProperties("PurchaseBillsInterstate"));
 		clickPostButton();
@@ -6775,7 +6777,7 @@ public class PurchaseBillsFunctions {
 		clickValidateAllowRcmFlag();
 		movesToInvoiceTap();
 		createJvForRecord();
-		verifyLineDetailsWithDBvalidationInGrnPurchaseType("purchaseBills_GRN");
+		verifyLineDetailsWithDBvalidationInGrnPurchaseType("PurchaseBills_ExAcc");
 		clickPostButton();
 		verifyWaitingForApprovalForPurchaseBills();
 		commonFunc.logoutUser();
@@ -6947,7 +6949,7 @@ public class PurchaseBillsFunctions {
 		openExpandButtonDirect();
 		getGstClafInLocation();
 		movesToInvoiceTap();
-		clickValidateAllowIgstFlagUpdated(webDB.getDataFromProperties("purchase bills test 2"));
+		clickValidateAllowIgstFlagUpdated(webDB.getDataFromProperties("PurchaseBills_IGST_Validation"));
 		createJvForRecord();
 		verifyLineDetailsWithDBvalidationInGrnPurchaseType(webDB.getDataFromProperties("PurchaseBills_ExAcc"));
 		clickPostButton();
@@ -7839,7 +7841,7 @@ public class PurchaseBillsFunctions {
 		openExpandButtonDirect();
 		getGstClafInLocation();
 		movesToInvoiceTap();
-		clickValidateAllowIgstFlag(webDB.getDataFromProperties("PurchaseBills_IGST_Validation"));
+		clickValidateAllowIgstFlag(webDB.getDataFromProperties("PurchaseBills_IGST_Validation_3"));
 		loadAdjustmentForSupplierToAddedInParty(VariableHandler.getBankPaymentOrReceiptDocNumber());
 		createJvForRecord();
 		verifyLineDetailsWithDBvalidationInGrnPurchaseType(webDB.getDataFromProperties("PurchaseBills_ExAcc"));
@@ -8048,7 +8050,7 @@ public class PurchaseBillsFunctions {
 		openExpandButtonDirect();
 		getGstClafInLocation();
 		movesToInvoiceTap();
-		clickValidateAllowIgstFlagUpdated(webDB.getDataFromProperties("PurchaseBills_Un_Regrd_Iter"));
+		clickValidateAllowIgstFlagUpdated(webDB.getDataFromProperties("PurchaseBills_IGST_Validation_3"));
 		loadAdjustmentForSupplierToAddedInParty(VariableHandler.getBankPaymentOrReceiptDocNumber());
 		createJvForRecord();
 		verifyLineDetailsWithDBvalidationInGrnPurchaseType(webDB.getDataFromProperties("PurchaseBills_Un_Regrd_Iter"));

@@ -9,6 +9,7 @@ import java.io.File;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang3.RandomStringUtils;
@@ -47,6 +48,7 @@ public class GateEntryPageFunctions {
 	LocalDateTime myDateObj = LocalDateTime.now().plusDays(1);
 	DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MMM-yy");
 	String tomorrowDate = myDateObj.format(myFormatObj);
+	ArrayList<ArrayList> MultiplePODocs = new ArrayList<ArrayList>();
 
 	/**
 	 * This Methods Is Used To verify Create Gate Entry for Single Purchase Order
@@ -67,20 +69,37 @@ public class GateEntryPageFunctions {
 		gateEntryItemHeaderValidation();
 		verifyToOverAllSaveAndPostTheGateEntryDocument();
 	}
-
+	/**
+	 * This Methods Is Used To verify Create Gate Entry for Multiple Purchase Order
+	 * 
+	 * @author Durai-RMITS
+	 */
+	public void multiPoDocumentCreation(ArrayList<String> poList) {
+		List<String> poList1 = new ArrayList<>();
+		for (int i = 0; i < 2; i++) {
+			System.out.println("Loop Running: " + i);
+			POfunc.verifyDirectPODomesticMaterialSimilarUOMwithAndWithoutInspectionMaterialTypeForUserDefinedItemWithGateEntryD(
+					"GateEntry");
+		}
+		VariableHandler.setMultiplePODocs(POfunc.MultiPODocumentNumber);
+		System.out.println(VariableHandler.getMultiplePODocs().get(0));
+		System.out.println(VariableHandler.getMultiplePODocs().get(1));
+	}
+		
 	/**
 	 * This Methods Is Used To verify Create Gate Entry for Multiple Purchase Order
 	 * 
 	 * @author Durai-RMITS
 	 */
 	public void verifyToCreateGateEntryFromMultiplePo() {
-		POfunc.verifyDirectPODomesticMaterialSimilarUOMwithAndWithoutInspectionMaterialTypeForUserDefinedItemWithGateEntryD(
-				"GateEntry");
-		POfunc.verifyDirectPODomesticMaterialSimilarUOMwithAndWithoutInspectionMaterialTypeForUserDefinedItemWithGateEntryD(
-				"GateEntry");
+		multiPoDocumentCreation(null);
+//		POfunc.verifyDirectPODomesticMaterialSimilarUOMwithAndWithoutInspectionMaterialTypeForUserDefinedItemWithGateEntryD(
+//				"GateEntry");
+//		POfunc.verifyDirectPODomesticMaterialSimilarUOMwithAndWithoutInspectionMaterialTypeForUserDefinedItemWithGateEntryD(
+//				"GateEntry");
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigateToGateEntryDocument();
-		verifyToCreateGateEntryFromPendingMultiPo();
+		verifyToCreateGateEntryFromPendingMultiPo(VariableHandler.getMultiplePODocs());
 		verifygateEntryDetailsPO();
 		verifyToOverAllSaveAndPostTheGateEntryDocument();
 	}
@@ -191,7 +210,7 @@ public class GateEntryPageFunctions {
 	 * 
 	 * @author Durai-RMITS
 	 */
-	public void verifyToCreateGateEntryFromPendingMultiPo() {
+	public void verifyToCreateGateEntryFromPendingMultiPo(ArrayList<String> PONumber ) {
 		flag = webDB.waitForElement(GateEntryPageLocators.ClickPendingButton, ElementType.Xpath);
 		if (flag)
 			webDB.clickAnElement(GateEntryPageLocators.ClickPendingButton, ElementType.Xpath);
@@ -201,21 +220,35 @@ public class GateEntryPageFunctions {
 			logs.logging("INFO", "PendingPOButtonLov Shown");
 			webDB.switchToFrame(GateEntryPageLocators.PendingPOGIframe, ElementType.Xpath);
 			logs.logging("INFO", "Switched to Frame");
-			flag = webDB.waitForElement(GateEntryPageLocators.PendDateInput, ElementType.Xpath);
-			if (flag) {
-				webDB.clickAnElement(GateEntryPageLocators.PendDateInput, ElementType.Xpath);
-				webDB.sendTextToAnElement(GateEntryPageLocators.PendDateInput, Today, ElementType.Xpath);
-				logs.logging("INFO", "Date is Entered");
+//			flag = webDB.waitForElement(GateEntryPageLocators.PendDateInput, ElementType.Xpath);
+//			if (flag) {
+//				webDB.clickAnElement(GateEntryPageLocators.PendDateInput, ElementType.Xpath);
+//				webDB.sendTextToAnElement(GateEntryPageLocators.PendDateInput, Today, ElementType.Xpath);
+//				logs.logging("INFO", "Date is Entered");
+			for(int i = 0; i < VariableHandler.getMultiplePODocs().size(); i++) {
+			webDB.waitForElement(GateEntryPageLocators.PendingGatePOLov, ElementType.Xpath);
+					commonFunc.searchAndSelectValueInFilters(GateEntryPageLocators.PendingGatePOLov, PONumber.get(i));
+					webDB.switchToFrame(GateEntryPageLocators.PendingPOGIframe, ElementType.Xpath);
+					logs.logging("INFO", "Switched to Frame");
 				webDB.waitForElement(GateEntryPageLocators.GateEntryPoSearchButton, ElementType.Xpath);
 				if (flag) {
 					flag = webDB.clickAnElement(GateEntryPageLocators.GateEntryPoSearchButton, ElementType.Xpath);
 					logs.logging("INFO", "Document Search And Selected Successfully");
 					commonFunc.hardWait(5000);
-					webDB.waitForElement(GateEntryPageLocators.GateEntryPendingPoSelectAll, ElementType.Xpath);
+					webDB.waitForElement(GateEntryPageLocators.GateEntryPendingPoSelect, ElementType.Xpath);
 					if (flag) {
-						flag = webDB.clickAnElement(GateEntryPageLocators.GateEntryPendingPoSelectAll,
+						flag = webDB.clickAnElement(GateEntryPageLocators.GateEntryPendingPoSelect,
 								ElementType.Xpath);
 						logs.logging("INFO", "Create Gate Entry Button shown");
+						webDB.waitForElement(GateEntryPageLocators.GateEntryPoClearButton, ElementType.Xpath);
+						if (flag) {
+							flag = webDB.clickAnElement(GateEntryPageLocators.GateEntryPoClearButton,
+									ElementType.Xpath);
+							logs.logging("INFO", "Clear Button shown");
+						}
+					}
+				}
+			}
 						commonFunc.checkRefreshCellsDisappear();
 						commonFunc.hardWait(2000);
 						webDB.waitForElement(GateEntryPageLocators.CreateGeFromPO, ElementType.Xpath);
@@ -223,11 +256,10 @@ public class GateEntryPageFunctions {
 							webDB.clickAnElement(GateEntryPageLocators.CreateGeFromPO, ElementType.Xpath);
 						}
 					}
-				}
-			}
-		}
+			
 		assertTrue(flag);
-	}
+		}
+		
 
 	/**
 	 * This Methods Is Used To verify Create Gate Entry Pending multiple Supplier
@@ -1481,12 +1513,10 @@ public class GateEntryPageFunctions {
 	 */
 	public void searchAndVerifyStatusOfGENo(String GEONo, String ExpectedStatus) {
 		commonFunc.clearFiltersInFindPage();
-		commonFunc.checkRefreshCellsDisappear();
-		//commonFunc.searchAndSelectValueInFilters(GateEntryPageLocators.FindGateEntryNoLovBtn, GEONo);
+		commonFunc.searchAndSelectValueInFilters(GateEntryPageLocators.FindGateEntryNoLovBtn, GEONo);
 		flag = webDB.waitForElement(GateEntryPageLocators.HeaderLabelButton, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(GateEntryPageLocators.HeaderLabelButton, ElementType.Xpath);
-			commonFunc.checkRefreshCellsDisappear();
 			flag = webDB.waitForElement(GateEntryPageLocators.SearchButton, ElementType.Xpath);
 			if (flag) {
 				webDB.clickAnElement(GateEntryPageLocators.SearchButton, ElementType.Xpath);

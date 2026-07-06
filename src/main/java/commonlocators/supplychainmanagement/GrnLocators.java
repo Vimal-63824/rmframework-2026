@@ -147,8 +147,6 @@ public class GrnLocators {
 	/** @locatorType Xpath */
 	public static String GrnHeaderRadioBtn = "//label[contains(text(),'Header')]";
 	/** @locatorType Xpath */
-	public static String GrnDocumentStatus = "//table[@id='12961277905512999678']/tbody/tr[2]/td[17]";
-	/** @locatorType Xpath */
 	public static String GrnChargesBtn = "//button[@data-testid='Charges']";
 	/** @locatorType Xpath */
 	public static String GrnChargesAddbtn = "//button[@data-testid='GRNP_ADD_CHARGES_BTN']";
@@ -379,5 +377,7 @@ public class GrnLocators {
 	public static final String AcceptQuantityInput = "//div[@id='grn_lot_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[9]//input";
 	/** @locatorType Xpath */
 	public static final String AcceptQuantity = "//div[@id='grn_lot_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[9]";
+	/** @locatorType Xpath */
+	public static String GrnDocumentStatus = "//table[@data-testid='L_Result_Title']/tbody/tr/td[17]";
 
 }

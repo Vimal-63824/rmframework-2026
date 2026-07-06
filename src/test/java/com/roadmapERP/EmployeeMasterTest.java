@@ -346,13 +346,13 @@ public class EmployeeMasterTest extends RoadMapERPTest {
 	@Author("Sakthi-GWL")
 	@Test(priority = 25, groups = { "Employee Adjustment" }, description = "71 To Check Adjustment based on End option")
 	public void VerifyEmployeeAdjustmentBasedOnEndOption() {
-		logs.logging("INFO", "This test covered in 'VerifyEmployeeAdjustmentBasedOnDifferentElements'  Test");
 		if (previousStatus != ITestResult.SUCCESS) {
-			logs.logging("INFO",
-					"Previous test (VerifyEmployeeAdjustmentBasedOnDifferentElements) failed. So this fails too.");
-			Assert.fail();
+			flag = empAdjFunc.verifyEmpAdjustmentBasedOnAllAndReportFetchValue();
+		} else {
+			logs.logging("INFO", "This test covered in 'VerifyEmployeeAdjustmentBasedOnDifferentElements'  Test");
+			flag = true;
 		}
-		Assert.assertTrue(true);
+		Assert.assertTrue(flag);
 	}
 
 	/**
@@ -442,7 +442,7 @@ public class EmployeeMasterTest extends RoadMapERPTest {
 	 * @param result
 	 */
 	@AfterMethod
-	public void VerifyAfterMethod(ITestResult result,Method method) {
+	public void VerifyAfterMethod(ITestResult result, Method method) {
 		previousStatus = result.getStatus();
 		commonFunc.enterAuthorNamesInExtentReport(method);
 		if (previousStatus == ITestResult.FAILURE || previousStatus == ITestResult.SKIP) {
