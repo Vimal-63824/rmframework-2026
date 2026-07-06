@@ -2463,6 +2463,7 @@ public class CommonFunctions {
 			if (flag) {
 				logs.logging("INFO", "Navigated To " + TabName);
 			} else {
+				webDB.pressDownArrowKey();
 				webDB.pressEnterKey();
 				webDB.waitForPageReady(30);
 				flag = webDB.waitForElement(PageLocators, ElementType.Xpath);

@@ -230,12 +230,12 @@ public class PurchaseRequestFunctions {
 			webDB.clickAnElement(PurchaseRequestLocators.BackIconBtn, ElementType.Xpath);
 		}
 		commonFunc.searchAndSelectValueInFilters(PurchaseRequestLocators.FindPR_PRNoButton, PRNumber);
-		flag = webDB.waitForElement(PurchaseRequestLocators.FindSearchButton, ElementType.Xpath);
+		flag = webDB.waitForElement(PurchaseRequestLocators.HeaderCheckbox, ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(PurchaseRequestLocators.FindSearchButton, ElementType.Xpath);
-			flag = webDB.waitForElement(PurchaseRequestLocators.HeaderCheckbox, ElementType.Xpath);
+			webDB.clickAnElement(PurchaseRequestLocators.HeaderCheckbox, ElementType.Xpath);
+			flag = webDB.waitForElement(PurchaseRequestLocators.FindSearchButton, ElementType.Xpath);
 			if (flag) {
-				webDB.clickAnElement(PurchaseRequestLocators.HeaderCheckbox, ElementType.Xpath);
+				webDB.clickAnElement(PurchaseRequestLocators.FindSearchButton, ElementType.Xpath);
 				commonFunc.checkRefreshCellsDisappear();
 				flag = webDB.waitForElement(PurchaseRequestLocators.PRStatusBoldText(PRNumber), ElementType.Xpath);
 				if (flag) {
