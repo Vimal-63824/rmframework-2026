@@ -255,7 +255,7 @@ public class CommonFunctions {
 //				logs.logging("INFO", "Purchase Request Clicked and navigated successfully");
 //			}
 //		}
-		navigateToSearchTab(webDB.getDataFromProperties("PR/SSR"), CommonUiLocators.LeftSideAddIcon);
+		navigateToSearchTab(webDB.getDataFromProperties("PurchaseRequestScreen"), CommonUiLocators.LeftSideAddIcon);
 //		Assert.assertTrue(flag);
 	}
 

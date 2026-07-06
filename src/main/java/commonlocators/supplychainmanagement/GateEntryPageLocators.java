@@ -254,11 +254,15 @@ public class GateEntryPageLocators {
 	public static final String GateEntryDocNo(String DocNo) {
 		return "(//a[text()='" + DocNo + "'])[last()]";
 	}
+
 	/** @locatorType Xpath */
 	public static final String PendingGatePOLov = "//input[@data-testid=\"P16151311001_PO_NO\"]/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String GateEntryPendingPoSelect = "//table[contains(@aria-label,'PENDING')]/tbody/tr/td[14]";	
+	public static final String GateEntryPendingPoSelect = "//table[contains(@aria-label,'PENDING')]/tbody/tr/td[14]";
 	/** @locatorType Xpath */
 	public static final String GateEntryPoClearButton = "//button[@data-testid='Find']/following-sibling::button";
-
+	/** @locatorType Xpath */
+	public static final String GateEntryHeaderSearchBar = "(//input[@title='Search Report'])[last()]";
+	/** @locatorType Xpath */
+	public static final String GateEntryHeaderSearchGoBtn = "(//input[@title='Search Report'])[last()]";
 }

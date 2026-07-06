@@ -30,17 +30,17 @@ public class DirectGrnPageLocators {
 	/** @locatorType Xpath */
 	public static final String GrnLineHsnLov = "//input[@data-testid='PORL_HSN_CODE']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String GrnLineSupQtyInput = "//input[@id='C4741147491331263419']";
+	public static final String GrnLineSupQtyInput = "//table[@class='a-GV-table']/tbody/tr/td[8]//input";
 	/** @locatorType Xpath */
-	public static final String GrnLineSupQtyInputHK = "//input[@id='C4741147491331263419']";
+	public static final String GrnLineSupQtyInputHK = "//table[@class='a-GV-table']/tbody/tr/td[8]//input";
 	/** @locatorType Xpath */
 	public static final String GrnLineSupQty = "//table[@class='a-GV-table']/tbody/tr/td[8]";
 	/** @locatorType Xpath */
 	public static final String GrnLineRcpQty = "//table[@class='a-GV-table']/tbody/tr/td[9]";
 	/** @locatorType Xpath */
-	public static final String GrnLineRcpQtyInput = "//input[@id='C4741181645480263711']";
+	public static final String GrnLineRcpQtyInput = "//table[@class='a-GV-table']/tbody/tr/td[9]//input";
 	/** @locatorType Xpath */
-	public static final String GrnLineRcpQtyInputHK = "//input[@id='C4741181645480263711']";
+	public static final String GrnLineRcpQtyInputHK = "//table[@class='a-GV-table']/tbody/tr/td[9]//input";
 	/** @locatorType Xpath */
 	public static final String GrnLineCost = "//table[@class='a-GV-table']/tbody/tr/td[13]";
 	/** @locatorType Xpath */
@@ -56,7 +56,7 @@ public class DirectGrnPageLocators {
 	/** @locatorType Xpath */
 	public static final String InspAttrSpecField = "//*[@id='ig_line_attr_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[6]";
 	/** @locatorType Xpath */
-	public static final String InspAttrSpecLov = "//button[@id='C7311996398393171075_lov_btn']";
+	public static final String InspAttrSpecLov = "//*[@id='ig_line_attr_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[6]//button[contains(@id,'lov_btn')]";
 	/** @locatorType Xpath */
 	public static final String InspBottomPage = "//*[@id='t_Body_content']/footer/div[1]/div[2]/table/tbody/tr/th[1]";
 	/** @locatorType Xpath */
@@ -100,11 +100,11 @@ public class DirectGrnPageLocators {
 	/** @locatorType Xpath */
 	public static final String GrnLineDetails = "//table[@class='a-GV-table']/tbody/tr/td[25]";
 	/** @locatorType Xpath */
-	public static final String GrnLineTrdDisc = "//input[@id='P161513110301_PORL_TRD_DISC_PCT']";
+	public static final String GrnLineTrdDisc = "//input[contains(@id,'PORL_TRD_DISC_PCT')]";
 	/** @locatorType Xpath */
-	public static final String GrnLineSpclDisc = "//input[@id='P161513110301_PORL_SPL_DISC_PCT']";
+	public static final String GrnLineSpclDisc = "//input[contains(@id,'PORL_SPL_DISC_PCT')]";
 	/** @locatorType Xpath */
-	public static final String GrnLineCashDisc = "//input[@id='P161513110301_PORL_CASH_DISC_PCT']";
+	public static final String GrnLineCashDisc = "//input[contains(@id,'PORL_CASH_DISC_PCT')]";
 	/** @locatorType Xpath */
 	public static final String GrnLineDetailsFrame = "//iframe[@title='GRN Line']";
 	/** @locatorType Xpath */
