@@ -10269,28 +10269,20 @@ public class GrnPageFunctions {
 				commonFunc.getDataFromTestDataSheet("GeneralValue"),
 				webDB.getDataFromProperties("PoToMRVWFSUomWithReverseSheet"),
 				webDB.getDataFromProperties("PoToMrvSheet3"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigateToGateEntryDocument();
 		gateEntryPageFunc.verifyToCreateGateEntryFromPendingPoNumber();
 		gateEntryPageFunc.verifygateEntryDetailsPo();
 		gateEntryPageFunc.verifyCreatingGetextForGateEntryDocNumber();
 		commonFunc.checkRefreshCellsDisappear();
 		gateEntryPageFunc.verifyToOverAllSaveAndPostTheGateEntryDocument();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigateToGateEntryDocument();
 		gateEntryPageFunc.searchAndVerifyStatusOfGENo(VariableHandler.getGateEntryNumber(),
 				commonFunc.getDataFromTestDataSheet("CompletedStatus"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		clickPendingGEAndSearchGENo();
 		clickSelectAllGEButton();
 		createGrnWithGeButton();
 		clickOkButton();
-
-//		validateLocationInGrnHeader(commonFunc.getDataFromTestDataSheet("L49"));
-
 		multipleLotAndSerialItemWithPoToMrvSheet(webDB.getDataFromProperties("PoToMRVWFSUomWithReverseSheet"),
 				webDB.getDataFromProperties("PoToMrvSheet3"));
 		lotSerialQtyApportion();
@@ -10303,21 +10295,16 @@ public class GrnPageFunctions {
 		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("PoToMRVWFSUomWithReverseSheet"),
 				webDB.getDataFromProperties("PoToMrvSheet3"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		verifyOpenGrnDocuments();
 		verifyReverseDocNo();
 		waitingForApprovalForReversalGrn();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.naviagteGrnPage();
 		verifyOpenGrnDocuments();
 		DirectGrnFunc.verifyDirectGRNAddLineDetailsWithReverseDoc(webDB.getDataFromProperties("PoToMrvSheet3"),
 				webDB.getDataFromProperties("PoToMRVWFSUomWithReverseSheet"));
-
 		DirectGrnFunc.overAllSaveAndPost();
 		DirectGrnFunc.waitingForApprovalForGRN();
-//		verifyReturnToGrnPageHeaderStatus();
 		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("PoToMrvSheet3"),
 				webDB.getDataFromProperties("PoToMRVWFSUomWithReverseSheet"));
 		aafterVerifyTheStatusDocumentMoveToQcOrMrvForDifferentLoc();
@@ -10608,28 +10595,20 @@ public class GrnPageFunctions {
 				commonFunc.getDataFromTestDataSheet("GeneralValue"),
 				webDB.getDataFromProperties("PoToMRVWFSUomWithReverseImpSheet"),
 				webDB.getDataFromProperties("PoToMrvSheet3"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigateToGateEntryDocument();
 		gateEntryPageFunc.verifyToCreateGateEntryFromPendingPoNumber();
 		gateEntryPageFunc.verifygateEntryDetailsPo();
 		gateEntryPageFunc.verifyCreatingGetextForGateEntryDocNumber();
 		commonFunc.checkRefreshCellsDisappear();
 		gateEntryPageFunc.verifyToOverAllSaveAndPostTheGateEntryDocument();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigateToGateEntryDocument();
 		gateEntryPageFunc.searchAndVerifyStatusOfGENo(VariableHandler.getGateEntryNumber(),
 				commonFunc.getDataFromTestDataSheet("CompletedStatus"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		clickPendingGEAndSearchGENo();
 		clickSelectAllGEButton();
 		createGrnWithGeButton();
 		clickOkButton();
-
-//		validateLocationInGrnHeader(commonFunc.getDataFromTestDataSheet("L49"));
-
 		multipleLotAndSerialItemWithPoToMrvSheet(webDB.getDataFromProperties("PoToMRVWFSUomWithReverseImpSheet"),
 				webDB.getDataFromProperties("PoToMrvSheet3"));
 		lotSerialQtyApportion();
@@ -10643,13 +10622,10 @@ public class GrnPageFunctions {
 		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("PoToMRVWFSUomWithReverseImpSheet"),
 				webDB.getDataFromProperties("PoToMrvSheet3"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		verifyOpenGrnDocuments();
 		verifyReverseDocNo();
 		waitingForApprovalForReversalGrn();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.naviagteGrnPage();
 		verifyOpenGrnDocuments();
 		DirectGrnFunc.verifyDirectGRNAddLineDetailsWithReverseDoc(webDB.getDataFromProperties("PoToMrvSheet3"),
@@ -10657,7 +10633,6 @@ public class GrnPageFunctions {
 		verifyImportLrBillNumber();
 		DirectGrnFunc.overAllSaveAndPost();
 		DirectGrnFunc.waitingForApprovalForGRN();
-//		verifyReturnToGrnPageHeaderStatus();
 		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("PoToMrvSheet3"),
 				webDB.getDataFromProperties("PoToMRVWFSUomWithReverseImpSheet"));
 		aafterVerifyTheStatusDocumentMoveToQcOrMrvForDifferentLoc();
@@ -10687,20 +10662,15 @@ public class GrnPageFunctions {
 				commonFunc.getDataFromTestDataSheet("GeneralValue"),
 				webDB.getDataFromProperties("PoToMRVWFSUomWithReversePOASheet"),
 				webDB.getDataFromProperties("PoToMrvSheet3"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigateToGateEntryDocument();
 		gateEntryPageFunc.verifyToCreateGateEntryFromPendingPoNumber();
 		gateEntryPageFunc.verifygateEntryDetailsPo();
 		gateEntryPageFunc.verifyCreatingGetextForGateEntryDocNumber();
 		commonFunc.checkRefreshCellsDisappear();
 		gateEntryPageFunc.verifyToOverAllSaveAndPostTheGateEntryDocument();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigateToGateEntryDocument();
 		gateEntryPageFunc.searchAndVerifyStatusOfGENo(VariableHandler.getGateEntryNumber(),
 				commonFunc.getDataFromTestDataSheet("CompletedStatus"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		clickPendingGEAndSearchGENo();
 		clickSelectAllGEButton();
@@ -10718,26 +10688,18 @@ public class GrnPageFunctions {
 		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("PoToMRVWFSUomWithReversePOASheet"),
 				webDB.getDataFromProperties("PoToMrvSheet3"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		verifyOpenGrnDocuments();
 		verifyReverseDocNo();
 		waitingForApprovalForReversalGrn();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.naviagteGrnPage();
 		verifyOpenGrnDocuments();
 		verifyToClickDocumentwiseCancelled();
 		verifyToCheckDocumentwiseStatus();
 		validateGrnDocumentwiseStatus(commonFunc.getDataFromTestDataSheet("DocumentWiseStatus"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigateToGateEntryDocument();
 		gateEntryPageFunc.openGateEntryDocNo(VariableHandler.getGateEntryNumber());
 		gateEntryPageFunc.verifyCorrectionGateEntryDoc(commonFunc.getDataFromTestDataSheet("GEReason"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigatePoAmendmentPage();
 		poAmendmentFunc.createPendingPOAmendment();
 		poAmendmentFunc.verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("L49ID"),
@@ -10747,20 +10709,15 @@ public class GrnPageFunctions {
 		poAmendmentFunc.verifyAddPoLineItemForModify();
 		poAmendmentFunc
 				.verifyCreatePoADocumentCreation(webDB.getDataFromProperties("PoToMRVWFSUomWithReversePOASheet"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigateToGateEntryDocument();
 		gateEntryPageFunc.verifyToCreateGateEntryFromPendingPoNumber();
 		gateEntryPageFunc.verifygateEntryDetailsPo();
 		gateEntryPageFunc.verifyCreatingGetextForGateEntryDocNumber();
 		commonFunc.checkRefreshCellsDisappear();
 		gateEntryPageFunc.verifyToOverAllSaveAndPostTheGateEntryDocument();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigateToGateEntryDocument();
 		gateEntryPageFunc.searchAndVerifyStatusOfGENo(VariableHandler.getGateEntryNumber(),
 				commonFunc.getDataFromTestDataSheet("CompletedStatus"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		clickPendingGEAndSearchGENo();
 		clickSelectAllGEButton();
@@ -10771,7 +10728,6 @@ public class GrnPageFunctions {
 		lotSerialQtyApportion();
 		DirectGrnFunc.overAllSaveAndPost();
 		DirectGrnFunc.waitingForApprovalForGRN();
-//		verifyReturnToGrnPageHeaderStatus();
 		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("PoToMrvSheet3"),
 				webDB.getDataFromProperties("PoToMRVWFSUomWithReversePOASheet"));
 		aafterVerifyTheStatusDocumentMoveToQcOrMrvForDifferentLoc();
@@ -10801,20 +10757,15 @@ public class GrnPageFunctions {
 				commonFunc.getDataFromTestDataSheet("GeneralValue"),
 				webDB.getDataFromProperties("PoToMRVWFSUomWithReversePOAImpSheet"),
 				webDB.getDataFromProperties("PoToMrvSheet3"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigateToGateEntryDocument();
 		gateEntryPageFunc.verifyToCreateGateEntryFromPendingPoNumber();
 		gateEntryPageFunc.verifygateEntryDetailsPo();
 		gateEntryPageFunc.verifyCreatingGetextForGateEntryDocNumber();
 		commonFunc.checkRefreshCellsDisappear();
 		gateEntryPageFunc.verifyToOverAllSaveAndPostTheGateEntryDocument();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigateToGateEntryDocument();
 		gateEntryPageFunc.searchAndVerifyStatusOfGENo(VariableHandler.getGateEntryNumber(),
 				commonFunc.getDataFromTestDataSheet("CompletedStatus"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		clickPendingGEAndSearchGENo();
 		clickSelectAllGEButton();
@@ -10833,26 +10784,18 @@ public class GrnPageFunctions {
 		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("PoToMRVWFSUomWithReversePOAImpSheet"),
 				webDB.getDataFromProperties("PoToMrvSheet3"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		verifyOpenGrnDocuments();
 		verifyReverseDocNo();
 		waitingForApprovalForReversalGrn();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.naviagteGrnPage();
 		verifyOpenGrnDocuments();
 		verifyToClickDocumentwiseCancelled();
 		verifyToCheckDocumentwiseStatus();
 		validateGrnDocumentwiseStatus(commonFunc.getDataFromTestDataSheet("DocumentWiseStatus"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigateToGateEntryDocument();
 		gateEntryPageFunc.openGateEntryDocNo(VariableHandler.getGateEntryNumber());
 		gateEntryPageFunc.verifyCorrectionGateEntryDoc(commonFunc.getDataFromTestDataSheet("GEReason"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigatePoAmendmentPage();
 		poAmendmentFunc.createPendingPOAmendment();
 		poAmendmentFunc.verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("L49ID"),
@@ -10862,20 +10805,15 @@ public class GrnPageFunctions {
 		poAmendmentFunc.verifyAddPoLineItemForModify();
 		poAmendmentFunc
 				.verifyCreatePoADocumentCreation(webDB.getDataFromProperties("PoToMRVWFSUomWithReversePOAImpSheet"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigateToGateEntryDocument();
 		gateEntryPageFunc.verifyToCreateGateEntryFromPendingPoNumber();
 		gateEntryPageFunc.verifygateEntryDetailsPo();
 		gateEntryPageFunc.verifyCreatingGetextForGateEntryDocNumber();
 		commonFunc.checkRefreshCellsDisappear();
 		gateEntryPageFunc.verifyToOverAllSaveAndPostTheGateEntryDocument();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigateToGateEntryDocument();
 		gateEntryPageFunc.searchAndVerifyStatusOfGENo(VariableHandler.getGateEntryNumber(),
 				commonFunc.getDataFromTestDataSheet("CompletedStatus"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		clickPendingGEAndSearchGENo();
 		clickSelectAllGEButton();
@@ -10887,7 +10825,6 @@ public class GrnPageFunctions {
 		verifyImportLrBillNumber();
 		DirectGrnFunc.overAllSaveAndPost();
 		DirectGrnFunc.waitingForApprovalForGRN();
-//		verifyReturnToGrnPageHeaderStatus();
 		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("PoToMrvSheet3"),
 				webDB.getDataFromProperties("PoToMRVWFSUomWithReversePOAImpSheet"));
 		aafterVerifyTheStatusDocumentMoveToQcOrMrvForDifferentLoc();
@@ -10918,8 +10855,6 @@ public class GrnPageFunctions {
 				commonFunc.getDataFromTestDataSheet("GeneralValue"),
 				webDB.getDataFromProperties("PoToMRVWFSUomWithReverseWOGSheet"),
 				webDB.getDataFromProperties("PoToMrvSheet3"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		clickPendingPoAndSearchPoNo();
 		clickSelectAllButton();
@@ -10937,21 +10872,16 @@ public class GrnPageFunctions {
 		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("PoToMRVWFSUomWithReverseWOGSheet"),
 				webDB.getDataFromProperties("PoToMrvSheet3"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		verifyOpenGrnDocuments();
 		verifyReverseDocNo();
 		waitingForApprovalForReversalGrn();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.naviagteGrnPage();
 		verifyOpenGrnDocuments();
 		DirectGrnFunc.verifyDirectGRNAddLineDetailsWithReverseDoc(webDB.getDataFromProperties("PoToMrvSheet3"),
 				webDB.getDataFromProperties("PoToMRVWFSUomWithReverseWOGSheet"));
-
 		DirectGrnFunc.overAllSaveAndPost();
 		DirectGrnFunc.waitingForApprovalForGRN();
-//		verifyReturnToGrnPageHeaderStatus();
 		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("PoToMrvSheet3"),
 				webDB.getDataFromProperties("PoToMRVWFSUomWithReverseWOGSheet"));
 		aafterVerifyTheStatusDocumentMoveToQcOrMrvForDifferentLoc();
@@ -10982,8 +10912,6 @@ public class GrnPageFunctions {
 				commonFunc.getDataFromTestDataSheet("GeneralValue"),
 				webDB.getDataFromProperties("PoToMRVWFSUomWithReverseWOGImpSheet"),
 				webDB.getDataFromProperties("PoToMrvSheet3"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		clickPendingPoAndSearchPoNo();
 		clickSelectAllButton();
@@ -11002,13 +10930,10 @@ public class GrnPageFunctions {
 		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("PoToMRVWFSUomWithReverseWOGImpSheet"),
 				webDB.getDataFromProperties("PoToMrvSheet3"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		verifyOpenGrnDocuments();
 		verifyReverseDocNo();
 		waitingForApprovalForReversalGrn();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.naviagteGrnPage();
 		verifyOpenGrnDocuments();
 		DirectGrnFunc.verifyDirectGRNAddLineDetailsWithReverseDoc(webDB.getDataFromProperties("PoToMrvSheet3"),
@@ -11016,7 +10941,6 @@ public class GrnPageFunctions {
 		verifyImportLrBillNumber();
 		DirectGrnFunc.overAllSaveAndPost();
 		DirectGrnFunc.waitingForApprovalForGRN();
-//		verifyReturnToGrnPageHeaderStatus();
 		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("PoToMrvSheet3"),
 				webDB.getDataFromProperties("PoToMRVWFSUomWithReverseWOGImpSheet"));
 		aafterVerifyTheStatusDocumentMoveToQcOrMrvForDifferentLoc();
@@ -11047,8 +10971,6 @@ public class GrnPageFunctions {
 				commonFunc.getDataFromTestDataSheet("GeneralValue"),
 				webDB.getDataFromProperties("PoToMRVWFSUomWithReversePOAWOGSheet"),
 				webDB.getDataFromProperties("PoToMrvSheet3"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		clickPendingPoAndSearchPoNo();
 		clickSelectAllButton();
@@ -11066,8 +10988,6 @@ public class GrnPageFunctions {
 		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("PoToMRVWFSUomWithReversePOAWOGSheet"),
 				webDB.getDataFromProperties("PoToMrvSheet3"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		verifyOpenGrnDocuments();
 		verifyReverseDocNo();
@@ -11078,9 +10998,6 @@ public class GrnPageFunctions {
 		verifyToClickDocumentwiseCancelled();
 		verifyToCheckDocumentwiseStatus();
 		validateGrnDocumentwiseStatus(commonFunc.getDataFromTestDataSheet("DocumentWiseStatus"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigatePoAmendmentPage();
 		poAmendmentFunc.createPendingPOAmendment();
 		poAmendmentFunc.verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -11090,9 +11007,6 @@ public class GrnPageFunctions {
 		poAmendmentFunc.verifyAddPoLineItemForModify();
 		poAmendmentFunc
 				.verifyCreatePoADocumentCreation(webDB.getDataFromProperties("PoToMRVWFSUomWithReversePOAWOGSheet"));
-
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		clickPendingPoAndSearchPoNo();
 		clickSelectAllButton();
@@ -11103,7 +11017,6 @@ public class GrnPageFunctions {
 		lotSerialQtyApportion();
 		DirectGrnFunc.overAllSaveAndPost();
 		DirectGrnFunc.waitingForApprovalForGRN();
-//		verifyReturnToGrnPageHeaderStatus();
 		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("PoToMrvSheet3"),
 				webDB.getDataFromProperties("PoToMRVWFSUomWithReversePOAWOGSheet"));
 		aafterVerifyTheStatusDocumentMoveToQcOrMrvForDifferentLoc();
@@ -11134,8 +11047,6 @@ public class GrnPageFunctions {
 				commonFunc.getDataFromTestDataSheet("GeneralValue"),
 				webDB.getDataFromProperties("PoToMRVWFSUomWithRevPOAWOGImpSheet"),
 				webDB.getDataFromProperties("PoToMrvSheet3"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		clickPendingPoAndSearchPoNo();
 		clickSelectAllButton();
@@ -11154,21 +11065,15 @@ public class GrnPageFunctions {
 		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("PoToMRVWFSUomWithRevPOAWOGImpSheet"),
 				webDB.getDataFromProperties("PoToMrvSheet3"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		verifyOpenGrnDocuments();
 		verifyReverseDocNo();
 		waitingForApprovalForReversalGrn();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.naviagteGrnPage();
 		verifyOpenGrnDocuments();
 		verifyToClickDocumentwiseCancelled();
 		verifyToCheckDocumentwiseStatus();
 		validateGrnDocumentwiseStatus(commonFunc.getDataFromTestDataSheet("DocumentWiseStatus"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigatePoAmendmentPage();
 		poAmendmentFunc.createPendingPOAmendment();
 		poAmendmentFunc.verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -11178,9 +11083,6 @@ public class GrnPageFunctions {
 		poAmendmentFunc.verifyAddPoLineItemForModify();
 		poAmendmentFunc
 				.verifyCreatePoADocumentCreation(webDB.getDataFromProperties("PoToMRVWFSUomWithRevPOAWOGImpSheet"));
-
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		clickPendingPoAndSearchPoNo();
 		clickSelectAllButton();
@@ -11192,7 +11094,6 @@ public class GrnPageFunctions {
 		verifyImportLrBillNumber();
 		DirectGrnFunc.overAllSaveAndPost();
 		DirectGrnFunc.waitingForApprovalForGRN();
-//		verifyReturnToGrnPageHeaderStatus();
 		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("PoToMrvSheet3"),
 				webDB.getDataFromProperties("PoToMRVWFSUomWithReversePOAImpSheet"));
 		aafterVerifyTheStatusDocumentMoveToQcOrMrvForDifferentLoc();
@@ -11588,10 +11489,10 @@ public class GrnPageFunctions {
 				webDB.getDataFromProperties("PoToMrvSheet3"));
 		lotSerialQtyApportion();
 		DirectGrnFunc.overAllSaveAndPost();
-		DirectGrnFunc.waitingForApproval();
-		verifyReturnToGrnPageHeaderStatus();
-//		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("PoToMrvSheet3"),
-//				webDB.getDataFromProperties("PoToMRVWithReverseGRNPRAmdSheet"));
+		DirectGrnFunc.waitingForApprovalForGRN();
+//		verifyReturnToGrnPageHeaderStatus();
+		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("PoToMrvSheet3"),
+				webDB.getDataFromProperties("PoToMRVWithReverseGRNPRAmdSheet"));
 		aafterVerifyTheStatusDocumentMoveToQcOrMrvForDifferentLoc();
 		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("PoToMrvSheet3"),
@@ -11701,8 +11602,8 @@ public class GrnPageFunctions {
 				webDB.getDataFromProperties("PoToMrvSheet3"));
 		lotSerialQtyApportion();
 		DirectGrnFunc.overAllSaveAndPost();
-		DirectGrnFunc.waitingForApproval();
-		verifyReturnToGrnPageHeaderStatus();
+		DirectGrnFunc.waitingForApprovalForGRN();
+//		verifyReturnToGrnPageHeaderStatus();
 		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("PoToMrvSheet3"),
 				webDB.getDataFromProperties("PoToMRVWithReverseGRNPRAmdWLSheet"));
 		aafterVerifyTheStatusDocumentMoveToQcOrMrvForDifferentLoc();
@@ -11780,8 +11681,8 @@ public class GrnPageFunctions {
 				webDB.getDataFromProperties("PoToMrvSheet3"));
 		lotSerialQtyApportion();
 		DirectGrnFunc.overAllSaveAndPost();
-		DirectGrnFunc.waitingForApproval();
-		verifyReturnToGrnPageHeaderStatus();
+		DirectGrnFunc.waitingForApprovalForGRN();
+//		verifyReturnToGrnPageHeaderStatus();
 		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("PoToMrvSheet3"),
 				webDB.getDataFromProperties("PoToMRVWithReverseGRNPRAmdWoGSheet"));
 		aafterVerifyTheStatusDocumentMoveToQcOrMrvForDifferentLoc();
@@ -11860,8 +11761,8 @@ public class GrnPageFunctions {
 				webDB.getDataFromProperties("PoToMrvSheet3"));
 		lotSerialQtyApportion();
 		DirectGrnFunc.overAllSaveAndPost();
-		DirectGrnFunc.waitingForApproval();
-		verifyReturnToGrnPageHeaderStatus();
+		DirectGrnFunc.waitingForApprovalForGRN();
+//		verifyReturnToGrnPageHeaderStatus();
 		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("PoToMrvSheet3"),
 				webDB.getDataFromProperties("PoToMRVWithReverseGRNPRAmdWoQWLSheet"));
 		aafterVerifyTheStatusDocumentMoveToQcOrMrvForDifferentLoc();
@@ -11986,20 +11887,15 @@ public class GrnPageFunctions {
 				webDB.getDataFromProperties("PoToMRVWithReverseGRNPRAmdSheet"),
 				commonFunc.getDataFromTestDataSheet("PrefixL3"), webDB.getDataFromProperties("PoToMrvSheet3"),
 				commonFunc.getDataFromTestDataSheet("PrefixPoL3"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigateToGateEntryDocument();
 		gateEntryPageFunc.verifyToCreateGateEntryFromPendingPoNumber();
 		gateEntryPageFunc.verifygateEntryDetailsPo();
 		gateEntryPageFunc.verifyCreatingGetextForGateEntryDocNumber();
 		commonFunc.checkRefreshCellsDisappear();
 		gateEntryPageFunc.verifyToOverAllSaveAndPostTheGateEntryDocument();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigateToGateEntryDocument();
 		gateEntryPageFunc.searchAndVerifyStatusOfGENo(VariableHandler.getGateEntryNumber(),
 				commonFunc.getDataFromTestDataSheet("CompletedStatus"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		clickPendingGEAndSearchGENo();
 		clickSelectAllGEButton();
@@ -12012,52 +11908,36 @@ public class GrnPageFunctions {
 				webDB.getDataFromProperties("PoToMrvSheet3"));
 		waitingForApproval();
 		afterVerifyTheStatusDocumentMoveToQcOrMrvForDifferentLoc();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		verifyOpenGrnDocuments();
 		verifyReverseDocNo();
 		waitingForApprovalForReversalGrn();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.naviagteGrnPage();
 		verifyOpenGrnDocuments();
 		verifyToClickDocumentwiseCancelled();
 		verifyToCheckDocumentwiseStatus();
 		validateGrnDocumentwiseStatus(commonFunc.getDataFromTestDataSheet("DocumentWiseStatus"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigateToGateEntryDocument();
 		gateEntryPageFunc.openGateEntryDocNo(VariableHandler.getGateEntryNumber());
 		gateEntryPageFunc.verifyCorrectionGateEntryDoc(commonFunc.getDataFromTestDataSheet("GEReason"));
-		commonFunc.logoutUser();
-
 		poAmendmentFunc.poDocumentCloseshort(commonFunc.getDataFromTestDataSheet("L49ID"),
 				webDB.getDataFromProperties("PoToMRVWithReverseGRNPRAmdSheet"),
 				webDB.getDataFromProperties("PoToMrvSheet3"));
-
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername-Admin");
-		commonFunc.navigatePurchaseRequestPage();
 		purchaseRequestFunc.verifyPrAmendment(commonFunc.getDataFromTestDataSheet("L49ID"),
 				commonFunc.getDataFromTestDataSheet("ProcCost"));
 		purchaseOrderFunc.pendingPrToPo(commonFunc.getDataFromTestDataSheet("PrefixPoL3"),
 				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
 				webDB.getDataFromProperties("PoToMRVWithReverseGRNPRAmdSheet"),
 				webDB.getDataFromProperties("PoToMrvSheet3"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigateToGateEntryDocument();
 		gateEntryPageFunc.verifyToCreateGateEntryFromPendingPoNumber();
 		gateEntryPageFunc.verifygateEntryDetailsPo();
 		gateEntryPageFunc.verifyCreatingGetextForGateEntryDocNumber();
 		commonFunc.checkRefreshCellsDisappear();
 		gateEntryPageFunc.verifyToOverAllSaveAndPostTheGateEntryDocument();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigateToGateEntryDocument();
 		gateEntryPageFunc.searchAndVerifyStatusOfGENo(VariableHandler.getGateEntryNumber(),
 				commonFunc.getDataFromTestDataSheet("CompletedStatus"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		clickPendingGEAndSearchGENo();
 		clickSelectAllGEButton();
@@ -12067,8 +11947,8 @@ public class GrnPageFunctions {
 				webDB.getDataFromProperties("PoToMrvSheet3"));
 		lotSerialQtyApportion();
 		DirectGrnFunc.overAllSaveAndPost();
-		DirectGrnFunc.waitingForApproval();
-		verifyReturnToGrnPageHeaderStatus();
+		DirectGrnFunc.waitingForApprovalForGRN();
+//		verifyReturnToGrnPageHeaderStatus();
 		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("PoToMrvSheet3"),
 				webDB.getDataFromProperties("PoToMRVWithReverseGRNPRAmdSheet"));
 		aafterVerifyTheStatusDocumentMoveToQcOrMrvForDifferentLoc();
@@ -12131,8 +12011,8 @@ public class GrnPageFunctions {
 				webDB.getDataFromProperties("PoToMRVWFSUomWithReverseWOGSheet"));
 
 		DirectGrnFunc.overAllSaveAndPost();
-		DirectGrnFunc.waitingForApproval();
-		verifyReturnToGrnPageHeaderStatus();
+		DirectGrnFunc.waitingForApprovalForGRN();
+//		verifyReturnToGrnPageHeaderStatus();
 		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("PoToMrvSheet3"),
 				webDB.getDataFromProperties("PoToMRVWFSUomWithReverseWOGSheet"));
 		aafterVerifyTheStatusDocumentMoveToQcOrMrvForDifferentLoc();

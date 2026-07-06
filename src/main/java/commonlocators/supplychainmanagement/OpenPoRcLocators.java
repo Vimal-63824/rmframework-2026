@@ -61,11 +61,11 @@ public class OpenPoRcLocators {
 	/** @locatorType Xpath */
 	public static final String HeaderCheckBox = "//label[contains(text(),'Header')]";
 	/** @locatorType Xpath */
-	public static final String LineCancelButton = "//div[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[last()]/a/span";
+	public static final String LineCancelButton = "//div[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[last()]/a";
 	/** @locatorType Xpath */
-	public static final String HeaderCancelButton = "//button[@data-testid='CANCEL']";
+	public static final String HeaderCancelButton = "//span[text()='Cancel']/..";
 	/** @locatorType Xpath */
-	public static final String OpenPOTable = "//table[@id='3595281131037376356_orig']/tbody/tr[2]/td[1]";
+	public static final String OpenPOTable = "//div[@id='SO_data_panel']/div[1]/div[1]/div[3]/table/tbody/tr[2]/td[1]";
 	/** @locatorType Xpath */
 	public static final String FindLocationButton = "//input[@data-testid='P1615131025_LOC_NAME']/following-sibling::button";
 	/** @locatorType Xpath */
@@ -95,7 +95,7 @@ public class OpenPoRcLocators {
 
 	/** @locatorType Xpath */
 	public static final String FindTableData(int i) {
-		return "//table[@id='1947280713713941360_orig']/tbody/tr/td[" + i + "]";
+		return "//div[@id='SO_data_panel']/div[1]/div[1]/div[3]/table/tbody/tr/td[" + i + "]";
 	}
 
 	/** @locatorType Xpath */

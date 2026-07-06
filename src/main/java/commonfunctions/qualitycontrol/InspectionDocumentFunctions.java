@@ -648,8 +648,8 @@ public class InspectionDocumentFunctions {
 						clickTickAndPostIconForGrnDocument();
 						waitingForApproval();
 						commonFunc.hardWait(2000);
-						commonFunc.validCommonLogin(System.getProperty("AdminUsername"),
-								System.getProperty("LoginPassword"), "AdminUsername");
+//						commonFunc.validCommonLogin(System.getProperty("AdminUsername"),
+//								System.getProperty("LoginPassword"), "AdminUsername");
 						commonFunc.navigateInspectionDocumentsPage();
 					}
 				}
@@ -1122,7 +1122,7 @@ public class InspectionDocumentFunctions {
 				flag = webDB.waitForClickElement(CommonUiLocators.LogoutIcon, ElementType.Xpath);
 				if (flag) {
 					commonFunc.hardWait(3000);
-					commonFunc.logoutUser();
+//					commonFunc.logoutUser();
 					commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getIDNumber(),
 							webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 							System.getProperty("HariUsername"));
@@ -1228,8 +1228,8 @@ public class InspectionDocumentFunctions {
 	 * @author PremKumar.K-RMITS
 	 */
 	public void InspectionDocumentWithInspectionPlanWithEDPManagerForDifferentLoc() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 		commonFunc.navigateInspectionDocumentsPage();
 		pendingInspectionRequestDocumentToCreateInspectionDocument();
 		getInspectionDocumentNumberFromToastMessageForDifferntLoc();
@@ -1240,8 +1240,8 @@ public class InspectionDocumentFunctions {
 		}
 		clickTickAndPostIconForGrnDocument();
 		waitingForApprovalWithEDPManager();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 		commonFunc.navigateInspectionDocumentsPage();
 		try {
 			String alertText = VariableHandler.getIDAlertMessage();
@@ -1249,10 +1249,10 @@ public class InspectionDocumentFunctions {
 			String pattern = "Pend\\. Inspection Request Moved\\s*-\\s*INDP-\\d{4}-\\d{4}\\s*~\\s*INDP-\\d{4}-\\d{4}";
 			if (alertText.matches(".*" + pattern + ".*")) {
 				documentSearchAndSelectLovForFindPage();
-				commonFunc.logoutUser();
+//				commonFunc.logoutUser();
 				logs.logging("INFO", "Specific alert found, proceeding with the process.");
 			} else {
-				commonFunc.logoutUser();
+//				commonFunc.logoutUser();
 				logs.logging("INFO", "Other alert detected, no action taken.");
 			}
 		} catch (Exception e) {
@@ -1956,8 +1956,8 @@ public class InspectionDocumentFunctions {
 	 * @author PremKumar.K-RMITS
 	 */
 	public void inspectionDocumentWithInspectionPlanForDifferentLoc() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 		commonFunc.navigateInspectionDocumentsPage();
 		pendingInspectionRequestDocumentToCreateInspectionDocument();
 		getInspectionDocumentNumberFromToastMessageForDifferentLocDirectGrn();
@@ -1973,10 +1973,10 @@ public class InspectionDocumentFunctions {
 		String pattern = "Pend\\. Inspection Request Moved\\s*-\\s*[A-Za-z]+-\\d{4}-\\d{4}\\s*~\\s*[A-Za-z]+-\\d{4}-\\d{4}";
 		if (alertText.matches(".*" + pattern + ".*")) {
 			documentSearchAndSelectLovForFindPage();
-			commonFunc.logoutUser();
+//			commonFunc.logoutUser();
 			logs.logging("INFO", "Specific alert found, proceeding with the process.");
 		} else {
-			commonFunc.logoutUser();
+//			commonFunc.logoutUser();
 			logs.logging("INFO", "Other alert detected, no action taken.");
 		}
 		assertTrue(flag);
