@@ -426,7 +426,7 @@ public class PurchaseOrderPageLocators {
 	}
 
 	/** @locatorType Xpath */
-	public static final String HsnCode = "(//*[@id='ig_po_lineitems_ig_grid_vc']/div/div/table[1])[2]/tbody/tr/td[10]";
+	public static final String HsnCode = "(//*[@id='ig_po_lineitems_ig_grid_vc']/div/div/table[1])[2]/tbody/tr/td[12]";
 	/** @locatorType Xpath */
 	public static final String HsnCodeLovButton = "//input[@data-testid='POL_HSN_CODE']/following-sibling::button";
 	/** @locatorType Xpath */
@@ -436,7 +436,7 @@ public class PurchaseOrderPageLocators {
 
 	/** @locatorType Xpath */
 	public static final String HsnCodeTableWithItem(String Item) {
-		return "(//td[text()='" + Item + "']/../td[10])[1]";
+		return "(//td[text()='" + Item + "']/../td[12])[1]";
 	}
 
 	/** @locatorType Xpath */
