@@ -4180,6 +4180,9 @@ public class GrnPageFunctions {
 		if (SupBillNo.equals("000")) {
 			SupBillNo = "10";
 		}
+		LocalDate date = LocalDate.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		String Today = date.format(formatter);
 		String DCNO = BillNo + SupBillNo;
 		VerifyToClickGrnFrame();
 		flag = webDB.waitForElement(DirectGrnPageLocators.GrnLocLov, ElementType.Xpath);
@@ -4204,6 +4207,8 @@ public class GrnPageFunctions {
 						if (flag) {
 							webDB.sendTextToAnElement(DirectGrnPageLocators.GrnDcNo, DCNO, ElementType.Xpath);
 							logs.logging("INFO", "DC NO Is Entered");
+//							commonFunc.verifyAddTableSpecsClearField(DirectGrnPageLocators.DCDateInput,
+//									DirectGrnPageLocators.DCDateInput, Today);
 							flag = webDB.waitForElement(DirectGrnPageLocators.GrnCreate, ElementType.Xpath);
 							if (flag) {
 								webDB.clickAnElement(DirectGrnPageLocators.GrnCreate, ElementType.Xpath);
