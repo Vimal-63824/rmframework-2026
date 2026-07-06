@@ -201,7 +201,5 @@ public class DirectGrnPageLocators {
 	public static final String GrnFOCTableInput = "(//*[@id='add_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[23]//input)[1]";
 	/** @locatorType Xpath */
 	public static final String ID_AcptQty_Field = "//input[@data-testid='P20171310201_TQHD_ACPT_QTY']";
-	/** @locatorType Xpath */
-	public static final String GRNDCDate = "//input[@id='P16151311031_PORH_DC_DATE_1_input']";
 
 }
