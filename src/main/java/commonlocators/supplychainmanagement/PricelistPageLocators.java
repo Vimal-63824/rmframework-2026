@@ -54,7 +54,7 @@ public class PricelistPageLocators {
 	/** @locatorType Xpath */
 	public static final String StopAlert = "//li[@class='a-Notification-item htmldbStdErr']";
 	/** @locatorType Xpath */
-	public static final String CancellButton = "//*[@id=\"price_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[19]/a/span";
+	public static final String CancellButton = "//*[@id=\"price_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[21]/a";
 	/** @locatorType Xpath */
 	public static final String RefindButton = "//button[@data-testid='Find_Record']";
 	/** @locatorType Xpath */

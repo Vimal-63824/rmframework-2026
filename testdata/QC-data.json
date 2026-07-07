@@ -2073,5 +2073,7 @@
 	"BomAllInsideWoRes": "BOM-2627-0000722",
 	"BomAllInsideWoResMT": "BOM-2627-0000804",
 	"BomPoCl": "BOM-2627-0000899",
-	"BomPoEq": "BOM-2627-0000941"
+	"BomPoEq": "BOM-2627-0000941",
+	"PriceListSingle" : "Price List",
+	"PriceListMulti" : "Price List Multi"
 }

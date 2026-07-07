@@ -30,6 +30,8 @@ public class OpenSalesOrderLocators {
 		public static final String OpenSO_FormTickIcon = "//button[@data-testid='SAVE']";
 		/** @locatorType Xpath */
 		public static final String FetchCustomerItemBtn = "//button[@data-testid='Open_So_Fetch_Button']";
+		/** @locatorType Xpath */
+		public static final String GetTitle = "//html/head/title";
 
 		/** @locatorType Xpath */
 		public static final String fetchCustomerItemCheckedBox(String item) {
