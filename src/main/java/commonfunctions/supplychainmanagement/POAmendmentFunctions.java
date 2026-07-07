@@ -3558,6 +3558,7 @@ public class POAmendmentFunctions {
 	public void verifyAddItemInPOWithQuantityAndUnitCostWithItemName(String quantity, String unitcost, String Item) {
 		try {
 			commonFunc.hardWait(1000);
+			webDB.navigateToRefresh();
 			purchaseOrderFunctions.verifyAddTableSpecs(POAmendmentLocators.NewQuantity(Item),
 					POAmendmentLocators.NewQuantity, quantity);
 			webDB.pressEnterKey();
@@ -9838,6 +9839,7 @@ public class POAmendmentFunctions {
 						String TradePercentage = itemmultiple[i][8];
 						String SplDiscPercentage = itemmultiple[i][9];
 						String CashDiscPercentage = itemmultiple[i][10];
+						webDB.navigateToRefresh();
 						verifyAddItemInPOWithQuantityAndUnitCostWithItemName(Quantity, UnitCost, item);
 						verifyTickIconcreateItem();
 						navigateToLineDetailPage(item);
