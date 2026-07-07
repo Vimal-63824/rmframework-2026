@@ -26,7 +26,7 @@ public class PurchaseRequestLocators {
 
 	/** @locatorType Xpath */
 	public static final String PRStatusBoldText(String value) {
-		return "(//td/a[text()='" + value + "']/../../td/div[contains(@style,'bold')][last()])[last()]";
+		return "(//td/a[text()='" + value + "']/../../td/div[contains(@style,'bold')][last()])[1]";
 	}
 
 	/** @locatorType Xpath */

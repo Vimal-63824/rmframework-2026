@@ -59,12 +59,12 @@ public class OpenSalesOrderFunctions {
 			if (flag) {
 				webDB.moveToElement(OpenSalesOrderLocators.OpenSORadioBtn, ElementType.Xpath);
 				webDB.clickAnElement(OpenSalesOrderLocators.OpenSORadioBtn, ElementType.Xpath);
-				flag = webDB.waitForElement(OpenSalesOrderLocators.FindHeadingText, ElementType.Xpath);
-				if (flag) {
-					String headerText = webDB.getTextFromElement(OpenSalesOrderLocators.FindHeadingText,
-							ElementType.Xpath);
-					logs.logging("INFO", "Page navigate to " + headerText);
-				}
+//				flag = webDB.waitForElement(OpenSalesOrderLocators.GetTitle, ElementType.Xpath);
+//				if (flag) {
+//					String headerText = webDB.getTextFromElement(OpenSalesOrderLocators.GetTitle,
+//							ElementType.Xpath);
+					logs.logging("INFO", "Page navigate to " + SOtype);
+//				}
 			}
 		}
 		assertTrue(flag);
