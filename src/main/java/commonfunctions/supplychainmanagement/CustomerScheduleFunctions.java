@@ -514,8 +514,8 @@ public class CustomerScheduleFunctions {
 	 * @param Itm
 	 */
 	public void verifyGenerateItemSim(String Itm) {
-		String ItemSeqNo = RandomStringUtils.randomNumeric(6);
-		if (ItemSeqNo.equals("000")) {
+		String ItemSeqNo = RandomStringUtils.randomNumeric(7);
+		if (ItemSeqNo.equals("0000")) {
 			ItemSeqNo = "10";
 		}
 		String SimItemId = Itm + ItemSeqNo;
@@ -1048,7 +1048,7 @@ public class CustomerScheduleFunctions {
 			String FIRM_TO_DATE = CSMultipleline[i][32];
 			if (!CUST_ID.equals("")) {
 				clickAddButton();
-				clickPriceListButton();
+				clickPriceListButton(commonFunc.getDataFromTestDataSheet("PriceListSingle"));
 				clickPlusButton();
 				insertLocationLov(commonFunc.getDataFromTestDataSheet("Loc_100"));
 				insertPricelistPrefix(commonFunc.getDataFromTestDataSheet("PriceListPrefix"));
@@ -1145,13 +1145,32 @@ public class CustomerScheduleFunctions {
 	 * 
 	 * @author Kowshik-RMITS
 	 */
-	public void clickPriceListButton() {
+	public void clickPriceListButton(String PLType) {
 		flag = webDB.waitForElement(SalesPriceListLocators.PriceList, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(SalesPriceListLocators.PriceList, ElementType.Xpath);
-			flag = webDB.waitForElement(SalesPriceListLocators.PlusButton, ElementType.Xpath);
+			flag = webDB.waitForElement(SalesPriceListLocators.PriceListSingle, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Successfully Clicked Price List");
+				if (PLType.contains("Multi")) {
+					flag = webDB.waitForElement(SalesPriceListLocators.PriceListMulti, ElementType.Xpath);
+					if (flag) {
+						webDB.clickAnElement(SalesPriceListLocators.PriceListMulti, ElementType.Xpath);
+						flag = webDB.waitForElement(SalesPriceListLocators.MultiAddButton, ElementType.Xpath);
+						if (flag) {
+							logs.logging("INFO", "Price List Multi Button Is Clicked Successfully");
+						}
+					}
+				} else {
+					flag = webDB.waitForElement(SalesPriceListLocators.PriceListSingle, ElementType.Xpath);
+					if (flag) {
+						webDB.clickAnElement(SalesPriceListLocators.PriceListSingle, ElementType.Xpath);
+						flag = webDB.waitForElement(SalesPriceListLocators.PlusButton, ElementType.Xpath);
+						if (flag) {
+							logs.logging("INFO", "Price List Single Button Is Clicked Successfully");
+						}
+					}
+				}
 			}
 		}
 		assertTrue(flag);
