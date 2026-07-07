@@ -255,7 +255,7 @@ public class CommonFunctions {
 //				logs.logging("INFO", "Purchase Request Clicked and navigated successfully");
 //			}
 //		}
-		navigateToSearchTab(webDB.getDataFromProperties("PR/SSR"), CommonUiLocators.LeftSideAddIcon);
+		navigateToSearchTab(webDB.getDataFromProperties("PurchaseRequestScreen"), CommonUiLocators.LeftSideAddIcon);
 //		Assert.assertTrue(flag);
 	}
 
@@ -2463,6 +2463,7 @@ public class CommonFunctions {
 			if (flag) {
 				logs.logging("INFO", "Navigated To " + TabName);
 			} else {
+				webDB.pressDownArrowKey();
 				webDB.pressEnterKey();
 				webDB.waitForPageReady(30);
 				flag = webDB.waitForElement(PageLocators, ElementType.Xpath);

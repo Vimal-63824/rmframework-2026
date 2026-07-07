@@ -531,6 +531,7 @@ public class GrnPageFunctions2 {
 					if (flag) {
 						webDB.clickAnElement(GrnLocators.GrnSearchButton, ElementType.Xpath);
 						logs.logging("INFO", "Document Searched SuccessFully");
+						commonFunc.checkRefreshCellsDisappear();
 						flag = webDB.waitForElement(GrnLocators.GrnDocumentStatus, ElementType.Xpath);
 						if (flag) {
 							String GRNSTATUS = webDB.getTextFromElement(GrnLocators.GrnDocumentStatus,

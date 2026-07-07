@@ -1068,6 +1068,7 @@ public class PurchaseOrderFunctions {
 							webDB.moveToElement(PurchaseOrderPageLocators.PendingPR_SearchBtn, ElementType.Xpath);
 							webDB.clickAnElement(PurchaseOrderPageLocators.PendingPR_SearchBtn, ElementType.Xpath);
 							commonFunc.checkRefreshCellsDisappear();
+							commonFunc.checkRefreshCellsDisappear();
 							logs.logging("INFO", "Pending PR Search Button Clicked");
 							webDB.waitForElement("//table//td[3]", ElementType.Xpath);
 							List<WebElement> elements = webDB.getDriver().findElements(By.xpath("//table//td[3]"));
