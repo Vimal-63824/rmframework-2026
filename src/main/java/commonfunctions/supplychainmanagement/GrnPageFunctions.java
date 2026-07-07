@@ -4207,8 +4207,8 @@ public class GrnPageFunctions {
 						if (flag) {
 							webDB.sendTextToAnElement(DirectGrnPageLocators.GrnDcNo, DCNO, ElementType.Xpath);
 							logs.logging("INFO", "DC NO Is Entered");
-//							commonFunc.verifyAddTableSpecsClearField(DirectGrnPageLocators.DCDateInput,
-//									DirectGrnPageLocators.DCDateInput, Today);
+							commonFunc.verifyAddTableSpecsClearField(DirectGrnPageLocators.DCDateInput,
+									DirectGrnPageLocators.DCDateInput, Today);
 							flag = webDB.waitForElement(DirectGrnPageLocators.GrnCreate, ElementType.Xpath);
 							if (flag) {
 								webDB.clickAnElement(DirectGrnPageLocators.GrnCreate, ElementType.Xpath);
@@ -5052,7 +5052,6 @@ public class GrnPageFunctions {
 							break;
 						} else {
 							element.click();
-							Thread.sleep(3000);
 							clickSelectAllGEButton();
 						}
 					}

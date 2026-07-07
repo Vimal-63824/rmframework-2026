@@ -264,5 +264,5 @@ public class GateEntryPageLocators {
 	/** @locatorType Xpath */
 	public static final String GateEntryHeaderSearchBar = "(//input[@title='Search Report'])[last()]";
 	/** @locatorType Xpath */
-	public static final String GateEntryHeaderSearchGoBtn = "(//input[@title='Search Report'])[last()]";
+	public static final String GateEntryHeaderSearchGoBtn = "(//input[@title='Search Report'])[last()]/../following-sibling::div/button";
 }

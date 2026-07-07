@@ -230,10 +230,11 @@ public class PurchaseOrderFunctions {
 	public void verifyAddItemInPOWithQuantityAndUnitCost(String quantity, String unitcost) {
 		try {
 			commonFunc.checkRefreshCellsDisappear();
-			verifyAddTableSpecs(PurchaseOrderPageLocators.OrderedQuantity,
+			commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.OrderedQuantity,
 					PurchaseOrderPageLocators.OrderedQuantityInput, quantity);
 			commonFunc.checkRefreshCellsDisappear();
-			verifyAddTableSpecs(PurchaseOrderPageLocators.UnitCost, PurchaseOrderPageLocators.UnitCostInput, unitcost);
+			commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.UnitCost, PurchaseOrderPageLocators.UnitCostInput,
+					unitcost);
 			webDB.waitForElement(PurchaseOrderPageLocators.PONumber, ElementType.Xpath);
 			String PONumbervalue = webDB.getDomPropertyFromElement(PurchaseOrderPageLocators.PONumber,
 					ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
@@ -7357,11 +7358,9 @@ public class PurchaseOrderFunctions {
 		}
 		if (Type.equals(commonFunc.getDataFromTestDataSheet("HeaderSearchType"))) {
 			clickSearchButton();
-			commonFunc.hardWait(3000);
 			verifyAmendTableValue(i, Value);
 		} else if (Type.equals(commonFunc.getDataFromTestDataSheet("LineSearchType"))) {
 			clickLineSearchButton();
-			commonFunc.hardWait(3000);
 			verifyLineAmendTableValue(i, Value);
 		}
 		clearSearchFilter();
@@ -13906,7 +13905,7 @@ public class PurchaseOrderFunctions {
 				commonFunc.checkRefreshCellsDisappear();
 				webDB.waitForElement(PurchaseOrderPageLocators.POType, ElementType.Xpath);
 				String Type = webDB.getTextFromElement(PurchaseOrderPageLocators.POType, ElementType.Xpath);
-				logs.logging("INFO", "PO Type is:" + Type);
+				logs.logging("INFO", "PO Type is: " + Type);
 				if (Type.equals(commonFunc.getDataFromTestDataSheet("ServiceType"))) {
 					commonFunc.checkRefreshCellsDisappear();
 					flag = webDB.waitForElement(PurchaseOrderPageLocators.PurchaseOrderLineDetailForServiceItem(i - 2),
