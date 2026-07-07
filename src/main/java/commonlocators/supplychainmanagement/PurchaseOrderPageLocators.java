@@ -411,18 +411,18 @@ public class PurchaseOrderPageLocators {
 	/** @locatorType Xpath */
 	public static final String PO_Status = "//select[@data-testid='P1615132060_STATUS']";
 	/** @locatorType Xpath */
-	public static final String AmendFindTable = "//table[@id='4074776693012730954_orig']/tbody/tr[2]/td[1]";
+	public static final String AmendFindTable = "//table[contains(@id,'orig')]/tbody/tr[2]/td[1]";
 	/** @locatorType Xpath */
-	public static final String AmendLineFindTable = "//table[@class='a-IRR-table' and @id='9746272170729027653_orig']/tbody/tr[2]/td[3]";
+	public static final String AmendLineFindTable = "//table[@class='a-IRR-table' and contains(@id,'orig')]/tbody/tr[2]/td[3]";
 
 	/** @locatorType Xpath */
 	public static final String AmendLineFindTableData(int i) {
-		return "//table[@id='8098271753405592657_orig']/tbody/tr/td[" + i + "]";
+		return "//table[contains(@id,'orig')]/tbody/tr/td[" + i + "]";
 	}
 
 	/** @locatorType Xpath */
 	public static final String AmendFindTableData(int i) {
-		return "//table[@id='2426776275689295958_orig']/tbody/tr/td[" + i + "]";
+		return "//table[contains(@id,'orig')]/tbody/tr/td[" + i + "]";
 	}
 
 	/** @locatorType Xpath */
@@ -432,7 +432,7 @@ public class PurchaseOrderPageLocators {
 	/** @locatorType Xpath */
 	public static final String HsnCodeInput = "//input[@data-testid='POL_HSN_CODE']";
 	/** @locatorType Xpath */
-	public static final String GlAccountNoLovButton = "//input[@id='P161513106045_POL_PUR_ACCT']/following-sibling::button";
+	public static final String GlAccountNoLovButton = "//input[contains(@id,'POL_PUR_ACCT')]/following-sibling::button";
 
 	/** @locatorType Xpath */
 	public static final String HsnCodeTableWithItem(String Item) {
@@ -452,12 +452,12 @@ public class PurchaseOrderPageLocators {
 
 	/** @locatorType Xpath */
 	public static final String PurchaseOrderLineDetailForServiceItem(int i) {
-		return "//*[@id='ig_po_lineitems_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[" + i + "]/td[37]";
+		return "//*[@id='ig_po_lineitems_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[" + i + "]/td[39]";
 	}
 
 	/** @locatorType Xpath */
 	public static final String PurchaseOrderLineDetail(int i) {
-		return "//*[@id='ig_po_lineitems_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[" + i + "]/td[36]";
+		return "//*[@id='ig_po_lineitems_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[" + i + "]/td[38]";
 	}
 
 	/** @locatorType Xpath */

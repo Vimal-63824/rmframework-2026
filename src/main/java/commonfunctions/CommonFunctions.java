@@ -210,6 +210,11 @@ public class CommonFunctions {
 				checkRefreshCellsDisappear();
 				String GetTextUserName = webDB.getTextFromElement(CommonUiLocators.GetTextUserName, ElementType.Xpath);
 				logs.logging("INFO", GetTextUserName + " User Logged In Successfully");
+				String URL = webDB.getDriver().getCurrentUrl();
+				System.out.println(URL);
+				String SessionID = URL.split("session=")[1].toString();
+				System.out.println(SessionID);
+				VariableHandler.setSessionID(SessionID);
 			}
 		}
 		Assert.assertTrue(flag);
@@ -233,8 +238,13 @@ public class CommonFunctions {
 //				logs.logging("INFO", "Navigated To Purchase Order page Successfully");
 //			}
 //		}
-		navigateToSearchTab(webDB.getDataFromProperties("PurchaseOrderTab"), CommonUiLocators.PurchaseAddIcon);
-		Assert.assertTrue(flag);
+		String POUrl = System.getProperty("url").replace("loginpage/login", "scm-us9009/find-po?session=")
+				.concat(VariableHandler.getSessionID());
+		System.out.println(POUrl);
+		webDB.navigateToUrl(POUrl);
+		webDB.waitForElement(CommonUiLocators.PurchaseAddIcon, ElementType.Xpath);
+//		navigateToSearchTab(webDB.getDataFromProperties("PurchaseOrderTab"), CommonUiLocators.PurchaseAddIcon);
+//		Assert.assertTrue(flag);
 	}
 
 	/**
