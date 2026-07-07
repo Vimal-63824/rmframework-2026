@@ -56,7 +56,7 @@ public class CustomerItemsLocators {
 	/** Locator Xpath */
 	public static final String DefaultFlag = "//input[@aria-labelledby='C6072442655543065813_HDR']";
 	/** Locator Xpath */
-	public static final String DefaultFlagField = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[14]/div";
+	public static final String DefaultFlagField = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[16]/div";
 
 	/** Locator Xpath */
 	public static final String CustomerItemsSearchBox = "//input[@id='ig_line_ig_toolbar_search_field']";

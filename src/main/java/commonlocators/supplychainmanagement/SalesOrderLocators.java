@@ -717,12 +717,12 @@ public class SalesOrderLocators {
 
 	/** @locatorType Xpath */
 	public static final String SoAmdQtyField(int i) {
-		return "//*[@id='sale_amend_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[" + i + "]/td[11]";
+		return "//*[@id='sale_amend_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[" + i + "]/td[12]";
 	}
 
 	/** @locatorType Xpath */
 	public static final String SoAmdUnitCostField(int i) {
-		return "//*[@id='sale_amend_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[" + i + "]/td[13]";
+		return "//*[@id='sale_amend_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[" + i + "]/td[14]";
 	}
 
 	/** @locatorType Xpath */
@@ -733,12 +733,12 @@ public class SalesOrderLocators {
 	/** @locatorType Xpath */
 	public static final String SOAmdLineDetails(int i) {
 		return "//*[@id='sale_amend_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[" + i
-				+ "]/td[18]/a/span[contains(@style,'blue')]	";
+				+ "]/td[19]/a/span[contains(@style,'blue')]	";
 	}
 
 	/** @locatorType Xpath */
 	public static final String AmdType(int i) {
-		return "//*[@id='sale_amend_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[ " + i + " ]/td[3]";
+		return "//*[@id='sale_amend_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[ " + i + " ]/td[5]";
 	}
 
 	/** @Locator Xpath */

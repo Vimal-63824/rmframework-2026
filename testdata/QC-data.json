@@ -1336,7 +1336,7 @@
 	"InprocessBOM": "BOM-2526-0000074",
 	"FinalInspectionBOM": "BOM-2526-0000076",
 	"PreDispatchBOM": "BOM-2526-0000075",
-	"NovemberMonth": "November",
+	"DecemberMonth": "December",
 	"StandardBOM": "BOM-2526-0000002",
 	"FinalInsWH": "FINAL INSPECTION WAREHOUSE",
 	"PreDispatchWH": "PRE DISPATCH WAREHOUSE",
@@ -2073,5 +2073,7 @@
 	"BomAllInsideWoRes": "BOM-2627-0000722",
 	"BomAllInsideWoResMT": "BOM-2627-0000804",
 	"BomPoCl": "BOM-2627-0000899",
-	"BomPoEq": "BOM-2627-0000941"
+	"BomPoEq": "BOM-2627-0000941",
+	"PriceListSingle" : "Price List",
+	"PriceListMulti" : "Price List Multi"
 }

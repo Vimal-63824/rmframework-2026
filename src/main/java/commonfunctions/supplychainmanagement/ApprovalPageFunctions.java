@@ -242,12 +242,12 @@ public class ApprovalPageFunctions {
 			}
 			flag = webDB.waitForElement(CommonUiLocators.WorkAppoval_OkBtn, ElementType.Xpath);
 			if (flag) {
-//				webDB.moveToElement(CommonUiLocators.WorkAppoval_OkBtn, ElementType.Xpath);
+				webDB.moveToElement(CommonUiLocators.WorkAppoval_OkBtn, ElementType.Xpath);
 				flag = webDB.clickAnElement(CommonUiLocators.WorkAppoval_OkBtn, ElementType.Xpath);
 				commonFunc.checkSuccessToastMessageDisappear();
 				commonFunc.checkRefreshCellsDisappear();
 				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.hardWait(200);
+				 webDB.waitForElementUntilGivenTime(CommonUiLocators.PostToastMessage, ElementType.Xpath, 15);
 				if (!webDB.verifyIsElementDisplayed(CommonUiLocators.WorkAppoval_OkBtn, ElementType.Xpath)) {
 					logs.logging("INFO", "Workflow Approval Ok Button Clicked");
 				}
