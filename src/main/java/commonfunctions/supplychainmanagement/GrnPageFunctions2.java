@@ -9,12 +9,9 @@ import static org.testng.Assert.assertTrue;
 import java.io.File;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
 import java.util.Locale;
 
 import org.apache.commons.lang3.RandomStringUtils;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 
 import commonfunctions.CommonFunctions;
 import commonfunctions.DBCommonFunctions;
@@ -304,6 +301,7 @@ public class GrnPageFunctions2 {
 				commonFunc.checkRefreshCellsDisappear();
 				flag = webDB.waitForElement(DirectGrnPageLocators.GrnDetailsBtn(i - 21), ElementType.Xpath);
 				if (flag) {
+					webDB.scrollToAnElement(DirectGrnPageLocators.GrnDetailsBtn(i - 21), ElementType.Xpath);
 					webDB.moveToElement(DirectGrnPageLocators.GrnDetailsBtn(i - 21), ElementType.Xpath);
 					webDB.clickAnElement(DirectGrnPageLocators.GrnDetailsBtn(i - 21), ElementType.Xpath);
 					logs.logging("INFO", "Details Button Is Clicked");
@@ -487,6 +485,10 @@ public class GrnPageFunctions2 {
 			String GrnNumber = webDB.getTextFromElement(GrnLocators.GrnDocNumber, ElementType.Xpath);
 			VariableHandler.setGrnDocNumber(GrnNumber);
 			logs.logging("INFO", "GrnNumber Is :" + VariableHandler.getGrnDocNumber());
+			if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+				webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+			}
+			commonFunc.checkSuccessToastMessageDisappear();
 			webDB.moveToElement(GrnLocators.OverAllSave, ElementType.Xpath);
 			webDB.clickAnElement(GrnLocators.OverAllSave, ElementType.Xpath);
 			flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
@@ -498,10 +500,8 @@ public class GrnPageFunctions2 {
 				commonFunc.checkSuccessToastMessageDisappear();
 				flag = webDB.waitForElement(GrnLocators.PostButton, ElementType.Xpath);
 				if (flag) {
-					commonFunc.hardWait(2000);
 					webDB.moveToElement(GrnLocators.PostButton, ElementType.Xpath);
 					webDB.clickAnElement(GrnLocators.PostButton, ElementType.Xpath);
-					commonFunc.hardWait(2000);
 					flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
 				}
 			}
