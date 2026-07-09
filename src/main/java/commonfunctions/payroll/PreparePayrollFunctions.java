@@ -19,7 +19,6 @@ import commonfunctions.CommonFunctions;
 import commonfunctions.VariableHandler;
 import commonfunctions.supplychainmanagement.ApprovalPageFunctions;
 import commonlocators.CommonUiLocators;
-import commonlocators.payroll.EmployeeAdjustmentLocators;
 import commonlocators.payroll.PreparePayrollLocators;
 import utils.ReportLoger;
 import utils.WebDriverBase;
@@ -672,8 +671,8 @@ public class PreparePayrollFunctions {
 		DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 		String JoinedDate = date.format(formatter1);
 		try {
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
+//			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//					"AdminUsername");
 			commonFunc.navigateEmployeeMasterScreenInPayroll();
 			empMasterFunc.clickAddIconAddEmployee();
 			empMasterFunc.clickEmployeeMasterSideNavBar();
@@ -735,7 +734,7 @@ public class PreparePayrollFunctions {
 			webDB.navigateToBack();
 			clickReviewCompletedInPreparePayroll();
 			clickProcessPayrollButtonInPreparePayroll();
-			flag = commonFunc.logoutUser();
+//			flag = commonFunc.logoutUser();
 			return flag;
 		} catch (Exception e) {
 			logs.logging("INFO",
@@ -753,8 +752,8 @@ public class PreparePayrollFunctions {
 	 */
 	public boolean verifyPreparePayrollFindWithLineWiseRecord() {
 		try {
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
+//			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//					"AdminUsername");
 			commonFunc.navigateToPrepareProcessPayrollTab();
 			clickLinesRadioButtonInFind();
 			findWithUnitInLineWise(commonFunc.getDataFromTestDataSheet("Unit1"));
@@ -769,7 +768,7 @@ public class PreparePayrollFunctions {
 					commonFunc.getDataFromTestDataSheet("Year202526"));
 			findWithPeriodInLineWise(commonFunc.getDataFromTestDataSheet("DecemberMonth"));
 			webDB.navigateToRefresh();
-			flag = commonFunc.logoutUser();
+//			flag = commonFunc.logoutUser();
 			return flag;
 		} catch (Exception e) {
 			logs.logging("INFO", "Exception occur while executing 'verifyPreparePayrollFindWithLineWiseRecord': " + e);
@@ -928,8 +927,8 @@ public class PreparePayrollFunctions {
 		String SearchMonth = "December";
 		String verifyMonth = "DEC";
 		try {
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
+//			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//					"AdminUsername");
 			commonFunc.navigateToPrepareProcessPayrollTab();
 			clickHeaderRadioButtonInFind();
 			findWithYearInHeaderWise(commonFunc.getDataFromTestDataSheet("Year202526"));
@@ -942,7 +941,7 @@ public class PreparePayrollFunctions {
 			clickHeaderRadioButtonInFind();
 			findWithCalenderInHeaderWise(commonFunc.getDataFromTestDataSheet("Emp_1to31Calendar"));
 			webDB.navigateToRefresh();
-			flag = commonFunc.logoutUser();
+//			flag = commonFunc.logoutUser();
 			return flag;
 		} catch (Exception e) {
 			logs.logging("INFO",

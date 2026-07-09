@@ -675,16 +675,19 @@ public class DirectGrnPageFunctions {
 	 * @author Durai-RMITS
 	 */
 	public void verifyClickingSaveLine() {
+		commonFunc.checkRefreshCellsDisappear();
 		flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineSave, ElementType.Xpath);
 		if (flag) {
+			commonFunc.checkRefreshCellsDisappear();
 			webDB.moveToElement(DirectGrnPageLocators.GrnLineSave, ElementType.Xpath);
-			webDB.clickAnElement(DirectGrnPageLocators.GrnLineSave, ElementType.Xpath);
-			logs.logging("INFO", "GRN Line Is Saved");
-			commonFunc.checkRefreshCellsDisappear();
-			closeToastIfDisplayed();
-			closeToastIfDisplayed();
-			commonFunc.checkRefreshCellsDisappear();
-			commonFunc.hardWait(4000);
+			flag = webDB.clickAnElement(DirectGrnPageLocators.GrnLineSave, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "GRN Line Is Saved");
+				commonFunc.checkRefreshCellsDisappear();
+				closeToastIfDisplayed();
+				closeToastIfDisplayed();
+				commonFunc.checkRefreshCellsDisappear();
+			}
 		}
 		assertTrue(flag);
 	}

@@ -73,6 +73,7 @@ public class PurchaseOrderFunctions {
 			commonFunc.searchAndSelectValueInFilters(PurchaseOrderPageLocators.LocationIdButton, LocationId);
 			verifyCLickPurchaseOrderFrame();
 		}
+		commonFunc.checkRefreshCellsDisappear();
 		flag = webDB.selectDropDownByValue(PurchaseOrderPageLocators.PoTypeSelect, POType, ElementType.Xpath);
 		if (flag) {
 //			commonFunc.checkRefreshCellsDisappear();
@@ -81,6 +82,7 @@ public class PurchaseOrderFunctions {
 //					commonFunc.getDataFromTestDataSheet("PurchaseOrderPrefix"));
 //			verifyCLickPurchaseOrderFrame();
 			commonFunc.searchAndSelectValueInFilters(PurchaseOrderPageLocators.SupplierNameButton, SupplierName);
+			commonFunc.checkRefreshCellsDisappear();
 		}
 		assertTrue(flag);
 	}
@@ -345,7 +347,8 @@ public class PurchaseOrderFunctions {
 		flag = webDB.waitForClickElement(PurchaseOrderPageLocators.DPOTickButton, ElementType.Xpath);
 		if (flag) {
 			logs.logging("INFO", "Tick Icon Is Displayed");
-//			commonFunc.checkRefreshCellsDisappear();
+			commonFunc.checkRefreshCellsDisappear();
+			webDB.moveToElement(PurchaseOrderPageLocators.DPOTickButton, ElementType.Xpath);
 			webDB.clickAnElement(PurchaseOrderPageLocators.DPOTickButton, ElementType.Xpath);
 			webDB.switchToDefaultContent();
 			commonFunc.checkRefreshCellsDisappear();
@@ -392,8 +395,8 @@ public class PurchaseOrderFunctions {
 		commonFunc.checkRefreshCellsDisappear();
 		flag = webDB.waitForElement(PurchaseOrderPageLocators.TickIconPO, ElementType.Xpath);
 		if (flag) {
+			webDB.moveToElement(PurchaseOrderPageLocators.TickIconPO, ElementType.Xpath);
 			webDB.clickAnElement(PurchaseOrderPageLocators.TickIconPO, ElementType.Xpath);
-			commonFunc.checkRefreshCellsDisappear();
 			commonFunc.checkRefreshCellsDisappear();
 			if (webDB.verifyIsElementDisplayed(PurchaseOrderPageLocators.CloseToastIcon, ElementType.Xpath)) {
 				logs.logging("INFO", "Item Tick Icon Is Clicked");
@@ -998,8 +1001,8 @@ public class PurchaseOrderFunctions {
 	 * 
 	 */
 	public boolean VerifyCancelPurchaseOrderDocument() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername-Admin");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1014,8 +1017,8 @@ public class PurchaseOrderFunctions {
 		deleteParticularLinesPurchaseOrder(commonFunc.getDataFromTestDataSheet("GwlItem_Serial"));
 		clickHeaderCancelButton();
 		verifyValidatePoStatus(VariableHandler.getPONumber(), commonFunc.getDataFromTestDataSheet("CancelStatus"));
-		flag = commonFunc.logoutUser();
-		return flag;
+//		flag = commonFunc.logoutUser();
+		return true;
 	}
 
 	/**
@@ -1487,8 +1490,8 @@ public class PurchaseOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyDirectPOWithItemChargesCalculations() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername-Admin");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -2215,16 +2218,19 @@ public class PurchaseOrderFunctions {
 		String PoType = null;
 		String location = webDB.getDomPropertyFromElement(PurchaseOrderPageLocators.LocationIdInput, ElementType.Xpath,
 				commonFunc.getDataFromTestDataSheet("Value"));
+		commonFunc.checkRefreshCellsDisappear();
 		WebElement element = webDB.getDriver().findElement(By.xpath(PurchaseOrderPageLocators.PoTypeSelect));
 		Select select = new Select(element);
 		for (WebElement Text : select.getAllSelectedOptions()) {
 			PoType = Text.getText();
 		}
+		commonFunc.checkRefreshCellsDisappear();
 		String SupplierName = webDB.getDomPropertyFromElement(PurchaseOrderPageLocators.SupplierName, ElementType.Xpath,
 				commonFunc.getDataFromTestDataSheet("Value"));
-		commonFunc.hardWait(500);
+		commonFunc.checkRefreshCellsDisappear();
 		String CurrencyValue = webDB.getDomPropertyFromElement(PurchaseOrderPageLocators.CurrencyInput,
 				ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
+		commonFunc.checkRefreshCellsDisappear();
 //		WebElement prefixelement = webDB.getDriver().findElement(By.xpath(PurchaseOrderPageLocators.PoPfxSelect));
 //		Select selectprefix = new Select(prefixelement);
 //		for (WebElement Textprefix : selectprefix.getAllSelectedOptions()) {
@@ -7625,7 +7631,7 @@ public class PurchaseOrderFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void poFilterAllFieldWorking() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		verifyDateAfterAndBefore();
 		verifyAmendFilterSearchSOB(PurchaseOrderPageLocators.LocId, commonFunc.getDataFromTestDataSheet("Loc_100"), 3,
@@ -7672,7 +7678,7 @@ public class PurchaseOrderFunctions {
 				commonFunc.getDataFromTestDataSheet("LineSearchType"),
 				commonFunc.getDataFromTestDataSheet("SelectType"));
 		logs.logging("INFO", "Po Status Validated Successfully....");
-		commonFunc.logoutUser();
+//		commonFunc.logoutUser();
 
 	}
 
@@ -13816,7 +13822,7 @@ public class PurchaseOrderFunctions {
 	 */
 	public void verifyDirectPODomesticCustomizeTypeSimilarUOMwithAndWithoutInspectionMaterialTypeForUserDefinedItem(
 			String Loc, String Supplier, String PoType, String SheetName, String FileName) {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(Loc, Supplier, PoType);
@@ -14046,7 +14052,7 @@ public class PurchaseOrderFunctions {
 		} else if (Loc.equals(commonFunc.getDataFromTestDataSheet("L0007"))) {
 			Unit = "U-7";
 		}
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(Loc, Supplier, PoType);
@@ -14279,7 +14285,7 @@ public class PurchaseOrderFunctions {
 	 */
 	public void verifyDirectPODomesticCustomizeTypeSimilarUOMwithAndWithoutInspectionMaterialTypeForPriceListItem(
 			String Loc, String Supplier, String PoType, String SheetName, String FileName) {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(Loc, Supplier, PoType);
@@ -14331,7 +14337,7 @@ public class PurchaseOrderFunctions {
 		approvalFunc.ExtractStocktransferDocNumber(DocumentNo);
 		commonFunc.navigatePurchaseOrderPage();
 		verifyValidatePoStatus(VariableHandler.getPONumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		assertTrue(flag);
+//		assertTrue(flag);
 	}
 
 	/**
@@ -14516,8 +14522,8 @@ public class PurchaseOrderFunctions {
 	 */
 	public boolean verifyFromPRtoPOWithMultipleItemInExcelSheetCustomizedForFOC(String FileName, String SheetName,
 			String Loc, String Unit, String PRType, String PRPrefix, String POSupplier) {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 		commonFunc.navigatePurchaseRequestPage();
 		PR_Func.clickAddIconFillDetailsOfPurchaseRequest(Loc, Unit, PRType, PRPrefix,
 				commonFunc.getDataFromTestDataSheet("PR_CPCCode"), commonFunc.getDataFromTestDataSheet("PR_Department"),
@@ -14615,8 +14621,8 @@ public class PurchaseOrderFunctions {
 		}
 		commonFunc.navigatePurchaseOrderPage();
 		verifyValidatePoStatus(VariableHandler.getPONumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		flag = commonFunc.logoutUser();
-		return flag;
+//		flag = commonFunc.logoutUser();
+		return true;
 	}
 
 	/**

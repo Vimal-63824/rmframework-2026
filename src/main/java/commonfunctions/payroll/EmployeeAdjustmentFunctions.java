@@ -55,6 +55,7 @@ public class EmployeeAdjustmentFunctions {
 			TotalPeriod = TotalPeriod.replace("0", "1");
 		}
 		try {
+			commonFunc.enterUrl();
 			commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
 					"HrRqtUsername");
 			commonFunc.navigateToEmployeeAdjustmentTab();
@@ -87,7 +88,7 @@ public class EmployeeAdjustmentFunctions {
 			clickEndAndEnterNarrationForLastAddedAdjustment(commonFunc.getDataFromTestDataSheet("RefText_Test"));
 			checkTableStatusForLastAddedAdjustment(commonFunc.getDataFromTestDataSheet("EndedStatus"));
 			clickReportAndVerifyDisplayedInEmployeeAdjustment();
-			flag = commonFunc.logoutUser();
+//			flag = commonFunc.logoutUser();
 			return flag;
 		} catch (Exception e) {
 			logs.logging("INFO",
@@ -105,8 +106,8 @@ public class EmployeeAdjustmentFunctions {
 	 */
 	public boolean verifyEmployeeAdjustmentFindWithLineWiseRecord() {
 		try {
-			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
-					"HariUsername");
+//			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
+//					"HariUsername");
 			commonFunc.navigateToEmployeeAdjustmentTab();
 			findWithElementInAdjustment(commonFunc.getDataFromTestDataSheet("BonusText"));
 			webDB.navigateToRefresh();
@@ -118,7 +119,7 @@ public class EmployeeAdjustmentFunctions {
 			webDB.navigateToRefresh();
 			findWithUnitInAdjustment(commonFunc.getDataFromTestDataSheet("Unit1"));
 			webDB.navigateToRefresh();
-			flag = commonFunc.logoutUser();
+//			flag = commonFunc.logoutUser();
 			return flag;
 		} catch (Exception e) {
 			logs.logging("INFO", "Exception occur while executing 'verifyLeaveAdjustmentFindWithLineWiseRecord': " + e);
@@ -634,8 +635,8 @@ public class EmployeeAdjustmentFunctions {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yy-MMM-dd");
 		String Today = date.format(formatter);
 		try {
-			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
-					"HariUsername");
+//			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
+//					"HariUsername");
 			commonFunc.navigateToEmployeeAdjustmentTab();
 			clickMigrationAndSelectEmpAdjustment();
 			clickAddNewInEmployeeAdjustmentMigration();
@@ -648,7 +649,7 @@ public class EmployeeAdjustmentFunctions {
 			commonFunc.navigateToEmployeeAdjustmentTab();
 			searchAndClickEmpIdUsingEmpNameLovBtn(commonFunc.getDataFromTestDataSheet("Emp_GWP0001"));
 			clickCancelIconForLastAddedAdjustment();
-			flag = commonFunc.logoutUser();
+//			flag = commonFunc.logoutUser();
 			return flag;
 		} catch (Exception e) {
 			logs.logging("INFO",
@@ -669,8 +670,8 @@ public class EmployeeAdjustmentFunctions {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 		String Today = date.format(formatter);
 		try {
-			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
-					"HariUsername");
+//			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
+//					"HariUsername");
 			commonFunc.navigateEmployeeMasterScreenInPayroll();
 			empMasterFunc.clickAddIconAddEmployee();
 			empMasterFunc.clickEmployeeMasterSideNavBar();
@@ -712,7 +713,7 @@ public class EmployeeAdjustmentFunctions {
 			commonFunc.navigateEmployeeMasterScreenInPayroll();
 			empMasterFunc.searchAndClickEmpIdInFindEmployeePage(VariableHandler.getEmpID());
 			empMasterFunc.verifyDeleteSPLAllowanceInSalaryDetails();
-			flag = commonFunc.logoutUser();
+//			flag = commonFunc.logoutUser();
 			return flag;
 		} catch (Exception e) {
 			logs.logging("INFO",
@@ -827,6 +828,8 @@ public class EmployeeAdjustmentFunctions {
 					if (flag) {
 						webDB.clickAnElement(EmployeeAdjustmentLocators.EmpAdjMigrationUploadBtn, ElementType.Xpath);
 						commonFunc.hardWait(2000);
+						commonFunc.checkRefreshCellsDisappear();
+						commonFunc.checkRefreshCellsDisappear();
 						flag = webDB.isElementDisplayed(EmployeeAdjustmentLocators.EmpAdjMigrationCheckExcptionBtn,
 								ElementType.Xpath)
 								&& webDB.isElementNotDisplayed(EmployeeAdjustmentLocators.EmpAdjMigrationUploadBtn,
@@ -1006,6 +1009,8 @@ public class EmployeeAdjustmentFunctions {
 						webDB.clickAnElement(EmployeeAdjustmentLocators.EmpAllowanceMigrationUploadBtn,
 								ElementType.Xpath);
 						commonFunc.hardWait(2000);
+						commonFunc.checkRefreshCellsDisappear();
+						commonFunc.checkRefreshCellsDisappear();
 						flag = webDB.isElementDisplayed(
 								EmployeeAdjustmentLocators.EmpAllowanceMigrationCheckExcptionBtn, ElementType.Xpath)
 								&& webDB.isElementNotDisplayed(

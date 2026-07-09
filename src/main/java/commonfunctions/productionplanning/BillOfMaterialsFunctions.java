@@ -956,6 +956,7 @@ public class BillOfMaterialsFunctions {
 					if (flag) {
 						webDB.clickAnElement(BillOfMaterialsLocators.BOMMig_UploadBtn, ElementType.Xpath);
 						commonFunc.hardWait(2000);
+						commonFunc.checkRefreshCellsDisappear();
 						flag = webDB.isElementDisplayed(BillOfMaterialsLocators.BOMMig_DisplayDocNumber,
 								ElementType.Xpath)
 								&& webDB.isElementNotDisplayed(BillOfMaterialsLocators.BOMMig_UploadBtn,

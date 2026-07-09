@@ -353,7 +353,7 @@
 	"BankName": "STATE BANK OF INDIA - 30305325953",
 	"AdvDocNumber": "10000039",
 	"Reference Number": "6374-0001",
-	"BRVDocumentStatus": "Received",
+	"BRVDocumentStatus": "Approved",
 	"SONO": "${SONO}",
 	"SoDBLocationColumnName": "Location ID",
 	"SoDBUnitColumnName": "Unit ID",

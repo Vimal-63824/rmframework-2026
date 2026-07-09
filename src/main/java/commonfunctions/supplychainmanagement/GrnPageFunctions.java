@@ -4194,6 +4194,7 @@ public class GrnPageFunctions {
 			if (flag) {
 				webDB.selectDropDownByValue(DirectGrnPageLocators.GrnType, Type, ElementType.Xpath);
 				logs.logging("INFO", "Type Is Entered:" + Type);
+				commonFunc.checkRefreshCellsDisappear();
 				flag = webDB.waitForElement(DirectGrnPageLocators.GrnSupplierLov, ElementType.Xpath);
 				if (flag) {
 					commonFunc.searchAndSelectValueInFilters(DirectGrnPageLocators.GrnSupplierLov, Supplier);
@@ -4211,6 +4212,7 @@ public class GrnPageFunctions {
 									DirectGrnPageLocators.DCDateInput, Today);
 							flag = webDB.waitForElement(DirectGrnPageLocators.GrnCreate, ElementType.Xpath);
 							if (flag) {
+								webDB.moveToElement(DirectGrnPageLocators.GrnCreate, ElementType.Xpath);
 								webDB.clickAnElement(DirectGrnPageLocators.GrnCreate, ElementType.Xpath);
 								logs.logging("INFO", "GRN Is Created");
 								webDB.switchToDefaultContent();
@@ -4230,6 +4232,7 @@ public class GrnPageFunctions {
 	 * @author Durai-RMITS
 	 */
 	private void VerifyToClickGrnFrame() {
+		commonFunc.checkRefreshCellsDisappear();
 		flag = webDB.waitForElement(DirectGrnPageLocators.AddHeaderFrame, ElementType.Xpath);
 		if (flag) {
 			webDB.switchToFrame(DirectGrnPageLocators.AddHeaderFrame, ElementType.Xpath);
