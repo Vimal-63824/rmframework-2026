@@ -8,11 +8,14 @@ import java.lang.reflect.Method;
  */
 import org.testng.Assert;
 import org.testng.ITestResult;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import commonfunctions.Author;
 import commonfunctions.CommonFunctions;
+import commonfunctions.VariableHandler;
 import commonfunctions.payroll.AttendanceLeaveFunctions;
 import utils.ReportLoger;
 
@@ -22,6 +25,21 @@ public class AttendanceLeaveTest extends RoadMapERPTest {
 	private static CommonFunctions commonFunc = new CommonFunctions();
 	private static AttendanceLeaveFunctions attendanceLeaveFunc = new AttendanceLeaveFunctions();
 	private static int previousStatus = ITestResult.SUCCESS;
+
+	/**
+	 * This method used to login while start of the test class
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	@BeforeMethod(alwaysRun = true)
+	private void VerifyLogin() {
+		if (VariableHandler.getSessionID() == null) {
+			commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+					"HrRqtUsername");
+		} else {
+			commonFunc.navigateToHomePage();
+		}
+	}
 
 	/**
 	 * To Check Leave Entry Based on the Request date
@@ -315,5 +333,10 @@ public class AttendanceLeaveTest extends RoadMapERPTest {
 			commonFunc.verifyAfterMethod();
 		}
 	}
-	
+
+	@AfterClass
+	public void VerifyLogout() {
+		commonFunc.logoutUser();
+	}
+
 }

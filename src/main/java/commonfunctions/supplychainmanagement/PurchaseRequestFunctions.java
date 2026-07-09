@@ -203,11 +203,16 @@ public class PurchaseRequestFunctions {
 		selectPRType(PRType);
 		commonFunc.checkRefreshCellsDisappear();
 		selectPRPrefix(Prefix);
+		commonFunc.checkRefreshCellsDisappear();
 		webDB.switchToFrame(CommonUiLocators.PrCreateFrame, ElementType.Xpath);
 		commonFunc.searchAndSelectValueInFilters(PurchaseRequestLocators.PRCPCCodeButton, CPCCode);
+		commonFunc.checkRefreshCellsDisappear();
 		selectPRDepartment(Department);
+		commonFunc.checkRefreshCellsDisappear();
 		selectPRRequester(Requester);
+		commonFunc.checkRefreshCellsDisappear();
 		clickTickIconCreateRequest();
+		commonFunc.checkRefreshCellsDisappear();
 		validateLocationInPRHeader(Location);
 		validateUnitInPRHeader(Unit);
 		validatePRTypeInPRHeader(PRType);

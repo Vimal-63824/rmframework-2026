@@ -272,6 +272,7 @@ public class GrnPageFunctions2 {
 					commonFunc.verifyAddTableSpecs(DirectGrnPageLocators.GrnLineCost,
 							DirectGrnPageLocators.GrnLineCostInput, COST);
 					logs.logging("INFO", "Entered Unit Cost Is:" + COST);
+					commonFunc.checkRefreshCellsDisappear();
 					DirectGRNFunc.verifyClickingSaveLine();
 					verifyAddingDiscount(i, FileName, SheetName);
 				}
@@ -620,8 +621,8 @@ public class GrnPageFunctions2 {
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
 		GRNFunc.validateStockQtyAndCostQtyForSourceWH(webDB.getDataFromProperties("DirGRNImpSameUDGeneral"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		GRNFunc.verifyGrnAdd();
 		GRNFunc.verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -647,7 +648,7 @@ public class GrnPageFunctions2 {
 		GRNFunc.validateExpectedStockQtyAndCostQtyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DirGRNImpSameUDGeneral"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		flag = commonFunc.logoutUser();
+//		flag = commonFunc.logoutUser();
 		assertTrue(flag);
 	}
 
@@ -667,8 +668,8 @@ public class GrnPageFunctions2 {
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
 		GRNFunc.validateStockQtyAndCostQtyForSourceWH(webDB.getDataFromProperties("DirGRNImpSameUDRawMat"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		GRNFunc.verifyGrnAdd();
 		GRNFunc.verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -694,8 +695,8 @@ public class GrnPageFunctions2 {
 		GRNFunc.validateExpectedStockQtyAndCostQtyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DirGRNImpSameUDRawMat"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		flag = commonFunc.logoutUser();
-		assertTrue(flag);
+//		flag = commonFunc.logoutUser();
+//		assertTrue(flag);
 	}
 
 	/**
@@ -710,8 +711,8 @@ public class GrnPageFunctions2 {
 		LocalDate date = LocalDate.now();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy", Locale.ENGLISH);
 		String Today = date.format(formatter);
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		GRNFunc.verifyGrnAdd();
 		GRNFunc.verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -728,8 +729,8 @@ public class GrnPageFunctions2 {
 					System.getProperty("HariUsername"));
 		}
 		verifyGRNDocumentApprovedStatus();
-		flag = commonFunc.logoutUser();
-		assertTrue(flag);
+//		flag = commonFunc.logoutUser();
+//		assertTrue(flag);
 	}
 
 	/**
@@ -748,8 +749,8 @@ public class GrnPageFunctions2 {
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
 		GRNFunc.validateStockQtyAndCostQtyForSourceWH(webDB.getDataFromProperties("DirGRNImpSameRCGeneral"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		GRNFunc.verifyGrnAdd();
 		GRNFunc.verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -777,8 +778,8 @@ public class GrnPageFunctions2 {
 		GRNFunc.validateExpectedStockQtyAndCostQtyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DirGRNImpSameRCGeneral"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		flag = commonFunc.logoutUser();
-		assertTrue(flag);
+//		flag = commonFunc.logoutUser();
+//		assertTrue(flag);
 	}
 
 	/**
@@ -797,8 +798,8 @@ public class GrnPageFunctions2 {
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
 		GRNFunc.validateStockQtyAndCostQtyForSourceWH(webDB.getDataFromProperties("DirGRNImpSameRCRawMat"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		GRNFunc.verifyGrnAdd();
 		GRNFunc.verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -826,8 +827,8 @@ public class GrnPageFunctions2 {
 		GRNFunc.validateExpectedStockQtyAndCostQtyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DirGRNImpSameRCRawMat"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		flag = commonFunc.logoutUser();
-		assertTrue(flag);
+//		flag = commonFunc.logoutUser();
+//		assertTrue(flag);
 	}
 
 	/**
@@ -842,8 +843,8 @@ public class GrnPageFunctions2 {
 		LocalDate date = LocalDate.now();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy", Locale.ENGLISH);
 		String Today = date.format(formatter);
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		GRNFunc.verifyGrnAdd();
 		GRNFunc.verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -862,8 +863,8 @@ public class GrnPageFunctions2 {
 					System.getProperty("HariUsername"));
 		}
 		verifyGRNDocumentApprovedStatus();
-		flag = commonFunc.logoutUser();
-		assertTrue(flag);
+//		flag = commonFunc.logoutUser();
+//		assertTrue(flag);
 	}
 
 	/**
@@ -882,8 +883,8 @@ public class GrnPageFunctions2 {
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
 		GRNFunc.validateStockQtyAndCostQtyForSourceWH(webDB.getDataFromProperties("DirGRNImpSamePLGeneral"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		GRNFunc.verifyGrnAdd();
 		GRNFunc.verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -910,8 +911,8 @@ public class GrnPageFunctions2 {
 		GRNFunc.validateExpectedStockQtyAndCostQtyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DirGRNImpSamePLGeneral"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		flag = commonFunc.logoutUser();
-		assertTrue(flag);
+//		flag = commonFunc.logoutUser();
+//		assertTrue(flag);
 	}
 
 	/**
@@ -930,8 +931,8 @@ public class GrnPageFunctions2 {
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
 		GRNFunc.validateStockQtyAndCostQtyForSourceWH(webDB.getDataFromProperties("DirGRNImpSamePLRawMat"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		GRNFunc.verifyGrnAdd();
 		GRNFunc.verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -958,8 +959,8 @@ public class GrnPageFunctions2 {
 		GRNFunc.validateExpectedStockQtyAndCostQtyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DirGRNImpSamePLRawMat"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		flag = commonFunc.logoutUser();
-		assertTrue(flag);
+//		flag = commonFunc.logoutUser();
+//		assertTrue(flag);
 	}
 
 	/**
@@ -974,8 +975,8 @@ public class GrnPageFunctions2 {
 		LocalDate date = LocalDate.now();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy", Locale.ENGLISH);
 		String Today = date.format(formatter);
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		GRNFunc.verifyGrnAdd();
 		GRNFunc.verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -993,8 +994,8 @@ public class GrnPageFunctions2 {
 					System.getProperty("HariUsername"));
 		}
 		verifyGRNDocumentApprovedStatus();
-		flag = commonFunc.logoutUser();
-		assertTrue(flag);
+//		flag = commonFunc.logoutUser();
+//		assertTrue(flag);
 	}
 
 	/**
@@ -1013,8 +1014,8 @@ public class GrnPageFunctions2 {
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
 		GRNFunc.validateStockQtyAndCostQtyForSourceWH(webDB.getDataFromProperties("DirGRNImpDiffUDGeneral"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		GRNFunc.verifyGrnAdd();
 		GRNFunc.verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1040,8 +1041,8 @@ public class GrnPageFunctions2 {
 		GRNFunc.validateExpectedStockQtyAndCostQtyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DirGRNImpDiffUDGeneral"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		flag = commonFunc.logoutUser();
-		assertTrue(flag);
+//		flag = commonFunc.logoutUser();
+//		assertTrue(flag);
 	}
 
 	/**
@@ -1060,8 +1061,8 @@ public class GrnPageFunctions2 {
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
 		GRNFunc.validateStockQtyAndCostQtyForSourceWH(webDB.getDataFromProperties("DirGRNImpDiffUDRawMat"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		GRNFunc.verifyGrnAdd();
 		GRNFunc.verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1087,8 +1088,8 @@ public class GrnPageFunctions2 {
 		GRNFunc.validateExpectedStockQtyAndCostQtyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DirGRNImpDiffUDRawMat"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		flag = commonFunc.logoutUser();
-		assertTrue(flag);
+//		flag = commonFunc.logoutUser();
+//		assertTrue(flag);
 	}
 
 	/**
@@ -1107,8 +1108,8 @@ public class GrnPageFunctions2 {
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
 		GRNFunc.validateStockQtyAndCostQtyForSourceWH(webDB.getDataFromProperties("DirGRNImpDiffRCGeneral"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		DirectGRNFunc.verifyGrnAdd();
 		DirectGRNFunc.verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1136,8 +1137,8 @@ public class GrnPageFunctions2 {
 		GRNFunc.validateExpectedStockQtyAndCostQtyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DirGRNImpDiffRCGeneral"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		flag = commonFunc.logoutUser();
-		assertTrue(flag);
+//		flag = commonFunc.logoutUser();
+//		assertTrue(flag);
 	}
 
 	/**
@@ -1156,8 +1157,8 @@ public class GrnPageFunctions2 {
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
 		GRNFunc.validateStockQtyAndCostQtyForSourceWH(webDB.getDataFromProperties("DirGRNImpDiffRCRawMat"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		DirectGRNFunc.verifyGrnAdd();
 		DirectGRNFunc.verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1185,8 +1186,8 @@ public class GrnPageFunctions2 {
 		GRNFunc.validateExpectedStockQtyAndCostQtyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DirGRNImpDiffRCRawMat"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		flag = commonFunc.logoutUser();
-		assertTrue(flag);
+//		flag = commonFunc.logoutUser();
+//		assertTrue(flag);
 	}
 
 	/**
@@ -1205,8 +1206,8 @@ public class GrnPageFunctions2 {
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
 		GRNFunc.validateStockQtyAndCostQtyForSourceWH(webDB.getDataFromProperties("DirGRNImpDiffPLGeneral"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		DirectGRNFunc.verifyGrnAdd();
 		DirectGRNFunc.verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1233,8 +1234,8 @@ public class GrnPageFunctions2 {
 		GRNFunc.validateExpectedStockQtyAndCostQtyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DirGRNImpDiffPLGeneral"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		flag = commonFunc.logoutUser();
-		assertTrue(flag);
+//		flag = commonFunc.logoutUser();
+//		assertTrue(flag);
 	}
 
 	/**
@@ -1253,8 +1254,8 @@ public class GrnPageFunctions2 {
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
 		GRNFunc.validateStockQtyAndCostQtyForSourceWH(webDB.getDataFromProperties("DirGRNImpDiffPLRawMat"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		DirectGRNFunc.verifyGrnAdd();
 		DirectGRNFunc.verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1281,8 +1282,8 @@ public class GrnPageFunctions2 {
 		GRNFunc.validateExpectedStockQtyAndCostQtyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DirGRNImpDiffPLRawMat"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		flag = commonFunc.logoutUser();
-		assertTrue(flag);
+//		flag = commonFunc.logoutUser();
+//		assertTrue(flag);
 	}
 
 	/**
@@ -1339,8 +1340,8 @@ public class GrnPageFunctions2 {
 		GRNFunc.verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("PoToGRNImpSameUDGeneral"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		flag = commonFunc.logoutUser();
-		assertTrue(flag);
+//		flag = commonFunc.logoutUser();
+//		assertTrue(flag);
 	}
 
 	/**
@@ -1396,8 +1397,8 @@ public class GrnPageFunctions2 {
 		GRNFunc.verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("PoToGRNImpSameUDRawMat"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		flag = commonFunc.logoutUser();
-		assertTrue(flag);
+//		flag = commonFunc.logoutUser();
+//		assertTrue(flag);
 	}
 
 	/**
@@ -1440,8 +1441,8 @@ public class GrnPageFunctions2 {
 					System.getProperty("HariUsername"));
 		}
 		verifyGRNDocumentApprovedStatus();
-		flag = commonFunc.logoutUser();
-		assertTrue(flag);
+//		flag = commonFunc.logoutUser();
+//		assertTrue(flag);
 	}
 
 	/**
@@ -1498,8 +1499,8 @@ public class GrnPageFunctions2 {
 		GRNFunc.verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("PoToGRNImpSameRCGeneral"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		flag = commonFunc.logoutUser();
-		assertTrue(flag);
+//		flag = commonFunc.logoutUser();
+//		assertTrue(flag);
 	}
 
 	/**
@@ -1555,8 +1556,8 @@ public class GrnPageFunctions2 {
 		GRNFunc.verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("PoToGRNImpSameRCRawMat"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		flag = commonFunc.logoutUser();
-		assertTrue(flag);
+//		flag = commonFunc.logoutUser();
+//		assertTrue(flag);
 	}
 
 	/**
@@ -1599,8 +1600,8 @@ public class GrnPageFunctions2 {
 					System.getProperty("HariUsername"));
 		}
 		verifyGRNDocumentApprovedStatus();
-		flag = commonFunc.logoutUser();
-		assertTrue(flag);
+//		flag = commonFunc.logoutUser();
+//		assertTrue(flag);
 	}
 
 	/**
@@ -1657,8 +1658,8 @@ public class GrnPageFunctions2 {
 		GRNFunc.verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("PoToGRNImpSamePLGeneral"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		flag = commonFunc.logoutUser();
-		assertTrue(flag);
+//		flag = commonFunc.logoutUser();
+//		assertTrue(flag);
 	}
 
 	/**
@@ -1714,8 +1715,8 @@ public class GrnPageFunctions2 {
 		GRNFunc.verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("PoToGRNImpSamePLRawMat"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		flag = commonFunc.logoutUser();
-		assertTrue(flag);
+//		flag = commonFunc.logoutUser();
+//		assertTrue(flag);
 	}
 
 	/**
@@ -1758,8 +1759,8 @@ public class GrnPageFunctions2 {
 					System.getProperty("HariUsername"));
 		}
 		verifyGRNDocumentApprovedStatus();
-		flag = commonFunc.logoutUser();
-		assertTrue(flag);
+//		flag = commonFunc.logoutUser();
+//		assertTrue(flag);
 	}
 
 	/**
@@ -1816,8 +1817,8 @@ public class GrnPageFunctions2 {
 		GRNFunc.verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("PoToGRNImpDiffUDGeneral"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		flag = commonFunc.logoutUser();
-		assertTrue(flag);
+//		flag = commonFunc.logoutUser();
+//		assertTrue(flag);
 	}
 
 	/**
@@ -1873,8 +1874,8 @@ public class GrnPageFunctions2 {
 		GRNFunc.verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("PoToGRNImpDiffUDRawMat"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		flag = commonFunc.logoutUser();
-		assertTrue(flag);
+//		flag = commonFunc.logoutUser();
+//		assertTrue(flag);
 	}
 
 	/**
@@ -1931,8 +1932,8 @@ public class GrnPageFunctions2 {
 		GRNFunc.verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("PoToGRNImpDiffRCGeneral"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		flag = commonFunc.logoutUser();
-		assertTrue(flag);
+//		flag = commonFunc.logoutUser();
+//		assertTrue(flag);
 	}
 
 	/**
@@ -1988,8 +1989,8 @@ public class GrnPageFunctions2 {
 		GRNFunc.verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("PoToGRNImpDiffRCRawMat"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		flag = commonFunc.logoutUser();
-		assertTrue(flag);
+//		flag = commonFunc.logoutUser();
+//		assertTrue(flag);
 	}
 
 	/**
@@ -2046,8 +2047,8 @@ public class GrnPageFunctions2 {
 		GRNFunc.verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("PoToGRNImpDiffPLGeneral"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		flag = commonFunc.logoutUser();
-		assertTrue(flag);
+//		flag = commonFunc.logoutUser();
+//		assertTrue(flag);
 	}
 
 	/**
@@ -2103,8 +2104,8 @@ public class GrnPageFunctions2 {
 		GRNFunc.verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("PoToGRNImpDiffPLRawMat"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		flag = commonFunc.logoutUser();
-		assertTrue(flag);
+//		flag = commonFunc.logoutUser();
+//		assertTrue(flag);
 	}
 
 }

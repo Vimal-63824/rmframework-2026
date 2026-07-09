@@ -11,10 +11,12 @@ import java.lang.reflect.Method;
 import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import commonfunctions.Author;
 import commonfunctions.CommonFunctions;
+import commonfunctions.VariableHandler;
 import commonfunctions.supplychainmanagement.PurchaseOrderFunctions;
 import commonfunctions.supplychainmanagement.Purchase_GRN_FOCFunctions;
 import utils.ReportLoger;
@@ -26,6 +28,21 @@ public class PurchaseFOCTest extends RoadMapERPTest {
 	private static PurchaseOrderFunctions purchaseOrderFunc = new PurchaseOrderFunctions();
 	private static ReportLoger logs = new ReportLoger();
 	private static int previousStatus = ITestResult.SUCCESS;
+	
+	/**
+	 * This method used to login while start of the test class
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	@BeforeMethod(alwaysRun = true)
+	private void VerifyLogin() {
+		if (VariableHandler.getSessionID() == null) {
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+					"AdminUsername-Admin");
+		} else {
+			commonFunc.navigateToHomePage();
+		}
+	}
 
 	/**
 	 * Purchase Order-With Free Of Cost - Direct PO - Domestic Supplier - General

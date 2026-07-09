@@ -1246,7 +1246,7 @@ public class InspectionDocumentFunctions {
 		try {
 			String alertText = VariableHandler.getIDAlertMessage();
 			logs.logging("INFO", "Alert text: " + alertText);
-			String pattern = "Pend\\. Inspection Request Moved\\s*-\\s*INDP-\\d{4}-\\d{4}\\s*~\\s*INDP-\\d{4}-\\d{4}";
+			String pattern = "Pend\\. Inspection Request Moved\\.\\s*:\\s*INDP-\\d{4}-\\d{4}\\s*to\\s*INDP-\\d{4}-\\d{4}";
 			if (alertText.matches(".*" + pattern + ".*")) {
 				documentSearchAndSelectLovForFindPage();
 //				commonFunc.logoutUser();

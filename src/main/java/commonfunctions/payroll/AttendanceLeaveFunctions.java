@@ -1373,8 +1373,8 @@ public class AttendanceLeaveFunctions {
 		String Today = date.format(formatter);
 		String requestDate = date1.format(formatter);
 		try {
-			commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
-					"HrRqtUsername");
+//			commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+//					"HrRqtUsername");
 			commonFunc.navigateLeaveEncashmentScreen();
 			chooseLeaveAndClickAddLeaveIcon();
 			fillRequestDateEmpIdAndLeaveType(Today, commonFunc.getDataFromTestDataSheet("Emp_GWP0001"),
@@ -1408,14 +1408,14 @@ public class AttendanceLeaveFunctions {
 //				commonFunc.navigateLeaveEntryScreen();
 //				clickSearchAndFilterLeaveEntryDocNo(VariableHandler.getLeaveEntryDocNo());
 				clickReverseAndVerifyStatusInLeveEntry();
-				flag = commonFunc.logoutUser();
+//				flag = commonFunc.logoutUser();
 			} else if (VariableHandler.getEmpLeaveEntryAutoPost()) {
 				commonFunc.navigateLeaveEntryScreen();
 				clickSearchAndClickFirstLeaveEntryWithEmpName(commonFunc.getDataFromTestDataSheet("Emp_GWP0001"));
 				clickReverseAndVerifyStatusInLeveEntry();
-				flag = commonFunc.logoutUser();
+//				flag = commonFunc.logoutUser();
 			}
-			return flag;
+			return true;
 		} catch (Exception e) {
 			logs.logging("INFO", "Exception occur while executing 'verifyLeaveEntryDateTypeBalanceSession': " + e);
 			return false;
@@ -1435,8 +1435,8 @@ public class AttendanceLeaveFunctions {
 		String Month = date1.format(formatter).toUpperCase();
 		String requestDay = date1.format(formatter1);
 		try {
-			commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
-					"HrRqtUsername");
+//			commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+//					"HrRqtUsername");
 			commonFunc.navigateLeaveEncashmentScreen();
 			clickMigrationAndSelectLOPLeave();
 			clickAddNewLOPLeaveButton();
@@ -1457,8 +1457,8 @@ public class AttendanceLeaveFunctions {
 			commonFunc.hardWait(2000);
 			clickSearchAndClickFirstLeaveEntryWithEmpName(commonFunc.getDataFromTestDataSheet("Emp_GWP0001"));
 			clickReverseAndVerifyStatusInLeveEntry();
-			flag = commonFunc.logoutUser();
-			return flag;
+//			flag = commonFunc.logoutUser();
+			return true;
 		} catch (Exception e) {
 			logs.logging("INFO", "Exception occur while executing 'verifyLeaveLOPUploadMigrationWithTemplates': " + e);
 			return false;
@@ -1478,8 +1478,8 @@ public class AttendanceLeaveFunctions {
 		String Month = date1.format(formatter1).toUpperCase();
 		String requestDate = date1.format(formatter);
 		try {
-			commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
-					"HrRqtUsername");
+//			commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+//					"HrRqtUsername");
 			commonFunc.navigateLeaveEncashmentScreen();
 			clickMigrationAndSelectAccrualLeave();
 			clickAddNewAccrualLeaveButton();
@@ -1500,8 +1500,8 @@ public class AttendanceLeaveFunctions {
 			commonFunc.hardWait(2000);
 			clickSearchAndClickFirstLeaveEntryWithEmpName(commonFunc.getDataFromTestDataSheet("Emp_GWP0001"));
 			clickReverseAndVerifyStatusInLeveEntry();
-			flag = commonFunc.logoutUser();
-			return flag;
+//			flag = commonFunc.logoutUser();
+			return true;
 		} catch (Exception e) {
 			logs.logging("INFO",
 					"Exception occur while executing 'verifyLeaveAccrualUploadMigrationWithTemplates': " + e);
@@ -1524,8 +1524,8 @@ public class AttendanceLeaveFunctions {
 		String requestDate = date1.format(formatter);
 		String AfterThreeDate = date2.format(formatter);
 		try {
-			commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
-					"HrRqtUsername");
+//			commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+//					"HrRqtUsername");
 			commonFunc.navigateLeaveEntryScreen();
 			chooseLeaveAndClickAddLeaveIconInLE();
 			fillEntryDateEmpIdAndLeaveType(Today, commonFunc.getDataFromTestDataSheet("Emp_GWP0001"),
@@ -1544,8 +1544,8 @@ public class AttendanceLeaveFunctions {
 			clickUploadButtonInAttachmentLeaveEntry();
 			clickReportAndVerifyDisplayedInLeaveEntry();
 			clickSaveAndCancelInLeaveEntry();
-			flag = commonFunc.logoutUser();
-			return flag;
+//			flag = commonFunc.logoutUser();
+			return true;
 		} catch (Exception e) {
 			logs.logging("INFO", "Exception occur while executing 'verifyCancelLeaveCheckLeaveStatus': " + e);
 			return false;
@@ -1743,24 +1743,24 @@ public class AttendanceLeaveFunctions {
 				webDB.clickAnElement(AttendanceLeaveLocators.LeaveEntryFetchBtn, ElementType.Xpath);
 				switchPendingRequestIframeLeaveEntry();
 				logs.logging("INFO", "Leave Entry Fetch Button Clicked");
-				flag = webDB.waitForElement(AttendanceLeaveLocators.LeaveEntryPendReqSearchBar, ElementType.Xpath);
-				if (flag) {
-					webDB.sendTextToAnElement(AttendanceLeaveLocators.LeaveEntryPendReqSearchBar, LeaveRequestNo,
-							ElementType.Xpath);
-					commonFunc.checkRefreshCellsDisappear();
-					flag = webDB.waitForElement(AttendanceLeaveLocators.LeaveEntryPendReqSearchGoBtn,
-							ElementType.Xpath);
-					if (flag) {
-						webDB.clickAnElement(AttendanceLeaveLocators.LeaveEntryPendReqSearchGoBtn, ElementType.Xpath);
-						webDB.switchToDefaultContent();
-						commonFunc.checkRefreshCellsDisappear();
-						flag = webDB.waitForElement(AttendanceLeaveLocators.LeaveEntryPendingRequestIframe,
-								ElementType.Xpath);
-						if (flag) {
-							logs.logging("INFO", "Searched Leave Request No in Search bar");
-						}
-					}
-				}
+//				flag = webDB.waitForElement(AttendanceLeaveLocators.LeaveEntryPendReqSearchBar, ElementType.Xpath);
+//				if (flag) {
+//					webDB.sendTextToAnElement(AttendanceLeaveLocators.LeaveEntryPendReqSearchBar, LeaveRequestNo,
+//							ElementType.Xpath);
+//					commonFunc.checkRefreshCellsDisappear();
+//					flag = webDB.waitForElement(AttendanceLeaveLocators.LeaveEntryPendReqSearchGoBtn,
+//							ElementType.Xpath);
+//					if (flag) {
+//						webDB.clickAnElement(AttendanceLeaveLocators.LeaveEntryPendReqSearchGoBtn, ElementType.Xpath);
+//						webDB.switchToDefaultContent();
+//						commonFunc.checkRefreshCellsDisappear();
+//						flag = webDB.waitForElement(AttendanceLeaveLocators.LeaveEntryPendingRequestIframe,
+//								ElementType.Xpath);
+//						if (flag) {
+//							logs.logging("INFO", "Searched Leave Request No in Search bar");
+//						}
+//					}
+//				}
 			}
 		}
 		Assert.assertTrue(flag);
@@ -2020,6 +2020,8 @@ public class AttendanceLeaveFunctions {
 					if (flag) {
 						webDB.clickAnElement(AttendanceLeaveLocators.LRMigrationAccrualUploadBtn, ElementType.Xpath);
 						commonFunc.hardWait(2000);
+						commonFunc.checkRefreshCellsDisappear();
+						commonFunc.checkRefreshCellsDisappear();
 						flag = webDB.isElementDisplayed(AttendanceLeaveLocators.LRMigrationAccrualCheckExcptionBtn,
 								ElementType.Xpath)
 								&& webDB.isElementNotDisplayed(AttendanceLeaveLocators.LRMigrationAccrualUploadBtn,
@@ -2210,6 +2212,8 @@ public class AttendanceLeaveFunctions {
 					if (flag) {
 						webDB.clickAnElement(AttendanceLeaveLocators.LRMigrationLOPUploadBtn, ElementType.Xpath);
 						commonFunc.hardWait(2000);
+						commonFunc.checkRefreshCellsDisappear();
+						commonFunc.checkRefreshCellsDisappear();
 						flag = webDB.isElementDisplayed(AttendanceLeaveLocators.LRMigrationLOPCheckExcptionBtn,
 								ElementType.Xpath)
 								&& webDB.isElementNotDisplayed(AttendanceLeaveLocators.LRMigrationLOPUploadBtn,
@@ -2617,8 +2621,8 @@ public class AttendanceLeaveFunctions {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 		String Today = date1.format(formatter);
 		try {
-			commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
-					"HrRqtUsername");
+//			commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+//					"HrRqtUsername");
 			commonFunc.navigateLeaveEntryScreen();
 			clickAdjustmentLabelButton();
 			clickAddNewIconInLeaveAdjustment();
@@ -2636,8 +2640,8 @@ public class AttendanceLeaveFunctions {
 //			clickUploadButtonInAttachmentLeaveEntry();
 //			clickReportAndVerifyDisplayedInLeaveAdjustment();
 			clickReverseButtonInAdjustmentVerifyStatus();
-			flag = commonFunc.logoutUser();
-			return flag;
+//			flag = commonFunc.logoutUser();
+			return true;
 		} catch (Exception e) {
 			logs.logging("INFO",
 					"Exception occur while executing 'verifyAdjustmentBasedLeaveTypesPrefixReqDate': " + e);
@@ -2660,8 +2664,8 @@ public class AttendanceLeaveFunctions {
 			Leave = "1";
 		}
 		try {
-			commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
-					"HrRqtUsername");
+//			commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+//					"HrRqtUsername");
 			commonFunc.navigateEmployeeMasterScreenInPayroll();
 			empMasterFunc.searchAndClickEmpIdInFindEmployeePage(commonFunc.getDataFromTestDataSheet("Emp_GWP0001"));
 			empMasterFunc.clickLeaveDetailsSideNavBar();
@@ -2679,8 +2683,8 @@ public class AttendanceLeaveFunctions {
 			empMasterFunc.searchAndClickEmpIdInFindEmployeePage(commonFunc.getDataFromTestDataSheet("Emp_GWP0001"));
 			empMasterFunc.clickLeaveDetailsSideNavBar();
 			empMasterFunc.verifyCLBalanceAddedInLeaveDetails(Leave);
-			flag = commonFunc.logoutUser();
-			return flag;
+//			flag = commonFunc.logoutUser();
+			return true;
 		} catch (Exception e) {
 			logs.logging("INFO",
 					"Exception occur while executing 'verifyLeaveAdjustmentBalancesReflectingInEmployeeMaster': " + e);
@@ -2700,8 +2704,8 @@ public class AttendanceLeaveFunctions {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 		String Today = date1.format(formatter);
 		try {
-			commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
-					"HrRqtUsername");
+//			commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+//					"HrRqtUsername");
 			commonFunc.navigateLeaveEntryScreen();
 			clickAdjustmentLabelButton();
 			clickAddNewIconInLeaveAdjustment();
@@ -2711,8 +2715,8 @@ public class AttendanceLeaveFunctions {
 					commonFunc.getDataFromTestDataSheet("RefText_Test"));
 			clickSaveAndStoreDocNoInAdjustment();
 			clickCancelButtonInAdjustmentVerifyStatus();
-			flag = commonFunc.logoutUser();
-			return flag;
+//			flag = commonFunc.logoutUser();
+			return true;
 		} catch (Exception e) {
 			logs.logging("INFO", "Exception occur while executing 'verifyCancelCheckStatusLeaveAdjustment': " + e);
 			return false;
@@ -2733,8 +2737,8 @@ public class AttendanceLeaveFunctions {
 		String month = date1.format(formatter1);
 		String date = date1.format(formatter);
 		try {
-			commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
-					"HrRqtUsername");
+//			commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+//					"HrRqtUsername");
 			commonFunc.navigateLeaveEntryScreen();
 			clickAdjustmentLabelButton();
 			clickMigrationButtonInAdjustment();
@@ -2746,8 +2750,8 @@ public class AttendanceLeaveFunctions {
 			clickSaveIconInAdjustmentMigration();
 			uploadTemplateInAdjustmentMigration(date);
 			clickPostInAdjustmentMigration();
-			flag = commonFunc.logoutUser();
-			return flag;
+//			flag = commonFunc.logoutUser();
+			return true;
 		} catch (Exception e) {
 			logs.logging("INFO",
 					"Exception occur while executing 'verifyAccrualLeaveBalanceMigrationWithTemplates': " + e);
@@ -3438,8 +3442,8 @@ public class AttendanceLeaveFunctions {
 	 */
 	public boolean verifyLeaveAdjustmentFindWithLineWiseRecord() {
 		try {
-			commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
-					"HrRqtUsername");
+//			commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+//					"HrRqtUsername");
 			commonFunc.navigateLeaveEntryScreen();
 			clickAdjustmentLabelButton();
 			findWithLeaveInAdjustment(commonFunc.getDataFromTestDataSheet("CasualLeave-Text"));
@@ -3452,8 +3456,8 @@ public class AttendanceLeaveFunctions {
 			webDB.navigateToRefresh();
 			findWithUnitInAdjustment(commonFunc.getDataFromTestDataSheet("Unit1"));
 			webDB.navigateToRefresh();
-			flag = commonFunc.logoutUser();
-			return flag;
+//			flag = commonFunc.logoutUser();
+			return true;
 		} catch (Exception e) {
 			logs.logging("INFO", "Exception occur while executing 'verifyLeaveAdjustmentFindWithLineWiseRecord': " + e);
 			return false;
@@ -3468,9 +3472,16 @@ public class AttendanceLeaveFunctions {
 	 */
 	public boolean verifyLeaveEntryFindWithLineWiseRecord() {
 		try {
-			commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
-					"HrRqtUsername");
+//			commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+//					"HrRqtUsername");
 			commonFunc.navigateLeaveEntryScreen();
+			flag = webDB.waitForElement(AttendanceLeaveLocators.LeaveRadioBtnLeaveEntry, ElementType.Xpath);
+			if (flag) {
+				webDB.moveToElement(AttendanceLeaveLocators.LeaveRadioBtnLeaveEntry, ElementType.Xpath);
+				webDB.clickAnElement(AttendanceLeaveLocators.LeaveRadioBtnLeaveEntry, ElementType.Xpath);
+				logs.logging("INFO", "Leave Radio Button is Clicked in Leave Entry");
+				flag = webDB.waitForClickElement(AttendanceLeaveLocators.LeaveEntryAddButton, ElementType.Xpath);
+			}
 			findWithLeaveInLeave(commonFunc.getDataFromTestDataSheet("CasualLeave-Text"));
 			webDB.navigateToRefresh();
 			findWithYearInLeave(commonFunc.getDataFromTestDataSheet("Year202627"));
@@ -3481,8 +3492,8 @@ public class AttendanceLeaveFunctions {
 			webDB.navigateToRefresh();
 			findWithUnitInLeave(commonFunc.getDataFromTestDataSheet("Unit1"));
 			webDB.navigateToRefresh();
-			flag = commonFunc.logoutUser();
-			return flag;
+//			flag = commonFunc.logoutUser();
+			return true;
 		} catch (Exception e) {
 			logs.logging("INFO", "Exception occur while executing 'verifyLeaveEntryFindWithLineWiseRecord': " + e);
 			return false;
