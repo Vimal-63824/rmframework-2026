@@ -9,6 +9,7 @@ import java.lang.reflect.Method;
 import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import commonfunctions.Author;
@@ -24,7 +25,34 @@ public class EmployeeMasterTest extends RoadMapERPTest {
 	private static EmployeeMasterFunctions empMasterFunc = new EmployeeMasterFunctions();
 	private static EmployeeAdjustmentFunctions empAdjFunc = new EmployeeAdjustmentFunctions();
 	private static ReportLoger logs = new ReportLoger();
-	private static int previousStatus = ITestResult.SUCCESS;
+	private static int previousStatus = ITestResult.STARTED;
+	private static String GroupNames = null;
+
+	/**
+	 * This method used to login while start of the test class
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	@BeforeMethod(alwaysRun = true)
+	private void VerifyLogin() {
+		if (VariableHandler.getSessionID() == null || previousStatus == ITestResult.STARTED) {
+			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
+					"HariUsername");
+		} else if (VariableHandler.getSessionID() == null || VariableHandler.getSignInUserName() == null
+				|| !VariableHandler.getSignInUserName().equals("HARIKRISHNA")) {
+			if (!VariableHandler.getSignInUserName().equals("HARIKRISHNA")) {
+				commonFunc.enterUrl();
+			}
+			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
+					"HariUsername");
+		} else if (previousStatus == ITestResult.SUCCESS && GroupNames.contains("EmployeeMaster")) {
+			logs.logging("INFO", "Current Username: " + VariableHandler.getSignInUserName());
+		} else {
+			logs.logging("INFO", "Current Username: " + VariableHandler.getSignInUserName());
+			commonFunc.navigateToHomePage();
+		}
+		GroupNames = null;
+	}
 
 	/**
 	 * To Check the Employee Creation with Particulars details
@@ -444,6 +472,10 @@ public class EmployeeMasterTest extends RoadMapERPTest {
 	@AfterMethod
 	public void VerifyAfterMethod(ITestResult result, Method method) {
 		previousStatus = result.getStatus();
+		String[] groups = result.getMethod().getGroups();
+		for (String string : groups) {
+			GroupNames = string;
+		}
 		commonFunc.enterAuthorNamesInExtentReport(method);
 		if (previousStatus == ITestResult.FAILURE || previousStatus == ITestResult.SKIP) {
 			VariableHandler.setAddEmployeDefaultExecution(false);

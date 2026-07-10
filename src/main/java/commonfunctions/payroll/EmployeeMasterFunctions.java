@@ -47,8 +47,8 @@ public class EmployeeMasterFunctions {
 	 */
 	public boolean verifyEmployeeCreationParticularsDetails() {
 		try {
-			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
-					"HariUsername");
+//			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
+//					"HariUsername");
 			commonFunc.navigateEmployeeMasterScreenInPayroll();
 			clickAddIconAddEmployee();
 			clickEmployeeMasterSideNavBar();
@@ -82,8 +82,8 @@ public class EmployeeMasterFunctions {
 	public boolean verifyEmployeeCreationQualificationSkillDetails() {
 		try {
 			if (!VariableHandler.getAddEmployeDefaultExecution()) {
-				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
-						"HariUsername");
+//				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
+//						"HariUsername");
 				commonFunc.navigateEmployeeMasterScreenInPayroll();
 				clickAddIconAddEmployee();
 				clickEmployeeMasterSideNavBar();
@@ -132,8 +132,8 @@ public class EmployeeMasterFunctions {
 	public boolean verifyEmployeeCreationSalaryDetailsAllowanceValues() {
 		try {
 			if (!VariableHandler.getAddEmployeDefaultExecution()) {
-				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
-						"HariUsername");
+//				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
+//						"HariUsername");
 				commonFunc.navigateEmployeeMasterScreenInPayroll();
 				clickAddIconAddEmployee();
 				clickEmployeeMasterSideNavBar();
@@ -180,8 +180,8 @@ public class EmployeeMasterFunctions {
 	public boolean verifyEmployeeCreationSalaryDetailsAdjustmentValues() {
 		try {
 			if (!VariableHandler.getAddEmployeDefaultExecution()) {
-				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
-						"HariUsername");
+//				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
+//						"HariUsername");
 				commonFunc.navigateEmployeeMasterScreenInPayroll();
 				clickAddIconAddEmployee();
 				clickEmployeeMasterSideNavBar();
@@ -231,8 +231,8 @@ public class EmployeeMasterFunctions {
 	public boolean verifyEmployeeCreationLeaveDetails() {
 		try {
 			if (!VariableHandler.getAddEmployeDefaultExecution()) {
-				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
-						"HariUsername");
+//				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
+//						"HariUsername");
 				commonFunc.navigateEmployeeMasterScreenInPayroll();
 				clickAddIconAddEmployee();
 				clickEmployeeMasterSideNavBar();
@@ -319,8 +319,8 @@ public class EmployeeMasterFunctions {
 	public boolean verifyProfileImageAndSignUploadWithAttachments() {
 		try {
 			if (!VariableHandler.getAddEmployeDefaultExecution()) {
-				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
-						"HariUsername");
+//				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
+//						"HariUsername");
 				commonFunc.navigateEmployeeMasterScreenInPayroll();
 				clickAddIconAddEmployee();
 				clickEmployeeMasterSideNavBar();
@@ -371,8 +371,8 @@ public class EmployeeMasterFunctions {
 	public boolean verifyEmployeeCreationAdditionalInfoDetails() {
 		try {
 			if (!VariableHandler.getAddEmployeDefaultExecution()) {
-				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
-						"HariUsername");
+//				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
+//						"HariUsername");
 				commonFunc.navigateEmployeeMasterScreenInPayroll();
 				clickAddIconAddEmployee();
 				clickEmployeeMasterSideNavBar();
@@ -441,8 +441,8 @@ public class EmployeeMasterFunctions {
 			submitPhoneExtensionAndFaxNoInAdditionalInfo(commonFunc.randomMobileNumberGenerator(),
 					String.valueOf(random.nextInt(100)), String.valueOf(random.nextInt(5)));
 			clickTickIconInAdditionalInfo();
-			flag = commonFunc.logoutUser();
-			return flag;
+//			flag = commonFunc.logoutUser();
+			return true;
 		} catch (Exception e) {
 			logs.logging("INFO", "Exception occur while executing 'verifyEmployeeCreationAdditionalInfoDetails': " + e);
 			return false;
@@ -459,8 +459,8 @@ public class EmployeeMasterFunctions {
 		String aadhar = commonFunc.getDataFromTestDataSheet("EmpAadharNum");
 		try {
 			if (!VariableHandler.getAddEmployeDefaultExecution()) {
-				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
-						"HariUsername");
+//				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
+//						"HariUsername");
 				commonFunc.navigateEmployeeMasterScreenInPayroll();
 				clickAddIconAddEmployee();
 				clickEmployeeMasterSideNavBar();
@@ -504,8 +504,8 @@ public class EmployeeMasterFunctions {
 	public boolean verifyUpdateEmployeeParticularDetails() {
 		try {
 			if (!VariableHandler.getAddEmployeDefaultExecution()) {
-				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
-						"HariUsername");
+//				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
+//						"HariUsername");
 				commonFunc.navigateEmployeeMasterScreenInPayroll();
 				clickAddIconAddEmployee();
 				clickEmployeeMasterSideNavBar();
@@ -536,10 +536,10 @@ public class EmployeeMasterFunctions {
 				enableESIAdjustmentFlagsInSalaryDetails();
 				clickPostButtonAndVerifyEmployeePosted();
 				commonFunc.logoutUser();
+				commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+						"HrRqtUsername");
 				VariableHandler.setAddEmployeDefaultExecution(true);
 			}
-			commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
-					"HrRqtUsername");
 			commonFunc.navigateEmployeeMasterScreenInPayroll();
 			searchAndClickEmpIdInFindEmployeePage(VariableHandler.getEmpID());
 			clickUpdateButtonInAddEmployee();
@@ -556,14 +556,13 @@ public class EmployeeMasterFunctions {
 			updateEmployeePayrollGrpAndNoticePeriod(commonFunc.getDataFromTestDataSheet("Emp_CleanerPayrollGroup"),
 					commonFunc.getDataFromTestDataSheet("Emp_NoticePeriod-30"));
 			clickSaveIconAndPostInEmployeeParticular();
-			commonFunc.hardWait(3000);
 			if (!VariableHandler.getApprovalFlag()) {
 				approvalFunc.waitingForApprovalWithFordwarder(System.getProperty("HariUsername"));
 				commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getEmpUpdateDocNo(),
 						webDB.getDataFromProperties("ROAUAdminEmpId"), null, System.getProperty("HariUsername"));
 			}
-			commonFunc.logoutUser();
-			return flag;
+//			commonFunc.logoutUser();
+			return true;
 		} catch (
 
 		Exception e) {
@@ -582,8 +581,8 @@ public class EmployeeMasterFunctions {
 	public boolean verifyEmployeeCreationUpdateAddressDetails() {
 		try {
 			if (!VariableHandler.getAddEmployeDefaultExecution()) {
-				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
-						"HariUsername");
+//				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
+//						"HariUsername");
 				commonFunc.navigateEmployeeMasterScreenInPayroll();
 				clickAddIconAddEmployee();
 				clickEmployeeMasterSideNavBar();
@@ -614,10 +613,10 @@ public class EmployeeMasterFunctions {
 				enableESIAdjustmentFlagsInSalaryDetails();
 				clickPostButtonAndVerifyEmployeePosted();
 				commonFunc.logoutUser();
+				commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+						"HrRqtUsername");
 				VariableHandler.setAddEmployeDefaultExecution(true);
 			}
-			commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
-					"HrRqtUsername");
 			commonFunc.navigateEmployeeMasterScreenInPayroll();
 			searchAndClickEmpIdInFindEmployeePage(VariableHandler.getEmpID());
 			clickUpdateButtonInAddEmployee();
@@ -634,7 +633,7 @@ public class EmployeeMasterFunctions {
 				commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getEmpUpdateDocNo(),
 						webDB.getDataFromProperties("ROAUAdminEmpId"), null, System.getProperty("HariUsername"));
 			}
-			commonFunc.logoutUser();
+//			commonFunc.logoutUser();
 			return flag;
 		} catch (Exception e) {
 			logs.logging("INFO", "Exception occur while executing 'verifyEmployeeCreationUpdateAddressDetails': " + e);
@@ -651,8 +650,8 @@ public class EmployeeMasterFunctions {
 	public boolean verifyEmployeeCreationUpdateDependentDetails() {
 		try {
 			if (!VariableHandler.getAddEmployeDefaultExecution()) {
-				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
-						"HariUsername");
+//				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
+//						"HariUsername");
 				commonFunc.navigateEmployeeMasterScreenInPayroll();
 				clickAddIconAddEmployee();
 				clickEmployeeMasterSideNavBar();
@@ -683,10 +682,10 @@ public class EmployeeMasterFunctions {
 				enableESIAdjustmentFlagsInSalaryDetails();
 				clickPostButtonAndVerifyEmployeePosted();
 				commonFunc.logoutUser();
+				commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+						"HrRqtUsername");
 				VariableHandler.setAddEmployeDefaultExecution(true);
 			}
-			commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
-					"HrRqtUsername");
 			commonFunc.navigateEmployeeMasterScreenInPayroll();
 			searchAndClickEmpIdInFindEmployeePage(VariableHandler.getEmpID());
 			clickUpdateButtonInAddEmployee();
@@ -705,7 +704,7 @@ public class EmployeeMasterFunctions {
 				commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getEmpUpdateDocNo(),
 						webDB.getDataFromProperties("ROAUAdminEmpId"), null, System.getProperty("HariUsername"));
 			}
-			commonFunc.logoutUser();
+//			commonFunc.logoutUser();
 			return flag;
 		} catch (Exception e) {
 			logs.logging("INFO",
@@ -723,8 +722,8 @@ public class EmployeeMasterFunctions {
 	public boolean verifyEmployeeCreationUpdateContactDetails() {
 		try {
 			if (!VariableHandler.getAddEmployeDefaultExecution()) {
-				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
-						"HariUsername");
+//				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
+//						"HariUsername");
 				commonFunc.navigateEmployeeMasterScreenInPayroll();
 				clickAddIconAddEmployee();
 				clickEmployeeMasterSideNavBar();
@@ -755,10 +754,10 @@ public class EmployeeMasterFunctions {
 				enableESIAdjustmentFlagsInSalaryDetails();
 				clickPostButtonAndVerifyEmployeePosted();
 				commonFunc.logoutUser();
+				commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+						"HrRqtUsername");
 				VariableHandler.setAddEmployeDefaultExecution(true);
 			}
-			commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
-					"HrRqtUsername");
 			commonFunc.navigateEmployeeMasterScreenInPayroll();
 			searchAndClickEmpIdInFindEmployeePage(VariableHandler.getEmpID());
 			clickUpdateButtonInAddEmployee();
@@ -778,7 +777,7 @@ public class EmployeeMasterFunctions {
 				commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getEmpUpdateDocNo(),
 						webDB.getDataFromProperties("ROAUAdminEmpId"), null, System.getProperty("HariUsername"));
 			}
-			commonFunc.logoutUser();
+//			commonFunc.logoutUser();
 			return flag;
 		} catch (Exception e) {
 			logs.logging("INFO", "Exception occur while executing 'verifyEmployeeCreationUpdateContactDetails': " + e);
@@ -795,8 +794,8 @@ public class EmployeeMasterFunctions {
 	public boolean verifyEmployeeCreationUpdateQualificationDetails() {
 		try {
 			if (!VariableHandler.getAddEmployeDefaultExecution()) {
-				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
-						"HariUsername");
+//				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
+//						"HariUsername");
 				commonFunc.navigateEmployeeMasterScreenInPayroll();
 				clickAddIconAddEmployee();
 				clickEmployeeMasterSideNavBar();
@@ -827,10 +826,10 @@ public class EmployeeMasterFunctions {
 				enableESIAdjustmentFlagsInSalaryDetails();
 				clickPostButtonAndVerifyEmployeePosted();
 				commonFunc.logoutUser();
+				commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+						"HrRqtUsername");
 				VariableHandler.setAddEmployeDefaultExecution(true);
 			}
-			commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
-					"HrRqtUsername");
 			commonFunc.navigateEmployeeMasterScreenInPayroll();
 			searchAndClickEmpIdInFindEmployeePage(VariableHandler.getEmpID());
 			clickUpdateButtonInAddEmployee();
@@ -849,7 +848,7 @@ public class EmployeeMasterFunctions {
 				commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getEmpUpdateDocNo(),
 						webDB.getDataFromProperties("ROAUAdminEmpId"), null, System.getProperty("HariUsername"));
 			}
-			commonFunc.logoutUser();
+//			commonFunc.logoutUser();
 			return flag;
 		} catch (Exception e) {
 			logs.logging("INFO",
@@ -867,8 +866,8 @@ public class EmployeeMasterFunctions {
 	public boolean verifyEmployeeCreationUpdateSkillsDetails() {
 		try {
 			if (!VariableHandler.getAddEmployeDefaultExecution()) {
-				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
-						"HariUsername");
+//				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
+//						"HariUsername");
 				commonFunc.navigateEmployeeMasterScreenInPayroll();
 				clickAddIconAddEmployee();
 				clickEmployeeMasterSideNavBar();
@@ -899,10 +898,10 @@ public class EmployeeMasterFunctions {
 				enableESIAdjustmentFlagsInSalaryDetails();
 				clickPostButtonAndVerifyEmployeePosted();
 				commonFunc.logoutUser();
+				commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+						"HrRqtUsername");
 				VariableHandler.setAddEmployeDefaultExecution(true);
 			}
-			commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
-					"HrRqtUsername");
 			commonFunc.navigateEmployeeMasterScreenInPayroll();
 			searchAndClickEmpIdInFindEmployeePage(VariableHandler.getEmpID());
 			clickUpdateButtonInAddEmployee();
@@ -918,7 +917,7 @@ public class EmployeeMasterFunctions {
 				commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getEmpUpdateDocNo(),
 						webDB.getDataFromProperties("ROAUAdminEmpId"), null, System.getProperty("HariUsername"));
 			}
-			flag = commonFunc.logoutUser();
+//			flag = commonFunc.logoutUser();
 			return flag;
 		} catch (Exception e) {
 			logs.logging("INFO", "Exception occur while executing 'verifyEmployeeCreationUpdateSkillsDetails': " + e);
@@ -934,6 +933,7 @@ public class EmployeeMasterFunctions {
 	 */
 	public boolean verifyEmployeeCreationEmployeeHistory() {
 		try {
+			commonFunc.enterUrl();
 			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
 					"HariUsername");
 			commonFunc.navigateEmployeeMasterScreenInPayroll();
@@ -965,7 +965,7 @@ public class EmployeeMasterFunctions {
 			enableESIAdjustmentFlagsInSalaryDetails();
 			clickPostButtonAndVerifyEmployeePosted();
 			clickEmployeeHistoryAndCheckNotNull();
-			flag = commonFunc.logoutUser();
+//			flag = commonFunc.logoutUser();
 			return flag;
 		} catch (Exception e) {
 			logs.logging("INFO", "Exception occur while executing 'verifyEmployeeCreationEmployeeHistory': " + e);
@@ -981,8 +981,8 @@ public class EmployeeMasterFunctions {
 	 */
 	public boolean verifyEmployeeCreationEmployeeProfileReverse() {
 		try {
-			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
-					"HariUsername");
+//			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
+//					"HariUsername");
 			commonFunc.navigateEmployeeMasterScreenInPayroll();
 			clickAddIconAddEmployee();
 			clickEmployeeMasterSideNavBar();
@@ -1013,7 +1013,7 @@ public class EmployeeMasterFunctions {
 			clickPostButtonAndVerifyEmployeePosted();
 			clickViewProfileAndStoreProfileAndBatchNo();
 			clickEmployeeProfileNoAndReverse();
-			flag = commonFunc.logoutUser();
+//			flag = commonFunc.logoutUser();
 			return flag;
 		} catch (Exception e) {
 			logs.logging("INFO",
@@ -1030,8 +1030,8 @@ public class EmployeeMasterFunctions {
 	 */
 	public boolean verifyEmployeeMigrationWithTemplates() {
 		try {
-			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
-					"HariUsername");
+//			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
+//					"HariUsername");
 			commonFunc.navigateEmployeeMasterScreenInPayroll();
 			clickAndNavigateEmployeeMigration();
 			clickAddAndFillDetailsInEmployeeMigration(commonFunc.getDataFromTestDataSheet("Emp_1to31Calendar"),
@@ -1041,7 +1041,7 @@ public class EmployeeMasterFunctions {
 			uploadEmployeeMigrationTemplate();
 			checkExceptionAndSaveHeaderInEmpMigration();
 			postUploadedTemplateInEmployeeMigration();
-			commonFunc.logoutUser();
+//			commonFunc.logoutUser();
 			return true;
 		} catch (Exception e) {
 			logs.logging("INFO", "Exception occur while executing 'verifyEmployeeMigrationWithTemplates': " + e);
@@ -1057,8 +1057,8 @@ public class EmployeeMasterFunctions {
 	 */
 	public boolean verifyEmployeeDetailsMigrationWithTemplates() {
 		try {
-			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
-					"HariUsername");
+//			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
+//					"HariUsername");
 			commonFunc.navigateEmployeeMasterScreenInPayroll();
 			clickAndNavigateEmployeeDetailsMigration();
 			createAndFillDetailsInEmpDetailsMigration(commonFunc.getDataFromTestDataSheet("RefText_Test"));
@@ -1070,7 +1070,7 @@ public class EmployeeMasterFunctions {
 			checkExceptionAndSaveHeaderInEmpDetailsMigration();
 			commonFunc.hardWait(3000);
 			postUploadedTemplateInEmployeeDetailsMigration();
-			commonFunc.logoutUser();
+//			commonFunc.logoutUser();
 			return true;
 		} catch (Exception e) {
 			logs.logging("INFO", "Exception occur while executing 'verifyEmployeeDetailsMigrationWithTemplates': " + e);
@@ -1087,6 +1087,7 @@ public class EmployeeMasterFunctions {
 	 */
 	public boolean verifyEmployeeCreationForwardApproval() {
 		try {
+			commonFunc.enterUrl();
 			commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
 					"HrRqtUsername");
 			commonFunc.navigateEmployeeMasterScreenInPayroll();
@@ -1127,7 +1128,7 @@ public class EmployeeMasterFunctions {
 				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getEmpID());
 //				commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getEmpID(),
 //						webDB.getDataFromProperties("ROAUAdminEmpId"), null, System.getProperty("HariUsername"));
-				commonFunc.logoutUser();
+//				commonFunc.logoutUser();
 			}
 			return true;
 		} catch (Exception e) {
@@ -1145,6 +1146,7 @@ public class EmployeeMasterFunctions {
 	 */
 	public boolean verifyEmployeeCreationReturnApproval() {
 		try {
+			commonFunc.enterUrl();
 			commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
 					"HrRqtUsername");
 			commonFunc.navigateEmployeeMasterScreenInPayroll();
@@ -1187,7 +1189,7 @@ public class EmployeeMasterFunctions {
 //				commonFunc.returnDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getEmpID(),
 //						webDB.getDataFromProperties("ROAUAdminEmpId"), null, System.getProperty("HariUsername"),
 //						webDB.getDataFromProperties("HRuserEmpId"));
-				flag = commonFunc.logoutUser();
+//				flag = commonFunc.logoutUser();
 			}
 			return true;
 		} catch (Exception e) {
@@ -1204,6 +1206,7 @@ public class EmployeeMasterFunctions {
 	 */
 	public boolean verifyEmployeeCreationProbationComplete() {
 		try {
+			commonFunc.enterUrl();
 			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
 					"HariUsername");
 			commonFunc.navigateEmployeeMasterScreenInPayroll();
@@ -1237,7 +1240,7 @@ public class EmployeeMasterFunctions {
 			clickPostButtonAndVerifyEmployeePosted();
 			enablePTAdjustmentFlagsInSalaryDetails();
 			clickProbationCompleteAndCheckProbationStatus();
-			flag = commonFunc.logoutUser();
+//			flag = commonFunc.logoutUser();
 			return flag;
 		} catch (Exception e) {
 			logs.logging("INFO", "Exception occur while executing 'verifyEmployeeCreationProbationComplete': " + e);
@@ -1254,8 +1257,8 @@ public class EmployeeMasterFunctions {
 	 */
 	public boolean verifyEmployeeCreationFindWithLineWiseRecord() {
 		try {
-			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
-					"HariUsername");
+//			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
+//					"HariUsername");
 			commonFunc.navigateEmployeeMasterScreenInPayroll();
 			findWithZone(commonFunc.getDataFromTestDataSheet("Emp_GeneralZone"));
 			webDB.navigateToRefresh();
@@ -1267,7 +1270,7 @@ public class EmployeeMasterFunctions {
 			webDB.navigateToRefresh();
 			findWithUnit(commonFunc.getDataFromTestDataSheet("Unit1"));
 			webDB.navigateToRefresh();
-			flag = commonFunc.logoutUser();
+//			flag = commonFunc.logoutUser();
 			return flag;
 		} catch (Exception e) {
 			logs.logging("INFO",
@@ -4141,6 +4144,8 @@ public class EmployeeMasterFunctions {
 				flag = webDB.waitForElement(EmployeeMasterLocators.EmpMigrationUploadBtn, ElementType.Xpath);
 				if (flag) {
 					webDB.clickAnElement(EmployeeMasterLocators.EmpMigrationUploadBtn, ElementType.Xpath);
+					commonFunc.checkRefreshCellsDisappear();
+					commonFunc.checkRefreshCellsDisappear();
 					flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
 					if (flag) {
 						logs.logging("INFO", "File Uploaded Succesfully for Employee Migration");
@@ -4351,6 +4356,7 @@ public class EmployeeMasterFunctions {
 					if (flag) {
 						webDB.clickAnElement(EmployeeMasterLocators.EmpDetailsMigrationUploadBtn, ElementType.Xpath);
 						webDB.switchToDefaultContent();
+						commonFunc.checkRefreshCellsDisappear();
 						commonFunc.checkRefreshCellsDisappear();
 						flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
 						if (flag) {

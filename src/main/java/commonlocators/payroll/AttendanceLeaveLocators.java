@@ -130,7 +130,7 @@ public class AttendanceLeaveLocators {
 	/** @locatorType Xpath */
 	public static final String CompOffFindpageClearButton = "//Button[@data-testid='COM_OFF_CLEAR']";
 	/** @locatorType Xpath */
-	public static final String LeaveRadioBtnLeaveRequest = "(//input[@name='P818510608_TAB']/following-sibling::label)[1]";
+	public static final String LeaveRadioBtnLeaveRequest = "//input[@aria-label='Leave']/following-sibling::label";
 	/** @locatorType Xpath */
 	public static final String LeaveAddButton = "//*[@data-testid='LEV_Add_Button']";
 	/** @locatorType Xpath */
@@ -200,13 +200,13 @@ public class AttendanceLeaveLocators {
 	/** @locatorType Xpath */
 	public static final String LRMigrationAccrualAddNewBtn = "//button[@data-testid='LR_ACCR_ADD_BTN']";
 	/** @locatorType Xpath */
-	public static final String LRMigrationAccrualCalendarLovBtn = "//button[@id='P8185102503_ELAHD_CLNDR_ID_lov_btn']";
+	public static final String LRMigrationAccrualCalendarLovBtn = "//button[contains(@id,'ELAHD_CLNDR_ID_lov_btn')]";
 	/** @locatorType Xpath */
-	public static final String LRMigrationAccrualYearLovBtn = "//button[@id='P8185102503_ELAHD_YEAR_lov_btn']";
+	public static final String LRMigrationAccrualYearLovBtn = "//button[contains(@id,'ELAHD_YEAR_lov_btn')]";
 	/** @locatorType Xpath */
-	public static final String LRMigrationAccrualPeriodLovBtn = "//button[@id='P8185102503_ELAHD_PERIOD_lov_btn']";
+	public static final String LRMigrationAccrualPeriodLovBtn = "//button[contains(@id,'ELAHD_PERIOD_lov_btn')]";
 	/** @locatorType Xpath */
-	public static final String LRMigrationAccrualReferenceInput = "//input[@id='P8185102503_ELAHD_REF']";
+	public static final String LRMigrationAccrualReferenceInput = "//input[contains(@id,'ELAHD_REF')]";
 	/** @locatorType Xpath */
 	public static final String LRMigrationAccrualCreateSaveIcon = "//button[@title='Save']";
 	/** @locatorType Xpath */
@@ -220,7 +220,7 @@ public class AttendanceLeaveLocators {
 	/** @locatorType Xpath */
 	public static final String LRMigrationAccrualHeaderSaveIcon = "//button[@title='Save']";
 	/** @locatorType Xpath */
-	public static final String LRMigrationAccuralDisplayDocNo = "//input[@id='P8185102503_ELAHD_DOC_NO']";
+	public static final String LRMigrationAccuralDisplayDocNo = "//input[contains(@id,'ELAHD_DOC_NO')]";
 	/** @locatorType Xpath */
 	public static final String LRMigrationAccrualPostBtn = "//*[normalize-space()='Post']/parent::button";
 	/** @locatorType Xpath */
@@ -228,13 +228,13 @@ public class AttendanceLeaveLocators {
 	/** @locatorType Xpath */
 	public static final String LRMigrationLOPAddNewBtn = "//div[contains(@aria-label,'LOP Leave Entry Migration')]/button[@title='Add']";
 	/** @locatorType Xpath */
-	public static final String LRMigrationLOPCalendarLovBtn = "//button[@id='P8185102501_ELHD_CLNDR_ID_lov_btn']";
+	public static final String LRMigrationLOPCalendarLovBtn = "//button[contains(@id,'ELHD_CLNDR_ID_lov_btn')]";
 	/** @locatorType Xpath */
-	public static final String LRMigrationLOPYearLovBtn = "//button[@id='P8185102501_ELHD_YEAR_lov_btn']";
+	public static final String LRMigrationLOPYearLovBtn = "//button[contains(@id,'ELHD_YEAR_lov_btn')]";
 	/** @locatorType Xpath */
-	public static final String LRMigrationLOPPeriodLovBtn = "//button[@id='P8185102501_ELHD_PERIOD_lov_btn']";
+	public static final String LRMigrationLOPPeriodLovBtn = "//button[contains(@id,'ELHD_PERIOD_lov_btn')]";
 	/** @locatorType Xpath */
-	public static final String LRMigrationLOPReferenceInput = "//input[@id='P8185102501_ELHD_REF']";
+	public static final String LRMigrationLOPReferenceInput = "//input[contains(@id,'ELHD_REF')]";
 	/** @locatorType Xpath */
 	public static final String LRMigrationLOPCreateSaveIcon = "//button[@title='Save']";
 	/** @locatorType Xpath */
@@ -248,7 +248,7 @@ public class AttendanceLeaveLocators {
 	/** @locatorType Xpath */
 	public static final String LRMigrationLOPHeaderSaveIcon = "//button[@title='Save']";
 	/** @locatorType Xpath */
-	public static final String LRMigrationLOPDisplayDocNo = "//span[@id='P8185102501_ELHD_DOC_NO_DISPLAY']";
+	public static final String LRMigrationLOPDisplayDocNo = "//span[contains(@id,'ELHD_DOC_NO_DISPLAY')]";
 	/** @locatorType Xpath */
 	public static final String LRMigrationLOPPostBtn = "//*[normalize-space()='Post']/parent::button";
 	/** @locatorType Xpath */
@@ -290,9 +290,9 @@ public class AttendanceLeaveLocators {
 	/** @locatorType Xpath */
 	public static final String LEAttachmentDocTypeLovBtn = "//input[contains(@id,'DOC_TYPE')]/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String LEAttachmentDocNoInput = "//input[@id='P37_DM_REQ_DOC_NO']";
+	public static final String LEAttachmentDocNoInput = "//input[@contains(@id,'DM_REQ_DOC_NO')]";
 	/** @locatorType Xpath */
-	public static final String LEAttachmentDocRevInput = "//input[@id='P37_DM_REQ_DOC_REV']";
+	public static final String LEAttachmentDocRevInput = "//input[contains(@id,'DM_REQ_DOC_REV')]";
 	/** @locatorType Xpath */
 	public static final String LEAttachmentDateFromInput = "//input[contains(@id,'DM_DUE_DATE_input')]";
 	/** @locatorType Xpath */
@@ -306,7 +306,7 @@ public class AttendanceLeaveLocators {
 	/** @locatorType Xpath */
 	public static final String LeaveEntryReportBtn = "//button[@data-testid='LE_PRINT_EN_Button']";
 	/** @locatorType Xpath */
-	public static final String LeaveAdjustmentLabel = "//label[text()='Adjustment']";
+	public static final String LeaveAdjustmentLabel = "//input[@aria-label='Adjustment']/following-sibling::label";
 	/** @locatorType Xpath */
 	public static final String AdjustmentAddIcon = "//button[@data-testid='ADD_ADJ_Button']";
 	/** @locatorType Xpath */
@@ -348,9 +348,9 @@ public class AttendanceLeaveLocators {
 	/** @locatorType Xpath */
 	public static final String AdjmntMigrationCalendarLovBtn = "//button[@id='P367011501_ELHD_CLNDR_ID_lov_btn']";
 	/** @locatorType Xpath */
-	public static final String AdjmntMigrationYearSelect = "//select[@id='P367011501_ELHD_YEAR']";
+	public static final String AdjmntMigrationYearSelect = "//select[contains(@id,'ELHD_YEAR')]";
 	/** @locatorType Xpath */
-	public static final String AdjmntMigrationPeriodSelect = "//select[@id='P367011501_ELHD_PERIOD']";
+	public static final String AdjmntMigrationPeriodSelect = "//select[contains(@id,'ELHD_PERIOD')]";
 
 	/** @locatorType Xpath */
 	public static final String AdjmntMigrationPeriodSelectOptions(String Period) {
@@ -358,11 +358,11 @@ public class AttendanceLeaveLocators {
 	}
 
 	/** @locatorType Xpath */
-	public static final String AdjmntMigrationModeSelect = "//select[@id='P367011501_ELHD_MODE']";
+	public static final String AdjmntMigrationModeSelect = "//select[contains(@id,'ELHD_MODE')]";
 	/** @locatorType Xpath */
-	public static final String AdjmntMigrationDocNoDisplay = "//input[@id='P367011501_ELHD_DOC_NO']";
+	public static final String AdjmntMigrationDocNoDisplay = "//input[contains(@id,'ELHD_DOC_NO')]";
 	/** @locatorType Xpath */
-	public static final String AdjmntMigrationReferenceInput = "//input[@id='P367011501_ELHD_REF']";
+	public static final String AdjmntMigrationReferenceInput = "//input[contains(@id,'ELHD_REF')]";
 	/** @locatorType Xpath */
 	public static final String AdjmntMigrationHeaderSaveBtn = "//button[@title='Save']";
 	/** @locatorType Xpath */
@@ -432,7 +432,7 @@ public class AttendanceLeaveLocators {
 	/** @locatorType Xpath */
 	public static final String LoanRequestReferenceField = "//Input[@data-testid='LOAN_REQ_REF']";
 	/** @locatorType Xpath */
-	public static final String LoanRequestRequiredDetailsDateField = "//*[@id='P818121011_ELR_RQRD_DATE_input']";
+	public static final String LoanRequestRequiredDetailsDateField = "//*[contains(@id,'ELR_RQRD_DATE_input')]";
 	/** @locatorType Xpath */
 	public static final String LoanRequestAmountField = "//Input[@data-testid='ELR_AMOUNT']";
 	/** @locatorType Xpath */
@@ -483,7 +483,7 @@ public class AttendanceLeaveLocators {
 	/** @locatorType Xpath */
 	public static final String LeaveEntryDateInput = "//*[@data-testid='LE_REQ_INPUT']/input";
 	/** @locatorType Xpath */
-	public static final String LeaveRadioBtnLeaveEntry = "(//input[@id='P8185107006_TAB_0']/following-sibling::label)[1]";
+	public static final String LeaveRadioBtnLeaveEntry = "//input[@aria-label='Leave']/following-sibling::label";
 	/** @locatorType Xpath */
 	public static final String LeaveEntryAddButton = "//*[@data-testid='Add_EL_Button']";
 
