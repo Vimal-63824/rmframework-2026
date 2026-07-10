@@ -9,10 +9,12 @@ import java.lang.reflect.Method;
 import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import commonfunctions.Author;
 import commonfunctions.CommonFunctions;
+import commonfunctions.VariableHandler;
 import commonfunctions.supplychainmanagement.SubcontractOrderFunctions;
 import utils.WebDriverBase;
 
@@ -22,6 +24,17 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 	static CommonFunctions commonFunc = new CommonFunctions();
 	static WebDriverBase webDB = new WebDriverBase();
 	static SubcontractOrderFunctions SubcontractFunc = new SubcontractOrderFunctions();
+	private static int previousStatus = ITestResult.SUCCESS;
+
+	@BeforeMethod(alwaysRun = true)
+	private void VerifyLogin() {
+		if (VariableHandler.getSessionID() == null) {
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+					"AdminUsername");
+		} else {
+			commonFunc.navigateToHomePage();
+		}
+	}
 
 	/**
 	 * Direct Subcontract Order With BOM For Standard Type -
@@ -1011,7 +1024,7 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 	 * @author Vimal - RMITS
 	 */
 	@Author("Vimal-RMITS")
-	@Test(priority = 96 , groups = {
+	@Test(priority = 96, groups = {
 			"Subcontract" }, description = "Create Serial Item Subcontract Order From Pending With Sales Order Ref-UTGST(Registered)")
 	public void CreateSerialItemSubcontractOrderFromPendingWithSalesOrderRefUTGSTRegistered() {
 		SubcontractFunc.createSerialItemSubcontractOrderFromPendingWithSalesOrderRefUTGSTRegistered();
@@ -1025,6 +1038,10 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 	 */
 	@AfterMethod
 	public void VerifyAfterMethod(ITestResult result, Method method) {
+		previousStatus = result.getStatus();
+		if (previousStatus == ITestResult.FAILURE || previousStatus == ITestResult.SKIP) {
+			commonFunc.verifyAfterMethod();
+		}
 		commonFunc.enterAuthorNamesInExtentReport(method);
 	}
 }

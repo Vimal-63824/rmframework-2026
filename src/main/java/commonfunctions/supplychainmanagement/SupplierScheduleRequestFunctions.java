@@ -38,8 +38,8 @@ public class SupplierScheduleRequestFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyCreatePoToMRVGeneralRateContractSameUOMWithOutQuaityWithGateEntry() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("SimItem_ID"));
 		commonFunc.navigateOpenPORCPage();
@@ -341,8 +341,8 @@ public class SupplierScheduleRequestFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyCreatePoToMRVGeneralImportRateContractSameUOMWithOutQuaityWithGateEntry() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("SimItem_ID"));
 		commonFunc.navigateOpenPORCPage();

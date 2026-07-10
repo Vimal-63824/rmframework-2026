@@ -8,6 +8,7 @@ import java.lang.reflect.Method;
  */
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import commonfunctions.Author;
@@ -15,6 +16,7 @@ import commonfunctions.Author;
  * @author Durai-RMITS
  */
 import commonfunctions.CommonFunctions;
+import commonfunctions.VariableHandler;
 import commonfunctions.supplychainmanagement.PricelistPageFunctions;
 import utils.Mailer;
 import utils.WebDriverBase;
@@ -25,6 +27,17 @@ public class PriselistTest extends RoadMapERPTest {
 	static Mailer mail = new Mailer();
 	static WebDriverBase webDB = new WebDriverBase();
 	static PricelistPageFunctions PriceListfunc = new PricelistPageFunctions();
+	private static int previousStatus = ITestResult.SUCCESS;
+
+	@BeforeMethod(alwaysRun = true)
+	private void VerifyLogin() {
+		if (VariableHandler.getSessionID() == null) {
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+					"AdminUsername");
+		} else {
+			commonFunc.navigateToHomePage();
+		}
+	}
 
 	/**
 	 * Create pricelist for domestic supplier with similar UOM directly to the
@@ -38,6 +51,7 @@ public class PriselistTest extends RoadMapERPTest {
 	public void VerifyCreationOfPriceListDomesticSimilarUOM() {
 		PriceListfunc.verifyCreationOfPriceListDomesticSimilarUom();
 	}
+
 	/**
 	 * Create pricelist for domestic supplier with Disssimilar UOM directly to the
 	 * system through excel upload
@@ -195,7 +209,10 @@ public class PriselistTest extends RoadMapERPTest {
 	 */
 	@AfterMethod
 	public void VerifyAfterMethod(ITestResult result, Method method) {
-		commonFunc.verifyAfterMethod();
+		previousStatus = result.getStatus();
+		if (previousStatus == ITestResult.FAILURE || previousStatus == ITestResult.SKIP) {
+			commonFunc.verifyAfterMethod();
+		}
 		commonFunc.enterAuthorNamesInExtentReport(method);
 	}
 }

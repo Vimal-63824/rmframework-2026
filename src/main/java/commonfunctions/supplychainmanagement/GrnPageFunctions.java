@@ -9445,7 +9445,7 @@ public class GrnPageFunctions {
 				commonFunc.getDataFromTestDataSheet("L49"), commonFunc.getDataFromTestDataSheet("WalmartSupId"),
 				commonFunc.getDataFromTestDataSheet("ServiceValue"),
 				webDB.getDataFromProperties("PoToMRVWOIpSerImpSheet"), webDB.getDataFromProperties("PoToMrvSheet"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigateToGateEntryDocument();
 		gateEntryPageFunc.verifyToCreateGateEntryFromPendingPoNumber();
 		gateEntryPageFunc.verifygateEntryDetailsPo();

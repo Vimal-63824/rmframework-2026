@@ -593,19 +593,6 @@ public class CommonFunctions {
 		webDB.switchToDefaultContent();
 		webDB.switchToMainTab();
 		navigateToHomePage();
-//		enterUrl();
-	}
-
-	/**
-	 * This method used to navigate home menu page
-	 * 
-	 * @author Sakthi-GWL
-	 */
-	public void navigateToHomePage() {
-		String HomePageUrl = System.getProperty("url").replace("loginpage/login", "loginpage/menu?session=")
-				.concat(VariableHandler.getSessionID());
-		System.out.println(HomePageUrl);
-		webDB.navigateToUrl(HomePageUrl);
 	}
 
 	/**
@@ -3384,5 +3371,12 @@ public class CommonFunctions {
 			}
 		}
 		assertTrue(flag);
+	}
+
+	public void navigateToHomePage() {
+		String HomePageUrl = System.getProperty("url").replace("loginpage/login", "loginpage/menu?session=")
+				.concat(VariableHandler.getSessionID());
+		System.out.println(HomePageUrl);
+		webDB.navigateToUrl(HomePageUrl);
 	}
 }
