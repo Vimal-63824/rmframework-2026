@@ -22,16 +22,6 @@ public class GrnTest3 extends RoadMapERPTest {
 	private static GrnPageFunctions2 grn2Func = new GrnPageFunctions2();
 	private static int previousStatus = ITestResult.SUCCESS;
 
-	@BeforeMethod(alwaysRun = true)
-	private void VerifyLogin() {
-		if (VariableHandler.getSessionID() == null) {
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
-		} else {
-			commonFunc.navigateToHomePage();
-		}
-	}
-
 	/**
 	 * This method used to login while start of the test class
 	 * 
@@ -46,7 +36,7 @@ public class GrnTest3 extends RoadMapERPTest {
 			commonFunc.navigateToHomePage();
 		}
 	}
-	
+
 	/**
 	 * Direct GRN-General-User Defined-Same Stock and Supplier UOM
 	 * 
