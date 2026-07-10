@@ -5,10 +5,12 @@ import java.lang.reflect.Method;
 import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import commonfunctions.Author;
 import commonfunctions.CommonFunctions;
+import commonfunctions.VariableHandler;
 import commonfunctions.supplychainmanagement.SubcontractSetUpFunctions;
 import utils.WebDriverBase;
 
@@ -18,6 +20,17 @@ public class SubcontractSetUpTest extends RoadMapERPTest {
 	static CommonFunctions commonFunc = new CommonFunctions();
 	static WebDriverBase webDB = new WebDriverBase();
 	static SubcontractSetUpFunctions SubcontractSetupFunc = new SubcontractSetUpFunctions();
+	private static int previousStatus = ITestResult.SUCCESS;
+
+	@BeforeMethod(alwaysRun = true)
+	private void VerifyLogin() {
+		if (VariableHandler.getSessionID() == null) {
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+					"AdminUsername");
+		} else {
+			commonFunc.navigateToHomePage();
+		}
+	}
 
 	/**
 	 * Create Open Subcontract Order (Rate Contract) for an Item with Type Supplier
@@ -177,7 +190,7 @@ public class SubcontractSetUpTest extends RoadMapERPTest {
 		flag = SubcontractSetupFunc.creatingOpenSCOpriceForSupplier_ProcessTypeAndCancelledTheDocument();
 		Assert.assertTrue(flag);
 	}
-	
+
 	/**
 	 * Verify After Method
 	 * 
@@ -186,6 +199,10 @@ public class SubcontractSetUpTest extends RoadMapERPTest {
 	 */
 	@AfterMethod
 	public void VerifyAfterMethod(ITestResult result, Method method) {
+		previousStatus = result.getStatus();
+		if (previousStatus == ITestResult.FAILURE || previousStatus == ITestResult.SKIP) {
+			commonFunc.verifyAfterMethod();
+		}
 		commonFunc.enterAuthorNamesInExtentReport(method);
 	}
 

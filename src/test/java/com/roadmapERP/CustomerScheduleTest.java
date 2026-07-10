@@ -5,10 +5,12 @@ import java.lang.reflect.Method;
 import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import commonfunctions.Author;
 import commonfunctions.CommonFunctions;
+import commonfunctions.VariableHandler;
 import commonfunctions.supplychainmanagement.CustomerScheduleFunctions;
 import commonfunctions.supplychainmanagement.SalesInvoiceFunctions;
 import commonfunctions.supplychainmanagement.SalesOrderFunctions;
@@ -25,6 +27,17 @@ public class CustomerScheduleTest extends RoadMapERPTest {
 	static SalesInvoiceFunctions SalesInvFunc = new SalesInvoiceFunctions();
 	static CustomerScheduleFunctions customerScheduleFunctions = new CustomerScheduleFunctions();
 	private static ReportLoger logs = new ReportLoger();
+	private static int previousStatus = ITestResult.SUCCESS;
+
+	@BeforeMethod(alwaysRun = true)
+	private void VerifyLogin() {
+		if (VariableHandler.getSessionID() == null) {
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+					"AdminUsername");
+		} else {
+			commonFunc.navigateToHomePage();
+		}
+	}
 
 	/**
 	 * Domestic Customer Schedule - price basis is user defined- Similar Stock and
@@ -471,6 +484,10 @@ public class CustomerScheduleTest extends RoadMapERPTest {
 	@AfterMethod
 	public void VerifyAfterMethod(ITestResult result, Method method) {
 		customerScheduleFunctions.verifyAfterMethod();
+		previousStatus = result.getStatus();
+		if (previousStatus == ITestResult.FAILURE || previousStatus == ITestResult.SKIP) {
+			commonFunc.verifyAfterMethod();
+		}
 		commonFunc.enterAuthorNamesInExtentReport(method);
 	}
 }

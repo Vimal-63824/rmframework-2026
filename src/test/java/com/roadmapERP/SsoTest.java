@@ -4,6 +4,7 @@ import java.lang.reflect.Method;
 
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 /**
  /**
  * @author Durai
@@ -13,6 +14,7 @@ import org.testng.annotations.Test;
 
 import commonfunctions.Author;
 import commonfunctions.CommonFunctions;
+import commonfunctions.VariableHandler;
 import commonfunctions.supplychainmanagement.SsoPageFunctions;
 import utils.Mailer;
 import utils.WebDriverBase;
@@ -23,6 +25,17 @@ public class SsoTest extends RoadMapERPTest {
 	static Mailer mail = new Mailer();
 	static WebDriverBase webDB = new WebDriverBase();
 	static SsoPageFunctions Ssofunc = new SsoPageFunctions();
+	private static int previousStatus = ITestResult.SUCCESS;
+
+	@BeforeMethod(alwaysRun = true)
+	private void VerifyLogin() {
+		if (VariableHandler.getSessionID() == null) {
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+					"AdminUsername");
+		} else {
+			commonFunc.navigateToHomePage();
+		}
+	}
 
 	/**
 	 * Create Supplier Schedule Order For Domestic Supplier Similar UOM
@@ -93,7 +106,7 @@ public class SsoTest extends RoadMapERPTest {
 	public void CancelSupplierScheduleOrderDocument() {
 		Ssofunc.cancelSupplierScheduleOrderDocument();
 	}
-	
+
 	/**
 	 * Verify After Method
 	 * 
@@ -102,6 +115,10 @@ public class SsoTest extends RoadMapERPTest {
 	 */
 	@AfterMethod
 	public void VerifyAfterMethod(ITestResult result, Method method) {
+		previousStatus = result.getStatus();
+		if (previousStatus == ITestResult.FAILURE || previousStatus == ITestResult.SKIP) {
+			commonFunc.verifyAfterMethod();
+		}
 		commonFunc.enterAuthorNamesInExtentReport(method);
 	}
 }
