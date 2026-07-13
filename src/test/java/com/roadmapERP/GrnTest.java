@@ -5,6 +5,7 @@ import java.lang.reflect.Method;
 
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import commonfunctions.Author;
@@ -13,6 +14,7 @@ import commonfunctions.Author;
  * @company Galaxy Weblinks Feburary 05, 2025
  */
 import commonfunctions.CommonFunctions;
+import commonfunctions.VariableHandler;
 import commonfunctions.qualitycontrol.InspectionDocumentFunctions;
 import commonfunctions.supplychainmanagement.GrnPageFunctions;
 import commonfunctions.supplychainmanagement.MaterialReceiptVoucherFunctions;
@@ -31,6 +33,17 @@ public class GrnTest extends RoadMapERPTest {
 	private static ReportLoger logs = new ReportLoger();
 	InspectionDocumentFunctions InsFunc = new InspectionDocumentFunctions();
 	MaterialReceiptVoucherFunctions MrvFunc = new MaterialReceiptVoucherFunctions();
+	private static int previousStatus = ITestResult.SUCCESS;
+
+	@BeforeMethod(alwaysRun = true)
+	private void VerifyLogin() {
+		if (VariableHandler.getSessionID() == null) {
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+					"AdminUsername");
+		} else {
+			commonFunc.navigateToHomePage();
+		}
+	}
 
 	/**
 	 * This Methods Is Used To Create GRN Document from PO without Inspection
@@ -776,7 +789,10 @@ public class GrnTest extends RoadMapERPTest {
 	 */
 	@AfterMethod
 	public void VerifyAfterMethod(ITestResult result, Method method) {
-		commonFunc.verifyAfterMethod();
+		previousStatus = result.getStatus();
+		if (previousStatus == ITestResult.FAILURE || previousStatus == ITestResult.SKIP) {
+			commonFunc.verifyAfterMethod();
+		}
 		commonFunc.enterAuthorNamesInExtentReport(method);
 	}
 

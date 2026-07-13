@@ -8,10 +8,12 @@ import org.testng.ITestResult;
  * @company Galaxy Weblinks March 04, 2025
  */
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import commonfunctions.Author;
 import commonfunctions.CommonFunctions;
+import commonfunctions.VariableHandler;
 import commonfunctions.supplychainmanagement.OpenSalesOrderFunctions;
 import commonfunctions.supplychainmanagement.OpenSoAmdFunctions;
 import utils.Mailer;
@@ -24,6 +26,17 @@ public class OpenSoAmdTest extends RoadMapERPTest {
 	static WebDriverBase webDB = new WebDriverBase();
 	static OpenSalesOrderFunctions OSO = new OpenSalesOrderFunctions();
 	static OpenSoAmdFunctions OSOA = new OpenSoAmdFunctions();
+	private static int previousStatus = ITestResult.SUCCESS;
+
+	@BeforeMethod(alwaysRun = true)
+	private void VerifyLogin() {
+		if (VariableHandler.getSessionID() == null) {
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+					"AdminUsername");
+		} else {
+			commonFunc.navigateToHomePage();
+		}
+	}
 
 	/**
 	 * Amend Sales Order -Price Change - Domestic Customer - Local
@@ -252,7 +265,10 @@ public class OpenSoAmdTest extends RoadMapERPTest {
 	 */
 	@AfterMethod
 	public void VerifyAfterMethod(ITestResult result, Method method) {
-		commonFunc.verifyAfterMethod();
+		previousStatus = result.getStatus();
+		if (previousStatus == ITestResult.FAILURE || previousStatus == ITestResult.SKIP) {
+			commonFunc.verifyAfterMethod();
+		}
 		commonFunc.enterAuthorNamesInExtentReport(method);
 	}
 

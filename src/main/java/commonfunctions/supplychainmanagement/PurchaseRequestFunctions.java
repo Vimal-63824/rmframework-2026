@@ -107,8 +107,8 @@ public class PurchaseRequestFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyCancelPRAndDeleteLine() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 		commonFunc.navigatePurchaseRequestPage();
 		clickAddIconFillDetailsOfPurchaseRequest(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("PR_General"),
@@ -120,8 +120,8 @@ public class PurchaseRequestFunctions {
 				commonFunc.getDataFromTestDataSheet("UnitCostValue"), true);
 		deleteParticularLinesPurchaseRequest(commonFunc.getDataFromTestDataSheet("GwlItem_Serial"));
 		cancelPurchaseRequestAndVerifyCancelStatus();
-		flag = commonFunc.logoutUser();
-		return flag;
+//		flag = commonFunc.logoutUser();
+		return true;
 	}
 
 	/**
@@ -132,8 +132,8 @@ public class PurchaseRequestFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyCreatePRByUploadExcel() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 		commonFunc.navigatePurchaseRequestPage();
 		clickAddIconFillDetailsOfPurchaseRequest(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("PR_General"),
@@ -145,8 +145,8 @@ public class PurchaseRequestFunctions {
 		verifyUploadCsvFileInPRAndDeleteUpdatedFile(updatedFileName);
 		saveHeaderAndClickPost();
 		searchPRAndCheckPRStatus(VariableHandler.getPRNumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		flag = commonFunc.logoutUser();
-		return flag;
+//		flag = commonFunc.logoutUser();
+		return true;
 	}
 
 	/**
@@ -156,8 +156,8 @@ public class PurchaseRequestFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyPRCloseShort() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 		commonFunc.navigatePurchaseRequestPage();
 		clickAddIconFillDetailsOfPurchaseRequest(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("PR_General"),
@@ -169,9 +169,6 @@ public class PurchaseRequestFunctions {
 				commonFunc.getDataFromTestDataSheet("UnitCostValue"), true);
 		saveHeaderAndClickPost();
 		searchPRAndCheckPRStatus(VariableHandler.getPRNumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"HodUsername");
 		commonFunc.navigatePurchaseRequestCloseShortPage();
 		clickAddIconPurchaseRequestCloseShort();
 		fillFormDetailsInPurchaseRequestCloseShort(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -181,8 +178,8 @@ public class PurchaseRequestFunctions {
 		saveHeaderAndClickCloseShort();
 		searchDocNumberAndCheckPRCloseShortStatus(VariableHandler.getPRCloseShortDocNumber(),
 				commonFunc.getDataFromTestDataSheet("PostedStatus"));
-		flag = commonFunc.logoutUser();
-		return flag;
+//		flag = commonFunc.logoutUser();
+		return true;
 	}
 
 	/**
@@ -203,11 +200,16 @@ public class PurchaseRequestFunctions {
 		selectPRType(PRType);
 		commonFunc.checkRefreshCellsDisappear();
 		selectPRPrefix(Prefix);
+		commonFunc.checkRefreshCellsDisappear();
 		webDB.switchToFrame(CommonUiLocators.PrCreateFrame, ElementType.Xpath);
 		commonFunc.searchAndSelectValueInFilters(PurchaseRequestLocators.PRCPCCodeButton, CPCCode);
+		commonFunc.checkRefreshCellsDisappear();
 		selectPRDepartment(Department);
+		commonFunc.checkRefreshCellsDisappear();
 		selectPRRequester(Requester);
+		commonFunc.checkRefreshCellsDisappear();
 		clickTickIconCreateRequest();
+		commonFunc.checkRefreshCellsDisappear();
 		validateLocationInPRHeader(Location);
 		validateUnitInPRHeader(Unit);
 		validatePRTypeInPRHeader(PRType);
@@ -1522,8 +1524,8 @@ public class PurchaseRequestFunctions {
 	 * @author Sakthi-GWL
 	 */
 	public void verifyPRForGeneralItemWithMultipleItemInExcelSheet() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 		commonFunc.navigatePurchaseRequestPage();
 		clickAddIconFillDetailsOfPurchaseRequest(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("PR_General"),
@@ -1549,8 +1551,8 @@ public class PurchaseRequestFunctions {
 		}
 		saveHeaderAndClickPost();
 		searchPRAndCheckPRStatus(VariableHandler.getPRNumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		flag = commonFunc.logoutUser();
-		assertTrue(flag);
+//		flag = commonFunc.logoutUser();
+//		assertTrue(flag);
 	}
 
 	/**
@@ -1561,8 +1563,8 @@ public class PurchaseRequestFunctions {
 	 * @author Sakthi-GWL
 	 */
 	public void verifyPRForServiceItemWithMultipleItemInExcelSheet() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 		commonFunc.navigatePurchaseRequestPage();
 		clickAddIconFillDetailsOfPurchaseRequest(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("PR_Service"),
@@ -1588,8 +1590,8 @@ public class PurchaseRequestFunctions {
 		}
 		saveHeaderAndClickPost();
 		searchPRAndCheckPRStatus(VariableHandler.getPRNumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		flag = commonFunc.logoutUser();
-		assertTrue(flag);
+//		flag = commonFunc.logoutUser();
+//		assertTrue(flag);
 	}
 
 	/**
@@ -1622,8 +1624,8 @@ public class PurchaseRequestFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyFindPRWithPossibleSearchParameters() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 		commonFunc.navigatePurchaseRequestPage();
 		findWithItemId(commonFunc.getDataFromTestDataSheet("GwlItem_Serial"));
 		webDB.navigateToRefresh();
@@ -1637,8 +1639,8 @@ public class PurchaseRequestFunctions {
 		webDB.navigateToRefresh();
 		findWithRequester(commonFunc.getDataFromTestDataSheet("PR_Requester"));
 		webDB.navigateToRefresh();
-		flag = commonFunc.logoutUser();
-		return flag;
+//		flag = commonFunc.logoutUser();
+		return true;
 	}
 
 	/**
@@ -1706,8 +1708,8 @@ public class PurchaseRequestFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyPurchaseRequestWithMultipleItemInExcelSheetForMaterial() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 		commonFunc.navigatePurchaseRequestPage();
 		clickAddIconFillDetailsOfPurchaseRequest(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("PRMaterialType"),

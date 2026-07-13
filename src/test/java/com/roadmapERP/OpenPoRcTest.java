@@ -10,10 +10,12 @@ import java.lang.reflect.Method;
 
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import commonfunctions.Author;
 import commonfunctions.CommonFunctions;
+import commonfunctions.VariableHandler;
 import commonfunctions.supplychainmanagement.OpenPoRcFunctions;
 import utils.Mailer;
 import utils.ReportLoger;
@@ -26,6 +28,17 @@ public class OpenPoRcTest extends RoadMapERPTest {
 	static WebDriverBase webDB = new WebDriverBase();
 	static OpenPoRcFunctions openPoRcFunctions = new OpenPoRcFunctions();
 	static ReportLoger logs = new ReportLoger();
+	private static int previousStatus = ITestResult.SUCCESS;
+
+	@BeforeMethod(alwaysRun = true)
+	private void VerifyLogin() {
+		if (VariableHandler.getSessionID() == null) {
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+					"AdminUsername");
+		} else {
+			commonFunc.navigateToHomePage();
+		}
+	}
 
 	/**
 	 * Create - Standard - Domestic Supplier with Stock and Supplier UOM similar
@@ -644,7 +657,10 @@ public class OpenPoRcTest extends RoadMapERPTest {
 	 */
 	@AfterMethod
 	public void VerifyAfterMethod(ITestResult result, Method method) {
-		commonFunc.verifyAfterMethod();
+		previousStatus = result.getStatus();
+		if (previousStatus == ITestResult.FAILURE || previousStatus == ITestResult.SKIP) {
+			commonFunc.verifyAfterMethod();
+		}
 		commonFunc.enterAuthorNamesInExtentReport(method);
 	}
 }

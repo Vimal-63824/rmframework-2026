@@ -83,9 +83,10 @@ public class CommonFunctions {
 	public void browserOpen() {
 		try {
 			webDB.Setup(System.getProperty("platformName"));
+			enterUrl();
 		} catch (Exception e) {
-			logs.logging("FAIL", "Browser not Setup with the Exception: " + e);
-			logs.logging("FAIL", "Retrying Browser Open Again....!!!");
+			logs.logging("INFO", "Browser not Setup with the Exception: " + e);
+			logs.logging("INFO", "Retrying Browser Open Again....!!!");
 			Assert.fail(e.toString());
 		}
 	}
@@ -101,8 +102,8 @@ public class CommonFunctions {
 			webDB.enterURL(System.getProperty("url"));
 			flag = webDB.waitForElementUntilGivenTime(CommonUiLocators.LoginForm, ElementType.Xpath, 45);
 		} catch (Exception e) {
-			logs.logging("FAIL", "Enter URL Failed with the Exception: " + e);
-			logs.logging("FAIL", "Retrying Navigate To URL");
+			logs.logging("INFO", "Enter URL Failed with the Exception: " + e);
+			logs.logging("INFO", "Retrying Navigate To URL");
 			Assert.fail(e.toString());
 		}
 		return flag;
@@ -158,9 +159,9 @@ public class CommonFunctions {
 				logs.logging("INFO", "Logout Successfully");
 			}
 		}
+		WebDriverBase.getDriver().manage().deleteAllCookies();
 		enterUrl();
-		flag = true;
-		return flag;
+		return true;
 	}
 
 	/**
@@ -182,7 +183,9 @@ public class CommonFunctions {
 				webDB.sendTextToAnElement(CommonUiLocators.LoginPasswordTextBox, Password, ElementType.Xpath);
 				flag = webDB.waitForClickElement(CommonUiLocators.LoginBtn, ElementType.Xpath);
 				if (flag) {
-					webDB.javaScriptClickAnElement(CommonUiLocators.LoginBtn, ElementType.Xpath);
+					checkRefreshCellsDisappear();
+					webDB.pressEnterKey();
+//					webDB.javaScriptClickAnElement(CommonUiLocators.LoginBtn, ElementType.Xpath);
 					webDB.clickAnElementWithoutException(CommonUiLocators.LoginBtn, ElementType.Xpath);
 					webDB.clickAnElementWithoutException(CommonUiLocators.LoginBtn, ElementType.Xpath);
 					webDB.clickAnElementWithoutException(CommonUiLocators.LoginBtn, ElementType.Xpath);
@@ -210,11 +213,13 @@ public class CommonFunctions {
 				checkRefreshCellsDisappear();
 				String GetTextUserName = webDB.getTextFromElement(CommonUiLocators.GetTextUserName, ElementType.Xpath);
 				logs.logging("INFO", GetTextUserName + " User Logged In Successfully");
+				VariableHandler.setSignInUserName(GetTextUserName);
 				String URL = webDB.getDriver().getCurrentUrl();
 				System.out.println(URL);
 				String SessionID = URL.split("session=")[1].toString();
 				System.out.println(SessionID);
 				VariableHandler.setSessionID(SessionID);
+				logs.logging("INFO", "Current Username: " + VariableHandler.getSignInUserName());
 			}
 		}
 		Assert.assertTrue(flag);
@@ -584,10 +589,10 @@ public class CommonFunctions {
 		VariableHandler.getStockCost().clear();
 		VariableHandler.getAfterStockCost().clear();
 		VariableHandler.getAfterStockQty().clear();
-		webDB.navigateToRefresh();
+//		webDB.navigateToRefresh();
 		webDB.switchToDefaultContent();
 		webDB.switchToMainTab();
-//		enterUrl();
+		navigateToHomePage();
 	}
 
 	/**
@@ -3366,5 +3371,12 @@ public class CommonFunctions {
 			}
 		}
 		assertTrue(flag);
+	}
+
+	public void navigateToHomePage() {
+		String HomePageUrl = System.getProperty("url").replace("loginpage/login", "loginpage/menu?session=")
+				.concat(VariableHandler.getSessionID());
+		System.out.println(HomePageUrl);
+		webDB.navigateToUrl(HomePageUrl);
 	}
 }

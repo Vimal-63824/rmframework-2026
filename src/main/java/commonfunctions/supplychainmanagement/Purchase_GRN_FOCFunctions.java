@@ -44,8 +44,8 @@ public class Purchase_GRN_FOCFunctions {
 	 * @return booelan flag
 	 */
 	public boolean verifyFOCForDirectPODomesticSuplrGeneralItemSimilarUOM() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername-Admin");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		POfunc.verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("L49"),
@@ -88,6 +88,7 @@ public class Purchase_GRN_FOCFunctions {
 				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode,
 						PurchaseOrderPageLocators.HsnCodeLovButton, HsnCode, PurchaseOrderPageLocators.HsnCodeInput);
 				webDB.pressEscapeKey();
+				commonFunc.checkRefreshCellsDisappear();
 				POfunc.verifyTickIconcreateItem();
 				POfunc.verifyLineAmountValidationAndPom(item, LineAmount);
 				POfunc.navigateToLineDetailPage(item);
@@ -118,8 +119,8 @@ public class Purchase_GRN_FOCFunctions {
 		}
 		POfunc.verifyValidatePoStatus(VariableHandler.getPONumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		flag = commonFunc.logoutUser();
-		return flag;
+//		flag = commonFunc.logoutUser();
+		return true;
 	}
 
 	/**
@@ -130,8 +131,8 @@ public class Purchase_GRN_FOCFunctions {
 	 * @return booelan flag
 	 */
 	public boolean verifyFOCForDirectPODomesticSuplrMaterialItemSimilarUOM() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername-Admin");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		POfunc.verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("L49"),
@@ -201,8 +202,8 @@ public class Purchase_GRN_FOCFunctions {
 		}
 		POfunc.verifyValidatePoStatus(VariableHandler.getPONumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		flag = commonFunc.logoutUser();
-		return flag;
+//		flag = commonFunc.logoutUser();
+		return true;
 	}
 
 	/**
@@ -213,8 +214,8 @@ public class Purchase_GRN_FOCFunctions {
 	 * @return booelan flag
 	 */
 	public boolean verifyFOCForDirectPODomesticSuplrServiceItemSimilarUOM() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername-Admin");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		POfunc.verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("L49"),
@@ -284,8 +285,8 @@ public class Purchase_GRN_FOCFunctions {
 		}
 		POfunc.verifyValidatePoStatus(VariableHandler.getPONumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		flag = commonFunc.logoutUser();
-		return flag;
+//		flag = commonFunc.logoutUser();
+		return true;
 	}
 
 	/**
@@ -296,8 +297,8 @@ public class Purchase_GRN_FOCFunctions {
 	 * @return booelan flag
 	 */
 	public boolean verifyFOCForDirectPOImportSuplrGeneralItemSimilarUOM() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername-Admin");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		POfunc.verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("L49"),
@@ -367,8 +368,8 @@ public class Purchase_GRN_FOCFunctions {
 		}
 		POfunc.verifyValidatePoStatus(VariableHandler.getPONumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		flag = commonFunc.logoutUser();
-		return flag;
+//		flag = commonFunc.logoutUser();
+		return true;
 	}
 
 	/**
@@ -379,8 +380,8 @@ public class Purchase_GRN_FOCFunctions {
 	 * @return booelan flag
 	 */
 	public boolean verifyFOCForDirectPOImportSuplrMaterialItemSimilarUOM() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername-Admin");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		POfunc.verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("L49"),
@@ -450,8 +451,8 @@ public class Purchase_GRN_FOCFunctions {
 		}
 		POfunc.verifyValidatePoStatus(VariableHandler.getPONumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		flag = commonFunc.logoutUser();
-		return flag;
+//		flag = commonFunc.logoutUser();
+		return true;
 	}
 
 	/**
@@ -462,8 +463,8 @@ public class Purchase_GRN_FOCFunctions {
 	 * @return booelan flag
 	 */
 	public boolean verifyFOCForDirectPOImportSuplrServiceItemSimilarUOM() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername-Admin");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		POfunc.verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("L49"),
@@ -533,8 +534,8 @@ public class Purchase_GRN_FOCFunctions {
 		commonFunc.navigatePurchaseOrderPage();
 		POfunc.verifyValidatePoStatus(VariableHandler.getPONumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		flag = commonFunc.logoutUser();
-		return flag;
+//		flag = commonFunc.logoutUser();
+		return true;
 	}
 
 	/**
@@ -545,8 +546,8 @@ public class Purchase_GRN_FOCFunctions {
 	 * @return booelan flag
 	 */
 	public boolean verifyFOCForDirectPODomesticSuplrGeneralItemDissimilarUOM() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername-Admin");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		POfunc.verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("L0001"),
@@ -616,8 +617,8 @@ public class Purchase_GRN_FOCFunctions {
 		}
 		POfunc.verifyValidatePoStatus(VariableHandler.getPONumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		flag = commonFunc.logoutUser();
-		return flag;
+//		flag = commonFunc.logoutUser();
+		return true;
 	}
 
 	/**
@@ -628,8 +629,8 @@ public class Purchase_GRN_FOCFunctions {
 	 * @return booelan flag
 	 */
 	public boolean verifyFOCForDirectPODomesticSuplrMaterialItemDissimilarUOM() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername-Admin");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		POfunc.verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("L0001"),
@@ -699,8 +700,8 @@ public class Purchase_GRN_FOCFunctions {
 		}
 		POfunc.verifyValidatePoStatus(VariableHandler.getPONumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		flag = commonFunc.logoutUser();
-		return flag;
+//		flag = commonFunc.logoutUser();
+		return true;
 	}
 
 	/**
@@ -711,8 +712,8 @@ public class Purchase_GRN_FOCFunctions {
 	 * @return booelan flag
 	 */
 	public boolean verifyFOCForDirectPOImportSuplrGeneralItemDissimilarUOM() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername-Admin");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		POfunc.verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("L0001"),
@@ -782,8 +783,8 @@ public class Purchase_GRN_FOCFunctions {
 		}
 		POfunc.verifyValidatePoStatus(VariableHandler.getPONumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		flag = commonFunc.logoutUser();
-		return flag;
+//		flag = commonFunc.logoutUser();
+		return true;
 	}
 
 	/**
@@ -794,8 +795,8 @@ public class Purchase_GRN_FOCFunctions {
 	 * @return booelan flag
 	 */
 	public boolean verifyFOCForDirectPOImportSuplrMaterialItemDissimilarUOM() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername-Admin");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		POfunc.verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("L0001"),
@@ -865,8 +866,8 @@ public class Purchase_GRN_FOCFunctions {
 		}
 		POfunc.verifyValidatePoStatus(VariableHandler.getPONumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		flag = commonFunc.logoutUser();
-		return flag;
+//		flag = commonFunc.logoutUser();
+		return true;
 	}
 
 	/**
@@ -1059,8 +1060,8 @@ public class Purchase_GRN_FOCFunctions {
 				webDB.getDataFromProperties("DirectGRN-FocFileName"));
 		GRNFunc.validateStockQtyAndCostQtyForSourceWH(webDB.getDataFromProperties("DirGRNImpSameUDGeneral"),
 				webDB.getDataFromProperties("DirectGRN-FocFileName"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		GRNFunc.verifyGrnAdd();
 		GRNFunc.verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1093,8 +1094,8 @@ public class Purchase_GRN_FOCFunctions {
 		GRNFunc.validateExpectedStockQtyAndCostQtyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DirGRNImpSameUDGeneral"),
 				webDB.getDataFromProperties("DirectGRN-FocFileName"));
-		flag = commonFunc.logoutUser();
-		return flag;
+//		flag = commonFunc.logoutUser();
+		return true;
 	}
 
 	/**
@@ -1113,8 +1114,8 @@ public class Purchase_GRN_FOCFunctions {
 				webDB.getDataFromProperties("DirectGRN-FocFileName"));
 		GRNFunc.validateStockQtyAndCostQtyForSourceWH(webDB.getDataFromProperties("DirGRNImpSameUDRawMat"),
 				webDB.getDataFromProperties("DirectGRN-FocFileName"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		GRNFunc.verifyGrnAdd();
 		GRNFunc.verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1147,8 +1148,8 @@ public class Purchase_GRN_FOCFunctions {
 		GRNFunc.validateExpectedStockQtyAndCostQtyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DirGRNImpSameUDRawMat"),
 				webDB.getDataFromProperties("DirectGRN-FocFileName"));
-		flag = commonFunc.logoutUser();
-		return flag;
+//		flag = commonFunc.logoutUser();
+		return true;
 	}
 
 	/**
@@ -1163,8 +1164,8 @@ public class Purchase_GRN_FOCFunctions {
 		LocalDate date = LocalDate.now();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy", Locale.ENGLISH);
 		String Today = date.format(formatter);
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		GRNFunc.verifyGrnAdd();
 		GRNFunc.verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1191,8 +1192,8 @@ public class Purchase_GRN_FOCFunctions {
 					System.getProperty("HariUsername"));
 		}
 		GRN2Func.verifyGRNDocumentApprovedStatus();
-		flag = commonFunc.logoutUser();
-		return flag;
+//		flag = commonFunc.logoutUser();
+		return true;
 	}
 
 	/**
@@ -1211,8 +1212,8 @@ public class Purchase_GRN_FOCFunctions {
 				webDB.getDataFromProperties("DirectGRN-FocFileName"));
 		GRNFunc.validateStockQtyAndCostQtyForSourceWH(webDB.getDataFromProperties("DirGRNImpDiffUDGeneral"),
 				webDB.getDataFromProperties("DirectGRN-FocFileName"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		GRNFunc.verifyGrnAdd();
 		GRNFunc.verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1245,8 +1246,8 @@ public class Purchase_GRN_FOCFunctions {
 		GRNFunc.validateExpectedStockQtyAndCostQtyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DirGRNImpDiffUDGeneral"),
 				webDB.getDataFromProperties("DirectGRN-FocFileName"));
-		flag = commonFunc.logoutUser();
-		return flag;
+//		flag = commonFunc.logoutUser();
+		return true;
 	}
 
 	/**
@@ -1265,8 +1266,8 @@ public class Purchase_GRN_FOCFunctions {
 				webDB.getDataFromProperties("DirectGRN-FocFileName"));
 		GRNFunc.validateStockQtyAndCostQtyForSourceWH(webDB.getDataFromProperties("DirGRNImpDiffUDRawMat"),
 				webDB.getDataFromProperties("DirectGRN-FocFileName"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		GRNFunc.verifyGrnAdd();
 		GRNFunc.verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1299,8 +1300,8 @@ public class Purchase_GRN_FOCFunctions {
 		GRNFunc.validateExpectedStockQtyAndCostQtyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DirGRNImpDiffUDRawMat"),
 				webDB.getDataFromProperties("DirectGRN-FocFileName"));
-		flag = commonFunc.logoutUser();
-		return flag;
+//		flag = commonFunc.logoutUser();
+		return true;
 	}
 
 	/**
@@ -1319,8 +1320,8 @@ public class Purchase_GRN_FOCFunctions {
 				webDB.getDataFromProperties("DirectGRN-FocFileName"));
 		GRNFunc.validateStockQtyAndCostQtyForSourceWH(webDB.getDataFromProperties("DirGRNImpSameRCGeneral"),
 				webDB.getDataFromProperties("DirectGRN-FocFileName"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		GRNFunc.verifyGrnAdd();
 		GRNFunc.verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1347,8 +1348,8 @@ public class Purchase_GRN_FOCFunctions {
 		GRNFunc.validateExpectedStockQtyAndCostQtyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DirGRNImpSameRCGeneral"),
 				webDB.getDataFromProperties("DirectGRN-FocFileName"));
-		flag = commonFunc.logoutUser();
-		return flag;
+//		flag = commonFunc.logoutUser();
+		return true;
 	}
 
 	/**
@@ -1367,8 +1368,8 @@ public class Purchase_GRN_FOCFunctions {
 				webDB.getDataFromProperties("DirectGRN-FocFileName"));
 		GRNFunc.validateStockQtyAndCostQtyForSourceWH(webDB.getDataFromProperties("DirGRNImpSameRCRawMat"),
 				webDB.getDataFromProperties("DirectGRN-FocFileName"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		GRNFunc.verifyGrnAdd();
 		GRNFunc.verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1395,8 +1396,8 @@ public class Purchase_GRN_FOCFunctions {
 		GRNFunc.validateExpectedStockQtyAndCostQtyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DirGRNImpSameRCRawMat"),
 				webDB.getDataFromProperties("DirectGRN-FocFileName"));
-		flag = commonFunc.logoutUser();
-		return flag;
+//		flag = commonFunc.logoutUser();
+		return true;
 	}
 
 	/**
@@ -1411,8 +1412,8 @@ public class Purchase_GRN_FOCFunctions {
 		LocalDate date = LocalDate.now();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy", Locale.ENGLISH);
 		String Today = date.format(formatter);
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		GRNFunc.verifyGrnAdd();
 		GRNFunc.verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1433,8 +1434,8 @@ public class Purchase_GRN_FOCFunctions {
 					System.getProperty("HariUsername"));
 		}
 		GRN2Func.verifyGRNDocumentApprovedStatus();
-		flag = commonFunc.logoutUser();
-		return flag;
+//		flag = commonFunc.logoutUser();
+		return true;
 	}
 
 	/**
@@ -1453,8 +1454,8 @@ public class Purchase_GRN_FOCFunctions {
 				webDB.getDataFromProperties("DirectGRN-FocFileName"));
 		GRNFunc.validateStockQtyAndCostQtyForSourceWH(webDB.getDataFromProperties("DirGRNImpDiffRCGeneral"),
 				webDB.getDataFromProperties("DirectGRN-FocFileName"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		GRNFunc.verifyGrnAdd();
 		GRNFunc.verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1481,8 +1482,8 @@ public class Purchase_GRN_FOCFunctions {
 		GRNFunc.validateExpectedStockQtyAndCostQtyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DirGRNImpDiffRCGeneral"),
 				webDB.getDataFromProperties("DirectGRN-FocFileName"));
-		flag = commonFunc.logoutUser();
-		return flag;
+//		flag = commonFunc.logoutUser();
+		return true;
 	}
 
 	/**
@@ -1501,8 +1502,8 @@ public class Purchase_GRN_FOCFunctions {
 				webDB.getDataFromProperties("DirectGRN-FocFileName"));
 		GRNFunc.validateStockQtyAndCostQtyForSourceWH(webDB.getDataFromProperties("DirGRNImpDiffRCRawMat"),
 				webDB.getDataFromProperties("DirectGRN-FocFileName"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		GRNFunc.verifyGrnAdd();
 		GRNFunc.verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1529,8 +1530,8 @@ public class Purchase_GRN_FOCFunctions {
 		GRNFunc.validateExpectedStockQtyAndCostQtyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DirGRNImpDiffRCRawMat"),
 				webDB.getDataFromProperties("DirectGRN-FocFileName"));
-		flag = commonFunc.logoutUser();
-		return flag;
+//		flag = commonFunc.logoutUser();
+		return true;
 	}
 
 	/**
@@ -1549,8 +1550,8 @@ public class Purchase_GRN_FOCFunctions {
 				webDB.getDataFromProperties("DirectGRN-FocFileName"));
 		GRNFunc.validateStockQtyAndCostQtyForSourceWH(webDB.getDataFromProperties("DirGRNImpSamePLGeneral"),
 				webDB.getDataFromProperties("DirectGRN-FocFileName"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		GRNFunc.verifyGrnAdd();
 		GRNFunc.verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1577,8 +1578,8 @@ public class Purchase_GRN_FOCFunctions {
 		GRNFunc.validateExpectedStockQtyAndCostQtyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DirGRNImpSamePLGeneral"),
 				webDB.getDataFromProperties("DirectGRN-FocFileName"));
-		flag = commonFunc.logoutUser();
-		return flag;
+//		flag = commonFunc.logoutUser();
+		return true;
 	}
 
 	/**
@@ -1597,8 +1598,8 @@ public class Purchase_GRN_FOCFunctions {
 				webDB.getDataFromProperties("DirectGRN-FocFileName"));
 		GRNFunc.validateStockQtyAndCostQtyForSourceWH(webDB.getDataFromProperties("DirGRNImpSamePLRawMat"),
 				webDB.getDataFromProperties("DirectGRN-FocFileName"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		GRNFunc.verifyGrnAdd();
 		GRNFunc.verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1625,8 +1626,8 @@ public class Purchase_GRN_FOCFunctions {
 		GRNFunc.validateExpectedStockQtyAndCostQtyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DirGRNImpSamePLRawMat"),
 				webDB.getDataFromProperties("DirectGRN-FocFileName"));
-		flag = commonFunc.logoutUser();
-		return flag;
+//		flag = commonFunc.logoutUser();
+		return true;
 	}
 
 	/**
@@ -1641,8 +1642,8 @@ public class Purchase_GRN_FOCFunctions {
 		LocalDate date = LocalDate.now();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy", Locale.ENGLISH);
 		String Today = date.format(formatter);
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		GRNFunc.verifyGrnAdd();
 		GRNFunc.verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1663,8 +1664,8 @@ public class Purchase_GRN_FOCFunctions {
 					System.getProperty("HariUsername"));
 		}
 		GRN2Func.verifyGRNDocumentApprovedStatus();
-		flag = commonFunc.logoutUser();
-		return flag;
+//		flag = commonFunc.logoutUser();
+		return true;
 	}
 
 	/**
@@ -1683,8 +1684,8 @@ public class Purchase_GRN_FOCFunctions {
 				webDB.getDataFromProperties("DirectGRN-FocFileName"));
 		GRNFunc.validateStockQtyAndCostQtyForSourceWH(webDB.getDataFromProperties("DirGRNImpDiffPLGeneral"),
 				webDB.getDataFromProperties("DirectGRN-FocFileName"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		GRNFunc.verifyGrnAdd();
 		GRNFunc.verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1711,8 +1712,8 @@ public class Purchase_GRN_FOCFunctions {
 		GRNFunc.validateExpectedStockQtyAndCostQtyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DirGRNImpDiffPLGeneral"),
 				webDB.getDataFromProperties("DirectGRN-FocFileName"));
-		flag = commonFunc.logoutUser();
-		return flag;
+//		flag = commonFunc.logoutUser();
+		return true;
 	}
 
 	/**
@@ -1731,8 +1732,8 @@ public class Purchase_GRN_FOCFunctions {
 				webDB.getDataFromProperties("DirectGRN-FocFileName"));
 		GRNFunc.validateStockQtyAndCostQtyForSourceWH(webDB.getDataFromProperties("DirGRNImpDiffPLRawMat"),
 				webDB.getDataFromProperties("DirectGRN-FocFileName"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		GRNFunc.verifyGrnAdd();
 		GRNFunc.verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1759,8 +1760,8 @@ public class Purchase_GRN_FOCFunctions {
 		GRNFunc.validateExpectedStockQtyAndCostQtyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DirGRNImpDiffPLRawMat"),
 				webDB.getDataFromProperties("DirectGRN-FocFileName"));
-		flag = commonFunc.logoutUser();
-		return flag;
+//		flag = commonFunc.logoutUser();
+		return true;
 	}
 
 	/**
@@ -3294,8 +3295,8 @@ public class Purchase_GRN_FOCFunctions {
 	 * @return booelan flag
 	 */
 	public boolean verifyFOCForDirectPODomesticSuplrStockTransferItemSimilarUOM() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername-Admin");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		POfunc.verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("L0007"),
@@ -3366,8 +3367,8 @@ public class Purchase_GRN_FOCFunctions {
 		commonFunc.navigatePurchaseOrderPage();
 		POfunc.verifyValidatePoStatus(VariableHandler.getPONumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		flag = commonFunc.logoutUser();
-		return flag;
+//		flag = commonFunc.logoutUser();
+		return true;
 	}
 
 	/**

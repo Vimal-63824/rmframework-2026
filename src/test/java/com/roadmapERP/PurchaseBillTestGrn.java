@@ -9,10 +9,12 @@ import java.lang.reflect.Method;
 
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import commonfunctions.Author;
 import commonfunctions.CommonFunctions;
+import commonfunctions.VariableHandler;
 import commonfunctions.financials.PurchaseBillsFunctionsGrn;
 import commonfunctions.supplychainmanagement.DirectGrnPageFunctions;
 import commonfunctions.supplychainmanagement.GrnPageFunctions;
@@ -31,6 +33,17 @@ public class PurchaseBillTestGrn extends RoadMapERPTest {
 	MaterialReceiptVoucherFunctions MrvFunc = new MaterialReceiptVoucherFunctions();
 	static GrnPageFunctions grnPageFunc = new GrnPageFunctions();
 	static PurchaseBillsFunctionsGrn PurBillFunc = new PurchaseBillsFunctionsGrn();
+	private static int previousStatus = ITestResult.SUCCESS;
+
+	@BeforeMethod(alwaysRun = true)
+	private void VerifyLogin() {
+		if (VariableHandler.getSessionID() == null) {
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+					"AdminUsername");
+		} else {
+			commonFunc.navigateToHomePage();
+		}
+	}
 
 	/**
 	 * Create Purchase Bills Against GRN
@@ -522,6 +535,7 @@ public class PurchaseBillTestGrn extends RoadMapERPTest {
 		PurBillFunc
 				.verifyRegisteredSupplierwithLocalGSTAllowRcmITCIneligibleAgainstGRNWithDeviationExpenseAndAdjustment();
 	}
+
 	/**
 	 * Create Purchase Bills Against GRN
 	 * 
@@ -531,11 +545,10 @@ public class PurchaseBillTestGrn extends RoadMapERPTest {
 	@Author("Durai-RMITS")
 	@Test(priority = 37, groups = {
 			"Purchase Bill" }, description = "Registered Supplier with Interstate GST- Against GRN With Deviation (Stock item ,service item And charge item )")
-	public void VerifyRegisteredSupplierwithInterstateGSTAgainstGRNWithDeviation()
-			throws IOException {
-		PurBillFunc
-				.verifyRegisteredSupplierwithInterstateGSTAgainstGRNWithDeviation();
+	public void VerifyRegisteredSupplierwithInterstateGSTAgainstGRNWithDeviation() throws IOException {
+		PurBillFunc.verifyRegisteredSupplierwithInterstateGSTAgainstGRNWithDeviation();
 	}
+
 	/**
 	 * Create Purchase Bills Against GRN
 	 * 
@@ -545,11 +558,10 @@ public class PurchaseBillTestGrn extends RoadMapERPTest {
 	@Author("Durai-RMITS")
 	@Test(priority = 38, groups = {
 			"Purchase Bill" }, description = "Registered Supplier with Interstate GST- Against GRN With Deviation and Expenses Account (Stock item ,service item And charge item )")
-	public void VerifyRegisteredSupplierwithInterstateGSTAgainstGRNWithDeviationAndExpense()
-			throws IOException {
-		PurBillFunc
-				.verifyRegisteredSupplierwithInterstateGSTAgainstGRNWithDeviationAndExpense();
+	public void VerifyRegisteredSupplierwithInterstateGSTAgainstGRNWithDeviationAndExpense() throws IOException {
+		PurBillFunc.verifyRegisteredSupplierwithInterstateGSTAgainstGRNWithDeviationAndExpense();
 	}
+
 	/**
 	 * Create Purchase Bills Against GRN
 	 * 
@@ -559,9 +571,11 @@ public class PurchaseBillTestGrn extends RoadMapERPTest {
 	@Author("Durai-RMITS")
 	@Test(priority = 39, groups = {
 			"Purchase Bill" }, description = "Registered Supplier with Interstate GST- Against GRN With Deviation and Expenses Account with adjustment (Stock item ,service item And charge item )")
-	public void VerifyRegisteredSupplierwithInterstateGSTAgainstGRNWithDeviationExpenseAndAdjustment() throws IOException {
+	public void VerifyRegisteredSupplierwithInterstateGSTAgainstGRNWithDeviationExpenseAndAdjustment()
+			throws IOException {
 		PurBillFunc.verifyRegisteredSupplierwithInterstateGSTAgainstGRNWithDeviationExpenseAndAdjustment();
 	}
+
 	/**
 	 * Create Purchase Bills Against GRN
 	 * 
@@ -574,6 +588,7 @@ public class PurchaseBillTestGrn extends RoadMapERPTest {
 	public void VerifyRegisteredSupplierwithInterstateGSTAgainstGRNWithoutDeviation() throws IOException {
 		PurBillFunc.verifyRegisteredSupplierwithInterstateGSTAgainstGRNWithoutDeviation();
 	}
+
 	/**
 	 * Create Purchase Bills Against GRN
 	 * 
@@ -586,6 +601,7 @@ public class PurchaseBillTestGrn extends RoadMapERPTest {
 	public void VerifyRegisteredSupplierwithInterstateGSTAgainstGRNWithoutDeviationAndExpense() throws IOException {
 		PurBillFunc.verifyRegisteredSupplierwithInterstateGSTAgainstGRNWithoutDeviationAndExpense();
 	}
+
 	/**
 	 * Create Purchase Bills Against GRN
 	 * 
@@ -599,6 +615,7 @@ public class PurchaseBillTestGrn extends RoadMapERPTest {
 			throws IOException {
 		PurBillFunc.verifyRegisteredSupplierwithInterstateGSTAgainstGRNWithoutDeviationExpenseAndAdjustment();
 	}
+
 	/**
 	 * Create Purchase Bills Against GRN
 	 * 
@@ -611,6 +628,7 @@ public class PurchaseBillTestGrn extends RoadMapERPTest {
 	public void VerifyRegisteredSupplierwithInterstateAllowRcmAgainstGRNWithDeviation() throws IOException {
 		PurBillFunc.verifyRegisteredSupplierwithInterstateAllowRcmAgainstGRNWithDeviation();
 	}
+
 	/**
 	 * Create Purchase Bills Against GRN
 	 * 
@@ -623,6 +641,7 @@ public class PurchaseBillTestGrn extends RoadMapERPTest {
 	public void VerifyRegisteredSupplierwithInterstateAllowRcmAgainstGRNWithDeviationAndExpense() throws IOException {
 		PurBillFunc.verifyRegisteredSupplierwithInterstateAllowRcmAgainstGRNWithDeviationAndExpense();
 	}
+
 	/**
 	 * Create Purchase Bills Against GRN
 	 * 
@@ -636,6 +655,7 @@ public class PurchaseBillTestGrn extends RoadMapERPTest {
 			throws IOException {
 		PurBillFunc.verifyRegisteredSupplierwithInterstateAllowRcmAgainstGRNWithDeviationExpenseAndAdjustment();
 	}
+
 	/**
 	 * Create Purchase Bills Against GRN
 	 * 
@@ -648,6 +668,7 @@ public class PurchaseBillTestGrn extends RoadMapERPTest {
 	public void VerifyRegisteredSupplierwithInterstateAllowRcmAgainstGRNWithoutDeviation() throws IOException {
 		PurBillFunc.verifyRegisteredSupplierwithInterstateAllowRcmAgainstGRNWithoutDeviation();
 	}
+
 	/**
 	 * Create Purchase Bills Against GRN
 	 * 
@@ -657,9 +678,11 @@ public class PurchaseBillTestGrn extends RoadMapERPTest {
 	@Author("Durai-RMITS")
 	@Test(priority = 47, groups = {
 			"Purchase Bill" }, description = "Registered Supplier with Interstate GST (Allow RCM tax)- Against GRN Without Deviation and Expenses Account (Stock item ,service item And charge item )")
-	public void VerifyRegisteredSupplierwithInterstateAllowRcmAgainstGRNWithoutDeviationAndExpense() throws IOException {
+	public void VerifyRegisteredSupplierwithInterstateAllowRcmAgainstGRNWithoutDeviationAndExpense()
+			throws IOException {
 		PurBillFunc.verifyRegisteredSupplierwithInterstateAllowRcmAgainstGRNWithoutDeviationAndExpense();
 	}
+
 	/**
 	 * Create Purchase Bills Against GRN
 	 * 
@@ -673,6 +696,7 @@ public class PurchaseBillTestGrn extends RoadMapERPTest {
 			throws IOException {
 		PurBillFunc.verifyRegisteredSupplierwithInterstateAllowRcmAgainstGRNWithoutDeviationExpenseAndAdjustment();
 	}
+
 	/**
 	 * Create Purchase Bills Against GRN
 	 * 
@@ -685,6 +709,7 @@ public class PurchaseBillTestGrn extends RoadMapERPTest {
 	public void VerifyUnRegisteredSupplierwithLocalGSTAgainstGRNWithDeviation() throws IOException {
 		PurBillFunc.VerifyUnRegisteredSupplierwithLocalGSTAgainstGRNWithDeviation();
 	}
+
 	/**
 	 * Create Purchase Bills Against GRN
 	 * 
@@ -710,6 +735,7 @@ public class PurchaseBillTestGrn extends RoadMapERPTest {
 	public void VerifyUnRegisteredSupplierwithLocalGSTAgainstGRNWithDeviationExpenseAndAdjustment() throws IOException {
 		PurBillFunc.VerifyUnRegisteredSupplierwithLocalGSTAgainstGRNWithDeviationExpenseAndAdjustment();
 	}
+
 	/**
 	 * Create Purchase Bills Against GRN
 	 * 
@@ -722,6 +748,7 @@ public class PurchaseBillTestGrn extends RoadMapERPTest {
 	public void VerifyUnRegisteredSupplierwithLocalGSTAgainstGRNWithoutDeviation() throws IOException {
 		PurBillFunc.VerifyUnRegisteredSupplierwithLocalGSTAgainstGRNWithoutDeviation();
 	}
+
 	/**
 	 * Create Purchase Bills Against GRN
 	 * 
@@ -734,6 +761,7 @@ public class PurchaseBillTestGrn extends RoadMapERPTest {
 	public void VerifyUnRegisteredSupplierwithLocalGSTAgainstGRNWithoutDeviationAndExpense() throws IOException {
 		PurBillFunc.VerifyUnRegisteredSupplierwithLocalGSTAgainstGRNWithoutDeviationAndExpense();
 	}
+
 	/**
 	 * Create Purchase Bills Against GRN
 	 * 
@@ -747,6 +775,7 @@ public class PurchaseBillTestGrn extends RoadMapERPTest {
 			throws IOException {
 		PurBillFunc.VerifyUnRegisteredSupplierwithLocalGSTAgainstGRNWithoutDeviationExpenseAndAdjustment();
 	}
+
 	/**
 	 * Create Purchase Bills Against GRN
 	 * 
@@ -759,6 +788,7 @@ public class PurchaseBillTestGrn extends RoadMapERPTest {
 	public void VerifyUnRegisteredSupplierwithLocalGSTAllowIgstAgainstGRNWithDeviation() throws IOException {
 		PurBillFunc.VerifyUnRegisteredSupplierwithLocalGSTAllowIgstAgainstGRNWithDeviation();
 	}
+
 	/**
 	 * Create Purchase Bills Against GRN
 	 * 
@@ -771,6 +801,7 @@ public class PurchaseBillTestGrn extends RoadMapERPTest {
 	public void VerifyUnRegisteredSupplierwithLocalGSTAllowIgstAgainstGRNWithDeviationAndExpense() throws IOException {
 		PurBillFunc.VerifyUnRegisteredSupplierwithLocalGSTAllowIgstAgainstGRNWithDeviationAndExpense();
 	}
+
 	/**
 	 * Create Purchase Bills Against GRN
 	 * 
@@ -784,6 +815,7 @@ public class PurchaseBillTestGrn extends RoadMapERPTest {
 			throws IOException {
 		PurBillFunc.VerifyUnRegisteredSupplierwithLocalGSTAllowIgstAgainstGRNWithDeviationExpenseAndAdjustment();
 	}
+
 	/**
 	 * Create Purchase Bills Against GRN
 	 * 
@@ -796,6 +828,7 @@ public class PurchaseBillTestGrn extends RoadMapERPTest {
 	public void VerifyUnRegisteredSupplierwithLocalGSTAllowIgstAgainstGRNWithoutDeviation() throws IOException {
 		PurBillFunc.VerifyUnRegisteredSupplierwithLocalGSTAllowIgstAgainstGRNWithoutDeviation();
 	}
+
 	/**
 	 * Create Purchase Bills Against GRN
 	 * 
@@ -805,9 +838,11 @@ public class PurchaseBillTestGrn extends RoadMapERPTest {
 	@Author("Durai-RMITS")
 	@Test(priority = 59, groups = {
 			"Purchase Bill" }, description = "Unregistered Supplier with Local GST (Allow IGST tax)- Against GRN Without Deviation and Expenses Account (Stock item ,service item And charge item )")
-	public void VerifyUnRegisteredSupplierwithLocalGSTAllowIgstAgainstGRNWithoutDeviationAndExpense() throws IOException {
+	public void VerifyUnRegisteredSupplierwithLocalGSTAllowIgstAgainstGRNWithoutDeviationAndExpense()
+			throws IOException {
 		PurBillFunc.VerifyUnRegisteredSupplierwithLocalGSTAllowIgstAgainstGRNWithoutDeviationAndExpense();
 	}
+
 	/**
 	 * Create Purchase Bills Against GRN
 	 * 
@@ -821,6 +856,7 @@ public class PurchaseBillTestGrn extends RoadMapERPTest {
 			throws IOException {
 		PurBillFunc.VerifyUnRegisteredSupplierwithLocalGSTAllowIgstAgainstGRNWithoutDeviationExpenseAndAdjustment();
 	}
+
 	/**
 	 * Create Purchase Bills Against GRN
 	 * 
@@ -830,11 +866,10 @@ public class PurchaseBillTestGrn extends RoadMapERPTest {
 	@Author("Durai-RMITS")
 	@Test(priority = 61, groups = {
 			"Purchase Bill" }, description = "Unregistered Supplier with Interstate GST- Against GRN With Deviation (Stock item ,service item And charge item )")
-	public void VerifyUnRegisteredSupplierwithInterstateGSTAgainstGRNWithDeviation()
-			throws IOException {
-		PurBillFunc
-				.VerifyUnRegisteredSupplierwithInterstateGSTAgainstGRNWithDeviation();
+	public void VerifyUnRegisteredSupplierwithInterstateGSTAgainstGRNWithDeviation() throws IOException {
+		PurBillFunc.VerifyUnRegisteredSupplierwithInterstateGSTAgainstGRNWithDeviation();
 	}
+
 	/**
 	 * Create Purchase Bills Against GRN
 	 * 
@@ -847,6 +882,7 @@ public class PurchaseBillTestGrn extends RoadMapERPTest {
 	public void VerifyUnRegisteredSupplierwithInterstateGSTAgainstGRNWithDeviationAndExpense() throws IOException {
 		PurBillFunc.VerifyUnRegisteredSupplierwithInterstateGSTAgainstGRNWithDeviationAndExpense();
 	}
+
 	/**
 	 * Create Purchase Bills Against GRN
 	 * 
@@ -860,6 +896,7 @@ public class PurchaseBillTestGrn extends RoadMapERPTest {
 			throws IOException {
 		PurBillFunc.VerifyUnRegisteredSupplierwithInterstateGSTAgainstGRNWithDeviationExpenseAndAdjustment();
 	}
+
 	/**
 	 * Create Purchase Bills Against GRN
 	 * 
@@ -872,6 +909,7 @@ public class PurchaseBillTestGrn extends RoadMapERPTest {
 	public void VerifyUnRegisteredSupplierwithInterstateGSTAgainstGRNWithoutDeviation() throws IOException {
 		PurBillFunc.VerifyUnRegisteredSupplierwithInterstateGSTAgainstGRNWithoutDeviation();
 	}
+
 	/**
 	 * Create Purchase Bills Against GRN
 	 * 
@@ -884,6 +922,7 @@ public class PurchaseBillTestGrn extends RoadMapERPTest {
 	public void VerifyUnRegisteredSupplierwithInterstateGSTAgainstGRNWithoutDeviationAndExpense() throws IOException {
 		PurBillFunc.VerifyUnRegisteredSupplierwithInterstateGSTAgainstGRNWithoutDeviationAndExpense();
 	}
+
 	/**
 	 * Create Purchase Bills Against GRN
 	 * 
@@ -897,6 +936,7 @@ public class PurchaseBillTestGrn extends RoadMapERPTest {
 			throws IOException {
 		PurBillFunc.VerifyUnRegisteredSupplierwithInterstateGSTAgainstGRNWithoutDeviationExpenseAndAdjustment();
 	}
+
 	/**
 	 * This Method Is Used To Logout After Method
 	 * 
@@ -905,7 +945,10 @@ public class PurchaseBillTestGrn extends RoadMapERPTest {
 	 */
 	@AfterMethod
 	public void VerifyAfterMethod(ITestResult result, Method method) {
-		commonFunc.verifyAfterMethod();
+		previousStatus = result.getStatus();
+		if (previousStatus == ITestResult.FAILURE || previousStatus == ITestResult.SKIP) {
+			commonFunc.verifyAfterMethod();
+		}
 		commonFunc.enterAuthorNamesInExtentReport(method);
 	}
 

@@ -4,6 +4,7 @@ import java.lang.reflect.Method;
 
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 /**
  * @author Deepan-GWL, Sakthi
  * @company Galaxy Weblinks December 5, 2025
@@ -12,12 +13,29 @@ import org.testng.annotations.Test;
 
 import commonfunctions.Author;
 import commonfunctions.CommonFunctions;
+import commonfunctions.VariableHandler;
 import commonfunctions.supplychainmanagement.GrnPageFunctions2;
 
 public class GrnTest3 extends RoadMapERPTest {
 	private boolean flag = false;
 	private static CommonFunctions commonFunc = new CommonFunctions();
 	private static GrnPageFunctions2 grn2Func = new GrnPageFunctions2();
+	private static int previousStatus = ITestResult.SUCCESS;
+
+	/**
+	 * This method used to login while start of the test class
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	@BeforeMethod(alwaysRun = true)
+	private void VerifyLogin() {
+		if (VariableHandler.getSessionID() == null) {
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+					"AdminUsername-Admin");
+		} else {
+			commonFunc.navigateToHomePage();
+		}
+	}
 
 	/**
 	 * Direct GRN-General-User Defined-Same Stock and Supplier UOM
@@ -388,7 +406,10 @@ public class GrnTest3 extends RoadMapERPTest {
 	 */
 	@AfterMethod
 	public void VerifyAfterMethod(ITestResult result, Method method) {
-		commonFunc.verifyAfterMethod();
+		previousStatus = result.getStatus();
+		if (previousStatus == ITestResult.FAILURE || previousStatus == ITestResult.SKIP) {
+			commonFunc.verifyAfterMethod();
+		}
 		commonFunc.enterAuthorNamesInExtentReport(method);
 	}
 }

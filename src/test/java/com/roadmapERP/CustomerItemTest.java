@@ -4,6 +4,7 @@ import java.lang.reflect.Method;
 
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import commonfunctions.Author;
@@ -12,16 +13,28 @@ import commonfunctions.Author;
  * @company Galaxy Weblinks Feburary 05, 2025
  */
 import commonfunctions.CommonFunctions;
+import commonfunctions.VariableHandler;
 import commonfunctions.supplychainmanagement.CustomerItemsFunctions;
 import utils.Mailer;
 import utils.WebDriverBase;
 
-public class CustomerItemTest extends RoadMapERPTest{
+public class CustomerItemTest extends RoadMapERPTest {
 	boolean flag = false;
 	static CommonFunctions commonFunc = new CommonFunctions();
 	static Mailer mail = new Mailer();
 	static WebDriverBase webDB = new WebDriverBase();
 	static CustomerItemsFunctions customerItemFunc = new CustomerItemsFunctions();
+	private static int previousStatus = ITestResult.SUCCESS;
+
+	@BeforeMethod(alwaysRun = true)
+	private void VerifyLogin() {
+		if (VariableHandler.getSessionID() == null) {
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+					"AdminUsername");
+		} else {
+			commonFunc.navigateToHomePage();
+		}
+	}
 
 	/**
 	 * Associate item to the customer or mapping of customer
@@ -82,7 +95,7 @@ public class CustomerItemTest extends RoadMapERPTest{
 	public void VerifycreatesCataloguePriceSimilarUOMAndDomesticCustomer() {
 		customerItemFunc.createsCataloguePriceSimilarUOMAndDomesticCustomer();
 	}
-	
+
 	/**
 	 * Verify After Method
 	 * 
@@ -91,6 +104,10 @@ public class CustomerItemTest extends RoadMapERPTest{
 	 */
 	@AfterMethod
 	public void VerifyAfterMethod(ITestResult result, Method method) {
+		previousStatus = result.getStatus();
+		if (previousStatus == ITestResult.FAILURE || previousStatus == ITestResult.SKIP) {
+			commonFunc.verifyAfterMethod();
+		}
 		commonFunc.enterAuthorNamesInExtentReport(method);
 	}
 }

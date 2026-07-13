@@ -30,6 +30,12 @@ public class RoadMapERPTest {
 		WebDriverBase.chromeOptions.addArguments("--disable-dev-shm-usage");
 		WebDriverBase.chromeOptions.addArguments("--disable-extensions");
 		WebDriverBase.chromeOptions.addArguments("--disable-software-rasterizer");
+		WebDriverBase.chromeOptions.addArguments("--use-fake-device-for-media-stream");
+		WebDriverBase.chromeOptions.addArguments("--use-fake-ui-for-media-stream");
+		WebDriverBase.chromeOptions.addArguments("--gcm-registration-url=http://localhost:1/");
+		WebDriverBase.chromeOptions.addArguments("--disable-background-networking");
+		WebDriverBase.chromeOptions.addArguments("--disable-device-discovery-notifications");
+		WebDriverBase.chromeOptions.addArguments("--disable-features=GCM");
 		WebDriverBase.chromeOptions.setAcceptInsecureCerts(true);
 		commonFunc.browserOpen();
 	}

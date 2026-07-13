@@ -9,10 +9,12 @@ import java.lang.reflect.Method;
 import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import commonfunctions.Author;
 import commonfunctions.CommonFunctions;
+import commonfunctions.VariableHandler;
 import commonfunctions.payroll.PreparePayrollFunctions;
 import utils.ReportLoger;
 
@@ -22,6 +24,21 @@ public class PreparePayrollTest extends RoadMapERPTest {
 	private static int previousStatus = ITestResult.SUCCESS;
 	private static CommonFunctions commonFunc = new CommonFunctions();
 	private static PreparePayrollFunctions procPayrollFunc = new PreparePayrollFunctions();
+
+	/**
+	 * This method used to login while start of the test class
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	@BeforeMethod(alwaysRun = true)
+	private void VerifyLogin() {
+		if (VariableHandler.getSessionID() == null) {
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+					"AdminUsername");
+		} else {
+			commonFunc.navigateToHomePage();
+		}
+	}
 
 	/**
 	 * To CheckPrepare/Process payroll based on Unit/Group Loading

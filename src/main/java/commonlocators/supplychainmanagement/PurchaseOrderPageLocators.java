@@ -352,9 +352,9 @@ public class PurchaseOrderPageLocators {
 	/** @locatorType Xpath */
 	public static final String PolinewiseSave = "//button[@data-testid='PO_Item_Tick_Icon']";
 	/** @locatorType Xpath */
-	public static final String PoServiceWithGrn = "//*[@id='ig_po_lineitems_ig_grid_vc']//table/tbody/tr/td[32]";
+	public static final String PoServiceWithGrn = "//*[@id='ig_po_lineitems_ig_grid_vc']//table/tbody/tr/td[33]";
 	/** @locatorType Xpath */
-	public static final String PoseriviceWithGrnSelectedValues = "//*[@id='ig_po_lineitems_ig_grid_vc']//table/tbody/tr/td[32]//select[@data-testid='GRN_RQRD_FLAG']";
+	public static final String PoseriviceWithGrnSelectedValues = "//*[@id='ig_po_lineitems_ig_grid_vc']//table/tbody/tr/td[33]//select[@data-testid='GRN_RQRD_FLAG']";
 	/** @locatorType Xpath */
 	public static final String OkButtonFwdForQcDocument = "//button[@data-testid='Entry']";
 	/** @locatorType Xpath */

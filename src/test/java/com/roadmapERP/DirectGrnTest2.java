@@ -9,10 +9,12 @@ import java.lang.reflect.Method;
 
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import commonfunctions.Author;
 import commonfunctions.CommonFunctions;
+import commonfunctions.VariableHandler;
 import commonfunctions.supplychainmanagement.DirectGrnPageFunctions;
 import commonfunctions.supplychainmanagement.GrnPageFunctions;
 import commonfunctions.supplychainmanagement.MaterialReceiptVoucherFunctions;
@@ -29,6 +31,17 @@ public class DirectGrnTest2 extends RoadMapERPTest {
 	private static ReportLoger logs = new ReportLoger();
 	MaterialReceiptVoucherFunctions MrvFunc = new MaterialReceiptVoucherFunctions();
 	static GrnPageFunctions grnPageFunc = new GrnPageFunctions();
+	private static int previousStatus = ITestResult.SUCCESS;
+
+	@BeforeMethod(alwaysRun = true)
+	private void VerifyLogin() {
+		if (VariableHandler.getSessionID() == null) {
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+					"AdminUsername");
+		} else {
+			commonFunc.navigateToHomePage();
+		}
+	}
 
 	/**
 	 * This Methods Is Used To Create GRN Document from PO without Inspection Stock
@@ -558,7 +571,7 @@ public class DirectGrnTest2 extends RoadMapERPTest {
 	public void verifyCreationOfDirectGrnPriceListDifferentUomServiceTypeWithInspectionWOQcD() throws IOException {
 		Grnfunc.verifyCreationOfDirectGrnPriceListDifferentUomServiceTypeWithInspectionWOQcD();
 	}
-	
+
 	/**
 	 * Verify After Method
 	 * 
@@ -567,6 +580,10 @@ public class DirectGrnTest2 extends RoadMapERPTest {
 	 */
 	@AfterMethod
 	public void VerifyAfterMethod(ITestResult result, Method method) {
+		previousStatus = result.getStatus();
+		if (previousStatus == ITestResult.FAILURE || previousStatus == ITestResult.SKIP) {
+			commonFunc.verifyAfterMethod();
+		}
 		commonFunc.enterAuthorNamesInExtentReport(method);
 	}
 
