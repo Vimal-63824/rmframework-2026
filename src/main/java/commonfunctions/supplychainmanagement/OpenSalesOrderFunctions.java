@@ -462,14 +462,23 @@ public class OpenSalesOrderFunctions {
 		if (flag) {
 			webDB.moveToElement(OpenSalesOrderLocators.OpenSO_CancelHeaderBtn, ElementType.Xpath);
 			webDB.clickAnElement(OpenSalesOrderLocators.OpenSO_CancelHeaderBtn, ElementType.Xpath);
-			flag = webDB.waitForElement(OpenSalesOrderLocators.OpenSOFindPageSearchBtn, ElementType.Xpath);
+			flag = webDB.waitForClickElement(OpenSalesOrderLocators.CancelCaution, ElementType.Xpath);
 			if (flag) {
-				commonFunc.checkSuccessToastMessageDisappear();
-				logs.logging("INFO", "Cancel button clicked Successfully in Open SO");
+				webDB.clickAnElement(OpenSalesOrderLocators.CancelCaution, ElementType.Xpath);
+				flag = webDB.waitForElementUntilGivenTime(OpenSalesOrderLocators.NoteAlertMessage, ElementType.Xpath,
+						45);
+				if (flag) {
+					flag = webDB.waitForElement(OpenSalesOrderLocators.OpenSOFindPageSearchBtn, ElementType.Xpath);
+					if (flag) {
+						commonFunc.checkSuccessToastMessageDisappear();
+						logs.logging("INFO", "Cancel button clicked Successfully in Open SO");
+					}
+				}
 			}
 		}
 		assertTrue(flag);
 	}
+
 
 	/**
 	 * This Method used to verify Open Sale Order Status With OpenSO Document Number

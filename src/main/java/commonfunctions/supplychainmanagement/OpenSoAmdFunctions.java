@@ -526,11 +526,18 @@ public class OpenSoAmdFunctions {
 		flag = webDB.waitForElement(OpenSoAmdLocators.CancelButton, ElementType.Xpath);
 		if (flag) {
 			webDB.doubleClickAnElement(OpenSoAmdLocators.CancelButton, ElementType.Xpath);
-			flag = webDB.waitForElement(OpenSoAmdLocators.OsoaDocSearchField, ElementType.Xpath);
+			flag = webDB.waitForClickElement(OpenSalesOrderLocators.CancelCaution, ElementType.Xpath);
 			if (flag) {
-				logs.logging("Info", "Successfully Clicked a Cancel Button");
+				webDB.clickAnElement(OpenSalesOrderLocators.CancelCaution, ElementType.Xpath);
+				flag = webDB.waitForElementUntilGivenTime(OpenSalesOrderLocators.NoteAlertMessage, ElementType.Xpath,
+						45);
+				flag = webDB.waitForElement(OpenSoAmdLocators.OsoaDocSearchField, ElementType.Xpath);
+				if (flag) {
+					logs.logging("Info", "Successfully Clicked a Cancel Button");
+				}
 			}
 		}
+
 		assertTrue(flag);
 	}
 
