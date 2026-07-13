@@ -146,6 +146,8 @@ public class OpenSalesOrderLocators {
 		public static final String SelecCheckBox = "//table[contains(@aria-label,'Fetch')]/tbody/tr[2]/td[9]" ;
 		/** @locatorType Xpath */
 		public static final String HeaderStatus = "//span[@data-testid='P191513101301_SRCHD_STATUS']" ;
-		
-	
+		/** @locatorType Xpath */
+		public static final String CancelCaution = "//h1[text()='Confirmation']/ancestor::div/following-sibling::div/div/button[text()='OK']" ;
+		/** @locatorType Xpath */
+		public static final String NoteAlertMessage = "//h6[@class='succ_msg']";
 }
