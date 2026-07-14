@@ -245,37 +245,41 @@ public class DirectGrnPageFunctions {
 		String Today = date.format(formatter);
 		String DCNO = BillNo + SupBillNo;
 		VerifyToClickGrnFrame();
-		flag = webDB.waitForElement(DirectGrnPageLocators.GrnLocLov, ElementType.Xpath);
-		if (flag) {
-			commonFunc.searchAndSelectValueInFilters(DirectGrnPageLocators.GrnLocLov, Location);
-			logs.logging("INFO", "Location Is Entered:" + Location);
-			VerifyToClickGrnFrame();
-			flag = webDB.waitForElement(DirectGrnPageLocators.GrnType, ElementType.Xpath);
+		String GetTextLocation = webDB.getDomPropertyFromElement(DirectGrnPageLocators.LocationLOV, ElementType.Xpath,
+				commonFunc.getDataFromTestDataSheet("Value"));
+		if (!GetTextLocation.equals(Location)) {
+			flag = webDB.waitForElement(DirectGrnPageLocators.GrnLocLov, ElementType.Xpath);
 			if (flag) {
-				webDB.selectDropDownByValue(DirectGrnPageLocators.GrnType, Type, ElementType.Xpath);
-				logs.logging("INFO", "Type Is Entered:" + Type);
-				flag = webDB.waitForElement(DirectGrnPageLocators.GrnSupplierLov, ElementType.Xpath);
+				commonFunc.searchAndSelectValueInFilters(DirectGrnPageLocators.GrnLocLov, Location);
+				logs.logging("INFO", "Location Is Entered:" + Location);
+			}
+			VerifyToClickGrnFrame();
+		}
+		flag = webDB.waitForElement(DirectGrnPageLocators.GrnType, ElementType.Xpath);
+		if (flag) {
+			webDB.selectDropDownByValue(DirectGrnPageLocators.GrnType, Type, ElementType.Xpath);
+			logs.logging("INFO", "Type Is Entered:" + Type);
+			flag = webDB.waitForElement(DirectGrnPageLocators.GrnSupplierLov, ElementType.Xpath);
+			if (flag) {
+				commonFunc.searchAndSelectValueInFilters(DirectGrnPageLocators.GrnSupplierLov, Supplier);
+				logs.logging("INFO", "Supplier Is Entered:" + Supplier);
+				VerifyToClickGrnFrame();
+				flag = webDB.waitForElement(DirectGrnPageLocators.GrnSupplierBillNo, ElementType.Xpath);
 				if (flag) {
-					commonFunc.searchAndSelectValueInFilters(DirectGrnPageLocators.GrnSupplierLov, Supplier);
-					logs.logging("INFO", "Supplier Is Entered:" + Supplier);
-					VerifyToClickGrnFrame();
-					flag = webDB.waitForElement(DirectGrnPageLocators.GrnSupplierBillNo, ElementType.Xpath);
+					webDB.sendTextToAnElement(DirectGrnPageLocators.GrnSupplierBillNo, DCNO, ElementType.Xpath);
+					logs.logging("INFO", "Supplier Bill NO Is Entered");
+					flag = webDB.waitForElement(DirectGrnPageLocators.GrnDcNo, ElementType.Xpath);
 					if (flag) {
-						webDB.sendTextToAnElement(DirectGrnPageLocators.GrnSupplierBillNo, DCNO, ElementType.Xpath);
-						logs.logging("INFO", "Supplier Bill NO Is Entered");
-						flag = webDB.waitForElement(DirectGrnPageLocators.GrnDcNo, ElementType.Xpath);
+						webDB.sendTextToAnElement(DirectGrnPageLocators.GrnDcNo, DCNO, ElementType.Xpath);
+						logs.logging("INFO", "DC NO Is Entered");
+						commonFunc.verifyAddTableSpecsClearField(DirectGrnPageLocators.DCDateInput,
+								DirectGrnPageLocators.DCDateInput, Today);
+						flag = webDB.waitForElement(DirectGrnPageLocators.GrnCreate, ElementType.Xpath);
 						if (flag) {
-							webDB.sendTextToAnElement(DirectGrnPageLocators.GrnDcNo, DCNO, ElementType.Xpath);
-							logs.logging("INFO", "DC NO Is Entered");
-							commonFunc.verifyAddTableSpecsClearField(DirectGrnPageLocators.DCDateInput,
-									DirectGrnPageLocators.DCDateInput, Today);
-							flag = webDB.waitForElement(DirectGrnPageLocators.GrnCreate, ElementType.Xpath);
-							if (flag) {
-								webDB.clickAnElement(DirectGrnPageLocators.GrnCreate, ElementType.Xpath);
-								logs.logging("INFO", "GRN Is Created");
-								webDB.switchToDefaultContent();
-								flag = webDB.waitForElement(GrnLocators.GrnDocNumber, ElementType.Xpath);
-							}
+							webDB.clickAnElement(DirectGrnPageLocators.GrnCreate, ElementType.Xpath);
+							logs.logging("INFO", "GRN Is Created");
+							webDB.switchToDefaultContent();
+							flag = webDB.waitForElement(GrnLocators.GrnDocNumber, ElementType.Xpath);
 						}
 					}
 				}
@@ -3195,8 +3199,8 @@ public class DirectGrnPageFunctions {
 			String FileName) throws IOException {
 		verifyDirectGRNStockQtyAndCostForQualityWhHK(SheetName, FileName);
 		verifyDirectGRNStockQtyAndCostForSourceWHHK(SheetName, FileName);
-		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("DuraiUsername"));
+//		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
+//				System.getProperty("DuraiUsername"));
 		commonFunc.naviagteGrnPage();
 		verifyGrnAdd();
 		verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
