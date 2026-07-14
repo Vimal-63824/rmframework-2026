@@ -2665,6 +2665,12 @@ public class CashPaymentFunctions {
 				}
 			}
 		}
+		commonFunc.searchAndSelectValueInFilters(SalesOrderLocators.CFdescLOV, "OF");
+		flag = webDB.waitForElement(CashPaymentLocators.CashHeaderWiseSaveButton1, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(CashPaymentLocators.CashHeaderWiseSaveButton1, ElementType.Xpath);
+			logs.logging("INFO", "Cash Payment Header Wise Save Button Is Clicked Successfully");
+		}
 		clickCreateJournalButton();
 		commonFunc.checkRefreshCellsDisappear();
 		bankreceiptfunc.verifyJournalAmountWithDB(webDB.getDataFromProperties("CPJournal"),
@@ -2888,6 +2894,12 @@ public class CashPaymentFunctions {
 									commonFunc.getDataFromTestDataSheet("PBNetAmount")));
 				}
 			}
+		}
+		commonFunc.searchAndSelectValueInFilters(SalesOrderLocators.CFdescLOV, "OF");
+		flag = webDB.waitForElement(CashPaymentLocators.CashHeaderWiseSaveButton1, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(CashPaymentLocators.CashHeaderWiseSaveButton1, ElementType.Xpath);
+			logs.logging("INFO", "Cash Payment Header Wise Save Button Is Clicked Successfully");
 		}
 		clickCreateJournalButton();
 		clearDataInExcel(SheetName);

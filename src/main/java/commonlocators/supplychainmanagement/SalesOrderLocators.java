@@ -339,7 +339,7 @@ public class SalesOrderLocators {
 	/** @Locator Xpath */
 	public static final String DocumentNumberLov = "//button[@id='P341310231_DOC_NO_FND_lov_btn']";
 	/** @Locator Xpath */
-	public static final String PaymentReceiptSearchButton = "//button[@id='B3543741889963885879']";
+	public static final String PaymentReceiptSearchButton = "//button[@title='Home']/parent::div/button[@title='Clear']/parent::div/button/span[text()='Search']";
 	/** @Locator Xpath */
 	public static final String PayementReceiptCreateButton = "//span[text()='Create']/ancestor::button";
 	/** @Locator Xpath */
@@ -577,11 +577,15 @@ public class SalesOrderLocators {
 	/** @locatorType Xpath */
 	public static final String ForwardEmpInputField = "//input[@id='P236131090_FWD_PERSON']";
 	/** @locatorType Xpath */
-	public static final String SearchBoxContainer1 = "//table[@id='3185852485537798364']/tr/th[3]/a";
+	public static final String SearchBoxContainer1 = "//table[contains(@aria-label,'Multi Closeshot')]/tr/th[3]";
 	/** @locatorType Xpath */
 	public static final String SearchBox1 = "//input[@id='PEND_sort_widget_search_field']";
 	/** @locatorType Xpath */
 	public static final String SOCancelAlert = "//h1[text()='Confirmation']/ancestor::div/following-sibling::div/div/button[text()='Ok']";
+	/** @locatorType Xpath */
+	public static final String CFdescLOV = "//INPUT[@data-testid='CFDesc']/following-sibling::button";
+	
+	
 
 	/** @locatorType Xpath */
 	public static final String selectCheckBoxInMultiCloseShort(String SONumber, int i) {
