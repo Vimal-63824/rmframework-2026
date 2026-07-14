@@ -70,8 +70,8 @@ public class SalesPriceListFunctions {
 		insertItemField();
 		insertSalesPrice(Sales_Value, Disc_Value);
 		clickSaveButton();
-		insertEffitiveDates(commonFunc.getDataFromTestDataSheet("EFF_DATE"),
-				commonFunc.getDataFromTestDataSheet("EFF_TO"));
+//		insertEffitiveDates(commonFunc.getDataFromTestDataSheet("EFF_DATE"),
+//				commonFunc.getDataFromTestDataSheet("EFF_TO"));
 		clickSaveButton();
 		getPriceListDocumentno();
 		PriceListDataBaseValidation();
@@ -124,8 +124,8 @@ public class SalesPriceListFunctions {
 		insertItemField();
 		insertSalesPrice(Sales_Value, Disc_Value);
 		clickSaveButton();
-		insertEffitiveDates(commonFunc.getDataFromTestDataSheet("EFF_DATE"),
-				commonFunc.getDataFromTestDataSheet("EFF_TO"));
+//		insertEffitiveDates(commonFunc.getDataFromTestDataSheet("EFF_DATE"),
+//				commonFunc.getDataFromTestDataSheet("EFF_TO"));
 		clickSaveButton();
 		getPriceListDocumentno();
 		PriceListDataBaseValidation();
@@ -177,8 +177,8 @@ public class SalesPriceListFunctions {
 		insertItemField();
 		insertSalesPrice(Sales_Value, Disc_Value);
 		clickSaveButton();
-		insertEffitiveDates(commonFunc.getDataFromTestDataSheet("EFF_DATE"),
-				commonFunc.getDataFromTestDataSheet("EFF_TO"));
+//		insertEffitiveDates(commonFunc.getDataFromTestDataSheet("EFF_DATE"),
+//				commonFunc.getDataFromTestDataSheet("EFF_TO"));
 		clickSaveButton();
 		getPriceListDocumentno();
 		PriceListDataBaseValidation();
@@ -234,8 +234,8 @@ public class SalesPriceListFunctions {
 		insertItemField();
 		insertSalesPrice(Sales_Value, Disc_Value);
 		clickSaveButton();
-		insertEffitiveDates(commonFunc.getDataFromTestDataSheet("EFF_DATE"),
-				commonFunc.getDataFromTestDataSheet("EFF_TO"));
+//		insertEffitiveDates(commonFunc.getDataFromTestDataSheet("EFF_DATE"),
+//				commonFunc.getDataFromTestDataSheet("EFF_TO"));
 		clickSaveButton();
 		getPriceListDocumentno();
 		PriceListDataBaseValidation();
@@ -315,8 +315,8 @@ public class SalesPriceListFunctions {
 		insertItemField();
 		insertSalesPrice(Sales_Value, Disc_Value);
 		clickSaveButton();
-		insertEffitiveDates(commonFunc.getDataFromTestDataSheet("EFF_DATE"),
-				commonFunc.getDataFromTestDataSheet("EFF_TO"));
+//		insertEffitiveDates(commonFunc.getDataFromTestDataSheet("EFF_DATE"),
+//				commonFunc.getDataFromTestDataSheet("EFF_TO"));
 		clickSaveButton();
 		getPriceListDocumentno();
 		PriceListDataBaseValidation();
@@ -415,9 +415,14 @@ public class SalesPriceListFunctions {
 		flag = webDB.waitForElement(SalesPriceListLocators.PriceList, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(SalesPriceListLocators.PriceList, ElementType.Xpath);
-			flag = webDB.waitForElement(SalesPriceListLocators.PlusButton, ElementType.Xpath);
+			flag = webDB.waitForClickElement(SalesPriceListLocators.PriceListSingle1, ElementType.Xpath);
 			if (flag) {
-				logs.logging("INFO", "Successfully Clicked Price List");
+				commonFunc.checkRefreshCellsDisappear();
+				webDB.clickAnElement(SalesPriceListLocators.PriceListSingle1, ElementType.Xpath);
+				flag = webDB.waitForElement(SalesPriceListLocators.PlusButton, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Successfully Clicked Price List");
+				}
 			}
 		}
 		assertTrue(flag);
