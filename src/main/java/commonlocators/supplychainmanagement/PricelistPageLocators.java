@@ -176,7 +176,7 @@ public class PricelistPageLocators {
 	/** @locatorType Xpath */
 	public static final String PRLSearchButton = "//button[@data-testid='Find']";
 	/** @locatorType Xpath */
-	public static final String PRLFindTable = "//*[@id='3105343585305727316_orig']/tbody/tr[2]/td[1]";
+	public static final String PRLFindTable = "//table[@data-testid='H_Result_Data']/tbody/tr[2]/td[1]";
 	/** @locatorType Xpath */
 	public static final String ClearButton = "//button[@data-testid='Clear']";
 	/** @locatorType Xpath */
