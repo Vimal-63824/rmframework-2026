@@ -2186,7 +2186,7 @@ public class CommonFunctions {
 //		clickSupplyChainTab();
 //		clickPurchaseTab();
 //		clickSSOTransactionTab();
-		navigateToSearchTab(webDB.getDataFromProperties("PURCHASEORDER"), SsoPageLocators.SsoPendingBtnNew);
+		navigateToSearchTab(webDB.getDataFromProperties("PurchaseOrderTab"), SsoPageLocators.SsoPendingBtnNew);
 	}
 
 	/**
