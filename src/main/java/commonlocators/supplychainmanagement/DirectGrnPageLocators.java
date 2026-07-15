@@ -153,16 +153,16 @@ public class DirectGrnPageLocators {
 	/** @locatorType Xpath */
 	public static final String AddHeaderFrame = "//iframe[@title='GRN - Purchase']";
 	/** @locatorType Xpath */
-	public static final String AmendLineFindTable = "//*[@id='8497051965135905024_orig']/tbody/tr[2]/td[2]";
+	public static final String AmendLineFindTable = "//table[@data-testid='H_Result_Data']/tbody/tr[2]/td[2]";
 
 	/** @locatorType Xpath */
 	public static final String AmendLineFindTableData(int i) {
-		return "//table[@id='7777951085516291315_orig']/tbody/tr/td[" + i + "]";
+		return "//table[@data-testid='H_Result_Data']/tbody/tr/td[" + i + "]";
 	}
 
 	/** @locatorType Xpath */
 	public static final String AmendFindTableData(int i) {
-		return "//table[@id='12242177025893385969']/tbody/tr/td[" + i + "]";
+		return "//table[@data-testid='L_Result_Title']/tbody/tr/td[" + i + "]";
 	}
 
 	/** @locatorType Xpath */
@@ -174,7 +174,7 @@ public class DirectGrnPageLocators {
 	/** @locatorType Xpath */
 	public static final String LineCheckBox = "//label[text()='Line(s)']";
 	/** @locatorType Xpath */
-	public static final String AmendFindTable = "//*[@id='12961277905512999678']/tbody/tr[2]/td[2]";
+	public static final String AmendFindTable = "//table[@data-testid='L_Result_Title']/tbody/tr[2]/td[2]";
 	/** @locatorType Xpath */
 	public static final String GRN_Status = "//select[@id='P1615131103_STATUS']";
 	/** @locatorType Xpath */
