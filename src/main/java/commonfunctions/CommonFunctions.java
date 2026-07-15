@@ -592,7 +592,7 @@ public class CommonFunctions {
 //		webDB.navigateToRefresh();
 		webDB.switchToDefaultContent();
 		webDB.switchToMainTab();
-		navigateToHomePage();
+//		navigateToHomePage();
 	}
 
 	/**
@@ -2186,7 +2186,7 @@ public class CommonFunctions {
 //		clickSupplyChainTab();
 //		clickPurchaseTab();
 //		clickSSOTransactionTab();
-		navigateToSearchTab(webDB.getDataFromProperties("PURCHASEORDER"), SsoPageLocators.SsoPendingBtnNew);
+		navigateToSearchTab(webDB.getDataFromProperties("PurchaseOrderTab"), SsoPageLocators.SsoPendingBtnNew);
 	}
 
 	/**
@@ -3373,10 +3373,26 @@ public class CommonFunctions {
 		assertTrue(flag);
 	}
 
+	/**
+	 * This method used to navigate home menu page
+	 * 
+	 * @author Sakthi-GWL
+	 */
 	public void navigateToHomePage() {
-		String HomePageUrl = System.getProperty("url").replace("loginpage/login", "loginpage/menu?session=")
-				.concat(VariableHandler.getSessionID());
-		System.out.println(HomePageUrl);
-		webDB.navigateToUrl(HomePageUrl);
+		try {
+			String HomePageUrl = System.getProperty("url").replace("loginpage/login", "loginpage/menu?session=")
+					.concat(VariableHandler.getSessionID());
+			System.out.println(HomePageUrl);
+			webDB.navigateToUrl(HomePageUrl);
+			flag = webDB.waitForElement(CommonUiLocators.GetTextUserName, ElementType.Xpath);
+			if (!flag) {
+				VariableHandler.setSessionID(null);
+				enterUrl();
+			}
+		} catch (Exception e) {
+			logs.loggingconsole("INFO", "Exception Occurs while switch home page: " + e);
+			VariableHandler.setSessionID(null);
+			enterUrl();
+		}
 	}
 }

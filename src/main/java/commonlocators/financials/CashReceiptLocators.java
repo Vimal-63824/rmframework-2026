@@ -299,7 +299,9 @@ public class CashReceiptLocators {
 	public static final String AdvPendingReceivablesOkButton = "//span[text()='Ok']";
 	/** @locatorType Xpath */
 	public static final String PendingReceivablesAdvancePendingDRDocs1 = "//h1[text()='Create Pending']/ancestor::div/following::div[9]/button/span[text()='Pending Receivable - Advance']";
-
+	/** @locatorType Xpath */
+	public static final String RowSelectedButton = "//button[@id='RSEL']/span/span";
+	
 	/** @locatorType Xpath */
 	public static final String BPPendingPartyDocumentSelectCheckBox(String VoucherNumber) {
 		return "//td[contains(text(),'" + VoucherNumber + "')]/../td[13]/*";

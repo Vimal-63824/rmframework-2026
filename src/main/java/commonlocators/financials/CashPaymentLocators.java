@@ -118,7 +118,7 @@ public class CashPaymentLocators {
 	/** @locatorType Xpath */
 	public static final String PendingPayablesDocNumberLovButton = "//input[@data-testid='P3413101001_DOC_NO']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String PendingPayablesDocumentNumberField = "//*[@id='4197259402980598581_orig']/tbody/tr[2]/td[21]";
+	public static final String PendingPayablesDocumentNumberField = "//table[contains(@aria-label,'Pending Payables')]/tbody/tr/td[21]";
 	/** @locatorType Xpath */
 	public static final String PendingPayablesCreateButton = "//button[@data-testid='Create']";
 	/** @locatorType Xpath */
@@ -283,7 +283,9 @@ public class CashPaymentLocators {
 	public static final String CashPaymentApplyDeductionCheckedButton = "//button[@id='Appl_Ded_1']";
 	/** @locatorType Xpath */
 	public static final String BankHeaderAdvCreateJournalButton = "//button[@data-testid='CreJournal']";
-	
+
+	public static final String CashHeaderWiseSaveButton1 = "//button[@data-testid='Save1']";
+
 	/** @locatorType Xpath */
 	public static final String BPPendingPartyDocumentSelectCheckBox(String VoucherNumber) {
 		return "//td[contains(text(),'" + VoucherNumber + "')]/../td[13]/*";
@@ -320,7 +322,7 @@ public class CashPaymentLocators {
 		return "#ig_line_ig_grid_vc > div.a-GV-bdy > div.a-GV-w-scroll > table > tbody > tr:nth-child(" + i
 				+ ") > td:nth-child(14) > a";
 	}
-	
+
 	/** @locatorType Xpath */
 	public static final String LineWiseTDS(int i) {
 		return "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[" + i + "]/td[24]";

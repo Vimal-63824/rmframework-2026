@@ -53,7 +53,7 @@ public class SalesInvoiceLocators {
 	/** @Locator XPATH */
 	public static final String Item_Lov_Btn = "//input[@data-testid='SILN_PROD_ID_REV']/following-sibling::button";
 	/** @Locator XPATH */
-	public static final String Sales_GL_Acc_Desc_Column = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[6]";
+	public static final String Sales_GL_Acc_Desc_Column = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[7]";
 	/** @Locator XPATH */
 	public static final String Sales_GL_Acc_Desc_LOV_Btn = "//input[@data-testid='SILN_SAL_ACCT_ID']/following-sibling::button";
 	/** @Locator XPATH */
@@ -71,7 +71,7 @@ public class SalesInvoiceLocators {
 	/** @Locator XPATH */
 	public static final String Header_CPC_LOV_Btn = "//input[@data-testid='P191513109001_SIHD_CC_CODE']/following-sibling::button";
 	/** @Locator XPATH */
-	public static final String HSNcode_Column = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[13]";
+	public static final String HSNcode_Column = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[14]";
 	/** @Locator XPATH */
 	public static final String HSN_Code_LOV_Btn = "//input[@data-testid='SILN_HSN_CODE']/following-sibling::button";
 	/** @Locator XPATH */
@@ -427,7 +427,7 @@ public class SalesInvoiceLocators {
 	/** @locatorType Xpath */
 	public static final String LineDetails(int i) {
 		return "//*[@id=\'ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[" + i
-				+ "]/td[20]/a/span[contains(@style,'blue')]";
+				+ "]/td[21]/a/span[contains(@style,'blue')]";
 	}
 
 	/** @locatorType Xpath */

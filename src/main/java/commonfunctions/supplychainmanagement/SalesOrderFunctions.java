@@ -2857,6 +2857,8 @@ public class SalesOrderFunctions {
 				webDB.sendTextToAnElement(SalesOrderLocators.BankReceiptsRefNumber, RefNumber, ElementType.Xpath);
 				bankreceiptfunc.checkARMControlBankNameRqrdFlag(commonFunc.getDataFromTestDataSheet("BankName"));
 				bankreceiptfunc.checkARMControlReceivedFromRqrdFlag();
+				commonFunc.searchAndSelectValueInFilters(SalesOrderLocators.CFdescLOV, "OF");
+				webDB.pressTabKey();
 				flag = webDB.waitForElement(SalesOrderLocators.BankReceiptCreateJournalButton, ElementType.Xpath);
 				if (flag) {
 					webDB.clickAnElement(SalesOrderLocators.BankReceiptCreateJournalButton, ElementType.Xpath);

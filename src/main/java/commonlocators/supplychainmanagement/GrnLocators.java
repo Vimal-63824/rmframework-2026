@@ -378,6 +378,6 @@ public class GrnLocators {
 	/** @locatorType Xpath */
 	public static final String AcceptQuantity = "//div[@id='grn_lot_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[9]";
 	/** @locatorType Xpath */
-	public static String GrnDocumentStatus = "//table[@data-testid='L_Result_Title']/tbody/tr/td[17]";
+	public static String GrnDocumentStatus = "//table[@data-testid='L_Result_Title']/tbody/tr/td[18]";
 
 }
