@@ -2848,27 +2848,27 @@ public class DirectGrnPageFunctions {
 		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
 				"DuraiUsername");
 		commonFunc.naviagteGrnPage();
-		verifyAmendFilterSearchSOB(DirectGrnPageLocators.LocId, commonFunc.getDataFromTestDataSheet("Loc_100"), 3,
+		verifyAmendFilterSearchSOB(DirectGrnPageLocators.LocId, commonFunc.getDataFromTestDataSheet("Loc_100"), 4,
 				commonFunc.getDataFromTestDataSheet("HeaderSearchType"),
 				commonFunc.getDataFromTestDataSheet("LovButton"));
-		verifyAmendFilterSearchSOB(DirectGrnPageLocators.Unit, commonFunc.getDataFromTestDataSheet("Unit_100"), 4,
+		verifyAmendFilterSearchSOB(DirectGrnPageLocators.Unit, commonFunc.getDataFromTestDataSheet("Unit_100"), 5,
 				commonFunc.getDataFromTestDataSheet("HeaderSearchType"),
 				commonFunc.getDataFromTestDataSheet("LovButton"));
-		verifyAmendFilterSearchSOB(DirectGrnPageLocators.GRNNO, commonFunc.getDataFromTestDataSheet("GRNNumber"), 9,
+		verifyAmendFilterSearchSOB(DirectGrnPageLocators.GRNNO, commonFunc.getDataFromTestDataSheet("GRNNumber"), 10,
 				commonFunc.getDataFromTestDataSheet("LineSearchType"),
 				commonFunc.getDataFromTestDataSheet("LovButton"));
 		verifyAmendFilterSearchSOB(DirectGrnPageLocators.SupplierNameLovButton,
-				commonFunc.getDataFromTestDataSheet("OpenPOSupplier"), 10,
+				commonFunc.getDataFromTestDataSheet("OpenPOSupplier"), 11,
 				commonFunc.getDataFromTestDataSheet("LineSearchType"),
 				commonFunc.getDataFromTestDataSheet("LovButton"));
-		verifyAmendFilterSearchSOB(DirectGrnPageLocators.ItemId, commonFunc.getDataFromTestDataSheet("GRNItem"), 12,
+		verifyAmendFilterSearchSOB(DirectGrnPageLocators.ItemId, commonFunc.getDataFromTestDataSheet("GRNItem"), 15,
 				commonFunc.getDataFromTestDataSheet("LineSearchType"),
 				commonFunc.getDataFromTestDataSheet("LovButton"));
-		verifyAmendFilterSearchSOB(DirectGrnPageLocators.ItemDesc, commonFunc.getDataFromTestDataSheet("GRNItem"), 14,
+		verifyAmendFilterSearchSOB(DirectGrnPageLocators.ItemDesc, commonFunc.getDataFromTestDataSheet("GRNItem"), 17,
 				commonFunc.getDataFromTestDataSheet("LineSearchType"),
 				commonFunc.getDataFromTestDataSheet("SendTextInput"));
 		verifyAmendFilterSearchSOB(DirectGrnPageLocators.GRN_Status,
-				commonFunc.getDataFromTestDataSheet("ApproveStatus"), 16,
+				commonFunc.getDataFromTestDataSheet("ApproveStatus"), 17,
 				commonFunc.getDataFromTestDataSheet("HeaderSearchType"),
 				commonFunc.getDataFromTestDataSheet("SelectType"));
 		verifyDateAfterAndBefore();
@@ -2916,14 +2916,14 @@ public class DirectGrnPageFunctions {
 				ElementType.Xpath);
 		clickSearchButton();
 		commonFunc.hardWait(3000);
-		verifyAmendTableValueAfterDate(6, commonFunc.getDataFromTestDataSheet("EffFrom"));
+		verifyAmendTableValueAfterDate(8, commonFunc.getDataFromTestDataSheet("EffFrom"));
 		clearSearchFilter();
 		flag = webDB.waitForElement(DirectGrnPageLocators.GRNDtTo, ElementType.Xpath);
 		webDB.sendTextToAnElement(DirectGrnPageLocators.GRNDtTo, commonFunc.getDataFromTestDataSheet("EffTo"),
 				ElementType.Xpath);
 		clickSearchButton();
 		commonFunc.hardWait(3000);
-		verifyAmendTableValueBeforeDate(6, commonFunc.getDataFromTestDataSheet("EffTo"));
+		verifyAmendTableValueBeforeDate(8, commonFunc.getDataFromTestDataSheet("EffTo"));
 		clearSearchFilter();
 //		flag = webDB.waitForElement(PurchaseOrderPageLocators.RequestDtFrom, ElementType.Xpath);
 //		webDB.sendTextToAnElement(PurchaseOrderPageLocators.RequestDtFrom,
