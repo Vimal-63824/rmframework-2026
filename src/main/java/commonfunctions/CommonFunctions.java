@@ -3374,9 +3374,22 @@ public class CommonFunctions {
 	}
 
 	public void navigateToHomePage() {
+//		if (webDB.waitForElementUntilGivenTime(CommonUiLocators.LoginForm, ElementType.Xpath, 10)) {
+//			VariableHandler.setSessionID(null);
+//			enterUrl();
+//		} else if (WebDriverBase.getDriver().getTitle().contains("Sign In")) {
+//			VariableHandler.setSessionID(null);
+//			enterUrl();
+//		} else {
 		String HomePageUrl = System.getProperty("url").replace("loginpage/login", "loginpage/menu?session=")
 				.concat(VariableHandler.getSessionID());
 		System.out.println(HomePageUrl);
 		webDB.navigateToUrl(HomePageUrl);
+		flag = webDB.waitForElement(CommonUiLocators.GetTextUserName, ElementType.Xpath);
+		if (!flag) {
+			VariableHandler.setSessionID(null);
+			enterUrl();
+		}
+//		}
 	}
 }
