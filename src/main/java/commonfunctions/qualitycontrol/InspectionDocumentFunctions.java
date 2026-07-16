@@ -254,7 +254,8 @@ public class InspectionDocumentFunctions {
 		waitingForApproval();
 		String alertText = VariableHandler.getIDAlertMessage();
 		logs.logging("INFO", "Alert text: " + alertText);
-		String pattern = "Pend\\. Inspection Request Moved\\s*-\\s*[A-Za-z0-9]+/\\d{5}/\\d{2}-\\d{2}\\s*~\\s*[A-Za-z0-9]+/\\d{5}/\\d{2}-\\d{2}";
+//		String pattern = "Pend\\. Inspection Request Moved\\s*-\\s*[A-Za-z0-9]+/\\d{5}/\\d{2}-\\d{2}\\s*~\\s*[A-Za-z0-9]+/\\d{5}/\\d{2}-\\d{2}";
+		String pattern = "Pend\\. Inspection Request Moved\\.\\s*:\\s*([A-Za-z0-9]+)/([0-9]{5})/([0-9]{2}-[0-9]{2})\\s*to\\s*([A-Za-z0-9]+)/([0-9]{5})/([0-9]{2}-[0-9]{2})";
 		if (alertText.matches(".*" + pattern + ".*")) {
 			documentSearchAndSelectLovForFindPage();
 			commonFunc.logoutUser();
@@ -820,9 +821,9 @@ public class InspectionDocumentFunctions {
 		try {
 			String alertText = VariableHandler.getIDAlertMessage();
 			logs.logging("INFO", "Alert text: " + alertText);
-			String pattern = "Pend\\. Inspection Request Moved\\s*-\\s*IDU2-\\d{4}-\\d{5}\\s*~\\s*IDU2-\\d{4}-\\d{5}";
-
-			if (alertText.matches(".*" + pattern + ".*")) {
+//			String pattern = "Pend\\. Inspection Request Moved\\s*-\\s*IDU2-\\d{4}-\\d{5}\\s*~\\s*IDU2-\\d{4}-\\d{5}";
+			String regex = "Pend\\. Inspection Request Moved\\.\\s*:\\s*[A-Za-z0-9]+-\\d{4}-\\d{5}\\s*to\\s*[A-Za-z0-9]+-\\d{4}-\\d{5}";
+			if (alertText.matches(".*" + regex + ".*")) {
 				documentSearchAndSelectLovForFindPage();
 				commonFunc.logoutUser();
 				logs.logging("INFO", "Specific alert found, proceeding with the process.");
