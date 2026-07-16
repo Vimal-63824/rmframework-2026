@@ -201,7 +201,7 @@ public class RfqLocators {
 
 	/** @locatorType Xpath */
 	public static final String SobItemField(int i) {
-		return "//*[@id=\'R2404144946394686315_ig_grid_vc\']/div[3]/div[3]/table/tbody/tr[" + i + "]/td[2]";
+		return "//*[@id=\'R800740811777796523_ig_grid_vc\']/div[3]/div[3]/table/tbody/tr[" + i + "]/td[2]";
 	}
 
 	/** @locatorType Xpath */
