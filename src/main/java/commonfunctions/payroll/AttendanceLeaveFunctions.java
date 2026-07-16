@@ -1719,11 +1719,12 @@ public class AttendanceLeaveFunctions {
 	 * @author Sakthi-GWL
 	 */
 	private void switchPendingRequestIframeLeaveEntry() {
+		commonFunc.checkRefreshCellsDisappear();
 		flag = webDB.waitForElement(AttendanceLeaveLocators.LeaveEntryPendingRequestIframe, ElementType.Xpath);
-		if (flag) {
+//		if (flag) {
 			webDB.switchToFrame(AttendanceLeaveLocators.LeaveEntryPendingRequestIframe, ElementType.Xpath);
 			flag = webDB.waitForElement(AttendanceLeaveLocators.LeaveEntryPendReqSearchBar, ElementType.Xpath);
-		}
+//		}
 		Assert.assertTrue(flag);
 	}
 
