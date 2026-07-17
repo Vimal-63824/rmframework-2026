@@ -353,7 +353,7 @@
 	"BankName": "STATE BANK OF INDIA - 30305325953",
 	"AdvDocNumber": "10000039",
 	"Reference Number": "6374-0001",
-	"BRVDocumentStatus": "Approved",
+	"BRVDocumentStatus": "Received",
 	"SONO": "${SONO}",
 	"SoDBLocationColumnName": "Location ID",
 	"SoDBUnitColumnName": "Unit ID",
@@ -2074,6 +2074,6 @@
 	"BomAllInsideWoResMT": "BOM-2627-0000804",
 	"BomPoCl": "BOM-2627-0000899",
 	"BomPoEq": "BOM-2627-0000941",
-	"PriceListSingle" : "Price List",
-	"PriceListMulti" : "Price List Multi"
+	"PriceListSingle": "Price List",
+	"PriceListMulti": "Price List Multi"
 }
