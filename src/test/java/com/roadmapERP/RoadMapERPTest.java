@@ -1,5 +1,7 @@
 package com.roadmapERP;
 
+import java.time.Duration;
+
 import org.testng.ITestContext;
 import org.testng.annotations.AfterClass;
 /**
@@ -38,6 +40,8 @@ public class RoadMapERPTest {
 		WebDriverBase.chromeOptions.addArguments("--disable-features=GCM");
 		WebDriverBase.chromeOptions.setAcceptInsecureCerts(true);
 		commonFunc.browserOpen();
+		WebDriverBase.getDriver().manage().timeouts().pageLoadTimeout(Duration.ofSeconds(90));
+		WebDriverBase.getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(90));
 	}
 
 	/**
