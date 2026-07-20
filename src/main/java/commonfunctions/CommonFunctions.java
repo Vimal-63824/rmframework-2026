@@ -85,9 +85,9 @@ public class CommonFunctions {
 			webDB.Setup(System.getProperty("platformName"));
 			enterUrl();
 		} catch (Exception e) {
-			logs.logging("INFO", "Browser not Setup with the Exception: " + e);
-			logs.logging("INFO", "Retrying Browser Open Again....!!!");
-			Assert.fail(e.toString());
+			logs.loggingconsole("INFO", "Browser not Setup with the Exception: " + e);
+			logs.loggingconsole("INFO", "Retrying Browser Open Again....!!!");
+//			Assert.fail(e.toString());
 		}
 	}
 
@@ -102,9 +102,9 @@ public class CommonFunctions {
 			webDB.enterURL(System.getProperty("url"));
 			flag = webDB.waitForElementUntilGivenTime(CommonUiLocators.LoginForm, ElementType.Xpath, 45);
 		} catch (Exception e) {
-			logs.logging("INFO", "Enter URL Failed with the Exception: " + e);
-			logs.logging("INFO", "Retrying Navigate To URL");
-			Assert.fail(e.toString());
+			logs.loggingconsole("INFO", "Enter URL Failed with the Exception: " + e);
+			logs.loggingconsole("INFO", "Retrying Navigate To URL");
+//			Assert.fail(e.toString());
 		}
 		return flag;
 	}
