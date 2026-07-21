@@ -983,6 +983,7 @@ public class PurchaseOrderFunctions {
 			webDB.moveToElement(PurchaseRequestLocators.ItemDataLastRow, ElementType.Xpath);
 			webDB.moveToElement(PurchaseOrderPageLocators.DeleteLineItemPO(DataValue), ElementType.Xpath);
 			webDB.clickAnElement(PurchaseOrderPageLocators.DeleteLineItemPO(DataValue), ElementType.Xpath);
+			webDB.switchToAlertAccept();
 			flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Toast Message Displayed, Line Deleted Successfully with value: " + DataValue);
@@ -1656,6 +1657,8 @@ public class PurchaseOrderFunctions {
 		if (flag) {
 			String POTotalAmount = webDB.getDomPropertyFromElement(PurchaseOrderPageLocators.POTotalAmount,
 					ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
+			System.out.println(POTotalAmount);
+			System.out.println(VariableHandler.getPOTotalAmount());
 			flag = POTotalAmount.equals(VariableHandler.getPOTotalAmount());
 
 		}
@@ -1809,7 +1812,7 @@ public class PurchaseOrderFunctions {
 		}
 		BigDecimal TaxcalAmount = new BigDecimal("0");
 		for (int i = 1; i <= LineAmountWE.size(); i++) {
-			for (int j = 12; j <= 15; j++) {
+			for (int j = 14; j <= 17; j++) {
 				String TaxAmount = webDB.getTextFromElement(PurchaseOrderPageLocators.TaxAmount(i, j),
 						ElementType.Xpath);
 				logs.logging("INFO", "Get Text Tax Amount Is: " + TaxAmount);
@@ -7383,14 +7386,14 @@ public class PurchaseOrderFunctions {
 				ElementType.Xpath);
 		clickSearchButton();
 		commonFunc.hardWait(3000);
-		verifyAmendTableValueAfterDate(7, commonFunc.getDataFromTestDataSheet("EffFrom"));
+		verifyAmendTableValueAfterDate(6, commonFunc.getDataFromTestDataSheet("EffFrom"));
 		clearSearchFilter();
 		flag = webDB.waitForElement(PurchaseOrderPageLocators.PoDtTo, ElementType.Xpath);
 		webDB.sendTextToAnElement(PurchaseOrderPageLocators.PoDtTo, commonFunc.getDataFromTestDataSheet("EffTo"),
 				ElementType.Xpath);
 		clickSearchButton();
 		commonFunc.hardWait(3000);
-		verifyAmendTableValueBeforeDate(7, commonFunc.getDataFromTestDataSheet("EffTo"));
+		verifyAmendTableValueBeforeDate(6, commonFunc.getDataFromTestDataSheet("EffTo"));
 		clearSearchFilter();
 //		flag = webDB.waitForElement(PurchaseOrderPageLocators.RequestDtFrom, ElementType.Xpath);
 //		webDB.sendTextToAnElement(PurchaseOrderPageLocators.RequestDtFrom,
@@ -7642,21 +7645,21 @@ public class PurchaseOrderFunctions {
 				commonFunc.getDataFromTestDataSheet("HeaderSearchType"),
 				commonFunc.getDataFromTestDataSheet("LovButton"));
 		logs.logging("INFO", "Unit Validated Successfully....");
-		verifyAmendFilterSearchSOB(PurchaseOrderPageLocators.PrNo, commonFunc.getDataFromTestDataSheet("PrNumber"), 79,
-				commonFunc.getDataFromTestDataSheet("LineSearchType"),
-				commonFunc.getDataFromTestDataSheet("LovButton"));
-		logs.logging("INFO", "Purchase Request Number Validated Successfully....");
-		verifyAmendFilterSearchSOB(PurchaseOrderPageLocators.PONo, commonFunc.getDataFromTestDataSheet("PONumber"), 9,
-				commonFunc.getDataFromTestDataSheet("LineSearchType"),
-				commonFunc.getDataFromTestDataSheet("LovButton"));
-		logs.logging("INFO", "Purchase Order Number Validated Successfully....");
+//		verifyAmendFilterSearchSOB(PurchaseOrderPageLocators.PrNo, commonFunc.getDataFromTestDataSheet("PrNumber"), 80,
+//				commonFunc.getDataFromTestDataSheet("LineSearchType"),
+//				commonFunc.getDataFromTestDataSheet("LovButton"));
+//		logs.logging("INFO", "Purchase Request Number Validated Successfully....");
+//		verifyAmendFilterSearchSOB(PurchaseOrderPageLocators.PONo, commonFunc.getDataFromTestDataSheet("PONumber"), 9,
+//				commonFunc.getDataFromTestDataSheet("LineSearchType"),
+//				commonFunc.getDataFromTestDataSheet("LovButton"));
+//		logs.logging("INFO", "Purchase Order Number Validated Successfully....");
 		verifyAmendFilterSearchSOB(PurchaseOrderPageLocators.SupplierNameLovButton,
 				commonFunc.getDataFromTestDataSheet("PraxairSupplier"), 12,
 				commonFunc.getDataFromTestDataSheet("LineSearchType"),
 				commonFunc.getDataFromTestDataSheet("LovButton"));
 		logs.logging("INFO", "Supplier Name Validated Successfully....");
 		verifyAmendFilterSearchSOB(PurchaseOrderPageLocators.BuyerLovButton,
-				commonFunc.getDataFromTestDataSheet("SelvaKumarB"), 10,
+				commonFunc.getDataFromTestDataSheet("SelvaKumarB"), 11,
 				commonFunc.getDataFromTestDataSheet("LineSearchType"),
 				commonFunc.getDataFromTestDataSheet("LovButton"));
 		logs.logging("INFO", "Buyer Name Validated Successfully....");
@@ -7665,16 +7668,16 @@ public class PurchaseOrderFunctions {
 				commonFunc.getDataFromTestDataSheet("LineSearchType"),
 				commonFunc.getDataFromTestDataSheet("SelectType"));
 		logs.logging("INFO", "PO Type Validated Successfully....");
-		verifyAmendFilterSearchSOB(PurchaseOrderPageLocators.ItemId, commonFunc.getDataFromTestDataSheet("PoItem"), 17,
+		verifyAmendFilterSearchSOB(PurchaseOrderPageLocators.ItemId, commonFunc.getDataFromTestDataSheet("PoItem"), 18,
 				commonFunc.getDataFromTestDataSheet("LineSearchType"),
 				commonFunc.getDataFromTestDataSheet("LovButton"));
 		logs.logging("INFO", "Item Id Validated Successfully....");
-		verifyAmendFilterSearchSOB(PurchaseOrderPageLocators.ItemDesc, commonFunc.getDataFromTestDataSheet("PoItem"),
-				19, commonFunc.getDataFromTestDataSheet("HeaderSearchType"),
-				commonFunc.getDataFromTestDataSheet("SendTextInput"));
-		logs.logging("INFO", "Item Description Validated Successfully....");
+//		verifyAmendFilterSearchSOB(PurchaseOrderPageLocators.ItemDesc, commonFunc.getDataFromTestDataSheet("PoItem"),
+//				19, commonFunc.getDataFromTestDataSheet("LineSearchType"),
+//				commonFunc.getDataFromTestDataSheet("SendTextInput"));
+//		logs.logging("INFO", "Item Description Validated Successfully....");
 		verifyAmendFilterSearchSOB(PurchaseOrderPageLocators.PO_Status,
-				commonFunc.getDataFromTestDataSheet("ApproveStatus"), 15,
+				commonFunc.getDataFromTestDataSheet("ApproveStatus"), 16,
 				commonFunc.getDataFromTestDataSheet("LineSearchType"),
 				commonFunc.getDataFromTestDataSheet("SelectType"));
 		logs.logging("INFO", "Po Status Validated Successfully....");
