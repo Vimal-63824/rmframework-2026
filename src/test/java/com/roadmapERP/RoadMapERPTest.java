@@ -41,7 +41,7 @@ public class RoadMapERPTest {
 		WebDriverBase.chromeOptions.setAcceptInsecureCerts(true);
 		commonFunc.browserOpen();
 		WebDriverBase.getDriver().manage().timeouts().pageLoadTimeout(Duration.ofSeconds(90));
-		WebDriverBase.getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(90));
+//		WebDriverBase.getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(90));
 	}
 
 	/**
