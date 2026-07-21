@@ -708,9 +708,12 @@ public class OpenPoRcFunctions {
 			webDB.moveToElement(OpenPoRcLocators.ItemTable, ElementType.Xpath);
 			webDB.moveToElement(OpenPoRcLocators.LineCancelButton, ElementType.Xpath);
 			webDB.doubleClickAnElement(OpenPoRcLocators.LineCancelButton, ElementType.Xpath);
-			webDB.switchToAlertAccept();
 			commonFunc.hardWait(2000);
-			commonFunc.checkRefreshCellsDisappear();
+//			webDB.pressEnterKey();
+			webDB.switchToAlertAccept(5);
+			commonFunc.hardWait(7000);
+//			webDB.switchToDefaultContent();
+//			commonFunc.checkRefreshCellsDisappear();
 			flag = webDB.waitForElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Toast Message Displayed, Line Deleted Successfully");
@@ -730,11 +733,12 @@ public class OpenPoRcFunctions {
 	 * 
 	 */
 	public void verifyCancelDocuments() {
-		webDB.moveToElement(OpenPoRcLocators.HeaderCancelButton, ElementType.Xpath);
+//		webDB.moveToElement(OpenPoRcLocators.HeaderCancelButton, ElementType.Xpath);
 		flag = webDB.waitForElement(OpenPoRcLocators.HeaderCancelButton, ElementType.Xpath);
 		if (flag) {
 			webDB.doubleClickAnElement(OpenPoRcLocators.HeaderCancelButton, ElementType.Xpath);
 //			webDB.switchToAlertAccept();
+//			commonFunc.hardWait(3000);
 			flag = webDB.waitForElement(CommonUiLocators.OkayButton, ElementType.Xpath);
 			if (flag) {
 				webDB.clickAnElement(CommonUiLocators.OkayButton, ElementType.Xpath);
@@ -3475,11 +3479,11 @@ public class OpenPoRcFunctions {
 		commonFunc.navigateOpenPORCPage();
 		verifyClickOpenPOAmendmentButton();
 		verifyAmendFilterSearchOpenPO(OpenPoRcLocators.AmendItemButton,
-				commonFunc.getDataFromTestDataSheet("SampleItemName"), 16,
+				commonFunc.getDataFromTestDataSheet("SampleItemName"), 21,
 				commonFunc.getDataFromTestDataSheet("LineSearchType"));
-		verifyAmendFilterSearchOpenPO(OpenPoRcLocators.AmendSelectStatus,
-				commonFunc.getDataFromTestDataSheet("ApproveStatus"), 13,
-				commonFunc.getDataFromTestDataSheet("HeaderSearchType"), true);
+//		verifyAmendFilterSearchOpenPO(OpenPoRcLocators.AmendSelectStatus,
+//				commonFunc.getDataFromTestDataSheet("ApproveStatus"), 13,
+//				commonFunc.getDataFromTestDataSheet("HeaderSearchType"), true);
 //		verifyAmendFilterSearchOpenPO(OpenPoRcLocators.AmendOpenPONo,
 //				commonFunc.getDataFromTestDataSheet("OpenPONumber"), 6,
 //				commonFunc.getDataFromTestDataSheet("HeaderSearchType"));

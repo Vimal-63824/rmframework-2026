@@ -26,7 +26,7 @@ public class PurchaseRequestLocators {
 
 	/** @locatorType Xpath */
 	public static final String PRStatusBoldText(String value) {
-		return "(//td/a[text()='" + value + "']/../../td/div[contains(@style,'bold')][last()])[1]";
+		return "(//td/a[text()='" + value + "']/../../td/div[contains(@style,'bold')][last()])[last()]";
 	}
 
 	/** @locatorType Xpath */
@@ -109,13 +109,13 @@ public class PurchaseRequestLocators {
 	/** @locatorType Xpath */
 	public static final String PRCloseShort_SearchBtn = "//button[@data-testid='Find']";
 	/** @locatorType Xpath */
-	public static final String PRCloseShort_LocId = "//button[contains(@id,'PCH_PLNT_LOC_ID')]";
+	public static final String PRCloseShort_LocId = "//input[@id='P1615131122011_PCH_PLNT_LOC_ID']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String PRCloseShort_Prefix = "//button[contains(@id,'PFX')]";
+	public static final String PRCloseShort_Prefix = "//input[@id='P1615131122011_PFX']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String PRCloseShort_Reference = "//input[contains(@id,'PCH_REF')]";
+	public static final String PRCloseShort_Reference = "//input[@id='P1615131122011_PCH_REF']";
 	/** @locatorType Xpath */
-	public static final String PRCloseShort_TickIcon = "//button[@data-testid='Create']";
+	public static final String PRCloseShort_TickIcon = "//button[@data-testid='Create' and @id='B1919072352673373788']";
 	/** @locatorType Xpath */
 	public static final String PRCloseShort_DocNoText = "//input[contains(@id,'PCH_DOC_NO')]";
 	/** @locatorType Xpath */
@@ -248,4 +248,8 @@ public class PurchaseRequestLocators {
 	public static final String HeaderSaveButton = "//button[@data-testid='SAVE']";
 	/** @Locator XPATH */
 	public static final String HeaderPostButton = "//button[@data-testid='Closeshort']";
+	/** @Locator XPATH */
+	public static final String CreatePRButton = "//span[text()='Create PR Amd.']/..";
+	/** @Locator XPATH */
+	public static final String PRAmendFrame = "//iframe[@title='PR /SSR CS/Amendment']";
 }

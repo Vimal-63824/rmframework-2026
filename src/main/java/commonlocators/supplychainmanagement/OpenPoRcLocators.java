@@ -225,9 +225,9 @@ public class OpenPoRcLocators {
 	/** @locatorType Xpath */
 	public static final String AmendSelectStatus = "//select[@data-testid='P1615131021_STATUS']";
 	/** @locatorType Xpath */
-	public static final String AmendFindTable = "//table[@id='3601977330026062445_orig']/tbody/tr[2]/td[1]";
+	public static final String AmendFindTable = "//table[@data-testid='L_Result_Data']/tbody/tr[2]/td[1]";
 	/** @locatorType Xpath */
-	public static final String AmendLineFindTable = "//table[@id='2038672469665384362_orig']/tbody/tr[2]/td[1]";
+	public static final String AmendLineFindTable = "//table[@data-testid='H_Result_Data']/tbody/tr[2]/td[1]";
 	/** @locatorType Xpath */
 	public static final String LineCheckBox = "//label[text()='Line(s)']";
 
@@ -238,7 +238,7 @@ public class OpenPoRcLocators {
 
 	/** @locatorType Xpath */
 	public static final String AmendFindTableData(int i) {
-		return "//table[@id='1950966915442829331_orig']/tbody/tr/td[" + i + "]";
+		return "//table[@data-testid='L_Result_Data']/tbody/tr/td[" + i + "]";
 	}
 
 	/** @locatorType Xpath */

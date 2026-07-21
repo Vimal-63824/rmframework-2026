@@ -98,4 +98,6 @@ public class ShareOfBusinessLocators {
 
 	/** @locatorType Xpath */
 	public static final String SOBFrame = "//iframe[@title='Share of Business']";
+	/** @locatorType Xpath */
+	public static final String OkButton = "//button[text()='OK']";
 }

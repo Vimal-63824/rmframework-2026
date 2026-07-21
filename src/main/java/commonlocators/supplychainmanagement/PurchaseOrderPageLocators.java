@@ -114,22 +114,22 @@ public class PurchaseOrderPageLocators {
 
 	/** @locatorType Xpath */
 	public static final String LineAmount(String text) {
-		return "//td[text()='" + text + "']/../td[9]";
-	}
-
-	/** @locatorType Xpath */
-	public static final String TaxPercentage(String text) {
 		return "//td[text()='" + text + "']/../td[11]";
 	}
 
 	/** @locatorType Xpath */
-	public static final String TaxCGST(String text) {
+	public static final String TaxPercentage(String text) {
 		return "//td[text()='" + text + "']/../td[13]";
 	}
 
 	/** @locatorType Xpath */
+	public static final String TaxCGST(String text) {
+		return "//td[text()='" + text + "']/../td[15]";
+	}
+
+	/** @locatorType Xpath */
 	public static final String TaxSGST(String text) {
-		return "//td[text()='" + text + "']/../td[14]";
+		return "//td[text()='" + text + "']/../td[16]";
 	}
 
 	/** @locatorType Xpath */
@@ -182,7 +182,7 @@ public class PurchaseOrderPageLocators {
 
 	/** @locatorType Xpath */
 	public static final String LineAmount(int i) {
-		return "(//*[@id='ig_po_lineitems_ig_grid_vc']/div/div/table[1])[2]/tbody/tr[" + i + "]/td[9]";
+		return "(//*[@id='ig_po_lineitems_ig_grid_vc']/div/div/table[1])[2]/tbody/tr[" + i + "]/td[11]";
 	}
 
 	/** @locatorType Xpath */
