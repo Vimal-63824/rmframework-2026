@@ -388,11 +388,15 @@ public class ShareOfBusinessFunctions {
 			webDB.moveToElement(ShareOfBusinessLocators.TypeTable, ElementType.Xpath);
 			webDB.moveToElement(ShareOfBusinessLocators.DeleteLine, ElementType.Xpath);
 			webDB.clickAnElement(ShareOfBusinessLocators.DeleteLine, ElementType.Xpath);
-			flag = webDB.waitForElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+			flag = webDB.waitForElement(ShareOfBusinessLocators.OkButton, ElementType.Xpath);
 			if (flag) {
-				logs.logging("INFO", "Toast Message Displayed, Line Deleted Successfully");
-				if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
-					webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+				webDB.clickAnElement(ShareOfBusinessLocators.OkButton, ElementType.Xpath);
+				flag = webDB.waitForElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Toast Message Displayed, Line Deleted Successfully");
+					if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+						webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+					}
 				}
 			}
 		}

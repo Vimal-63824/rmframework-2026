@@ -348,6 +348,6 @@ public class POAmendmentLocators {
 
 	/** @locatorType Xpath */
 	public static final String POANumberCancelStatus(String POno) {
-		return "//a[text()='" + POno + "']/../../td[12]";
+		return "//a[text()='" + POno + "']/../../td[22]";
 	}
 }

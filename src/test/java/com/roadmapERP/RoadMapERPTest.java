@@ -38,10 +38,11 @@ public class RoadMapERPTest {
 		WebDriverBase.chromeOptions.addArguments("--disable-background-networking");
 		WebDriverBase.chromeOptions.addArguments("--disable-device-discovery-notifications");
 		WebDriverBase.chromeOptions.addArguments("--disable-features=GCM");
+		WebDriverBase.chromeOptions.addArguments("--disable-blink-features=AutomationControlled");
 		WebDriverBase.chromeOptions.setAcceptInsecureCerts(true);
 		commonFunc.browserOpen();
 		WebDriverBase.getDriver().manage().timeouts().pageLoadTimeout(Duration.ofSeconds(90));
-		WebDriverBase.getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(90));
+//		WebDriverBase.getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(90));
 	}
 
 	/**

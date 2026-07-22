@@ -334,6 +334,7 @@ public class PurchaseRequestFunctions {
 			webDB.moveToElement(PurchaseRequestLocators.ItemDataLastRow, ElementType.Xpath);
 			webDB.moveToElement(PurchaseRequestLocators.PR_LineDeleteIconWithData(DataValue), ElementType.Xpath);
 			webDB.clickAnElement(PurchaseRequestLocators.PR_LineDeleteIconWithData(DataValue), ElementType.Xpath);
+			webDB.switchToAlertAccept();
 			flag = webDB.waitForElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Toast Message Displayed, Line Deleted Successfully with value: " + DataValue);
@@ -956,12 +957,19 @@ public class PurchaseRequestFunctions {
 		if (flag) {
 			webDB.moveToElement(PurchaseRequestLocators.PRCloseShort_AddNewBtn, ElementType.Xpath);
 			webDB.clickAnElement(PurchaseRequestLocators.PRCloseShort_AddNewBtn, ElementType.Xpath);
-			commonFunc.checkRefreshCellsDisappear();
-			flag = webDB.waitForElement(PurchaseRequestLocators.PRCloseShort_LocId, ElementType.Xpath);
+			flag = webDB.waitForClickElement(PurchaseRequestLocators.CreatePRButton, ElementType.Xpath);
 			if (flag) {
-				logs.logging("INFO", "Add New Icon Clicked in PR CloseShort");
+				webDB.moveToElement(PurchaseRequestLocators.CreatePRButton, ElementType.Xpath);
+				webDB.clickAnElement(PurchaseRequestLocators.CreatePRButton, ElementType.Xpath);
+				commonFunc.checkRefreshCellsDisappear();
+				webDB.switchToFrame(PurchaseRequestLocators.PRAmendFrame, ElementType.Xpath);
+				flag = webDB.waitForElement(PurchaseRequestLocators.PRCloseShort_LocId, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Add New Icon Clicked in PR CloseShort");
+				}
 			}
 		}
+		assertTrue(flag);
 	}
 
 	/**
@@ -977,9 +985,11 @@ public class PurchaseRequestFunctions {
 		flag = webDB.waitForElement(PurchaseRequestLocators.PRCloseShort_LocId, ElementType.Xpath);
 		if (flag) {
 			commonFunc.searchAndSelectValueInFilters(PurchaseRequestLocators.PRCloseShort_LocId, locId);
+			webDB.switchToFrame(PurchaseRequestLocators.PRAmendFrame, ElementType.Xpath);
 			flag = webDB.waitForElement(PurchaseRequestLocators.PRCloseShort_Prefix, ElementType.Xpath);
 			if (flag) {
 				commonFunc.searchAndSelectValueInFilters(PurchaseRequestLocators.PRCloseShort_Prefix, PRNo);
+				webDB.switchToFrame(PurchaseRequestLocators.PRAmendFrame, ElementType.Xpath);
 				flag = webDB.waitForElement(PurchaseRequestLocators.PRCloseShort_Reference, ElementType.Xpath);
 				if (flag) {
 					flag = webDB.sendTextToAnElement(PurchaseRequestLocators.PRCloseShort_Reference, Ref,
@@ -1003,6 +1013,7 @@ public class PurchaseRequestFunctions {
 		flag = webDB.waitForElement(PurchaseRequestLocators.PRCloseShort_TickIcon, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(PurchaseRequestLocators.PRCloseShort_TickIcon, ElementType.Xpath);
+			webDB.switchToDefaultContent();
 			flag = webDB.waitForElement(PurchaseRequestLocators.PRCloseShort_DocNoText, ElementType.Xpath);
 			if (flag) {
 				commonFunc.checkRefreshCellsDisappear();

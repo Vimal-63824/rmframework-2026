@@ -25,11 +25,11 @@ public class SetupPurchaseLocators {
 	/** @locatorType XPATH */
 	public static final String EmployeeLovButton = "//input[@data-testid='BUYER_EMP_ID']/following-sibling::button";
 	/** @locatorType XPATH */
-	public static final String EffFromToday = "//input[@id='C9220275982498584452_input']";
+	public static final String EffFromToday = "//a-date-picker[@data-testid='BUYER_EFF_FROM']/input";
 	/** @locatorType XPATH */
 	public static final String TableTop = "//div[@id='C']/table/tbody/tr/td[1]";
 	/** @locatorType XPATH */
-	public static final String EffToInput = "//input[@id='C9220276078556584453_input']";
+	public static final String EffToInput = "//a-date-picker[@data-testid='BUYER_EFF_TO']/input";
 	/** @locatorType XPATH */
 	public static final String EffToToday = "//div[@role='region']/button[text()='Today']";
 	/** @locatorType XPATH */
