@@ -17,7 +17,7 @@ public class PurchaseBillsGrnLocators {
 	public static final String SearchButton = "//button[@data-testid='SearchGRN']";
 	/** @locatorType Xpath */
 	public static final String CheckBox(String GrnNo) {
-		return "//td[contains(text(),'"+ GrnNo +"')]/../td[13]";
+		return "//td[contains(text(),'"+ GrnNo +"')]/../td[14]";
 	}
 	/** @locatorType Xpath */
 	public static final String CreateDoc = "//button[@data-testid='CreateDoc']";
