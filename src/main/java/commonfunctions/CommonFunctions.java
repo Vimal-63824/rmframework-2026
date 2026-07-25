@@ -3395,4 +3395,70 @@ public class CommonFunctions {
 			enterUrl();
 		}
 	}
+
+	/**
+	 * This method used to check header with text and return index values
+	 * dynamically in add tables
+	 * 
+	 * @author Sakthi-GWL
+	 * @param Locator
+	 * @param HeaderValue
+	 * @return String Locator
+	 */
+	public static String checkAndReturnIndexForLocatorWithHeaderValue(String Locator, String HeaderValue) {
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+				+ "TableHeaders.json";
+		JSONParser parser = new JSONParser();
+		JSONObject jsonObject = null;
+		try (FileReader reader = new FileReader(Filepath)) {
+			Object obj = parser.parse(reader);
+			jsonObject = (JSONObject) obj;
+			HeaderValue = jsonObject.get(HeaderValue).toString();
+		} catch (Exception e) {
+		}
+		List<WebElement> elements = webDB.getListOfElements(Locator, ElementType.Xpath);
+		for (int i = 0; i <= elements.size(); i++) {
+			if (elements.get(i).getText().equals(HeaderValue)) {
+				if (Locator.contains("thead")) {
+					Locator = Locator.replace("thead", "tbody");
+				} else {
+					return Locator.replace("/th", "/td").concat("[").concat(String.valueOf(i + 1)).concat("]");
+				}
+			}
+		}
+		if (Locator.contains("thead")) {
+			return Locator.replace("thead", "tbody").replace("/th", "/td").concat("[1]");
+		} else {
+			return Locator.replace("/th", "/td").concat("[1]");
+		}
+	}
+
+	/**
+	 * This method used to check header with text and return index values
+	 * dynamically in find page tables
+	 * 
+	 * @author Sakthi-GWL
+	 * @param Locator
+	 * @param HeaderValue
+	 * @return String Locator
+	 */
+	public static String checkAndReturnLocatorForFindPageTable(String Locator, String HeaderValue) {
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+				+ "TableHeaders.json";
+		JSONParser parser = new JSONParser();
+		JSONObject jsonObject = null;
+		try (FileReader reader = new FileReader(Filepath)) {
+			Object obj = parser.parse(reader);
+			jsonObject = (JSONObject) obj;
+			HeaderValue = jsonObject.get(HeaderValue).toString();
+		} catch (Exception e) {
+		}
+		List<WebElement> elements = webDB.getListOfElements(Locator, ElementType.Xpath);
+		for (int i = 0; i <= elements.size(); i++) {
+			if (elements.get(i).getText().equals(HeaderValue)) {
+				return Locator.replace("/th", "/td").concat("[").concat(String.valueOf(i + 1)).concat("]");
+			}
+		}
+		return Locator.replace("/th", "/td").concat("[1]");
+	}
 }

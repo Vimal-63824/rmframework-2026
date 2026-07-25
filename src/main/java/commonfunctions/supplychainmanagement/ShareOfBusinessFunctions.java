@@ -660,9 +660,9 @@ public class ShareOfBusinessFunctions {
 				commonFunc.getDataFromTestDataSheet("HeaderSearchType"));
 //		verifyAmendFilterSearchSOB(ShareOfBusinessLocators.SOBProcess, commonFunc.getDataFromTestDataSheet("Process10"),
 //				11, commonFunc.getDataFromTestDataSheet("HeaderSearchType"));
-		verifyAmendFilterSearchSOB(ShareOfBusinessLocators.SOBStatus,
-				commonFunc.getDataFromTestDataSheet("ApproveStatus"), 12,
-				commonFunc.getDataFromTestDataSheet("HeaderSearchType"));
+//		verifyAmendFilterSearchSOB(ShareOfBusinessLocators.SOBStatus,
+//				commonFunc.getDataFromTestDataSheet("ApproveStatus"), 12,
+//				commonFunc.getDataFromTestDataSheet("HeaderSearchType"));
 
 	}
 

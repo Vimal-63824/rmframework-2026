@@ -140,4 +140,5 @@ public class EmployeeAdjustmentLocators {
 	public static final String EmpAllowanceMigrationHeaderSaveIcon = "//button[@title='Save']";
 	/** @locatorType Xpath */
 	public static final String EmpAllowanceMigrationPostBtn = "//*[normalize-space()='Post']/parent::button";
+
 }
