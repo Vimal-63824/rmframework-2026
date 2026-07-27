@@ -593,6 +593,7 @@ public class CommonFunctions {
 		webDB.switchToDefaultContent();
 		webDB.switchToMainTab();
 //		navigateToHomePage();
+		VariableHandler.setSessionID(null);
 	}
 
 	/**
