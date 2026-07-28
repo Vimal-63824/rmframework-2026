@@ -2524,7 +2524,7 @@ public class SubcontractOrderFunctions {
 				commonFunc.getDataFromTestDataSheet("PROPrefix"),
 				commonFunc.getDataFromTestDataSheet("ManufactureType"),
 				commonFunc.getDataFromTestDataSheet("BOMITEMWITHSOREF"), commonFunc.getDataFromTestDataSheet("BomQty"),
-				commonFunc.getDataFromTestDataSheet("BOMProject"));
+				commonFunc.getDataFromTestDataSheet("BOMSOREF"));
 		ProductionordertFunc.clickSaveIconInCreationProductionOrder();
 		ProductionordertFunc.clickHeaderSaveAndPostProdOrder();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));

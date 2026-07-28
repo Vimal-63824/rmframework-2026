@@ -69,9 +69,9 @@ public class PurchaseBillsGrnLocators {
 	/** @locatorType Xpath */
 	public static final String PBAdjustmentFrame = "//iframe[@title='Advance Adjustment ']" ;
 	/** @locatorType Xpath */
-	public static final String PBAdjustDocSelect = "//*[@id=\"3632475644335763481_orig\"]/tbody/tr[2]/td[11]" ;
+	public static final String PBAdjustDocSelect = "//*[@id='2014502332938981561_orig']/tbody/tr[2]/td[11]" ;
 	/** @locatorType Xpath */
-	public static final String PBAdjustValueEnterField = "//*[@id=\"3632475644335763481_orig\"]/tbody/tr[2]/td[10]";
+	public static final String PBAdjustValueEnterField = "//*[@id='2014502332938981561_orig']/tbody/tr[2]/td[10]";
 	/** @locatorType Xpath */
 	public static final String PBAdjustValueEnterInput = "//input[@type=\"number\"]" ;
 	/** @locatorType Xpath */
