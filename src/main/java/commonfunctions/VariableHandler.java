@@ -267,7 +267,7 @@ public class VariableHandler {
 	private static ThreadLocal<ArrayList<String>> MultiplePODocs = ThreadLocal.withInitial(() -> null);
 	private static ThreadLocal<ArrayList<String>> MultipleBankDocs = ThreadLocal.withInitial(() -> null);
 	private static ThreadLocal<String> SessionID = ThreadLocal.withInitial(() -> null);
-	private static ThreadLocal<String> SignInUserName = new ThreadLocal<>();
+	private static ThreadLocal<String> SignInUserName = ThreadLocal.withInitial(() -> null);
 	
 	public static String getSignInUserName() {
 		return SignInUserName.get();
