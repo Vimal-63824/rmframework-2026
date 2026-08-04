@@ -266,9 +266,18 @@ public class VariableHandler {
 	private static ThreadLocal<ArrayList<String>> MultiplePymtRecDocs = ThreadLocal.withInitial(() -> null);
 	private static ThreadLocal<ArrayList<String>> MultiplePODocs = ThreadLocal.withInitial(() -> null);
 	private static ThreadLocal<ArrayList<String>> MultipleBankDocs = ThreadLocal.withInitial(() -> null);
+	private static ThreadLocal<Boolean> SessionOpened = ThreadLocal.withInitial(() -> false);
 	private static ThreadLocal<String> SessionID = ThreadLocal.withInitial(() -> null);
 	private static ThreadLocal<String> SignInUserName = ThreadLocal.withInitial(() -> null);
-	
+
+	public static Boolean getSessionOpened() {
+		return SessionOpened.get();
+	}
+
+	public static void setSessionOpened(Boolean data) {
+		SessionOpened.set(data);
+	}
+
 	public static String getSignInUserName() {
 		return SignInUserName.get();
 	}

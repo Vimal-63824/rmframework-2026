@@ -25,7 +25,7 @@ public class SubcontractSetUpTest extends RoadMapERPTest {
 	@BeforeMethod(alwaysRun = true)
 	private void VerifyLogin() {
 		if (VariableHandler.getSessionID() == null || VariableHandler.getSessionID().equalsIgnoreCase("")
-				|| VariableHandler.getSessionID().equals(null)) {
+				|| VariableHandler.getSessionOpened() == false || VariableHandler.getSessionID().equals(null)) {
 			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 					"AdminUsername");
 		} else {

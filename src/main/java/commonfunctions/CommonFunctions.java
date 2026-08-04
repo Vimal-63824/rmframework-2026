@@ -215,6 +215,7 @@ public class CommonFunctions {
 				String SessionID = URL.split("session=")[1].toString();
 				System.out.println(SessionID);
 				VariableHandler.setSessionID(SessionID);
+				VariableHandler.setSessionOpened(true);
 				logs.logging("INFO", "Current Username: " + VariableHandler.getSignInUserName());
 			}
 		}
@@ -3381,16 +3382,17 @@ public class CommonFunctions {
 		try {
 			String HomePageUrl = System.getProperty("url").replace("loginpage/login", "loginpage/menu?session=")
 					.concat(VariableHandler.getSessionID());
-			System.out.println(HomePageUrl);
 			webDB.navigateToUrl(HomePageUrl);
 			flag = webDB.waitForElement(CommonUiLocators.GetTextUserName, ElementType.Xpath);
 			if (!flag) {
 				VariableHandler.setSessionID(null);
 				enterUrl();
+				VariableHandler.setSessionOpened(false);
 			}
 		} catch (Exception e) {
 			logs.loggingconsole("INFO", "Exception Occurs while switch home page: " + e);
 			VariableHandler.setSessionID(null);
+			VariableHandler.setSessionOpened(false);
 			enterUrl();
 		}
 	}

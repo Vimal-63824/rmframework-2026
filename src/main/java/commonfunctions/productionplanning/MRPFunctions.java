@@ -839,14 +839,12 @@ public class MRPFunctions {
 						System.getProperty("HariUsername"));
 			}
 			commonFunc.navigateToMRPScreenInProdPlanning();
-			checkStatusOfMRP(VariableHandler.getMRPNumber(),
-					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+			checkStatusOfMRP(VariableHandler.getMRPNumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			searchAndClickMRPNoInFindPage(VariableHandler.getMRPNumber());
 			clickReleaseButtonInMRP();
 			chooseOrderTypeFromAndToDateInReleaseDetails("All", YesterDay, Today);
 			clickReleaseButtonInReleaseFrame();
-			checkStatusOfMRP(VariableHandler.getMRPNumber(),
-					commonFunc.getDataFromTestDataSheet("ReleasedStatus"));
+			checkStatusOfMRP(VariableHandler.getMRPNumber(), commonFunc.getDataFromTestDataSheet("ReleasedStatus"));
 			return flag;
 		} catch (Exception e) {
 			logs.logging("INFO", "Exception occur while executing 'verifyInactivateBillOfMaterials': " + e);

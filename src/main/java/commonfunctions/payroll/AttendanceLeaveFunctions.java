@@ -1855,7 +1855,7 @@ public class AttendanceLeaveFunctions {
 	 */
 	private void clickSearchAndClickFirstLeaveEntryWithEmpName(String EmpName) {
 		commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.LeaveEntryFindEmpIdLovBtn, EmpName);
-		webDB.waitForElement(AttendanceLeaveLocators.LeaveEntryFindStatusSelect,  ElementType.Xpath);
+		webDB.waitForElement(AttendanceLeaveLocators.LeaveEntryFindStatusSelect, ElementType.Xpath);
 		webDB.selectDropDownByValue(AttendanceLeaveLocators.LeaveEntryFindStatusSelect, "P", ElementType.Xpath);
 		flag = webDB.waitForElement(AttendanceLeaveLocators.LeaveEntryFindSearchBtn, ElementType.Xpath);
 		if (flag) {
