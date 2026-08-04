@@ -130,7 +130,7 @@ public class SalesPriceListLocators {
 	/** @locatorType Xpath */
 	public static final String PriceListPfxField = "//*[@id='SO_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[2]";
 	/** @Locator XPATH */
-	public static final String CustomerIdFieldDb = "//*[@id='SO_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[4]";
+	public static final String CustomerIdFieldDb = "//*[@id='SO_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[1]/td[4]";
 	/** @Locator XPATH */
 	public static final String CustomerDescDb = "//*[@id='SO_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[1]/td[5]";
 	/** @Locator XPATH */
@@ -144,5 +144,5 @@ public class SalesPriceListLocators {
 	/** @Locator XPATH */
 	public static final String AmdNoDb = "//*[@id='SO_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[1]/td[19]";
 	/** @Locator XPATH */
-	public static final String PriceListSingle1 = "//button[@id='B3141129564108607806']" ;
+	public static final String PriceListSingle1 = "//button[@id='B3207882802525494656']" ;
 }
