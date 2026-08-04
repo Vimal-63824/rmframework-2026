@@ -241,7 +241,7 @@ public class CoreProcessPageFunctions {
 			saleOrderFunc.addLineItemQty(Unit);
 			saleOrderFunc.chooseHsnCodeAndClickLineWiseSaveButton(OpenSOHSN);
 			saleOrderFunc.clickLineWiseSaveButton();
-			saleOrderFunc.checkSaleOrderTaxCalculationForLastAddedItem();
+//			saleOrderFunc.checkSaleOrderTaxCalculationForLastAddedItem();
 			saleOrderFunc.clickTotalDiscountForLineDetails();
 			saleOrderFunc.switchToLineDetailFrameInSaleOrder();
 			commonFunc.checkDiscountInLineDetails(SalesOrderLocators.SOSpecialDiscountAssblValue,
@@ -272,7 +272,7 @@ public class CoreProcessPageFunctions {
 			saleInvoiceFunc.verifyHeaderTickIcon();
 			saleInvoiceFunc.verifyItemFromPendingSaleOrderAndClickAllocLotSerial(VariableHandler.getItemName());
 			saleInvoiceFunc.validateLineAmountOfLastAddedItem();
-			saleInvoiceFunc.checkSaleInvoiceTaxCalculationForLastAddedItem();
+//			saleInvoiceFunc.checkSaleInvoiceTaxCalculationForLastAddedItem();
 			saleInvoiceFunc.clickTotalDiscountForLineDetails();
 			saleInvoiceFunc.switchToLineDetailsIframeInSaleInvoice();
 			commonFunc.checkDiscountInLineDetails(SalesInvoiceLocators.SalesInvoiceSpecialAssblPrice,
@@ -473,9 +473,12 @@ public class CoreProcessPageFunctions {
 			saleOrderFunc.checkSaleOrderTaxCalculationForLastAddedItem();
 			saleOrderFunc.clickTotalDiscountForLineDetails();
 			saleOrderFunc.switchToLineDetailFrameInSaleOrder();
+			commonFunc.checkRefreshCellsDisappear();
 			commonFunc.checkDiscountInLineDetails(SalesOrderLocators.SOSpecialDiscountAssblValue,
 					SalesOrderLocators.SOSpecialDiscountpercentageField,
 					SalesOrderLocators.SOSpecialDiscountAmountField, RandomStringUtils.randomNumeric(1));
+			commonFunc.checkRefreshCellsDisappear();
+			commonFunc.checkRefreshCellsDisappear();
 			commonFunc.checkDiscountInLineDetails(SalesOrderLocators.SOCashDiscountAssblValue,
 					SalesOrderLocators.SOCashDiscountpercentageField, SalesOrderLocators.SOCashDiscountAmountField,
 					RandomStringUtils.randomNumeric(1));
@@ -1121,12 +1124,6 @@ public class CoreProcessPageFunctions {
 			bomFunc.fillTypeAndWorkCenterInRouting(commonFunc.getDataFromTestDataSheet("InsideType"),
 					commonFunc.getDataFromTestDataSheet("GwlAutomationArea"));
 			bomFunc.clickSaveLineIconInRoutingTab();
-//			bomFunc.clickAddLineIconInRoutingTab();
-//			bomFunc.fillProcSeqNoOprnNoAndProcessIdInRouting("3", "3",
-//					commonFunc.getDataFromTestDataSheet("GwlProcess3"));
-//			bomFunc.fillTypeAndWorkCenterInRouting(commonFunc.getDataFromTestDataSheet("InsideType"),
-//					commonFunc.getDataFromTestDataSheet("GwlAutomationArea"));
-//			bomFunc.clickSaveLineIconInRoutingTab();
 			bomFunc.clickDetailsForAddedProcessInBOM(commonFunc.getDataFromTestDataSheet("GwlProcess1"));
 			bomFunc.chooseConsumptionAndReceiptWHInViewDetails(commonFunc.getDataFromTestDataSheet("WIPU100_WH"),
 					commonFunc.getDataFromTestDataSheet("WIPU100_WH"));

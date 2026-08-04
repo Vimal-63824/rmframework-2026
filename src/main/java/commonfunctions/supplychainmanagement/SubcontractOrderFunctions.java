@@ -373,6 +373,7 @@ public class SubcontractOrderFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyAddGlAccNumberValue() {
+		webDB.waitForElement(SubcontractOrderLocators.BatchQuantity, ElementType.Xpath);
 		webDB.moveToElement(SubcontractOrderLocators.BatchQuantity, ElementType.Xpath);
 		webDB.moveToElement(SubcontractOrderLocators.GLAccNo, ElementType.Xpath);
 		flag = webDB.waitForElement(SubcontractOrderLocators.GLAccNo, ElementType.Xpath);
@@ -381,14 +382,16 @@ public class SubcontractOrderFunctions {
 			webDB.doubleClickAnElement(SubcontractOrderLocators.GLAccNo, ElementType.Xpath);
 			commonFunc.searchAndSelectValueInFilters(SubcontractOrderLocators.GLAccNoLovButton,
 					commonFunc.getDataFromTestDataSheet("GeneralExpense"));
-			commonFunc.hardWait(5000);
+//			commonFunc.hardWait(5000);
 			flag = webDB.waitForElement(SubcontractOrderLocators.LineSave, ElementType.Xpath);
 			if (flag) {
 				webDB.moveToElement(SubcontractOrderLocators.LineSave, ElementType.Xpath);
 				webDB.clickAnElement(SubcontractOrderLocators.LineSave, ElementType.Xpath);
 				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.hardWait(2000);
-				if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+				webDB.waitForElementUntilGivenTime(CommonUiLocators.PostToastMessage, ElementType.Xpath, 5);
+				commonFunc.checkRefreshCellsDisappear();
+//				commonFunc.hardWait(2000);
+				if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
 					webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
 				}
 			}
@@ -409,14 +412,16 @@ public class SubcontractOrderFunctions {
 			webDB.moveToElement(SubcontractOrderLocators.IncludeCharges, ElementType.Xpath);
 			webDB.clickAnElement(SubcontractOrderLocators.IncludeCharges, ElementType.Xpath);
 			commonFunc.checkSuccessToastMessageDisappear();
-			if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+			if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
 				webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
 			}
 			flag = webDB.waitForElement(SubcontractOrderLocators.Save, ElementType.Xpath);
 			if (flag) {
 				webDB.moveToElement(SubcontractOrderLocators.Save, ElementType.Xpath);
 				webDB.clickAnElement(SubcontractOrderLocators.Save, ElementType.Xpath);
-				if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+				commonFunc.checkRefreshCellsDisappear();
+				webDB.waitForElementUntilGivenTime(CommonUiLocators.PostToastMessage, ElementType.Xpath, 5);
+				if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
 					webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
 				}
 				commonFunc.checkSuccessToastMessageDisappear();
