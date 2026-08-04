@@ -103,6 +103,9 @@ public class PurchaseBillsFunctions {
 									logs.logging("INFO", "Create Documents Is Displayed");
 									commonFunc.hardWait(5000);
 									webDB.clickAnElement(PurchaseBillsLocators.CreateDoc, ElementType.Xpath);
+									commonFunc.searchAndSelectValueInFilters(
+											PurchaseBillsLocators.Pending_Prefix_Lov_button, "PB");
+									webDB.switchToFrame(PurchaseBillsLocators.Iframe, ElementType.Xpath);
 									flag = webDB.waitForElement(PurchaseBillsLocators.OkButton, ElementType.Xpath);
 									if (flag) {
 										logs.logging("INFO", "Okay Button Is Displayed");
@@ -214,22 +217,19 @@ public class PurchaseBillsFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyPurchaseBillsApproval() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"Sathi Ganesh");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber());
 		verifyCreateJournalAndPost();
 		verifyWaitingForApproval();
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername-Admin");
-		approvalPageFunc.navigateToApprovals();
-		approvalPageFunc.filterDocumentsforApproval(VariableHandler.getPbNumber());
-		approvalPageFunc.verifyApproveWithDocNumber(VariableHandler.getPbNumber());
-		flag = commonFunc.logoutUser();
+		flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPbNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-					"Sathi Ganesh");
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+					"AdminUsername");
 			commonFunc.navigateToFinancialPurchaseBill();
 			verifyPurchaseBillApprovalStatus(VariableHandler.getPbNumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));

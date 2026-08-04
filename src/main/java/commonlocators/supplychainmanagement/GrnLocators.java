@@ -93,13 +93,13 @@ public class GrnLocators {
 	/** @locatorType Xpath */
 	public static final String GrnNumberSelect = "//button[@id='P1615131103_GRN_NO_lov_btn']";
 	/** @locatorType Xpath */
-	public static final String SearchButton = "//button[@id='B1177499091828681684']";
+	public static final String SearchButton = "//*[text()='Search']/..";
 	/** @locatorType Xpath */
 	public static final String ExpiryDate = "//input[@id='C1885842449099241908_input']";
 
 	/** @locatorType Xpath */
 	public static final String GrnStatusTableText(String Grnno) {
-		return "//a[text()='" + Grnno + "']/../../td[14]";
+		return "//a[text()='" + Grnno + "']/../../td[17]";
 	}
 
 	/** @locatorType Xpath */

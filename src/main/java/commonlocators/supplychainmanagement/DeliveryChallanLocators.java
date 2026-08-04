@@ -19,7 +19,7 @@ public class DeliveryChallanLocators {
 
 	/** @locatorType Xpath */
 	public static final String DCNumber(String DCNumber) {
-		return "(//table[@id='144937051552841144_orig']/tbody/tr/td[4]/a[text()='" + DCNumber + "'])[last()]";
+		return "(//a[text()='" + DCNumber + "'])[last()]";
 	}
 
 	/** @locatorType Xpath */

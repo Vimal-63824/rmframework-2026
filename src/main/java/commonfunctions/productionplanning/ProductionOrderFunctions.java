@@ -741,19 +741,19 @@ public class ProductionOrderFunctions {
 		if (flag) {
 			logs.logging("INFO", "Show More Button Is Displayed");
 			webDB.clickAnElement(ProductionOrderLocators.ShowMore, ElementType.Xpath);
-			flag = webDB.waitForElement(ProductionOrderLocators.FirstOprSelect, ElementType.Xpath);
+//			flag = webDB.waitForElement(ProductionOrderLocators.FirstOprSelect, ElementType.Xpath);
+//			if (flag) {
+//				logs.logging("INFO", "First Opr Select DropDown Is Displayed");
+//				webDB.selectDropDownByText(ProductionOrderLocators.FirstOprSelect,
+//						commonFunc.getDataFromTestDataSheet("ComQty"), ElementType.Xpath);
+//				webDB.selectDropDownByText(ProductionOrderLocators.RestOprSelect,
+//						commonFunc.getDataFromTestDataSheet("ComQty"), ElementType.Xpath);
+			flag = webDB.waitForElement(ProductionOrderLocators.ShowLess, ElementType.Xpath);
 			if (flag) {
-				logs.logging("INFO", "First Opr Select DropDown Is Displayed");
-				webDB.selectDropDownByText(ProductionOrderLocators.FirstOprSelect,
-						commonFunc.getDataFromTestDataSheet("ComQty"), ElementType.Xpath);
-				webDB.selectDropDownByText(ProductionOrderLocators.RestOprSelect,
-						commonFunc.getDataFromTestDataSheet("ComQty"), ElementType.Xpath);
-				flag = webDB.waitForElement(ProductionOrderLocators.ShowLess, ElementType.Xpath);
-				if (flag) {
-					logs.logging("INFO", "Show Less Button Is Displayed");
-					webDB.clickAnElement(ProductionOrderLocators.ShowLess, ElementType.Xpath);
-				}
+				logs.logging("INFO", "Show Less Button Is Displayed");
+				webDB.clickAnElement(ProductionOrderLocators.ShowLess, ElementType.Xpath);
 			}
+//			}
 		}
 		assertTrue(flag);
 	}

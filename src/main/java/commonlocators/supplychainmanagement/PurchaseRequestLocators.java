@@ -40,19 +40,19 @@ public class PurchaseRequestLocators {
 	/** @locatorType Xpath */
 	public static final String PostBtn = "//button[@data-testid='Post']";
 	/** @locatorType Xpath */
-	public static final String ItemDataLastRow = "(//table//tbody/tr[contains(@class,'a-GV-row')]/td[2])[1]";
+	public static final String ItemDataLastRow = "(//table//tbody/tr[contains(@class,'a-GV-row')]/td[3])[1]";
 	/** @locatorType Xpath */
 	public static final String ItemDataLastRowInput = "(//table//tbody/tr[contains(@class,'a-GV-row')]/td[2])[1]/div/input";
 	/** @locatorType Xpath */
-	public static final String QuantityDataLastRow = "(//table//tbody/tr[contains(@class,'a-GV-row')]/td[6])[1]";
+	public static final String QuantityDataLastRow = "(//table//tbody/tr[contains(@class,'a-GV-row')]/td[7])[1]";
 	/** @locatorType Xpath */
-	public static final String QuantityDataLastRowInput = "(//table//tbody/tr[contains(@class,'a-GV-row')]/td[6])[1]/div//input";
+	public static final String QuantityDataLastRowInput = "(//table//tbody/tr[contains(@class,'a-GV-row')]/td[7])[1]/div//input";
 	/** @locatorType Xpath */
-	public static final String UnitCostDataLastRow = "(//table//tbody/tr[contains(@class,'a-GV-row')]/td[7])[1]";
+	public static final String UnitCostDataLastRow = "(//table//tbody/tr[contains(@class,'a-GV-row')]/td[8])[1]";
 	/** @locatorType Xpath */
-	public static final String UnitCostDataLastRowInput = "(//table//tbody/tr[contains(@class,'a-GV-row')]/td[7])[1]/div//input";
+	public static final String UnitCostDataLastRowInput = "(//table//tbody/tr[contains(@class,'a-GV-row')]/td[8])[1]/div//input";
 	/** @locatorType Xpath */
-	public static final String ItemDataListIcon = "(//table//tbody/tr[contains(@class,'a-GV-row')]/td[2])[1]//button";
+	public static final String ItemDataListIcon = "(//table//tbody/tr[contains(@class,'a-GV-row')]/td[3])[1]//button";
 	/** @locatorType Xpath */
 	public static final String ItemDataPopupSearchBox = "//input[contains(@class,'a-PopupLOV-search')]";
 	/** @locatorType Xpath */
@@ -135,7 +135,7 @@ public class PurchaseRequestLocators {
 
 	/** @locatorType Xpath */
 	public static final String LineAmountDataLastRow(String Value) {
-		return "//td[text()='" + Value + "']/../td[8]";
+		return "//td[text()='" + Value + "']/../td[9]";
 
 	}
 
