@@ -157,7 +157,7 @@
 	"Rtgs": "RTGS",
 	"Axisbank": "AXIS BANK",
 	"BankofBaroda": "7151922222222265",
-	"OpenSOItem": "GWL_OpenSO_Item",
+	"OpenSOItem": "ROAU-SIM-510942",
 	"ERPPrivateLimitedID": "CUS0000056",
 	"ERPPrivateLimitedName": "ERP PRIVATE LIMITED",
 	"Prefix_OP100": "OSO",
@@ -2075,5 +2075,7 @@
 	"BomPoCl": "BOM-2627-0000899",
 	"BomPoEq": "BOM-2627-0000941",
 	"PriceListSingle": "Price List",
-	"PriceListMulti": "Price List Multi"
+	"PriceListMulti": "Price List Multi",
+	"GalaxyCustomerId": "CUS0087",
+	"GalaxyCustomerName": "GALAXY WEB AUTOMATION"
 }

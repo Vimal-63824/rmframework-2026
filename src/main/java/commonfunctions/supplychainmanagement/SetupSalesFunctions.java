@@ -329,7 +329,7 @@ public class SetupSalesFunctions {
 			webDB.javaScriptClickAnElement(SetupSalesLocators.subterritoyTab, ElementType.Xpath);
 			flag = webDB.waitForElement(SetupSalesLocators.AddPlusButtonSubTerritory, ElementType.Xpath);
 			if (flag) {
-				logs.logging("INFO", "Successfully Clicked a SubTerritoy Tab");									
+				logs.logging("INFO", "Successfully Clicked a SubTerritoy Tab");
 			}
 		}
 		assertTrue(flag);

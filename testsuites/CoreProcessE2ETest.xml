@@ -2,12 +2,20 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Road Map -  Core Process">
 	<listeners>
-		<listener class-name="utils.RetryListener"></listener>
+		<!--		<listener class-name="utils.RetryListener"></listener>-->
 		<listener class-name="utils.Listener"></listener>
 	</listeners>
 	<test thread-count="5" name="Road Map Test">
 		<classes>
-			<class name="com.roadmapERP.e2e.CoreProcessE2ETest" />
+			<class name="com.roadmapERP.e2e.CoreProcessE2ETest">
+				<methods>
+					<include name="VerifySalesOrderToPaymentReceipts"></include>
+					<include name="VerifySaleOrderToMRP"></include>
+					<include name="VerifyCreationOfBillOfMaterials"></include>
+					<include
+						name="VerifyProductionOrderToCompletionToMaterialReceiptVoucher"></include>
+				</methods>
+			</class>
 		</classes>
-	</test> <!-- Test -->
-</suite> <!-- Suite -->
+	</test>
+</suite>

@@ -61,7 +61,7 @@ public class PaymentReceiptsLocators {
 	}
 
 	/** @locatorType Xpath */
-	public static final String PendingDrDocsBtn = "//button[@id='B1920165549588853813']";
+	public static final String PendingDrDocsBtn = "//button[@data-testid='PendingDrDocs']";
 	/** @locatorType Xpath */
 	public static final String PendingReceivablesBtn = "//span[text()='Pending Receivable']/parent::button";
 	/** @locatorType Xpath */

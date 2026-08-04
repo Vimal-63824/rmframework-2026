@@ -31,8 +31,7 @@ public class SsoPageLocators {
 	public static final String SsoPendingBtnNew = "//button[@data-testid='Create_PO']";
 	/** @locatorType Xpath */
 	public static final String PendingSso = "//span[text()='Create  SSO']";
-	
-	
+
 	/** @locatorType Xpath */
 	public static final String OPOAddBtn = "//button[@data-testid='Add']";
 	/** @locatorType Xpath */
@@ -87,11 +86,9 @@ public class SsoPageLocators {
 	public static final String FetchOPOOKBtn = "//button[@data-testid='OK']";
 	/** @locatorType Xpath */
 	public static final String FetchOPODocNumChoose = "//*[@id=\"QC_sort_widget_rows\"]/a[1]";
-	
-	
-	
+
 	/** @locatorType Xpath */
-	
+
 	public static final String SSOItemFieldLine = "//*[@id=\"LINES_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr[1]/td[2]";
 	/** @locatorType Xpath */
 	public static final String SSOFirmQtyInput = "//input[@data-testid='SSLN_REVISED_QTY']";
@@ -131,7 +128,7 @@ public class SsoPageLocators {
 	public static final String SsoLineCount = "//*[@id=\"LINES_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[1]";
 	/** @locatorType Xpath */
 	public static final String SsoLineCancel = "//*[@id=\"LINES_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[19]/a/span";
-	/** @locatorType Xpath */                     
+	/** @locatorType Xpath */
 	public static final String SsoHeaderCancel = "//button[@data-testid='Cancel']";
 	/** @locatorType Xpath */
 	public static final String SsoFindSsoNumFiled = "//input[@id='P1615131026_DOC_NO']";
@@ -176,6 +173,5 @@ public class SsoPageLocators {
 	public static final String SSOTentDateToField(int i) {
 		return "//*[@id=\"LINES_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr[" + i + "]/td[13]";
 	}
-	
-	
+
 }

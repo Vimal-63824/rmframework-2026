@@ -1722,8 +1722,8 @@ public class AttendanceLeaveFunctions {
 		commonFunc.checkRefreshCellsDisappear();
 		flag = webDB.waitForElement(AttendanceLeaveLocators.LeaveEntryPendingRequestIframe, ElementType.Xpath);
 //		if (flag) {
-			webDB.switchToFrame(AttendanceLeaveLocators.LeaveEntryPendingRequestIframe, ElementType.Xpath);
-			flag = webDB.waitForElement(AttendanceLeaveLocators.LeaveEntryPendReqSearchBar, ElementType.Xpath);
+		webDB.switchToFrame(AttendanceLeaveLocators.LeaveEntryPendingRequestIframe, ElementType.Xpath);
+		flag = webDB.waitForElement(AttendanceLeaveLocators.LeaveEntryPendReqSearchBar, ElementType.Xpath);
 //		}
 		Assert.assertTrue(flag);
 	}

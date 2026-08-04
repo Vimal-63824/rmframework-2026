@@ -509,6 +509,7 @@ public class SubcontractOrderLocators {
 	public static final String PendingSCOProcessDetailIcon(String prodNo) {
 		return "(//table/tbody//td/a[text()='" + prodNo + "']/../../td//span[@class='fa fa-gears'])[1]";
 	}
+
 	/** @Locator XPATH */
 	public static final String SCO_Pend_SelectALl = "(//input[@id='check_all'])[1]";
 }
