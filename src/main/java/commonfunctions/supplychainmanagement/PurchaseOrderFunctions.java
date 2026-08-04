@@ -398,11 +398,14 @@ public class PurchaseOrderFunctions {
 			webDB.moveToElement(PurchaseOrderPageLocators.TickIconPO, ElementType.Xpath);
 			webDB.clickAnElement(PurchaseOrderPageLocators.TickIconPO, ElementType.Xpath);
 			commonFunc.checkRefreshCellsDisappear();
+			commonFunc.checkRefreshCellsDisappear();
 			if (webDB.verifyIsElementDisplayed(PurchaseOrderPageLocators.CloseToastIcon, ElementType.Xpath)) {
 				logs.logging("INFO", "Item Tick Icon Is Clicked");
 				webDB.clickAnElementWithoutException(PurchaseOrderPageLocators.CloseToastIcon, ElementType.Xpath);
 				logs.logging("INFO", "Toast Close Icon Is Clicked");
 			}
+			commonFunc.checkSuccessToastMessageDisappear();
+			commonFunc.checkRefreshCellsDisappear();
 			flag = webDB.waitForElement(PurchaseOrderPageLocators.HeaderTickIconPO, ElementType.Xpath);
 		}
 		assertTrue(flag);

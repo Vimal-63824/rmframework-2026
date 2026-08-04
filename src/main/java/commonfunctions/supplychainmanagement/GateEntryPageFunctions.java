@@ -351,6 +351,7 @@ public class GateEntryPageFunctions {
 								logs.logging("INFO", "Reference Field Updated SuccessFully");
 								flag = webDB.waitForElement(GateEntryPageLocators.OkButton, ElementType.Xpath);
 								if (flag) {
+									commonFunc.checkRefreshCellsDisappear();
 									webDB.clickAnElement(GateEntryPageLocators.OkButton, ElementType.Xpath);
 									logs.logging("INFO", "Gate Entry Document Created Successfully");
 									webDB.switchToDefaultContent();
@@ -1427,6 +1428,7 @@ public class GateEntryPageFunctions {
 				if (flag) {
 					commonFunc.searchAndSelectValueInFilters(GateEntryPageLocators.SearchAndSelectValue,
 							VariableHandler.getPONumber());
+					commonFunc.checkRefreshCellsDisappear();
 					webDB.switchToFrame(GateEntryPageLocators.PendingPOGIframe, ElementType.Xpath);
 					logs.logging("INFO", "PO Number Shown");
 					webDB.waitForElement(GateEntryPageLocators.GateEntryPoSearchButton, ElementType.Xpath);
@@ -1436,9 +1438,11 @@ public class GateEntryPageFunctions {
 								ElementType.Xpath);
 						logs.logging("INFO", "Document Search And Selected Successfully");
 						verifyClickSelectAllButton();
+						commonFunc.checkRefreshCellsDisappear();
 						logs.logging("INFO", "Create Gate Entry Button shown");
 						webDB.waitForElement(GateEntryPageLocators.CreateGeFromPO, ElementType.Xpath);
 						if (flag) {
+							commonFunc.checkRefreshCellsDisappear();
 							webDB.moveToElement(GateEntryPageLocators.CreateGeFromPO, ElementType.Xpath);
 							flag = webDB.clickAnElement(GateEntryPageLocators.CreateGeFromPO, ElementType.Xpath);
 						}

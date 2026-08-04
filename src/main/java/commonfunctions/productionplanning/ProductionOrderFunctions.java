@@ -19,6 +19,7 @@ import java.util.Random;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 
 import commonfunctions.CommonFunctions;
 import commonfunctions.DBCommonFunctions;
@@ -36,6 +37,7 @@ import commonfunctions.supplychainmanagement.SalesOrderFunctions;
 import commonfunctions.supplychainmanagement.StockTransactionPageFunctions;
 import commonfunctions.supplychainmanagement.SubcontractOrderFunctions;
 import commonlocators.CommonUiLocators;
+import commonlocators.productionplanning.CompletionProductionOrderLocators;
 import commonlocators.productionplanning.ProductionOrderLocators;
 import utils.ExcelUtils;
 import utils.ReportLoger;
@@ -63,6 +65,24 @@ public class ProductionOrderFunctions {
 	private static InspectionDocumentFunctions qcFunc = new InspectionDocumentFunctions();
 	private static BillOfMaterialsFunctions bomFunc = new BillOfMaterialsFunctions();
 	private static PricelistPageFunctions priceListFunc = new PricelistPageFunctions();
+
+	/**
+	 * This method used to click production completion in Inside
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void clickPendingProdCompletion() {
+		flag = webDB.waitForElement(CompletionProductionOrderLocators.Pending_InsideProcCreateBtn, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(CompletionProductionOrderLocators.Pending_InsideProcCreateBtn, ElementType.Xpath);
+			webDB.clickAnElement(CompletionProductionOrderLocators.Pending_InsideProcCreateBtn, ElementType.Xpath);
+			flag = webDB.waitForElement(CompletionProductionOrderLocators.PendingProdOrderIframe, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Pending Production Completion Clicked");
+			}
+		}
+		Assert.assertTrue(flag);
+	}
 
 	/**
 	 * This Method used to verify Status of Production Order with MRP Number
@@ -7773,8 +7793,9 @@ public class ProductionOrderFunctions {
 				StartIndex);
 		materialIssuanceVoucherFunc.verifyStockTransactionValidationInMIVForRawMaterials(FileName, SheetName,
 				StartIndex);
-		commonFunc.navigateToCompletionProductionOrderMultipleProcessInProdPlanning();
-		completionProductionOrderFunc.clickPendingIconInCompletionMultiProcess();
+		commonFunc.navigateToCompletionProductionOrderInProdPlanning();
+		completionProductionOrderFunc.clickPendingIconInCompletionProcess();
+		clickPendingProdCompletion();
 		if (i == 0) {
 			completionProductionOrderFunc.selectPendingMultipleProdOrderAndClickCreateCompletionProcessWithNoButton(
 					VariableHandler.getProductionOrderNumber());
@@ -7863,8 +7884,9 @@ public class ProductionOrderFunctions {
 				StartIndex);
 		materialIssuanceVoucherFunc.verifyStockTransactionValidationInMIVForRawMaterials(FileName, SheetName,
 				StartIndex);
-		commonFunc.navigateToCompletionProductionOrderMultipleProcessInProdPlanning();
-		completionProductionOrderFunc.clickPendingIconInCompletionMultiProcess();
+		commonFunc.navigateToCompletionProductionOrderInProdPlanning();
+		completionProductionOrderFunc.clickPendingIconInCompletionProcess();
+		clickPendingProdCompletion();
 		completionProductionOrderFunc
 				.searchMultipleProductionOrderNoAndVerifyFilter(VariableHandler.getProductionOrderNumber());
 		completionProductionOrderFunc.selectPendingMultipleProdOrderAndClickCreateCompletionProcess(
@@ -8201,8 +8223,8 @@ public class ProductionOrderFunctions {
 	 */
 	public boolean verifyProdOrderWithoutSOAllInsideMoveTypeSingle() {
 		try {
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
+//			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//					"AdminUsername");
 			commonFunc.navigateToProductionOrderInProdPlanning();
 			verifyWriteBeforeStockForFGAndRawMaterials(webDB.getDataFromProperties("PMFFileName"),
 					webDB.getDataFromProperties("AllInsideSheetName-Single"));
@@ -8255,7 +8277,7 @@ public class ProductionOrderFunctions {
 					commonFunc.getDataFromTestDataSheet("CompletedStatus"));
 			verifyValidationOfAfterStockUnitCostAndQuantityInFGItem(webDB.getDataFromProperties("PMFFileName"),
 					webDB.getDataFromProperties("AllInsideSheetName-Single"));
-			flag = commonFunc.logoutUser();
+//			flag = commonFunc.logoutUser();
 			return flag;
 		} catch (Exception e) {
 			logs.logging("INFO",
@@ -8272,8 +8294,8 @@ public class ProductionOrderFunctions {
 	 */
 	public boolean verifyProdOrderWithoutSOAllInsideMoveTypeMultiple() {
 		try {
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
+//			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//					"AdminUsername");
 			commonFunc.navigateToProductionOrderInProdPlanning();
 			verifyWriteBeforeStockForFGAndRawMaterials(webDB.getDataFromProperties("PMFFileName"),
 					webDB.getDataFromProperties("AllInsideSheetName-Multiple"));
@@ -8326,7 +8348,7 @@ public class ProductionOrderFunctions {
 					commonFunc.getDataFromTestDataSheet("CompletedStatus"));
 			verifyValidationOfAfterStockUnitCostAndQuantityInFGItem(webDB.getDataFromProperties("PMFFileName"),
 					webDB.getDataFromProperties("AllInsideSheetName-Multiple"));
-			flag = commonFunc.logoutUser();
+//			flag = commonFunc.logoutUser();
 			return flag;
 		} catch (Exception e) {
 			logs.logging("INFO",
@@ -8343,8 +8365,8 @@ public class ProductionOrderFunctions {
 	 */
 	public boolean verifyProdOrderWithoutSOAllInsideMoveTypeItem() {
 		try {
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
+//			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//					"AdminUsername");
 			commonFunc.navigateToProductionOrderInProdPlanning();
 			verifyWriteBeforeStockForFGAndRawMaterials(webDB.getDataFromProperties("PMFFileName"),
 					webDB.getDataFromProperties("AllInsideSheetName-Item"));
@@ -8397,7 +8419,7 @@ public class ProductionOrderFunctions {
 					commonFunc.getDataFromTestDataSheet("CompletedStatus"));
 			verifyValidationOfAfterStockUnitCostAndQuantityInFGItem(webDB.getDataFromProperties("PMFFileName"),
 					webDB.getDataFromProperties("AllInsideSheetName-Item"));
-			flag = commonFunc.logoutUser();
+//			flag = commonFunc.logoutUser();
 			return flag;
 		} catch (Exception e) {
 			logs.logging("INFO",

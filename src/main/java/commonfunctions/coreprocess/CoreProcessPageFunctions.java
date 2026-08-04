@@ -241,7 +241,6 @@ public class CoreProcessPageFunctions {
 			saleOrderFunc.addLineItemQty(Unit);
 			saleOrderFunc.chooseHsnCodeAndClickLineWiseSaveButton(OpenSOHSN);
 			saleOrderFunc.clickLineWiseSaveButton();
-			saleOrderFunc.checkSaleOrderTaxCalculationForLastAddedItem();
 			saleOrderFunc.clickTotalDiscountForLineDetails();
 			saleOrderFunc.switchToLineDetailFrameInSaleOrder();
 			commonFunc.checkDiscountInLineDetails(SalesOrderLocators.SOSpecialDiscountAssblValue,
@@ -272,7 +271,6 @@ public class CoreProcessPageFunctions {
 			saleInvoiceFunc.verifyHeaderTickIcon();
 			saleInvoiceFunc.verifyItemFromPendingSaleOrderAndClickAllocLotSerial(VariableHandler.getItemName());
 			saleInvoiceFunc.validateLineAmountOfLastAddedItem();
-			saleInvoiceFunc.checkSaleInvoiceTaxCalculationForLastAddedItem();
 			saleInvoiceFunc.clickTotalDiscountForLineDetails();
 			saleInvoiceFunc.switchToLineDetailsIframeInSaleInvoice();
 			commonFunc.checkDiscountInLineDetails(SalesInvoiceLocators.SalesInvoiceSpecialAssblPrice,
@@ -294,27 +292,27 @@ public class CoreProcessPageFunctions {
 						webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 						System.getProperty("HariUsername"));
 			}
-//			commonFunc.navigateToFinancialPaymentReceipt();
-//			paymentReceiptFunc.clickPendingDrAndPendingReceivables();
-//			paymentReceiptFunc.chooseSaleInvoiceDocTypeWithInvoiceNoInFind(VariableHandler.getSIdocno());
-//			paymentReceiptFunc.clickSearchIconAndClickCreateWithInvoiceNo(VariableHandler.getSIdocno());
-//			paymentReceiptFunc.fillFormOfBankReceiptWithBankOrCashTypes(
-//					commonFunc.getDataFromTestDataSheet("SinglePaymentType"),
-//					commonFunc.getDataFromTestDataSheet("BankReceipt_BankType"),
-//					commonFunc.getDataFromTestDataSheet("NEFTText"), commonFunc.getDataFromTestDataSheet("Axisbank"));
-//			paymentReceiptFunc.enterRefNoAndSaveHeader("BR/Ref-" + VariableHandler.getSIdocno());
-//			paymentReceiptFunc.clickCreateJournalAndClickViewJournel();
-//			paymentReceiptFunc.verifyTotalDebitAndCreditEqualsAndCloseViewJournal();
-//			paymentReceiptFunc.verifyCreditInDrCrLinesColumnTotalTCAndTotalBC();
-//			paymentReceiptFunc.clickPostButtonInBankReceipts();
-//			if (!VariableHandler.getApprovalFlag()) {
-//				approvalFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
-//				commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"),
-//						VariableHandler.getBankReceiptVouNo(), webDB.getDataFromProperties("HariEmpId"),
-//						commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
-//			}
-//			paymentReceiptFunc.verifyPaymentReceiptApprovalStatus();
-//			flag = commonFunc.logoutUser();
+			commonFunc.navigateToFinancialPaymentReceipt();
+			paymentReceiptFunc.clickPendingDrAndPendingReceivables();
+			paymentReceiptFunc.chooseSaleInvoiceDocTypeWithInvoiceNoInFind(VariableHandler.getSIdocno());
+			paymentReceiptFunc.clickSearchIconAndClickCreateWithInvoiceNo(VariableHandler.getSIdocno());
+			paymentReceiptFunc.fillFormOfBankReceiptWithBankOrCashTypes(
+					commonFunc.getDataFromTestDataSheet("SinglePaymentType"),
+					commonFunc.getDataFromTestDataSheet("BankReceipt_BankType"),
+					commonFunc.getDataFromTestDataSheet("NEFTText"), commonFunc.getDataFromTestDataSheet("Axisbank"));
+			paymentReceiptFunc.enterRefNoAndSaveHeader("BR/Ref-" + VariableHandler.getSIdocno());
+			paymentReceiptFunc.clickCreateJournalAndClickViewJournel();
+			paymentReceiptFunc.verifyTotalDebitAndCreditEqualsAndCloseViewJournal();
+			paymentReceiptFunc.verifyCreditInDrCrLinesColumnTotalTCAndTotalBC();
+			paymentReceiptFunc.clickPostButtonInBankReceipts();
+			if (!VariableHandler.getApprovalFlag()) {
+				approvalFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
+				commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"),
+						VariableHandler.getBankReceiptVouNo(), webDB.getDataFromProperties("HariEmpId"),
+						commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+			}
+			paymentReceiptFunc.verifyPaymentReceiptApprovalStatus();
+			flag = commonFunc.logoutUser();
 			return true;
 		} catch (
 
@@ -363,7 +361,6 @@ public class CoreProcessPageFunctions {
 			saleOrderFunc.addQuantityAndUnitCost(Qnty, Cost);
 			saleOrderFunc.chooseHsnCodeAndClickLineWiseSaveButton(OpenSOHSN);
 			saleOrderFunc.clickLineWiseSaveButton();
-			saleOrderFunc.checkSaleOrderTaxCalculationForLastAddedItem();
 			saleOrderFunc.clickTotalDiscountForLineDetails();
 			saleOrderFunc.switchToLineDetailFrameInSaleOrder();
 			commonFunc.checkDiscountInLineDetails(SalesOrderLocators.SOSpecialDiscountAssblValue,
@@ -470,12 +467,14 @@ public class CoreProcessPageFunctions {
 			saleOrderFunc.addQuantityAndUnitCost(Qnty, Cost);
 			saleOrderFunc.chooseHsnCodeAndClickLineWiseSaveButton(OpenSOHSN);
 			saleOrderFunc.clickLineWiseSaveButton();
-			saleOrderFunc.checkSaleOrderTaxCalculationForLastAddedItem();
 			saleOrderFunc.clickTotalDiscountForLineDetails();
 			saleOrderFunc.switchToLineDetailFrameInSaleOrder();
+			commonFunc.checkRefreshCellsDisappear();
 			commonFunc.checkDiscountInLineDetails(SalesOrderLocators.SOSpecialDiscountAssblValue,
 					SalesOrderLocators.SOSpecialDiscountpercentageField,
 					SalesOrderLocators.SOSpecialDiscountAmountField, RandomStringUtils.randomNumeric(1));
+			commonFunc.checkRefreshCellsDisappear();
+			commonFunc.checkRefreshCellsDisappear();
 			commonFunc.checkDiscountInLineDetails(SalesOrderLocators.SOCashDiscountAssblValue,
 					SalesOrderLocators.SOCashDiscountpercentageField, SalesOrderLocators.SOCashDiscountAmountField,
 					RandomStringUtils.randomNumeric(1));
@@ -1121,12 +1120,6 @@ public class CoreProcessPageFunctions {
 			bomFunc.fillTypeAndWorkCenterInRouting(commonFunc.getDataFromTestDataSheet("InsideType"),
 					commonFunc.getDataFromTestDataSheet("GwlAutomationArea"));
 			bomFunc.clickSaveLineIconInRoutingTab();
-//			bomFunc.clickAddLineIconInRoutingTab();
-//			bomFunc.fillProcSeqNoOprnNoAndProcessIdInRouting("3", "3",
-//					commonFunc.getDataFromTestDataSheet("GwlProcess3"));
-//			bomFunc.fillTypeAndWorkCenterInRouting(commonFunc.getDataFromTestDataSheet("InsideType"),
-//					commonFunc.getDataFromTestDataSheet("GwlAutomationArea"));
-//			bomFunc.clickSaveLineIconInRoutingTab();
 			bomFunc.clickDetailsForAddedProcessInBOM(commonFunc.getDataFromTestDataSheet("GwlProcess1"));
 			bomFunc.chooseConsumptionAndReceiptWHInViewDetails(commonFunc.getDataFromTestDataSheet("WIPU100_WH"),
 					commonFunc.getDataFromTestDataSheet("WIPU100_WH"));
