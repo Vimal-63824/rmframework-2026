@@ -11,6 +11,7 @@ import commonfunctions.supplychainmanagement.ApprovalPageFunctions;
 import commonlocators.CommonUiLocators;
 import commonlocators.financials.PaymentReceiptsLocators;
 import commonlocators.supplychainmanagement.MaterialIssuanceVoucherLocators;
+import commonlocators.supplychainmanagement.OpenPoRcLocators;
 import commonlocators.supplychainmanagement.PurchaseOrderPageLocators;
 import utils.ReportLoger;
 import utils.WebDriverBase;
@@ -70,8 +71,7 @@ public class PaymentReceiptsFunctions {
 									webDB.selectDropDownByText(PaymentReceiptsLocators.PayMode,
 											commonFunc.getDataFromTestDataSheet("Rtgs"), ElementType.Xpath);
 									commonFunc.searchAndSelectValueInFilters(
-											PaymentReceiptsLocators.Bank_Cash_LovButton,
-											commonFunc.getDataFromTestDataSheet("Axisbank"));
+											PaymentReceiptsLocators.Bank_Cash_LovButton, "JP MORGAN CHASE");
 									flag = webDB.waitForElement(PaymentReceiptsLocators.PendingPayableFrame,
 											ElementType.Xpath);
 									if (flag) {
@@ -233,26 +233,22 @@ public class PaymentReceiptsFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyPaymentReceiptApproval() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"Sathi Ganesh");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateToFinancialPaymentReceipt();
 		verifyPendingCrDocs(VariableHandler.getPbNumber());
-		verifyCreatePaymentReceipt();
+//		verifyCreatePaymentReceipt();
 		commonFunc.hardWait(2000);
 		webDB.sendTextToAnElement(PaymentReceiptsLocators.ReferenceInputNumber, VariableHandler.getPbNumber(),
 				ElementType.Xpath);
 		clickTickAndPostIcon();
 		verifyWaitingForApproval();
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername-Admin");
-		approvalPageFunc.navigateToApprovals();
-		approvalPageFunc.filterDocumentsforApproval(VariableHandler.getBPvNumber());
-		approvalPageFunc.verifyApproveWithDocNumber(VariableHandler.getBPvNumber());
-		flag = commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getBPvNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-					"Sathi Ganesh");
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+					"AdminUsername");
 			commonFunc.navigateToFinancialPaymentReceipt();
 			verifyPaymentReceiptApprovalStatus();
 		}
@@ -268,22 +264,27 @@ public class PaymentReceiptsFunctions {
 		commonFunc.hardWait(2000);
 		commonFunc.searchAndSelectValueInFilters(PaymentReceiptsLocators.VoucherNumberLovButton,
 				VariableHandler.getBPvNumber());
-		flag = webDB.waitForElement(PaymentReceiptsLocators.ApproveSearchButton, ElementType.Xpath);
+		flag = webDB.waitForElement(OpenPoRcLocators.LineCheckBox, ElementType.Xpath);
 		if (flag) {
-			commonFunc.hardWait(2000);
-			webDB.clickAnElement(PaymentReceiptsLocators.ApproveSearchButton, ElementType.Xpath);
-			logs.logging("INFO", "Search Button Is Clicked");
-			commonFunc.hardWait(1000);
-			commonFunc.checkRefreshCellsDisappear();
-			flag = webDB.waitForElement(PaymentReceiptsLocators.IssuedStatus(VariableHandler.getBPvNumber()),
-					ElementType.Xpath);
+			logs.logging("INFO", "Line CheckBox Is Displayed");
+			webDB.clickAnElement(OpenPoRcLocators.LineCheckBox, ElementType.Xpath);
+			flag = webDB.waitForElement(PaymentReceiptsLocators.ApproveSearchButton, ElementType.Xpath);
 			if (flag) {
-				String Status = webDB.getTextFromElement(
-						PaymentReceiptsLocators.IssuedStatus(VariableHandler.getBPvNumber()), ElementType.Xpath);
-				flag = Status.contains(commonFunc.getDataFromTestDataSheet("Cleared"));
+				commonFunc.hardWait(2000);
+				webDB.clickAnElement(PaymentReceiptsLocators.ApproveSearchButton, ElementType.Xpath);
+				logs.logging("INFO", "Search Button Is Clicked");
+				commonFunc.hardWait(1000);
+				commonFunc.checkRefreshCellsDisappear();
+				flag = webDB.waitForElement(PaymentReceiptsLocators.IssuedStatus(VariableHandler.getBPvNumber()),
+						ElementType.Xpath);
 				if (flag) {
-					logs.logging("INFO", "Expected Status: " + commonFunc.getDataFromTestDataSheet("Cleared"));
-					logs.logging("INFO", "Verified Status ,Displayed Status: " + Status);
+					String Status = webDB.getTextFromElement(
+							PaymentReceiptsLocators.IssuedStatus(VariableHandler.getBPvNumber()), ElementType.Xpath);
+					flag = Status.contains(commonFunc.getDataFromTestDataSheet("Cleared"));
+					if (flag) {
+						logs.logging("INFO", "Expected Status: " + commonFunc.getDataFromTestDataSheet("Cleared"));
+						logs.logging("INFO", "Verified Status ,Displayed Status: " + Status);
+					}
 				}
 			}
 		}

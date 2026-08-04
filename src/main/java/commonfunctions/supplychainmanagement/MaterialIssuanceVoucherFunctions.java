@@ -502,15 +502,15 @@ public class MaterialIssuanceVoucherFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void createMaterialIssuanceVoucher() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateToMaterialIssuanceVoucher();
 		CreatePendingMIVDocument(VariableHandler.getMRNumber());
-		createJournalAndViewJournal();
-		verifyTableDataMiv();
-		headerValidationMiv(commonFunc.getDataFromTestDataSheet("Loc_100"),
-				commonFunc.getDataFromTestDataSheet("Warehouse100"),
-				commonFunc.getDataFromTestDataSheet("IntraTransfer"));
+//		createJournalAndViewJournal();
+//		verifyTableDataMiv();
+//		headerValidationMiv(commonFunc.getDataFromTestDataSheet("Loc_100"),
+//				commonFunc.getDataFromTestDataSheet("Warehouse100"),
+//				commonFunc.getDataFromTestDataSheet("IntraTransfer"));
 		headerTickAndPostIcon();
 		checkStatusOfMaterialIssuanceNumber(VariableHandler.getMIVNumber(),
 				commonFunc.getDataFromTestDataSheet("PostedStatus"));

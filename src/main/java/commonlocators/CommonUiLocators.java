@@ -165,7 +165,7 @@ public class CommonUiLocators {
 	/** @locatorType Xpath */
 	public static final String StocksTab = "//span[text()='Supply Chain']/ancestor::li/*/li[3]/*/li[3]/*/li[15]";
 	/** @locatorType Xpath */
-	public static final String StocksCheckBox = "//input[@id='P93132130_TYPE_0']/../label";
+	public static final String StocksCheckBox = "//input[@data-testid='P93132130_TYPE']/following-sibling::label";
 	/** @locatorType Xpath */
 	public static final String PurchaseOrderTabForPurchaseUser = "//span[text()='Supply Chain']/ancestor::li/*/li[1]/*/li[2]/*//a[text()='Purchase Order']";
 	/** @locatorType Xpath */
@@ -436,4 +436,6 @@ public class CommonUiLocators {
 	public static final String FinalInspectionCheckBox = "//input[@data-testid='P36719401_PRODPLNT_FPI_FLAG_3']";
 	/** @locatorType Xpath */
 	public static final String OkayButton = "//button[text()='OK']";
+	/** @locatorType Xpath */
+	public static final String ItemLovButton = "//input[@data-testid='P93132130_ITEM']/following-sibling::button";
 }

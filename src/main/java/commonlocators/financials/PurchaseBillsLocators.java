@@ -8,14 +8,14 @@ public class PurchaseBillsLocators {
 	/** @locatorType Xpath */
 	public static final String PendingGrn = "//button[@data-testid='PendingGRN']";
 	/** @locatorType Xpath */
-	public static final String GrnNo = "//input[@data-testid='GRNNo']/following-sibling::button";
+	public static final String GrnNo = "//input[contains(@data-testid,'GRN_NO')]/following-sibling::button";
 	/** @locatorType Xpath */
 	public static final String Iframe = "//iframe";
 	/** @locatorType Xpath */
-	public static final String SearchButton = "//button[@id='B1874148864248723410']";
+	public static final String SearchButton = "//button[@data-testid='SearchGRN']";
 
 	/** @locatorType Xpath */
-	public static final String CheckBox = "//*[@id='5414119390218282305']/tbody/tr[2]/td[13]";
+	public static final String CheckBox = "//div[@id='PEND_data_panel']/div[1]/div/div[3]/table/tbody/tr[2]/td[14]";
 
 	/** @locatorType Xpath */
 	public static final String CreateDoc = "//button[@data-testid='CreateDoc']";
@@ -36,7 +36,7 @@ public class PurchaseBillsLocators {
 	/** @locatorType Xpath */
 	public static final String PurchaseBillSearchButton = "//button[@data-testid='Search']";
 	/** @locatorType Xpath */
-	public static final String ApproveOkButton = "//button[@id='B1457704718951134857']";
+	public static final String ApproveOkButton = "//span[text()='Ok']/..";
 
 	/** @locatorType Xpath */
 	public static final String ApprovedStatus(String PbNo) {
@@ -372,5 +372,7 @@ public class PurchaseBillsLocators {
 	public static final String PO_Inv_Prefix_Lov = "//button[@id='P116131005_INV_PFX_lov_btn']";
 	/** @locatorType Xpath */
 	public static final String Po_Inv_Prefix_Field = "//input[@id='P116131005_INV_PFX']";
+	/** @locatorType Xpath */
+	public static final String Pending_Prefix_Lov_button = "//input[contains(@data-testid,'INV_PFX')]/following-sibling::button";
 
 }

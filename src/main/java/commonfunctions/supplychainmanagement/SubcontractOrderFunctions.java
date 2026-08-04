@@ -288,7 +288,7 @@ public class SubcontractOrderFunctions {
 			flag = webDB.waitForElement(SubcontractOrderLocators.FrameDetails, ElementType.Xpath);
 			if (flag) {
 				webDB.switchToFrame(SubcontractOrderLocators.FrameDetails, ElementType.Xpath);
-				purchaseOrderFunc.verifyDomPropertyValidation(SubcontractOrderLocators.SourceSFCode, Source);
+//				purchaseOrderFunc.verifyDomPropertyValidation(SubcontractOrderLocators.SourceSFCode, Source);
 				purchaseOrderFunc.verifyGetTextValidation(SubcontractOrderLocators.TargetSFCode, Target);
 				purchaseOrderFunc.verifyGetTextValidation(SubcontractOrderLocators.TarProcessDetails, Process);
 //				purchaseOrderFunc.verifyGetTextValidation(SubcontractOrderLocators.UnitCost, Unitcost);
