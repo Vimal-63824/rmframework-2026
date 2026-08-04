@@ -99,7 +99,9 @@ public class SalesInvoiceLocators {
 	/** @Locator XPATH */
 	public static final String CPC_Column = "//*[@id='P191513109001_SIHD_CC_CODE']";
 	/** @Locator XPATH */
-	public static final String Details_Btn = "(//span[contains(@class,'fa fa-list')])[3]";
+	public static final String Details_Btn = "(//span[contains(@class,'fa fa-indent')])[1]";
+	/** @Locator XPATH */
+	public static final String TotalDiscountData = "//table[@data-testid='ig_line_ig_report_settings_Result_Data']/tbody/tr/td[11]/a";
 	/** @Locator XPATH */
 	public static final String Detail_Btn_Iframe = "//iframe[contains(@title,'Sales Invoice Details')]";
 	/** @Locator XPATH */
@@ -151,23 +153,23 @@ public class SalesInvoiceLocators {
 	/** @Locator XPATH */
 	public static final String FindSalesInvoiceSearchBtn = "//button[@data-testid='Find_line']";
 	/** @Locator XPATH */
-	public static final String InvoiceQntyTableData = "//table/tbody/tr/td[8]";
+	public static final String InvoiceQntyTableData = "//table/tbody/tr/td[9]";
 	/** @Locator XPATH */
-	public static final String UnitPriceTableData = "//table/tbody/tr/td[9]";
+	public static final String UnitPriceTableData = "//table/tbody/tr/td[10]";
 	/** @Locator XPATH */
-	public static final String DiscountAmountTableData = "//table/tbody/tr/td[12]";
+	public static final String DiscountAmountTableData = "//table[@data-testid='ig_line_ig_report_settings_Result_Data']/tbody/tr/td[11]";
 	/** @Locator XPATH */
-	public static final String LineAmountTableData = "//table/tbody/tr/td[13]";
+	public static final String LineAmountTableData = "//table[@data-testid='ig_line_ig_report_settings_Result_Data']/tbody/tr/td[12]";
 	/** @Locator XPATH */
-	public static final String TaxPercentField = "//table/tbody/tr/td[15]";
+	public static final String TaxPercentField = "//table[@data-testid='ig_line_ig_report_settings_Result_Data']/tbody/tr/td[14]";
 	/** @Locator XPATH */
-	public static final String IGSTTaxAmountField = "//table/tbody/tr/td[16]";
+	public static final String IGSTTaxAmountField = "//table[@data-testid='ig_line_ig_report_settings_Result_Data']/tbody/tr/td[15]";
 	/** @Locator XPATH */
-	public static final String CGSTTaxAmountField = "//table/tbody/tr/td[17]";
+	public static final String CGSTTaxAmountField = "//table[@data-testid='ig_line_ig_report_settings_Result_Data']/tbody/tr/td[16]";
 	/** @Locator XPATH */
-	public static final String SGSTTaxAmountField = "//table/tbody/tr/td[18]";
+	public static final String SGSTTaxAmountField = "//table[@data-testid='ig_line_ig_report_settings_Result_Data']/tbody/tr/td[17]";
 	/** @Locator XPATH */
-	public static final String UTGSTTaxAmountField = "//table/tbody/tr/td[19]";
+	public static final String UTGSTTaxAmountField = "//table[@data-testid='ig_line_ig_report_settings_Result_Data']/tbody/tr/td[18]";
 	/** @Locator XPATH */
 	public static final String TotalAmountDisplayField = "//input[@id='P191513109001_SIHD_TOT_AMT']";
 

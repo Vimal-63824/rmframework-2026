@@ -390,27 +390,24 @@ public class PaymentReceiptsFunctions {
 //				flag = webDB.waitForElement(PaymentReceiptsLocators.PendReceive_SearchGoBtn, ElementType.Xpath);
 //				if (flag) {
 //					webDB.clickAnElement(PaymentReceiptsLocators.PendReceive_SearchGoBtn, ElementType.Xpath);
-					flag = webDB.waitForElement(PaymentReceiptsLocators.PendReceive_CheckBox(InvoiceNo),
-							ElementType.Xpath);
+			flag = webDB.waitForElement(PaymentReceiptsLocators.PendReceive_CheckBox(InvoiceNo), ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Searched with Invoice number: " + InvoiceNo);
+				webDB.moveToElement(PaymentReceiptsLocators.PendReceive_CheckBox(InvoiceNo), ElementType.Xpath);
+				webDB.clickAnElement(PaymentReceiptsLocators.PendReceive_CheckBox(InvoiceNo), ElementType.Xpath);
+				commonFunc.hardWait(2000);
+				flag = webDB.isElementEnabled(PaymentReceiptsLocators.PendReceive_CreateBtn, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO",
+							"CheckBox Clicked to Create Bank Receipt for the Invoice number: " + InvoiceNo);
+					webDB.clickAnElement(PaymentReceiptsLocators.PendReceive_CreateBtn, ElementType.Xpath);
+					flag = webDB.waitForElement(PaymentReceiptsLocators.PendReceive_SingleRadioBtn, ElementType.Xpath);
 					if (flag) {
-						logs.logging("INFO", "Searched with Invoice number: " + InvoiceNo);
-						webDB.moveToElement(PaymentReceiptsLocators.PendReceive_CheckBox(InvoiceNo), ElementType.Xpath);
-						webDB.clickAnElement(PaymentReceiptsLocators.PendReceive_CheckBox(InvoiceNo),
-								ElementType.Xpath);
-						commonFunc.hardWait(2000);
-						flag = webDB.isElementEnabled(PaymentReceiptsLocators.PendReceive_CreateBtn, ElementType.Xpath);
-						if (flag) {
-							logs.logging("INFO",
-									"CheckBox Clicked to Create Bank Receipt for the Invoice number: " + InvoiceNo);
-							webDB.clickAnElement(PaymentReceiptsLocators.PendReceive_CreateBtn, ElementType.Xpath);
-							flag = webDB.waitForElement(PaymentReceiptsLocators.PendReceive_SingleRadioBtn,
-									ElementType.Xpath);
-							if (flag) {
-								logs.logging("INFO", "Create Button Clicked and Bank Receipt Page Navigated");
-							}
-						}
+						logs.logging("INFO", "Create Button Clicked and Bank Receipt Page Navigated");
 					}
 				}
+			}
+		}
 //			}
 //		}
 		webDB.switchToDefaultContent();

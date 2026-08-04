@@ -4066,10 +4066,10 @@ public class SubcontractPurchaseBills {
 			webDB.clickAnElement(PurchaseBillsGrnLocators.PB_ApplyDeduction, ElementType.Xpath);
 			commonFunc.hardWait(1000);
 			webDB.pressEnterKey();
-				logs.logging("INFO", "Apply Deduction Buttton Clicked");
-				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.hardWait(1000);
-			}
+			logs.logging("INFO", "Apply Deduction Buttton Clicked");
+			commonFunc.checkRefreshCellsDisappear();
+			commonFunc.hardWait(1000);
+		}
 		assertTrue(flag);
 	}
 
@@ -4107,6 +4107,7 @@ public class SubcontractPurchaseBills {
 		verifyCreateJournalAndVerifyMatchedAmtAndPost();
 		PurBillFunc.waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
 	}
+
 	/**
 	 * Domestic Registered Supplier - With Advance TDS single under section (Single
 	 * PO with Single New reference)

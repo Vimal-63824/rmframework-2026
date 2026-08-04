@@ -318,7 +318,7 @@ public class BankPaymentLocators {
 	public static final String PDCSelectCheckBox(String PDCNo) {
 		return "//td[text()='" + PDCNo + "']/../td[10]";
 	}
-	
+
 	/** @locatorType Xpath */
 	public static final String LineWiseTDS(int i) {
 		return "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[" + i + "]/td[27]";

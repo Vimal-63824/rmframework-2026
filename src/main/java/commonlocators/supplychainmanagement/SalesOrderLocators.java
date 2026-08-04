@@ -87,9 +87,13 @@ public class SalesOrderLocators {
 	/** @Locator Xpath */
 	public static final String SOTotalAmountFieldQuery = "//span[@id='P191513134001_SOH_TOT_AMT_DISPLAY']";
 	/** Locator @CssSelector */
-	public static final String SOLineWiseDetailsButton = "#ig_line_ig_grid_vc > div.a-GV-bdy > div.a-GV-w-scroll > table > tbody > tr > td:nth-child(17) > a";
+	public static final String SOLineWiseDetailsButton = "#ig_line_ig_grid_vc > div.a-GV-bdy > div.a-GV-w-scroll > table > tbody > tr > td:nth-child(22) > a";
+	/** Locator @CssSelector */
+	public static final String SOTotalDiscountData = "#ig_line_ig_grid_vc > div.a-GV-bdy > div.a-GV-w-scroll > table > tbody > tr > td:nth-child(10) > a";
 	/** @Locator Xpath */
-	public static final String LinewisedetailsHeader = "(//h1[@class='ui-dialog-title'])[6]";
+	public static final String LinewisedetailsHeader = "(//h1[@class='ui-dialog-title'])[7]";
+	/** @Locator Xpath */
+	public static final String DiscountEntryIframe = "//iframe[contains(@title,'Line Details')]";
 	/** @Locator Xpath */
 	public static final String SOTradeDiscountpercentageField = "//input[@data-testid='P191513134002_SOQ_DISC_PCT']";
 	/** @Locator Xpath */
@@ -103,7 +107,7 @@ public class SalesOrderLocators {
 	/** @Locator Xpath */
 	public static final String SOCashDiscountAmountField = "//input[@data-testid='SOCashDiscountAmountField']";
 	/** @Locator Xpath */
-	public static final String LineWiseDetailsSaveIcon = "//BUTTON[@data-testid='SO_LineWise_Details_SaveButton']";
+	public static final String LineWiseDetailsSaveIcon = "//button[@data-testid='SO_LineWise_Details_SaveButton']";
 	/** @Locator Xpath */
 	public static final String SOGrossAmountField = "//input[@data-testid='SOGrossAmountField']";
 	/** @Locator Xpath */
@@ -125,23 +129,23 @@ public class SalesOrderLocators {
 	/** Locator Xpath */
 	public static final String setupSales = "(//span[contains(@class,'fa fa fa-columns')])[1]";
 	/** Locator Xpath */
-	public static final String LineDetailsFrame = "//iframe[@title='Line Details']";
+	public static final String LineDetailsFrame = "//iframe[contains(@title,'Line Details')]";
 	/** @Locator Xpath */
 	public static final String SOSpecialDiscountAssblValue = "//input[@data-testid='SOSpecialDiscountAssblValue']";
 	/** @Locator Xpath */
 	public static final String SOCashDiscountAssblValue = "//input[@data-testid='SOCashDiscountAssblValue']";
 	/** @Locator Xpath */
-	public static final String TaxPercentField = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[10]";
+	public static final String TaxPercentField = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[12]";
 	/** @Locator Xpath */
-	public static final String IGSTTaxAmountField = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[11]";
+	public static final String IGSTTaxAmountField = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[13]";
 	/** @Locator Xpath */
-	public static final String CGSTTaxAmountField = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[12]";
+	public static final String CGSTTaxAmountField = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[14]";
 	/** @Locator Xpath */
-	public static final String SGSTTaxAmountField = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[13]";
+	public static final String SGSTTaxAmountField = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[15]";
 	/** @Locator Xpath */
-	public static final String UTGSTTaxAmountField = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[14]";
+	public static final String UTGSTTaxAmountField = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[16]";
 	/** @Locator Xpath */
-	public static final String DiscountAmountField = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[8]";
+	public static final String DiscountAmountField = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[10]";
 	/** @Locator Xpath */
 	public static final String SOTradeAssesableValueField = "//input[@data-testid='SOTradeAssesableValueField']";
 	/** @Locator Xpath */
@@ -584,8 +588,6 @@ public class SalesOrderLocators {
 	public static final String SOCancelAlert = "//h1[text()='Confirmation']/ancestor::div/following-sibling::div/div/button[text()='Ok']";
 	/** @locatorType Xpath */
 	public static final String CFdescLOV = "//INPUT[@data-testid='CFDesc']/following-sibling::button";
-	
-	
 
 	/** @locatorType Xpath */
 	public static final String selectCheckBoxInMultiCloseShort(String SONumber, int i) {

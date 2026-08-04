@@ -28,7 +28,7 @@ public class PurchaseFOCTest extends RoadMapERPTest {
 	private static PurchaseOrderFunctions purchaseOrderFunc = new PurchaseOrderFunctions();
 	private static ReportLoger logs = new ReportLoger();
 	private static int previousStatus = ITestResult.SUCCESS;
-	
+
 	/**
 	 * This method used to login while start of the test class
 	 * 
@@ -36,7 +36,8 @@ public class PurchaseFOCTest extends RoadMapERPTest {
 	 */
 	@BeforeMethod(alwaysRun = true)
 	private void VerifyLogin() {
-		if (VariableHandler.getSessionID() == null) {
+		if (VariableHandler.getSessionID() == null || VariableHandler.getSessionID().equalsIgnoreCase("")
+				|| VariableHandler.getSessionID().equals(null)) {
 			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 					"AdminUsername-Admin");
 		} else {

@@ -69,6 +69,7 @@ public class GateEntryPageFunctions {
 		gateEntryItemHeaderValidation();
 		verifyToOverAllSaveAndPostTheGateEntryDocument();
 	}
+
 	/**
 	 * This Methods Is Used To verify Create Gate Entry for Multiple Purchase Order
 	 * 
@@ -85,7 +86,7 @@ public class GateEntryPageFunctions {
 		System.out.println(VariableHandler.getMultiplePODocs().get(0));
 		System.out.println(VariableHandler.getMultiplePODocs().get(1));
 	}
-		
+
 	/**
 	 * This Methods Is Used To verify Create Gate Entry for Multiple Purchase Order
 	 * 
@@ -210,7 +211,7 @@ public class GateEntryPageFunctions {
 	 * 
 	 * @author Durai-RMITS
 	 */
-	public void verifyToCreateGateEntryFromPendingMultiPo(ArrayList<String> PONumber ) {
+	public void verifyToCreateGateEntryFromPendingMultiPo(ArrayList<String> PONumber) {
 		flag = webDB.waitForElement(GateEntryPageLocators.ClickPendingButton, ElementType.Xpath);
 		if (flag)
 			webDB.clickAnElement(GateEntryPageLocators.ClickPendingButton, ElementType.Xpath);
@@ -225,11 +226,11 @@ public class GateEntryPageFunctions {
 //				webDB.clickAnElement(GateEntryPageLocators.PendDateInput, ElementType.Xpath);
 //				webDB.sendTextToAnElement(GateEntryPageLocators.PendDateInput, Today, ElementType.Xpath);
 //				logs.logging("INFO", "Date is Entered");
-			for(int i = 0; i < VariableHandler.getMultiplePODocs().size(); i++) {
-			webDB.waitForElement(GateEntryPageLocators.PendingGatePOLov, ElementType.Xpath);
-					commonFunc.searchAndSelectValueInFilters(GateEntryPageLocators.PendingGatePOLov, PONumber.get(i));
-					webDB.switchToFrame(GateEntryPageLocators.PendingPOGIframe, ElementType.Xpath);
-					logs.logging("INFO", "Switched to Frame");
+			for (int i = 0; i < VariableHandler.getMultiplePODocs().size(); i++) {
+				webDB.waitForElement(GateEntryPageLocators.PendingGatePOLov, ElementType.Xpath);
+				commonFunc.searchAndSelectValueInFilters(GateEntryPageLocators.PendingGatePOLov, PONumber.get(i));
+				webDB.switchToFrame(GateEntryPageLocators.PendingPOGIframe, ElementType.Xpath);
+				logs.logging("INFO", "Switched to Frame");
 				webDB.waitForElement(GateEntryPageLocators.GateEntryPoSearchButton, ElementType.Xpath);
 				if (flag) {
 					flag = webDB.clickAnElement(GateEntryPageLocators.GateEntryPoSearchButton, ElementType.Xpath);
@@ -237,8 +238,7 @@ public class GateEntryPageFunctions {
 					commonFunc.hardWait(5000);
 					webDB.waitForElement(GateEntryPageLocators.GateEntryPendingPoSelect, ElementType.Xpath);
 					if (flag) {
-						flag = webDB.clickAnElement(GateEntryPageLocators.GateEntryPendingPoSelect,
-								ElementType.Xpath);
+						flag = webDB.clickAnElement(GateEntryPageLocators.GateEntryPendingPoSelect, ElementType.Xpath);
 						logs.logging("INFO", "Create Gate Entry Button shown");
 						webDB.waitForElement(GateEntryPageLocators.GateEntryPoClearButton, ElementType.Xpath);
 						if (flag) {
@@ -249,17 +249,16 @@ public class GateEntryPageFunctions {
 					}
 				}
 			}
-						commonFunc.checkRefreshCellsDisappear();
-						commonFunc.hardWait(2000);
-						webDB.waitForElement(GateEntryPageLocators.CreateGeFromPO, ElementType.Xpath);
-						if (flag) {
-							webDB.clickAnElement(GateEntryPageLocators.CreateGeFromPO, ElementType.Xpath);
-						}
-					}
-			
-		assertTrue(flag);
+			commonFunc.checkRefreshCellsDisappear();
+			commonFunc.hardWait(2000);
+			webDB.waitForElement(GateEntryPageLocators.CreateGeFromPO, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(GateEntryPageLocators.CreateGeFromPO, ElementType.Xpath);
+			}
 		}
-		
+
+		assertTrue(flag);
+	}
 
 	/**
 	 * This Methods Is Used To verify Create Gate Entry Pending multiple Supplier
@@ -1505,7 +1504,7 @@ public class GateEntryPageFunctions {
 				webDB.clickAnElement(GateEntryPageLocators.SearchButton, ElementType.Xpath);
 				commonFunc.checkRefreshCellsDisappear();
 				webDB.waitForElement(GateEntryPageLocators.GateEntryHeaderSearchBar, ElementType.Xpath);
-				webDB.sendTextToAnElement(GateEntryPageLocators.GateEntryHeaderSearchBar,GEONo, ElementType.Xpath);
+				webDB.sendTextToAnElement(GateEntryPageLocators.GateEntryHeaderSearchBar, GEONo, ElementType.Xpath);
 				webDB.waitForElement(GateEntryPageLocators.GateEntryHeaderSearchGoBtn, ElementType.Xpath);
 				webDB.moveToElement(GateEntryPageLocators.GateEntryHeaderSearchGoBtn, ElementType.Xpath);
 				webDB.clickAnElement(GateEntryPageLocators.GateEntryHeaderSearchGoBtn, ElementType.Xpath);

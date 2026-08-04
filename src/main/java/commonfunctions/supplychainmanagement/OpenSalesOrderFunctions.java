@@ -63,7 +63,7 @@ public class OpenSalesOrderFunctions {
 //				if (flag) {
 //					String headerText = webDB.getTextFromElement(OpenSalesOrderLocators.GetTitle,
 //							ElementType.Xpath);
-					logs.logging("INFO", "Page navigate to " + SOtype);
+				logs.logging("INFO", "Page navigate to " + SOtype);
 //				}
 			}
 		}
@@ -123,8 +123,7 @@ public class OpenSalesOrderFunctions {
 			flag = webDB.waitForElement(OpenSalesOrderLocators.OpenSO_PONumberInput, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Selected SO Type in Open SO: " + SOType);
-				 webDB.sendTextToAnElement(OpenSalesOrderLocators.OpenSO_PONumberInput, PoNumber,
-						ElementType.Xpath);
+				webDB.sendTextToAnElement(OpenSalesOrderLocators.OpenSO_PONumberInput, PoNumber, ElementType.Xpath);
 				if (flag) {
 					logs.logging("INFO", "Entered PO Number in Open SO: " + PoNumber);
 				}
@@ -189,25 +188,27 @@ public class OpenSalesOrderFunctions {
 						webDB.clickAnElement(OpenSalesOrderLocators.SelecCheckBox, ElementType.Xpath);
 						logs.logging("INFO", "Item Check Box Is Checked");
 						commonFunc.hardWait(2000);
+						commonFunc.checkRefreshCellsDisappear();
 						flag = webDB.waitForElement(OpenSalesOrderLocators.FetchCustomerOkBtn, ElementType.Xpath);
 						if (flag) {
+							commonFunc.checkRefreshCellsDisappear();
 							webDB.moveToElement(OpenSalesOrderLocators.FetchCustomerOkBtn, ElementType.Xpath);
 							flag = webDB.clickAnElement(OpenSalesOrderLocators.FetchCustomerOkBtn, ElementType.Xpath);
 							commonFunc.checkRefreshCellsDisappear();
-							
+
 						}
 					}
 				}
 			}
 		}
 		webDB.switchToDefaultContent();
-		flag = webDB.waitForElement(OpenSalesOrderLocators.HeaderStatus,ElementType.Xpath);
-		if(flag) {
+		flag = webDB.waitForElement(OpenSalesOrderLocators.HeaderStatus, ElementType.Xpath);
+		if (flag) {
 			logs.logging("INFO", "Item Added Against To The Customer");
 		}
 		assertTrue(flag);
 	}
-	
+
 	public void clickFetchCustomerAndSelectItemForDeleteProcess(String ItemDelete_1) {
 		flag = webDB.waitForElement(OpenSalesOrderLocators.FetchCustomerItemBtn, ElementType.Xpath);
 		if (flag) {
@@ -223,7 +224,8 @@ public class OpenSalesOrderFunctions {
 //					commonFunc.checkRefreshCellsDisappear();
 					commonFunc.hardWait(2000);
 					webDB.clickAnElement(OpenSalesOrderLocators.SearchInputField, ElementType.Xpath);
-					webDB.javaScriptSendTextToAnElement(OpenSalesOrderLocators.SearchInputField, ItemDelete_1, ElementType.Xpath);
+					webDB.javaScriptSendTextToAnElement(OpenSalesOrderLocators.SearchInputField, ItemDelete_1,
+							ElementType.Xpath);
 					commonFunc.checkRefreshCellsDisappear();
 					webDB.javaScriptClickAnElement(OpenSalesOrderLocators.Gobutton, ElementType.Xpath);
 					flag = webDB.waitForElement(OpenSalesOrderLocators.SelecCheckBox, ElementType.Xpath);
@@ -246,7 +248,7 @@ public class OpenSalesOrderFunctions {
 		webDB.switchToDefaultContent();
 		assertTrue(flag);
 
-	}	
+	}
 
 	/**
 	 * This Method used to click Fetch Customer and Select Item checkbox and click
@@ -264,29 +266,29 @@ public class OpenSalesOrderFunctions {
 			if (flag) {
 				logs.logging("INFO", "Fetch Customer Item Button Clicked");
 				webDB.switchToFrame(OpenSalesOrderLocators.FetchCustomerIframe, ElementType.Xpath);
-				flag = webDB.waitForElement(OpenSalesOrderLocators.fetchButtonSearchButton,
-						ElementType.Xpath);
+				flag = webDB.waitForElement(OpenSalesOrderLocators.fetchButtonSearchButton, ElementType.Xpath);
 				if (flag) {
 					logs.logging("INFO", "Iframe Displayed and switched successfully");
-					webDB.sendTextToAnElement(OpenSalesOrderLocators.fetchButtonSearchButton, 
+					webDB.sendTextToAnElement(OpenSalesOrderLocators.fetchButtonSearchButton,
 							VariableHandler.getItemName(), ElementType.Xpath);
 					flag = webDB.waitForElement(OpenSalesOrderLocators.fetchButtonGoButton, ElementType.Xpath);
-					if(flag) {
-						logs.logging("INFO","Item Inserted In Fetch Customer Item");
+					if (flag) {
+						logs.logging("INFO", "Item Inserted In Fetch Customer Item");
 						webDB.clickAnElement(OpenSalesOrderLocators.fetchButtonGoButton, ElementType.Xpath);
 						flag = webDB.waitForElement(OpenSalesOrderLocators.SelectItem, ElementType.Xpath);
-						if(flag) {
+						if (flag) {
 							webDB.moveToElement(OpenSalesOrderLocators.SelectItem, ElementType.Xpath);
 							webDB.clickAnElement(OpenSalesOrderLocators.SelectItem, ElementType.Xpath);
 							flag = webDB.isElementEnabled(OpenSalesOrderLocators.FetchCustomerOkBtn, ElementType.Xpath);
 							if (flag) {
 								webDB.moveToElement(OpenSalesOrderLocators.FetchCustomerOkBtn, ElementType.Xpath);
-								flag = webDB.clickAnElement(OpenSalesOrderLocators.FetchCustomerOkBtn, ElementType.Xpath);
+								flag = webDB.clickAnElement(OpenSalesOrderLocators.FetchCustomerOkBtn,
+										ElementType.Xpath);
 								commonFunc.checkRefreshCellsDisappear();
 
 							}
 						}
-						
+
 					}
 				}
 			}
@@ -387,8 +389,9 @@ public class OpenSalesOrderFunctions {
 				if (flag) {
 					commonFunc.checkSuccessToastMessageDisappear();
 					webDB.moveToElement(OpenSalesOrderLocators.OpenSOPostBTN, ElementType.Xpath);
-					flag = webDB.clickAnElement(OpenSalesOrderLocators.OpenSOPostBTN, ElementType.Xpath);
+					webDB.clickAnElement(OpenSalesOrderLocators.OpenSOPostBTN, ElementType.Xpath);
 					commonFunc.checkRefreshCellsDisappear();
+					flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
 				}
 			}
 		}
@@ -478,7 +481,6 @@ public class OpenSalesOrderFunctions {
 		}
 		assertTrue(flag);
 	}
-
 
 	/**
 	 * This Method used to verify Open Sale Order Status With OpenSO Document Number
@@ -598,8 +600,9 @@ public class OpenSalesOrderFunctions {
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		commonFunc.logoutUser();
 	}
-	
-	/**Verifty Open So For Export Customer
+
+	/**
+	 * Verifty Open So For Export Customer
 	 * 
 	 * @author Kowshik-Rmits
 	 */
@@ -656,7 +659,7 @@ public class OpenSalesOrderFunctions {
 		validateStatusOfOpenSOWithDocNo(VariableHandler.getOpenSONumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		commonFunc.logoutUser();
-		
+
 	}
 
 	/**
@@ -680,7 +683,7 @@ public class OpenSalesOrderFunctions {
 		String OpenSOPrefix = commonFunc.getDataFromTestDataSheet("Prefix_OP100");
 		String OpenSOType = commonFunc.getDataFromTestDataSheet("Type_Standard");
 		String OpenSOHSN = commonFunc.getDataFromTestDataSheet("HSN2022-5%");
-		
+
 		cusItems.createOpenSoItemOpenSoForDomesticCustomerForCancelStage();
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
@@ -728,8 +731,9 @@ public class OpenSalesOrderFunctions {
 		}
 		assertTrue(flag);
 	}
-	
-	/**Verify Open So LOcal Customer
+
+	/**
+	 * Verify Open So LOcal Customer
 	 * 
 	 * @author Kowshik-Rmits
 	 */
@@ -784,7 +788,9 @@ public class OpenSalesOrderFunctions {
 //		validateStatusOfOpenSOWithDocNo(VariableHandler.getOpenSONumber(),
 //				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 	}
-	/**Open So Item Interstate Customer
+
+	/**
+	 * Open So Item Interstate Customer
 	 * 
 	 * @author Kowshik-RMITS
 	 */
@@ -820,7 +826,7 @@ public class OpenSalesOrderFunctions {
 		fillDiscountAndSaveLinesforAddedLastItemInOpenSO("0");
 		enterEffectiveFromAndToDate(Today, Today, Today);
 		clickHeaderSaveAndClickPostBtnInOpenSO();
-		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));		
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.hardWait(2000);
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getOpenSONumber(),
@@ -839,8 +845,9 @@ public class OpenSalesOrderFunctions {
 //		validateStatusOfOpenSOWithDocNo(VariableHandler.getOpenSONumber(),
 //				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 	}
-	
-	/**Open So Item Export Customer
+
+	/**
+	 * Open So Item Export Customer
 	 * 
 	 * @author Kowshik-RMITS
 	 */
@@ -896,12 +903,14 @@ public class OpenSalesOrderFunctions {
 //				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 
 	}
-	/**Open So Item UTGST Customer
+
+	/**
+	 * Open So Item UTGST Customer
 	 * 
 	 * @author Kowshik-RMITS
 	 */
 	public void verifyOpenSoUTGSTCustomer() {
-		
+
 		LocalDate date = LocalDate.now();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 		String Today = date.format(formatter);
@@ -920,13 +929,13 @@ public class OpenSalesOrderFunctions {
 		String OpenSOType = commonFunc.getDataFromTestDataSheet("Type_Standard");
 		String OpenSOHSN = commonFunc.getDataFromTestDataSheet("HSN2022-5%");
 
-
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateOpenSO();
 		selectOpenSOTypeWithRadioButtons("Open SO");
 		clickAddNewOpenSOPlsIcon();
-		fillLocationCustomerPrefixInOpenSO(commonFunc.getDataFromTestDataSheet("UTGSTLocation"), CustomerID, OpenSOPrefix);
+		fillLocationCustomerPrefixInOpenSO(commonFunc.getDataFromTestDataSheet("UTGSTLocation"), CustomerID,
+				OpenSOPrefix);
 		fillSOTypeAndPONumberInOpenSO(OpenSOType, RandomStringUtils.randomNumeric(4));
 		clickTickIconAndSetPODateInAddOpenSOAndStoreDocNo();
 		clickFetchCustomerAndSelectItemInOpenSoUpdated();

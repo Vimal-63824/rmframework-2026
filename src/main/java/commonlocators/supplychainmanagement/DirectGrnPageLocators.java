@@ -5,7 +5,7 @@ package commonlocators.supplychainmanagement;
  * @company Roadmap May 02, 2025
  */
 public class DirectGrnPageLocators {
-	
+
 	public static final String LocationLOV = "//input[@data-testid='P16151311031_PORH_PLNT_LOC_ID']";
 	/** @locatorType Xpath */
 	public static final String GrnAddBtn = "//*[@id='active']/span";

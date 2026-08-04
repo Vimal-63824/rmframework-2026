@@ -1,4 +1,5 @@
 package commonfunctions.supplychainmanagement;
+
 /**
  * @author Deepan-GWL, Sakthi-GWL
  * @company Galaxy Weblinks May 20, 2025
@@ -674,6 +675,7 @@ public class DebitNoteFunctions {
 		ClickingCancelButtonInDebitNote();
 		return flag;
 	}
+
 	/**
 	 * This Method Used For Cancel Debit Memo Line
 	 * 

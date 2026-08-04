@@ -5,7 +5,7 @@ package commonlocators.supplychainmanagement;
  * @company RoadMap It Solutions May 05, 2025
  */
 public class CustomerScheduleLocators {
-	
+
 	/** @Locator Xpath */
 	public static final String CatalogFindButton = "//button[@data-testid='Search']";
 	/** @Locator Xpath */
@@ -178,7 +178,7 @@ public class CustomerScheduleLocators {
 	public static final String CSFindScreenHeaderradioButton = "//label[@for='P191513102011_HD_LN_0']";
 	/** @Locator Xpath */
 	public static final String CSAddFrameName = "//h1[@id='ui-id-1']";
-	
+
 	public static final String CSLocationField = "//input[@data-testid='CSLocationLov']";
 
 	/** @Locator Xpath */

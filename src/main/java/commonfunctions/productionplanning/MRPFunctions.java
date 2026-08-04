@@ -257,6 +257,7 @@ public class MRPFunctions {
 		webDB.waitForClickElement(MRPLocators.MRP_DemandSearchGoBtn, ElementType.Xpath);
 		webDB.clickAnElement(MRPLocators.MRP_DemandSearchGoBtn, ElementType.Xpath);
 		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.hardWait(1000);
 		flag = webDB.waitForElement(MRPLocators.MRP_DemandTableData_SONumber, ElementType.Xpath);
 		if (flag) {

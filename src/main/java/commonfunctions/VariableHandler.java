@@ -272,19 +272,19 @@ public class VariableHandler {
 	public static String getSignInUserName() {
 		return SignInUserName.get();
 	}
-	
+
 	public static void setSignInUserName(String data) {
 		SignInUserName.set(data);
 	}
-	
+
 	public static String getSessionID() {
 		return SessionID.get();
 	}
-	
+
 	public static void setSessionID(String data) {
 		SessionID.set(data);
 	}
-	
+
 	public static String getPONumber() {
 		return PONumber.get();
 	}
@@ -2178,7 +2178,7 @@ public class VariableHandler {
 	public static void setSSODocNumber(String data) {
 		SSODocNo.set(data);
 	}
-	
+
 	public static String getGeneralReimbursementtDocNo() {
 		return GeneralReimbursementDocNo.get();
 	}
@@ -2186,6 +2186,7 @@ public class VariableHandler {
 	public static void setGeneralReimbursementDocNo(String data) {
 		GeneralReimbursementDocNo.set(data);
 	}
+
 	public static String getGRNLotNo() {
 		return GRNLotNo.get();
 	}
@@ -2193,7 +2194,7 @@ public class VariableHandler {
 	public static void setGRNLotNo(String Data) {
 		GRNLotNo.set(Data);
 	}
-	
+
 	public static ArrayList<String> getMultipleAdvRecDocs() {
 		return MultipleAdvRecDocs.get();
 	}
@@ -2201,7 +2202,7 @@ public class VariableHandler {
 	public static void setMultipleAdvRecDocs(ArrayList<String> data) {
 		MultipleAdvRecDocs.set(data);
 	}
-	
+
 	public static String getResignationRequestDocNo() {
 		return ResignationRequestDocNo.get();
 	}
@@ -2209,6 +2210,7 @@ public class VariableHandler {
 	public static void setResignationRequestDocNo(String data) {
 		ResignationRequestDocNo.set(data);
 	}
+
 	public static String getMatchedAmt() {
 		return MatchedAmt.get();
 	}
@@ -2216,6 +2218,7 @@ public class VariableHandler {
 	public static void setMatchedAmt(String Data) {
 		MatchedAmt.set(Data);
 	}
+
 	public static String getGRNAmt() {
 		return GRNAmt.get();
 	}
@@ -2223,6 +2226,7 @@ public class VariableHandler {
 	public static void setGRNAmt(String Data) {
 		GRNAmt.set(Data);
 	}
+
 	public static String getdeviationAmt() {
 		return deviationAmt.get();
 	}
@@ -2230,6 +2234,7 @@ public class VariableHandler {
 	public static void setdeviationAmt(String Data) {
 		deviationAmt.set(Data);
 	}
+
 	public static String getPBProcQty() {
 		return PBProcQty.get();
 	}
@@ -2237,6 +2242,7 @@ public class VariableHandler {
 	public static void setPBProcQty(String Data) {
 		PBProcQty.set(Data);
 	}
+
 	public static String getPBUnitcost() {
 		return PBUnitcost.get();
 	}
@@ -2244,12 +2250,15 @@ public class VariableHandler {
 	public static void setPBUnitcost(String Data) {
 		PBUnitcost.set(Data);
 	}
+
 	public static String getAdvPaymentDocumentno() {
 		return PoAdvPaymentDocumentNO.get();
 	}
+
 	public static void setAdvPaymentDocumentno(String Data) {
 		PoAdvPaymentDocumentNO.set(Data);
 	}
+
 	public static ArrayList<String> getMultiplePoDocs() {
 		return MultiplePoDocs.get();
 	}
@@ -2257,6 +2266,7 @@ public class VariableHandler {
 	public static void setMultiplePoDocs(ArrayList<String> data) {
 		MultiplePoDocs.set(data);
 	}
+
 	public static String getBPAmount() {
 		return BPAmount.get();
 	}
@@ -2264,6 +2274,7 @@ public class VariableHandler {
 	public static void setBPAmount(String Data) {
 		BPAmount.set(Data);
 	}
+
 	public static String getSupGlAccount() {
 		return SupGlAccount.get();
 	}
@@ -2271,7 +2282,7 @@ public class VariableHandler {
 	public static void setSupGlAccount(String Data) {
 		SupGlAccount.set(Data);
 	}
-	
+
 	public static String getAdvPaymentDocNumber() {
 		return AdvPaymentDocNumber.get();
 	}
@@ -2279,7 +2290,7 @@ public class VariableHandler {
 	public static void setAdvPaymentDocNumber(String data) {
 		AdvPaymentDocNumber.set(data);
 	}
-	
+
 	public static ArrayList<String> getMultipleAdvPymtDocs() {
 		return MultiplePymtRecDocs.get();
 	}
@@ -2287,7 +2298,7 @@ public class VariableHandler {
 	public static void setMultipleAdvPymtDocs(ArrayList<String> data) {
 		MultiplePymtRecDocs.set(data);
 	}
-	
+
 	public static ArrayList<String> getMultiplePODocs() {
 		return MultiplePODocs.get();
 	}
@@ -2295,7 +2306,7 @@ public class VariableHandler {
 	public static void setMultiplePODocs(ArrayList<String> data) {
 		MultiplePODocs.set(data);
 	}
-	
+
 	public static ArrayList<String> getMultipleBankDocs() {
 		return MultipleBankDocs.get();
 	}

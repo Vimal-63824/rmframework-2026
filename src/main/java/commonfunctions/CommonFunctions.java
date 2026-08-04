@@ -2464,6 +2464,7 @@ public class CommonFunctions {
 		webDB.waitForPageReady(20);
 		flag = webDB.waitForElement(CommonUiLocators.BusFunctionSearchBox, ElementType.Xpath);
 		if (flag) {
+			checkRefreshCellsDisappear();
 			webDB.waitUntilElementToBeClickable(CommonUiLocators.BusFunctionSearchBox, ElementType.Xpath);
 			webDB.waitUntilElementToNotBeStale(CommonUiLocators.BusFunctionSearchBox, ElementType.Xpath);
 			webDB.clearTextField(CommonUiLocators.BusFunctionSearchBox, ElementType.Xpath);
@@ -2471,6 +2472,7 @@ public class CommonFunctions {
 			checkRefreshCellsDisappear();
 			webDB.waitForPageReady(30);
 			webDB.verifyIsElementDisplayed(PageLocators, ElementType.Xpath);
+			checkRefreshCellsDisappear();
 			flag = webDB.waitForElementUntilGivenTime(PageLocators, ElementType.Xpath, 15);
 			if (flag) {
 				logs.logging("INFO", "Navigated To " + TabName);

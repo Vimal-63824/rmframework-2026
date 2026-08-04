@@ -839,10 +839,9 @@ public class MaterialRequestFunctions {
 						logs.logging("INFO", "MR Status not Approve selected the Document to post");
 						headerSaveAndPost();
 						if (!VariableHandler.getApprovalFlag()) {
-							approvalPageFunc
-									.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
-							commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
-									VariableHandler.getMaterialRequestNo(), webDB.getDataFromProperties("HodEmpId"),
+							approvalPageFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
+							commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"),
+									VariableHandler.getMaterialRequestNo(), webDB.getDataFromProperties("HariEmpId"),
 									commonFunc.getDataFromTestDataSheet("Unit_100"),
 									System.getProperty("HariUsername"));
 						}
