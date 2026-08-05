@@ -15,7 +15,7 @@ public class PurchaseBillsLocators {
 	public static final String SearchButton = "//button[@data-testid='SearchGRN']";
 
 	/** @locatorType Xpath */
-	public static final String CheckBox = "//div[@id='PEND_data_panel']/div[1]/div/div[3]/table/tbody/tr[2]/td[14]";
+	public static final String CheckBox = "//div[@id='PEND_data_panel']/div[1]/table/tbody/tr[2]/td[13]";
 
 	/** @locatorType Xpath */
 	public static final String CreateDoc = "//button[@data-testid='CreateDoc']";
@@ -116,7 +116,7 @@ public class PurchaseBillsLocators {
 	/** @locatorType Xpath */
 	public static final String WfOkButtton = "//button[@data-testid='OK']";
 	/** @locatorType Xpath */
-	public static final String gstClafField = "//*[@id='report_2436860310123934093_catch']/dl/dd[12]";
+	public static final String gstClafField = "//*[@id='report_2503611658793812565_catch']/dl/dt[12]";
 	/** @locatorType Xpath */
 	public static final String SideScroll = "//button[@id='t_Button_rightControlButton']";
 	/** @locatorType Xpath */
@@ -132,7 +132,7 @@ public class PurchaseBillsLocators {
 	/** @locatorType Xpath */
 	public static final String ReferenceField = "//label[text()='Reference']";
 	/** @locatorType Xpath */
-	public static final String AllowIgstCheckFlag = "//label[text()='Allow IGST Tax ']";
+	public static final String AllowIgstCheckFlag = "//label[text()='Allow Local/IGST Tax ']";
 	/** @locatorType Xpath */
 	public static final String SaveButtonHeader = "//button[@data-testid='SAVEHD']";
 	/** @locatorType Xpath */
