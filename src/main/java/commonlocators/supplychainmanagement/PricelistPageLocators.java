@@ -127,6 +127,7 @@ public class PricelistPageLocators {
 	public static final String PRLISTSelectCheckBox(String PRLISTNum) {
 		return "//td[contains(text(),'" + PRLISTNum + "')]/../td[1]/*";
 	}
+
 	/** @locatorType Xpath */
 	public static final String ItemMasterAdd = "//*[@id=\"B1287636716616788407\"]/span";
 	/** @locatorType Xpath */
@@ -188,7 +189,7 @@ public class PricelistPageLocators {
 	public static final String PRLFindTableData(int i) {
 		return "//table[@id='1457343167982292320_orig']/tbody/tr/td[" + i + "]";
 	}
-	
+
 	/** @locatorType Xpath */
 	public static final String ItemDrillDown(String DocNo) {
 		return "//table[contains(@aria-label,'Result(s)')]/tbody/tr/td[2]/a[text()='" + DocNo + "']";
@@ -198,4 +199,8 @@ public class PricelistPageLocators {
 	public static final String PricelistAddFrame = "//iframe[@title='Price List Entry ']";
 	/** @locatorType Xpath */
 	public static final String ItemLovButton = "//button[@id='P3670200_ITEM_1_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String PriceListSingle1 = "//button[@id='B1347663667009762073']";
+	/** @locatorType Xpath */
+	public static final String CustomerIdFieldDb = "//*[@id='SO_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[1]/td[4]";
 }

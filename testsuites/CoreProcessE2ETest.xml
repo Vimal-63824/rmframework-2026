@@ -7,7 +7,7 @@
 	</listeners>
 	<test thread-count="5" name="Road Map Test">
 		<classes>
-			<class name="com.roadmapERP.e2e.CoreProcessE2ETest" />
+			<class name="com.roadmapERP.e2e.CoreProcessE2ETest"></class>
 		</classes>
-	</test> <!-- Test -->
-</suite> <!-- Suite -->
+	</test>
+</suite>

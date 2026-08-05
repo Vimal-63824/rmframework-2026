@@ -86,7 +86,7 @@ public class SubcontractOrderLocators {
 
 	/** @locatorType XPATH */
 	public static final String CheckBox(String PONumber) {
-		return "//table[@id='5979743183137907460_orig']//a[text()='" + PONumber + "']/../../td[13]";
+		return "//table[contains(@id,'orig')]//a[text()='" + PONumber + "']/../../td[13]";
 	}
 
 	/** @locatorType XPATH */
@@ -102,13 +102,13 @@ public class SubcontractOrderLocators {
 	/** @locatorType XPATH */
 	public static final String TickButton = "//button[@data-testid='Save_1']";
 	/** @locatorType XPATH */
-	public static final String ProcessName = "//table[@id='5935146900431362256_orig']/tbody/tr[2]/td[10]";
+	public static final String ProcessName = "//table[contains(@id,'orig')]/tbody/tr[2]/td[10]";
 	/** @locatorType XPATH */
-	public static final String QueueQty = "//table[@id='5935146900431362256_orig']/tbody/tr[2]/td[11]";
+	public static final String QueueQty = "//table[contains(@id,'orig')]/tbody/tr[2]/td[11]";
 	/** @locatorType XPATH */
-	public static final String CompQty = "(//table[@id='5935146900431362256_orig']/tbody/tr[2]/td/input)[1]";
+	public static final String CompQty = "(//table[contains(@id,'orig')]/tbody/tr[2]/td/input)[1]";
 	/** @locatorType XPATH */
-	public static final String OutsideQty = "//table[@id='5935146900431362256_orig']/tbody/tr[2]/td[15]";
+	public static final String OutsideQty = "//table[contains(@id,'orig')]/tbody/tr[2]/td[15]";
 	/** @locatorType XPATH */
 	public static final String CreateSoc = "//button[@data-testid='CREATE_SCO']";
 	/** @locatorType XPATH */
@@ -509,6 +509,7 @@ public class SubcontractOrderLocators {
 	public static final String PendingSCOProcessDetailIcon(String prodNo) {
 		return "(//table/tbody//td/a[text()='" + prodNo + "']/../../td//span[@class='fa fa-gears'])[1]";
 	}
+
 	/** @Locator XPATH */
 	public static final String SCO_Pend_SelectALl = "(//input[@id='check_all'])[1]";
 }

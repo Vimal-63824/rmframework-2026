@@ -183,9 +183,9 @@ public class InspectionDocumentFunctions {
 	 */
 	public void verifyValidateInspectionDocumentsStatus(String IdNo, String ExpectedStatus) {
 		commonFunc.searchAndSelectValueInFilters(InspectionDocumentsLocators.QcDocumentsButton, IdNo);
-		flag = webDB.waitForElement(InspectionDocumentsLocators.SearchButton, ElementType.Xpath);
+		flag = webDB.waitForElement(GrnLocators.SearchButton, ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(InspectionDocumentsLocators.SearchButton, ElementType.Xpath);
+			webDB.clickAnElement(GrnLocators.SearchButton, ElementType.Xpath);
 			logs.logging("INFO", "Search Button Is Clicked");
 			commonFunc.hardWait(1000);
 			commonFunc.checkRefreshCellsDisappear();
@@ -209,27 +209,21 @@ public class InspectionDocumentFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void AcceptInspectionDocuments() {
-		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("HodPassword"),
-				"HariUsername-Admin");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 		commonFunc.navigateInspectionDocumentsPage();
 		verifyPendingInspectionDocuments(VariableHandler.getGrnDocNumber());
 		clickTickAndPostIcon();
 		flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("AshokValue"));
-			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("AshokUsername"), System.getProperty("AshokPassword"));
-			approvalFunc.navigateToApprovals();
-			approvalFunc.filterDocumentsforApproval(VariableHandler.getIDNumber());
-			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getIDNumber());
-			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("HodPassword"),
-					"HariUsername-Admin");
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getIDNumber(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
 			commonFunc.navigateInspectionDocumentsPage();
 		}
 		verifyValidateInspectionDocumentsStatus(VariableHandler.getIDNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		flag = commonFunc.logoutUser();
 		assertTrue(flag);
 	}
 

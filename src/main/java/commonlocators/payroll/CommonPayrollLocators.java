@@ -8,5 +8,5 @@ public class CommonPayrollLocators {
 
 	/** @locatorType XPATH */
 	public static final String LeaveAndLoadScreen_LeaveSubTab = "//input[@id='P423_NEW_1']/following-sibling::label";
-	
+
 }

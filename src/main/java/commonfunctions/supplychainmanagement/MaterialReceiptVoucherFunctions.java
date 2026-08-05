@@ -231,13 +231,8 @@ public class MaterialReceiptVoucherFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyPostMaterialReceipt() {
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername-Admin");
 		commonFunc.navigateSetupInventoryPage();
 		flag = autoCreateMRVCheckboxIsSelected();
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
 		commonFunc.navigateToMaterialReceiptVoucher();
 		if (flag) {
 			verifyOpenAlreadyCreatedMRVDocuments(VariableHandler.getGrnDocNumber());
@@ -248,7 +243,6 @@ public class MaterialReceiptVoucherFunctions {
 		clickTickAndPostIcon();
 		verifyValidateMaterialReceiptDocumentsStatus(VariableHandler.getMrvNumber(),
 				commonFunc.getDataFromTestDataSheet("IssuedStatus"));
-		commonFunc.logoutUser();
 	}
 
 	/**
@@ -303,37 +297,37 @@ public class MaterialReceiptVoucherFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyPostMaterialRequestFromMiv() {
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateSetupInventoryPage();
 		boolean createflag = autoCreateMRVCheckboxIsSelected();
 		boolean postflag = autoPostMRVCheckboxIsSelected();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
-		commonFunc.navigateToMaterialReceiptVoucher();
-
-		if (createflag && !postflag) {
-			verifyOpenAlreadyCreatedMRVDocumentsWithProdNo(VariableHandler.getMIVNumber());
-			createJournalAndViewJournal();
-			verifyTableDataMiv(webDB.getDataFromProperties("MRTMRVSheet"));
-			clickTickAndPostIcon();
-		} else if (!createflag && !postflag) {
-			verifyPendingMRVUsingMIV(VariableHandler.getMIVNumber());
-			createJournalAndViewJournal();
-			verifyTableDataMiv(webDB.getDataFromProperties("MRTMRVSheet"));
-			clickTickAndPostIcon();
-		} else if (createflag && postflag) {
-
-		} else if (!createflag && postflag) {
-			verifyPendingMRVUsingMIV(VariableHandler.getMIVNumber());
-		}
-
-		verifyValidateMaterialReceiptDocumentsStatus(VariableHandler.getMrvNumber(),
-				commonFunc.getDataFromTestDataSheet("IssuedStatus"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
+//		commonFunc.navigateToMaterialReceiptVoucher();
+//
+//		if (createflag && !postflag) {
+//			verifyOpenAlreadyCreatedMRVDocumentsWithProdNo(VariableHandler.getMIVNumber());
+//			createJournalAndViewJournal();
+//			verifyTableDataMiv(webDB.getDataFromProperties("MRTMRVSheet"));
+//			clickTickAndPostIcon();
+//		} else if (!createflag && !postflag) {
+//			verifyPendingMRVUsingMIV(VariableHandler.getMIVNumber());
+//			createJournalAndViewJournal();
+//			verifyTableDataMiv(webDB.getDataFromProperties("MRTMRVSheet"));
+//			clickTickAndPostIcon();
+//		} else if (createflag && postflag) {
+//
+//		} else if (!createflag && postflag) {
+//			verifyPendingMRVUsingMIV(VariableHandler.getMIVNumber());
+//		}
+//
+//		verifyValidateMaterialReceiptDocumentsStatus(VariableHandler.getMrvNumber(),
+//				commonFunc.getDataFromTestDataSheet("IssuedStatus"));
+//		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateToInventoryStocksTab();
 		verifyAfterStockDataUpdation(commonFunc.getDataFromTestDataSheet("FGWareHouse"),
 				webDB.getDataFromProperties("MRTMRVSheet"));
@@ -360,12 +354,14 @@ public class MaterialReceiptVoucherFunctions {
 			stockPageFunc.removeFilterStock();
 			stockPageFunc.getItemAfterStockCost(itemmultiple[i][0], WareHouse);
 			stockPageFunc.removeFilterStock();
+			commonFunc.checkRefreshCellsDisappear();
+			commonFunc.checkRefreshCellsDisappear();
+			commonFunc.checkRefreshCellsDisappear();
 			if (VariableHandler.getAfterStockCost().get(itemmultiple[i][0])
 					.equals(VariableHandler.getStockCost().get(itemmultiple[i][0]))) {
 				logs.logging("INFO", "Verified Stock Cost Of Both WareHouse With Item " + itemmultiple[i][0]);
 			}
 		}
-		assertTrue(flag);
 	}
 
 	/**

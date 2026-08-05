@@ -245,7 +245,7 @@ public class CompletionProductionOrderLocators {
 	/** @locatorType XPATH */
 	public static final String PendingSearchBtn = "//span[text()='Search']/parent::button";
 	/** @locatorType XPATH */
-	public static final String SearchResultStatusData = "//table[contains(@id,'17480775731087779046_orig')]//tbody/tr/td/div[contains(@style,'color')]";
+	public static final String SearchResultStatusData = "//table[contains(@aria-label,'Results Last')]//tbody/tr/td/div[contains(@style,'color')]";
 	/** @locatorType XPATH */
 	public static final String Pending_TableSelectAllCheckBox = "(//table[contains(@aria-label,'PEND_PROD_PROC')]//tr/td//input)[2]";
 	/** @locatorType XPATH */

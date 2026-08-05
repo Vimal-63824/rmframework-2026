@@ -1,28 +1,18 @@
 package commonfunctions.supplychainmanagement;
 
-/**
- * @author Harikrishna - RMITS
- * @company RoadMap IT Solutions October 08, 2025
- */
-import static org.testng.Assert.assertTrue;
-import commonfunctions.CommonFunctions;
-import commonfunctions.DBCommonFunctions;
-import commonfunctions.VariableHandler;
-import commonlocators.supplychainmanagement.MaterialRequestLocators;
 import java.io.File;
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import org.testng.Assert;
-import commonlocators.CommonUiLocators;
-import commonlocators.supplychainmanagement.ApprovalPageLocators;
+
+import commonfunctions.CommonFunctions;
+import commonfunctions.DBCommonFunctions;
+import commonfunctions.VariableHandler;
 import commonlocators.supplychainmanagement.PurchaseOrderPageLocators;
 import commonlocators.supplychainmanagement.SalesOrderLocators;
 import commonlocators.supplychainmanagement.StockAdjustmentLocators;
-import net.bytebuddy.implementation.FieldAccessor.FieldNameExtractor.ForBeanProperty;
 import utils.ExcelUtils;
 import utils.ReportLoger;
 import utils.WebDriverBase;
@@ -45,6 +35,47 @@ public class StockAdjustmentFunctions {
 			+ "ItemDetails.xlsx";
 	ArrayList<String> StockQty = new ArrayList<String>();
 	ArrayList<String> SerialNumber = new ArrayList<String>();
+
+	/**
+	 * This method used to create stock adjustment for LOT Items
+	 * 
+	 * @author Sakthi-GWL
+	 * @param Location
+	 * @param Warehouse
+	 * @param Prefix
+	 * @param ItemId
+	 * @param Quantity
+	 * @param UnitCost
+	 */
+	public void verifyStockAdjustmentOnlyForLotItem(String Location, String Warehouse, String Prefix, String ItemId,
+			String Quantity, String UnitCost) {
+		createStockAdjustmentHeaderDetails(Location, todayDate(), Warehouse,
+				commonFunc.getDataFromTestDataSheet("AdjNarrationSTD"));
+		getStockAdjustmentDocumentNumber();
+		commonFunc.checkRefreshCellsDisappear();
+		clickLineWiseAddButton();
+		addLineDetails(Prefix, ItemId, Quantity, UnitCost);
+		flag = webDB.waitForElement(StockAdjustmentLocators.LineItemField, ElementType.Xpath);
+		if (flag) {
+			webDB.doubleClickAnElement(StockAdjustmentLocators.LineItemField, ElementType.Xpath);
+			addLotDetailWithoutExpireDate((ItemId + "(LOT1)"), Quantity);
+			commonFunc.checkRefreshCellsDisappear();
+			flag = webDB.waitForElement(StockAdjustmentLocators.PostButton, ElementType.Xpath);
+			if (flag) {
+				commonFunc.checkSuccessToastMessageDisappear();
+				webDB.moveToElement(StockAdjustmentLocators.PostButton, ElementType.Xpath);
+				webDB.clickAnElement(StockAdjustmentLocators.PostButton, ElementType.Xpath);
+				flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
+				if (!VariableHandler.getApprovalFlag()) {
+					approvalPageFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
+					commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"),
+							VariableHandler.getStkAdjDocNumber(), webDB.getDataFromProperties("HariEmpId"),
+							commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+				}
+			}
+		}
+		Assert.assertTrue(flag);
+	}
 
 	/**
 	 * This Methos Is Used To Create StockAdjustment And Increase The Opening Stock
@@ -253,6 +284,7 @@ public class StockAdjustmentFunctions {
 			commonFunc.checkRefreshCellsDisappear();
 			flag = webDB.waitForElement(StockAdjustmentLocators.LineWiseSaveButton, ElementType.Xpath);
 			if (flag) {
+				webDB.moveToElement(StockAdjustmentLocators.LineWiseSaveButton, ElementType.Xpath);
 				webDB.clickAnElement(StockAdjustmentLocators.LineWiseSaveButton, ElementType.Xpath);
 				logs.logging("INFO", "Line Wise Save Button Is Clicked Successfully");
 				if (webDB.isElementDisplayed(SalesOrderLocators.NoteAlertCloseIcon, ElementType.Xpath)) {
@@ -275,6 +307,37 @@ public class StockAdjustmentFunctions {
 			flag = webDB.waitForElement(StockAdjustmentLocators.LinePrefixLovButton, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Line Wise Add Button Is Clicked Successfully");
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Add The Lot Details In The Stock Ajdustment Screen
+	 * 
+	 * @author Sakthi-GWL
+	 * @param LotNumber
+	 * @param LotQty
+	 */
+	public void addLotDetailWithoutExpireDate(String LotNumber, String LotQty) {
+		flag = webDB.waitForElement(StockAdjustmentLocators.LotSerialAddButton, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(StockAdjustmentLocators.LotSerialAddButton, ElementType.Xpath);
+			webDB.clickAnElement(StockAdjustmentLocators.LotSerialAddButton, ElementType.Xpath);
+			flag = webDB.waitForElement(StockAdjustmentLocators.LotNumberField, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Lot Wise Add Button Is Clicked Successfully");
+				SalesOrdFunc.verifyClickAndEnterValueInTableFields(StockAdjustmentLocators.LotNumberField,
+						StockAdjustmentLocators.LotNumberInputField, LotNumber);
+				webDB.pressTabKey();
+				SalesOrdFunc.verifyClickAndEnterValueInTableFields(StockAdjustmentLocators.LotQtyField,
+						StockAdjustmentLocators.LotQtyInputField, LotQty);
+				webDB.pressTabKey();
+				flag = webDB.waitForElement(StockAdjustmentLocators.LotWiseSaveButton, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(StockAdjustmentLocators.LotWiseSaveButton, ElementType.Xpath);
+					logs.logging("INFO", "Lot Wise Save Button Is Clicked Successfully");
+				}
 			}
 		}
 		Assert.assertTrue(flag);

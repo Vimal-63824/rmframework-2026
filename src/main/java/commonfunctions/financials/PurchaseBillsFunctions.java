@@ -52,7 +52,7 @@ public class PurchaseBillsFunctions {
 	static BankPaymentFunctions bankpaymntFunc = new BankPaymentFunctions();
 	static GrnPageFunctions grnFunc = new GrnPageFunctions();
 	static SubcontractPurchaseBills SubcontractPurchasebillFunc = new SubcontractPurchaseBills();
-	
+
 	LocalDate date = LocalDate.now();
 	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 	String Today = date.format(formatter);
@@ -103,6 +103,9 @@ public class PurchaseBillsFunctions {
 									logs.logging("INFO", "Create Documents Is Displayed");
 									commonFunc.hardWait(5000);
 									webDB.clickAnElement(PurchaseBillsLocators.CreateDoc, ElementType.Xpath);
+									commonFunc.searchAndSelectValueInFilters(
+											PurchaseBillsLocators.Pending_Prefix_Lov_button, "PB");
+									webDB.switchToFrame(PurchaseBillsLocators.Iframe, ElementType.Xpath);
 									flag = webDB.waitForElement(PurchaseBillsLocators.OkButton, ElementType.Xpath);
 									if (flag) {
 										logs.logging("INFO", "Okay Button Is Displayed");
@@ -214,22 +217,19 @@ public class PurchaseBillsFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyPurchaseBillsApproval() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"Sathi Ganesh");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber());
 		verifyCreateJournalAndPost();
 		verifyWaitingForApproval();
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername-Admin");
-		approvalPageFunc.navigateToApprovals();
-		approvalPageFunc.filterDocumentsforApproval(VariableHandler.getPbNumber());
-		approvalPageFunc.verifyApproveWithDocNumber(VariableHandler.getPbNumber());
-		flag = commonFunc.logoutUser();
+		flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPbNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-					"Sathi Ganesh");
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+					"AdminUsername");
 			commonFunc.navigateToFinancialPurchaseBill();
 			verifyPurchaseBillApprovalStatus(VariableHandler.getPbNumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
@@ -1582,7 +1582,8 @@ public class PurchaseBillsFunctions {
 										logs.logging("INFO", "Okay Button Is Displayed");
 										commonFunc.hardWait(2000);
 										commonFunc.checkRefreshCellsDisappear();
-										verifyInvoicePrfixHeaderPurchaseBillsForPendingPo(commonFunc.getDataFromTestDataSheet("PrefixPb"));
+										verifyInvoicePrfixHeaderPurchaseBillsForPendingPo(
+												commonFunc.getDataFromTestDataSheet("PrefixPb"));
 										webDB.clickAnElement(PurchaseBillsLocators.OkButton, ElementType.Xpath);
 										webDB.switchToDefaultContent();
 										commonFunc.checkRefreshCellsDisappear();
@@ -2768,14 +2769,15 @@ public class PurchaseBillsFunctions {
 		}
 		assertTrue(flag);
 	}
-	
-	/**To Click Save Button
+
+	/**
+	 * To Click Save Button
 	 * 
 	 * @author Kowshik-RMITS
 	 */
 	public void enterSaveButtonInBankRecipt() {
 		flag = webDB.waitForElement(BankReceiptLocators.SaveButton, ElementType.Xpath);
-		if(flag) {
+		if (flag) {
 			webDB.clickAnElement(BankReceiptLocators.SaveButton, ElementType.Xpath);
 			logs.logging("INFO", "Save Button is Clicked");
 		}
@@ -2852,7 +2854,9 @@ public class PurchaseBillsFunctions {
 		logs.logging("INFO",
 				"PO against to the Advance Document is Created " + VariableHandler.getAdvPaymentDocumentno());
 	}
-	/**To Validate Advance Amount From Pending Screen
+
+	/**
+	 * To Validate Advance Amount From Pending Screen
 	 * 
 	 * @author Kowshik-RMITS
 	 * @param Sheetname
@@ -2866,45 +2870,39 @@ public class PurchaseBillsFunctions {
 //				verifyAssertionBothValues(dbCommonFunc
 //						.PendingSubtotalForPendingPayables(VariableHandler.getAdvPaymentDocumentno(), AdvanceAmount),
 //						commonFunc.getDataFromTestDataSheet("AdvancePayAmt");
-				verifyAssertionBothValues(dbCommonFunc.PendingSubtotalForPendingPayables(VariableHandler.getAdvPaymentDocumentno(),
-						commonFunc.getDataFromTestDataSheet("AdvancePayAmt")), AdvanceAmount);
+				verifyAssertionBothValues(
+						dbCommonFunc.PendingSubtotalForPendingPayables(VariableHandler.getAdvPaymentDocumentno(),
+								commonFunc.getDataFromTestDataSheet("AdvancePayAmt")),
+						AdvanceAmount);
 
 			}
 		}
 		assertTrue(flag);
 	}
-	
+
 	public void verifyLineDetailsDbValidationWithTDSsupply(String Sheetname) {
 		PurchaseBills = excelUtils.readAllDataInExcel(KowshikFin, Sheetname);
-		for(int i = 22; i < PurchaseBills.length ; i++ ){
+		for (int i = 22; i < PurchaseBills.length; i++) {
 			String SeqNumber = Integer.toString(i - 21);
 			String ItemID = PurchaseBills[i][1];
 			String OrdQty = PurchaseBills[i][6];
 			String UnitPrice = PurchaseBills[i][7];
 			String Glaccount = PurchaseBills[i][3];
-			if(!ItemID.equals("")){
-				verifyAssertionBothValues(
-						dbCommonFunc.PurchaseBillsDB(VariableHandler.getScoPurchaseNumber(), SeqNumber,
-								commonFunc.getDataFromTestDataSheet("PurchaseBillsItemID")),
-						ItemID);
+			if (!ItemID.equals("")) {
+				verifyAssertionBothValues(dbCommonFunc.PurchaseBillsDB(VariableHandler.getScoPurchaseNumber(),
+						SeqNumber, commonFunc.getDataFromTestDataSheet("PurchaseBillsItemID")), ItemID);
 				logs.logging("INFO", "ItemID IS Matched With DB Values For This Item " + ItemID);
-				
-				verifyAssertionBothValues(
-						dbCommonFunc.PurchaseBillsDB(VariableHandler.getScoPurchaseNumber(), SeqNumber,
-								commonFunc.getDataFromTestDataSheet("PurchaseBillsInvQty")),
-						OrdQty);
+
+				verifyAssertionBothValues(dbCommonFunc.PurchaseBillsDB(VariableHandler.getScoPurchaseNumber(),
+						SeqNumber, commonFunc.getDataFromTestDataSheet("PurchaseBillsInvQty")), OrdQty);
 				logs.logging("INFO", "ItemID IS Matched With DB Values For This Item " + OrdQty);
-				
-				verifyAssertionBothValues(
-						dbCommonFunc.PurchaseBillsDB(VariableHandler.getScoPurchaseNumber(), SeqNumber,
-								commonFunc.getDataFromTestDataSheet("PurchaseBillsUnitCost")),
-						UnitPrice);
+
+				verifyAssertionBothValues(dbCommonFunc.PurchaseBillsDB(VariableHandler.getScoPurchaseNumber(),
+						SeqNumber, commonFunc.getDataFromTestDataSheet("PurchaseBillsUnitCost")), UnitPrice);
 				logs.logging("INFO", "ItemID IS Matched With DB Values For This Item " + UnitPrice);
-				
-				verifyAssertionBothValues(
-						dbCommonFunc.PurchaseBillsDB(VariableHandler.getScoPurchaseNumber(), SeqNumber,
-								commonFunc.getDataFromTestDataSheet("PurchaseBillsGlAccount")),
-						Glaccount);
+
+				verifyAssertionBothValues(dbCommonFunc.PurchaseBillsDB(VariableHandler.getScoPurchaseNumber(),
+						SeqNumber, commonFunc.getDataFromTestDataSheet("PurchaseBillsGlAccount")), Glaccount);
 				logs.logging("INFO", "ItemID IS Matched With DB Values For This Item " + Glaccount);
 			}
 
@@ -3711,7 +3709,7 @@ public class PurchaseBillsFunctions {
 //								logs.logging("INFO", "Able to Select a Document");
 //							}else {
 //								logs.logging("INFO", "Not Able to Select a Document");
-							
+
 						}
 					}
 				}
@@ -3949,19 +3947,20 @@ public class PurchaseBillsFunctions {
 		}
 		assertTrue(flag);
 	}
-	
-	/**To Valid a Invoice Prefix Header
+
+	/**
+	 * To Valid a Invoice Prefix Header
 	 * 
 	 * @author Kowshik-RMITS
 	 * @param PrefixPb
 	 */
 	public void verifyInvoicePrfixHeaderPurchaseBillsForPendingPo(String PrefixPb) {
-		
-		String GetTextPBPrefix = webDB.getDomPropertyFromElement(PurchaseBillsLocators.Po_Inv_Prefix_Field, ElementType.Xpath, 
-				commonFunc.getDataFromTestDataSheet("Value"));
-		
+
+		String GetTextPBPrefix = webDB.getDomPropertyFromElement(PurchaseBillsLocators.Po_Inv_Prefix_Field,
+				ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
+
 		System.out.println(GetTextPBPrefix);
-		if(!GetTextPBPrefix.equals(PrefixPb)) {
+		if (!GetTextPBPrefix.equals(PrefixPb)) {
 			commonFunc.checkRefreshCellsDisappear();
 			commonFunc.searchAndSelectValueInFilters(PurchaseBillsLocators.PO_Inv_Prefix_Lov, PrefixPb);
 			webDB.switchToFrame(PurchaseBillsLocators.IframePendingPo, ElementType.Xpath);
@@ -8137,7 +8136,7 @@ public class PurchaseBillsFunctions {
 		verifyWaitingForApprovalForPurchaseBills();
 		commonFunc.logoutUser();
 	}
-	
+
 	/**
 	 * Domestic Regrd Supplier with TDS Ex
 	 * 
@@ -8161,7 +8160,7 @@ public class PurchaseBillsFunctions {
 		commonFunc.logoutUser();
 
 	}
-	
+
 	/**
 	 * Domestic Unregistered supplier - With TDS (Exempted)
 	 * 
@@ -8185,7 +8184,7 @@ public class PurchaseBillsFunctions {
 		commonFunc.logoutUser();
 
 	}
-	
+
 	/**
 	 * Domestic Regrd Supplier With TDS Single Under Section
 	 * 
@@ -8209,8 +8208,9 @@ public class PurchaseBillsFunctions {
 		commonFunc.logoutUser();
 
 	}
-	
-	/**Domestic Unregistered Supplier With Tds Single Under Section
+
+	/**
+	 * Domestic Unregistered Supplier With Tds Single Under Section
 	 * 
 	 * @author Kowshik-RMITS
 	 * @throws Exception
@@ -8231,7 +8231,7 @@ public class PurchaseBillsFunctions {
 		verifyWaitingForApprovalForPurchaseBills();
 		commonFunc.logoutUser();
 	}
-	
+
 	/**
 	 * Domestic Registered Supplier - With TDS Multi Under section
 	 * 
@@ -8255,7 +8255,9 @@ public class PurchaseBillsFunctions {
 		commonFunc.logoutUser();
 
 	}
-	/**Domestic Unregistered Supplier With TDS Multi Under Section
+
+	/**
+	 * Domestic Unregistered Supplier With TDS Multi Under Section
 	 * 
 	 * @author Kowshik-RMITS
 	 * @throws Exception
@@ -8276,8 +8278,9 @@ public class PurchaseBillsFunctions {
 		verifyWaitingForApprovalForPurchaseBills();
 		commonFunc.logoutUser();
 	}
-	
-	/**Domestic Registered Supplier With Advance TDS Single Under Section Single Po
+
+	/**
+	 * Domestic Registered Supplier With Advance TDS Single Under Section Single Po
 	 * 
 	 * @author Kowshik-RMITS
 	 * @throws Exception
@@ -8299,7 +8302,7 @@ public class PurchaseBillsFunctions {
 		commonFunc.logoutUser();
 
 	}
-	
+
 	/**
 	 * Domestic Registered Supplier - With Advance TDS Multi under section (Single
 	 * PO)SSS
@@ -8881,6 +8884,7 @@ public class PurchaseBillsFunctions {
 		verifyWaitingForApprovalForPurchaseBills();
 		commonFunc.logoutUser();
 	}
+
 	/**
 	 * Verify Purchase Bills Against For Adjustment
 	 * 
@@ -8924,7 +8928,7 @@ public class PurchaseBillsFunctions {
 			String AssesableValue = BankPayments[i][16];
 			if (!PartyName.equals("")) {
 				BPFunc.clickBPLineAddButton();
-				BPFunc.addBankPaymentLineDetailsGlaactAndCPC(VariableHandler.getSupGlAccount(),CPCCodeDesc);
+				BPFunc.addBankPaymentLineDetailsGlaactAndCPC(VariableHandler.getSupGlAccount(), CPCCodeDesc);
 				BPFunc.clickLineWiseSaveButton();
 				clickViewButton();
 

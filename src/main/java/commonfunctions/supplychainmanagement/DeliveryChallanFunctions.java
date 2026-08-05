@@ -56,8 +56,8 @@ public class DeliveryChallanFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyDeliveryChallan() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateToGateEntryDeliveryChallan();
 		verifyTableData(webDB.getDataFromProperties("MRTMRVSheet"));
 		verifyStatusOfDeliveryChallan(VariableHandler.getDCNumber(),

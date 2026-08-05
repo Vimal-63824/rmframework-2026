@@ -946,14 +946,17 @@ public class BillOfMaterialsFunctions {
 			webDB.clickAnElement(BillOfMaterialsLocators.BOMMig_UploadIcon, ElementType.Xpath);
 			flag = webDB.waitForElement(BillOfMaterialsLocators.BOMMig_UploadInput, ElementType.Xpath);
 			if (flag) {
+				commonFunc.checkRefreshCellsDisappear();
 				logs.logging("INFO", "Upload Icon Clicked and Input Box Displayed");
 				String file1 = webDB.getDataFromProperties("BOMMigrationFileName");
 				File file = new File(VariableHandler.testdataDir + file1);
 				flag = webDB.sendTextToAnElement(BillOfMaterialsLocators.BOMMig_UploadInput, file.getAbsolutePath(),
 						ElementType.Xpath);
 				if (flag) {
+					commonFunc.checkRefreshCellsDisappear();
 					flag = webDB.waitForClickElement(BillOfMaterialsLocators.BOMMig_UploadBtn, ElementType.Xpath);
 					if (flag) {
+						commonFunc.checkRefreshCellsDisappear();
 						webDB.clickAnElement(BillOfMaterialsLocators.BOMMig_UploadBtn, ElementType.Xpath);
 						commonFunc.hardWait(2000);
 						commonFunc.checkRefreshCellsDisappear();

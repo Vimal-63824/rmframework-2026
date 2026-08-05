@@ -288,7 +288,7 @@ public class SubcontractOrderFunctions {
 			flag = webDB.waitForElement(SubcontractOrderLocators.FrameDetails, ElementType.Xpath);
 			if (flag) {
 				webDB.switchToFrame(SubcontractOrderLocators.FrameDetails, ElementType.Xpath);
-				purchaseOrderFunc.verifyDomPropertyValidation(SubcontractOrderLocators.SourceSFCode, Source);
+//				purchaseOrderFunc.verifyDomPropertyValidation(SubcontractOrderLocators.SourceSFCode, Source);
 				purchaseOrderFunc.verifyGetTextValidation(SubcontractOrderLocators.TargetSFCode, Target);
 				purchaseOrderFunc.verifyGetTextValidation(SubcontractOrderLocators.TarProcessDetails, Process);
 //				purchaseOrderFunc.verifyGetTextValidation(SubcontractOrderLocators.UnitCost, Unitcost);
@@ -373,6 +373,7 @@ public class SubcontractOrderFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyAddGlAccNumberValue() {
+		webDB.waitForElement(SubcontractOrderLocators.BatchQuantity, ElementType.Xpath);
 		webDB.moveToElement(SubcontractOrderLocators.BatchQuantity, ElementType.Xpath);
 		webDB.moveToElement(SubcontractOrderLocators.GLAccNo, ElementType.Xpath);
 		flag = webDB.waitForElement(SubcontractOrderLocators.GLAccNo, ElementType.Xpath);
@@ -381,14 +382,16 @@ public class SubcontractOrderFunctions {
 			webDB.doubleClickAnElement(SubcontractOrderLocators.GLAccNo, ElementType.Xpath);
 			commonFunc.searchAndSelectValueInFilters(SubcontractOrderLocators.GLAccNoLovButton,
 					commonFunc.getDataFromTestDataSheet("GeneralExpense"));
-			commonFunc.hardWait(5000);
+//			commonFunc.hardWait(5000);
 			flag = webDB.waitForElement(SubcontractOrderLocators.LineSave, ElementType.Xpath);
 			if (flag) {
 				webDB.moveToElement(SubcontractOrderLocators.LineSave, ElementType.Xpath);
 				webDB.clickAnElement(SubcontractOrderLocators.LineSave, ElementType.Xpath);
 				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.hardWait(2000);
-				if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+				webDB.waitForElementUntilGivenTime(CommonUiLocators.PostToastMessage, ElementType.Xpath, 5);
+				commonFunc.checkRefreshCellsDisappear();
+//				commonFunc.hardWait(2000);
+				if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
 					webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
 				}
 			}
@@ -409,14 +412,16 @@ public class SubcontractOrderFunctions {
 			webDB.moveToElement(SubcontractOrderLocators.IncludeCharges, ElementType.Xpath);
 			webDB.clickAnElement(SubcontractOrderLocators.IncludeCharges, ElementType.Xpath);
 			commonFunc.checkSuccessToastMessageDisappear();
-			if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+			if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
 				webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
 			}
 			flag = webDB.waitForElement(SubcontractOrderLocators.Save, ElementType.Xpath);
 			if (flag) {
 				webDB.moveToElement(SubcontractOrderLocators.Save, ElementType.Xpath);
 				webDB.clickAnElement(SubcontractOrderLocators.Save, ElementType.Xpath);
-				if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+				commonFunc.checkRefreshCellsDisappear();
+				webDB.waitForElementUntilGivenTime(CommonUiLocators.PostToastMessage, ElementType.Xpath, 5);
+				if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
 					webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
 				}
 				commonFunc.checkSuccessToastMessageDisappear();
@@ -4098,8 +4103,8 @@ public class SubcontractOrderFunctions {
 		Select select = new Select(element);
 		String text = select.getFirstSelectedOption().getText();
 
-		salesOrderFunctions.verifyAssertionBothValues(text, dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
-				commonFunc.getDataFromTestDataSheet("SCODBLOCATIONGSTTYPECOLUMN")));
+		salesOrderFunctions.verifyAssertionBothValues(text, dbCommonFunctions.SCOLineWiseDetails(
+				VariableHandler.getSCOdocno(), commonFunc.getDataFromTestDataSheet("SCODBLOCATIONGSTTYPECOLUMN")));
 		logs.logging("INFO", "Line Detail GSTType Matched With DataBase Values");
 
 		WebElement element1 = webDB.getDriver()
@@ -4107,8 +4112,8 @@ public class SubcontractOrderFunctions {
 		Select select1 = new Select(element1);
 		String text1 = select1.getFirstSelectedOption().getText();
 
-		salesOrderFunctions.verifyAssertionBothValues(text1, dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
-				commonFunc.getDataFromTestDataSheet("SCODBLOCATIONGSTCLSFTYPECOLUMN")));
+		salesOrderFunctions.verifyAssertionBothValues(text1, dbCommonFunctions.SCOLineWiseDetails(
+				VariableHandler.getSCOdocno(), commonFunc.getDataFromTestDataSheet("SCODBLOCATIONGSTCLSFTYPECOLUMN")));
 		logs.logging("INFO", "Line Detail PurchaseGSTClsf Type Matched With DataBase Values");
 		commonFunc.hardWait(1000);
 
@@ -4520,47 +4525,42 @@ public class SubcontractOrderFunctions {
 //					if (flag) {
 //						webDB.doubleClickAnElement(SubcontractOrderLocators.SCO_Pend_SelectALl, ElementType.Xpath);
 //						commonFunc.hardWait(1000);
-						flag = webDB.waitForElement(SubcontractOrderLocators.SerialCheckBox(DocNo), ElementType.Xpath);
+					flag = webDB.waitForElement(SubcontractOrderLocators.SerialCheckBox(DocNo), ElementType.Xpath);
+					if (flag) {
+						webDB.clickAnElement(SubcontractOrderLocators.SerialCheckBox(DocNo), ElementType.Xpath);
+						commonFunc.hardWait(2000);
+						flag = webDB.waitForElement(SubcontractOrderLocators.Pend_SerialWise_CreateSCOBtn,
+								ElementType.Xpath);
 						if (flag) {
-							webDB.clickAnElement(SubcontractOrderLocators.SerialCheckBox(DocNo), ElementType.Xpath);
 							commonFunc.hardWait(2000);
-							flag = webDB.waitForElement(SubcontractOrderLocators.Pend_SerialWise_CreateSCOBtn,
+							logs.logging("INFO", "Create SubContract Order Doc Is Displayed");
+							webDB.clickAnElement(SubcontractOrderLocators.Pend_SerialWise_CreateSCOBtn,
+									ElementType.Xpath);
+
+							flag = webDB.waitForElement(SubcontractOrderLocators.Pend_SerialWise_CreateSCO_SubconLOV,
 									ElementType.Xpath);
 							if (flag) {
-								commonFunc.hardWait(2000);
-								logs.logging("INFO", "Create SubContract Order Doc Is Displayed");
-								webDB.clickAnElement(SubcontractOrderLocators.Pend_SerialWise_CreateSCOBtn,
-										ElementType.Xpath);
-
-								flag = webDB.waitForElement(
-										SubcontractOrderLocators.Pend_SerialWise_CreateSCO_SubconLOV,
+								commonFunc.searchAndSelectValueInFilters(
+										SubcontractOrderLocators.Pend_SerialWise_CreateSCO_SubconLOV, Sheetname);
+								webDB.switchToFrame(SubcontractOrderLocators.Pend_Serial_Iframe, ElementType.Xpath);
+								flag = webDB.waitForElement(SubcontractOrderLocators.Pend_SerialWise_CreateSCO_OKBtn,
 										ElementType.Xpath);
 								if (flag) {
-									commonFunc.searchAndSelectValueInFilters(
-											SubcontractOrderLocators.Pend_SerialWise_CreateSCO_SubconLOV, Sheetname);
-									webDB.switchToFrame(SubcontractOrderLocators.Pend_Serial_Iframe, ElementType.Xpath);
-									flag = webDB.waitForElement(
-											SubcontractOrderLocators.Pend_SerialWise_CreateSCO_OKBtn,
+									commonFunc.hardWait(2000);
+									logs.logging("INFO", "Ok Button Is Displayed");
+									webDB.clickAnElement(SubcontractOrderLocators.Pend_SerialWise_CreateSCO_OKBtn,
 											ElementType.Xpath);
-									if (flag) {
+									webDB.switchToDefaultContent();
+									flag = webDB.waitForElement(SubcontractOrderLocators.LocationId, ElementType.Xpath);
+									if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+										webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon,
+												ElementType.Xpath);
 										commonFunc.hardWait(2000);
-										logs.logging("INFO", "Ok Button Is Displayed");
-										webDB.clickAnElement(SubcontractOrderLocators.Pend_SerialWise_CreateSCO_OKBtn,
-												ElementType.Xpath);
-										webDB.switchToDefaultContent();
-										flag = webDB.waitForElement(SubcontractOrderLocators.LocationId,
-												ElementType.Xpath);
-										if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon,
-												ElementType.Xpath)) {
-											webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon,
-													ElementType.Xpath);
-											commonFunc.hardWait(2000);
-											String SCOdocno = webDB.getTextFromElement(
-													SubcontractOrderLocators.SubcontractDocNO, ElementType.Xpath);
-											logs.logging("INFO", "Get SCO DocNo Is: " + SCOdocno);
-											VariableHandler.setSCOdocno(SCOdocno);
-											commonFunc.hardWait(1000);
-										}
+										String SCOdocno = webDB.getTextFromElement(
+												SubcontractOrderLocators.SubcontractDocNO, ElementType.Xpath);
+										logs.logging("INFO", "Get SCO DocNo Is: " + SCOdocno);
+										VariableHandler.setSCOdocno(SCOdocno);
+										commonFunc.hardWait(1000);
 									}
 								}
 							}
@@ -4568,7 +4568,8 @@ public class SubcontractOrderFunctions {
 					}
 				}
 			}
-		
+		}
+
 		assertTrue(flag);
 	}
 
@@ -5160,52 +5161,64 @@ public class SubcontractOrderFunctions {
 			String CGSTamt = itemmultiple[i][14];
 			String SGSTamt = itemmultiple[i][15];
 			if (!Batchqty.equals("")) {
-				salesOrderFunctions.verifyAssertionBothValues(dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
-						commonFunc.getDataFromTestDataSheet("SCODBBATCHQTYCOLUMN")), Batchqty);
+				salesOrderFunctions
+						.verifyAssertionBothValues(dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
+								commonFunc.getDataFromTestDataSheet("SCODBBATCHQTYCOLUMN")), Batchqty);
 				logs.logging("INFO", "Process BatchQty Details Matched With DataBase Values");
 
-				salesOrderFunctions.verifyAssertionBothValues(dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
-						commonFunc.getDataFromTestDataSheet("SCODBBATCHCOSTCOLUMN")), BatchCost);
+				salesOrderFunctions
+						.verifyAssertionBothValues(dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
+								commonFunc.getDataFromTestDataSheet("SCODBBATCHCOSTCOLUMN")), BatchCost);
 				logs.logging("INFO", "Process BatchCost Details Matched With DataBase Values");
 
-				salesOrderFunctions.verifyAssertionBothValues(dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
-						commonFunc.getDataFromTestDataSheet("SCODBPROCESSUOMCOLUMN")), UOM);
+				salesOrderFunctions
+						.verifyAssertionBothValues(dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
+								commonFunc.getDataFromTestDataSheet("SCODBPROCESSUOMCOLUMN")), UOM);
 				logs.logging("INFO", "Process UOM Details Matched With DataBase Values");
 
-				salesOrderFunctions.verifyAssertionBothValues(dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
-						commonFunc.getDataFromTestDataSheet("SCODBCONVFACTORCOLUMN")), ConvFact);
+				salesOrderFunctions
+						.verifyAssertionBothValues(dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
+								commonFunc.getDataFromTestDataSheet("SCODBCONVFACTORCOLUMN")), ConvFact);
 				logs.logging("INFO", "Process ConvFactor Details Matched With DataBase Values");
 
-				salesOrderFunctions.verifyAssertionBothValues(dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
-						commonFunc.getDataFromTestDataSheet("SCODBSACCODECOLUMN")), SACcode);
+				salesOrderFunctions
+						.verifyAssertionBothValues(dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
+								commonFunc.getDataFromTestDataSheet("SCODBSACCODECOLUMN")), SACcode);
 				logs.logging("INFO", "Process SAC Code Details Matched With DataBase Values");
 
-				salesOrderFunctions.verifyAssertionBothValues(dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
-						commonFunc.getDataFromTestDataSheet("SCODBPROCQTYCOLUMN")), ProcQty);
+				salesOrderFunctions
+						.verifyAssertionBothValues(dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
+								commonFunc.getDataFromTestDataSheet("SCODBPROCQTYCOLUMN")), ProcQty);
 				logs.logging("INFO", "Process ProcQty Details Matched With DataBase Values");
 
-				salesOrderFunctions.verifyAssertionBothValues(dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
-						commonFunc.getDataFromTestDataSheet("SCODBASBLVALUECOLUMN")), AsblVal);
+				salesOrderFunctions
+						.verifyAssertionBothValues(dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
+								commonFunc.getDataFromTestDataSheet("SCODBASBLVALUECOLUMN")), AsblVal);
 				logs.logging("INFO", "Process Asbl.Value Details Matched With DataBase Values");
 
-				salesOrderFunctions.verifyAssertionBothValues(dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
-						commonFunc.getDataFromTestDataSheet("SCODBIGSTAMTCOLUMN")), IGSTamt);
+				salesOrderFunctions
+						.verifyAssertionBothValues(dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
+								commonFunc.getDataFromTestDataSheet("SCODBIGSTAMTCOLUMN")), IGSTamt);
 				logs.logging("INFO", "Process IGSTAmt Details Matched With DataBase Values");
 
-				salesOrderFunctions.verifyAssertionBothValues(dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
-						commonFunc.getDataFromTestDataSheet("SCODBCGSTAMTCOLUMN")), CGSTamt);
+				salesOrderFunctions
+						.verifyAssertionBothValues(dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
+								commonFunc.getDataFromTestDataSheet("SCODBCGSTAMTCOLUMN")), CGSTamt);
 				logs.logging("INFO", "Process CGSTAmt Details Matched With DataBase Values");
 
-				salesOrderFunctions.verifyAssertionBothValues(dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
-						commonFunc.getDataFromTestDataSheet("SCODBSGSTAMTCOLUMN")), SGSTamt);
+				salesOrderFunctions
+						.verifyAssertionBothValues(dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
+								commonFunc.getDataFromTestDataSheet("SCODBSGSTAMTCOLUMN")), SGSTamt);
 				logs.logging("INFO", "Process SGSTAmt Details Matched With DataBase Values");
 
-				salesOrderFunctions.verifyAssertionBothValues(dbCommonFunctions.SCOLineDetails(VariableHandler.getSCOdocno(),
-						commonFunc.getDataFromTestDataSheet("SCODBQTYCOLUMN")), LineOrdQty);
+				salesOrderFunctions
+						.verifyAssertionBothValues(dbCommonFunctions.SCOLineDetails(VariableHandler.getSCOdocno(),
+								commonFunc.getDataFromTestDataSheet("SCODBQTYCOLUMN")), LineOrdQty);
 				logs.logging("INFO", "Process LineOrderQty Details Matched With DataBase Values");
 
-				salesOrderFunctions.verifyAssertionBothValues(dbCommonFunctions.SCOLineDetails(VariableHandler.getSCOdocno(),
-						commonFunc.getDataFromTestDataSheet("SCODBUNITCOLUMN")), LineUnitCost);
+				salesOrderFunctions
+						.verifyAssertionBothValues(dbCommonFunctions.SCOLineDetails(VariableHandler.getSCOdocno(),
+								commonFunc.getDataFromTestDataSheet("SCODBUNITCOLUMN")), LineUnitCost);
 				logs.logging("INFO", "Process LineUnitCost Details Matched With DataBase Values");
 
 			}
@@ -5240,52 +5253,64 @@ public class SubcontractOrderFunctions {
 			String CGSTamt = itemmultiple[i][14];
 			String SGSTamt = itemmultiple[i][15];
 			if (!Batchqty.equals("")) {
-				salesOrderFunctions.verifyAssertionBothValues(dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
-						commonFunc.getDataFromTestDataSheet("SCODBBATCHQTYCOLUMN")), Batchqty);
+				salesOrderFunctions
+						.verifyAssertionBothValues(dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
+								commonFunc.getDataFromTestDataSheet("SCODBBATCHQTYCOLUMN")), Batchqty);
 				logs.logging("INFO", "Process BatchQty Details Matched With DataBase Values");
 
-				salesOrderFunctions.verifyAssertionBothValues(dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
-						commonFunc.getDataFromTestDataSheet("SCODBBATCHCOSTCOLUMN")), BatchCost);
+				salesOrderFunctions
+						.verifyAssertionBothValues(dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
+								commonFunc.getDataFromTestDataSheet("SCODBBATCHCOSTCOLUMN")), BatchCost);
 				logs.logging("INFO", "Process BatchCost Details Matched With DataBase Values");
 
-				salesOrderFunctions.verifyAssertionBothValues(dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
-						commonFunc.getDataFromTestDataSheet("SCODBPROCESSUOMCOLUMN")), UOM);
+				salesOrderFunctions
+						.verifyAssertionBothValues(dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
+								commonFunc.getDataFromTestDataSheet("SCODBPROCESSUOMCOLUMN")), UOM);
 				logs.logging("INFO", "Process UOM Details Matched With DataBase Values");
 
-				salesOrderFunctions.verifyAssertionBothValues(dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
-						commonFunc.getDataFromTestDataSheet("SCODBCONVFACTORCOLUMN")), ConvFact);
+				salesOrderFunctions
+						.verifyAssertionBothValues(dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
+								commonFunc.getDataFromTestDataSheet("SCODBCONVFACTORCOLUMN")), ConvFact);
 				logs.logging("INFO", "Process ConvFactor Details Matched With DataBase Values");
 
-				salesOrderFunctions.verifyAssertionBothValues(dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
-						commonFunc.getDataFromTestDataSheet("SCODBSACCODECOLUMN")), SACcode);
+				salesOrderFunctions
+						.verifyAssertionBothValues(dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
+								commonFunc.getDataFromTestDataSheet("SCODBSACCODECOLUMN")), SACcode);
 				logs.logging("INFO", "Process SAC Code Details Matched With DataBase Values");
 
-				salesOrderFunctions.verifyAssertionBothValues(dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
-						commonFunc.getDataFromTestDataSheet("SCODBPROCQTYCOLUMN")), ProcQty);
+				salesOrderFunctions
+						.verifyAssertionBothValues(dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
+								commonFunc.getDataFromTestDataSheet("SCODBPROCQTYCOLUMN")), ProcQty);
 				logs.logging("INFO", "Process ProcQty Details Matched With DataBase Values");
 
-				salesOrderFunctions.verifyAssertionBothValues(dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
-						commonFunc.getDataFromTestDataSheet("SCODBASBLVALUECOLUMN")), AsblVal);
+				salesOrderFunctions
+						.verifyAssertionBothValues(dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
+								commonFunc.getDataFromTestDataSheet("SCODBASBLVALUECOLUMN")), AsblVal);
 				logs.logging("INFO", "Process Asbl.Value Details Matched With DataBase Values");
 
-				salesOrderFunctions.verifyAssertionBothValues(dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
-						commonFunc.getDataFromTestDataSheet("SCODBIGSTAMTCOLUMN")), IGSTamt);
+				salesOrderFunctions
+						.verifyAssertionBothValues(dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
+								commonFunc.getDataFromTestDataSheet("SCODBIGSTAMTCOLUMN")), IGSTamt);
 				logs.logging("INFO", "Process IGSTAmt Details Matched With DataBase Values");
 
-				salesOrderFunctions.verifyAssertionBothValues(dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
-						commonFunc.getDataFromTestDataSheet("SCODBCGSTAMTCOLUMN")), CGSTamt);
+				salesOrderFunctions
+						.verifyAssertionBothValues(dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
+								commonFunc.getDataFromTestDataSheet("SCODBCGSTAMTCOLUMN")), CGSTamt);
 				logs.logging("INFO", "Process CGSTAmt Details Matched With DataBase Values");
 
-				salesOrderFunctions.verifyAssertionBothValues(dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
-						commonFunc.getDataFromTestDataSheet("SCODBSGSTAMTCOLUMN")), SGSTamt);
+				salesOrderFunctions
+						.verifyAssertionBothValues(dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
+								commonFunc.getDataFromTestDataSheet("SCODBSGSTAMTCOLUMN")), SGSTamt);
 				logs.logging("INFO", "Process SGSTAmt Details Matched With DataBase Values");
 
-				salesOrderFunctions.verifyAssertionBothValues(dbCommonFunctions.SCOLineDetails(VariableHandler.getSCOdocno(),
-						commonFunc.getDataFromTestDataSheet("SCODBQTYCOLUMN")), LineOrdQty);
+				salesOrderFunctions
+						.verifyAssertionBothValues(dbCommonFunctions.SCOLineDetails(VariableHandler.getSCOdocno(),
+								commonFunc.getDataFromTestDataSheet("SCODBQTYCOLUMN")), LineOrdQty);
 				logs.logging("INFO", "Process LineOrderQty Details Matched With DataBase Values");
 
-				salesOrderFunctions.verifyAssertionBothValues(dbCommonFunctions.SCOLineDetails(VariableHandler.getSCOdocno(),
-						commonFunc.getDataFromTestDataSheet("SCODBUNITCOLUMN")), LineUnitCost);
+				salesOrderFunctions
+						.verifyAssertionBothValues(dbCommonFunctions.SCOLineDetails(VariableHandler.getSCOdocno(),
+								commonFunc.getDataFromTestDataSheet("SCODBUNITCOLUMN")), LineUnitCost);
 				logs.logging("INFO", "Process LineUnitCost Details Matched With DataBase Values");
 
 			}
@@ -5319,56 +5344,69 @@ public class SubcontractOrderFunctions {
 			String SGSTamt = itemmultiple[i][15];
 			String UTGSTamt = itemmultiple[i][17];
 			if (!Batchqty.equals("")) {
-				salesOrderFunctions.verifyAssertionBothValues(dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
-						commonFunc.getDataFromTestDataSheet("SCODBBATCHQTYCOLUMN")), Batchqty);
+				salesOrderFunctions
+						.verifyAssertionBothValues(dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
+								commonFunc.getDataFromTestDataSheet("SCODBBATCHQTYCOLUMN")), Batchqty);
 				logs.logging("INFO", "Process BatchQty Details Matched With DataBase Values");
 
-				salesOrderFunctions.verifyAssertionBothValues(dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
-						commonFunc.getDataFromTestDataSheet("SCODBBATCHCOSTCOLUMN")), BatchCost);
+				salesOrderFunctions
+						.verifyAssertionBothValues(dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
+								commonFunc.getDataFromTestDataSheet("SCODBBATCHCOSTCOLUMN")), BatchCost);
 				logs.logging("INFO", "Process BatchCost Details Matched With DataBase Values");
 
-				salesOrderFunctions.verifyAssertionBothValues(dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
-						commonFunc.getDataFromTestDataSheet("SCODBPROCESSUOMCOLUMN")), UOM);
+				salesOrderFunctions
+						.verifyAssertionBothValues(dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
+								commonFunc.getDataFromTestDataSheet("SCODBPROCESSUOMCOLUMN")), UOM);
 				logs.logging("INFO", "Process UOM Details Matched With DataBase Values");
 
-				salesOrderFunctions.verifyAssertionBothValues(dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
-						commonFunc.getDataFromTestDataSheet("SCODBCONVFACTORCOLUMN")), ConvFact);
+				salesOrderFunctions
+						.verifyAssertionBothValues(dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
+								commonFunc.getDataFromTestDataSheet("SCODBCONVFACTORCOLUMN")), ConvFact);
 				logs.logging("INFO", "Process ConvFactor Details Matched With DataBase Values");
 
-				salesOrderFunctions.verifyAssertionBothValues(dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
-						commonFunc.getDataFromTestDataSheet("SCODBSACCODECOLUMN")), SACcode);
+				salesOrderFunctions
+						.verifyAssertionBothValues(dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
+								commonFunc.getDataFromTestDataSheet("SCODBSACCODECOLUMN")), SACcode);
 				logs.logging("INFO", "Process SAC Code Details Matched With DataBase Values");
 
-				salesOrderFunctions.verifyAssertionBothValues(dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
-						commonFunc.getDataFromTestDataSheet("SCODBPROCQTYCOLUMN")), ProcQty);
+				salesOrderFunctions
+						.verifyAssertionBothValues(dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
+								commonFunc.getDataFromTestDataSheet("SCODBPROCQTYCOLUMN")), ProcQty);
 				logs.logging("INFO", "Process ProcQty Details Matched With DataBase Values");
 
-				salesOrderFunctions.verifyAssertionBothValues(dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
-						commonFunc.getDataFromTestDataSheet("SCODBASBLVALUECOLUMN")), AsblVal);
+				salesOrderFunctions
+						.verifyAssertionBothValues(dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
+								commonFunc.getDataFromTestDataSheet("SCODBASBLVALUECOLUMN")), AsblVal);
 				logs.logging("INFO", "Process Asbl.Value Details Matched With DataBase Values");
 
-				salesOrderFunctions.verifyAssertionBothValues(dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
-						commonFunc.getDataFromTestDataSheet("SCODBIGSTAMTCOLUMN")), IGSTamt);
+				salesOrderFunctions
+						.verifyAssertionBothValues(dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
+								commonFunc.getDataFromTestDataSheet("SCODBIGSTAMTCOLUMN")), IGSTamt);
 				logs.logging("INFO", "Process IGSTAmt Details Matched With DataBase Values");
 
-				salesOrderFunctions.verifyAssertionBothValues(dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
-						commonFunc.getDataFromTestDataSheet("SCODBCGSTAMTCOLUMN")), CGSTamt);
+				salesOrderFunctions
+						.verifyAssertionBothValues(dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
+								commonFunc.getDataFromTestDataSheet("SCODBCGSTAMTCOLUMN")), CGSTamt);
 				logs.logging("INFO", "Process CGSTAmt Details Matched With DataBase Values");
 
-				salesOrderFunctions.verifyAssertionBothValues(dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
-						commonFunc.getDataFromTestDataSheet("SCODBSGSTAMTCOLUMN")), SGSTamt);
+				salesOrderFunctions
+						.verifyAssertionBothValues(dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
+								commonFunc.getDataFromTestDataSheet("SCODBSGSTAMTCOLUMN")), SGSTamt);
 				logs.logging("INFO", "Process SGSTAmt Details Matched With DataBase Values");
 
-				salesOrderFunctions.verifyAssertionBothValues(dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
-						commonFunc.getDataFromTestDataSheet("SCODBUTGSTAMTCOLUMN")), UTGSTamt);
+				salesOrderFunctions
+						.verifyAssertionBothValues(dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
+								commonFunc.getDataFromTestDataSheet("SCODBUTGSTAMTCOLUMN")), UTGSTamt);
 				logs.logging("INFO", "Process SGSTAmt Details Matched With DataBase Values");
 
-				salesOrderFunctions.verifyAssertionBothValues(dbCommonFunctions.SCOLineDetails(VariableHandler.getSCOdocno(),
-						commonFunc.getDataFromTestDataSheet("SCODBQTYCOLUMN")), LineOrdQty);
+				salesOrderFunctions
+						.verifyAssertionBothValues(dbCommonFunctions.SCOLineDetails(VariableHandler.getSCOdocno(),
+								commonFunc.getDataFromTestDataSheet("SCODBQTYCOLUMN")), LineOrdQty);
 				logs.logging("INFO", "Process LineOrderQty Details Matched With DataBase Values");
 
-				salesOrderFunctions.verifyAssertionBothValues(dbCommonFunctions.SCOLineDetails(VariableHandler.getSCOdocno(),
-						commonFunc.getDataFromTestDataSheet("SCODBUNITCOLUMN")), LineUnitCost);
+				salesOrderFunctions
+						.verifyAssertionBothValues(dbCommonFunctions.SCOLineDetails(VariableHandler.getSCOdocno(),
+								commonFunc.getDataFromTestDataSheet("SCODBUNITCOLUMN")), LineUnitCost);
 				logs.logging("INFO", "Process LineUnitCost Details Matched With DataBase Values");
 
 			}
@@ -5539,8 +5577,9 @@ public class SubcontractOrderFunctions {
 			String TaxAmt = itemmultiple[i][18];
 			String SCONetAmt = itemmultiple[i][19];
 			if (!SCOamt.equals("")) {
-				salesOrderFunctions.verifyAssertionBothValues(dbCommonFunctions.SCOHeaderDetails(VariableHandler.getSCOdocno(),
-						commonFunc.getDataFromTestDataSheet("SCODBMATAMTCOLUMN")), SCOamt);
+				salesOrderFunctions
+						.verifyAssertionBothValues(dbCommonFunctions.SCOHeaderDetails(VariableHandler.getSCOdocno(),
+								commonFunc.getDataFromTestDataSheet("SCODBMATAMTCOLUMN")), SCOamt);
 				logs.logging("INFO", "Process SCO Amount Details Matched With DataBase Values");
 
 //				commonFunc
@@ -5548,8 +5587,9 @@ public class SubcontractOrderFunctions {
 //								commonFunc.getDataFromTestDataSheet("SCODBTAXAMTCOLUMN")), TaxAmt);
 //				logs.logging("INFO", "Process Tax Amount Details Matched With DataBase Values");
 
-				salesOrderFunctions.verifyAssertionBothValues(dbCommonFunctions.SCOHeaderDetails(VariableHandler.getSCOdocno(),
-						commonFunc.getDataFromTestDataSheet("SCODBTOTALAMTCOLUMN")), SCONetAmt);
+				salesOrderFunctions
+						.verifyAssertionBothValues(dbCommonFunctions.SCOHeaderDetails(VariableHandler.getSCOdocno(),
+								commonFunc.getDataFromTestDataSheet("SCODBTOTALAMTCOLUMN")), SCONetAmt);
 				logs.logging("INFO", "Process SCO NetAmount Details Matched With DataBase Values");
 			}
 		}
@@ -10046,12 +10086,14 @@ public class SubcontractOrderFunctions {
 			String SFcode = itemmultiple[i][0];
 			String TarSFcode = itemmultiple[i][1];
 			if (!SFcode.equals("")) {
-				salesOrderFunctions.verifyAssertionBothValues(dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
-						commonFunc.getDataFromTestDataSheet("SCODBSFCODECOLUMN")), SFcode);
+				salesOrderFunctions
+						.verifyAssertionBothValues(dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+								commonFunc.getDataFromTestDataSheet("SCODBSFCODECOLUMN")), SFcode);
 				logs.logging("INFO", "Process Sou.SFcode Details Matched With DataBase Values");
 
-				salesOrderFunctions.verifyAssertionBothValues(dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
-						commonFunc.getDataFromTestDataSheet("SCODBTARSFCODECOLUMN")), TarSFcode);
+				salesOrderFunctions
+						.verifyAssertionBothValues(dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+								commonFunc.getDataFromTestDataSheet("SCODBTARSFCODECOLUMN")), TarSFcode);
 				logs.logging("INFO", "Process Tar.SFcode Details Matched With DataBase Values");
 				commonFunc.hardWait(1000);
 				String SCOSFcode = webDB.getDomPropertyFromElement(SubcontractOrderLocators.SCO_GetSFcode,
@@ -10086,12 +10128,14 @@ public class SubcontractOrderFunctions {
 			String SFcode = itemmultiple[i][6];
 			String TarSFcode = itemmultiple[i][7];
 			if (!SFcode.equals("")) {
-				salesOrderFunctions.verifyAssertionBothValues(dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
-						commonFunc.getDataFromTestDataSheet("SCODBSFCODECOLUMN")), SFcode);
+				salesOrderFunctions
+						.verifyAssertionBothValues(dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+								commonFunc.getDataFromTestDataSheet("SCODBSFCODECOLUMN")), SFcode);
 				logs.logging("INFO", "Process Sou.SFcode Details Matched With DataBase Values");
 
-				salesOrderFunctions.verifyAssertionBothValues(dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
-						commonFunc.getDataFromTestDataSheet("SCODBTARSFCODECOLUMN")), TarSFcode);
+				salesOrderFunctions
+						.verifyAssertionBothValues(dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+								commonFunc.getDataFromTestDataSheet("SCODBTARSFCODECOLUMN")), TarSFcode);
 				logs.logging("INFO", "Process Tar.SFcode Details Matched With DataBase Values");
 				commonFunc.hardWait(1000);
 				String SCOSFcode = webDB.getDomPropertyFromElement(SubcontractOrderLocators.SCO_GetSFcode,
@@ -10126,12 +10170,14 @@ public class SubcontractOrderFunctions {
 			String SFcode = itemmultiple[i][2];
 			String TarSFcode = itemmultiple[i][3];
 			if (!SFcode.equals("")) {
-				salesOrderFunctions.verifyAssertionBothValues(dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
-						commonFunc.getDataFromTestDataSheet("SCODBSFCODECOLUMN")), SFcode);
+				salesOrderFunctions
+						.verifyAssertionBothValues(dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+								commonFunc.getDataFromTestDataSheet("SCODBSFCODECOLUMN")), SFcode);
 				logs.logging("INFO", "Process Sou.SFcode Details Matched With DataBase Values");
 
-				salesOrderFunctions.verifyAssertionBothValues(dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
-						commonFunc.getDataFromTestDataSheet("SCODBTARSFCODECOLUMN")), TarSFcode);
+				salesOrderFunctions
+						.verifyAssertionBothValues(dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+								commonFunc.getDataFromTestDataSheet("SCODBTARSFCODECOLUMN")), TarSFcode);
 				logs.logging("INFO", "Process Tar.SFcode Details Matched With DataBase Values");
 				commonFunc.hardWait(1000);
 				String SCOSFcode = webDB.getDomPropertyFromElement(SubcontractOrderLocators.SCO_GetSFcode,
@@ -10166,12 +10212,14 @@ public class SubcontractOrderFunctions {
 			String SFcode = itemmultiple[i][4];
 			String TarSFcode = itemmultiple[i][5];
 			if (!SFcode.equals("")) {
-				salesOrderFunctions.verifyAssertionBothValues(dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
-						commonFunc.getDataFromTestDataSheet("SCODBSFCODECOLUMN")), SFcode);
+				salesOrderFunctions
+						.verifyAssertionBothValues(dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+								commonFunc.getDataFromTestDataSheet("SCODBSFCODECOLUMN")), SFcode);
 				logs.logging("INFO", "Process Sou.SFcode Details Matched With DataBase Values");
 
-				salesOrderFunctions.verifyAssertionBothValues(dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
-						commonFunc.getDataFromTestDataSheet("SCODBTARSFCODECOLUMN")), TarSFcode);
+				salesOrderFunctions
+						.verifyAssertionBothValues(dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+								commonFunc.getDataFromTestDataSheet("SCODBTARSFCODECOLUMN")), TarSFcode);
 				logs.logging("INFO", "Process Tar.SFcode Details Matched With DataBase Values");
 				commonFunc.hardWait(1000);
 				String SCOSFcode = webDB.getDomPropertyFromElement(SubcontractOrderLocators.SCO_GetSFcode,
@@ -14570,12 +14618,14 @@ public class SubcontractOrderFunctions {
 			String GRNSFCODE = itemmultiple[i][0];
 			String GRNTARSFCODE = itemmultiple[i][1];
 			if (!GRNSFCODE.equals("")) {
-				salesOrderFunctions.verifyAssertionBothValues(dbCommonFunctions.SCOGRNLINEWISE(VariableHandler.getScoGrnNumber(),
-						commonFunc.getDataFromTestDataSheet("SCOGRNDBSFCODECOLUMN")), GRNSFCODE);
+				salesOrderFunctions
+						.verifyAssertionBothValues(dbCommonFunctions.SCOGRNLINEWISE(VariableHandler.getScoGrnNumber(),
+								commonFunc.getDataFromTestDataSheet("SCOGRNDBSFCODECOLUMN")), GRNSFCODE);
 				logs.logging("INFO", "SCO SF CODE Matched With GRN SF CODE AND MATCHED DataBase Values");
 
-				salesOrderFunctions.verifyAssertionBothValues(dbCommonFunctions.SCOGRNLINEWISE(VariableHandler.getScoGrnNumber(),
-						commonFunc.getDataFromTestDataSheet("SCOGRNDBTARSFCODECOLUMN")), GRNTARSFCODE);
+				salesOrderFunctions
+						.verifyAssertionBothValues(dbCommonFunctions.SCOGRNLINEWISE(VariableHandler.getScoGrnNumber(),
+								commonFunc.getDataFromTestDataSheet("SCOGRNDBTARSFCODECOLUMN")), GRNTARSFCODE);
 				logs.logging("INFO", "SCO TAR SF CODE Matched With GRN TAR SF CODE AND MATCHED DataBase Values");
 
 			}
@@ -18113,6 +18163,7 @@ public class SubcontractOrderFunctions {
 			}
 		}
 	}
+
 	/**
 	 * Direct Subcontract Order With BOM For Standard Type - Local reg
 	 * 

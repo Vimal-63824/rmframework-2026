@@ -662,9 +662,9 @@ public class PreparePayrollFunctions {
 		LocalDate date = LocalDate.now();
 		DayOfWeek day = date.getDayOfWeek();
 		if (day == DayOfWeek.SATURDAY) {
-		    date = date.minusDays(1);
+			date = date.minusDays(1);
 		} else if (day == DayOfWeek.SUNDAY) {
-		    date = date.minusDays(2);
+			date = date.minusDays(2);
 		}
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM");
 		String PayrollMonth = date.format(formatter).toUpperCase();

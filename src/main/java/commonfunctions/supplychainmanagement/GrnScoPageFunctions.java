@@ -833,6 +833,7 @@ public class GrnScoPageFunctions {
 		logs.logging("INFO", "Asbl. Value Matched With SCO And GRNSCO ");
 		commonFunc.hardWait(1000);
 	}
+
 	/**
 	 * This Method Is Used To Verify Rework Gen Mat Cons And Allocate
 	 * 
@@ -850,28 +851,29 @@ public class GrnScoPageFunctions {
 //			if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
 //				webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
 //			}
-			flag = webDB.waitForElement(GrnScoLocators.GenMatCons, ElementType.Xpath);
+		flag = webDB.waitForElement(GrnScoLocators.GenMatCons, ElementType.Xpath);
+		if (flag) {
+			logs.logging("INFO", "Gen Mat Cons Button Is Displayed");
+			webDB.clickAnElement(GrnScoLocators.GenMatCons, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
+			commonFunc.hardWait(2000);
+			if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+				webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+			}
+			flag = webDB.waitForElement(GrnScoLocators.Allocate, ElementType.Xpath);
 			if (flag) {
-				logs.logging("INFO", "Gen Mat Cons Button Is Displayed");
-				webDB.clickAnElement(GrnScoLocators.GenMatCons, ElementType.Xpath);
+				logs.logging("INFO", "Allocate Button Is Displayed");
+				webDB.clickAnElement(GrnScoLocators.Allocate, ElementType.Xpath);
 				commonFunc.checkRefreshCellsDisappear();
 				commonFunc.hardWait(2000);
 				if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
 					webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
 				}
-				flag = webDB.waitForElement(GrnScoLocators.Allocate, ElementType.Xpath);
-				if (flag) {
-					logs.logging("INFO", "Allocate Button Is Displayed");
-					webDB.clickAnElement(GrnScoLocators.Allocate, ElementType.Xpath);
-					commonFunc.checkRefreshCellsDisappear();
-					commonFunc.hardWait(2000);
-					if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
-						webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
-					}
-				}
 			}
+		}
 		assertTrue(flag);
 	}
+
 	/**
 	 * This Method Is Used To Create Pending Grn Sco Doc For SDS Type
 	 * 
@@ -959,6 +961,7 @@ public class GrnScoPageFunctions {
 		}
 		assertTrue(flag);
 	}
+
 	/**
 	 * This Method Is Used To Direct GRN SCO Fetch Button
 	 * 
@@ -1001,13 +1004,11 @@ public class GrnScoPageFunctions {
 										ElementType.Xpath);
 								logs.logging("INFO", "Get Supl Lot Is: " + GRNLotNo);
 								commonFunc.hardWait(2000);
-								flag = webDB.waitForElement(GrnScoLocators.GRN_Heat_No,
-										ElementType.Xpath);
+								flag = webDB.waitForElement(GrnScoLocators.GRN_Heat_No, ElementType.Xpath);
 								if (flag) {
 									webDB.scrollToAnElement(GrnScoLocators.GRN_Heat_No, ElementType.Xpath);
 									webDB.moveToElement(GrnScoLocators.GRN_Heat_No, ElementType.Xpath);
-									webDB.doubleClickAnElement(GrnScoLocators.GRN_Heat_No,
-											ElementType.Xpath);
+									webDB.doubleClickAnElement(GrnScoLocators.GRN_Heat_No, ElementType.Xpath);
 									webDB.sendTextToAnElement(GrnScoLocators.GRN_Heat_No_input, GRNLotNo,
 											ElementType.Xpath);
 									commonFunc.hardWait(1000);

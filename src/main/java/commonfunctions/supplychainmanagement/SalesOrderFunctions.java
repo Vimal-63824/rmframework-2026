@@ -853,7 +853,7 @@ public class SalesOrderFunctions {
 			flag = webDB.waitForElement(SalesOrderLocators.FindSearchButton, ElementType.Xpath);
 			if (flag) {
 				webDB.clickAnElement(SalesOrderLocators.FindSearchButton, ElementType.Xpath);
-				commonFunc.hardWait(2000);
+				commonFunc.checkRefreshCellsDisappear();
 				commonFunc.checkRefreshCellsDisappear();
 				flag = webDB.waitForElement(SalesOrderLocators.SOStatusLineTableText(SONumber), ElementType.Xpath);
 				if (flag) {
@@ -966,6 +966,23 @@ public class SalesOrderFunctions {
 		if (flag) {
 			webDB.clickAnElement(SalesOrderLocators.SOLineWiseDetailsButton, ElementType.CssSelector);
 			flag = webDB.waitForElement(SalesOrderLocators.LinewisedetailsHeader, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Sales order Line Wise Details Button is Clicked");
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method is used to click Total Discount Button
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void clickTotalDiscountForLineDetails() {
+		flag = webDB.waitForElement(SalesOrderLocators.SOTotalDiscountData, ElementType.CssSelector);
+		if (flag) {
+			webDB.clickAnElement(SalesOrderLocators.SOTotalDiscountData, ElementType.CssSelector);
+			flag = webDB.waitForElement(SalesOrderLocators.DiscountEntryIframe, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Sales order Line Wise Details Button is Clicked");
 			}
@@ -1177,9 +1194,12 @@ public class SalesOrderFunctions {
 					logs.logging("INFO", "Tax Amount Verified, Tax added value: " + taxAmount);
 					logs.logging("INFO", "verifing total amount after calculating tax amount!!!");
 					webDB.waitForClickElement(SalesOrderLocators.SOTotalAmountFieldTrans, ElementType.Xpath);
-					BigDecimal DisplayLineAmnt = new BigDecimal(
-							webDB.getDomPropertyFromElement(SalesOrderLocators.SOTotalAmountFieldTrans,
-									ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value")));
+					String Value = webDB.getDomPropertyFromElement(SalesOrderLocators.SOTotalAmountFieldTrans,
+							ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
+					if (Value.contains(",")) {
+						Value = Value.replace(",", "").trim();
+					}
+					BigDecimal DisplayLineAmnt = new BigDecimal(Value);
 					DisplayLineAmnt = purchaseOrderFunc
 							.verifyRoundOffBigDecimalValueWithReturnBigDecimal(DisplayLineAmnt);
 					logs.logging("INFO", "Displayed Total Amount: " + DisplayLineAmnt);
@@ -7410,5 +7430,64 @@ public class SalesOrderFunctions {
 			e.printStackTrace();
 			assertTrue(flag);
 		}
+	}
+
+	/**
+	 * This Method is Used to Create a Sales OrderHeader Records
+	 * 
+	 * @author Sakthi-GWL
+	 * @param Location
+	 * @param Unit
+	 * @param SubVoucherType
+	 * @param Customer
+	 */
+	public void createSalesOrderWithHeaderDetails(String Location, String Unit, String SubVoucherType,
+			String Customer) {
+//		verifyClickAddButtonInSo();
+//		FrameSwitchingInSOCreation();
+		String LocationValue = webDB.getDomPropertyFromElement(SalesOrderLocators.SOLocationField, ElementType.Xpath,
+				commonFunc.getDataFromTestDataSheet("Value"));
+		if (!LocationValue.equalsIgnoreCase(Location)) {
+			commonFunc.searchAndSelectValueInFilters(SalesOrderLocators.LocationLOV, Location);
+			commonFunc.checkRefreshCellsDisappear();
+			FrameSwitchingInSOCreation();
+		}
+		String SalesVoucherType = webDB.getDomPropertyFromElement(SalesOrderLocators.SOSubVoucherType,
+				ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
+		if (!SalesVoucherType.equalsIgnoreCase(SubVoucherType)) {
+			commonFunc.searchAndSelectValueInFilters(SalesOrderLocators.SalesSubVoucherTypeLOV, SubVoucherType);
+			commonFunc.checkRefreshCellsDisappear();
+			FrameSwitchingInSOCreation();
+		}
+		commonFunc.searchAndSelectValueInFilters(SalesOrderLocators.CustomerLov, Customer);
+		commonFunc.checkRefreshCellsDisappear();
+		FrameSwitchingInSOCreation();
+		clickTickIcon();
+		validateLoactionInSOHeader(Location);
+		validateUnitInSOHeader(Unit);
+	}
+
+	/**
+	 * This Method Is Used To navigate to SO Or CS
+	 * 
+	 * @author Sakthi-GWL
+	 * 
+	 */
+	public void navigateToSalesOrderOrCustomerSchedule(String ScreenName) {
+		flag = webDB.waitForElement(SalesOrderLocators.AddButtonSalesOrder, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(SalesOrderLocators.AddButtonSalesOrder, ElementType.Xpath);
+//			flag = webDB.waitForElement(SalesOrderLocators.SOFrame, ElementType.Xpath);
+//			if (flag) {
+//				webDB.switchToFrame(SalesOrderLocators.SOFrame, ElementType.Xpath);
+			logs.logging("INFO", "Create SO / CS Sub Screen Is Opened Successfully");
+			if (ScreenName.equals("SO")) {
+				clickSalesOrderButton();
+			} else {
+				CSFunc.clickCustomerScheduleButton();
+			}
+		}
+//		}
+		Assert.assertTrue(flag);
 	}
 }

@@ -215,6 +215,7 @@ public class CommonFunctions {
 				String SessionID = URL.split("session=")[1].toString();
 				System.out.println(SessionID);
 				VariableHandler.setSessionID(SessionID);
+				VariableHandler.setSessionOpened(true);
 				logs.logging("INFO", "Current Username: " + VariableHandler.getSignInUserName());
 			}
 		}
@@ -2464,6 +2465,7 @@ public class CommonFunctions {
 		webDB.waitForPageReady(20);
 		flag = webDB.waitForElement(CommonUiLocators.BusFunctionSearchBox, ElementType.Xpath);
 		if (flag) {
+			checkRefreshCellsDisappear();
 			webDB.waitUntilElementToBeClickable(CommonUiLocators.BusFunctionSearchBox, ElementType.Xpath);
 			webDB.waitUntilElementToNotBeStale(CommonUiLocators.BusFunctionSearchBox, ElementType.Xpath);
 			webDB.clearTextField(CommonUiLocators.BusFunctionSearchBox, ElementType.Xpath);
@@ -2471,6 +2473,7 @@ public class CommonFunctions {
 			checkRefreshCellsDisappear();
 			webDB.waitForPageReady(30);
 			webDB.verifyIsElementDisplayed(PageLocators, ElementType.Xpath);
+			checkRefreshCellsDisappear();
 			flag = webDB.waitForElementUntilGivenTime(PageLocators, ElementType.Xpath, 15);
 			if (flag) {
 				logs.logging("INFO", "Navigated To " + TabName);
@@ -3379,16 +3382,17 @@ public class CommonFunctions {
 		try {
 			String HomePageUrl = System.getProperty("url").replace("loginpage/login", "loginpage/menu?session=")
 					.concat(VariableHandler.getSessionID());
-			System.out.println(HomePageUrl);
 			webDB.navigateToUrl(HomePageUrl);
 			flag = webDB.waitForElement(CommonUiLocators.GetTextUserName, ElementType.Xpath);
 			if (!flag) {
 				VariableHandler.setSessionID(null);
 				enterUrl();
+				VariableHandler.setSessionOpened(false);
 			}
 		} catch (Exception e) {
 			logs.loggingconsole("INFO", "Exception Occurs while switch home page: " + e);
 			VariableHandler.setSessionID(null);
+			VariableHandler.setSessionOpened(false);
 			enterUrl();
 		}
 	}
