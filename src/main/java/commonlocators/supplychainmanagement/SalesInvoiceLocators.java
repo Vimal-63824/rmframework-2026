@@ -71,7 +71,7 @@ public class SalesInvoiceLocators {
 	/** @Locator XPATH */
 	public static final String Header_CPC_LOV_Btn = "//input[@data-testid='P191513109001_SIHD_CC_CODE']/following-sibling::button";
 	/** @Locator XPATH */
-	public static final String HSNcode_Column = "//*[@id=\"ig_line_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[13]";
+	public static final String HSNcode_Column = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[13]";
 	/** @Locator XPATH */
 	public static final String HSN_Code_LOV_Btn = "//input[@data-testid='SILN_HSN_CODE']/following-sibling::button";
 	/** @Locator XPATH */
@@ -428,7 +428,7 @@ public class SalesInvoiceLocators {
 
 	/** @locatorType Xpath */
 	public static final String LineDetails(int i) {
-		return "//*[@id=\'ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[" + i
+		return "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[" + i
 				+ "]/td[23]/a/span[contains(@style,'blue')]";
 	}
 
