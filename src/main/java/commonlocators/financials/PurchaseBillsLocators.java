@@ -40,7 +40,7 @@ public class PurchaseBillsLocators {
 
 	/** @locatorType Xpath */
 	public static final String ApprovedStatus(String PbNo) {
-		return "//a[text()='" + PbNo + "']/../../td[14]";
+		return "//a[text()='" + PbNo + "']/../../td[15]";
 	}
 
 	/** @locatorType Xpath */

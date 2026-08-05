@@ -71,7 +71,8 @@ public class PaymentReceiptsFunctions {
 									webDB.selectDropDownByText(PaymentReceiptsLocators.PayMode,
 											commonFunc.getDataFromTestDataSheet("Rtgs"), ElementType.Xpath);
 									commonFunc.searchAndSelectValueInFilters(
-											PaymentReceiptsLocators.Bank_Cash_LovButton, "JP MORGAN CHASE");
+											PaymentReceiptsLocators.Bank_Cash_LovButton,
+											"STATE BANK OF INDIA - 30305325953");
 									flag = webDB.waitForElement(PaymentReceiptsLocators.PendingPayableFrame,
 											ElementType.Xpath);
 									if (flag) {

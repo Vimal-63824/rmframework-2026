@@ -614,7 +614,7 @@ public class MaterialRequestFunctions {
 		commonFunc.navigateToInventoryMaterialRequest();
 		verifyCreateMaterialRequest(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("Subcontractor"), commonFunc.getDataFromTestDataSheet("POSupplier"),
-				commonFunc.getDataFromTestDataSheet("Vinoth"), commonFunc.getDataFromTestDataSheet("Shift"));
+				commonFunc.getDataFromTestDataSheet("Vinoth"), commonFunc.getDataFromTestDataSheet("Shift_100"));
 //		verifyHeaderMaterialRequestValidation(commonFunc.getDataFromTestDataSheet("Loc_100"),
 //				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("Subcontractor"),
 //				commonFunc.getDataFromTestDataSheet("POSupplier"), commonFunc.getDataFromTestDataSheet("Vinoth"),
