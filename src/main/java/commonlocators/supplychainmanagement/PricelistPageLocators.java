@@ -54,7 +54,7 @@ public class PricelistPageLocators {
 	/** @locatorType Xpath */
 	public static final String StopAlert = "//li[@class='a-Notification-item htmldbStdErr']";
 	/** @locatorType Xpath */
-	public static final String CancellButton = "//*[@id=\"price_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[21]/a";
+	public static final String CancellButton = "//*[@id=\"price_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[22]/a";
 	/** @locatorType Xpath */
 	public static final String RefindButton = "//button[@data-testid='Find_Record']";
 	/** @locatorType Xpath */
@@ -90,7 +90,7 @@ public class PricelistPageLocators {
 	/** @locatorType Xpath */
 	public static final String FindDocNumDrilldown = "//table[contains(@aria-label,'Result(s)')]/tbody/tr/td[6]/a";
 	/** @locatorType Xpath */
-	public static final String AmendmentButton = "//*[@id=\"price_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[18]/a/span";
+	public static final String AmendmentButton = "//*[@id=\"price_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[20]/a/span";
 	/** @locatorType Xpath */
 	public static final String AmendcloseDate = "//*[@data-testid='P161513102524_CLOSE_DATE']/input";
 	/** @locatorType Xpath */
@@ -116,7 +116,7 @@ public class PricelistPageLocators {
 	/** @locatorType Xpath */
 	public static final String Pricelistfind = "//button[@data-testid='Search']";
 	/** @locatorType Xpath */
-	public static final String PricelistNumField = "//*[@id=\"P1615131025212_DOCP_NO\"]";
+	public static final String PricelistNumField = "//input[@data-testid='P1615131025212_DOCP_NO']/following-sibling::button";
 
 	/** @locatorType Xpath */
 	public static final String PRLISTDetailsInfoBtn(String PRLISTNum) {
@@ -203,4 +203,12 @@ public class PricelistPageLocators {
 	public static final String PriceListSingle1 = "//button[@id='B1347663667009762073']";
 	/** @locatorType Xpath */
 	public static final String CustomerIdFieldDb = "//*[@id='SO_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[1]/td[4]";
+	/** @locatorType Xpath */
+	public static final String CancelOk = "//button[contains(text(),'OK')]";
+	/** @locatorType Xpath */
+	public static final String CancelSearch = "//button[@data-testid='Search']";
+	
+	
+	
+	
 }
