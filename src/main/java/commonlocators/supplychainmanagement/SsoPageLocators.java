@@ -173,5 +173,13 @@ public class SsoPageLocators {
 	public static final String SSOTentDateToField(int i) {
 		return "//*[@id=\"LINES_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr[" + i + "]/td[13]";
 	}
-
+	
+	/** @locatorType Xpath */
+	public static final String SsoCancelOk = "//button[contains(text(),'OK')]";
+	/** @locatorType Xpath */
+	public static final String SsoCancelFindSearch = "//button[@data-testid='Search']";
+	
+	
+	
+	
 }
