@@ -179,9 +179,9 @@ public class GateEntryPageLocators {
 	/** @locatorType Xpath */
 	public static final String GENSearchBtn = "//button[@data-testid='Find_header']";
 	/** @locatorType Xpath */
-	public static final String AmendFindTable = "//*[@id='22365090286069108751_orig']/tbody/tr[2]/td[1]";
+	public static final String AmendFindTable = "//*[@id='22431851646172058626_orig']/tbody/tr[2]/td[1]";
 	/** @locatorType Xpath */
-	public static final String AmendLineFindTable = "//*[@id='1148701566808379264_orig']/tbody/tr[2]/td[1]";
+	public static final String AmendLineFindTable = "//*[@id='1215462926911329139_orig']/tbody/tr[2]/td[1]";
 	/** @locatorType Xpath */
 	public static final String GENPendBtn = "//button[@data-testid='Create_GE']";
 
@@ -258,7 +258,7 @@ public class GateEntryPageLocators {
 	/** @locatorType Xpath */
 	public static final String PendingGatePOLov = "//input[@data-testid=\"P16151311001_PO_NO\"]/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String GateEntryPendingPoSelect = "//table[contains(@aria-label,'PENDING')]/tbody/tr/td[14]";
+	public static final String GateEntryPendingPoSelect = "//table[contains(@aria-label,'PENDING')]/tbody/tr/td[15]";
 	/** @locatorType Xpath */
 	public static final String GateEntryPoClearButton = "//button[@data-testid='Find']/following-sibling::button";
 	/** @locatorType Xpath */

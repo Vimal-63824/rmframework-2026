@@ -135,7 +135,7 @@ public class SsoPageLocators {
 	/** @locatorType Xpath */
 	public static final String SsoFindSearchBtn = "//button[@data-testid='Find']";
 	/** @locatorType Xpath */
-	public static final String SsoCanclStatus = "//*[@id=\"9746272170729027653_orig\"]/tbody/tr[2]/td[16]";
+	public static final String SsoCanclStatus = "//table[@data-testid='L_Result_Data']/tbody/tr/td[16]";
 	/** @locatorType Xpath */
 	public static final String SsoDocNoLovFindPage = "//input[@data-testid='P1615132060_PO_SSO_NO']/following-sibling::button";
 
@@ -173,5 +173,13 @@ public class SsoPageLocators {
 	public static final String SSOTentDateToField(int i) {
 		return "//*[@id=\"LINES_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr[" + i + "]/td[13]";
 	}
-
+	
+	/** @locatorType Xpath */
+	public static final String SsoCancelOk = "//button[contains(text(),'OK')]";
+	/** @locatorType Xpath */
+	public static final String SsoCancelFindSearch = "//button[@data-testid='Search']";
+	
+	
+	
+	
 }
