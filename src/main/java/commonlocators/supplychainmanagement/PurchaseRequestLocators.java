@@ -1,10 +1,13 @@
 package commonlocators.supplychainmanagement;
 
+import commonfunctions.CommonFunctions;
+
 /**
  * @author Deepan-GWL, Sakthi
  * @company Galaxy Weblinks Feburary 12, 2025
  */
 public class PurchaseRequestLocators {
+	public static CommonFunctions commonFunc = new CommonFunctions();
 	/** @locatorType Xpath */
 	public static final String PurchaseIDHeader = "//span[@data-testid='PR_DOC_NO_TEXT']";
 	/** @locatorType Xpath */
@@ -42,17 +45,33 @@ public class PurchaseRequestLocators {
 	/** @locatorType Xpath */
 	public static final String ItemDataLastRow = "(//table//tbody/tr[contains(@class,'a-GV-row')]/td[3])[1]";
 	/** @locatorType Xpath */
-	public static final String ItemDataLastRowInput = "(//table//tbody/tr[contains(@class,'a-GV-row')]/td[2])[1]/div/input";
+	public static final String PRTable = "(//table[@data-testid='HD_Result_Data'])[2]";
+
 	/** @locatorType Xpath */
-	public static final String QuantityDataLastRow = "(//table//tbody/tr[contains(@class,'a-GV-row')]/td[7])[1]";
+	public static final String ItemDataLastRow() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(PRTable, "Item");
+	}
+
 	/** @locatorType Xpath */
-	public static final String QuantityDataLastRowInput = "(//table//tbody/tr[contains(@class,'a-GV-row')]/td[7])[1]/div//input";
+	public static final String ItemDataLastRowInput = ItemDataLastRow() + "//input";
+
 	/** @locatorType Xpath */
-	public static final String UnitCostDataLastRow = "(//table//tbody/tr[contains(@class,'a-GV-row')]/td[8])[1]";
+	public static final String QuantityDataLastRow() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(PRTable, "RequestQuantity");
+	}
+
 	/** @locatorType Xpath */
-	public static final String UnitCostDataLastRowInput = "(//table//tbody/tr[contains(@class,'a-GV-row')]/td[8])[1]/div//input";
+	public static final String QuantityDataLastRowInput = QuantityDataLastRow() + "//input";
+
 	/** @locatorType Xpath */
-	public static final String ItemDataListIcon = "(//table//tbody/tr[contains(@class,'a-GV-row')]/td[3])[1]//button";
+	public static final String UnitCostDataLastRow() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(PRTable, "UnitCost");
+	}
+
+	/** @locatorType Xpath */
+	public static final String UnitCostDataLastRowInput = UnitCostDataLastRow() + "//input";
+	/** @locatorType Xpath */
+	public static final String ItemDataListIcon = ItemDataLastRow() + "//button";
 	/** @locatorType Xpath */
 	public static final String ItemDataPopupSearchBox = "//input[contains(@class,'a-PopupLOV-search')]";
 	/** @locatorType Xpath */
@@ -198,16 +217,35 @@ public class PurchaseRequestLocators {
 	public static final String PRFindResultSearchBar = "//input[@id='SSR_search_field']";
 	/** @locatorType Xpath */
 	public static final String PRResultTableStatusText = "//div[@data-testid='PR_STATUS_TABLE_TEXT']";
+
 	/** @locatorType Xpath */
-	public static final String PRResultTablePRType = "//table[@id='2095931872759625206_orig']//tr/td[4]";
+	public static final String PRFindTable = "//table[@data-testid='SSR_Result_Data']/tbody/tr/th";
+
 	/** @locatorType Xpath */
-	public static final String PRResultTableUnit = "//table[@id='2095931872759625206_orig']//tr/td[3]";
+	public static final String PRResultTablePRType() {
+		return CommonFunctions.checkAndReturnLocatorForFindPageTable(PRFindTable, "Sub Vou. Type");
+	}
+
 	/** @locatorType Xpath */
-	public static final String PRResultTableLocation = "//table[@id='2095931872759625206_orig']//tr/td[2]";
+	public static final String PRResultTableUnit() {
+		return CommonFunctions.checkAndReturnLocatorForFindPageTable(PRFindTable, "Unit");
+	}
+
 	/** @locatorType Xpath */
-	public static final String PRResultTableRequestor = "//table[@id='2095931872759625206_orig']//tr/td[8]";
+	public static final String PRResultTableLocation() {
+		return CommonFunctions.checkAndReturnLocatorForFindPageTable(PRFindTable, "Loc. ID");
+	}
+
 	/** @locatorType Xpath */
-	public static final String PRResultTableItem = "//table[@id='2095931872759625206_orig']//tr/td[9]";
+	public static final String PRResultTableRequestor() {
+		return CommonFunctions.checkAndReturnLocatorForFindPageTable(PRFindTable, "Requestor");
+	}
+
+	/** @locatorType Xpath */
+	public static final String PRResultTableItem() {
+		return CommonFunctions.checkAndReturnLocatorForFindPageTable(PRFindTable, "Item");
+	}
+
 	/** @locatorType Xpath */
 	public static final String GlAccountNoLovButton = "//button[@id='P161513103003_PRL_PUR_ACCT_lov_btn']";
 	/** @locatorType Xpath */
@@ -252,4 +290,11 @@ public class PurchaseRequestLocators {
 	public static final String CreatePRButton = "//span[text()='Create PR Amd.']/..";
 	/** @Locator XPATH */
 	public static final String PRAmendFrame = "//iframe[@title='PR /SSR CS/Amendment']";
+
+	/** @Locator XPATH */
+	public static String PurchaseNo(String HeaderValue) {
+		String Locator = "(//table[@data-testid='HD_Result_Data'])[2]";
+		return commonFunc.checkAndReturnIndexForLocatorWithHeaderValue(Locator, HeaderValue);
+	}
+
 }

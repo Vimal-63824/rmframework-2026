@@ -11,15 +11,15 @@ public class EmployeeQuickEntryLocators {
 	/** @locatorType XPATH */
 	public static final String EmployeeQuickEntryIframe = "//iframe[@title='Employee Quick Entry']";
 	/** @locatorType XPATH */
-	public static final String EmpName = "//input[@id='P16_NAME']";
+	public static final String EmpName = "//input[@data-testid='EMP_quk_enry_empname']";
 	/** @locatorType XPATH */
-	public static final String Designation = "//button[@id='P16_DESIGNATION_lov_btn']";
+	public static final String Designation = "//input[@data-testid='EMP_quk_enry_desig']/following-sibling::button";
 	/** @locatorType XPATH */
-	public static final String Department = "//button[@id='P16_DEPARTMENT_lov_btn']";
+	public static final String Department = "//input[@data-testid='EMP_quk_enry_dept']/following-sibling::button";
 	/** @locatorType XPATH */
-	public static final String MobileNumber = "//input[@id='P16_PHONE_NO']";
+	public static final String MobileNumber = "//input[@data-testid='EMP_quk_enry_phone']";
 	/** @locatorType XPATH */
-	public static final String MailId = "//input[@id='P16_MAIL_ID']";
+	public static final String MailId = "//input[@data-testid='EMP_quk_enry_mail']";
 	/** @locatorType XPATH */
 	public static final String TickButton = "//button[@title='Create']";
 	/** @locatorType XPATH */

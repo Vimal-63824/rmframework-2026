@@ -1,5 +1,7 @@
 package commonlocators.supplychainmanagement;
 
+import commonfunctions.CommonFunctions;
+
 public class ShareOfBusinessLocators {
 
 	/** @locatorType Xpath */
@@ -87,15 +89,19 @@ public class ShareOfBusinessLocators {
 	}
 
 	/** @locatorType Xpath */
-	public static final String AmendLineFindTableData(int i) {
-		return "//table[@data-testid='H_Result_Data']/tbody/tr/td[" + i + "]";
+	public static final String AmendLineFindTableData(String i) {
+		return CommonFunctions.checkAndReturnLocatorForFindPageTable(SobLineTable, i);
 	}
 
 	/** @locatorType Xpath */
-	public static final String AmendFindTableData(int i) {
-		return "//table[@data-testid='H_Result_Data']/tbody/tr/td[" + i + "]";
+	public static final String AmendFindTableData(String i) {
+		return CommonFunctions.checkAndReturnLocatorForFindPageTable(SobHeaderTable, i);
 	}
 
+	/** @locatorType Xpath */
+	public static final String SobLineTable = "//table[@data-testid='L_Result_Data']/tbody/tr/th";
+	/** @locatorType Xpath */
+	public static final String SobHeaderTable = "//table[@data-testid='H_Result_Data']/tbody/tr/th";
 	/** @locatorType Xpath */
 	public static final String SOBFrame = "//iframe[@title='Share of Business']";
 	/** @locatorType Xpath */

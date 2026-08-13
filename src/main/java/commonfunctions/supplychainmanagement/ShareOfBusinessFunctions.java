@@ -434,7 +434,8 @@ public class ShareOfBusinessFunctions {
 	 * @param Value
 	 * @param i
 	 */
-	public void verifyAmendFilterSearchSOB(String LovButton, String Value, int i, String Type, boolean... selectflag) {
+	public void verifyAmendFilterSearchSOB(String LovButton, String Value, String i, String Type,
+			boolean... selectflag) {
 		webDB.scrollToAnElement(LovButton, ElementType.Xpath);
 		if (selectflag != null) {
 			commonFunc.searchAndSelectValueInFilters(LovButton, Value);
@@ -464,14 +465,14 @@ public class ShareOfBusinessFunctions {
 				ElementType.Xpath);
 		clickSearchButton();
 		commonFunc.hardWait(3000);
-		verifyAmendTableValueAfterDate(9, commonFunc.getDataFromTestDataSheet("EffFrom"));
+		verifyAmendTableValueAfterDate("Eff. From", commonFunc.getDataFromTestDataSheet("EffFrom"));
 		clearSearchFilter();
 		flag = webDB.waitForElement(ShareOfBusinessLocators.EffToInput, ElementType.Xpath);
 		webDB.sendTextToAnElement(ShareOfBusinessLocators.EffToInput, commonFunc.getDataFromTestDataSheet("EffTo"),
 				ElementType.Xpath);
 		clickSearchButton();
 		commonFunc.hardWait(3000);
-		verifyAmendTableValueBeforeDate(10, commonFunc.getDataFromTestDataSheet("EffTo"));
+		verifyAmendTableValueBeforeDate("Eff. To", commonFunc.getDataFromTestDataSheet("EffTo"));
 		clearSearchFilter();
 	}
 
@@ -505,7 +506,7 @@ public class ShareOfBusinessFunctions {
 	 * @param i
 	 * @param Value
 	 */
-	public void verifyAmendTableValue(int i, String Value) {
+	public void verifyAmendTableValue(String i, String Value) {
 		List<WebElement> elements = webDB.getDriver()
 				.findElements(By.xpath(ShareOfBusinessLocators.AmendFindTableData(i)));
 		for (WebElement element : elements) {
@@ -526,7 +527,7 @@ public class ShareOfBusinessFunctions {
 	 * @param i
 	 * @param Value
 	 */
-	public void verifyAmendTableValueAfterDate(int i, String Value) {
+	public void verifyAmendTableValueAfterDate(String i, String Value) {
 		List<WebElement> elements = webDB.getDriver()
 				.findElements(By.xpath(ShareOfBusinessLocators.AmendFindTableData(i)));
 		for (WebElement element : elements) {
@@ -553,7 +554,7 @@ public class ShareOfBusinessFunctions {
 	 * @param i
 	 * @param Value
 	 */
-	public void verifyAmendTableValueBeforeDate(int i, String Value) {
+	public void verifyAmendTableValueBeforeDate(String i, String Value) {
 		List<WebElement> elements = webDB.getDriver()
 				.findElements(By.xpath(ShareOfBusinessLocators.AmendFindTableData(i)));
 		for (WebElement element : elements) {
@@ -581,7 +582,7 @@ public class ShareOfBusinessFunctions {
 	 * @param i
 	 * @param Value
 	 */
-	public void verifyLineAmendTableValue(int i, String Value) {
+	public void verifyLineAmendTableValue(String i, String Value) {
 		List<WebElement> elements = webDB.getDriver()
 				.findElements(By.xpath(ShareOfBusinessLocators.AmendLineFindTableData(i)));
 		for (WebElement element : elements) {
@@ -645,18 +646,18 @@ public class ShareOfBusinessFunctions {
 		commonFunc.navigateToSearchTab(webDB.getDataFromProperties("ShareOfBusinessTab"),
 				CommonUiLocators.AddShareOfBusiness);
 //		verifyDateAfterAndBefore();
-		verifyAmendFilterSearchSOB(ShareOfBusinessLocators.SOBLocId, commonFunc.getDataFromTestDataSheet("Loc_100"), 3,
-				commonFunc.getDataFromTestDataSheet("HeaderSearchType"));
-		verifyAmendFilterSearchSOB(ShareOfBusinessLocators.SOBUnit, commonFunc.getDataFromTestDataSheet("Unit_100"), 4,
-				commonFunc.getDataFromTestDataSheet("HeaderSearchType"));
+		verifyAmendFilterSearchSOB(ShareOfBusinessLocators.SOBLocId, commonFunc.getDataFromTestDataSheet("Loc_100"),
+				"LocId", commonFunc.getDataFromTestDataSheet("HeaderSearchType"));
+		verifyAmendFilterSearchSOB(ShareOfBusinessLocators.SOBUnit, commonFunc.getDataFromTestDataSheet("Unit_100"),
+				"Unit", commonFunc.getDataFromTestDataSheet("HeaderSearchType"));
 		verifyAmendFilterSearchSOB(ShareOfBusinessLocators.SOBSupplierId,
-				commonFunc.getDataFromTestDataSheet("POSupplierName"), 13,
+				commonFunc.getDataFromTestDataSheet("POSupplierName"), "Supplier Name",
 				commonFunc.getDataFromTestDataSheet("LineSearchType"));
 		verifyAmendFilterSearchSOB(ShareOfBusinessLocators.SOBDocNo,
-				commonFunc.getDataFromTestDataSheet("SobDocNumber"), 5,
+				commonFunc.getDataFromTestDataSheet("SobDocNumber"), "SOB No.",
 				commonFunc.getDataFromTestDataSheet("HeaderSearchType"));
 		verifyAmendFilterSearchSOB(ShareOfBusinessLocators.SOBItemName,
-				commonFunc.getDataFromTestDataSheet("ShareOfBusinessItem"), 6,
+				commonFunc.getDataFromTestDataSheet("ShareOfBusinessItem"), "Item",
 				commonFunc.getDataFromTestDataSheet("HeaderSearchType"));
 //		verifyAmendFilterSearchSOB(ShareOfBusinessLocators.SOBProcess, commonFunc.getDataFromTestDataSheet("Process10"),
 //				11, commonFunc.getDataFromTestDataSheet("HeaderSearchType"));
