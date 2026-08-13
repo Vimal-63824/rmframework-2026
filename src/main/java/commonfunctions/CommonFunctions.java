@@ -699,7 +699,7 @@ public class CommonFunctions {
 	 * 
 	 * @author Deepan-GWL
 	 */
-	public void hardWait(long value) {
+	public static void hardWait(long value) {
 		try {
 			// TODO WAIT_LOAD_TIME (will remove future)
 			Thread.sleep(value);
@@ -3415,23 +3415,50 @@ public class CommonFunctions {
 			Object obj = parser.parse(reader);
 			jsonObject = (JSONObject) obj;
 			HeaderValue = jsonObject.get(HeaderValue).toString();
+			System.out.println("Header Value1 " + HeaderValue);
 		} catch (Exception e) {
+			logs.logging("INFO", "No Data Found In Table Locators " + HeaderValue);
 		}
-		List<WebElement> elements = webDB.getListOfElements(Locator, ElementType.Xpath);
-		for (int i = 0; i <= elements.size(); i++) {
-			if (elements.get(i).getText().equals(HeaderValue)) {
-				if (Locator.contains("thead")) {
-					Locator = Locator.replace("thead", "tbody");
-				} else {
-					return Locator.replace("/th", "/td").concat("[").concat(String.valueOf(i + 1)).concat("]");
-				}
-			}
-		}
-		if (Locator.contains("thead")) {
-			return Locator.replace("thead", "tbody").replace("/th", "/td").concat("[1]");
-		} else {
-			return Locator.replace("/th", "/td").concat("[1]");
-		}
+
+		Locator = Locator + "/tbody/tr/td[count(" + Locator + "/thead/tr[1]/th[normalize-space()='" + HeaderValue
+				+ "']/preceding-sibling::th) + 1]";
+		return Locator;
+//		List<WebElement> elements = webDB.getListOfElements(Locator, ElementType.Xpath);
+//		System.out.println("Header Value2 " + HeaderValue + elements.size());
+//		if (elements.size() == 0) {
+//			hardWait(3000);
+//			elements = webDB.getListOfElements(Locator, ElementType.Xpath);
+//		}
+//		for (int i = 0; i < elements.size(); i++) {
+//			System.out.println("Header Value3.1 ");
+//			String text = (String) ((JavascriptExecutor) webDB.getDriver())
+//					.executeScript("return arguments[0].textContent.trim();", elements.get(i));
+//			System.out.println("Header Value 3.2 " + text);
+//			System.out.println("Header Value3 " + HeaderValue + " i " + i + " Element " + elements.get(i).getText()
+//					+ " javascript gettext " + text);
+//			if (text.equals(HeaderValue)) {
+//				System.out.println("Header Value4 " + HeaderValue + " i " + i);
+//				if (Locator.contains("thead")) {
+//					Locator = Locator.replace("thead", "tbody");
+//					System.out.println("Header Value5 " + HeaderValue + " i " + i + " Locators " + Locator);
+//				}
+//				if (Locator.contains("/th")) {
+//					Locator = Locator.replace("/th", "/td").concat("[").concat(String.valueOf(i + 1)).concat("]");
+//					System.out.println("Header Value6 " + HeaderValue + " i " + i + " Locators " + Locator);
+//				}
+//				System.out.println("Header Value7 " + HeaderValue + " i " + i + " Locators " + Locator);
+//				break;
+//			}
+//		}
+////		if (Locator.contains("thead")) {
+////			System.out.println("Locators1 " + Locator + " header " + HeaderValue);
+////			return Locator.replace("thead", "tbody").replace("/th", "/td").concat("[1]");
+////		} else {
+////			System.out.println("Locators2 " + Locator + " header " + HeaderValue);
+////			return Locator.replace("/th", "/td").concat("[1]");
+////		}
+//
+//		return Locator;
 	}
 
 	/**
@@ -3451,15 +3478,27 @@ public class CommonFunctions {
 		try (FileReader reader = new FileReader(Filepath)) {
 			Object obj = parser.parse(reader);
 			jsonObject = (JSONObject) obj;
+			System.out.println("Header value1 " + HeaderValue);
 			HeaderValue = jsonObject.get(HeaderValue).toString();
+			System.out.println("Header value2 " + HeaderValue);
 		} catch (Exception e) {
 		}
 		List<WebElement> elements = webDB.getListOfElements(Locator, ElementType.Xpath);
-		for (int i = 0; i <= elements.size(); i++) {
-			if (elements.get(i).getText().equals(HeaderValue)) {
+		System.out.println("Before for " + elements.size() + "  " + HeaderValue);
+		if (elements.isEmpty()) {
+			hardWait(5000);
+		}
+		for (int i = 0; i < elements.size(); i++) {
+
+			String text = (String) ((JavascriptExecutor) webDB.getDriver())
+					.executeScript("return arguments[0].textContent.trim();", elements.get(i));
+			System.out.println("For " + text + "  " + HeaderValue);
+			if (text.equals(HeaderValue)) {
 				return Locator.replace("/th", "/td").concat("[").concat(String.valueOf(i + 1)).concat("]");
 			}
 		}
-		return Locator.replace("/th", "/td").concat("[1]");
+		System.out.println("Locators " + Locator);
+		return Locator;
+//		return Locator.replace("/th", "/td").concat("[1]");
 	}
 }

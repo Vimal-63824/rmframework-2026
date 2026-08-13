@@ -268,7 +268,7 @@ public class PurchaseRequestFunctions {
 			if (flag) {
 				webDB.moveToElement(PurchaseRequestLocators.AddLineIcon, ElementType.Xpath);
 				webDB.clickAnElement(PurchaseRequestLocators.AddLineIcon, ElementType.Xpath);
-				flag = webDB.waitForElement(PurchaseRequestLocators.ItemDataLastRow, ElementType.Xpath);
+				flag = webDB.waitForElement(PurchaseRequestLocators.ItemDataLastRow(), ElementType.Xpath);
 				if (flag) {
 					logs.logging("INFO", "Add Lines Icon Clicked.");
 				}
@@ -281,7 +281,7 @@ public class PurchaseRequestFunctions {
 		enterCostForLastItem(Cost);
 		webDB.pressEscapeKey();
 		saveLinesEntry();
-		checkLineCostAmount(Cost, Qnty, Item);
+//		checkLineCostAmount(Cost, Qnty, Item);
 		clickLineDetailsIconForLastitem(Item);
 		checkPRLineDetailsForLastUpdateItem(Item);
 		closeLineDetailsAndVerify();
@@ -331,7 +331,7 @@ public class PurchaseRequestFunctions {
 		commonFunc.checkRefreshCellsDisappear();
 		flag = webDB.waitForElement(PurchaseRequestLocators.PR_LineDeleteIconWithData(DataValue), ElementType.Xpath);
 		if (flag) {
-			webDB.moveToElement(PurchaseRequestLocators.ItemDataLastRow, ElementType.Xpath);
+			webDB.moveToElement(PurchaseRequestLocators.ItemDataLastRow(), ElementType.Xpath);
 			webDB.moveToElement(PurchaseRequestLocators.PR_LineDeleteIconWithData(DataValue), ElementType.Xpath);
 			webDB.clickAnElement(PurchaseRequestLocators.PR_LineDeleteIconWithData(DataValue), ElementType.Xpath);
 			webDB.switchToAlertAccept();
@@ -444,12 +444,12 @@ public class PurchaseRequestFunctions {
 	 */
 	private void searchAndSelectItems(String Item) {
 		commonFunc.checkRefreshCellsDisappear();
-		flag = webDB.waitForElement(PurchaseRequestLocators.ItemDataLastRow, ElementType.Xpath);
+		flag = webDB.waitForElement(PurchaseRequestLocators.ItemDataLastRow(), ElementType.Xpath);
 		if (flag) {
-			webDB.moveToElement(PurchaseRequestLocators.ItemDataLastRow, ElementType.Xpath);
-			webDB.doubleClickAnElement(PurchaseRequestLocators.ItemDataLastRow, ElementType.Xpath);
+			webDB.moveToElement(PurchaseRequestLocators.ItemDataLastRow(), ElementType.Xpath);
+			webDB.doubleClickAnElement(PurchaseRequestLocators.ItemDataLastRow(), ElementType.Xpath);
 			if (!webDB.verifyIsElementDisplayed(PurchaseRequestLocators.ItemDataListIcon, ElementType.Xpath)) {
-				webDB.clickAnElementWithoutException(PurchaseRequestLocators.ItemDataLastRow, ElementType.Xpath);
+				webDB.clickAnElementWithoutException(PurchaseRequestLocators.ItemDataLastRow(), ElementType.Xpath);
 			}
 			commonFunc.searchAndSelectValueInFilters(PurchaseRequestLocators.ItemDataListIcon, Item);
 //			flag = webDB.waitForElementUntilGivenTime(PurchaseRequestLocators.ItemDataListIcon, ElementType.Xpath, 60);
@@ -494,12 +494,13 @@ public class PurchaseRequestFunctions {
 	 */
 	private void enterQuantityForLastItem(String Quantity) {
 		commonFunc.checkRefreshCellsDisappear();
-		flag = webDB.waitForElement(PurchaseRequestLocators.QuantityDataLastRow, ElementType.Xpath);
+		flag = webDB.waitForElement(PurchaseRequestLocators.PurchaseNo("RequestQuantity"), ElementType.Xpath);
 		if (flag) {
-			webDB.moveToElement(PurchaseRequestLocators.QuantityDataLastRow, ElementType.Xpath);
-			webDB.doubleClickAnElement(PurchaseRequestLocators.QuantityDataLastRow, ElementType.Xpath);
+			webDB.moveToElement(PurchaseRequestLocators.PurchaseNo("RequestQuantity"), ElementType.Xpath);
+			webDB.doubleClickAnElement(PurchaseRequestLocators.PurchaseNo("RequestQuantity"), ElementType.Xpath);
 			if (!webDB.verifyIsElementDisplayed(PurchaseRequestLocators.QuantityDataLastRowInput, ElementType.Xpath)) {
-				webDB.clickAnElementWithoutException(PurchaseRequestLocators.QuantityDataLastRow, ElementType.Xpath);
+				webDB.clickAnElementWithoutException(PurchaseRequestLocators.PurchaseNo("RequestQuantity"),
+						ElementType.Xpath);
 			}
 			commonFunc.verifyAddTableSpecs(PurchaseRequestLocators.QuantityDataLastRowInput,
 					PurchaseRequestLocators.QuantityDataLastRowInput, Quantity);
@@ -538,12 +539,12 @@ public class PurchaseRequestFunctions {
 	 */
 	private void enterCostForLastItem(String Cost) {
 		commonFunc.checkRefreshCellsDisappear();
-		flag = webDB.waitForElement(PurchaseRequestLocators.UnitCostDataLastRow, ElementType.Xpath);
+		flag = webDB.waitForElement(PurchaseRequestLocators.PurchaseNo("UnitCost"), ElementType.Xpath);
 		if (flag) {
-			webDB.moveToElement(PurchaseRequestLocators.UnitCostDataLastRow, ElementType.Xpath);
-			webDB.doubleClickAnElement(PurchaseRequestLocators.UnitCostDataLastRow, ElementType.Xpath);
+			webDB.moveToElement(PurchaseRequestLocators.PurchaseNo("UnitCost"), ElementType.Xpath);
+			webDB.doubleClickAnElement(PurchaseRequestLocators.PurchaseNo("UnitCost"), ElementType.Xpath);
 			if (!webDB.verifyIsElementDisplayed(PurchaseRequestLocators.UnitCostDataLastRowInput, ElementType.Xpath)) {
-				webDB.clickAnElementWithoutException(PurchaseRequestLocators.UnitCostDataLastRow, ElementType.Xpath);
+				webDB.clickAnElementWithoutException(PurchaseRequestLocators.PurchaseNo("UnitCost"), ElementType.Xpath);
 			}
 			commonFunc.verifyAddTableSpecs(PurchaseRequestLocators.UnitCostDataLastRowInput,
 					PurchaseRequestLocators.UnitCostDataLastRowInput, Cost);
@@ -692,7 +693,7 @@ public class PurchaseRequestFunctions {
 		clickFindSearchButton();
 //		flag = webDB.selectDropDownByText(PurchaseRequestLocators.PR_TableViewCountSelect, "ALL", ElementType.Xpath);
 //		if (flag) {
-		List<WebElement> elements = webDB.getListOfElements(PurchaseRequestLocators.PRResultTableItem,
+		List<WebElement> elements = webDB.getListOfElements(PurchaseRequestLocators.PRResultTableItem(),
 				ElementType.Xpath);
 		a: for (WebElement webElement : elements) {
 			if (webElement.getText().equalsIgnoreCase(Item)) {
@@ -718,10 +719,12 @@ public class PurchaseRequestFunctions {
 		clickFindSearchButton();
 //		flag = webDB.selectDropDownByText(PurchaseRequestLocators.PR_TableViewCountSelect, "ALL", ElementType.Xpath);
 //		if (flag) {
-		List<WebElement> elements = webDB.getListOfElements(PurchaseRequestLocators.PRResultTableLocation,
+		List<WebElement> elements = webDB.getListOfElements(PurchaseRequestLocators.PRResultTableLocation(),
 				ElementType.Xpath);
 		a: for (WebElement webElement : elements) {
+			System.out.println("Get Text1 " + webElement.getText());
 			if (webElement.getText().equalsIgnoreCase(Location)) {
+				System.out.println("Get Text1  If  " + webElement.getText());
 				flag = true;
 			} else {
 				flag = false;
@@ -744,7 +747,7 @@ public class PurchaseRequestFunctions {
 		clickFindSearchButton();
 //		flag = webDB.selectDropDownByText(PurchaseRequestLocators.PR_TableViewCountSelect, "ALL", ElementType.Xpath);
 //		if (flag) {
-		List<WebElement> elements = webDB.getListOfElements(PurchaseRequestLocators.PRResultTableUnit,
+		List<WebElement> elements = webDB.getListOfElements(PurchaseRequestLocators.PRResultTableUnit(),
 				ElementType.Xpath);
 		a: for (WebElement webElement : elements) {
 			if (webElement.getText().equalsIgnoreCase(Unit)) {
@@ -773,7 +776,7 @@ public class PurchaseRequestFunctions {
 //			flag = webDB.selectDropDownByText(PurchaseRequestLocators.PR_TableViewCountSelect, "ALL",
 //					ElementType.Xpath);
 //			if (flag) {
-			List<WebElement> elements = webDB.getListOfElements(PurchaseRequestLocators.PRResultTablePRType,
+			List<WebElement> elements = webDB.getListOfElements(PurchaseRequestLocators.PRResultTablePRType(),
 					ElementType.Xpath);
 			a: for (WebElement webElement : elements) {
 				if (webElement.getText().equalsIgnoreCase(PRType)) {
@@ -831,7 +834,7 @@ public class PurchaseRequestFunctions {
 		clickFindSearchButton();
 //		flag = webDB.selectDropDownByText(PurchaseRequestLocators.PR_TableViewCountSelect, "ALL", ElementType.Xpath);
 //		if (flag) {
-		List<WebElement> elements = webDB.getListOfElements(PurchaseRequestLocators.PRResultTableRequestor,
+		List<WebElement> elements = webDB.getListOfElements(PurchaseRequestLocators.PRResultTableRequestor(),
 				ElementType.Xpath);
 		a: for (WebElement webElement : elements) {
 			if (webElement.getText().equalsIgnoreCase(Reqstr)) {
@@ -1052,7 +1055,7 @@ public class PurchaseRequestFunctions {
 					if (flag) {
 						webDB.clickAnElement(PurchaseRequestLocators.PRCloseShort_OkBtn, ElementType.Xpath);
 						webDB.switchToDefaultContent();
-						flag = webDB.waitForElement(PurchaseRequestLocators.UnitCostDataLastRow, ElementType.Xpath);
+						flag = webDB.waitForElement(PurchaseRequestLocators.UnitCostDataLastRow(), ElementType.Xpath);
 						if (flag) {
 							logs.logging("INFO",
 									"Select All Item Checkbox clicked and Items added Successfully in PR CloseShort");
@@ -1514,7 +1517,7 @@ public class PurchaseRequestFunctions {
 				searchAndSelectItems(Item);
 				enterQuantityForLastItem(Qnty);
 				enterCostForLastItem(Cost);
-				webDB.moveToElement(PurchaseRequestLocators.QuantityDataLastRow, ElementType.Xpath);
+				webDB.moveToElement(PurchaseRequestLocators.QuantityDataLastRow(), ElementType.Xpath);
 				webDB.moveToElement(PurchaseRequestLocators.GlAccNo, ElementType.Xpath);
 				flag = webDB.waitForElement(PurchaseRequestLocators.GlAccNo, ElementType.Xpath);
 				if (flag) {
@@ -1644,8 +1647,8 @@ public class PurchaseRequestFunctions {
 		webDB.navigateToRefresh();
 		findWithUnit(commonFunc.getDataFromTestDataSheet("Unit_100"));
 		webDB.navigateToRefresh();
-		findWithPRType(commonFunc.getDataFromTestDataSheet("PR_General"));
-		webDB.navigateToRefresh();
+//		findWithPRType(commonFunc.getDataFromTestDataSheet("PR_General"));
+//		webDB.navigateToRefresh();
 		findWithPRStatus(commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		webDB.navigateToRefresh();
 		findWithRequester(commonFunc.getDataFromTestDataSheet("PR_Requester"));

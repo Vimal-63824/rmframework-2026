@@ -1204,9 +1204,9 @@ public class RfqPageFunctions {
 	 */
 	private void searchAndSelectItems(String Item) {
 		commonFunc.checkRefreshCellsDisappear();
-		flag = webDB.waitForElement(PurchaseRequestLocators.ItemDataLastRow, ElementType.Xpath);
+		flag = webDB.waitForElement(PurchaseRequestLocators.ItemDataLastRow(), ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(PurchaseRequestLocators.ItemDataLastRow, ElementType.Xpath);
+			webDB.clickAnElement(PurchaseRequestLocators.ItemDataLastRow(), ElementType.Xpath);
 			flag = webDB.waitForElementUntilGivenTime(PurchaseRequestLocators.ItemDataListIcon, ElementType.Xpath, 60);
 			if (flag) {
 				webDB.clickAnElement(PurchaseRequestLocators.ItemDataListIcon, ElementType.Xpath);
@@ -1243,10 +1243,10 @@ public class RfqPageFunctions {
 	private void enterQuantityForLastItem(String Quantity) {
 		commonFunc.checkRefreshCellsDisappear();
 		JavascriptExecutor js = (JavascriptExecutor) webDB.getDriver();
-		flag = webDB.waitForClickElement(PurchaseRequestLocators.QuantityDataLastRow, ElementType.Xpath);
+		flag = webDB.waitForClickElement(PurchaseRequestLocators.QuantityDataLastRow(), ElementType.Xpath);
 		if (flag) {
-			webDB.scrollToAnElement(PurchaseRequestLocators.QuantityDataLastRow, ElementType.Xpath);
-			webDB.clickAnElement(PurchaseRequestLocators.QuantityDataLastRow, ElementType.Xpath);
+			webDB.scrollToAnElement(PurchaseRequestLocators.QuantityDataLastRow(), ElementType.Xpath);
+			webDB.clickAnElement(PurchaseRequestLocators.QuantityDataLastRow(), ElementType.Xpath);
 			flag = webDB.waitForElement(PurchaseRequestLocators.QuantityDataLastRowInput, ElementType.Xpath);
 			if (flag) {
 				WebElement element = webDB.getDriver()
@@ -1277,9 +1277,9 @@ public class RfqPageFunctions {
 	private void enterCostForLastItem(String Cost) {
 		commonFunc.checkRefreshCellsDisappear();
 		JavascriptExecutor js = (JavascriptExecutor) webDB.getDriver();
-		flag = webDB.waitForClickElement(PurchaseRequestLocators.UnitCostDataLastRow, ElementType.Xpath);
+		flag = webDB.waitForClickElement(PurchaseRequestLocators.UnitCostDataLastRow(), ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(PurchaseRequestLocators.UnitCostDataLastRow, ElementType.Xpath);
+			webDB.clickAnElement(PurchaseRequestLocators.UnitCostDataLastRow(), ElementType.Xpath);
 			flag = webDB.waitForElement(PurchaseRequestLocators.UnitCostDataLastRowInput, ElementType.Xpath);
 			if (flag) {
 				WebElement element1 = webDB.getDriver()

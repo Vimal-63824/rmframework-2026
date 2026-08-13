@@ -1,5 +1,7 @@
 package commonlocators.supplychainmanagement;
 
+import commonfunctions.CommonFunctions;
+
 /**
  * @author Deepan-GWL, Sakthi
  * @company Galaxy Weblinks Feburary 12, 2025
@@ -39,35 +41,37 @@ public class POAmendmentLocators {
 	public static final String ItemInput = "//input[@data-testid='PALC_PROD_ID_REV']";
 	/** @locatorType Xpath */
 	public static final String ItemInputButton = "//input[@data-testid='PALC_PROD_ID_REV']/following-sibling::button";
+	/** @locatorType Xpath */
+	public static final String POATable = "(//table[@data-testid='Line_Result_Data'])[2]";
 
 	/** @locatorType Xpath */
-	public static final String ItemTable(int i) {
-		return "//div[@id='amd_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[" + i + "]/td[4]";
+	public static final String ItemTable() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(POATable, "Item");
 	}
 
 	/** @locatorType Xpath */
-	public static final String ItemDesc(int i) {
-		return "//div[@id='amd_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[" + i + "]/td[6]";
+	public static final String ItemDesc() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(POATable, "Item Desc.");
 	}
 
 	/** @locatorType Xpath */
-	public static final String UOM(int i) {
-		return "//div[@id='amd_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[" + i + "]/td[7]";
+	public static final String UOM() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(POATable, "UOM");
 	}
 
 	/** @locatorType Xpath */
-	public static final String NewQuantity(int i) {
-		return "//div[@id='amd_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[" + i + "]/td[13]";
+	public static final String NewQuantity() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(POATable, "New Qty.");
 	}
 
 	/** @locatorType Xpath */
-	public static final String NewUnitCost(int i) {
-		return "//div[@id='amd_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[" + i + "]/td[15]";
+	public static final String NewUnitCost() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(POATable, "New Unit Cost");
 	}
 
 	/** @locatorType Xpath */
-	public static final String Details(int i) {
-		return "//div[@id='amd_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[" + i + "]/td[18]";
+	public static final String Details() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(POATable, "Det.");
 	}
 
 	/** @locatorType Xpath */
