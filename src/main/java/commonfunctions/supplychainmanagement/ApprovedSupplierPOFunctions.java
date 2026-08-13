@@ -118,12 +118,6 @@ public class ApprovedSupplierPOFunctions {
 				commonFunc.getDataFromTestDataSheet("LeaveElgblDays"));
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
-//			commonFunc.logoutUser();
-//			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
-//					"HodUsername");
-//			approvalFunc.navigateToApprovals();
-//			approvalFunc.filterDocumentsforApproval(VariableHandler.getAppsNumber());
-//			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getAppsNumber());
 			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getAppsNumber(),
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
@@ -240,9 +234,9 @@ public class ApprovedSupplierPOFunctions {
 	 */
 	public void verifyCostBasisValidation(String quantity, String UnitCost) {
 		commonFunc.checkRefreshCellsDisappear();
-		openPoRcFunctions.verifyAddTableSpecs(PurchaseOrderPageLocators.OrderedQuantity,
+		openPoRcFunctions.verifyAddTableSpecs(PurchaseOrderPageLocators.OrderedQuantity(),
 				PurchaseOrderPageLocators.OrderedQuantityInput, quantity);
-		openPoRcFunctions.verifyAddTableSpecs(PurchaseOrderPageLocators.UnitCost,
+		openPoRcFunctions.verifyAddTableSpecs(PurchaseOrderPageLocators.UnitCost(),
 				PurchaseOrderPageLocators.UnitCostInput, UnitCost);
 		purchaseOrderFunc.verifyTickIconcreateItem();
 		purchaseOrderFunc.navigateToLineDetailPage(VariableHandler.getItemName());

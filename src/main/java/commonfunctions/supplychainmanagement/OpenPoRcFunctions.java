@@ -94,8 +94,10 @@ public class OpenPoRcFunctions {
 	public void verifyCreateStandardDomesticWithStockAndSupplierSimilarUOM() {
 //		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 //				"AdminUsername");
-		commonFunc.navigateItemPage();
-		pricelistPageFunctions.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("SimItem_ID"));
+
+		VariableHandler.setItemName("ROAU-DIS-075857");
+//		commonFunc.navigateItemPage();
+//		pricelistPageFunctions.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("SimItem_ID"));
 		commonFunc.navigateOpenPORCPage();
 		verifyClickOpenPORcButton();
 		verifyCreateOpenPoDoc(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -155,8 +157,9 @@ public class OpenPoRcFunctions {
 	 */
 	public void verifyAddItemInOpenPOLine(String Item, String UnitCost, String DiscPercentage, String HSNCode) {
 		addItemButton(Item);
-		purchaseOrderFunc.verifyAddTableSpecs(OpenPoRcLocators.UnitCost, OpenPoRcLocators.UnitCostInput, UnitCost);
-		purchaseOrderFunc.verifyAddTableSpecs(OpenPoRcLocators.DiscPercentage, OpenPoRcLocators.DiscPercentageInput,
+		purchaseOrderFunc.verifyAddTableSpecs(OpenPoRcLocators.UnitCost(), OpenPoRcLocators.UnitCostInput, UnitCost);
+		System.out.println("Unitcost");
+		purchaseOrderFunc.verifyAddTableSpecs(OpenPoRcLocators.DiscPercentage(), OpenPoRcLocators.DiscPercentageInput,
 				DiscPercentage);
 		verifyHSNDetailsUpdation(HSNCode);
 		verifyItemTickButton();
@@ -177,6 +180,7 @@ public class OpenPoRcFunctions {
 			flag = webDB.waitForElement(OpenPoRcLocators.ItemTable, ElementType.Xpath);
 			if (flag) {
 				webDB.clickAnElement(OpenPoRcLocators.ItemTable, ElementType.Xpath);
+				commonFunc.hardWait(3000);
 				commonFunc.searchAndSelectValueInFilters(OpenPoRcLocators.ItemLovButton, Item);
 //				flag = webDB.waitForElement(OpenPoRcLocators.ItemTable, ElementType.Xpath);
 //				if (flag) {
@@ -198,11 +202,11 @@ public class OpenPoRcFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyHSNDetailsUpdation(String HSNCode) {
-		webDB.moveToElement(OpenPoRcLocators.HsnCodeTable, ElementType.Xpath);
-		flag = webDB.waitForElement(OpenPoRcLocators.HsnCodeTable, ElementType.Xpath);
+		webDB.moveToElement(OpenPoRcLocators.HsnCodeTable(), ElementType.Xpath);
+		flag = webDB.waitForElement(OpenPoRcLocators.HsnCodeTable(), ElementType.Xpath);
 		if (flag) {
 			logs.logging("INFO", "HSN Code In Table Is Displayed");
-			webDB.clickAnElement(OpenPoRcLocators.HsnCodeTable, ElementType.Xpath);
+			webDB.clickAnElement(OpenPoRcLocators.HsnCodeTable(), ElementType.Xpath);
 			commonFunc.searchAndSelectValueInFilters(OpenPoRcLocators.HSNCode, HSNCode);
 		}
 		assertTrue(flag);
@@ -344,14 +348,14 @@ public class OpenPoRcFunctions {
 	 */
 	public void verifyUnitCostValidation(String quantity, String UnitCost, String DiscValue, String AmendValue) {
 		commonFunc.checkRefreshCellsDisappear();
-		verifyAddTableSpecs(PurchaseOrderPageLocators.OrderedQuantity, PurchaseOrderPageLocators.OrderedQuantityInput,
+		verifyAddTableSpecs(PurchaseOrderPageLocators.OrderedQuantity(), PurchaseOrderPageLocators.OrderedQuantityInput,
 				quantity);
 		webDB.pressEnterKey();
 		commonFunc.checkRefreshCellsDisappear();
-		flag = webDB.waitForElement(PurchaseOrderPageLocators.UnitCostTable(1), ElementType.Xpath);
+		flag = webDB.waitForElement(PurchaseOrderPageLocators.UnitCostTable, ElementType.Xpath);
 		if (flag) {
 			commonFunc.hardWait(3000);
-			String Text = webDB.getTextFromElement(PurchaseOrderPageLocators.UnitCostTable(1), ElementType.Xpath);
+			String Text = webDB.getTextFromElement(PurchaseOrderPageLocators.UnitCostTable, ElementType.Xpath);
 			logs.logging("INFO", "Get Text Value Unit Cost Is: " + Text);
 			flag = Text.equals(UnitCost);
 			if (flag) {
@@ -786,7 +790,7 @@ public class OpenPoRcFunctions {
 	 * @param Value
 	 * @param i
 	 */
-	public void verifyFilterSearchOpenPO(String LovButton, String Value, int i) {
+	public void verifyFilterSearchOpenPO(String LovButton, String Value, String i) {
 		webDB.scrollToAnElement(LovButton, ElementType.Xpath);
 		commonFunc.searchAndSelectValueInFilters(LovButton, Value);
 		clickSearchButton();
@@ -824,8 +828,8 @@ public class OpenPoRcFunctions {
 	 * @param i
 	 * @param Value
 	 */
-	public void verifyTableValue(int i, String Value) {
-		List<WebElement> elements = webDB.getDriver().findElements(By.xpath(OpenPoRcLocators.FindTableData(i)));
+	public void verifyTableValue(String Header, String Value) {
+		List<WebElement> elements = webDB.getDriver().findElements(By.xpath(OpenPoRcLocators.FindTableData(Header)));
 		for (WebElement element : elements) {
 			if (element.isDisplayed()) {
 				flag = element.getText().contains(Value);
@@ -865,12 +869,14 @@ public class OpenPoRcFunctions {
 		commonFunc.navigateOpenPORCPage();
 		verifyClickOpenPORcButton();
 		verifyFilterSearchOpenPO(OpenPoRcLocators.FindOpenPoNoButton,
-				commonFunc.getDataFromTestDataSheet("SampleOpenPONumber"), 6);
+				commonFunc.getDataFromTestDataSheet("SampleOpenPONumber"), "OpenPO");
+
 		verifyFilterSearchOpenPO(OpenPoRcLocators.FindLocationButton, commonFunc.getDataFromTestDataSheet("Loc_100"),
-				3);
-		verifyFilterSearchOpenPO(OpenPoRcLocators.FindUnitButton, commonFunc.getDataFromTestDataSheet("Unit_100"), 4);
+				"Loc. ID ");
+		verifyFilterSearchOpenPO(OpenPoRcLocators.FindUnitButton, commonFunc.getDataFromTestDataSheet("Unit_100"),
+				"Unit");
 		verifyFilterSearchOpenPO(OpenPoRcLocators.FindSupplierButton,
-				commonFunc.getDataFromTestDataSheet("PraxairSupplier"), 11);
+				commonFunc.getDataFromTestDataSheet("PraxairSupplier"), " Supplier ID");
 
 //		commonFunc.logoutUser();
 	}
@@ -1025,10 +1031,10 @@ public class OpenPoRcFunctions {
 		flag = webDB.waitForElement(OpenPoRcLocators.AmendAddButton, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(OpenPoRcLocators.AmendAddButton, ElementType.Xpath);
-			flag = webDB.waitForElement(OpenPoRcLocators.AmendItemTable, ElementType.Xpath);
+			flag = webDB.waitForElement(OpenPoRcLocators.AmendItemTable(), ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Add Button IS Clicked");
-				webDB.clickAnElement(OpenPoRcLocators.AmendItemTable, ElementType.Xpath);
+				webDB.clickAnElement(OpenPoRcLocators.AmendItemTable(), ElementType.Xpath);
 				commonFunc.searchAndSelectValueInFilters(OpenPoRcLocators.AmendItemLovButton, Item);
 			}
 		}
@@ -1062,9 +1068,9 @@ public class OpenPoRcFunctions {
 	 */
 	public void verifyAddItemInAmendOpenPOLine(String Item, String UnitCost, String DiscPercentage, String HSNCode) {
 		addAmendItemButton(Item);
-		purchaseOrderFunc.verifyAddTableSpecs(OpenPoRcLocators.AmendNewUnitCostTable,
+		purchaseOrderFunc.verifyAddTableSpecs(OpenPoRcLocators.AmendNewUnitCostTable(),
 				OpenPoRcLocators.AmendNewUnitCostInput, UnitCost);
-		purchaseOrderFunc.verifyAddTableSpecs(OpenPoRcLocators.AmendDiscTable, OpenPoRcLocators.AmendDiscInput,
+		purchaseOrderFunc.verifyAddTableSpecs(OpenPoRcLocators.AmendDiscTable(), OpenPoRcLocators.AmendDiscInput,
 				DiscPercentage);
 		verifyAmendHSNDetailsUpdation(HSNCode);
 		verifyAmendItemTickButton();
@@ -1464,6 +1470,7 @@ public class OpenPoRcFunctions {
 //				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("GwlItem_Service"));
+//		VariableHandler.setItemName("ROAU-SIM-577496");
 		commonFunc.navigateOpenPORCPage();
 		verifyClickOpenPORcButton();
 		verifyCreateOpenPoDoc(commonFunc.getDataFromTestDataSheet("L0001"),
@@ -1538,7 +1545,7 @@ public class OpenPoRcFunctions {
 						logs.logging("INFO", "CheckBox IS Clicked");
 						webDB.clickAnElement(OpenPoRcLocators.AmendLineOkButton, ElementType.Xpath);
 						webDB.switchToDefaultContent();
-						flag = webDB.waitForElement(OpenPoRcLocators.AmendType, ElementType.Xpath);
+						flag = webDB.waitForElement(OpenPoRcLocators.AmendType(), ElementType.Xpath);
 						if (flag) {
 							logs.logging("INFO", "Added Open Po Lines Successfully");
 						}
@@ -1557,10 +1564,10 @@ public class OpenPoRcFunctions {
 	 * @param AmendType
 	 */
 	public void verifyChangeAmendType(String AmendType) {
-		flag = webDB.waitForElement(OpenPoRcLocators.AmendType, ElementType.Xpath);
+		flag = webDB.waitForElement(OpenPoRcLocators.AmendType(), ElementType.Xpath);
 		if (flag) {
 			logs.logging("INFO", "Amend Type Is Displayed");
-			webDB.doubleClickAnElement(OpenPoRcLocators.AmendType, ElementType.Xpath);
+			webDB.doubleClickAnElement(OpenPoRcLocators.AmendType(), ElementType.Xpath);
 			flag = webDB.waitForElement(OpenPoRcLocators.AmendTypeSelect, ElementType.Xpath);
 			if (flag) {
 				webDB.selectDropDownByText(OpenPoRcLocators.AmendTypeSelect, AmendType, ElementType.Xpath);
@@ -1813,7 +1820,7 @@ public class OpenPoRcFunctions {
 	 */
 	public void verifyDOIUnitCostValidation(String quantity) {
 		commonFunc.checkRefreshCellsDisappear();
-		verifyAddTableSpecs(PurchaseOrderPageLocators.OrderedQuantity, PurchaseOrderPageLocators.OrderedQuantityInput,
+		verifyAddTableSpecs(PurchaseOrderPageLocators.OrderedQuantity(), PurchaseOrderPageLocators.OrderedQuantityInput,
 				quantity);
 		webDB.pressEnterKey();
 		commonFunc.checkRefreshCellsDisappear();
@@ -2033,9 +2040,9 @@ public class OpenPoRcFunctions {
 		createOpenPoAmendDocuments();
 		verifyAddPoLineItemForModify();
 		verifyChangeAmendType(commonFunc.getDataFromTestDataSheet("PriceChange"));
-		purchaseOrderFunc.verifyAddTableSpecs(OpenPoRcLocators.AmendNewUnitCostTable,
+		purchaseOrderFunc.verifyAddTableSpecs(OpenPoRcLocators.AmendNewUnitCostTable(),
 				OpenPoRcLocators.AmendNewUnitCostInput, commonFunc.getDataFromTestDataSheet("NewUnitPrice"));
-		purchaseOrderFunc.verifyAddTableSpecs(OpenPoRcLocators.AmendDiscTable, OpenPoRcLocators.AmendDiscInput,
+		purchaseOrderFunc.verifyAddTableSpecs(OpenPoRcLocators.AmendDiscTable(), OpenPoRcLocators.AmendDiscInput,
 				commonFunc.getDataFromTestDataSheet("SixValue"));
 		verifyAmendItemTickButton();
 		verifyOpenPoAmendHeaderSaveAndPost();
@@ -2097,9 +2104,9 @@ public class OpenPoRcFunctions {
 		createOpenPoAmendDocuments();
 		verifyAddPoLineItemForModify();
 		verifyChangeAmendType(commonFunc.getDataFromTestDataSheet("PriceChange"));
-		purchaseOrderFunc.verifyAddTableSpecs(OpenPoRcLocators.AmendNewUnitCostTable,
+		purchaseOrderFunc.verifyAddTableSpecs(OpenPoRcLocators.AmendNewUnitCostTable(),
 				OpenPoRcLocators.AmendNewUnitCostInput, commonFunc.getDataFromTestDataSheet("NewUnitPrice"));
-		purchaseOrderFunc.verifyAddTableSpecs(OpenPoRcLocators.AmendDiscTable, OpenPoRcLocators.AmendDiscInput,
+		purchaseOrderFunc.verifyAddTableSpecs(OpenPoRcLocators.AmendDiscTable(), OpenPoRcLocators.AmendDiscInput,
 				commonFunc.getDataFromTestDataSheet("SixValue"));
 		verifyAmendItemTickButton();
 		verifyOpenPoAmendHeaderSaveAndPost();
@@ -2161,9 +2168,9 @@ public class OpenPoRcFunctions {
 		createOpenPoAmendDocuments();
 		verifyAddPoLineItemForModify();
 		verifyChangeAmendType(commonFunc.getDataFromTestDataSheet("PriceChange"));
-		purchaseOrderFunc.verifyAddTableSpecs(OpenPoRcLocators.AmendNewUnitCostTable,
+		purchaseOrderFunc.verifyAddTableSpecs(OpenPoRcLocators.AmendNewUnitCostTable(),
 				OpenPoRcLocators.AmendNewUnitCostInput, commonFunc.getDataFromTestDataSheet("NewUnitPrice"));
-		purchaseOrderFunc.verifyAddTableSpecs(OpenPoRcLocators.AmendDiscTable, OpenPoRcLocators.AmendDiscInput,
+		purchaseOrderFunc.verifyAddTableSpecs(OpenPoRcLocators.AmendDiscTable(), OpenPoRcLocators.AmendDiscInput,
 				commonFunc.getDataFromTestDataSheet("SixValue"));
 		verifyAmendItemTickButton();
 		verifyOpenPoAmendHeaderSaveAndPost();
@@ -2225,9 +2232,9 @@ public class OpenPoRcFunctions {
 		createOpenPoAmendDocuments();
 		verifyAddPoLineItemForModify();
 		verifyChangeAmendType(commonFunc.getDataFromTestDataSheet("PriceChange"));
-		purchaseOrderFunc.verifyAddTableSpecs(OpenPoRcLocators.AmendNewUnitCostTable,
+		purchaseOrderFunc.verifyAddTableSpecs(OpenPoRcLocators.AmendNewUnitCostTable(),
 				OpenPoRcLocators.AmendNewUnitCostInput, commonFunc.getDataFromTestDataSheet("NewUnitPrice"));
-		purchaseOrderFunc.verifyAddTableSpecs(OpenPoRcLocators.AmendDiscTable, OpenPoRcLocators.AmendDiscInput,
+		purchaseOrderFunc.verifyAddTableSpecs(OpenPoRcLocators.AmendDiscTable(), OpenPoRcLocators.AmendDiscInput,
 				commonFunc.getDataFromTestDataSheet("SixValue"));
 		verifyAmendItemTickButton();
 		verifyOpenPoAmendHeaderSaveAndPost();
@@ -2289,9 +2296,9 @@ public class OpenPoRcFunctions {
 		createOpenPoAmendDocuments();
 		verifyAddPoLineItemForModify();
 		verifyChangeAmendType(commonFunc.getDataFromTestDataSheet("PriceChange"));
-		purchaseOrderFunc.verifyAddTableSpecs(OpenPoRcLocators.AmendNewUnitCostTable,
+		purchaseOrderFunc.verifyAddTableSpecs(OpenPoRcLocators.AmendNewUnitCostTable(),
 				OpenPoRcLocators.AmendNewUnitCostInput, commonFunc.getDataFromTestDataSheet("NewUnitPrice"));
-		purchaseOrderFunc.verifyAddTableSpecs(OpenPoRcLocators.AmendDiscTable, OpenPoRcLocators.AmendDiscInput,
+		purchaseOrderFunc.verifyAddTableSpecs(OpenPoRcLocators.AmendDiscTable(), OpenPoRcLocators.AmendDiscInput,
 				commonFunc.getDataFromTestDataSheet("SixValue"));
 		verifyAmendItemTickButton();
 		verifyOpenPoAmendHeaderSaveAndPost();
@@ -2353,9 +2360,9 @@ public class OpenPoRcFunctions {
 		createOpenPoAmendDocuments();
 		verifyAddPoLineItemForModify();
 		verifyChangeAmendType(commonFunc.getDataFromTestDataSheet("PriceChange"));
-		purchaseOrderFunc.verifyAddTableSpecs(OpenPoRcLocators.AmendNewUnitCostTable,
+		purchaseOrderFunc.verifyAddTableSpecs(OpenPoRcLocators.AmendNewUnitCostTable(),
 				OpenPoRcLocators.AmendNewUnitCostInput, commonFunc.getDataFromTestDataSheet("NewUnitPrice"));
-		purchaseOrderFunc.verifyAddTableSpecs(OpenPoRcLocators.AmendDiscTable, OpenPoRcLocators.AmendDiscInput,
+		purchaseOrderFunc.verifyAddTableSpecs(OpenPoRcLocators.AmendDiscTable(), OpenPoRcLocators.AmendDiscInput,
 				commonFunc.getDataFromTestDataSheet("SixValue"));
 		verifyAmendItemTickButton();
 		verifyOpenPoAmendHeaderSaveAndPost();
@@ -2416,9 +2423,9 @@ public class OpenPoRcFunctions {
 		createOpenPoAmendDocuments();
 		verifyAddPoLineItemForModify();
 		verifyChangeAmendType(commonFunc.getDataFromTestDataSheet("PriceChange"));
-		purchaseOrderFunc.verifyAddTableSpecs(OpenPoRcLocators.AmendNewUnitCostTable,
+		purchaseOrderFunc.verifyAddTableSpecs(OpenPoRcLocators.AmendNewUnitCostTable(),
 				OpenPoRcLocators.AmendNewUnitCostInput, commonFunc.getDataFromTestDataSheet("NewUnitPrice"));
-		purchaseOrderFunc.verifyAddTableSpecs(OpenPoRcLocators.AmendDiscTable, OpenPoRcLocators.AmendDiscInput,
+		purchaseOrderFunc.verifyAddTableSpecs(OpenPoRcLocators.AmendDiscTable(), OpenPoRcLocators.AmendDiscInput,
 				commonFunc.getDataFromTestDataSheet("SixValue"));
 		verifyAmendItemTickButton();
 		verifyOpenPoAmendHeaderSaveAndPost();
@@ -3032,7 +3039,7 @@ public class OpenPoRcFunctions {
 		commonFunc.checkRefreshCellsDisappear();
 		flag = webDB.waitForElement(OpenPoRcLocators.LineCancelButton, ElementType.Xpath);
 		if (flag) {
-			webDB.moveToElement(OpenPoRcLocators.AmendItemTable, ElementType.Xpath);
+			webDB.moveToElement(OpenPoRcLocators.AmendItemTable(), ElementType.Xpath);
 			webDB.moveToElement(OpenPoRcLocators.LineCancelButton, ElementType.Xpath);
 			webDB.clickAnElement(OpenPoRcLocators.LineCancelButton, ElementType.Xpath);
 			flag = webDB.waitForElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
@@ -3479,7 +3486,7 @@ public class OpenPoRcFunctions {
 		commonFunc.navigateOpenPORCPage();
 		verifyClickOpenPOAmendmentButton();
 		verifyAmendFilterSearchOpenPO(OpenPoRcLocators.AmendItemButton,
-				commonFunc.getDataFromTestDataSheet("SampleItemName"), 21,
+				commonFunc.getDataFromTestDataSheet("SampleItemName"), "Item",
 				commonFunc.getDataFromTestDataSheet("LineSearchType"));
 //		verifyAmendFilterSearchOpenPO(OpenPoRcLocators.AmendSelectStatus,
 //				commonFunc.getDataFromTestDataSheet("ApproveStatus"), 13,
@@ -3488,12 +3495,12 @@ public class OpenPoRcFunctions {
 //				commonFunc.getDataFromTestDataSheet("OpenPONumber"), 6,
 //				commonFunc.getDataFromTestDataSheet("HeaderSearchType"));
 		verifyAmendFilterSearchOpenPO(OpenPoRcLocators.AmendOOAPNo,
-				commonFunc.getDataFromTestDataSheet("SampleOpenPOANumber"), 7,
+				commonFunc.getDataFromTestDataSheet("SampleOpenPOANumber"), "OpenPOAmend",
 				commonFunc.getDataFromTestDataSheet("HeaderSearchType"));
 		verifyAmendFilterSearchOpenPO(OpenPoRcLocators.AmendLocationId, commonFunc.getDataFromTestDataSheet("Loc_100"),
-				3, commonFunc.getDataFromTestDataSheet("HeaderSearchType"));
-		verifyAmendFilterSearchOpenPO(OpenPoRcLocators.AmendUnitId, commonFunc.getDataFromTestDataSheet("Unit_100"), 4,
-				commonFunc.getDataFromTestDataSheet("HeaderSearchType"));
+				"LocId", commonFunc.getDataFromTestDataSheet("HeaderSearchType"));
+		verifyAmendFilterSearchOpenPO(OpenPoRcLocators.AmendUnitId, commonFunc.getDataFromTestDataSheet("Unit_100"),
+				"Unit", commonFunc.getDataFromTestDataSheet("HeaderSearchType"));
 
 //		commonFunc.logoutUser();
 	}
@@ -3551,8 +3558,30 @@ public class OpenPoRcFunctions {
 	 * @param i
 	 * @param Value
 	 */
-	public void verifyAmendTableValue(int i, String Value) {
+	public void verifyAmendTableValue(String i, String Value) {
 		List<WebElement> elements = webDB.getDriver().findElements(By.xpath(OpenPoRcLocators.AmendFindTableData(i)));
+		for (WebElement element : elements) {
+			if (element.isDisplayed()) {
+				flag = element.getText().contains(Value);
+				System.out.println(element.getText());
+				if (!flag) {
+					break;
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Verify Table Value
+	 * 
+	 * @author Deepan-GWL
+	 * @param i
+	 * @param Value
+	 */
+	public void verifyAmendTableLineValue(String i, String Value) {
+		List<WebElement> elements = webDB.getDriver()
+				.findElements(By.xpath(OpenPoRcLocators.AmendFindLineTableData(i)));
 		for (WebElement element : elements) {
 			if (element.isDisplayed()) {
 				flag = element.getText().contains(Value);
@@ -3573,7 +3602,7 @@ public class OpenPoRcFunctions {
 	 * @param Value
 	 * @param i
 	 */
-	public void verifyAmendFilterSearchOpenPO(String LovButton, String Value, int i, String Type,
+	public void verifyAmendFilterSearchOpenPO(String LovButton, String Value, String i, String Type,
 			boolean... selectflag) {
 		webDB.scrollToAnElement(LovButton, ElementType.Xpath);
 		if (selectflag != null) {
@@ -3583,11 +3612,13 @@ public class OpenPoRcFunctions {
 		}
 		if (Type.equals(commonFunc.getDataFromTestDataSheet("HeaderSearchType"))) {
 			clickAmendSearchButton();
+			commonFunc.hardWait(3000);
+			verifyAmendTableValue(i, Value);
 		} else if (Type.equals(commonFunc.getDataFromTestDataSheet("LineSearchType"))) {
 			clickAmendLineSearchButton();
+			commonFunc.hardWait(3000);
+			verifyAmendTableLineValue(i, Value);
 		}
-		commonFunc.hardWait(3000);
-		verifyAmendTableValue(i, Value);
 		clearSearchFilter();
 	}
 
