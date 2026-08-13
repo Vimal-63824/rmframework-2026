@@ -10442,8 +10442,6 @@ public class PurchaseBillsFunctionsGetDocument {
 //		flag = commonFunc.logoutUser();
 		assertTrue(flag);
 
-	
-
 	}
 
 	/**
@@ -10865,7 +10863,7 @@ public class PurchaseBillsFunctionsGetDocument {
 //				System.getProperty("HariUsername"));
 //		flag = commonFunc.logoutUser();
 		assertTrue(flag);
-	
+
 //		grnPageFunc
 //				.PoToGrnStockTransferRateContractUnregisterSupplierSameStockAndSupplierUomWithAndWithoutInspectionForInterstateSupplier(
 //						webDB.getDataFromProperties("StocktransferIntrUR"));
@@ -11005,14 +11003,12 @@ public class PurchaseBillsFunctionsGetDocument {
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.hardWait(1000);
 		verifyToValiadteJournalDetailPartForAccuralAccountStocktransaferTypeLocalSupplierForCommonWithRoundOff(
-				webDB.getDataFromProperties("StocktransferLocalWF"),
-				commonFunc.getDataFromTestDataSheet("KV_CAREERS"),
+				webDB.getDataFromProperties("StocktransferLocalWF"), commonFunc.getDataFromTestDataSheet("KV_CAREERS"),
 				commonFunc.getDataFromTestDataSheet("RoundOffValue"));
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.hardWait(1000);
 		System.out.println("100");
-		VerifyToValidateRoundOffAmountForDirectStockTransferType(
-				webDB.getDataFromProperties("StocktransferLocalWF"));
+		VerifyToValidateRoundOffAmountForDirectStockTransferType(webDB.getDataFromProperties("StocktransferLocalWF"));
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.hardWait(2000);
 		System.out.println("101");
@@ -11212,8 +11208,7 @@ public class PurchaseBillsFunctionsGetDocument {
 //		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.hardWait(2000);
 		System.out.println("AftrerPrice");
-		VerifyToValidateAfterPriceDeviationForStockTransferTypeCommon(
-				webDB.getDataFromProperties("StocktransferURLF"));
+		VerifyToValidateAfterPriceDeviationForStockTransferTypeCommon(webDB.getDataFromProperties("StocktransferURLF"));
 		System.out.println("Test");
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.hardWait(2000);
@@ -11229,19 +11224,16 @@ public class PurchaseBillsFunctionsGetDocument {
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.hardWait(1000);
 		verifyToValiadteJournalDetailsPartForStocktransaferAllTypeSupplierCommon(
-				webDB.getDataFromProperties("StocktransferURLF"),
-				commonFunc.getDataFromTestDataSheet("LOCAL_FRIGHT"));
+				webDB.getDataFromProperties("StocktransferURLF"), commonFunc.getDataFromTestDataSheet("LOCAL_FRIGHT"));
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.hardWait(1000);
 		verifyToValiadteJournalDetailPartForAccuralAccountStocktransaferTypeLocalSupplierForCommonWithRoundOff(
-				webDB.getDataFromProperties("StocktransferURLF"),
-				commonFunc.getDataFromTestDataSheet("KV_CAREERS"),
+				webDB.getDataFromProperties("StocktransferURLF"), commonFunc.getDataFromTestDataSheet("KV_CAREERS"),
 				commonFunc.getDataFromTestDataSheet("RoundOffValue"));
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.hardWait(1000);
 		System.out.println("100");
-		VerifyToValidateRoundOffAmountForDirectStockTransferType(
-				webDB.getDataFromProperties("StocktransferURLF"));
+		VerifyToValidateRoundOffAmountForDirectStockTransferType(webDB.getDataFromProperties("StocktransferURLF"));
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.hardWait(2000);
 		System.out.println("101");
@@ -11336,19 +11328,16 @@ public class PurchaseBillsFunctionsGetDocument {
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.hardWait(1000);
 		verifyToValiadteJournalDetailsPartForStocktransaferAllTypeSupplierCommon(
-				webDB.getDataFromProperties("StocktransferURSEZ"),
-				commonFunc.getDataFromTestDataSheet("LOCAL_FRIGHT"));
+				webDB.getDataFromProperties("StocktransferURSEZ"), commonFunc.getDataFromTestDataSheet("LOCAL_FRIGHT"));
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.hardWait(1000);
 		verifyToValiadteJournalDetailPartForAccuralAccountStocktransaferTypeLocalSupplierForCommonWithRoundOff(
-				webDB.getDataFromProperties("StocktransferURSEZ"),
-				commonFunc.getDataFromTestDataSheet("KV_CAREERS"),
+				webDB.getDataFromProperties("StocktransferURSEZ"), commonFunc.getDataFromTestDataSheet("KV_CAREERS"),
 				commonFunc.getDataFromTestDataSheet("RoundOffValue"));
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.hardWait(1000);
 		System.out.println("100");
-		VerifyToValidateRoundOffAmountForDirectStockTransferType(
-				webDB.getDataFromProperties("StocktransferURSEZ"));
+		VerifyToValidateRoundOffAmountForDirectStockTransferType(webDB.getDataFromProperties("StocktransferURSEZ"));
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.hardWait(2000);
 		System.out.println("101");
@@ -12333,8 +12322,7 @@ public class PurchaseBillsFunctionsGetDocument {
 			String CreditAmount = PBMultipleline[i][81];
 //			if (GL_Account_Desc != null && !GL_Account_Desc.isEmpty() && GL_Account_Desc.equals(SupplierID)
 //					&& GL_Account_Desc.equals(RoundOffValue)) {
-				if (GL_Account_Desc.equals(SupplierID)
-						|| GL_Account_Desc.equals(RoundOffValue)) {
+			if (GL_Account_Desc.equals(SupplierID) || GL_Account_Desc.equals(RoundOffValue)) {
 				verifyAssertionBothValues(
 						dbCommonFunc.PbJournalDetailPartForAccuralAccount(VariableHandler.getPbNumber(),
 								GL_Account_Desc, commonFunc.getDataFromTestDataSheet("PBDebitAmountVJ")),
@@ -12351,7 +12339,7 @@ public class PurchaseBillsFunctionsGetDocument {
 		}
 
 	}
-	
+
 //	/**
 //	 * This Methods To Create Item Type Document
 //	 * 

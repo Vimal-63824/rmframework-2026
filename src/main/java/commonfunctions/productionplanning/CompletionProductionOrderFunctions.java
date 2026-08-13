@@ -68,6 +68,7 @@ public class CompletionProductionOrderFunctions {
 		flag = webDB.waitForElement(CompletionProductionOrderLocators.PendingProdOrderIframe, ElementType.Xpath);
 		if (flag) {
 			webDB.switchToFrame(CompletionProductionOrderLocators.PendingProdOrderIframe, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
 			flag = webDB.waitForElement(CompletionProductionOrderLocators.PendingProdOrderSearchGoBtn,
 					ElementType.Xpath);
 		}
@@ -1140,6 +1141,9 @@ public class CompletionProductionOrderFunctions {
 			flag = webDB.waitForElement(CompletionProductionOrderLocators.SearchButton, ElementType.Xpath);
 			if (flag) {
 				webDB.clickAnElement(CompletionProductionOrderLocators.SearchButton, ElementType.Xpath);
+				commonFunc.checkRefreshCellsDisappear();
+				webDB.waitUntilElementToNotBeStale(CompletionProductionOrderLocators.SearchResultStatusData,
+						ElementType.Xpath);
 				flag = webDB.waitForElement(CompletionProductionOrderLocators.SearchResultStatusData,
 						ElementType.Xpath);
 				if (flag) {
@@ -1242,8 +1246,10 @@ public class CompletionProductionOrderFunctions {
 					if (flag) {
 						logs.logging("INFO", "Create MR Button Clicked");
 						webDB.clickAnElement(CompletionProductionOrderLocators.CreateMROkButton, ElementType.Xpath);
+						commonFunc.checkRefreshCellsDisappear();
 						webDB.switchToDefaultContent();
-						flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+						flag = webDB.waitForElementUntilGivenTime(CommonUiLocators.PostToastMessage, ElementType.Xpath,
+								60);
 						if (flag) {
 							logs.logging("INFO", "Material Request Created Successfully");
 							String Message = webDB.getTextFromElement(CommonUiLocators.PostToastMessage,

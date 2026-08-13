@@ -35,7 +35,7 @@ public class StockTransactionPageFunctions {
 		flag = webDB.waitForElement(StockTransactionPageLocators.VoucherNumber, ElementType.Xpath);
 		if (flag) {
 			logs.logging("INFO", "Voucher Number Is Displayed");
-			webDB.sendTextToAnElement(StockTransactionPageLocators.VoucherNumber, VariableHandler.getMrvNumber(),
+			webDB.sendTextToAnElement(StockTransactionPageLocators.VoucherNumber, VariableHandler.getMIVNumber(),
 					ElementType.Xpath);
 			flag = webDB.waitForElement(StockTransactionPageLocators.GenerateButton, ElementType.Xpath);
 			if (flag) {
@@ -51,7 +51,7 @@ public class StockTransactionPageFunctions {
 				for (int i = 1; i <= Listelements.size(); i++) {
 					if (flag) {
 						for (int j = 1; j < itemmultiple.length; j++) {
-							if (StockTransactionPageLocators.VoucherNumber(i).equals(VariableHandler.getMrvNumber())) {
+							if (StockTransactionPageLocators.VoucherNumber(i).equals(VariableHandler.getMIVNumber())) {
 								if (StockTransactionPageLocators.ItemName(i).equals(itemmultiple[j][0])) {
 									if (StockTransactionPageLocators.Warehouse(i).equals(itemmultiple[j][1])) {
 										logs.logging("INFO",
@@ -151,8 +151,8 @@ public class StockTransactionPageFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void validateStockTransaction() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateToInventoryStocksTransactionTab();
 		verifyMRVStockTransaction(commonFunc.getDataFromTestDataSheet("FGWareHouse"));
 		commonFunc.logoutUser();

@@ -297,7 +297,6 @@ public class BankReceiptLocators {
 	public static final String BankNameLovButtonInHeader = "//input[@data-testid=' BankName']/following-sibling::button";
 	/** @locatorType Xpath */
 	public static final String BankNameInputField = "//input[@data-testid=' BankName']";
-	
 
 	/** @locatorType Xpath */
 	public static final String BPPendingPartyDocumentSelectCheckBox(String VoucherNumber) {
@@ -341,6 +340,7 @@ public class BankReceiptLocators {
 	public static final String BRAdvPendingReceivablesDocumentSelectCheckBox(String VoucherNumber) {
 		return "//td[contains(text(),'" + VoucherNumber + "')]/../td[14]/*";
 	}
+
 	/** @locatorType Xpath */
-	public static final String SaveButton = "//button[@id='SAVE_BTN']" ;
+	public static final String SaveButton = "//button[@id='SAVE_BTN']";
 }

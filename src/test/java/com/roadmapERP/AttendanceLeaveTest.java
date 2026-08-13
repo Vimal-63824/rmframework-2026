@@ -33,7 +33,8 @@ public class AttendanceLeaveTest extends RoadMapERPTest {
 	 */
 	@BeforeMethod(alwaysRun = true)
 	private void VerifyLogin() {
-		if (VariableHandler.getSessionID() == null) {
+		if (VariableHandler.getSessionID() == null || VariableHandler.getSessionID().equalsIgnoreCase("")
+				|| VariableHandler.getSessionOpened() == false || VariableHandler.getSessionID().equals(null)) {
 			commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
 					"HrRqtUsername");
 		} else {

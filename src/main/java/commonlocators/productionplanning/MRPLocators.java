@@ -7,7 +7,7 @@ package commonlocators.productionplanning;
 public class MRPLocators {
 
 	/** @locatorType XPATH */
-	public static final String FindLinesBtn = "//button[@id='B2006180041040264527']";
+	public static final String FindLinesBtn = "//button[@title='Find Line']";
 	/** @locatorType XPATH */
 	public static final String FindMRPNoLovBtn = "//input[@data-testid='FindMRPNoLovBtn']/following-sibling::button";
 	/** @locatorType XPATH */
@@ -17,7 +17,7 @@ public class MRPLocators {
 	public static final String Find_Status_TableData(String data) {
 		return "//td/a[text()='" + data + "']/../../td/div";
 	}
-	
+
 	/** @locatorType XPATH */
 	public static final String Find_MRPNo_TableData(String data) {
 		return "//td/a[text()='" + data + "']";
@@ -88,33 +88,31 @@ public class MRPLocators {
 	/** @locatorType XPATH */
 	public static final String MRP_DemandSearchGoBtn = "//button[@id='ContainerSummary_search_button']";
 	/** @locatorType XPATH */
-	public static final String MRP_DemandTableData_SONumber = "//table[@id='2443085007193908883']//tr/td[3]";
+	public static final String MRP_DemandTableData_SONumber = "//div[@id='ContainerSummary_data_panel']//table//tr/td[3]";
 	/** @locatorType XPATH */
-	public static final String MRP_DemandTableData_Item = "//table[@id='2443085007193908883']//tr/td[4]";
+	public static final String MRP_DemandTableData_Item = "//div[@id='ContainerSummary_data_panel']//table//tr/td[4]";
 	/** @locatorType XPATH */
-	public static final String MRP_DemandTableData_ItemUOM = "//table[@id='2443085007193908883']//tr/td[7]";
+	public static final String MRP_DemandTableData_ItemUOM = "//div[@id='ContainerSummary_data_panel']//table//tr/td[7]";
 	/** @locatorType XPATH */
-	public static final String MRP_DemandTableData_OrderDate = "//table[@id='2443085007193908883']//tr/td[8]";
+	public static final String MRP_DemandTableData_OrderDate = "//div[@id='ContainerSummary_data_panel']//table//tr/td[8]";
 	/** @locatorType XPATH */
-	public static final String MRP_DemandTableData_ActlRqrdDate = "//table[@id='2443085007193908883']//tr/td[9]";
+	public static final String MRP_DemandTableData_ActlRqrdDate = "//div[@id='ContainerSummary_data_panel']//table//tr/td[9]";
 	/** @locatorType XPATH */
-	public static final String MRP_DemandTableData_RequiredDate = "//table[@id='2443085007193908883']//tr/td[10]";
+	public static final String MRP_DemandTableData_RequiredDate = "//div[@id='ContainerSummary_data_panel']//table//tr/td[10]";
 	/** @locatorType XPATH */
-	public static final String MRP_DemandTableData_CustomerID = "//table[@id='2443085007193908883']//tr/td[25]";
+	public static final String MRP_DemandTableData_CustomerID = "//div[@id='ContainerSummary_data_panel']//table//tr/td[25]";
 	/** @locatorType XPATH */
-	public static final String MRP_DemandSelectAllCheckBox = "//table[@id='2443085007193908883']//tr/th[@id='CHECKBOX']//input";
+	public static final String MRP_DemandSelectAllCheckBox = "//div[@id='ContainerSummary_data_panel']//table//tr/th[@id='CHECKBOX']//input";
 	/** @locatorType XPATH */
-	public static final String MRP_ExceptionMessageTableHeader = "//span[@id='C2073062428515392103_HDR']";
-	/** @locatorType XPATH */
-	public static final String MRP_ExceptionMsg_TableData = "//span[@id='C2073062428515392103_HDR']/../../../tr[2]/td[2]";
+	public static final String MRP_ExceptionMessageTableHeader = "(//div[contains(@id,'ig_grid_vc')]//table//*[text()='Exception Message'])[1]";
 	/** @locatorType XPATH */
 	public static final String MRP_ResultsTab_Summary = "//div[@id='P131816101001_TAB_RESULT']//label[text()='Summary']";
 	/** @locatorType XPATH */
-	public static final String MRP_ResultSummary_UnitTableDataList = "//table[@id='1349122859976458853_orig']//tbody/tr/td[1]";
+	public static final String MRP_ResultSummary_UnitTableDataList = "//table[contains(@aria-label,'Summary, Report')]//tbody/tr/td[1]";
 	/** @locatorType XPATH */
-	public static final String MRP_ResultSummary_ItemTableDataList = "//table[@id='1349122859976458853_orig']//tbody/tr/td[4]";
+	public static final String MRP_ResultSummary_ItemTableDataList = "//table[contains(@aria-label,'Summary, Report')]//tbody/tr/td[4]";
 	/** @locatorType XPATH */
-	public static final String MRP_ResultSummary_UOMTableDataList = "//table[@id='1349122859976458853_orig']//tbody/tr/td[8]";
+	public static final String MRP_ResultSummary_UOMTableDataList = "//table[contains(@aria-label,'Summary, Report')]//tbody/tr/td[8]";
 	/** @locatorType XPATH */
 	public static final String MRP_ReleaseBtn = "//button[@data-testid='MRP_ReleaseBtn']";
 	/** @locatorType XPATH */
@@ -142,7 +140,7 @@ public class MRPLocators {
 	/** @locatorType XPATH */
 	public static final String MRP_Release_ReleaseBtn = "//button[@data-testid='MRP_Release_ReleaseBtn']";
 	/** @locatorType XPATH */
-	public static final String MRP_ExceptionNoDataFoundContainer = "//div[@id='R2073061799237392097_ig_grid_vc']//span[text()='No data found']";
+	public static final String MRP_ExceptionNoDataFoundContainer = "//div[@aria-label='Exceptions']//span[text()='No data found']";
 
 	/** @locatorType XPATH */
 	public static final String MRP_ResultSummary_TotalDemandWithItem(String Item) {
@@ -153,7 +151,7 @@ public class MRPLocators {
 	public static final String MRP_ResultSummary_DependDemandOfRM(String Item) {
 		return "//td[text()='" + Item + "']/../td[11]";
 	}
-	
+
 	/** @locatorType XPATH */
 	public static final String MRP_Demand_CheckBoxWithSONo(String SONo) {
 		return "//td[text()='" + SONo + "']/../td[@headers='CHECKBOX']//input";

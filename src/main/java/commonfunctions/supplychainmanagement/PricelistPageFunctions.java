@@ -995,12 +995,16 @@ public class PricelistPageFunctions {
 			if (flag) {
 				webDB.clickAnElement(PricelistPageLocators.CancellButton, ElementType.Xpath);
 				commonFunc.checkRefreshCellsDisappear();
-				logs.logging("INFO", "Header Cancell Icon Is Clicked");
-				flag = webDB.waitForElement(PricelistPageLocators.FindSearchButton, ElementType.Xpath);
+				flag = webDB.waitForElement(PricelistPageLocators.CancelOk, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(PricelistPageLocators.CancelOk, ElementType.Xpath);
+				logs.logging("INFO", "Ok Button Is Clicked");
+				flag = webDB.waitForElement(PricelistPageLocators.CancelSearch, ElementType.Xpath);
 				if (flag) {
 					logs.logging("INFO", "Search Button is Clicked");
 				}
 			}
+		}
 		}
 		assertTrue(flag);
 	}
@@ -1012,9 +1016,15 @@ public class PricelistPageFunctions {
 	 * @param Number
 	 */
 	public void enterPriceListNumForCheckingStatus(String Number) {
+		commonFunc.checkRefreshCellsDisappear();
+		flag = webDB.waitForElement(PricelistPageLocators.CancelSearch, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(PricelistPageLocators.CancelSearch, ElementType.Xpath);
+			logs.logging("INFO", "Cancel Search Button is clicked");
 		flag = webDB.waitForElement(PricelistPageLocators.PricelistNumField, ElementType.Xpath);
 		if (flag) {
-			webDB.sendTextToAnElement(PricelistPageLocators.PricelistNumField, Number, ElementType.Xpath);
+			commonFunc.searchAndSelectValueInFilters(PricelistPageLocators.PricelistNumField, Number);
+//			webDB.sendTextToAnElement(PricelistPageLocators.PricelistNumField, Number, ElementType.Xpath);
 			logs.logging("INFO", "Entered Document Number Is: " + Number);
 			flag = webDB.waitForElement(PricelistPageLocators.FindSearchButton, ElementType.Xpath);
 			if (flag) {
@@ -1042,6 +1052,7 @@ public class PricelistPageFunctions {
 					}
 				}
 			}
+		}
 		}
 		assertTrue(flag);
 	}

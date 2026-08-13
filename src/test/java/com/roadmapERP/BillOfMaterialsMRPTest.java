@@ -27,7 +27,8 @@ public class BillOfMaterialsMRPTest extends RoadMapERPTest {
 
 	@BeforeMethod(alwaysRun = true)
 	private void VerifyLogin() {
-		if (VariableHandler.getSessionID() == null) {
+		if (VariableHandler.getSessionID() == null || VariableHandler.getSessionID().equalsIgnoreCase("")
+				|| VariableHandler.getSessionOpened() == false || VariableHandler.getSessionID().equals(null)) {
 			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 					"AdminUsername");
 		} else {
@@ -134,17 +135,17 @@ public class BillOfMaterialsMRPTest extends RoadMapERPTest {
 		Assert.assertTrue(flag);
 	}
 
-//	/**
-//	 * How to create and Run MRP through sales Order?
-//	 * 
-//	 * @author Sakthi-GWL
-//	 */
-//	@Author("Sakthi-GWL")
-//	@Test(priority = 19, groups = { "BOM" }, description = "19 How to create and Run MRP through sales Order?")
-//	public void VerifyCreateAndRunMRPThroughSalesOrder() {
-//		flag = mrpFunc.verifyCreateAndRunMRPThroughSalesOrder();
-//		Assert.assertTrue(flag);
-//	}
+	/**
+	 * How to create and Run MRP through sales Order?
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	@Author("Sakthi-GWL")
+	@Test(priority = 19, groups = { "BOM" }, description = "19 How to create and Run MRP through sales Order?")
+	public void VerifyCreateAndRunMRPThroughSalesOrder() {
+		flag = mrpFunc.verifyCreateAndRunMRPThroughSalesOrder();
+		Assert.assertTrue(flag);
+	}
 
 	/**
 	 * Verify After Method

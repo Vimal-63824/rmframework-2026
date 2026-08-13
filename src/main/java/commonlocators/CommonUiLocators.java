@@ -165,7 +165,7 @@ public class CommonUiLocators {
 	/** @locatorType Xpath */
 	public static final String StocksTab = "//span[text()='Supply Chain']/ancestor::li/*/li[3]/*/li[3]/*/li[15]";
 	/** @locatorType Xpath */
-	public static final String StocksCheckBox = "//input[@id='P93132130_TYPE_0']/../label";
+	public static final String StocksCheckBox = "//input[@data-testid='P93132130_TYPE']/following-sibling::label";
 	/** @locatorType Xpath */
 	public static final String PurchaseOrderTabForPurchaseUser = "//span[text()='Supply Chain']/ancestor::li/*/li[1]/*/li[2]/*//a[text()='Purchase Order']";
 	/** @locatorType Xpath */
@@ -323,13 +323,13 @@ public class CommonUiLocators {
 	/** @locatorType Xpath */
 	public static final String SearchButton = "//button[@data-testid='Find']";
 	/** @locatorType Xpath */
-	public static final String SearchedItemDrillDown = "//table[@id='11811898146948656524_orig']/tbody/tr[2]/td[2]";
+	public static final String SearchedItemDrillDown = "//table[@data-testid='RIA_Result_Data']/tbody/tr[2]/td[2]";
 	/** @locatorType Xpath */
 	public static final String SalesTab = "//*[@id='P36719401_TYPE_ASSO']/div/div/div[4]/label";
 	/** @locatorType Xpath */
 	public static final String CustomerAssoFlag = "//label[text()='Customer Associate']";
 	/** @locatorType Xpath */
-	public static final String activeButton = "//*[@id='B147500912587778117']";
+	public static final String activeButton = "//*[@data-testid='Activate']";
 	/** @locatorType Xpath */
 	public static final String EmployeeAdjustmentScreen = "//span[text()='Payroll']/ancestor::li/*/li[2]/*/li[6]/*/li[1]";
 	/** Locator Xpath */
@@ -436,4 +436,6 @@ public class CommonUiLocators {
 	public static final String FinalInspectionCheckBox = "//input[@data-testid='P36719401_PRODPLNT_FPI_FLAG_3']";
 	/** @locatorType Xpath */
 	public static final String OkayButton = "//button[text()='OK']";
+	/** @locatorType Xpath */
+	public static final String ItemLovButton = "//input[@data-testid='P93132130_ITEM']/following-sibling::button";
 }

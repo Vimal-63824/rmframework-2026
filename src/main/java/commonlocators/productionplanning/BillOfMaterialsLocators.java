@@ -83,7 +83,7 @@ public class BillOfMaterialsLocators {
 
 	/** @locatorType Xpath */
 	public static final String RoutingDetailsBtnWithProcessName(String ProcessName) {
-		return "//div[@id='ROUTING_ig_grid_vc']//table/tbody/tr/td[text()='" + ProcessName + "']/../td[14]/a";
+		return "//div[@id='ROUTING_ig_grid_vc']//table/tbody/tr/td[text()='" + ProcessName + "']/../td[15]/a";
 	}
 
 	/** @locatorType Xpath */

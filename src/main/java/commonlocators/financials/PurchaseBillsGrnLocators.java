@@ -15,10 +15,12 @@ public class PurchaseBillsGrnLocators {
 	public static final String GrnNo = "//input[@data-testid=\"P116131004_GRN_NO\"]/following-sibling::button";
 	/** @locatorType Xpath */
 	public static final String SearchButton = "//button[@data-testid='SearchGRN']";
+
 	/** @locatorType Xpath */
 	public static final String CheckBox(String GrnNo) {
-		return "//td[contains(text(),'"+ GrnNo +"')]/../td[14]";
+		return "//td[contains(text(),'" + GrnNo + "')]/../td[14]";
 	}
+
 	/** @locatorType Xpath */
 	public static final String CreateDoc = "//button[@data-testid='CreateDoc']";
 	/** @locatorType Xpath */
@@ -44,82 +46,83 @@ public class PurchaseBillsGrnLocators {
 	public static final String ApprovedStatus(String PbNo) {
 		return "//a[text()='" + PbNo + "']/../../td[13]";
 	}
+
 	/** @locatorType Xpath */
 	public static final String OkButtonForward = "//button[@data-testid='OK']";
 	/** @locatorType Xpath */
 	public static final String PBCostInput = "//input[@id='amt']";
 	/** @locatorType Xpath */
 	public static final String PBCostField = "//*[@id=\"IN_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr[1]/td[10]";
-	/** @locatorType Xpath */                
+	/** @locatorType Xpath */
 	public static final String PBAddLine = "//button[@data-testid='ADDLN']";
 	/** @locatorType Xpath */
-	public static final String GlAccDescField = "//*[@id='IN_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[6]" ;
+	public static final String GlAccDescField = "//*[@id='IN_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[6]";
 	/** @locatorType Xpath */
-	public static final String GlAccLov = "//input[@data-testid='SUPLN_ACCT_DESC']/following-sibling::button" ;
+	public static final String GlAccLov = "//input[@data-testid='SUPLN_ACCT_DESC']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String PBAddOverallSave = "//button[@data-testid='SAVEHD']" ;
+	public static final String PBAddOverallSave = "//button[@data-testid='SAVEHD']";
 	/** @locatorType Xpath */
-	public static final String PBAddSave = "//button[@data-testid='IN_SAVE']" ;
+	public static final String PBAddSave = "//button[@data-testid='IN_SAVE']";
 	/** @locatorType Xpath */
-	public static final String PBAddTypeExp = "//select[@data-testid='SUPLN_TYPE']" ;
+	public static final String PBAddTypeExp = "//select[@data-testid='SUPLN_TYPE']";
 	/** @locatorType Xpath */
-	public static final String PBAdjustmentTab = "//label[@for='P11613101001_TABS_2']" ;
+	public static final String PBAdjustmentTab = "//label[@for='P11613101001_TABS_2']";
 	/** @locatorType Xpath */
-	public static final String PBAdjustmentLoadBtn = "//button[@id='loadadj']" ;
+	public static final String PBAdjustmentLoadBtn = "//button[@id='loadadj']";
 	/** @locatorType Xpath */
-	public static final String PBAdjustmentFrame = "//iframe[@title='Advance Adjustment ']" ;
+	public static final String PBAdjustmentFrame = "//iframe[@title='Advance Adjustment ']";
 	/** @locatorType Xpath */
-	public static final String PBAdjustDocSelect = "//*[@id=\"3632475644335763481_orig\"]/tbody/tr[2]/td[11]" ;
+	public static final String PBAdjustDocSelect = "//*[@id='2014502332938981561_orig']/tbody/tr[2]/td[11]";
 	/** @locatorType Xpath */
-	public static final String PBAdjustValueEnterField = "//*[@id=\"3632475644335763481_orig\"]/tbody/tr[2]/td[10]";
+	public static final String PBAdjustValueEnterField = "//*[@id='2014502332938981561_orig']/tbody/tr[2]/td[10]";
 	/** @locatorType Xpath */
-	public static final String PBAdjustValueEnterInput = "//input[@type=\"number\"]" ;
+	public static final String PBAdjustValueEnterInput = "//input[@type=\"number\"]";
 	/** @locatorType Xpath */
-	public static final String PBAdjustmentOk = "//button[@id='B1']" ;
+	public static final String PBAdjustmentOk = "//button[@id='B1']";
 	/** @locatorType Xpath */
-	public static final String PBReferenceTab = "//label[@for='P11613101001_TABS_3']" ;
+	public static final String PBReferenceTab = "//label[@for='P11613101001_TABS_3']";
 	/** @locatorType Xpath */
-	public static final String PBIGSTFlag = "//label[@for='P11613101001_ALOW_IGST_CSGST']" ;
+	public static final String PBIGSTFlag = "//label[@for='P11613101001_ALOW_IGST_CSGST']";
 	/** @locatorType Xpath */
-	public static final String PBRCMFlag = "//label[@for='P11613101001_SUHD_ALOW_RCM_TAX']" ;
+	public static final String PBRCMFlag = "//label[@for='P11613101001_SUHD_ALOW_RCM_TAX']";
 	/** @locatorType Xpath */
-	public static final String PBItcSelect = "//select[@id='C2386871711424680771']" ;
+	public static final String PBItcSelect = "//select[@id='C2386871711424680771']";
 	/** @locatorType Xpath */
-	public static final String PBItcSelectField = "//*[@id=\"IN_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[24]" ;
+	public static final String PBItcSelectField = "//*[@id=\"IN_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[24]";
 	/** @locatorType Xpath */
-	public static final String PBItcSectionSelect = "//select[@id='C2386874327766680748']" ;
+	public static final String PBItcSectionSelect = "//select[@id='C2386874327766680748']";
 	/** @locatorType Xpath */
-	public static final String PBItcSectionField = "//*[@id=\"IN_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[63]" ;
+	public static final String PBItcSectionField = "//*[@id=\"IN_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[63]";
 	/** @locatorType Xpath */
-	public static final String PBItcSubSectionSelect = "//select[@id='C2386874439302680749']" ;
+	public static final String PBItcSubSectionSelect = "//select[@id='C2386874439302680749']";
 	/** @locatorType Xpath */
-	public static final String PBItcSubSectionField = "//*[@id=\"IN_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[64]" ;
+	public static final String PBItcSubSectionField = "//*[@id=\"IN_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[64]";
 	/** @locatorType Xpath */
-	public static final String PBAdjustmentSearchField = "//input[@id='PEND_search_field']" ;
+	public static final String PBAdjustmentSearchField = "//input[@id='PEND_search_field']";
 	/** @locatorType Xpath */
-	public static final String PBAdjustmentSearchGoBtn = "//button[@id='PEND_search_button']" ;
+	public static final String PBAdjustmentSearchGoBtn = "//button[@id='PEND_search_button']";
 	/** @locatorType Xpath */
-	public static final String PBBPPendingCrDoc = "//span[contains(text(),'Pending Cr. Docs.')]" ;
+	public static final String PBBPPendingCrDoc = "//span[contains(text(),'Pending Cr. Docs.')]";
 	/** @locatorType Xpath */
-	public static final String PBBPPendingPayables = "//button[@data-testid='PendingPayables']" ;
+	public static final String PBBPPendingPayables = "//button[@data-testid='PendingPayables']";
 	/** @locatorType Xpath */
-	public static final String PBBPPendingFrame = "//iframe[@title='Pending Payables']" ;
+	public static final String PBBPPendingFrame = "//iframe[@title='Pending Payables']";
 	/** @locatorType Xpath */
-	public static final String PBBPPendingDocNoLov = "//input[@data-testid='P3413101001_DOC_NO']/following-sibling::button" ;
+	public static final String PBBPPendingDocNoLov = "//input[@data-testid='P3413101001_DOC_NO']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String PBGetDocNo = "//span[@data-testid='VouNo']" ;
+	public static final String PBGetDocNo = "//span[@data-testid='VouNo']";
 	/** @locatorType Xpath */
-	public static final String PendingPayablesSearchBtn = "//button[@data-testid='Search1']" ;
+	public static final String PendingPayablesSearchBtn = "//button[@data-testid='Search1']";
 	/** @locatorType Xpath */
-	public static final String PendingPayableSelectDoc = "//input[@type='checkbox']" ;
+	public static final String PendingPayableSelectDoc = "//input[@type='checkbox']";
 	/** @locatorType Xpath */
-	public static final String PendingPayableCreateBtn = "//button[@data-testid='Create']" ;
+	public static final String PendingPayableCreateBtn = "//button[@data-testid='Create']";
 	/** @locatorType Xpath */
-	public static final String PendingPayablePayMode = "//select[@data-testid='P3413101001_SUPHD_PYMT_TYPE']" ;
+	public static final String PendingPayablePayMode = "//select[@data-testid='P3413101001_SUPHD_PYMT_TYPE']";
 	/** @locatorType Xpath */
-	public static final String ExpenseHsnLovBtn = "//input[@data-testid='SUPLN_HSN_CODE']/following-sibling::button" ;
+	public static final String ExpenseHsnLovBtn = "//input[@data-testid='SUPLN_HSN_CODE']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String ExpenseHsnField = "//*[@id=\"IN_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr[1]/td[14]" ;
+	public static final String ExpenseHsnField = "//*[@id=\"IN_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr[1]/td[14]";
 	/** @locatorType Xpath */
 	public static final String PBQtyField = "//*[@id=\"IN_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr[1]/td[9]";
 	/** @locatorType Xpath */
@@ -140,11 +143,12 @@ public class PurchaseBillsGrnLocators {
 	public static final String PBCashDiscPercField = "//*[@id=\'IN_ig_grid_vc\']/div[2]/div[3]/table/tbody/tr[1]/td[39]";
 	/** @locatorType Xpath */
 	public static final String PBCashDiscPercInput = "//input[@data-testid='SUPLN_CASH_DISC_PCT']";
-	
+
 	/** @locatorType Xpath */
 	public static final String BPPendingPartyDocumentSelectCheckBox(String VoucherNumber) {
 		return "//td[contains(text(),'" + VoucherNumber + "')]/../td[13]/*";
 	}
+
 	/** @locatorType Xpath */
 	public static final String PB_PendSCOField = "//button[@data-testid='PendingSCO']";
 	/** @locatorType Xpath */
@@ -152,13 +156,13 @@ public class PurchaseBillsGrnLocators {
 	/** @locatorType Xpath */
 	public static final String SCONoField = "//input[@data-testid='P116131006_GRN_NO']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String SCO_CheckBox ="(//input[@id='check_all'])[1]";
+	public static final String SCO_CheckBox = "(//input[@id='check_all'])[1]";
 	/** @locatorType Xpath */
-	public static final String PB_LineProcess_Button ="(//span[@class='fa fa-info'])[1]";
+	public static final String PB_LineProcess_Button = "(//span[@class='fa fa-info'])[1]";
 	/** @locatorType Xpath */
-	public static final String PB_ProcessFrame = "//iframe[@title='Supplier Bill - Process']" ;
+	public static final String PB_ProcessFrame = "//iframe[@title='Supplier Bill - Process']";
 	/** @locatorType Xpath */
-	public static final String PB_Process_TDS_Lov = "//*[@id=\"ig_line_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[28]" ;
+	public static final String PB_Process_TDS_Lov = "//*[@id=\"ig_line_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[28]";
 	/** @locatorType Xpath */
 	public static final String ProcessTDSLovButton = "//input[@data-testid='SDPLH_TDS_US_ID']/following-sibling::button";
 	/** @locatorType Xpath */
@@ -166,7 +170,7 @@ public class PurchaseBillsGrnLocators {
 	/** @locatorType Xpath */
 	public static final String PB_Process_Close = "//button[@id='B3838306386655114589']";
 	/** @locatorType Xpath */
-	public static final String PendingPayableSelectAll = "//input[@id='check_all']" ;
+	public static final String PendingPayableSelectAll = "//input[@id='check_all']";
 	/** @locatorType Xpath */
 	public static final String PB_Reference_MatchedAmt = "//input[@id='P11613101001_SUPHD_BILL_AMT']";
 	/** @locatorType Xpath */

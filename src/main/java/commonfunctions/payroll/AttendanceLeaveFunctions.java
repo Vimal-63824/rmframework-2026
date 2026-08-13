@@ -1722,8 +1722,8 @@ public class AttendanceLeaveFunctions {
 		commonFunc.checkRefreshCellsDisappear();
 		flag = webDB.waitForElement(AttendanceLeaveLocators.LeaveEntryPendingRequestIframe, ElementType.Xpath);
 //		if (flag) {
-			webDB.switchToFrame(AttendanceLeaveLocators.LeaveEntryPendingRequestIframe, ElementType.Xpath);
-			flag = webDB.waitForElement(AttendanceLeaveLocators.LeaveEntryPendReqSearchBar, ElementType.Xpath);
+		webDB.switchToFrame(AttendanceLeaveLocators.LeaveEntryPendingRequestIframe, ElementType.Xpath);
+		flag = webDB.waitForElement(AttendanceLeaveLocators.LeaveEntryPendReqSearchBar, ElementType.Xpath);
 //		}
 		Assert.assertTrue(flag);
 	}
@@ -1855,6 +1855,8 @@ public class AttendanceLeaveFunctions {
 	 */
 	private void clickSearchAndClickFirstLeaveEntryWithEmpName(String EmpName) {
 		commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.LeaveEntryFindEmpIdLovBtn, EmpName);
+		webDB.waitForElement(AttendanceLeaveLocators.LeaveEntryFindStatusSelect, ElementType.Xpath);
+		webDB.selectDropDownByValue(AttendanceLeaveLocators.LeaveEntryFindStatusSelect, "P", ElementType.Xpath);
 		flag = webDB.waitForElement(AttendanceLeaveLocators.LeaveEntryFindSearchBtn, ElementType.Xpath);
 		if (flag) {
 			webDB.moveToElement(AttendanceLeaveLocators.LeaveEntryFindSearchBtn, ElementType.Xpath);

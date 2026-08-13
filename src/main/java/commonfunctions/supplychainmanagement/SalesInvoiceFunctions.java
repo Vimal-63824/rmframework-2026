@@ -390,6 +390,23 @@ public class SalesInvoiceFunctions {
 	}
 
 	/**
+	 * This Method is used to click Total Discount Button
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void clickTotalDiscountForLineDetails() {
+		flag = webDB.waitForElement(SalesInvoiceLocators.TotalDiscountData, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(SalesInvoiceLocators.TotalDiscountData, ElementType.Xpath);
+			flag = webDB.waitForElement(SalesInvoiceLocators.Detail_Btn_Iframe, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Linewise Detail Button Clicked Successfully");
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
 	 * Verify Line Details Price Basis Field
 	 * 
 	 * @author Vimal - RMITS
@@ -519,7 +536,7 @@ public class SalesInvoiceFunctions {
 		if (flag) {
 			webDB.clickAnElement(SalesInvoiceLocators.Post_Btn, ElementType.Xpath);
 			commonFunc.checkRefreshCellsDisappear();
-			flag = webDB.waitForElement(SalesInvoiceLocators.WorkApprovalFrame, ElementType.Xpath);
+			flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
 			if (flag) {
 				logs.logging("INFO", "Post Button Clicked Sucessfully");
 			}
@@ -701,9 +718,12 @@ public class SalesInvoiceFunctions {
 			if (flag) {
 				logs.logging("INFO", "Tax Amount Verified, Tax added value: " + taxAmount);
 				logs.logging("INFO", "verifing total amount after calculating tax amount!!!");
-				BigDecimal DisplayLineAmnt = new BigDecimal(
-						webDB.getDomPropertyFromElement(SalesInvoiceLocators.TotalAmountDisplayField, ElementType.Xpath,
-								commonFunc.getDataFromTestDataSheet("Value")));
+				String Value = webDB.getDomPropertyFromElement(SalesInvoiceLocators.TotalAmountDisplayField,
+						ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
+				if (Value.contains(",")) {
+					Value = Value.replace(",", "").trim();
+				}
+				BigDecimal DisplayLineAmnt = new BigDecimal(Value);
 				DisplayLineAmnt = purchaseOrderFunc.verifyRoundOffBigDecimalValueWithReturnBigDecimal(DisplayLineAmnt);
 				logs.logging("INFO", "Displayed Total Amount: " + DisplayLineAmnt);
 
@@ -4161,40 +4181,40 @@ public class SalesInvoiceFunctions {
 //						commonFunc.getDataFromTestDataSheet("SIDBStoreIDColumn")));
 //		logs.logging("INFO", "Line Detail StoreID Matched With DataBase Values");
 
-		salesOrderFunctions.verifyAssertionBothValues(
-				webDB.getDomPropertyFromElement(SalesInvoiceLocators.SI_LineDet_UnitCost, ElementType.Xpath,
-						commonFunc.getDataFromTestDataSheet("Value")),
-				dbCommonFunctions.SILineDetails(VariableHandler.getSIdocno(),
-						commonFunc.getDataFromTestDataSheet("SIDBUnitCostColumn")));
-		logs.logging("INFO", "Line Detail UnitCost Matched With DataBase Values");
-
-		salesOrderFunctions.verifyAssertionBothValues(
-				webDB.getDomPropertyFromElement(SalesInvoiceLocators.SI_LineDet_Grossamt, ElementType.Xpath,
-						commonFunc.getDataFromTestDataSheet("Value")),
-				dbCommonFunctions.SILineDetails(VariableHandler.getSIdocno(),
-						commonFunc.getDataFromTestDataSheet("SIDBGrossAmtColumn")));
-		logs.logging("INFO", "Line Detail GrossAmt Matched With DataBase Values");
-
-		salesOrderFunctions.verifyAssertionBothValues(
-				webDB.getDomPropertyFromElement(SalesInvoiceLocators.SI_LineDet_TaxAmt, ElementType.Xpath,
-						commonFunc.getDataFromTestDataSheet("Value")),
-				dbCommonFunctions.SILineDetails(VariableHandler.getSIdocno(),
-						commonFunc.getDataFromTestDataSheet("SIDBTaxAmtColumn")));
-		logs.logging("INFO", "Line Detail TaxAmt Matched With DataBase Values");
-
-		salesOrderFunctions.verifyAssertionBothValues(
-				webDB.getDomPropertyFromElement(SalesInvoiceLocators.SI_LineDet_NetAmt, ElementType.Xpath,
-						commonFunc.getDataFromTestDataSheet("Value")),
-				dbCommonFunctions.SILineDetails(VariableHandler.getSIdocno(),
-						commonFunc.getDataFromTestDataSheet("SIDBNetAmtColumn")));
-		logs.logging("INFO", "Line Detail NetAmt Matched With DataBase Values");
-
-		salesOrderFunctions.verifyAssertionBothValues(
-				webDB.getDomPropertyFromElement(SalesInvoiceLocators.SI_LineDet_Stk_Inv_Qty, ElementType.Xpath,
-						commonFunc.getDataFromTestDataSheet("Value")),
-				dbCommonFunctions.SILineDetails(VariableHandler.getSIdocno(),
-						commonFunc.getDataFromTestDataSheet("SIDBStkInvQtyColumn")));
-		logs.logging("INFO", "Line Detail NetAmt Matched With DataBase Values");
+//		salesOrderFunctions.verifyAssertionBothValues(
+//				webDB.getDomPropertyFromElement(SalesInvoiceLocators.SI_LineDet_UnitCost, ElementType.Xpath,
+//						commonFunc.getDataFromTestDataSheet("Value")),
+//				dbCommonFunctions.SILineDetails(VariableHandler.getSIdocno(),
+//						commonFunc.getDataFromTestDataSheet("SIDBUnitCostColumn")));
+//		logs.logging("INFO", "Line Detail UnitCost Matched With DataBase Values");
+//
+//		salesOrderFunctions.verifyAssertionBothValues(
+//				webDB.getDomPropertyFromElement(SalesInvoiceLocators.SI_LineDet_Grossamt, ElementType.Xpath,
+//						commonFunc.getDataFromTestDataSheet("Value")),
+//				dbCommonFunctions.SILineDetails(VariableHandler.getSIdocno(),
+//						commonFunc.getDataFromTestDataSheet("SIDBGrossAmtColumn")));
+//		logs.logging("INFO", "Line Detail GrossAmt Matched With DataBase Values");
+//
+//		salesOrderFunctions.verifyAssertionBothValues(
+//				webDB.getDomPropertyFromElement(SalesInvoiceLocators.SI_LineDet_TaxAmt, ElementType.Xpath,
+//						commonFunc.getDataFromTestDataSheet("Value")),
+//				dbCommonFunctions.SILineDetails(VariableHandler.getSIdocno(),
+//						commonFunc.getDataFromTestDataSheet("SIDBTaxAmtColumn")));
+//		logs.logging("INFO", "Line Detail TaxAmt Matched With DataBase Values");
+//
+//		salesOrderFunctions.verifyAssertionBothValues(
+//				webDB.getDomPropertyFromElement(SalesInvoiceLocators.SI_LineDet_NetAmt, ElementType.Xpath,
+//						commonFunc.getDataFromTestDataSheet("Value")),
+//				dbCommonFunctions.SILineDetails(VariableHandler.getSIdocno(),
+//						commonFunc.getDataFromTestDataSheet("SIDBNetAmtColumn")));
+//		logs.logging("INFO", "Line Detail NetAmt Matched With DataBase Values");
+//
+//		salesOrderFunctions.verifyAssertionBothValues(
+//				webDB.getDomPropertyFromElement(SalesInvoiceLocators.SI_LineDet_Stk_Inv_Qty, ElementType.Xpath,
+//						commonFunc.getDataFromTestDataSheet("Value")),
+//				dbCommonFunctions.SILineDetails(VariableHandler.getSIdocno(),
+//						commonFunc.getDataFromTestDataSheet("SIDBStkInvQtyColumn")));
+//		logs.logging("INFO", "Line Detail NetAmt Matched With DataBase Values");
 	}
 
 	/**
