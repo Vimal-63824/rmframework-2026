@@ -145,5 +145,5 @@ public class SalesPriceListLocators {
 	/** @Locator XPATH */
 	public static final String AmdNoDb = "//*[@id='SO_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[1]/td[19]";
 	/** @Locator XPATH */
-	public static final String PriceListSingle1 = "//button[@id='B3207882802525494656']" ;
+	public static final String PriceListSingle1 = "(//span[text()='Price List'])[2]" ;
 }

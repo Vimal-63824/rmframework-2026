@@ -113,7 +113,7 @@ public class MaterialRequestLocators {
 
 	/** @locatorType Xpath */
 	public static final String RequestMRNo(String MRNumber) {
-		return "//a[text()='" + MRNumber + "']";
+		return "//table[@data-testid='H_Result_Data']//a[text()='" + MRNumber + "']";
 	}
 
 	/** @locatorType Xpath */
