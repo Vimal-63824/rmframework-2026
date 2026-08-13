@@ -15,7 +15,7 @@ public class PurchaseBillsLocators {
 	public static final String SearchButton = "//button[@data-testid='SearchGRN']";
 
 	/** @locatorType Xpath */
-	public static final String CheckBox = "//div[@id='PEND_data_panel']/div[1]/table/tbody/tr[2]/td[13]";
+	public static final String CheckBox = "(//div[@id='PEND_data_panel']//table)[2]/tbody/tr[2]//input[@type='checkbox']";
 
 	/** @locatorType Xpath */
 	public static final String CreateDoc = "//button[@data-testid='CreateDoc']";
