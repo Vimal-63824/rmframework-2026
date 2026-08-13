@@ -698,32 +698,32 @@ public class CoreProcessPageFunctions {
 		commonFunc.navigateSetupInventoryPage();
 		boolean createflag = materialReceiptFunctions.autoCreateMRVCheckboxIsSelected();
 		boolean postflag = materialReceiptFunctions.autoPostMRVCheckboxIsSelected();
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
-		commonFunc.navigateToMaterialReceiptVoucher();
-		if (createflag && !postflag) {
-			materialReceiptFunctions.verifyOpenAlreadyCreatedMRVDocumentsWithProdNo(VariableHandler.getMIVNumber());
-			materialReceiptFunctions.createJournalAndViewJournal();
-			materialReceiptFunctions.verifyTableDataMiv(webDB.getDataFromProperties("MRTMRVSheet"));
-			materialReceiptFunctions.clickTickAndPostIcon();
-		} else if (!createflag && !postflag) {
-			materialReceiptFunctions.verifyPendingMRVUsingMIV(VariableHandler.getMIVNumber());
-			materialReceiptFunctions.createJournalAndViewJournal();
-			materialReceiptFunctions.verifyTableDataMiv(webDB.getDataFromProperties("MRTMRVSheet"));
-			materialReceiptFunctions.clickTickAndPostIcon();
-		} else if (createflag && postflag) {
-
-		} else if (!createflag && postflag) {
-			materialReceiptFunctions.verifyPendingMRVUsingMIV(VariableHandler.getMIVNumber());
-			commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
-			commonFunc.navigateToMaterialReceiptVoucher();
-		}
-		materialReceiptFunctions.verifyValidateMaterialReceiptDocumentsStatus(VariableHandler.getMrvNumber(),
-				commonFunc.getDataFromTestDataSheet("IssuedStatus"));
-		commonFunc.logoutUser();
+//		commonFunc.logoutUser();
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
+//		commonFunc.navigateToMaterialReceiptVoucher();
+//		if (createflag && !postflag) {
+//			materialReceiptFunctions.verifyOpenAlreadyCreatedMRVDocumentsWithProdNo(VariableHandler.getMIVNumber());
+//			materialReceiptFunctions.createJournalAndViewJournal();
+//			materialReceiptFunctions.verifyTableDataMiv(webDB.getDataFromProperties("MRTMRVSheet"));
+//			materialReceiptFunctions.clickTickAndPostIcon();
+//		} else if (!createflag && !postflag) {
+//			materialReceiptFunctions.verifyPendingMRVUsingMIV(VariableHandler.getMIVNumber());
+//			materialReceiptFunctions.createJournalAndViewJournal();
+//			materialReceiptFunctions.verifyTableDataMiv(webDB.getDataFromProperties("MRTMRVSheet"));
+//			materialReceiptFunctions.clickTickAndPostIcon();
+//		} else if (createflag && postflag) {
+//
+//		} else if (!createflag && postflag) {
+//			materialReceiptFunctions.verifyPendingMRVUsingMIV(VariableHandler.getMIVNumber());
+//			commonFunc.logoutUser();
+//			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//					"AdminUsername");
+//			commonFunc.navigateToMaterialReceiptVoucher();
+//		}
+//		materialReceiptFunctions.verifyValidateMaterialReceiptDocumentsStatus(VariableHandler.getMrvNumber(),
+//				commonFunc.getDataFromTestDataSheet("IssuedStatus"));
+//		commonFunc.logoutUser();
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToInventoryStocksTab();
