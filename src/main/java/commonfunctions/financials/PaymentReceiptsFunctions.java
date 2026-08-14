@@ -281,9 +281,9 @@ public class PaymentReceiptsFunctions {
 				if (flag) {
 					String Status = webDB.getTextFromElement(
 							PaymentReceiptsLocators.IssuedStatus(VariableHandler.getBPvNumber()), ElementType.Xpath);
-					flag = Status.contains(commonFunc.getDataFromTestDataSheet("Cleared"));
+					flag = Status.contains(commonFunc.getDataFromTestDataSheet("Issued"));
 					if (flag) {
-						logs.logging("INFO", "Expected Status: " + commonFunc.getDataFromTestDataSheet("Cleared"));
+						logs.logging("INFO", "Expected Status: " + commonFunc.getDataFromTestDataSheet("Issued"));
 						logs.logging("INFO", "Verified Status ,Displayed Status: " + Status);
 					}
 				}

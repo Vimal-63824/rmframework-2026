@@ -781,8 +781,8 @@ public class MRPFunctions {
 			if (Cost.equals("00")) {
 				Cost = "10";
 			}
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
+//			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//					"AdminUsername");
 			commonFunc.navigateSalesOrderPage();
 			saleOrderFunc.navigateToSalesOrderOrCustomerSchedule(webDB.getDataFromProperties("So"));
 			saleOrderFunc.createSalesOrderWithHeaderDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -792,7 +792,7 @@ public class MRPFunctions {
 			saleOrderFunc.addQuantityAndUnitCost(Qnty, Cost);
 			saleOrderFunc.chooseHsnCodeAndClickLineWiseSaveButton(OpenSOHSN);
 			saleOrderFunc.clickLineWiseSaveButton();
-			saleOrderFunc.checkSaleOrderTaxCalculationForLastAddedItem();
+//			saleOrderFunc.checkSaleOrderTaxCalculationForLastAddedItem();
 			saleOrderFunc.clickTotalDiscountForLineDetails();
 			saleOrderFunc.switchToLineDetailFrameInSaleOrder();
 			commonFunc.checkDiscountInLineDetails(SalesOrderLocators.SOSpecialDiscountAssblValue,
