@@ -228,7 +228,7 @@ public class PurchaseBillsLocators {
 	/** @locatorType Xpath */
 	public static final String SearchButtonGetDoc = "//button[@data-testid='SearchPO']";
 	/** @locatorType Xpath */
-	public static final String CheckBoxPendingPo = "//table[@id='3796146078821500385']/tbody/tr[2]/td[13]";
+	public static final String CheckBoxPendingPo = "//table[@id='3862897427491378857']/tbody/tr[2]/td[13]";
 	/** @locatorType Xpath */
 	public static final String OkButtonPendingPO = "//button[@data-testid='OK']";
 	/** @locatorType Xpath */
