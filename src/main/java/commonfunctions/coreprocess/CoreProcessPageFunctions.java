@@ -249,9 +249,11 @@ public class CoreProcessPageFunctions {
 			saleOrderFunc.clickLineWiseSaveButton();
 			saleOrderFunc.clickTotalDiscountForLineDetails();
 			saleOrderFunc.switchToLineDetailFrameInSaleOrder();
+			commonFunc.checkRefreshCellsDisappear();
 			commonFunc.checkDiscountInLineDetails(SalesOrderLocators.SOSpecialDiscountAssblValue,
 					SalesOrderLocators.SOSpecialDiscountpercentageField,
 					SalesOrderLocators.SOSpecialDiscountAmountField, RandomStringUtils.randomNumeric(1));
+			commonFunc.checkRefreshCellsDisappear();
 			commonFunc.checkDiscountInLineDetails(SalesOrderLocators.SOCashDiscountAssblValue,
 					SalesOrderLocators.SOCashDiscountpercentageField, SalesOrderLocators.SOCashDiscountAmountField,
 					RandomStringUtils.randomNumeric(1));
@@ -282,9 +284,11 @@ public class CoreProcessPageFunctions {
 			commonFunc.checkDiscountInLineDetails(SalesInvoiceLocators.SalesInvoiceSpecialAssblPrice,
 					SalesInvoiceLocators.SalesInvoiceSpecialDiscountPrice,
 					SalesInvoiceLocators.SalesInvoiceSpecialAssblAmount, "2");
+			commonFunc.checkRefreshCellsDisappear();
 			commonFunc.checkDiscountInLineDetails(SalesInvoiceLocators.SalesInvoiceCashAssemblePrice,
 					SalesInvoiceLocators.SalesInvoiceCashDiscountPrice,
 					SalesInvoiceLocators.SalesInvoiceCashAssembleAmount, "1");
+			commonFunc.checkRefreshCellsDisappear();
 			saleInvoiceFunc.verifyShipFromWarehouseAndStockAndInvoiceQuantity(
 					commonFunc.getDataFromTestDataSheet("FinishedGoodWH"));
 			saleInvoiceFunc.verifyLineDetailsSaveIcon();
@@ -369,9 +373,11 @@ public class CoreProcessPageFunctions {
 			saleOrderFunc.clickLineWiseSaveButton();
 			saleOrderFunc.clickTotalDiscountForLineDetails();
 			saleOrderFunc.switchToLineDetailFrameInSaleOrder();
+			commonFunc.checkRefreshCellsDisappear();
 			commonFunc.checkDiscountInLineDetails(SalesOrderLocators.SOSpecialDiscountAssblValue,
 					SalesOrderLocators.SOSpecialDiscountpercentageField,
 					SalesOrderLocators.SOSpecialDiscountAmountField, RandomStringUtils.randomNumeric(1));
+			commonFunc.checkRefreshCellsDisappear();
 			commonFunc.checkDiscountInLineDetails(SalesOrderLocators.SOCashDiscountAssblValue,
 					SalesOrderLocators.SOCashDiscountpercentageField, SalesOrderLocators.SOCashDiscountAmountField,
 					RandomStringUtils.randomNumeric(1));
@@ -562,8 +568,8 @@ public class CoreProcessPageFunctions {
 				completionProductionOrderFunc.clickPendingIconInCompletionProcess();
 				completionProductionOrderFunc
 						.clickMaterialRequestCreationAndSearchProdNo(VariableHandler.getProductionOrderNumber());
-				completionProductionOrderFunc
-						.clickCheckBoxTableAndCreateAndStoreMRNo(VariableHandler.getProductionOrderNumber());
+				completionProductionOrderFunc.clickCheckBoxTableAndCreateAndStoreMRNo(
+						commonFunc.getDataFromTestDataSheet("Loc_100"), VariableHandler.getProductionOrderNumber());
 				commonFunc.navigateToInventoryMaterialRequest();
 				materialRequestFunc
 						.storeMRNoAndCheckStatusDraftAndPostWithProdNo(VariableHandler.getProductionOrderNumber());
@@ -1169,8 +1175,8 @@ public class CoreProcessPageFunctions {
 				completionProductionOrderFunc.clickPendingIconInCompletionProcess();
 				completionProductionOrderFunc
 						.clickMaterialRequestCreationAndSearchProdNo(VariableHandler.getProductionOrderNumber());
-				completionProductionOrderFunc
-						.clickCheckBoxTableAndCreateAndStoreMRNo(VariableHandler.getProductionOrderNumber());
+				completionProductionOrderFunc.clickCheckBoxTableAndCreateAndStoreMRNo(
+						commonFunc.getDataFromTestDataSheet("Loc_100"), VariableHandler.getProductionOrderNumber());
 				commonFunc.navigateToInventoryMaterialRequest();
 				materialRequestFunc
 						.storeMRNoAndCheckStatusDraftAndPostWithProdNo(VariableHandler.getProductionOrderNumber());

@@ -1340,7 +1340,8 @@ public class CommonFunctions {
 			if (flag) {
 				webDB.doubleClickAnElement(PerctLocator, ElementType.Xpath);
 				webDB.sendTextToAnElement(PerctLocator, Discount, ElementType.Xpath);
-				webDB.pressEnterKey();
+				webDB.pressTabKey();
+				checkRefreshCellsDisappear();
 				checkRefreshCellsDisappear();
 				BigDecimal percentage = purchaseOrderFunc
 						.verifyRoundOffBigDecimalValueWithReturnBigDecimal(new BigDecimal(Discount));
@@ -2611,25 +2612,12 @@ public class CommonFunctions {
 		if (flag) {
 			webDB.moveToElement(Tablespec, ElementType.Xpath);
 			webDB.doubleClickAnElement(Tablespec, ElementType.Xpath);
-//			logs.logging("INFO", "Table Input Box Is Clicked");
 			webDB.waitForElement(InputParameter, ElementType.Xpath);
 			webDB.clearText(InputParameter, ElementType.Xpath);
-//			logs.logging("INFO", "Clear Text Field The Input Value");
-			flag = webDB.waitForElement(Tablespec, ElementType.Xpath);
+			webDB.waitForElement(InputParameter, ElementType.Xpath);
+			flag = webDB.sendTextToAnElement(InputParameter, Enteredvalue, ElementType.Xpath);
 			if (flag) {
-				webDB.moveToElement(Tablespec, ElementType.Xpath);
-				webDB.doubleClickAnElement(Tablespec, ElementType.Xpath);
-				checkRefreshCellsDisappear();
-				webDB.waitForElement(InputParameter, ElementType.Xpath);
-				flag = webDB.sendTextToAnElement(InputParameter, Enteredvalue, ElementType.Xpath);
 				logs.logging("INFO", "Entered Value Is: " + Enteredvalue + " in 'verifyAddTableSpecs'");
-//				String value = webDB.getAttributeFromElement(InputParameter, ElementType.Xpath,
-//						getDataFromTestDataSheet("Value"));
-////				logs.logging("INFO", "Get Attribute Value Is: " + value);
-//				flag = value.contains(Enteredvalue);
-				if (flag) {
-//					logs.logging("INFO", "Verified Entered Value With Get Attribute Value");
-				}
 			}
 		}
 		assertTrue(flag);
@@ -3339,7 +3327,7 @@ public class CommonFunctions {
 
 	/**
 	 * Verify Add Table Specs
-	 * 
+	 *
 	 * @author Deepan-GWL
 	 * @param Tablespec
 	 * @param InputParameter
@@ -3351,25 +3339,11 @@ public class CommonFunctions {
 		if (flag) {
 			webDB.moveToElement(Tablespec, ElementType.Xpath);
 			webDB.doubleClickAnElement(Tablespec, ElementType.Xpath);
-//			logs.logging("INFO", "Table Input Box Is Clicked");
 			webDB.waitForElement(InputParameter, ElementType.Xpath);
 			webDB.clearTextField(InputParameter, ElementType.Xpath);
-//			logs.logging("INFO", "Clear Text Field The Input Value");
-			flag = webDB.waitForElement(Tablespec, ElementType.Xpath);
+			flag = webDB.sendTextToAnElement(InputParameter, Enteredvalue, ElementType.Xpath);
 			if (flag) {
-				webDB.moveToElement(Tablespec, ElementType.Xpath);
-				webDB.doubleClickAnElement(Tablespec, ElementType.Xpath);
-				checkRefreshCellsDisappear();
-				webDB.waitForElement(InputParameter, ElementType.Xpath);
-				flag = webDB.sendTextToAnElement(InputParameter, Enteredvalue, ElementType.Xpath);
 				logs.logging("INFO", "Entered Value Is: " + Enteredvalue + " in 'verifyAddTableSpecs'");
-//				String value = webDB.getAttributeFromElement(InputParameter, ElementType.Xpath,
-//						getDataFromTestDataSheet("Value"));
-////				logs.logging("INFO", "Get Attribute Value Is: " + value);
-//				flag = value.contains(Enteredvalue);
-				if (flag) {
-//					logs.logging("INFO", "Verified Entered Value With Get Attribute Value");
-				}
 			}
 		}
 		assertTrue(flag);
