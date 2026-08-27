@@ -168,7 +168,7 @@ public class PurchaseBillsGrnLocators {
 	/** @locatorType Xpath */
 	public static final String PB_Process_Save = "//button[@title='Save']";
 	/** @locatorType Xpath */
-	public static final String PB_Process_Close = "//button[@id='B3838306386655114589']";
+	public static final String PB_Process_Close = "//button[@id='B2287084423928211141']";
 	/** @locatorType Xpath */
 	public static final String PendingPayableSelectAll = "//input[@id='check_all']";
 	/** @locatorType Xpath */
