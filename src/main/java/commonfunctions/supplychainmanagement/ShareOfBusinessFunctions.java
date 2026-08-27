@@ -18,6 +18,7 @@ import commonfunctions.CommonFunctions;
 import commonfunctions.VariableHandler;
 import commonlocators.CommonUiLocators;
 import commonlocators.supplychainmanagement.OpenPoRcLocators;
+import commonlocators.supplychainmanagement.POAmendmentLocators;
 import commonlocators.supplychainmanagement.PurchaseOrderPageLocators;
 import commonlocators.supplychainmanagement.ShareOfBusinessLocators;
 import utils.ReportLoger;
@@ -414,11 +415,15 @@ public class ShareOfBusinessFunctions {
 		flag = webDB.waitForElement(ShareOfBusinessLocators.CancelDocuments, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(ShareOfBusinessLocators.CancelDocuments, ElementType.Xpath);
-			flag = webDB.waitForElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+			flag = webDB.waitForElement(POAmendmentLocators.OKButtonLast, ElementType.Xpath);
 			if (flag) {
-				logs.logging("INFO", "Toast Message Displayed, SOB Cancelled Successfully");
-				if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
-					webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+				webDB.clickAnElement(POAmendmentLocators.OKButtonLast, ElementType.Xpath);
+				flag = webDB.waitForElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Toast Message Displayed, SOB Cancelled Successfully");
+					if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+						webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+					}
 				}
 			}
 		}

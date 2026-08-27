@@ -13221,8 +13221,8 @@ public class ProductionOrderFunctions {
 		completionProductionOrderFunc.clickPendingIconInCompletionProcess();
 		completionProductionOrderFunc
 				.clickMaterialRequestCreationAndSearchProdNo(VariableHandler.getProductionOrderNumber());
-		completionProductionOrderFunc
-				.clickCheckBoxTableAndCreateAndStoreMRNo(VariableHandler.getProductionOrderNumber());
+		completionProductionOrderFunc.clickCheckBoxTableAndCreateAndStoreMRNo(
+				commonFunc.getDataFromTestDataSheet("Loc_100"), VariableHandler.getProductionOrderNumber());
 		commonFunc.navigateToInventoryMaterialRequest();
 		materialRequestFunc.storeMRNoAndCheckStatusDraftAndPostWithProdNo(VariableHandler.getProductionOrderNumber());
 		materialIssuanceVoucherFunc.verifyWriteBeforeLotQuantityInLotForRawMaterials(FileName, SheetName, StartIndex);
@@ -13289,8 +13289,8 @@ public class ProductionOrderFunctions {
 		completionProductionOrderFunc.clickPendingIconInCompletionProcess();
 		completionProductionOrderFunc
 				.clickMaterialRequestCreationAndSearchProdNo(VariableHandler.getProductionOrderNumber());
-		completionProductionOrderFunc
-				.clickCheckBoxTableAndCreateAndStoreMRNo(VariableHandler.getProductionOrderNumber());
+		completionProductionOrderFunc.clickCheckBoxTableAndCreateAndStoreMRNo(
+				commonFunc.getDataFromTestDataSheet("Loc_100"), VariableHandler.getProductionOrderNumber());
 		commonFunc.navigateToInventoryMaterialRequest();
 		materialRequestFunc.storeMRNoAndCheckStatusDraftAndPostWithProdNo(VariableHandler.getProductionOrderNumber());
 		materialIssuanceVoucherFunc.verifyWriteBeforeLotQuantityInLotForRawMaterials(FileName, SheetName, StartIndex);
@@ -15217,4 +15217,57 @@ public class ProductionOrderFunctions {
 			return false;
 		}
 	}
+
+	/**
+	 * This method used to click select all and create MR
+	 *
+	 * @author Sakthi-GWL
+	 * @param String LocId
+	 * @param String ProdNumber
+	 */
+	public void clickCheckBoxTableAndCreateAndStoreMRNo(String LocId, String ProdNumber) {
+		flag = webDB.waitForElement(CompletionProductionOrderLocators.PendingMRCreateIframe, ElementType.Xpath);
+		if (flag) {
+			webDB.switchToFrame(CompletionProductionOrderLocators.PendingMRCreateIframe, ElementType.Xpath);
+			flag = webDB.waitForElement(CompletionProductionOrderLocators.PendingMRSelectAllBtn(ProdNumber),
+					ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Pending MR Iframe Switched");
+				webDB.moveToElement(CompletionProductionOrderLocators.PendingMRSelectAllBtn(ProdNumber),
+						ElementType.Xpath);
+				webDB.clickAnElement(CompletionProductionOrderLocators.PendingMRSelectAllBtn(ProdNumber),
+						ElementType.Xpath);
+				flag = webDB.waitForElement(CompletionProductionOrderLocators.CreateMRButton, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Pending MR Select All Button Clicked");
+					webDB.moveToElement(CompletionProductionOrderLocators.CreateMRButton, ElementType.Xpath);
+					webDB.clickAnElement(CompletionProductionOrderLocators.CreateMRButton, ElementType.Xpath);
+					commonFunc.searchAndSelectValueInFilters(CompletionProductionOrderLocators.CreateMRLocIdLov, LocId);
+					webDB.waitForElement(CompletionProductionOrderLocators.PendingMRCreateIframe, ElementType.Xpath);
+					webDB.switchToFrame(CompletionProductionOrderLocators.PendingMRCreateIframe, ElementType.Xpath);
+					flag = webDB.waitForElement(CompletionProductionOrderLocators.CreateMROkButton, ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Create MR Button Clicked");
+						webDB.clickAnElement(CompletionProductionOrderLocators.CreateMROkButton, ElementType.Xpath);
+						commonFunc.checkRefreshCellsDisappear();
+						webDB.switchToDefaultContent();
+						flag = webDB.waitForElementUntilGivenTime(CommonUiLocators.PostToastMessage, ElementType.Xpath,
+								60);
+						if (flag) {
+							logs.logging("INFO", "Material Request Created Successfully");
+							String Message = webDB.getTextFromElement(CommonUiLocators.PostToastMessage,
+									ElementType.Xpath);
+							logs.logging("INFO", "Success Message: " + Message);
+							Message = Message.replace("Material Request Created-", "").trim();
+							logs.logging("INFO", "After Split MR No: " + Message);
+							VariableHandler.setMaterialRequestNo(Message);
+							VariableHandler.setMRNumber(Message);
+						}
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
 }

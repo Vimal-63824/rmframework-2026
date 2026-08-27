@@ -117,28 +117,31 @@ public class CommonFunctions {
 	 */
 	@SuppressWarnings("null")
 	public boolean checkRefreshCellsDisappear() {
-		List<WebElement> refreshElements = webDB.getDriver()
-				.findElements(By.xpath(CommonUiLocators.EntryTableRefreshCellImage));
-		List<WebElement> AfterWaitrefreshElements = null;
-		try {
-			for (WebElement element : refreshElements) {
-				WebDriverWait wait = new WebDriverWait(webDB.getDriver(), Duration.ofSeconds(20));
-				wait.until(ExpectedConditions.invisibilityOf(element));
-				if (element.isDisplayed()) {
-					AfterWaitrefreshElements.add(element);
-				}
-			}
-			// TODO WAIT_LOAD_TIME (will remove future)
-			hardWait(1000);
-			flag = AfterWaitrefreshElements.isEmpty();
-			if (!flag) {
-				for (WebElement element : AfterWaitrefreshElements) {
-					WebDriverWait wait = new WebDriverWait(webDB.getDriver(), Duration.ofSeconds(20));
+		if (webDB.verifyIsElementDisplayed("(" + CommonUiLocators.EntryTableRefreshCellImage + ")[1]",
+				ElementType.Xpath)) {
+			List<WebElement> refreshElements = WebDriverBase.getDriver()
+					.findElements(By.xpath(CommonUiLocators.EntryTableRefreshCellImage));
+			List<WebElement> AfterWaitrefreshElements = null;
+			try {
+				for (WebElement element : refreshElements) {
+					WebDriverWait wait = new WebDriverWait(WebDriverBase.getDriver(), Duration.ofSeconds(20));
 					wait.until(ExpectedConditions.invisibilityOf(element));
+					if (element.isDisplayed()) {
+						AfterWaitrefreshElements.add(element);
+					}
 				}
-			}
-		} catch (Exception e) {
+				flag = AfterWaitrefreshElements.isEmpty();
+				if (!flag) {
+					for (WebElement element : AfterWaitrefreshElements) {
+						WebDriverWait wait = new WebDriverWait(WebDriverBase.getDriver(), Duration.ofSeconds(20));
+						wait.until(ExpectedConditions.invisibilityOf(element));
+					}
+				}
+			} catch (Exception e) {
 
+			}
+		} else {
+			hardWait(800);
 		}
 		return flag;
 	}
@@ -286,9 +289,8 @@ public class CommonFunctions {
 			if (flag) {
 				webDB.switchToDefaultContent();
 				checkRefreshCellsDisappear();
-				checkRefreshCellsDisappear();
-				checkRefreshCellsDisappear();
-				List<WebElement> searchBar = webDB.getDriver().findElements(By.xpath(CommonUiLocators.searchBar));
+				List<WebElement> searchBar = WebDriverBase.getDriver()
+						.findElements(By.xpath(CommonUiLocators.searchBar));
 				a: for (int i = 0; i < searchBar.size(); i++) {
 					WebElement element = searchBar.get(i);
 					try {
@@ -296,7 +298,7 @@ public class CommonFunctions {
 							element.clear();
 							flag = fluentWaitClickElement(element);
 							if (flag) {
-								checkRefreshCellsDisappear();
+								element.clear();
 								element.sendKeys(Value);
 								break a;
 							} else {
@@ -310,40 +312,40 @@ public class CommonFunctions {
 				}
 				Assert.assertTrue(flag);
 				checkRefreshCellsDisappear();
-				checkRefreshCellsDisappear();
 				try {
-					List<WebElement> SearchBarIcon = webDB.getDriver()
-							.findElements(By.xpath(CommonUiLocators.SearchBarIcon));
-					a: for (int i = 0; i < SearchBarIcon.size(); i++) {
-						WebElement element = SearchBarIcon.get(i);
-						if (element.isDisplayed()) {
-							((JavascriptExecutor) webDB.getDriver()).executeScript("arguments[0].scrollIntoView(true);",
-									element);
-							element.click();
-							break a;
-						} else {
-							flag = false;
+					if (webDB.verifyIsElementDisplayed("(" + CommonUiLocators.SearchBarIcon + ")[1]",
+							ElementType.Xpath)) {
+						List<WebElement> SearchBarIcon = WebDriverBase.getDriver()
+								.findElements(By.xpath(CommonUiLocators.SearchBarIcon));
+						a: for (int i = 0; i < SearchBarIcon.size(); i++) {
+							WebElement element = SearchBarIcon.get(i);
+							if (element.isDisplayed()) {
+								((JavascriptExecutor) WebDriverBase.getDriver())
+										.executeScript("arguments[0].scrollIntoView(true);", element);
+								element.click();
+								break a;
+							} else {
+								flag = false;
+							}
 						}
+					} else {
+						checkRefreshCellsDisappear();
+						webDB.pressEnterKey();
 					}
 				} catch (Exception e) {
 					logs.logging("INFO", "failed to locate and click search bar icon Exception is: " + e);
 					flag = false;
 				}
-				hardWait(1000);
 				checkRefreshCellsDisappear();
-				checkRefreshCellsDisappear();
-
-				List<WebElement> Elements = webDB.getDriver()
+				List<WebElement> Elements = WebDriverBase.getDriver()
 						.findElements(By.xpath(CommonUiLocators.convertListOfXPath(Value)));
 				for (WebElement webElement : Elements) {
 					try {
 						if (webElement.isDisplayed() && webElement.getText().trim().equalsIgnoreCase(Value.trim())) {
-							((JavascriptExecutor) webDB.getDriver()).executeScript("arguments[0].scrollIntoView(true);",
-									webElement);
+							((JavascriptExecutor) WebDriverBase.getDriver())
+									.executeScript("arguments[0].scrollIntoView(true);", webElement);
 							try {
-//								((JavascriptExecutor) webDB.getDriver()).executeScript("arguments[0].click();",
-//										webElement);
-								Actions action = new Actions(webDB.getDriver());
+								Actions action = new Actions(WebDriverBase.getDriver());
 								action.moveToElement(webElement).build().perform();
 							} catch (Exception e) {
 							}
@@ -353,11 +355,10 @@ public class CommonFunctions {
 						}
 					} catch (Exception e) {
 						flag = false;
-//						logs.loggingconsole("INFO", e.toString());
 					}
 				}
 			}
-			List<WebElement> searchBar = webDB.getDriver().findElements(By.xpath(CommonUiLocators.searchBar));
+			List<WebElement> searchBar = WebDriverBase.getDriver().findElements(By.xpath(CommonUiLocators.searchBar));
 			for (WebElement element : searchBar) {
 				try {
 					if (element.isDisplayed()) {
@@ -377,7 +378,7 @@ public class CommonFunctions {
 	}
 
 	public boolean fluentWaitClickElement(WebElement element) {
-		Wait<WebDriver> wait = new FluentWait<WebDriver>(webDB.getDriver()).withTimeout(Duration.ofSeconds(10))
+		Wait<WebDriver> wait = new FluentWait<WebDriver>(WebDriverBase.getDriver()).withTimeout(Duration.ofSeconds(10))
 				.pollingEvery(Duration.ofSeconds(2)).ignoring(StaleElementReferenceException.class);
 		return wait.until(ExpectedConditions.elementToBeClickable(element)).isEnabled();
 	}
@@ -591,6 +592,7 @@ public class CommonFunctions {
 		webDB.switchToMainTab();
 //		navigateToHomePage();
 		VariableHandler.setSessionID(null);
+		VariableHandler.setSessionOpened(false);
 	}
 
 	/**
