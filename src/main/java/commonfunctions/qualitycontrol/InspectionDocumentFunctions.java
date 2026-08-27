@@ -1915,7 +1915,7 @@ public class InspectionDocumentFunctions {
 							flag = webDB.waitForElement(DirectGrnPageLocators.DefectQtyInput, ElementType.Xpath);
 							if (flag) {
 								webDB.clearText(DirectGrnPageLocators.DefectQtyInput, ElementType.Xpath);
-								commonFunc.hardWait(1000);
+								commonFunc.hardWait(2000);
 								webDB.sendTextToAnElement(DirectGrnPageLocators.DefectQtyInput, RejectQty,
 										ElementType.Xpath);
 								logs.logging("INFO", "Reject Quantity Is Entered:" + RejectQty);

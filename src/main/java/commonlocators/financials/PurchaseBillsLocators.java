@@ -294,15 +294,15 @@ public class PurchaseBillsLocators {
 	/** @locatorType Xpath */
 	public static final String CloseButton = "//*[@id='t_PageBody']/div[10]/div[1]/button";
 	/** @locatorType Xpath */
-	public static final String BillDocField = "//*[@id='ig_line1_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[2]";
+	public static final String BillDocField = "//*[@id=\"ig_line1_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[2]";
 	/** @locatorType Xpath */
-	public static final String PayamountField = "//*[@id='ig_line1_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[4]";
+	public static final String PayamountField = "//*[@id=\"ig_line1_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[4]";
 	/** @locatorType Xpath */
 	public static final String AdjButton = "//label[text()='Adjustments']";
 	/** @locatorType Xpath */
 	public static final String LoadButton = "//button[@id='loadadj']";
 	/** @locatorType Xpath */
-	public static final String CheckBoxAdjTap = "//*[@id='2081253681608860033_orig']/tbody/tr[2]/td[11]";
+	public static final String CheckBoxAdjTap = "//*[@id=\"2081253681608860033_orig\"]/tbody/tr[2]/td[11]";
 	/** @locatorType Xpath */
 	public static final String FrameAdjTap = "//iframe[@title='Advance Adjustment ']";
 	/** @locatorType Xpath */

@@ -788,6 +788,7 @@ public class SubcontractOrderFunctions {
 		webDB.switchToFrame(SubcontractOrderLocators.SubcontractFindIframe, ElementType.Xpath);
 		flag = webDB.waitForElement(SubcontractOrderLocators.SubcontractCreateTickIcon, ElementType.Xpath);
 		if (flag) {
+			commonFunc.hardWait(2000);
 			webDB.clickAnElement(SubcontractOrderLocators.SubcontractCreateTickIcon, ElementType.Xpath);
 			webDB.switchToDefaultContent();
 			commonFunc.checkRefreshCellsDisappear();
@@ -882,7 +883,7 @@ public class SubcontractOrderFunctions {
 			verifyAddTableSpecs(SubcontractOrderLocators.SubcontractQtyField,
 					SubcontractOrderLocators.SubcontractQtyInput, SCOQty);
 			webDB.pressTabKey();
-			commonFunc.hardWait(1000);
+			commonFunc.hardWait(2000);
 			flag = webDB.waitForElement(SubcontractOrderLocators.SubcontractLineSaveIcon, ElementType.Xpath);
 			if (flag) {
 				webDB.clickAnElement(SubcontractOrderLocators.SubcontractLineSaveIcon, ElementType.Xpath);
