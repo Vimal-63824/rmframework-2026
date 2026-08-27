@@ -94,10 +94,8 @@ public class OpenPoRcFunctions {
 	public void verifyCreateStandardDomesticWithStockAndSupplierSimilarUOM() {
 //		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 //				"AdminUsername");
-
-		VariableHandler.setItemName("ROAU-DIS-075857");
-//		commonFunc.navigateItemPage();
-//		pricelistPageFunctions.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("SimItem_ID"));
+		commonFunc.navigateItemPage();
+		pricelistPageFunctions.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("SimItem_ID"));
 		commonFunc.navigateOpenPORCPage();
 		verifyClickOpenPORcButton();
 		verifyCreateOpenPoDoc(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -714,8 +712,8 @@ public class OpenPoRcFunctions {
 			webDB.doubleClickAnElement(OpenPoRcLocators.LineCancelButton, ElementType.Xpath);
 			commonFunc.hardWait(2000);
 //			webDB.pressEnterKey();
-			webDB.switchToAlertAccept(5);
-			commonFunc.hardWait(7000);
+//			webDB.switchToAlertAccept(5);
+//			commonFunc.hardWait(7000);
 //			webDB.switchToDefaultContent();
 //			commonFunc.checkRefreshCellsDisappear();
 			flag = webDB.waitForElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
@@ -3042,11 +3040,16 @@ public class OpenPoRcFunctions {
 			webDB.moveToElement(OpenPoRcLocators.AmendItemTable(), ElementType.Xpath);
 			webDB.moveToElement(OpenPoRcLocators.LineCancelButton, ElementType.Xpath);
 			webDB.clickAnElement(OpenPoRcLocators.LineCancelButton, ElementType.Xpath);
-			flag = webDB.waitForElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+			flag = webDB.waitForElement(OpenPoRcLocators.OkButton, ElementType.Xpath);
 			if (flag) {
-				logs.logging("INFO", "Toast Message Displayed, Line Deleted Successfully");
-				if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
-					webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+				webDB.moveToElement(OpenPoRcLocators.OkButton, ElementType.Xpath);
+				webDB.clickAnElement(OpenPoRcLocators.OkButton, ElementType.Xpath);
+				flag = webDB.waitForElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Toast Message Displayed, Line Deleted Successfully");
+					if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+						webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+					}
 				}
 			}
 		}

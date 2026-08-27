@@ -360,9 +360,9 @@ public class GrnLocators {
 	/** @locatorType Xpath */
 	public static final String LotSerialRecptQtyTable = "//div[@id='grn_lot_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[8]";
 	/** @locatorType Xpath */
-	public static final String ReceptInput = "//input[@id='C4768865118094179423']";
+	public static final String ReceptInput = LotSerialRecptQtyTable + "//input";
 	/** @locatorType Xpath */
-	public static final String LineSaveButton = "//button[@id='B4802463974728134482']";
+	public static final String LineSaveButton = "(//button[@title='Save'])[3]";
 
 	/** @locatorType Xpath */
 	public static final String GrnDocNo(String DocNo) {

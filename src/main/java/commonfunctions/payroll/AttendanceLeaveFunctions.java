@@ -1472,7 +1472,7 @@ public class AttendanceLeaveFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyLeaveAccrualUploadMigrationWithTemplates() {
-		LocalDate date1 = LocalDate.now();
+		LocalDate date1 = LocalDate.now().plusDays(13);
 		DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("MMMM");
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		String Month = date1.format(formatter1).toUpperCase();
