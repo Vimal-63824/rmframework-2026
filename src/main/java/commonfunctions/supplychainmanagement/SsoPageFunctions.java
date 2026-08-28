@@ -547,6 +547,7 @@ public class SsoPageFunctions {
 	 * @author Durai-RMITS
 	 */
 	public void verifyFetchOpenPoButton() {
+		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.hardWait(4000);
 		flag = webDB.waitForElement(SsoPageLocators.FetchOPOBtn, ElementType.Xpath);
 		if (flag) {

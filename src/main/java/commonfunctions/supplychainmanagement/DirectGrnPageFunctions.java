@@ -327,6 +327,7 @@ public class DirectGrnPageFunctions {
 							DirectGrnPageLocators.GrnLineRcpQtyInput, QTY);
 					commonFunc.verifyAddTableSpecs(DirectGrnPageLocators.GrnLineCost,
 							DirectGrnPageLocators.GrnLineCostInput, COST);
+					commonFunc.checkRefreshCellsDisappear();
 					verifyClickingSaveLine();
 					verifyAddingDiscount(i, SheetName);
 				}
@@ -1200,6 +1201,7 @@ public class DirectGrnPageFunctions {
 					verifyClickingSuppQuantity(QTY);
 					verifyClickingReceiptQuantity(QTY);
 					verifyClickingCost(COST);
+					commonFunc.checkRefreshCellsDisappear();
 					verifyClickingSaveLine();
 					verifyUnitcostAndDiscountAmountForOpenPoItemForGrn(i, SheetName,
 							commonFunc.getDataFromTestDataSheet("OpenPOSupplier"));
