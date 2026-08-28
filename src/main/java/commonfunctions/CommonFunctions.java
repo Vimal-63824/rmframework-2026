@@ -289,8 +289,9 @@ public class CommonFunctions {
 			if (flag) {
 				webDB.switchToDefaultContent();
 				checkRefreshCellsDisappear();
-				List<WebElement> searchBar = WebDriverBase.getDriver()
-						.findElements(By.xpath(CommonUiLocators.searchBar));
+				checkRefreshCellsDisappear();
+				checkRefreshCellsDisappear();
+				List<WebElement> searchBar = webDB.getDriver().findElements(By.xpath(CommonUiLocators.searchBar));
 				a: for (int i = 0; i < searchBar.size(); i++) {
 					WebElement element = searchBar.get(i);
 					try {
@@ -298,7 +299,7 @@ public class CommonFunctions {
 							element.clear();
 							flag = fluentWaitClickElement(element);
 							if (flag) {
-								element.clear();
+								checkRefreshCellsDisappear();
 								element.sendKeys(Value);
 								break a;
 							} else {
@@ -312,40 +313,40 @@ public class CommonFunctions {
 				}
 				Assert.assertTrue(flag);
 				checkRefreshCellsDisappear();
+				checkRefreshCellsDisappear();
 				try {
-					if (webDB.verifyIsElementDisplayed("(" + CommonUiLocators.SearchBarIcon + ")[1]",
-							ElementType.Xpath)) {
-						List<WebElement> SearchBarIcon = WebDriverBase.getDriver()
-								.findElements(By.xpath(CommonUiLocators.SearchBarIcon));
-						a: for (int i = 0; i < SearchBarIcon.size(); i++) {
-							WebElement element = SearchBarIcon.get(i);
-							if (element.isDisplayed()) {
-								((JavascriptExecutor) WebDriverBase.getDriver())
-										.executeScript("arguments[0].scrollIntoView(true);", element);
-								element.click();
-								break a;
-							} else {
-								flag = false;
-							}
+					List<WebElement> SearchBarIcon = webDB.getDriver()
+							.findElements(By.xpath(CommonUiLocators.SearchBarIcon));
+					a: for (int i = 0; i < SearchBarIcon.size(); i++) {
+						WebElement element = SearchBarIcon.get(i);
+						if (element.isDisplayed()) {
+							((JavascriptExecutor) webDB.getDriver()).executeScript("arguments[0].scrollIntoView(true);",
+									element);
+							element.click();
+							break a;
+						} else {
+							flag = false;
 						}
-					} else {
-						checkRefreshCellsDisappear();
-						webDB.pressEnterKey();
 					}
 				} catch (Exception e) {
 					logs.logging("INFO", "failed to locate and click search bar icon Exception is: " + e);
 					flag = false;
 				}
+				hardWait(1000);
 				checkRefreshCellsDisappear();
-				List<WebElement> Elements = WebDriverBase.getDriver()
+				checkRefreshCellsDisappear();
+ 
+				List<WebElement> Elements = webDB.getDriver()
 						.findElements(By.xpath(CommonUiLocators.convertListOfXPath(Value)));
 				for (WebElement webElement : Elements) {
 					try {
 						if (webElement.isDisplayed() && webElement.getText().trim().equalsIgnoreCase(Value.trim())) {
-							((JavascriptExecutor) WebDriverBase.getDriver())
-									.executeScript("arguments[0].scrollIntoView(true);", webElement);
+							((JavascriptExecutor) webDB.getDriver()).executeScript("arguments[0].scrollIntoView(true);",
+									webElement);
 							try {
-								Actions action = new Actions(WebDriverBase.getDriver());
+//								((JavascriptExecutor) webDB.getDriver()).executeScript("arguments[0].click();",
+//										webElement);
+								Actions action = new Actions(webDB.getDriver());
 								action.moveToElement(webElement).build().perform();
 							} catch (Exception e) {
 							}
@@ -355,10 +356,11 @@ public class CommonFunctions {
 						}
 					} catch (Exception e) {
 						flag = false;
+//						logs.loggingconsole("INFO", e.toString());
 					}
 				}
 			}
-			List<WebElement> searchBar = WebDriverBase.getDriver().findElements(By.xpath(CommonUiLocators.searchBar));
+			List<WebElement> searchBar = webDB.getDriver().findElements(By.xpath(CommonUiLocators.searchBar));
 			for (WebElement element : searchBar) {
 				try {
 					if (element.isDisplayed()) {
@@ -376,7 +378,7 @@ public class CommonFunctions {
 		}
 		Assert.assertTrue(flag);
 	}
-
+ 
 	public boolean fluentWaitClickElement(WebElement element) {
 		Wait<WebDriver> wait = new FluentWait<WebDriver>(WebDriverBase.getDriver()).withTimeout(Duration.ofSeconds(10))
 				.pollingEvery(Duration.ofSeconds(2)).ignoring(StaleElementReferenceException.class);
