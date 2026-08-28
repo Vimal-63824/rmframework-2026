@@ -1037,11 +1037,16 @@ public class PurchaseOrderFunctions {
 		if (flag) {
 			webDB.moveToElement(PurchaseOrderPageLocators.CancelButton, ElementType.Xpath);
 			webDB.clickAnElement(PurchaseOrderPageLocators.CancelButton, ElementType.Xpath);
-			flag = webDB.waitForElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+			flag = webDB.waitForElement(PurchaseOrderPageLocators.ContractPriceOkButton, ElementType.Xpath);
 			if (flag) {
-				logs.logging("INFO", "Toast Message Displayed, PO Cancelled Successfully");
-				if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
-					webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+				webDB.moveToElement(PurchaseOrderPageLocators.ContractPriceOkButton, ElementType.Xpath);
+				webDB.clickAnElement(PurchaseOrderPageLocators.ContractPriceOkButton, ElementType.Xpath);
+				flag = webDB.waitForElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Toast Message Displayed, PO Cancelled Successfully");
+					if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+						webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+					}
 				}
 			}
 		}
@@ -6169,7 +6174,7 @@ public class PurchaseOrderFunctions {
 		if (flag) {
 			webDB.moveToElement(PurchaseOrderPageLocators.POPageItemTable(), ElementType.Xpath);
 			webDB.doubleClickAnElement(PurchaseOrderPageLocators.POPageItemTable(), ElementType.Xpath);
-			flag = webDB.waitForElement(PurchaseOrderPageLocators.ItemSelectButton, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
 			commonFunc.searchAndSelectValueInFilters(PurchaseOrderPageLocators.ItemSelectButton, ITEM_NAME);
 		}
 		assertTrue(flag);

@@ -70,13 +70,13 @@ public class InspectionPlanLocators {
 	/** @locatorType Xpath */
 	public static final String StdValTextTableInput = "(//div[@id='ig_line_ig_grid_vc']//table/tbody//td[6])[1]//input";
 	/** @locatorType Xpath */
-	public static final String StdOperatorData = "(//div[@id='ig_line_ig_grid_vc']//table/tbody//td[7])[1]";
+	public static final String StdOperatorData = "((//table[@data-testid='ig_line_Result_Data'])[2]/tbody//td[8])[1]";
 	/** @locatorType Xpath */
-	public static final String StdOperatorSelect = "(//div[@id='ig_line_ig_grid_vc']//table/tbody//td[7])[1]//select";
+	public static final String StdOperatorSelect = "((//table[@data-testid='ig_line_Result_Data'])[2]/tbody//td[8])[1]//select";
 	/** @locatorType Xpath */
-	public static final String SpecValueTableData = "(//div[@id='ig_line_ig_grid_vc']//table/tbody//td[8])[1]";
+	public static final String SpecValueTableData = "(//div[@id='ig_line_ig_grid_vc']//table/tbody//td[9])[1]";
 	/** @locatorType Xpath */
-	public static final String SpecValueTableInput = "(//div[@id='ig_line_ig_grid_vc']//table/tbody//td[8])[1]//input";
+	public static final String SpecValueTableInput = "(//div[@id='ig_line_ig_grid_vc']//table/tbody//td[9])[1]//input";
 	/** @locatorType Xpath */
 	public static final String LowerMinTableData = "(//div[@id='ig_line_ig_grid_vc']//table/tbody//td[12])[1]";
 	/** @locatorType Xpath */
@@ -86,9 +86,9 @@ public class InspectionPlanLocators {
 	/** @locatorType Xpath */
 	public static final String HigherMaxTableInput = "(//div[@id='ig_line_ig_grid_vc']//table/tbody//td[13])[1]//input";
 	/** @locatorType Xpath */
-	public static final String AttributeSpecTableData = "(//div[@id='ig_line_ig_grid_vc']//table/tbody//td[13])[1]";
+	public static final String AttributeSpecTableData = "(//div[@id='ig_line_ig_grid_vc']//table/tbody//td[14])[1]";
 	/** @locatorType Xpath */
-	public static final String AttributeSpecTableLovButton = "(//div[@id='ig_line_ig_grid_vc']//table/tbody//td[13])[1]//button";
+	public static final String AttributeSpecTableLovButton = "(//div[@id='ig_line_ig_grid_vc']//table/tbody//td[14])[1]//button";
 	/** @locatorType Xpath */
 	public static final String NoOfSampleData = "(//div[@id='ig_line_ig_grid_vc']//table/tbody//td[11])[1]";
 	/** @locatorType Xpath */

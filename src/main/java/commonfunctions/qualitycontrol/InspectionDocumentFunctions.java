@@ -1965,7 +1965,8 @@ public class InspectionDocumentFunctions {
 		waitingForApproval();
 		String alertText = VariableHandler.getIDAlertMessage();
 		logs.logging("INFO", "Alert text: " + alertText);
-		String pattern = "Pend\\. Inspection Request Moved\\s*-\\s*[A-Za-z]+-\\d{4}-\\d{4}\\s*~\\s*[A-Za-z]+-\\d{4}-\\d{4}";
+//		String pattern = "Pend\\. Inspection Request Moved\\s*-\\s*[A-Za-z]+-\\d{4}-\\d{4}\\s*~\\s*[A-Za-z]+-\\d{4}-\\d{4}";
+		String pattern = "Pend\\.\\s*Inspection Request Moved\\.\\s*:\\s*[A-Za-z]+-\\d{4}-\\d{4}\\s*(?:to|~)\\s*[A-Za-z]+-\\d{4}-\\d{4}";
 		if (alertText.matches(".*" + pattern + ".*")) {
 			documentSearchAndSelectLovForFindPage();
 //			commonFunc.logoutUser();

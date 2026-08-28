@@ -5419,8 +5419,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("PR_General"),
 				webDB.getDataFromProperties("CloseshortPOADissimilarPRTOPOSheet"),
 				commonFunc.getDataFromTestDataSheet("Prefix_PR100"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername-Admin");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -5447,7 +5447,7 @@ public class POAmendmentFunctions {
 		}
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
-		commonFunc.logoutUser();
+//		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
@@ -5456,8 +5456,8 @@ public class POAmendmentFunctions {
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
+//			flag = commonFunc.logoutUser();
+//			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 
@@ -5475,7 +5475,7 @@ public class POAmendmentFunctions {
 					}
 				}
 			}
-			flag = commonFunc.logoutUser();
+//			flag = commonFunc.logoutUser();
 		}
 
 	}
@@ -5573,11 +5573,15 @@ public class POAmendmentFunctions {
 			flag = webDB.waitForElement(POAmendmentLocators.CancelDoc, ElementType.Xpath);
 			if (flag) {
 				webDB.clickAnElement(POAmendmentLocators.CancelDoc, ElementType.Xpath);
-				flag = webDB.waitForElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+				flag = webDB.waitForElement(POAmendmentLocators.OKButtonLast, ElementType.Xpath);
 				if (flag) {
-					logs.logging("INFO", "Toast Message Displayed, POA Cancelled Successfully");
-					if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
-						webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+					webDB.clickAnElement(POAmendmentLocators.OKButtonLast, ElementType.Xpath);
+					flag = webDB.waitForElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Toast Message Displayed, POA Cancelled Successfully");
+						if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+							webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+						}
 					}
 				}
 			}
@@ -11915,7 +11919,7 @@ public class POAmendmentFunctions {
 				System.getProperty("HariUsername"));
 		commonFunc.navigatePoAmendmentPage();
 		verifyValidatePOAStatus(VariableHandler.getPOANumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		flag = commonFunc.logoutUser();
+//		flag = commonFunc.logoutUser();
 		assertTrue(flag);
 	}
 

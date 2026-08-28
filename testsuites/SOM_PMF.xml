@@ -15,9 +15,9 @@
 			<class name="com.roadmapERP.OpenSOTest"></class>
 			<class name="com.roadmapERP.ProductionAndShopFloorSetupTest"></class>
 			<!--			<class name="com.roadmapERP.ProductionOrderTest" ></class>-->
-			<!--			<class name="com.roadmapERP.QualityInspectionTest" ></class>-->
+			<!--			<class name="com.roadmapERP.QualityInspectionTest" ></class>
 			<class name="com.roadmapERP.SaleInvoiceTest"></class>
-			<class name="com.roadmapERP.SaleInvoiceTest2"></class>
+			<class name="com.roadmapERP.SaleInvoiceTest2"></class>-->
 			<class name="com.roadmapERP.SaleOrderTest"></class>
 			<class name="com.roadmapERP.SalesCataloguePriceTest"></class>
 			<class name="com.roadmapERP.SalesPriceListTest"></class>

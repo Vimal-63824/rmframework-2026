@@ -5859,10 +5859,10 @@ public class DirectGrnPageFunctions {
 						}
 
 					}
-					flag = webDB.waitForElement(GrnLocators.LotSerialItemSearch, ElementType.Xpath);
-					if (flag) {
-						webDB.clickAnElement(GrnLocators.LotSerialItemSearch, ElementType.Xpath);
-					}
+//					flag = webDB.waitForElement(GrnLocators.LotSerialItemSearch, ElementType.Xpath);
+//					if (flag) {
+//						webDB.clickAnElement(GrnLocators.LotSerialItemSearch, ElementType.Xpath);
+//					}
 				}
 				lotSerialQtyApportion();
 
@@ -6808,8 +6808,8 @@ public class DirectGrnPageFunctions {
 				webDB.getDataFromProperties("DGDUomWIPlImpSheet"));
 		verifyDirectGRNStockQtyAndCostForSourceWH(webDB.getDataFromProperties("DirectGrnSheet"),
 				webDB.getDataFromProperties("DGDUomWIPlImpSheet"));
-		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
-				"DuraiUsername");
+//		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
+//				"DuraiUsername");
 		commonFunc.naviagteGrnPage();
 		verifyGrnAdd();
 		verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("L49"), commonFunc.getDataFromTestDataSheet("GRNPM"),

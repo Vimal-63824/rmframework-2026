@@ -1434,6 +1434,9 @@ public class GateEntryPageFunctions {
 					webDB.waitForElement(GateEntryPageLocators.GateEntryPoSearchButton, ElementType.Xpath);
 					if (flag) {
 						flag = webDB.clickAnElement(GateEntryPageLocators.GateEntryPoSearchButton, ElementType.Xpath);
+						commonFunc.checkRefreshCellsDisappear();
+						commonFunc.checkRefreshCellsDisappear();
+						webDB.moveToElement(GateEntryPageLocators.GateEntryPendingPoSelectAll, ElementType.Xpath);
 						webDB.waitUntilElementToNotBeStale(GateEntryPageLocators.GateEntryPendingPoSelectAll,
 								ElementType.Xpath);
 						logs.logging("INFO", "Document Search And Selected Successfully");
