@@ -1,5 +1,7 @@
 package commonlocators.supplychainmanagement;
 
+import commonfunctions.CommonFunctions;
+
 public class SubcontractOrderLocators {
 
 	/** @locatorType XPATH */
@@ -512,4 +514,18 @@ public class SubcontractOrderLocators {
 
 	/** @Locator XPATH */
 	public static final String SCO_Pend_SelectALl = "(//input[@id='check_all'])[1]";
+	/** @Locator XPATH */
+	public static final String SCO_LineTable = "(//table[@data-testid='R6676110280644805169_Result_Data'])[2]";
+	/** @locatorType Xpath */
+	public static final String SCOPageItemTable() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(SCO_LineTable, "Item");
+	}
+	/** @locatorType Xpath */
+	public static final String SCOPageOrdQtyTable() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(SCO_LineTable, "Ordered Qty.");
+	}
+	/** @locatorType Xpath */
+	public static final String SCOPageGLAcctTable() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(SCO_LineTable, "GL Acct.");
+	}
 }

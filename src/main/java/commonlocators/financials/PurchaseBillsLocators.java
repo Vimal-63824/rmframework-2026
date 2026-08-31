@@ -1,5 +1,6 @@
 package commonlocators.financials;
 
+import commonfunctions.CommonFunctions;
 /**
  * @author Deepan-GWL, Sakthi
  * @company Galaxy Weblinks Feburary 12, 2025
@@ -74,7 +75,7 @@ public class PurchaseBillsLocators {
 	/** @locatorType Xpath */
 	public static final String AddButton = "//button[@data-testid='Add']";
 	/** @locatorType Xpath */
-	public static final String PendingFrame = "//iframe[@title='Purchase Bills']";
+	public static final String PendingFrame = "//iframe[@title='Create Purchase Bills']";
 	/** @locatorType Xpath */
 	public static final String SubVouTypeLov = "//button[@id='P11613101017_SUPHD_GRN_REFER_lov_btn']";
 	/** @locatorType Xpath */
@@ -374,5 +375,30 @@ public class PurchaseBillsLocators {
 	public static final String Po_Inv_Prefix_Field = "//input[@id='P116131005_INV_PFX']";
 	/** @locatorType Xpath */
 	public static final String Pending_Prefix_Lov_button = "//input[contains(@data-testid,'INV_PFX')]/following-sibling::button";
+	
+	/** @locatorType Xpath */
+	public static final String PurchaseBillsTransLoc() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(GlAccDescField, "GL Acct. Desc.");
+	}
+	
+	/** @locatorType Xpath */
+	public static final String PurchaseBillsTransLocunitprice() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(GlAccDescField, "Unit Cost");
+	}
+	
+	/** @locatorType Xpath */
+	public static final String PurchaseBillsTransLocHsnCode() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(GlAccDescField, "HSN/SAC Code");
+	}
+
+	/** @locatorType Xpath */
+	public static final String PurchaseBillsTransLocGstType() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(GlAccDescField, "Type");
+	}
+	
+	/** @locatorType Xpath */
+	public static final String PurchaseBillsTransLocGstInelSection() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(GlAccDescField, "Inel. Section");
+	}
 
 }
