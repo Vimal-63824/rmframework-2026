@@ -135,12 +135,12 @@ public class CompletionProductionOrderFunctions {
 		if (flag) {
 			webDB.moveToElement(CompletionProductionOrderLocators.PendingSearchBtn, ElementType.Xpath);
 			webDB.clickAnElement(CompletionProductionOrderLocators.PendingSearchBtn, ElementType.Xpath);
-			flag = webDB.waitForElement(CompletionProductionOrderLocators.PendingProdOrder_ProdNoTableData,
+			flag = webDB.waitForElement(CompletionProductionOrderLocators.PendingProdOrder_ProdNoTableData(),
 					ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Searched with Production Order No: " + ProdNo);
 				String DisplayProdNo = webDB.getTextFromElement(
-						CompletionProductionOrderLocators.PendingProdOrder_ProdNoTableData, ElementType.Xpath);
+						CompletionProductionOrderLocators.PendingProdOrder_ProdNoTableData(), ElementType.Xpath);
 				flag = DisplayProdNo.contains(ProdNo);
 				if (flag) {
 					logs.logging("INFO", "Filtered Successfully with Production Order No: " + DisplayProdNo);
@@ -161,19 +161,19 @@ public class CompletionProductionOrderFunctions {
 	public void validateItemAndProcessInPendingProdOrderTable(String Item, String Process) {
 		switchToPendingProdOrderIframe();
 		commonFunc.hardWait(2000);
-		flag = webDB.waitForElement(CompletionProductionOrderLocators.PendingProdOrder_ItemTableData,
+		flag = webDB.waitForElement(CompletionProductionOrderLocators.PendingProdOrder_ItemTableData(),
 				ElementType.Xpath);
 		if (flag) {
-			webDB.moveToElement(CompletionProductionOrderLocators.PendingProdOrder_ItemTableData, ElementType.Xpath);
+			webDB.moveToElement(CompletionProductionOrderLocators.PendingProdOrder_ItemTableData(), ElementType.Xpath);
 			String DisplayItem = webDB.getTextFromElement(
-					CompletionProductionOrderLocators.PendingProdOrder_ItemTableData, ElementType.Xpath);
+					CompletionProductionOrderLocators.PendingProdOrder_ItemTableData(), ElementType.Xpath);
 			logs.logging("INFO", "Expected Item: " + Item);
 			logs.logging("INFO", "Displayed Item: " + DisplayItem);
 			flag = DisplayItem.equalsIgnoreCase(Item);
 			if (flag) {
 				logs.logging("INFO", "Validated Displayed Item is Matched in Pending Production Order table data");
 				String DisplayProcess = webDB.getTextFromElement(
-						CompletionProductionOrderLocators.PendingProdOrder_ProcessTableData, ElementType.Xpath);
+						CompletionProductionOrderLocators.PendingProdOrder_ProcessTableData(), ElementType.Xpath);
 				logs.logging("INFO", "Expected Process: " + Process);
 				logs.logging("INFO", "Displayed Process: " + DisplayProcess);
 				flag = DisplayProcess.equalsIgnoreCase(Process);
@@ -415,21 +415,21 @@ public class CompletionProductionOrderFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyProductionOrderPendingQueueInside(String ExpectedProcessName) {
-		flag = webDB.waitForElement(CompletionProductionOrderLocators.OrderQty, ElementType.Xpath);
+		flag = webDB.waitForElement(CompletionProductionOrderLocators.OrderQty(), ElementType.Xpath);
 		if (flag) {
-			String ProcessName = webDB.getTextFromElement(CompletionProductionOrderLocators.ProcessName,
+			String ProcessName = webDB.getTextFromElement(CompletionProductionOrderLocators.ProcessName(),
 					ElementType.Xpath);
 			logs.logging("INFO", "Process Name Is: " + ProcessName);
 			flag = ProcessName.equals(ExpectedProcessName);
 			if (flag) {
 				logs.logging("INFO", "Verified Process Name SuccessFully");
-				String OrderQty = webDB.getTextFromElement(CompletionProductionOrderLocators.OrderQty,
+				String OrderQty = webDB.getTextFromElement(CompletionProductionOrderLocators.OrderQty(),
 						ElementType.Xpath);
 				logs.logging("INFO", "Ordered Quantity Is: " + OrderQty);
-				String QueueQty = webDB.getTextFromElement(CompletionProductionOrderLocators.QueueQty,
+				String QueueQty = webDB.getTextFromElement(CompletionProductionOrderLocators.QueueQty(),
 						ElementType.Xpath);
 				logs.logging("INFO", "Queue Quantity Is: " + QueueQty);
-				String CompQty = webDB.getDomPropertyFromElement(CompletionProductionOrderLocators.CompQty,
+				String CompQty = webDB.getDomPropertyFromElement(CompletionProductionOrderLocators.CompQty(),
 						ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
 				logs.logging("INFO", "Completion Qunatity Is: " + CompQty);
 				flag = OrderQty.equals(QueueQty);
@@ -483,12 +483,12 @@ public class CompletionProductionOrderFunctions {
 			if (flag) {
 				webDB.clickAnElement(CompletionProductionOrderLocators.PendingProdOrderSearchGoBtn, ElementType.Xpath);
 				commonFunc.hardWait(2000);
-				flag = webDB.waitForElement(CompletionProductionOrderLocators.PendingProdOrder_ProdNoTableData,
+				flag = webDB.waitForElement(CompletionProductionOrderLocators.PendingProdOrder_ProdNoTableData(),
 						ElementType.Xpath);
 				if (flag) {
 					logs.logging("INFO", "Searched with Production Order No: " + ProdNo);
 					String DisplayProdNo = webDB.getTextFromElement(
-							CompletionProductionOrderLocators.PendingProdOrder_ProdNoTableData, ElementType.Xpath);
+							CompletionProductionOrderLocators.PendingProdOrder_ProdNoTableData(), ElementType.Xpath);
 					flag = DisplayProdNo.equalsIgnoreCase(ProdNo);
 					if (flag) {
 						logs.logging("INFO", "Filtered Successfully with Production Order No: " + DisplayProdNo);
@@ -510,24 +510,24 @@ public class CompletionProductionOrderFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyProductionOrderPendingQueueAfterInsideProcess(String ExpectedProcessName) {
-		flag = webDB.waitForElement(CompletionProductionOrderLocators.OrderQty, ElementType.Xpath);
+		flag = webDB.waitForElement(CompletionProductionOrderLocators.OrderQty(), ElementType.Xpath);
 		if (flag) {
-			String ProcessName = webDB.getTextFromElement(CompletionProductionOrderLocators.ProcessName,
+			String ProcessName = webDB.getTextFromElement(CompletionProductionOrderLocators.ProcessName(),
 					ElementType.Xpath);
 			logs.logging("INFO", "Process Name Is: " + ProcessName);
 			flag = ProcessName.equals(ExpectedProcessName);
 			if (flag) {
 				logs.logging("INFO", "Verified Process Name SuccessFully");
-				String OrderQty = webDB.getTextFromElement(CompletionProductionOrderLocators.OrderQty,
+				String OrderQty = webDB.getTextFromElement(CompletionProductionOrderLocators.OrderQty(),
 						ElementType.Xpath);
 				logs.logging("INFO", "Ordered Quantity Is: " + OrderQty);
-				String QueueQty = webDB.getTextFromElement(CompletionProductionOrderLocators.QueueQty,
+				String QueueQty = webDB.getTextFromElement(CompletionProductionOrderLocators.QueueQty(),
 						ElementType.Xpath);
 				logs.logging("INFO", "Queue Quantity Is: " + QueueQty);
-				String InsideQty = webDB.getTextFromElement(CompletionProductionOrderLocators.InsideQty,
+				String InsideQty = webDB.getTextFromElement(CompletionProductionOrderLocators.InsideQty(),
 						ElementType.Xpath);
 				logs.logging("INFO", "Inside Quantity Is: " + InsideQty);
-				String CompQty = webDB.getDomPropertyFromElement(CompletionProductionOrderLocators.CompQty,
+				String CompQty = webDB.getDomPropertyFromElement(CompletionProductionOrderLocators.CompQty(),
 						ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
 				logs.logging("INFO", "Completion Qunatity Is: " + CompQty);
 				flag = QueueQty.equals(commonFunc.getDataFromTestDataSheet("ZeroValue"));
@@ -715,12 +715,12 @@ public class CompletionProductionOrderFunctions {
 					ElementType.Xpath);
 			if (flag) {
 				webDB.clickAnElement(CompletionProductionOrderLocators.PendingProdOrderSearchGoBtn, ElementType.Xpath);
-				flag = webDB.waitForElement(CompletionProductionOrderLocators.PendingProdOrder_ProdNoTableData,
+				flag = webDB.waitForElement(CompletionProductionOrderLocators.PendingProdOrder_ProdNoTableData(),
 						ElementType.Xpath);
 				if (flag) {
 					logs.logging("INFO", "Searched with Production Order No: " + ProdNo);
 					String DisplayProdNo = webDB.getTextFromElement(
-							CompletionProductionOrderLocators.PendingProdOrder_ProdNoTableData, ElementType.Xpath);
+							CompletionProductionOrderLocators.PendingProdOrder_ProdNoTableData(), ElementType.Xpath);
 					logs.logging("INFO", "Filtered Successfully with Production Order No: " + DisplayProdNo);
 				}
 			}
@@ -1242,7 +1242,58 @@ public class CompletionProductionOrderFunctions {
 					logs.logging("INFO", "Pending MR Select All Button Clicked");
 					webDB.moveToElement(CompletionProductionOrderLocators.CreateMRButton, ElementType.Xpath);
 					webDB.clickAnElement(CompletionProductionOrderLocators.CreateMRButton, ElementType.Xpath);
-					
+					flag = webDB.waitForElement(CompletionProductionOrderLocators.CreateMROkButton, ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Create MR Button Clicked");
+						webDB.clickAnElement(CompletionProductionOrderLocators.CreateMROkButton, ElementType.Xpath);
+						commonFunc.checkRefreshCellsDisappear();
+						webDB.switchToDefaultContent();
+						flag = webDB.waitForElementUntilGivenTime(CommonUiLocators.PostToastMessage, ElementType.Xpath,
+								60);
+						if (flag) {
+							logs.logging("INFO", "Material Request Created Successfully");
+							String Message = webDB.getTextFromElement(CommonUiLocators.PostToastMessage,
+									ElementType.Xpath);
+							logs.logging("INFO", "Success Message: " + Message);
+							Message = Message.replace("Material Request Created-", "").trim();
+							logs.logging("INFO", "After Split MR No: " + Message);
+							VariableHandler.setMaterialRequestNo(Message);
+							VariableHandler.setMRNumber(Message);
+						}
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This method used to click select all and create MR
+	 * 
+	 * @author Sakthi-GWL
+	 * @param String LocId
+	 * @param String ProdNumber
+	 */
+	public void clickCheckBoxTableAndCreateAndStoreMRNo(String LocId, String ProdNumber) {
+		flag = webDB.waitForElement(CompletionProductionOrderLocators.PendingMRCreateIframe, ElementType.Xpath);
+		if (flag) {
+			webDB.switchToFrame(CompletionProductionOrderLocators.PendingMRCreateIframe, ElementType.Xpath);
+			flag = webDB.waitForElement(CompletionProductionOrderLocators.PendingMRSelectAllBtn(ProdNumber),
+					ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Pending MR Iframe Switched");
+				webDB.moveToElement(CompletionProductionOrderLocators.PendingMRSelectAllBtn(ProdNumber),
+						ElementType.Xpath);
+				webDB.clickAnElement(CompletionProductionOrderLocators.PendingMRSelectAllBtn(ProdNumber),
+						ElementType.Xpath);
+				flag = webDB.waitForElement(CompletionProductionOrderLocators.CreateMRButton, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Pending MR Select All Button Clicked");
+					webDB.moveToElement(CompletionProductionOrderLocators.CreateMRButton, ElementType.Xpath);
+					webDB.clickAnElement(CompletionProductionOrderLocators.CreateMRButton, ElementType.Xpath);
+					commonFunc.searchAndSelectValueInFilters(CompletionProductionOrderLocators.CreateMRLocIdLov, LocId);
+					webDB.waitForElement(CompletionProductionOrderLocators.PendingMRCreateIframe, ElementType.Xpath);
+					webDB.switchToFrame(CompletionProductionOrderLocators.PendingMRCreateIframe, ElementType.Xpath);
 					flag = webDB.waitForElement(CompletionProductionOrderLocators.CreateMROkButton, ElementType.Xpath);
 					if (flag) {
 						logs.logging("INFO", "Create MR Button Clicked");
@@ -1693,57 +1744,5 @@ public class CompletionProductionOrderFunctions {
 		commonFunc.verifyAddTableSpecsClearField(CompletionProductionOrderLocators.ProdCompLineActualConsumptionQtyData,
 				CompletionProductionOrderLocators.ProdCompLineActualConsumptionQtyData, ActualConsQty);
 		logs.logging("INFO", "Actual ConsumpFtion Quantity Entered in Consumption: " + ActualConsQty);
-	}
-
-	/**
-	 * This method used to click select all and create MR
-	 *
-	 * @author Sakthi-GWL
-	 * @param String LocId
-	 * @param String ProdNumber
-	 */
-	public void clickCheckBoxTableAndCreateAndStoreMRNo(String LocId, String ProdNumber) {
-		flag = webDB.waitForElement(CompletionProductionOrderLocators.PendingMRCreateIframe, ElementType.Xpath);
-		if (flag) {
-			webDB.switchToFrame(CompletionProductionOrderLocators.PendingMRCreateIframe, ElementType.Xpath);
-			flag = webDB.waitForElement(CompletionProductionOrderLocators.PendingMRSelectAllBtn(ProdNumber),
-					ElementType.Xpath);
-			if (flag) {
-				logs.logging("INFO", "Pending MR Iframe Switched");
-				webDB.moveToElement(CompletionProductionOrderLocators.PendingMRSelectAllBtn(ProdNumber),
-						ElementType.Xpath);
-				webDB.clickAnElement(CompletionProductionOrderLocators.PendingMRSelectAllBtn(ProdNumber),
-						ElementType.Xpath);
-				flag = webDB.waitForElement(CompletionProductionOrderLocators.CreateMRButton, ElementType.Xpath);
-				if (flag) {
-					logs.logging("INFO", "Pending MR Select All Button Clicked");
-					webDB.moveToElement(CompletionProductionOrderLocators.CreateMRButton, ElementType.Xpath);
-					webDB.clickAnElement(CompletionProductionOrderLocators.CreateMRButton, ElementType.Xpath);
-					commonFunc.searchAndSelectValueInFilters(CompletionProductionOrderLocators.CreateMRLocIdLov, LocId);
-					webDB.waitForElement(CompletionProductionOrderLocators.PendingMRCreateIframe, ElementType.Xpath);
-					webDB.switchToFrame(CompletionProductionOrderLocators.PendingMRCreateIframe, ElementType.Xpath);
-					flag = webDB.waitForElement(CompletionProductionOrderLocators.CreateMROkButton, ElementType.Xpath);
-					if (flag) {
-						logs.logging("INFO", "Create MR Button Clicked");
-						webDB.clickAnElement(CompletionProductionOrderLocators.CreateMROkButton, ElementType.Xpath);
-						commonFunc.checkRefreshCellsDisappear();
-						webDB.switchToDefaultContent();
-						flag = webDB.waitForElementUntilGivenTime(CommonUiLocators.PostToastMessage, ElementType.Xpath,
-								60);
-						if (flag) {
-							logs.logging("INFO", "Material Request Created Successfully");
-							String Message = webDB.getTextFromElement(CommonUiLocators.PostToastMessage,
-									ElementType.Xpath);
-							logs.logging("INFO", "Success Message: " + Message);
-							Message = Message.replace("Material Request Created-", "").trim();
-							logs.logging("INFO", "After Split MR No: " + Message);
-							VariableHandler.setMaterialRequestNo(Message);
-							VariableHandler.setMRNumber(Message);
-						}
-					}
-				}
-			}
-		}
-		assertTrue(flag);
 	}
 }

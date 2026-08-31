@@ -1,5 +1,7 @@
 package commonlocators.productionplanning;
 
+import commonfunctions.CommonFunctions;
+
 /**
  * @author Sakthi-GWL
  * @company Galaxy Weblinks March 11, 2025
@@ -49,27 +51,62 @@ public class BillOfMaterialsLocators {
 	/** @locatorType Xpath */
 	public static final String RoutingSaveLineBtn = "//button[@data-testid='RoutingSaveLineBtn']";
 	/** @locatorType Xpath */
-	public static final String RoutingProcSeqNoData = "//div[@id='ROUTING_ig_grid_vc']//table/tbody/tr[1]/td[1]";
+	public static final String RoutingTable = "//div[@id='ROUTING_ig_grid_vc']//table/thead/tr[2]/th";
+
 	/** @locatorType Xpath */
-	public static final String RoutingProcSeqNoInput = "//div[@id='ROUTING_ig_grid_vc']//table/tbody/tr[1]/td[1]//input";
+	public static String RoutingProcSeqNoData() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(RoutingTable, "Proc. Seq. No");
+	}
+
 	/** @locatorType Xpath */
-	public static final String RoutingOprnNoData = "//div[@id='ROUTING_ig_grid_vc']//table/tbody/tr[1]/td[2]";
+	public static String RoutingProcSeqNoInput() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(RoutingTable, "Proc. Seq. No") + "//input";
+	}
+
 	/** @locatorType Xpath */
-	public static final String RoutingOprnNoInput = "//div[@id='ROUTING_ig_grid_vc']//table/tbody/tr[1]/td[2]//input";
+	public static String RoutingOprnNoData() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(RoutingTable, "Oprn. No.");
+	}
+
 	/** @locatorType Xpath */
-	public static final String RoutingProcessIdData = "//div[@id='ROUTING_ig_grid_vc']//table/tbody/tr[1]/td[3]";
+	public static String RoutingOprnNoInput() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(RoutingTable, "Oprn. No.") + "//input";
+	}
+
 	/** @locatorType Xpath */
-	public static final String RoutingProcessIdLovBtn = "//div[@id='ROUTING_ig_grid_vc']//table/tbody/tr[1]/td[3]//button";
+	public static String RoutingProcessIdData() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(RoutingTable, "Process. ID");
+	}
+
 	/** @locatorType Xpath */
-	public static final String RoutingWorkCenterData = "//div[@id='ROUTING_ig_grid_vc']//table/tbody/tr[1]/td[6]";
+	public static String RoutingProcessIdLovBtn() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(RoutingTable, "Process. ID") + "//button";
+	}
+
 	/** @locatorType Xpath */
-	public static final String RoutingWorkCenterLovBtn = "//div[@id='ROUTING_ig_grid_vc']//table/tbody/tr[1]/td[6]//button";
+	public static String RoutingWorkCenterData() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(RoutingTable, "Work Center");
+	}
+
 	/** @locatorType Xpath */
-	public static final String RoutingTypeData = "//div[@id='ROUTING_ig_grid_vc']//table/tbody/tr[1]/td[5]";
+	public static String RoutingWorkCenterLovBtn() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(RoutingTable, "Work Center") + "//button";
+	}
+
 	/** @locatorType Xpath */
-	public static final String RoutingTypeSelect = "//div[@id='ROUTING_ig_grid_vc']//table/tbody/tr[1]/td[5]//select";
+	public static String RoutingTypeData() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(RoutingTable, "Type");
+	}
+
 	/** @locatorType Xpath */
-	public static final String RoutingIRFlagData = "//div[@id='ROUTING_ig_grid_vc']//table/tbody/tr[1]/td[12]";
+	public static String RoutingTypeSelect() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(RoutingTable, "Type") + "//select";
+	}
+
+	/** @locatorType Xpath */
+	public static String RoutingIRFlagData() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(RoutingTable, "IR");
+	}
 
 	/** @locatorType Xpath */
 	public static final String RoutingIRDiv(String ProcessName) {
@@ -103,29 +140,68 @@ public class BillOfMaterialsLocators {
 	/** @locatorType Xpath */
 	public static final String MaterialSaveLineBtn = "//button[@data-testid='MaterialSaveLineBtn']";
 	/** @locatorType Xpath */
-	public static final String MaterialProcessDescData = "//div[@id='BOM_LN_STATIC_ig_grid_vc']//table/tbody/tr[1]/td[2]";
+	public static final String MaterialTable = "//div[@id='BOM_LN_STATIC_ig_grid_vc']//table/thead/tr[1]/th";
+
 	/** @locatorType Xpath */
-	public static final String MaterialProcessDescLovBtn = "//div[@id='BOM_LN_STATIC_ig_grid_vc']//table/tbody/tr[1]/td[2]//button";
+	public static String MaterialProcessDescData() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(MaterialTable, "Process Desc.");
+	}
+
 	/** @locatorType Xpath */
-	public static final String MaterialItemData = "//div[@id='BOM_LN_STATIC_ig_grid_vc']//table/tbody/tr[1]/td[5]";
+	public static String MaterialProcessDescLovBtn() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(MaterialTable, "Process Desc.")
+				+ "// button";
+	}
+
 	/** @locatorType Xpath */
-	public static final String MaterialItemLovBtn = "//div[@id='BOM_LN_STATIC_ig_grid_vc']//table/tbody/tr[1]/td[5]//button";
+	public static String MaterialItemData() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(MaterialTable, "Item");
+	}
+
 	/** @locatorType Xpath */
-	public static final String MaterialUOMData = "//div[@id='BOM_LN_STATIC_ig_grid_vc']//table/tbody/tr[1]/td[8]";
+	public static String MaterialItemLovBtn() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(MaterialTable, "Item") + "//button";
+	}
+
 	/** @locatorType Xpath */
-	public static final String MaterialUOMSelect = "//div[@id='BOM_LN_STATIC_ig_grid_vc']//table/tbody/tr[1]/td[8]//select";
+	public static String MaterialUOMData() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(MaterialTable, "UOM");
+	}
+
 	/** @locatorType Xpath */
-	public static final String MaterialRequestQntyData = "//div[@id='BOM_LN_STATIC_ig_grid_vc']//table/tbody/tr[1]/td[9]";
+	public static String MaterialUOMSelect() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(MaterialTable, "UOM") + "//select";
+	}
+
 	/** @locatorType Xpath */
-	public static final String MaterialRequestQntyInput = "//div[@id='BOM_LN_STATIC_ig_grid_vc']//table/tbody/tr[1]/td[9]//input";
+	public static String MaterialRequestQntyData() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(MaterialTable, "Req. Qty.");
+	}
+
 	/** @locatorType Xpath */
-	public static final String MaterialConventionFactorData = "//div[@id='BOM_LN_STATIC_ig_grid_vc']//table/tbody/tr[1]/td[10]";
+	public static String MaterialRequestQntyInput() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(MaterialTable, "Req. Qty.") + "//input";
+	}
+
 	/** @locatorType Xpath */
-	public static final String MaterialConventionFactorInput = "//div[@id='BOM_LN_STATIC_ig_grid_vc']//table/tbody/tr[1]/td[10]//input";
+	public static String MaterialConventionFactorData() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(MaterialTable, "Conv. Fact.");
+	}
+
 	/** @locatorType Xpath */
-	public static final String MaterialSourceWHData = "//div[@id='BOM_LN_STATIC_ig_grid_vc']//table/tbody/tr[1]/td[11]";
+	public static String MaterialConventionFactorInput() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(MaterialTable, "Conv. Fact.") + "//input";
+	}
+
 	/** @locatorType Xpath */
-	public static final String MaterialSourceWHSelect = "//div[@id='BOM_LN_STATIC_ig_grid_vc']//table/tbody/tr[1]/td[11]//select";
+	public static String MaterialSourceWHData() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(MaterialTable, "Sou. WH");
+	}
+
+	/** @locatorType Xpath */
+	public static String MaterialSourceWHSelect() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(MaterialTable, "Sou. WH") + "//select";
+	}
 
 	/** @locatorType Xpath */
 	public static final String MaterialSubstituteItemWithProcess(String ProcessName) {
@@ -144,69 +220,172 @@ public class BillOfMaterialsLocators {
 	/** @locatorType Xpath */
 	public static final String BORSaveLineBtn = "//button[@data-testid='BORSaveLineBtn']";
 	/** @locatorType Xpath */
-	public static final String BORLineSnoData = "//div[@id='BOR_ig_grid_vc']//table/tbody/tr[1]/td[1]";
+	public static final String BORTable = "//div[@id='BOR_ig_grid_vc']//table/thead/tr[1]/th";
+
 	/** @locatorType Xpath */
-	public static final String BORLineSnoInput = "//div[@id='BOR_ig_grid_vc']//table/tbody/tr[1]/td[1]//input";
+	public static String BORLineSnoData() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(BORTable, "Line");
+	}
+
 	/** @locatorType Xpath */
-	public static final String BORProcessIdData = "//div[@id='BOR_ig_grid_vc']//table/tbody/tr[1]/td[3]";
+	public static String BORLineSnoInput() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(BORTable, "Line") + "//input";
+	}
+
 	/** @locatorType Xpath */
-	public static final String BORProcessIdLovBtn = "//div[@id='BOR_ig_grid_vc']//table/tbody/tr[1]/td[3]//button";
+	public static String BORProcessIdData() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(BORTable, "Process. ID");
+	}
+
 	/** @locatorType Xpath */
-	public static final String BORResourceTypeData = "//div[@id='BOR_ig_grid_vc']//table/tbody/tr[1]/td[5]";
+	public static String BORProcessIdLovBtn() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(BORTable, "Process. ID") + "//button";
+	}
+
 	/** @locatorType Xpath */
-	public static final String BORResourceTypeSelect = "//div[@id='BOR_ig_grid_vc']//table/tbody/tr[1]/td[5]//select";
+	public static String BORResourceTypeData() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(BORTable, "Res. Type");
+	}
+
 	/** @locatorType Xpath */
-	public static final String BORResourceData = "//div[@id='BOR_ig_grid_vc']//table/tbody/tr[1]/td[6]";
+	public static String BORResourceTypeSelect() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(BORTable, "Res. Type") + "//select";
+	}
+
 	/** @locatorType Xpath */
-	public static final String BORResourceLovBtn = "//div[@id='BOR_ig_grid_vc']//table/tbody/tr[1]/td[6]//button";
+	public static String BORResourceData() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(BORTable, "Resource Group/Resource");
+	}
+
 	/** @locatorType Xpath */
-	public static final String BORSetupHrsData = "//div[@id='BOR_ig_grid_vc']//table/tbody/tr[1]/td[9]";
+	public static String BORResourceLovBtn() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(BORTable, "Resource Group/Resource")
+				+ "//button";
+	}
+
 	/** @locatorType Xpath */
-	public static final String BORSetupHrsInput = "//div[@id='BOR_ig_grid_vc']//table/tbody/tr[1]/td[9]//input";
+	public static String BORSetupHrsData() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(BORTable, "Setup Hrs.");
+	}
+
 	/** @locatorType Xpath */
-	public static final String BORSetupMinsData = "//div[@id='BOR_ig_grid_vc']//table/tbody/tr[1]/td[10]";
+	public static String BORSetupHrsInput() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(BORTable, "Setup Hrs.") + "//input";
+	}
+
 	/** @locatorType Xpath */
-	public static final String BORSetupMinsInput = "//div[@id='BOR_ig_grid_vc']//table/tbody/tr[1]/td[10]//input";
+	public static String BORSetupMinsData() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(BORTable, "Setup Mins.");
+	}
+
 	/** @locatorType Xpath */
-	public static final String BORSetupLotQntyData = "//div[@id='BOR_ig_grid_vc']//table/tbody/tr[1]/td[11]";
+	public static String BORSetupMinsInput() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(BORTable, "Setup Mins.") + "//input";
+	}
+
 	/** @locatorType Xpath */
-	public static final String BORSetupLotQntyInput = "//div[@id='BOR_ig_grid_vc']//table/tbody/tr[1]/td[11]//input";
+	public static String BORSetupLotQntyData() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(BORTable, "Setup Lot Qty.");
+	}
+
 	/** @locatorType Xpath */
-	public static final String BORCycleTimeUnitPerHourData = "//div[@id='BOR_ig_grid_vc']//table/tbody/tr[1]/td[12]";
+	public static String BORSetupLotQntyInput() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(BORTable, "Setup Lot Qty.") + "//input";
+	}
+
 	/** @locatorType Xpath */
-	public static final String BORCycleTimeUnitPerHourInput = "//div[@id='BOR_ig_grid_vc']//table/tbody/tr[1]/td[12]//input";
+	public static String BORCycleTimeUnitPerHourData() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(BORTable, "Cycle Time Units/Hrs.");
+	}
+
 	/** @locatorType Xpath */
-	public static final String BORCycleTimeHourData = "//div[@id='BOR_ig_grid_vc']//table/tbody/tr[1]/td[13]";
+	public static String BORCycleTimeUnitPerHourInput() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(BORTable, "Cycle Time Units/Hrs.")
+				+ "//input";
+	}
+
 	/** @locatorType Xpath */
-	public static final String BORCycleTimeHourInput = "//div[@id='BOR_ig_grid_vc']//table/tbody/tr[1]/td[13]//input";
+	public static String BORCycleTimeHourData() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(BORTable, "Cycle Time Hrs.");
+	}
+
 	/** @locatorType Xpath */
-	public static final String BORCycleTimeMinData = "//div[@id='BOR_ig_grid_vc']//table/tbody/tr[1]/td[14]";
+	public static String BORCycleTimeHourInput() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(BORTable, "Cycle Time Hrs.") + "//input";
+	}
+
 	/** @locatorType Xpath */
-	public static final String BORCycleTimeMinInput = "//div[@id='BOR_ig_grid_vc']//table/tbody/tr[1]/td[14]//input";
+	public static String BORCycleTimeMinData() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(BORTable, "Cycle Time Mins.");
+	}
+
 	/** @locatorType Xpath */
-	public static final String BORCycleTimeSecData = "//div[@id='BOR_ig_grid_vc']//table/tbody/tr[1]/td[15]";
+	public static String BORCycleTimeMinInput() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(BORTable, "Cycle Time Mins.") + "//input";
+	}
+
 	/** @locatorType Xpath */
-	public static final String BORCycleTimeSecInput = "//div[@id='BOR_ig_grid_vc']//table/tbody/tr[1]/td[15]//input";
+	public static String BORCycleTimeSecData() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(BORTable, "Cycle Time Secs.");
+	}
+
 	/** @locatorType Xpath */
-	public static final String BORCycleTimeBatchQntyData = "//div[@id='BOR_ig_grid_vc']//table/tbody/tr[1]/td[16]";
+	public static String BORCycleTimeSecInput() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(BORTable, "Cycle Time Secs.") + "//input";
+	}
+
 	/** @locatorType Xpath */
-	public static final String BORCycleTimeBatchQntyInput = "//div[@id='BOR_ig_grid_vc']//table/tbody/tr[1]/td[16]//input";
+	public static String BORCycleTimeBatchQntyData() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(BORTable, "Cycle Time Batch Qty.");
+	}
+
 	/** @locatorType Xpath */
-	public static final String BORCycleTimeBatchHrsData = "//div[@id='BOR_ig_grid_vc']//table/tbody/tr[1]/td[17]";
+	public static String BORCycleTimeBatchQntyInput() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(BORTable, "Cycle Time Batch Qty.")
+				+ "//input";
+	}
+
 	/** @locatorType Xpath */
-	public static final String BORCycleTimeBatchHrsInput = "//div[@id='BOR_ig_grid_vc']//table/tbody/tr[1]/td[17]//input";
+	public static String BORCycleTimeBatchHrsData() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(BORTable, "Cycle Time Batch Hrs.");
+	}
+
 	/** @locatorType Xpath */
-	public static final String BORLagHrsData = "//div[@id='BOR_ig_grid_vc']//table/tbody/tr[1]/td[18]";
+	public static String BORCycleTimeBatchHrsInput() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(BORTable, "Cycle Time Batch Hrs.")
+				+ "//input";
+	}
+
 	/** @locatorType Xpath */
-	public static final String BORLagHrsInput = "//div[@id='BOR_ig_grid_vc']//table/tbody/tr[1]/td[18]//input";
+	public static String BORLagHrsData() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(BORTable, "Lag Hrs.");
+	}
+
 	/** @locatorType Xpath */
-	public static final String BORPriorityData = "//div[@id='BOR_ig_grid_vc']//table/tbody/tr[1]/td[19]";
+	public static String BORLagHrsInput() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(BORTable, "Lag Hrs.") + "//input";
+	}
+
 	/** @locatorType Xpath */
-	public static final String BORPriorityInput = "//div[@id='BOR_ig_grid_vc']//table/tbody/tr[1]/td[19]//input";
+	public static String BORPriorityData() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(BORTable, "Priority");
+	}
+
 	/** @locatorType Xpath */
-	public static final String BORNoOfUnitsData = "//div[@id='BOR_ig_grid_vc']//table/tbody/tr[1]/td[20]";
+	public static String BORPriorityInput() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(BORTable, "Priority") + "//input";
+	}
+
 	/** @locatorType Xpath */
-	public static final String BORNoOfUnitsInput = "//div[@id='BOR_ig_grid_vc']//table/tbody/tr[1]/td[20]//input";
+	public static String BORNoOfUnitsData() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(BORTable, "No. Of Units");
+	}
+
+	/** @locatorType Xpath */
+	public static String BORNoOfUnitsInput() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(BORTable, "No. Of Units") + "//input";
+	}
+
 	/** @locatorType Xpath */
 	public static final String ScrapByProductTab_Label = "//label[text()='Scrap / By Product']";
 	/** @locatorType Xpath */

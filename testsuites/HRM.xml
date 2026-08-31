@@ -9,10 +9,8 @@
 		<classes>
 			<class name="com.roadmapERP.AttendanceLeaveTest"></class>
 			<class name="com.roadmapERP.EmployeeMasterTest"></class>
-			<!--			<class name="com.roadmapERP.EmployeeOvertime"></class>-->
-			<!--			<class name="com.roadmapERP.EmployeePermissionTest"></class>-->
-			<class name="com.roadmapERP.PurchaseFOCTest"></class>
-			<class name="com.roadmapERP.GrnTest3"></class>
+			<class name="com.roadmapERP.EmployeeOvertime"></class>
+			<class name="com.roadmapERP.EmployeePermissionTest"></class>
 			<class name="com.roadmapERP.PreparePayrollTest"></class>
 		</classes>
 	</test>

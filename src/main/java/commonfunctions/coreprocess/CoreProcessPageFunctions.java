@@ -254,9 +254,11 @@ public class CoreProcessPageFunctions {
 					SalesOrderLocators.SOSpecialDiscountpercentageField,
 					SalesOrderLocators.SOSpecialDiscountAmountField, RandomStringUtils.randomNumeric(1));
 			commonFunc.checkRefreshCellsDisappear();
+			commonFunc.checkRefreshCellsDisappear();
 			commonFunc.checkDiscountInLineDetails(SalesOrderLocators.SOCashDiscountAssblValue,
 					SalesOrderLocators.SOCashDiscountpercentageField, SalesOrderLocators.SOCashDiscountAmountField,
 					RandomStringUtils.randomNumeric(1));
+			commonFunc.checkRefreshCellsDisappear();
 			saleOrderFunc.clickLineWiseDetailsSaveButton();
 			webDB.switchToDefaultContent();
 			saleOrderFunc.getSalesOrderTotalAmount();
@@ -278,16 +280,18 @@ public class CoreProcessPageFunctions {
 			saleInvoiceFunc.verifyInvoicePfx(commonFunc.getDataFromTestDataSheet("InvoicePrefix"));
 			saleInvoiceFunc.verifyHeaderTickIcon();
 			saleInvoiceFunc.verifyItemFromPendingSaleOrderAndClickAllocLotSerial(VariableHandler.getItemName());
-//			saleInvoiceFunc.validateLineAmountOfLastAddedItem();
 			saleInvoiceFunc.clickTotalDiscountForLineDetails();
 			saleInvoiceFunc.switchToLineDetailsIframeInSaleInvoice();
+			commonFunc.checkRefreshCellsDisappear();
 			commonFunc.checkDiscountInLineDetails(SalesInvoiceLocators.SalesInvoiceSpecialAssblPrice,
 					SalesInvoiceLocators.SalesInvoiceSpecialDiscountPrice,
 					SalesInvoiceLocators.SalesInvoiceSpecialAssblAmount, "2");
 			commonFunc.checkRefreshCellsDisappear();
+			commonFunc.checkRefreshCellsDisappear();
 			commonFunc.checkDiscountInLineDetails(SalesInvoiceLocators.SalesInvoiceCashAssemblePrice,
 					SalesInvoiceLocators.SalesInvoiceCashDiscountPrice,
 					SalesInvoiceLocators.SalesInvoiceCashAssembleAmount, "1");
+			commonFunc.checkRefreshCellsDisappear();
 			commonFunc.checkRefreshCellsDisappear();
 			saleInvoiceFunc.verifyShipFromWarehouseAndStockAndInvoiceQuantity(
 					commonFunc.getDataFromTestDataSheet("FinishedGoodWH"));
@@ -378,9 +382,11 @@ public class CoreProcessPageFunctions {
 					SalesOrderLocators.SOSpecialDiscountpercentageField,
 					SalesOrderLocators.SOSpecialDiscountAmountField, RandomStringUtils.randomNumeric(1));
 			commonFunc.checkRefreshCellsDisappear();
+			commonFunc.checkRefreshCellsDisappear();
 			commonFunc.checkDiscountInLineDetails(SalesOrderLocators.SOCashDiscountAssblValue,
 					SalesOrderLocators.SOCashDiscountpercentageField, SalesOrderLocators.SOCashDiscountAmountField,
 					RandomStringUtils.randomNumeric(1));
+			commonFunc.checkRefreshCellsDisappear();
 			saleOrderFunc.clickLineWiseDetailsSaveButton();
 			webDB.switchToDefaultContent();
 			saleOrderFunc.getSalesOrderTotalAmount();
@@ -490,6 +496,7 @@ public class CoreProcessPageFunctions {
 			commonFunc.checkDiscountInLineDetails(SalesOrderLocators.SOCashDiscountAssblValue,
 					SalesOrderLocators.SOCashDiscountpercentageField, SalesOrderLocators.SOCashDiscountAmountField,
 					RandomStringUtils.randomNumeric(1));
+			commonFunc.checkRefreshCellsDisappear();
 			saleOrderFunc.clickLineWiseDetailsSaveButton();
 			webDB.switchToDefaultContent();
 			saleOrderFunc.getSalesOrderTotalAmount();

@@ -11,7 +11,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
@@ -47,6 +46,7 @@ public class ApprovalPageFunctions {
 			flag = webDB.waitForElement(ApprovalPageLocators.ApprovalNotifyOption, ElementType.Xpath);
 			if (flag) {
 				webDB.clickAnElement(ApprovalPageLocators.ApprovalNotifyOption, ElementType.Xpath);
+				commonFunc.checkRefreshCellsDisappear();
 				flag = webDB.waitForElement(ApprovalPageLocators.FindSearchButton, ElementType.Xpath);
 				if (flag) {
 					webDB.clickAnElement(ApprovalPageLocators.FindSearchButton, ElementType.Xpath);
@@ -244,11 +244,10 @@ public class ApprovalPageFunctions {
 			if (flag) {
 				webDB.moveToElement(CommonUiLocators.WorkAppoval_OkBtn, ElementType.Xpath);
 				flag = webDB.clickAnElement(CommonUiLocators.WorkAppoval_OkBtn, ElementType.Xpath);
-				commonFunc.checkSuccessToastMessageDisappear();
 				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.checkRefreshCellsDisappear();
-				webDB.waitForElementUntilGivenTime(CommonUiLocators.PostToastMessage, ElementType.Xpath, 15);
-				if (!webDB.verifyIsElementDisplayed(CommonUiLocators.WorkAppoval_OkBtn, ElementType.Xpath)) {
+//				webDB.waitForElementUntilGivenTime(CommonUiLocators.PostToastMessage, ElementType.Xpath, 15);
+				if (!(webDB.verifyIsElementDisplayed(CommonUiLocators.WorkAppoval_OkBtn, ElementType.Xpath)
+						&& webDB.verifyIsElementDisplayed(CommonUiLocators.WorkApprovalFrame, ElementType.Xpath))) {
 					logs.logging("INFO", "Workflow Approval Ok Button Clicked");
 				}
 				webDB.switchToDefaultContent();

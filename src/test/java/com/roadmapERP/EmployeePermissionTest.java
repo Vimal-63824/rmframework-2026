@@ -17,6 +17,7 @@ import commonfunctions.CommonFunctions;
 import commonfunctions.VariableHandler;
 import commonfunctions.payroll.AttendanceLeaveFunctions;
 import utils.Mailer;
+import utils.ReportLoger;
 import utils.WebDriverBase;
 
 public class EmployeePermissionTest extends RoadMapERPTest {
@@ -24,15 +25,16 @@ public class EmployeePermissionTest extends RoadMapERPTest {
 	static CommonFunctions commonFunc = new CommonFunctions();
 	static Mailer mail = new Mailer();
 	static WebDriverBase webDB = new WebDriverBase();
+	static ReportLoger logs = new ReportLoger();
 	static AttendanceLeaveFunctions attendanceLeave = new AttendanceLeaveFunctions();
-	private static int previousStatus = ITestResult.SUCCESS;
+	private static int previousStatus = ITestResult.STARTED;
 
 	@BeforeMethod(alwaysRun = true)
 	private void VerifyLogin() {
 		if (VariableHandler.getSessionID() == null || VariableHandler.getSessionID().equalsIgnoreCase("")
 				|| VariableHandler.getSessionOpened() == false || VariableHandler.getSessionID().equals(null)) {
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
+			commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+					"HrRqtUsername");
 		} else {
 			commonFunc.navigateToHomePage();
 		}
@@ -60,8 +62,13 @@ public class EmployeePermissionTest extends RoadMapERPTest {
 	@Test(priority = 2, groups = {
 			"Employee Permission" }, description = "81.To Check Permission Based on Time And Hours")
 	public void VerifyBasedOnTimeAndHoursCheckPermission() {
-		// TODO Covered in VerifyCheckPermissionEntrWithEmployeeData() Method
-		Assert.assertTrue(flag);
+		logs.logging("INFO", "This test covered in 'VerifyCheckPermissionEntrWithEmployeeData'  Test");
+		if (previousStatus != ITestResult.SUCCESS) {
+			logs.logging("INFO",
+					"Previous test (VerifyCheckPermissionEntrWithEmployeeData) failed. So this fails too.");
+			Assert.fail();
+		}
+		Assert.assertTrue(true);
 	}
 
 	/**
@@ -73,8 +80,13 @@ public class EmployeePermissionTest extends RoadMapERPTest {
 	@Test(priority = 3, groups = {
 			"Employee Permission" }, description = "83.To Check Permission report fetches values correctly")
 	public void VerifyFetchValuesOfCheckPermission() {
-		// TODO Covered in VerifyCheckPermissionEntrWithEmployeeData() Method
-		Assert.assertTrue(flag);
+		logs.logging("INFO", "This test covered in 'VerifyCheckPermissionEntrWithEmployeeData'  Test");
+		if (previousStatus != ITestResult.SUCCESS) {
+			logs.logging("INFO",
+					"Previous test (VerifyCheckPermissionEntrWithEmployeeData) failed. So this fails too.");
+			Assert.fail();
+		}
+		Assert.assertTrue(true);
 	}
 
 	/**
@@ -97,8 +109,12 @@ public class EmployeePermissionTest extends RoadMapERPTest {
 	@Author("Kishore-RMITS")
 	@Test(priority = 5, groups = { "Employee On-Duty" }, description = "82.To Check On-Duty Based on DateWise")
 	public void VerifyDateWiseCheckOnDutyEntryWithEmployeeData() {
-		// TODO Covered in VerifyCheckOnDutyEntryWithEmployeeData() Method
-		Assert.assertTrue(flag);
+		logs.logging("INFO", "This test covered in 'VerifyCheckOnDutyEntryWithEmployeeData'  Test");
+		if (previousStatus != ITestResult.SUCCESS) {
+			logs.logging("INFO", "Previous test (VerifyCheckOnDutyEntryWithEmployeeData) failed. So this fails too.");
+			Assert.fail();
+		}
+		Assert.assertTrue(true);
 	}
 
 	/**
@@ -110,8 +126,12 @@ public class EmployeePermissionTest extends RoadMapERPTest {
 	@Test(priority = 6, groups = {
 			"Employee On-Duty" }, description = "84.To Check On-Duty report fetches values correctly")
 	public void VerifyFetchValuesOfCheckOnDutyEntryWithEmployeeData() {
-		// TODO Covered in VerifyCheckOnDutyEntryWithEmployeeData() Method
-		Assert.assertTrue(flag);
+		logs.logging("INFO", "This test covered in 'VerifyCheckOnDutyEntryWithEmployeeData'  Test");
+		if (previousStatus != ITestResult.SUCCESS) {
+			logs.logging("INFO", "Previous test (VerifyCheckOnDutyEntryWithEmployeeData) failed. So this fails too.");
+			Assert.fail();
+		}
+		Assert.assertTrue(true);
 	}
 
 	/**
@@ -136,8 +156,13 @@ public class EmployeePermissionTest extends RoadMapERPTest {
 	@Test(priority = 8, groups = {
 			"Employee Permission & On-Duty" }, description = "84.To Check Permission & On Duty With all the field validations and Note alerts")
 	public void VerifyFieldValidationsNoteAlertWithEmployeeData() {
-		// TODO Covered in VerifyCheckOnDutyEntryWithEmployeeData() Method
-		Assert.assertTrue(flag);
+		logs.logging("INFO", "This test covered in 'CheckPermissionOnDutybasedonFowardtoAprovalReord'  Test");
+		if (previousStatus != ITestResult.SUCCESS) {
+			logs.logging("INFO",
+					"Previous test (CheckPermissionOnDutybasedonFowardtoAprovalReord) failed. So this fails too.");
+			Assert.fail();
+		}
+		Assert.assertTrue(true);
 	}
 
 	/**
@@ -162,8 +187,13 @@ public class EmployeePermissionTest extends RoadMapERPTest {
 	@Test(priority = 10, groups = {
 			"Employee Permission & On-Duty" }, description = "77.To Check Permission Find page with all line wise record")
 	public void VerifyPermissionFindPageWithAllLineWiseRecord() {
-		// TODO Covered in VerifyCheckOnDutyEntryWithEmployeeData() Method
-		Assert.assertTrue(flag);
+		logs.logging("INFO", "This test covered in 'CheckPermissionOnDutyBasedOnReturnToRequestRecord'  Test");
+		if (previousStatus != ITestResult.SUCCESS) {
+			logs.logging("INFO",
+					"Previous test (CheckPermissionOnDutyBasedOnReturnToRequestRecord) failed. So this fails too.");
+			Assert.fail();
+		}
+		Assert.assertTrue(true);
 	}
 
 	/**
@@ -188,8 +218,12 @@ public class EmployeePermissionTest extends RoadMapERPTest {
 	@Test(priority = 12, groups = {
 			"Employee Encashment" }, description = "87.To Check Leave Encashment Find page with all line wise record")
 	public void VerifyLeaveEncashmentFindPageWithAllLineWiseRecord() {
-		// TODO Covered in checkLeaveEncashmentbasedonRequestDate() Method
-		Assert.assertTrue(flag);
+		logs.logging("INFO", "This test covered in 'checkLeaveEncashmentbasedonRequestDate'  Test");
+		if (previousStatus != ITestResult.SUCCESS) {
+			logs.logging("INFO", "Previous test (checkLeaveEncashmentbasedonRequestDate) failed. So this fails too.");
+			Assert.fail();
+		}
+		Assert.assertTrue(true);
 	}
 
 	/**
@@ -201,8 +235,12 @@ public class EmployeePermissionTest extends RoadMapERPTest {
 	@Test(priority = 13, groups = {
 			"Employee Encashment" }, description = "92.To Check Leave Encashment report fetches values correctly")
 	public void VerifyLeaveEncashmentReportFetchesValuesCorrectly() {
-		// TODO Covered in checkLeaveEncashmentbasedonRequestDate() Method
-		Assert.assertTrue(flag);
+		logs.logging("INFO", "This test covered in 'checkLeaveEncashmentbasedonRequestDate'  Test");
+		if (previousStatus != ITestResult.SUCCESS) {
+			logs.logging("INFO", "Previous test (checkLeaveEncashmentbasedonRequestDate) failed. So this fails too.");
+			Assert.fail();
+		}
+		Assert.assertTrue(true);
 	}
 
 	/**
@@ -214,8 +252,12 @@ public class EmployeePermissionTest extends RoadMapERPTest {
 	@Test(priority = 14, groups = {
 			"Employee Encashment" }, description = "91.To Check Leave Encashment based on pending Encashment")
 	public void VerifyLeaveEncashmentBasedOnPendingEncashment() {
-		// TODO Covered in checkLeaveEncashmentbasedonRequestDate() Method
-		Assert.assertTrue(flag);
+		logs.logging("INFO", "This test covered in 'checkLeaveEncashmentbasedonRequestDate'  Test");
+		if (previousStatus != ITestResult.SUCCESS) {
+			logs.logging("INFO", "Previous test (checkLeaveEncashmentbasedonRequestDate) failed. So this fails too.");
+			Assert.fail();
+		}
+		Assert.assertTrue(true);
 	}
 
 	/**
@@ -240,8 +282,13 @@ public class EmployeePermissionTest extends RoadMapERPTest {
 	@Test(priority = 16, groups = {
 			"Employee Encashment" }, description = "90.To Check Leave Encashment based on Encash in payroll")
 	public void VerifyLeaveEncashmentBasedOnEncashInPayroll() {
-		// TODO Covered in checkLeaveEncashmentbasedonRequestDate() Method
-		Assert.assertTrue(flag);
+		logs.logging("INFO", "This test covered in 'checkLeaveEncashmentBasedOnForwardToApprovalRecord'  Test");
+		if (previousStatus != ITestResult.SUCCESS) {
+			logs.logging("INFO",
+					"Previous test (checkLeaveEncashmentBasedOnForwardToApprovalRecord) failed. So this fails too.");
+			Assert.fail();
+		}
+		Assert.assertTrue(true);
 	}
 
 	/**
@@ -278,8 +325,12 @@ public class EmployeePermissionTest extends RoadMapERPTest {
 	@Author("Kishore-RMITS")
 	@Test(priority = 19, groups = { "Employee Comp-Off" }, description = "98.To Check Comp-Off Based on DateWise")
 	public void checkCompOffBasedonDatewise() {
-		// TODO Covered in checkCompOffEntryBasedOnLeaveTypes() Method
-		Assert.assertTrue(flag);
+		logs.logging("INFO", "This test covered in 'checkCompOffEntryBasedOnLeaveTypes'  Test");
+		if (previousStatus != ITestResult.SUCCESS) {
+			logs.logging("INFO", "Previous test (checkCompOffEntryBasedOnLeaveTypes) failed. So this fails too.");
+			Assert.fail();
+		}
+		Assert.assertTrue(true);
 	}
 
 	/**
@@ -291,8 +342,12 @@ public class EmployeePermissionTest extends RoadMapERPTest {
 	@Test(priority = 20, groups = {
 			"Employee Comp-Off" }, description = "99.To Check Comp-Off based on forward to approval record")
 	public void filterDocumentsforPermissionApproval() {
-		// TODO Covered in checkCompOffEntryBasedOnLeaveTypes() Method
-		Assert.assertTrue(flag);
+		logs.logging("INFO", "This test covered in 'checkCompOffEntryBasedOnLeaveTypes'  Test");
+		if (previousStatus != ITestResult.SUCCESS) {
+			logs.logging("INFO", "Previous test (checkCompOffEntryBasedOnLeaveTypes) failed. So this fails too.");
+			Assert.fail();
+		}
+		Assert.assertTrue(true);
 	}
 
 	/**
@@ -317,8 +372,13 @@ public class EmployeePermissionTest extends RoadMapERPTest {
 	@Test(priority = 22, groups = {
 			"Employee Comp-Off" }, description = "95.To Check Comp-Off Find page with all line wise record ")
 	public void CheckCompOffFindPageWithAllLineWiseRecord() {
-		// TODO Covered in checkCompOffBasedOnReturnToApprovalRecord() Method
-		Assert.assertTrue(flag);
+		logs.logging("INFO", "This test covered in 'checkCompOffBasedOnReturnToApprovalRecord'  Test");
+		if (previousStatus != ITestResult.SUCCESS) {
+			logs.logging("INFO",
+					"Previous test (checkCompOffBasedOnReturnToApprovalRecord) failed. So this fails too.");
+			Assert.fail();
+		}
+		Assert.assertTrue(true);
 	}
 
 	/**
@@ -343,8 +403,12 @@ public class EmployeePermissionTest extends RoadMapERPTest {
 	@Test(priority = 24, groups = {
 			"Employee Loan Request" }, description = "103.To Check Loan Request based on No of installment and Installment Amount")
 	public void CheckLoanRequestBasedOnNoOfInstallmentAndInstallmentAmount() {
-		// TODO Covered in checkLoanRequestBasedOnRequiredDate() Method
-		Assert.assertTrue(flag);
+		logs.logging("INFO", "This test covered in 'checkLoanRequestBasedOnRequiredDate'  Test");
+		if (previousStatus != ITestResult.SUCCESS) {
+			logs.logging("INFO", "Previous test (checkLoanRequestBasedOnRequiredDate) failed. So this fails too.");
+			Assert.fail();
+		}
+		Assert.assertTrue(true);
 	}
 
 	/**
@@ -356,8 +420,12 @@ public class EmployeePermissionTest extends RoadMapERPTest {
 	@Test(priority = 25, groups = {
 			"Employee Loan Request" }, description = "103.To CheckLoan Request Find page with all line wise record")
 	public void ToCheckLoanRequestFindpageWithAllLineWiseRecord() {
-		// TODO Covered in checkLoanRequestBasedOnRequiredDate() Method
-		Assert.assertTrue(flag);
+		logs.logging("INFO", "This test covered in 'checkLoanRequestBasedOnRequiredDate'  Test");
+		if (previousStatus != ITestResult.SUCCESS) {
+			logs.logging("INFO", "Previous test (checkLoanRequestBasedOnRequiredDate) failed. So this fails too.");
+			Assert.fail();
+		}
+		Assert.assertTrue(true);
 	}
 
 	/**
@@ -369,8 +437,12 @@ public class EmployeePermissionTest extends RoadMapERPTest {
 	@Test(priority = 26, groups = {
 			"Employee Loan Request" }, description = "104.To Check Loan Request entry with adding surety employee")
 	public void CheckLoanRequestEntryWithAddingSuretyEmployee() {
-		// TODO Covered in checkLoanRequestBasedOnRequiredDate() Method
-		Assert.assertTrue(flag);
+		logs.logging("INFO", "This test covered in 'checkLoanRequestBasedOnRequiredDate'  Test");
+		if (previousStatus != ITestResult.SUCCESS) {
+			logs.logging("INFO", "Previous test (checkLoanRequestBasedOnRequiredDate) failed. So this fails too.");
+			Assert.fail();
+		}
+		Assert.assertTrue(true);
 	}
 
 	/**
@@ -382,8 +454,12 @@ public class EmployeePermissionTest extends RoadMapERPTest {
 	@Test(priority = 27, groups = {
 			"Employee Loan Request" }, description = "To Check Loan Request With all the field validations and Note alerts")
 	public void CheckLoanRequestWithAllTheFieldValidationsAndNoteAlerts() {
-		// TODO Covered in checkLoanRequestBasedOnRequiredDate() Method
-		Assert.assertTrue(flag);
+		logs.logging("INFO", "This test covered in 'checkLoanRequestBasedOnRequiredDate'  Test");
+		if (previousStatus != ITestResult.SUCCESS) {
+			logs.logging("INFO", "Previous test (checkLoanRequestBasedOnRequiredDate) failed. So this fails too.");
+			Assert.fail();
+		}
+		Assert.assertTrue(true);
 	}
 
 	/**
@@ -395,8 +471,12 @@ public class EmployeePermissionTest extends RoadMapERPTest {
 	@Test(priority = 28, groups = {
 			"Employee Loan Request" }, description = "104.To Check Loan Request based on forward to approval record")
 	public void CheckLoanRequestBasedOnForwardToApprovalRecord() {
-		// TODO Covered in checkLoanRequestBasedOnRequiredDate() Method
-		Assert.assertTrue(flag);
+		logs.logging("INFO", "This test covered in 'checkLoanRequestBasedOnRequiredDate'  Test");
+		if (previousStatus != ITestResult.SUCCESS) {
+			logs.logging("INFO", "Previous test (checkLoanRequestBasedOnRequiredDate) failed. So this fails too.");
+			Assert.fail();
+		}
+		Assert.assertTrue(true);
 	}
 
 	/**
@@ -447,8 +527,12 @@ public class EmployeePermissionTest extends RoadMapERPTest {
 	@Test(priority = 32, groups = {
 			"Employee Loan Payment" }, description = "106.To CheckLoan Payment Find page with all line wise record")
 	public void CheckLoanPaymentFindPageWithAllLineWiseRecord() {
-		// TODO Covered in CheckLoanPaymentWithReversePartOption() Method
-		Assert.assertTrue(flag);
+		logs.logging("INFO", "This test covered in 'checkLoanPaymentWithReversePartOption'  Test");
+		if (previousStatus != ITestResult.SUCCESS) {
+			logs.logging("INFO", "Previous test (checkLoanPaymentWithReversePartOption) failed. So this fails too.");
+			Assert.fail();
+		}
+		Assert.assertTrue(true);
 	}
 
 	/**
@@ -473,8 +557,12 @@ public class EmployeePermissionTest extends RoadMapERPTest {
 	@Test(priority = 34, groups = {
 			"Employee TDS Declaration" }, description = "124.To CheckTDS Declaration Find page with all line wise record")
 	public void checkTDSDeclarationFindPageWithAllLineWiseRecord() {
-		// TODO Covered in CheckTDSDeclarationBasedOnTDSRevision() Method
-		Assert.assertTrue(flag);
+		logs.logging("INFO", "This test covered in 'checkTDSDeclarationBasedOnTDSRevision'  Test");
+		if (previousStatus != ITestResult.SUCCESS) {
+			logs.logging("INFO", "Previous test (checkTDSDeclarationBasedOnTDSRevision) failed. So this fails too.");
+			Assert.fail();
+		}
+		Assert.assertTrue(true);
 	}
 
 	/**
@@ -499,8 +587,13 @@ public class EmployeePermissionTest extends RoadMapERPTest {
 	@Test(priority = 36, groups = {
 			"Employee TDS Declaration" }, description = "129.To Check TDS Declaration report fetches values correctly")
 	public void CheckTDSDeclarationReportFetchesValuesCorrectly() {
-		// TODO Covered in CheckTDSDeclarationBasedOnForwardToApprovalRecord() Method
-		Assert.assertTrue(flag);
+		logs.logging("INFO", "This test covered in 'checkTDSDeclarationBasedOnForwardToApprovalRecord'  Test");
+		if (previousStatus != ITestResult.SUCCESS) {
+			logs.logging("INFO",
+					"Previous test (checkTDSDeclarationBasedOnForwardToApprovalRecord) failed. So this fails too.");
+			Assert.fail();
+		}
+		Assert.assertTrue(true);
 	}
 
 	/**
@@ -563,6 +656,7 @@ public class EmployeePermissionTest extends RoadMapERPTest {
 	 */
 	@AfterMethod
 	public void VerifyAfterMethod(ITestResult result, Method method) {
+		previousStatus = result.getStatus();
 		commonFunc.enterAuthorNamesInExtentReport(method);
 		if (result.getStatus() == ITestResult.FAILURE || result.getStatus() == ITestResult.SKIP) {
 			VariableHandler.setCheckEmployeeDataPermissionDefaultExecution(false);
