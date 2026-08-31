@@ -288,5 +288,5 @@ public class OpenPoRcLocators {
 	}
 
 	/** @locatorType Xpath */
-	public static final String CreateOpenPoFrame = "//iframe[@title='Open PO/RC ']";
+	public static final String CreateOpenPoFrame = "//iframe[contains(@title,'Create')]";
 }
