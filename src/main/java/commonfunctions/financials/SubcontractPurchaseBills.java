@@ -2837,6 +2837,8 @@ public class SubcontractPurchaseBills {
 								PurchaseBillsLocatorsGetDocument.PBSubcontractTabTDSLoV,
 								commonFunc.getDataFromTestDataSheet("SubcontractTDS"));
 						commonFunc.hardWait(1000);
+						webDB.pressTabKey();
+						commonFunc.hardWait(2000);
 						flag = webDB.waitForElement(PurchaseBillsLocatorsGetDocument.PBSubcontractTabSaveIcon,
 								ElementType.Xpath);
 						if (flag) {
