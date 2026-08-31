@@ -275,10 +275,10 @@ public class StockAdjustmentFunctions {
 			webDB.pressTabKey();
 			commonFunc.searchAndSelectValueInFilters(StockAdjustmentLocators.LineItemLovButton, Item);
 			webDB.pressTabKey();
-			commonFunc.verifyAddTableSpecs(StockAdjustmentLocators.LineQtyField,
+			SalesOrdFunc.verifyClickAndEnterValueInTableFields(StockAdjustmentLocators.LineQtyField,
 					StockAdjustmentLocators.LineQtyInputField, Qty);
 			commonFunc.checkRefreshCellsDisappear();
-			commonFunc.verifyAddTableSpecs(StockAdjustmentLocators.LineUnitCostField,
+			SalesOrdFunc.verifyClickAndEnterValueInTableFields(StockAdjustmentLocators.LineUnitCostField,
 					StockAdjustmentLocators.LineUnitCostInputField, UnitCost);
 			webDB.pressTabKey();
 			commonFunc.checkRefreshCellsDisappear();
@@ -330,7 +330,7 @@ public class StockAdjustmentFunctions {
 				commonFunc.verifyAddTableSpecs(StockAdjustmentLocators.LotNumberField,
 						StockAdjustmentLocators.LotNumberInputField, LotNumber);
 				webDB.pressTabKey();
-				commonFunc.verifyAddTableSpecs(StockAdjustmentLocators.LotQtyField,
+				SalesOrdFunc.verifyClickAndEnterValueInTableFields(StockAdjustmentLocators.LotQtyField,
 						StockAdjustmentLocators.LotQtyInputField, LotQty);
 				webDB.pressTabKey();
 				flag = webDB.waitForElement(StockAdjustmentLocators.LotWiseSaveButton, ElementType.Xpath);
@@ -360,14 +360,14 @@ public class StockAdjustmentFunctions {
 			flag = webDB.waitForElement(StockAdjustmentLocators.LotNumberField, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Lot Wise Add Button Is Clicked Successfully");
-				commonFunc.verifyAddTableSpecs(StockAdjustmentLocators.LotNumberField,
+				SalesOrdFunc.verifyClickAndEnterValueInTableFields(StockAdjustmentLocators.LotNumberField,
 						StockAdjustmentLocators.LotNumberInputField, LotNumber);
 				webDB.pressTabKey();
-				commonFunc.verifyAddTableSpecs(StockAdjustmentLocators.LotQtyField,
+				SalesOrdFunc.verifyClickAndEnterValueInTableFields(StockAdjustmentLocators.LotQtyField,
 						StockAdjustmentLocators.LotQtyInputField, LotQty);
 				webDB.pressTabKey();
 				if (LotExp.equals("Y")) {
-					commonFunc.verifyAddTableSpecs(StockAdjustmentLocators.LotExpiryField,
+					SalesOrdFunc.verifyClickAndEnterValueInTableFields(StockAdjustmentLocators.LotExpiryField,
 							StockAdjustmentLocators.LotExpiryInputField, ExpiryDate);
 				}
 				flag = webDB.waitForElement(StockAdjustmentLocators.LotWiseSaveButton, ElementType.Xpath);
@@ -401,7 +401,7 @@ public class StockAdjustmentFunctions {
 				logs.logging("INFO", "Generate Serial Button Is Clicked Sucessfully");
 				commonFunc.searchAndSelectValueInFilters(StockAdjustmentLocators.SerialItemLovButton, ItemID);
 				webDB.pressTabKey();
-				commonFunc.verifyAddTableSpecs(
+				SalesOrdFunc.verifyClickAndEnterValueInTableFields(
 						StockAdjustmentLocators.SerialItemStartSerialInputField,
 						StockAdjustmentLocators.SerialItemStartSerialInputField, SerialNumber);
 				webDB.pressTabKey();
@@ -411,7 +411,7 @@ public class StockAdjustmentFunctions {
 				System.out.println(FromSerialNumber);
 				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("StockAdjustmentOB"), i, 9,
 						String.valueOf(FromSerialNumber));
-				commonFunc.verifyAddTableSpecs(StockAdjustmentLocators.SerialItemQtyInputField,
+				SalesOrdFunc.verifyClickAndEnterValueInTableFields(StockAdjustmentLocators.SerialItemQtyInputField,
 						StockAdjustmentLocators.SerialItemQtyInputField, Qty);
 				webDB.pressTabKey();
 				if (LotExp.equals("Y")) {

@@ -8,6 +8,7 @@ import java.lang.reflect.Method;
  */
 import org.testng.Assert;
 import org.testng.ITestResult;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -17,6 +18,7 @@ import commonfunctions.CommonFunctions;
 import commonfunctions.VariableHandler;
 import commonfunctions.payroll.AttendanceLeaveFunctions;
 import utils.Mailer;
+import utils.ReportLoger;
 import utils.WebDriverBase;
 
 public class EmployeeOvertime extends RoadMapERPTest {
@@ -24,6 +26,7 @@ public class EmployeeOvertime extends RoadMapERPTest {
 	static CommonFunctions commonFunc = new CommonFunctions();
 	static Mailer mail = new Mailer();
 	static WebDriverBase webDB = new WebDriverBase();
+	private static ReportLoger logs = new ReportLoger();
 	static AttendanceLeaveFunctions attendanceLeave = new AttendanceLeaveFunctions();
 	private static int previousStatus = ITestResult.SUCCESS;
 
@@ -31,8 +34,8 @@ public class EmployeeOvertime extends RoadMapERPTest {
 	private void VerifyLogin() {
 		if (VariableHandler.getSessionID() == null || VariableHandler.getSessionID().equalsIgnoreCase("")
 				|| VariableHandler.getSessionOpened() == false || VariableHandler.getSessionID().equals(null)) {
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
+			commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+					"HrRqtUsername");
 		} else {
 			commonFunc.navigateToHomePage();
 		}
@@ -59,8 +62,12 @@ public class EmployeeOvertime extends RoadMapERPTest {
 	@Test(priority = 2, groups = {
 			"Employee Overtime" }, description = "144.To Check Overtime Find page with all line wise record")
 	public void checkOvertimeFindPageWithAllLineWiseRecord() {
-		// TODO Covered in checkOvertimeBasedOnEmployeeWise() Method
-		Assert.assertTrue(flag);
+		logs.logging("INFO", "This test covered in 'checkOvertimeBasedOnEmployeeWise'  Test");
+		if (previousStatus != ITestResult.SUCCESS) {
+			logs.logging("INFO", "Previous test (checkOvertimeBasedOnEmployeeWise) failed. So this fails too.");
+			Assert.fail();
+		}
+		Assert.assertTrue(true);
 	}
 
 	/**
@@ -85,8 +92,13 @@ public class EmployeeOvertime extends RoadMapERPTest {
 	@Test(priority = 4, groups = {
 			"Employee Overtime" }, description = "150.To Check Overtime Entry report fetches values correctly")
 	public void CheckOvertimeEntryReportFetchesValuesCorrectly() {
-		// TODO Covered in CheckOvertimeEntryBasedOnForwardToApproval() Method
-		Assert.assertTrue(flag);
+		logs.logging("INFO", "This test covered in 'checkOvertimeEntryBasedOnForwardToApproval'  Test");
+		if (previousStatus != ITestResult.SUCCESS) {
+			logs.logging("INFO",
+					"Previous test (checkOvertimeEntryBasedOnForwardToApproval) failed. So this fails too.");
+			Assert.fail();
+		}
+		Assert.assertTrue(true);
 	}
 
 	/**
@@ -124,8 +136,13 @@ public class EmployeeOvertime extends RoadMapERPTest {
 	@Test(priority = 7, groups = {
 			"Employee Overtime" }, description = "146.To Check Overtime Entry Based on Ratio Wise")
 	public void checkOvertimeEntryBasedOnRatioWise() {
-		// TODO Covered in CheckOvertimeEntryBasedOnCancelledDocument() Method
-		Assert.assertTrue(flag);
+		logs.logging("INFO", "This test covered in 'checkOvertimeEntryBasedOnCancelledDocument'  Test");
+		if (previousStatus != ITestResult.SUCCESS) {
+			logs.logging("INFO",
+					"Previous test (checkOvertimeEntryBasedOnCancelledDocument) failed. So this fails too.");
+			Assert.fail();
+		}
+		Assert.assertTrue(true);
 	}
 
 	/**
@@ -135,7 +152,7 @@ public class EmployeeOvertime extends RoadMapERPTest {
 	 */
 	@Author("Kishore-RMITS")
 	@Test(priority = 8, groups = {
-			"Employee Overtime" }, description = "160.To Check Travel Request Based on Employee Wise")
+			"Travel Request" }, description = "160.To Check Travel Request Based on Employee Wise")
 	public void checkTravelRequestBasedOnEmployeeWise() {
 		flag = attendanceLeave.CheckTravelRequestBasedOnEmployeeWise();
 		Assert.assertTrue(flag);
@@ -148,10 +165,13 @@ public class EmployeeOvertime extends RoadMapERPTest {
 	 */
 	@Author("Kishore-RMITS")
 	@Test(priority = 9, groups = {
-			"Employee Overtime" }, description = "164.To Check Travel Request Based on the adding Additional Travellers")
+			"Travel Request" }, description = "164.To Check Travel Request Based on the adding Additional Travellers")
 	public void checkTravelRequestBasedOnTheAddingAdditionalTravellers() {
-		// TODO Covered in CheckTravelRequestBasedOnEmployeeWise() Method
-		Assert.assertTrue(flag);
+		logs.logging("INFO", "This test covered in 'checkTravelRequestBasedOnEmployeeWise'  Test");
+		if (previousStatus != ITestResult.SUCCESS) {
+			logs.logging("INFO", "Previous test (checkTravelRequestBasedOnEmployeeWise) failed. So this fails too.");
+			Assert.fail();
+		}
 	}
 
 	/**
@@ -161,10 +181,13 @@ public class EmployeeOvertime extends RoadMapERPTest {
 	 */
 	@Author("Kishore-RMITS")
 	@Test(priority = 10, groups = {
-			"Employee Overtime" }, description = "159.To Check Travel Request Find page with all line wise record")
+			"Travel Request" }, description = "159.To Check Travel Request Find page with all line wise record")
 	public void checkTravelRequestFindPageWithAllLineWiseRecord() {
-		// TODO Covered in CheckTravelRequestBasedOnEmployeeWise() Method
-		Assert.assertTrue(flag);
+		logs.logging("INFO", "This test covered in 'checkTravelRequestBasedOnEmployeeWise'  Test");
+		if (previousStatus != ITestResult.SUCCESS) {
+			logs.logging("INFO", "Previous test (checkTravelRequestBasedOnEmployeeWise) failed. So this fails too.");
+			Assert.fail();
+		}
 	}
 
 	/**
@@ -174,7 +197,7 @@ public class EmployeeOvertime extends RoadMapERPTest {
 	 */
 	@Author("Kishore-RMITS")
 	@Test(priority = 11, groups = {
-			"Employee Overtime" }, description = "161.To Check Travel Request Based on Forward To Approval")
+			"Travel Request" }, description = "161.To Check Travel Request Based on Forward To Approval")
 	public void checkTravelRequestBasedOnForwardToApproval() {
 		flag = attendanceLeave.CheckTravelRequestBasedOnForwardToApproval();
 		Assert.assertTrue(flag);
@@ -187,10 +210,14 @@ public class EmployeeOvertime extends RoadMapERPTest {
 	 */
 	@Author("Kishore-RMITS")
 	@Test(priority = 12, groups = {
-			"Employee Overtime" }, description = "166.To Check Travel Request Based on all the Required Fields")
+			"Travel Request" }, description = "166.To Check Travel Request Based on all the Required Fields")
 	public void checkTravelRequestBasedOnAllTheRequiredFields() {
-		// TODO Covered in CheckTravelRequestBasedOnForwardToApproval() Method
-		Assert.assertTrue(flag);
+		logs.logging("INFO", "This test covered in 'checkTravelRequestBasedOnForwardToApproval'  Test");
+		if (previousStatus != ITestResult.SUCCESS) {
+			logs.logging("INFO",
+					"Previous test (checkTravelRequestBasedOnForwardToApproval) failed. So this fails too.");
+			Assert.fail();
+		}
 	}
 
 	/**
@@ -200,10 +227,14 @@ public class EmployeeOvertime extends RoadMapERPTest {
 	 */
 	@Author("Kishore-RMITS")
 	@Test(priority = 13, groups = {
-			"Employee Overtime" }, description = "163.To Check Travel Request Based on the Expenses details")
+			"Travel Request" }, description = "163.To Check Travel Request Based on the Expenses details")
 	public void checkTravelRequestBasedOnTheExpensesDetails() {
-		// TODO Covered in CheckTravelRequestBasedOnForwardToApproval() Method
-		Assert.assertTrue(flag);
+		logs.logging("INFO", "This test covered in 'checkTravelRequestBasedOnForwardToApproval'  Test");
+		if (previousStatus != ITestResult.SUCCESS) {
+			logs.logging("INFO",
+					"Previous test (checkTravelRequestBasedOnForwardToApproval) failed. So this fails too.");
+			Assert.fail();
+		}
 	}
 
 	/**
@@ -213,7 +244,7 @@ public class EmployeeOvertime extends RoadMapERPTest {
 	 */
 	@Author("Kishore-RMITS")
 	@Test(priority = 14, groups = {
-			"Employee Overtime" }, description = "162.To Check Travel Request Based on Return To Approval")
+			"Travel Request" }, description = "162.To Check Travel Request Based on Return To Approval")
 	public void checkTravelRequestBasedOnReturnToApproval() {
 		flag = attendanceLeave.CheckTravelRequestBasedOnReturnToApproval();
 		Assert.assertTrue(flag);
@@ -226,7 +257,7 @@ public class EmployeeOvertime extends RoadMapERPTest {
 	 */
 	@Author("Kishore-RMITS")
 	@Test(priority = 15, groups = {
-			"Employee Overtime" }, description = "165.To Check Travel Request Based on Cancelling The Travel Request")
+			"Travel Request" }, description = "165.To Check Travel Request Based on Cancelling The Travel Request")
 	public void checkTravelRequestBasedOnCancellingTheTravelRequest() {
 		flag = attendanceLeave.CheckTravelRequestBasedOnCancellingTheTravelRequest();
 		Assert.assertTrue(flag);
@@ -254,8 +285,12 @@ public class EmployeeOvertime extends RoadMapERPTest {
 	@Test(priority = 17, groups = {
 			"Travel Reimbursement" }, description = "168.To Check Travel Reimbursement Find page with all line wise record")
 	public void checkTravelReimbursementFindPageWithAllLineWiseRecord() {
-		// TODO Covered in CheckTravelReimbursementBasedOnEmployeeWise() Method
-		Assert.assertTrue(flag);
+		logs.logging("INFO", "This test covered in 'checkTravelReimbursementBasedOnEmployeeWise'  Test");
+		if (previousStatus != ITestResult.SUCCESS) {
+			logs.logging("INFO",
+					"Previous test (checkTravelReimbursementBasedOnEmployeeWise) failed. So this fails too.");
+			Assert.fail();
+		}
 	}
 
 	/**
@@ -267,8 +302,12 @@ public class EmployeeOvertime extends RoadMapERPTest {
 	@Test(priority = 18, groups = {
 			"Travel Reimbursement" }, description = "168.To Check Travel Reimbursement Based on the Expenses details")
 	public void checkTravelReimbursementBasedOnTheExpensesDetails() {
-		// TODO Covered in CheckTravelReimbursementBasedOnEmployeeWise() Method
-		Assert.assertTrue(flag);
+		logs.logging("INFO", "This test covered in 'checkTravelReimbursementBasedOnEmployeeWise'  Test");
+		if (previousStatus != ITestResult.SUCCESS) {
+			logs.logging("INFO",
+					"Previous test (checkTravelReimbursementBasedOnEmployeeWise) failed. So this fails too.");
+			Assert.fail();
+		}
 	}
 
 	/**
@@ -293,8 +332,12 @@ public class EmployeeOvertime extends RoadMapERPTest {
 	@Test(priority = 20, groups = {
 			"Travel Reimbursement" }, description = "170.To Check Travel Reimbursement Based on the adding Additional Travellers")
 	public void checkTravelReimbursementBasedOnTheAddingAdditionalTravellers() {
-		// TODO Covered in CheckTravelReimbursementBasedOnForwardToApproval() Method
-		Assert.assertTrue(flag);
+		logs.logging("INFO", "This test covered in 'checkTravelReimbursementBasedOnForwardToApproval'  Test");
+		if (previousStatus != ITestResult.SUCCESS) {
+			logs.logging("INFO",
+					"Previous test (checkTravelReimbursementBasedOnForwardToApproval) failed. So this fails too.");
+			Assert.fail();
+		}
 	}
 
 	/**
@@ -306,8 +349,12 @@ public class EmployeeOvertime extends RoadMapERPTest {
 	@Test(priority = 21, groups = {
 			"Travel Reimbursement" }, description = "171.To Check Travel Reimbursement Based on all the Required Fields")
 	public void checkTravelReimbursementBasedOnAllTheRequiredFields() {
-		// TODO Covered in CheckTravelReimbursementBasedOnForwardToApproval() Method
-		Assert.assertTrue(flag);
+		logs.logging("INFO", "This test covered in 'checkTravelReimbursementBasedOnForwardToApproval'  Test");
+		if (previousStatus != ITestResult.SUCCESS) {
+			logs.logging("INFO",
+					"Previous test (checkTravelReimbursementBasedOnForwardToApproval) failed. So this fails too.");
+			Assert.fail();
+		}
 	}
 
 	/**
@@ -345,8 +392,12 @@ public class EmployeeOvertime extends RoadMapERPTest {
 	@Test(priority = 24, groups = {
 			"Travel Reimbursement" }, description = "170.To Check Travel Reimbursement fetches values correctly")
 	public void checkTravelReimbursementFetchesValuesCorrectly() {
-		// TODO Covered in CheckTravelReimbursementBasedOnCancellingTheDocument() Method
-		Assert.assertTrue(flag);
+		logs.logging("INFO", "This test covered in 'checkTravelReimbursementBasedOnCancellingTheDocument'  Test");
+		if (previousStatus != ITestResult.SUCCESS) {
+			logs.logging("INFO",
+					"Previous test (checkTravelReimbursementBasedOnCancellingTheDocument) failed. So this fails too.");
+			Assert.fail();
+		}
 	}
 
 	/**
@@ -371,8 +422,11 @@ public class EmployeeOvertime extends RoadMapERPTest {
 	@Test(priority = 26, groups = {
 			"General Expenses" }, description = "178.To Check General Expense Based on the Expenses details")
 	public void checkGeneralExpenseBasedOnTheExpensesDetails() {
-		// TODO Covered in CheckGeneralExpenseBasedOnEmployeeWise() Method
-		Assert.assertTrue(flag);
+		logs.logging("INFO", "This test covered in 'checkGeneralExpenseBasedOnEmployeeWise'  Test");
+		if (previousStatus != ITestResult.SUCCESS) {
+			logs.logging("INFO", "Previous test (checkGeneralExpenseBasedOnEmployeeWise) failed. So this fails too.");
+			Assert.fail();
+		}
 	}
 
 	/**
@@ -384,8 +438,11 @@ public class EmployeeOvertime extends RoadMapERPTest {
 	@Test(priority = 27, groups = {
 			"General Expenses" }, description = "179.To Check General Expense Find page with all line wise record")
 	public void checkGeneralExpenseFindPageWithAllLineWiseRecord() {
-		// TODO Covered in CheckGeneralExpenseBasedOnEmployeeWise() Method
-		Assert.assertTrue(flag);
+		logs.logging("INFO", "This test covered in 'checkGeneralExpenseBasedOnEmployeeWise'  Test");
+		if (previousStatus != ITestResult.SUCCESS) {
+			logs.logging("INFO", "Previous test (checkGeneralExpenseBasedOnEmployeeWise) failed. So this fails too.");
+			Assert.fail();
+		}
 	}
 
 	/**
@@ -423,8 +480,12 @@ public class EmployeeOvertime extends RoadMapERPTest {
 	@Test(priority = 30, groups = {
 			"General Expenses" }, description = "174.To Check General Expense Based on all the Required Fields")
 	public void checkGeneralExpenseBasedOnAllTheRequiredFields() {
-		// TODO Covered in CheckGeneralExpenseBasedOnReturnToApproval() Method
-		Assert.assertTrue(flag);
+		logs.logging("INFO", "This test covered in 'checkGeneralExpenseBasedOnReturnToApproval'  Test");
+		if (previousStatus != ITestResult.SUCCESS) {
+			logs.logging("INFO",
+					"Previous test (checkGeneralExpenseBasedOnReturnToApproval) failed. So this fails too.");
+			Assert.fail();
+		}
 	}
 
 	/**
@@ -436,8 +497,12 @@ public class EmployeeOvertime extends RoadMapERPTest {
 	@Test(priority = 31, groups = {
 			"General Expenses" }, description = "178.To Check General Expense fetches values correctly")
 	public void checkGeneralExpenseFetchesvaluesCorrectly() {
-		// TODO Covered in CheckGeneralExpenseBasedOnReturnToApproval() Method
-		Assert.assertTrue(flag);
+		logs.logging("INFO", "This test covered in 'checkGeneralExpenseBasedOnReturnToApproval'  Test");
+		if (previousStatus != ITestResult.SUCCESS) {
+			logs.logging("INFO",
+					"Previous test (checkGeneralExpenseBasedOnReturnToApproval) failed. So this fails too.");
+			Assert.fail();
+		}
 	}
 
 	/**
@@ -449,8 +514,12 @@ public class EmployeeOvertime extends RoadMapERPTest {
 	@Test(priority = 32, groups = {
 			"General Expenses" }, description = "178.To Check General Expense With all the field validations and Note alerts")
 	public void checkGeneralExpenseWithAllTheFieldValidationsAndNoteAlerts() {
-		// TODO Covered in CheckGeneralExpenseBasedOnReturnToApproval() Method
-		Assert.assertTrue(flag);
+		logs.logging("INFO", "This test covered in 'checkGeneralExpenseBasedOnReturnToApproval'  Test");
+		if (previousStatus != ITestResult.SUCCESS) {
+			logs.logging("INFO",
+					"Previous test (checkGeneralExpenseBasedOnReturnToApproval) failed. So this fails too.");
+			Assert.fail();
+		}
 	}
 
 	/**
@@ -488,8 +557,12 @@ public class EmployeeOvertime extends RoadMapERPTest {
 	@Test(priority = 35, groups = {
 			"Resignation Request" }, description = "178.To Check Resign/Termination Request Based on Employee Wise ")
 	public void CheckResignTerminationRequestBasedOnEmployeeWise() {
-		// TODO Covered in checkResignTerminationRequestBasedOnRequestDate() Method
-		Assert.assertTrue(flag);
+		logs.logging("INFO", "This test covered in 'CheckResignTerminationRequestBasedOnRequestDate'  Test");
+		if (previousStatus != ITestResult.SUCCESS) {
+			logs.logging("INFO",
+					"Previous test (CheckResignTerminationRequestBasedOnRequestDate) failed. So this fails too.");
+			Assert.fail();
+		}
 	}
 
 	/**
@@ -501,8 +574,12 @@ public class EmployeeOvertime extends RoadMapERPTest {
 	@Test(priority = 36, groups = {
 			"Resignation Request" }, description = "178.To Check Resign/Termination Request Find page with all line wise record")
 	public void CheckResignTerminationRequesFindpagewithAllLineWiseRecord() {
-		// TODO Covered in checkResignTerminationRequestBasedOnRequestDate() Method
-		Assert.assertTrue(flag);
+		logs.logging("INFO", "This test covered in 'CheckResignTerminationRequestBasedOnRequestDate'  Test");
+		if (previousStatus != ITestResult.SUCCESS) {
+			logs.logging("INFO",
+					"Previous test (CheckResignTerminationRequestBasedOnRequestDate) failed. So this fails too.");
+			Assert.fail();
+		}
 	}
 
 	/**
@@ -553,9 +630,12 @@ public class EmployeeOvertime extends RoadMapERPTest {
 	@Test(priority = 40, groups = {
 			"Resignation Request" }, description = "178.To Check Resign/Termination Request Based on Planned Date & Optional date")
 	public void CheckResignTerminationRequestBasedOnPlannedDateOptionalDate() {
-		// TODO Covered in checkResignTerminationRequestBasedOnAdjustEncashLeave()
-		// Method
-		Assert.assertTrue(flag);
+		logs.logging("INFO", "This test covered in 'CheckResignTerminationRequestBasedOnAdjustEncashLeave'  Test");
+		if (previousStatus != ITestResult.SUCCESS) {
+			logs.logging("INFO",
+					"Previous test (CheckResignTerminationRequestBasedOnAdjustEncashLeave) failed. So this fails too.");
+			Assert.fail();
+		}
 	}
 
 	/**
@@ -567,9 +647,12 @@ public class EmployeeOvertime extends RoadMapERPTest {
 	@Test(priority = 41, groups = {
 			"Resignation Request" }, description = "178.To Check Resign/Termination Request Based on Reverse the Resignation Request")
 	public void CheckResignTerminationRequestBasedOnReverseTheResignationRequest() {
-		// TODO Covered in checkResignTerminationRequestBasedOnAdjustEncashLeave()
-		// Method
-		Assert.assertTrue(flag);
+		logs.logging("INFO", "This test covered in 'CheckResignTerminationRequestBasedOnAdjustEncashLeave'  Test");
+		if (previousStatus != ITestResult.SUCCESS) {
+			logs.logging("INFO",
+					"Previous test (CheckResignTerminationRequestBasedOnAdjustEncashLeave) failed. So this fails too.");
+			Assert.fail();
+		}
 	}
 
 	/**
@@ -595,8 +678,12 @@ public class EmployeeOvertime extends RoadMapERPTest {
 	@Test(priority = 43, groups = {
 			"Resignation Request" }, description = "179.To Check Resign/Termination Request With all the field validations and Note alerts")
 	public void CheckResignTerminationRequestWithAllTheFieldValidationsAndNoteAlerts() {
-		// TODO Covered in CheckResignTerminationRequestBasedOnReturnToApproval()
-		Assert.assertTrue(flag);
+		logs.logging("INFO", "This test covered in 'CheckResignTerminationRequestBasedOnReturnToApproval'  Test");
+		if (previousStatus != ITestResult.SUCCESS) {
+			logs.logging("INFO",
+					"Previous test (CheckResignTerminationRequestBasedOnReturnToApproval) failed. So this fails too.");
+			Assert.fail();
+		}
 	}
 
 	/**
@@ -607,11 +694,17 @@ public class EmployeeOvertime extends RoadMapERPTest {
 	 */
 	@AfterMethod
 	public void VerifyAfterMethod(ITestResult result, Method method) {
+		previousStatus = result.getStatus();
 		commonFunc.enterAuthorNamesInExtentReport(method);
-		if (result.getStatus() == ITestResult.FAILURE || result.getStatus() == ITestResult.SKIP) {
+		if (previousStatus == ITestResult.FAILURE || previousStatus == ITestResult.SKIP) {
 			VariableHandler.setCheckEmployeeDataPermissionDefaultExecution(false);
 			commonFunc.verifyAfterMethod();
 		}
+	}
+
+	@AfterClass
+	public void VerifyLogout() {
+		commonFunc.logoutUser();
 	}
 
 }

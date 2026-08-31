@@ -1,5 +1,7 @@
 package commonlocators.productionplanning;
 
+import commonfunctions.CommonFunctions;
+
 /**
  * @author Sakthi-GWL
  * @company Galaxy Weblinks February 19, 2025
@@ -64,15 +66,33 @@ public class MRPLocators {
 	/** @locatorType XPATH */
 	public static final String MRP_SaveLineSourcesBtn = "//button[@data-testid='MRP_SaveLineSourcesBtn']";
 	/** @locatorType XPATH */
-	public static final String MRP_SourceTableData_Unit = "(//table[@class='a-GV-table']//tr/td[1])[1]";
+	public static final String MRP_SourceTable = "//table[@class='a-GV-table']//tr/th[not(contains(@aria-roledescription,'Group header'))]";
+
 	/** @locatorType XPATH */
-	public static final String MRP_Source_UnitLovBtn = "(//table[@class='a-GV-table']//tr/td[1])[1]//button";
+	public static final String MRP_SourceTableData_Unit() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(MRP_SourceTable, "Unit");
+	}
+
 	/** @locatorType XPATH */
-	public static final String MRP_SourceTableData_CutOffDate = "(//table[@class='a-GV-table']//tr/td[6])[1]";
+	public static final String MRP_Source_UnitLovBtn() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(MRP_SourceTable, "Unit") + "//button";
+	}
+
 	/** @locatorType XPATH */
-	public static final String MRP_Source_CutOffDateInput = "(//table[@class='a-GV-table']//tr/td[6])[1]//input";
+	public static final String MRP_SourceTableData_CutOffDate() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(MRP_SourceTable, "Cutoff Date");
+	}
+
 	/** @locatorType XPATH */
-	public static final String MRP_Source_SalesOrderTableData = "(//table[@class='a-GV-table']//tr/td[7])[1]";
+	public static final String MRP_Source_CutOffDateInput() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(MRP_SourceTable, "Cutoff Date") + "//input";
+	}
+
+	/** @locatorType XPATH */
+	public static final String MRP_Source_SalesOrderTableData() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(MRP_SourceTable, "Sales Order");
+	}
+
 	/** @locatorType XPATH */
 	public static final String MRP_Source_SalesOrderCheckbox = "//div[@class='apex-item-single-checkbox']/input[@aria-label='Sales Order']";
 	/** @locatorType XPATH */
@@ -88,19 +108,43 @@ public class MRPLocators {
 	/** @locatorType XPATH */
 	public static final String MRP_DemandSearchGoBtn = "//button[@id='ContainerSummary_search_button']";
 	/** @locatorType XPATH */
-	public static final String MRP_DemandTableData_SONumber = "//div[@id='ContainerSummary_data_panel']//table//tr/td[3]";
+	public static final String MRP_DemandTable = "//div[@id='ContainerSummary_data_panel']//table//tr/th";
+
 	/** @locatorType XPATH */
-	public static final String MRP_DemandTableData_Item = "//div[@id='ContainerSummary_data_panel']//table//tr/td[4]";
+	public static final String MRP_DemandTableData_SONumber() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(MRP_DemandTable, "SO. No.");
+	}
+
 	/** @locatorType XPATH */
-	public static final String MRP_DemandTableData_ItemUOM = "//div[@id='ContainerSummary_data_panel']//table//tr/td[7]";
+	public static final String MRP_DemandTableData_Item() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(MRP_DemandTable, "Item");
+	}
+
 	/** @locatorType XPATH */
-	public static final String MRP_DemandTableData_OrderDate = "//div[@id='ContainerSummary_data_panel']//table//tr/td[8]";
+	public static final String MRP_DemandTableData_ItemUOM() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(MRP_DemandTable, "Item UOM");
+	}
+
 	/** @locatorType XPATH */
-	public static final String MRP_DemandTableData_ActlRqrdDate = "//div[@id='ContainerSummary_data_panel']//table//tr/td[9]";
+	public static final String MRP_DemandTableData_OrderDate() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(MRP_DemandTable, "Order Date");
+	}
+
 	/** @locatorType XPATH */
-	public static final String MRP_DemandTableData_RequiredDate = "//div[@id='ContainerSummary_data_panel']//table//tr/td[10]";
+	public static final String MRP_DemandTableData_ActlRqrdDate() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(MRP_DemandTable, "Act. Rqrd. Date");
+	}
+
 	/** @locatorType XPATH */
-	public static final String MRP_DemandTableData_CustomerID = "//div[@id='ContainerSummary_data_panel']//table//tr/td[25]";
+	public static final String MRP_DemandTableData_RequiredDate() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(MRP_DemandTable, "Rqrd. Date");
+	}
+
+	/** @locatorType XPATH */
+	public static final String MRP_DemandTableData_CustomerID() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(MRP_DemandTable, "Customer");
+	}
+
 	/** @locatorType XPATH */
 	public static final String MRP_DemandSelectAllCheckBox = "//div[@id='ContainerSummary_data_panel']//table//tr/th[@id='CHECKBOX']//input";
 	/** @locatorType XPATH */

@@ -47,13 +47,12 @@ public class EmployeeMasterFunctions {
 	 */
 	public boolean verifyEmployeeCreationParticularsDetails() {
 		try {
-//			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
-//					"HariUsername");
 			commonFunc.navigateEmployeeMasterScreenInPayroll();
 			clickAddIconAddEmployee();
 			clickEmployeeMasterSideNavBar();
 			selectSalutionEnterFirstAndLastName(commonFunc.getDataFromTestDataSheet("Emp_Salution"),
-					commonFunc.getDataFromTestDataSheet("Emp_FName"), commonFunc.getDataFromTestDataSheet("Emp_LName"));
+					commonFunc.getDataFromTestDataSheet("Emp_FName"),
+					(commonFunc.getDataFromTestDataSheet("Emp_LName") + RandomStringUtils.randomAlphanumeric(5)));
 			selectGenderEnterDOBAndDOJ(commonFunc.getDataFromTestDataSheet("Emp_MaleGender"),
 					commonFunc.getDataFromTestDataSheet("Emp_DOB"), commonFunc.getDataFromTestDataSheet("Emp_DOJ"));
 			selectShiftEnterCalerdarAndZone(commonFunc.getDataFromTestDataSheet("Emp_GeneralShift"),
@@ -82,14 +81,12 @@ public class EmployeeMasterFunctions {
 	public boolean verifyEmployeeCreationQualificationSkillDetails() {
 		try {
 			if (!VariableHandler.getAddEmployeDefaultExecution()) {
-//				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
-//						"HariUsername");
 				commonFunc.navigateEmployeeMasterScreenInPayroll();
 				clickAddIconAddEmployee();
 				clickEmployeeMasterSideNavBar();
 				selectSalutionEnterFirstAndLastName(commonFunc.getDataFromTestDataSheet("Emp_Salution"),
 						commonFunc.getDataFromTestDataSheet("Emp_FName"),
-						commonFunc.getDataFromTestDataSheet("Emp_LName"));
+						(commonFunc.getDataFromTestDataSheet("Emp_LName") + RandomStringUtils.randomAlphanumeric(5)));
 				selectGenderEnterDOBAndDOJ(commonFunc.getDataFromTestDataSheet("Emp_MaleGender"),
 						commonFunc.getDataFromTestDataSheet("Emp_DOB"), commonFunc.getDataFromTestDataSheet("Emp_DOJ"));
 				selectShiftEnterCalerdarAndZone(commonFunc.getDataFromTestDataSheet("Emp_GeneralShift"),
@@ -132,14 +129,12 @@ public class EmployeeMasterFunctions {
 	public boolean verifyEmployeeCreationSalaryDetailsAllowanceValues() {
 		try {
 			if (!VariableHandler.getAddEmployeDefaultExecution()) {
-//				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
-//						"HariUsername");
 				commonFunc.navigateEmployeeMasterScreenInPayroll();
 				clickAddIconAddEmployee();
 				clickEmployeeMasterSideNavBar();
 				selectSalutionEnterFirstAndLastName(commonFunc.getDataFromTestDataSheet("Emp_Salution"),
 						commonFunc.getDataFromTestDataSheet("Emp_FName"),
-						commonFunc.getDataFromTestDataSheet("Emp_LName"));
+						(commonFunc.getDataFromTestDataSheet("Emp_LName") + RandomStringUtils.randomAlphanumeric(5)));
 				selectGenderEnterDOBAndDOJ(commonFunc.getDataFromTestDataSheet("Emp_MaleGender"),
 						commonFunc.getDataFromTestDataSheet("Emp_DOB"), commonFunc.getDataFromTestDataSheet("Emp_DOJ"));
 				selectShiftEnterCalerdarAndZone(commonFunc.getDataFromTestDataSheet("Emp_GeneralShift"),
@@ -180,14 +175,12 @@ public class EmployeeMasterFunctions {
 	public boolean verifyEmployeeCreationSalaryDetailsAdjustmentValues() {
 		try {
 			if (!VariableHandler.getAddEmployeDefaultExecution()) {
-//				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
-//						"HariUsername");
 				commonFunc.navigateEmployeeMasterScreenInPayroll();
 				clickAddIconAddEmployee();
 				clickEmployeeMasterSideNavBar();
 				selectSalutionEnterFirstAndLastName(commonFunc.getDataFromTestDataSheet("Emp_Salution"),
 						commonFunc.getDataFromTestDataSheet("Emp_FName"),
-						commonFunc.getDataFromTestDataSheet("Emp_LName"));
+						(commonFunc.getDataFromTestDataSheet("Emp_LName") + RandomStringUtils.randomAlphanumeric(5)));
 				selectGenderEnterDOBAndDOJ(commonFunc.getDataFromTestDataSheet("Emp_MaleGender"),
 						commonFunc.getDataFromTestDataSheet("Emp_DOB"), commonFunc.getDataFromTestDataSheet("Emp_DOJ"));
 				selectShiftEnterCalerdarAndZone(commonFunc.getDataFromTestDataSheet("Emp_GeneralShift"),
@@ -231,14 +224,12 @@ public class EmployeeMasterFunctions {
 	public boolean verifyEmployeeCreationLeaveDetails() {
 		try {
 			if (!VariableHandler.getAddEmployeDefaultExecution()) {
-//				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
-//						"HariUsername");
 				commonFunc.navigateEmployeeMasterScreenInPayroll();
 				clickAddIconAddEmployee();
 				clickEmployeeMasterSideNavBar();
 				selectSalutionEnterFirstAndLastName(commonFunc.getDataFromTestDataSheet("Emp_Salution"),
 						commonFunc.getDataFromTestDataSheet("Emp_FName"),
-						commonFunc.getDataFromTestDataSheet("Emp_LName"));
+						(commonFunc.getDataFromTestDataSheet("Emp_LName") + RandomStringUtils.randomAlphanumeric(5)));
 				selectGenderEnterDOBAndDOJ(commonFunc.getDataFromTestDataSheet("Emp_MaleGender"),
 						commonFunc.getDataFromTestDataSheet("Emp_DOB"), commonFunc.getDataFromTestDataSheet("Emp_DOJ"));
 				selectShiftEnterCalerdarAndZone(commonFunc.getDataFromTestDataSheet("Emp_GeneralShift"),
@@ -319,14 +310,12 @@ public class EmployeeMasterFunctions {
 	public boolean verifyProfileImageAndSignUploadWithAttachments() {
 		try {
 			if (!VariableHandler.getAddEmployeDefaultExecution()) {
-//				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
-//						"HariUsername");
 				commonFunc.navigateEmployeeMasterScreenInPayroll();
 				clickAddIconAddEmployee();
 				clickEmployeeMasterSideNavBar();
 				selectSalutionEnterFirstAndLastName(commonFunc.getDataFromTestDataSheet("Emp_Salution"),
 						commonFunc.getDataFromTestDataSheet("Emp_FName"),
-						commonFunc.getDataFromTestDataSheet("Emp_LName"));
+						(commonFunc.getDataFromTestDataSheet("Emp_LName") + RandomStringUtils.randomAlphanumeric(5)));
 				selectGenderEnterDOBAndDOJ(commonFunc.getDataFromTestDataSheet("Emp_MaleGender"),
 						commonFunc.getDataFromTestDataSheet("Emp_DOB"), commonFunc.getDataFromTestDataSheet("Emp_DOJ"));
 				selectShiftEnterCalerdarAndZone(commonFunc.getDataFromTestDataSheet("Emp_GeneralShift"),
@@ -371,14 +360,12 @@ public class EmployeeMasterFunctions {
 	public boolean verifyEmployeeCreationAdditionalInfoDetails() {
 		try {
 			if (!VariableHandler.getAddEmployeDefaultExecution()) {
-//				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
-//						"HariUsername");
 				commonFunc.navigateEmployeeMasterScreenInPayroll();
 				clickAddIconAddEmployee();
 				clickEmployeeMasterSideNavBar();
 				selectSalutionEnterFirstAndLastName(commonFunc.getDataFromTestDataSheet("Emp_Salution"),
 						commonFunc.getDataFromTestDataSheet("Emp_FName"),
-						commonFunc.getDataFromTestDataSheet("Emp_LName"));
+						(commonFunc.getDataFromTestDataSheet("Emp_LName") + RandomStringUtils.randomAlphanumeric(5)));
 				selectGenderEnterDOBAndDOJ(commonFunc.getDataFromTestDataSheet("Emp_MaleGender"),
 						commonFunc.getDataFromTestDataSheet("Emp_DOB"), commonFunc.getDataFromTestDataSheet("Emp_DOJ"));
 				selectShiftEnterCalerdarAndZone(commonFunc.getDataFromTestDataSheet("Emp_GeneralShift"),
@@ -441,7 +428,7 @@ public class EmployeeMasterFunctions {
 			submitPhoneExtensionAndFaxNoInAdditionalInfo(commonFunc.randomMobileNumberGenerator(),
 					String.valueOf(random.nextInt(100)), String.valueOf(random.nextInt(5)));
 			clickTickIconInAdditionalInfo();
-//			flag = commonFunc.logoutUser();
+			commonFunc.logoutUser();
 			return true;
 		} catch (Exception e) {
 			logs.logging("INFO", "Exception occur while executing 'verifyEmployeeCreationAdditionalInfoDetails': " + e);
@@ -459,14 +446,12 @@ public class EmployeeMasterFunctions {
 		String aadhar = commonFunc.getDataFromTestDataSheet("EmpAadharNum");
 		try {
 			if (!VariableHandler.getAddEmployeDefaultExecution()) {
-//				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
-//						"HariUsername");
 				commonFunc.navigateEmployeeMasterScreenInPayroll();
 				clickAddIconAddEmployee();
 				clickEmployeeMasterSideNavBar();
 				selectSalutionEnterFirstAndLastName(commonFunc.getDataFromTestDataSheet("Emp_Salution"),
 						commonFunc.getDataFromTestDataSheet("Emp_FName"),
-						commonFunc.getDataFromTestDataSheet("Emp_LName"));
+						(commonFunc.getDataFromTestDataSheet("Emp_LName") + RandomStringUtils.randomAlphanumeric(5)));
 				selectGenderEnterDOBAndDOJ(commonFunc.getDataFromTestDataSheet("Emp_MaleGender"),
 						commonFunc.getDataFromTestDataSheet("Emp_DOB"), commonFunc.getDataFromTestDataSheet("Emp_DOJ"));
 				selectShiftEnterCalerdarAndZone(commonFunc.getDataFromTestDataSheet("Emp_GeneralShift"),
@@ -504,14 +489,12 @@ public class EmployeeMasterFunctions {
 	public boolean verifyUpdateEmployeeParticularDetails() {
 		try {
 			if (!VariableHandler.getAddEmployeDefaultExecution()) {
-//				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
-//						"HariUsername");
 				commonFunc.navigateEmployeeMasterScreenInPayroll();
 				clickAddIconAddEmployee();
 				clickEmployeeMasterSideNavBar();
 				selectSalutionEnterFirstAndLastName(commonFunc.getDataFromTestDataSheet("Emp_Salution"),
 						commonFunc.getDataFromTestDataSheet("Emp_FName"),
-						commonFunc.getDataFromTestDataSheet("Emp_LName"));
+						(commonFunc.getDataFromTestDataSheet("Emp_LName") + RandomStringUtils.randomAlphanumeric(5)));
 				selectGenderEnterDOBAndDOJ(commonFunc.getDataFromTestDataSheet("Emp_MaleGender"),
 						commonFunc.getDataFromTestDataSheet("Emp_DOB"), commonFunc.getDataFromTestDataSheet("Emp_DOJ"));
 				selectShiftEnterCalerdarAndZone(commonFunc.getDataFromTestDataSheet("Emp_GeneralShift"),
@@ -545,7 +528,8 @@ public class EmployeeMasterFunctions {
 			clickUpdateButtonInAddEmployee();
 			clickEmployeeParticularTabInUpdateEmployee();
 			updateEmployeeGenderFirstAndLastNameInParticularTab(commonFunc.getDataFromTestDataSheet("Emp_MaleGender"),
-					commonFunc.getDataFromTestDataSheet("Emp_FName"), commonFunc.getDataFromTestDataSheet("Emp_LName"));
+					commonFunc.getDataFromTestDataSheet("Emp_FName"),
+					(commonFunc.getDataFromTestDataSheet("Emp_LName") + RandomStringUtils.randomAlphanumeric(5)));
 			updateEmployeeDOBAndCalenderInParticularTab(commonFunc.getDataFromTestDataSheet("Emp_DOB"),
 					commonFunc.getDataFromTestDataSheet("Emp_1to31Calendar"));
 			updateEmployeeShiftMaritalStatusAndZone(commonFunc.getDataFromTestDataSheet("Emp_GeneralShift"),
@@ -561,7 +545,6 @@ public class EmployeeMasterFunctions {
 				commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getEmpUpdateDocNo(),
 						webDB.getDataFromProperties("ROAUAdminEmpId"), null, System.getProperty("HariUsername"));
 			}
-//			commonFunc.logoutUser();
 			return true;
 		} catch (
 
@@ -581,14 +564,12 @@ public class EmployeeMasterFunctions {
 	public boolean verifyEmployeeCreationUpdateAddressDetails() {
 		try {
 			if (!VariableHandler.getAddEmployeDefaultExecution()) {
-//				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
-//						"HariUsername");
 				commonFunc.navigateEmployeeMasterScreenInPayroll();
 				clickAddIconAddEmployee();
 				clickEmployeeMasterSideNavBar();
 				selectSalutionEnterFirstAndLastName(commonFunc.getDataFromTestDataSheet("Emp_Salution"),
 						commonFunc.getDataFromTestDataSheet("Emp_FName"),
-						commonFunc.getDataFromTestDataSheet("Emp_LName"));
+						(commonFunc.getDataFromTestDataSheet("Emp_LName") + RandomStringUtils.randomAlphanumeric(5)));
 				selectGenderEnterDOBAndDOJ(commonFunc.getDataFromTestDataSheet("Emp_MaleGender"),
 						commonFunc.getDataFromTestDataSheet("Emp_DOB"), commonFunc.getDataFromTestDataSheet("Emp_DOJ"));
 				selectShiftEnterCalerdarAndZone(commonFunc.getDataFromTestDataSheet("Emp_GeneralShift"),
@@ -633,7 +614,6 @@ public class EmployeeMasterFunctions {
 				commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getEmpUpdateDocNo(),
 						webDB.getDataFromProperties("ROAUAdminEmpId"), null, System.getProperty("HariUsername"));
 			}
-//			commonFunc.logoutUser();
 			return flag;
 		} catch (Exception e) {
 			logs.logging("INFO", "Exception occur while executing 'verifyEmployeeCreationUpdateAddressDetails': " + e);
@@ -650,14 +630,12 @@ public class EmployeeMasterFunctions {
 	public boolean verifyEmployeeCreationUpdateDependentDetails() {
 		try {
 			if (!VariableHandler.getAddEmployeDefaultExecution()) {
-//				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
-//						"HariUsername");
 				commonFunc.navigateEmployeeMasterScreenInPayroll();
 				clickAddIconAddEmployee();
 				clickEmployeeMasterSideNavBar();
 				selectSalutionEnterFirstAndLastName(commonFunc.getDataFromTestDataSheet("Emp_Salution"),
 						commonFunc.getDataFromTestDataSheet("Emp_FName"),
-						commonFunc.getDataFromTestDataSheet("Emp_LName"));
+						(commonFunc.getDataFromTestDataSheet("Emp_LName") + RandomStringUtils.randomAlphanumeric(5)));
 				selectGenderEnterDOBAndDOJ(commonFunc.getDataFromTestDataSheet("Emp_MaleGender"),
 						commonFunc.getDataFromTestDataSheet("Emp_DOB"), commonFunc.getDataFromTestDataSheet("Emp_DOJ"));
 				selectShiftEnterCalerdarAndZone(commonFunc.getDataFromTestDataSheet("Emp_GeneralShift"),
@@ -704,7 +682,6 @@ public class EmployeeMasterFunctions {
 				commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getEmpUpdateDocNo(),
 						webDB.getDataFromProperties("ROAUAdminEmpId"), null, System.getProperty("HariUsername"));
 			}
-//			commonFunc.logoutUser();
 			return flag;
 		} catch (Exception e) {
 			logs.logging("INFO",
@@ -722,14 +699,12 @@ public class EmployeeMasterFunctions {
 	public boolean verifyEmployeeCreationUpdateContactDetails() {
 		try {
 			if (!VariableHandler.getAddEmployeDefaultExecution()) {
-//				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
-//						"HariUsername");
 				commonFunc.navigateEmployeeMasterScreenInPayroll();
 				clickAddIconAddEmployee();
 				clickEmployeeMasterSideNavBar();
 				selectSalutionEnterFirstAndLastName(commonFunc.getDataFromTestDataSheet("Emp_Salution"),
 						commonFunc.getDataFromTestDataSheet("Emp_FName"),
-						commonFunc.getDataFromTestDataSheet("Emp_LName"));
+						(commonFunc.getDataFromTestDataSheet("Emp_LName") + RandomStringUtils.randomAlphanumeric(5)));
 				selectGenderEnterDOBAndDOJ(commonFunc.getDataFromTestDataSheet("Emp_MaleGender"),
 						commonFunc.getDataFromTestDataSheet("Emp_DOB"), commonFunc.getDataFromTestDataSheet("Emp_DOJ"));
 				selectShiftEnterCalerdarAndZone(commonFunc.getDataFromTestDataSheet("Emp_GeneralShift"),
@@ -794,14 +769,12 @@ public class EmployeeMasterFunctions {
 	public boolean verifyEmployeeCreationUpdateQualificationDetails() {
 		try {
 			if (!VariableHandler.getAddEmployeDefaultExecution()) {
-//				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
-//						"HariUsername");
 				commonFunc.navigateEmployeeMasterScreenInPayroll();
 				clickAddIconAddEmployee();
 				clickEmployeeMasterSideNavBar();
 				selectSalutionEnterFirstAndLastName(commonFunc.getDataFromTestDataSheet("Emp_Salution"),
 						commonFunc.getDataFromTestDataSheet("Emp_FName"),
-						commonFunc.getDataFromTestDataSheet("Emp_LName"));
+						(commonFunc.getDataFromTestDataSheet("Emp_LName") + RandomStringUtils.randomAlphanumeric(5)));
 				selectGenderEnterDOBAndDOJ(commonFunc.getDataFromTestDataSheet("Emp_MaleGender"),
 						commonFunc.getDataFromTestDataSheet("Emp_DOB"), commonFunc.getDataFromTestDataSheet("Emp_DOJ"));
 				selectShiftEnterCalerdarAndZone(commonFunc.getDataFromTestDataSheet("Emp_GeneralShift"),
@@ -848,7 +821,6 @@ public class EmployeeMasterFunctions {
 				commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getEmpUpdateDocNo(),
 						webDB.getDataFromProperties("ROAUAdminEmpId"), null, System.getProperty("HariUsername"));
 			}
-//			commonFunc.logoutUser();
 			return flag;
 		} catch (Exception e) {
 			logs.logging("INFO",
@@ -866,14 +838,12 @@ public class EmployeeMasterFunctions {
 	public boolean verifyEmployeeCreationUpdateSkillsDetails() {
 		try {
 			if (!VariableHandler.getAddEmployeDefaultExecution()) {
-//				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
-//						"HariUsername");
 				commonFunc.navigateEmployeeMasterScreenInPayroll();
 				clickAddIconAddEmployee();
 				clickEmployeeMasterSideNavBar();
 				selectSalutionEnterFirstAndLastName(commonFunc.getDataFromTestDataSheet("Emp_Salution"),
 						commonFunc.getDataFromTestDataSheet("Emp_FName"),
-						commonFunc.getDataFromTestDataSheet("Emp_LName"));
+						(commonFunc.getDataFromTestDataSheet("Emp_LName") + RandomStringUtils.randomAlphanumeric(5)));
 				selectGenderEnterDOBAndDOJ(commonFunc.getDataFromTestDataSheet("Emp_MaleGender"),
 						commonFunc.getDataFromTestDataSheet("Emp_DOB"), commonFunc.getDataFromTestDataSheet("Emp_DOJ"));
 				selectShiftEnterCalerdarAndZone(commonFunc.getDataFromTestDataSheet("Emp_GeneralShift"),
@@ -917,7 +887,6 @@ public class EmployeeMasterFunctions {
 				commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getEmpUpdateDocNo(),
 						webDB.getDataFromProperties("ROAUAdminEmpId"), null, System.getProperty("HariUsername"));
 			}
-//			flag = commonFunc.logoutUser();
 			return flag;
 		} catch (Exception e) {
 			logs.logging("INFO", "Exception occur while executing 'verifyEmployeeCreationUpdateSkillsDetails': " + e);
@@ -933,14 +902,12 @@ public class EmployeeMasterFunctions {
 	 */
 	public boolean verifyEmployeeCreationEmployeeHistory() {
 		try {
-			commonFunc.enterUrl();
-			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
-					"HariUsername");
 			commonFunc.navigateEmployeeMasterScreenInPayroll();
 			clickAddIconAddEmployee();
 			clickEmployeeMasterSideNavBar();
 			selectSalutionEnterFirstAndLastName(commonFunc.getDataFromTestDataSheet("Emp_Salution"),
-					commonFunc.getDataFromTestDataSheet("Emp_FName"), commonFunc.getDataFromTestDataSheet("Emp_LName"));
+					commonFunc.getDataFromTestDataSheet("Emp_FName"),
+					(commonFunc.getDataFromTestDataSheet("Emp_LName") + RandomStringUtils.randomAlphanumeric(5)));
 			selectGenderEnterDOBAndDOJ(commonFunc.getDataFromTestDataSheet("Emp_MaleGender"),
 					commonFunc.getDataFromTestDataSheet("Emp_DOB"), commonFunc.getDataFromTestDataSheet("Emp_DOJ"));
 			selectShiftEnterCalerdarAndZone(commonFunc.getDataFromTestDataSheet("Emp_GeneralShift"),
@@ -965,7 +932,6 @@ public class EmployeeMasterFunctions {
 			enableESIAdjustmentFlagsInSalaryDetails();
 			clickPostButtonAndVerifyEmployeePosted();
 			clickEmployeeHistoryAndCheckNotNull();
-//			flag = commonFunc.logoutUser();
 			return flag;
 		} catch (Exception e) {
 			logs.logging("INFO", "Exception occur while executing 'verifyEmployeeCreationEmployeeHistory': " + e);
@@ -981,13 +947,12 @@ public class EmployeeMasterFunctions {
 	 */
 	public boolean verifyEmployeeCreationEmployeeProfileReverse() {
 		try {
-//			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
-//					"HariUsername");
 			commonFunc.navigateEmployeeMasterScreenInPayroll();
 			clickAddIconAddEmployee();
 			clickEmployeeMasterSideNavBar();
 			selectSalutionEnterFirstAndLastName(commonFunc.getDataFromTestDataSheet("Emp_Salution"),
-					commonFunc.getDataFromTestDataSheet("Emp_FName"), commonFunc.getDataFromTestDataSheet("Emp_LName"));
+					commonFunc.getDataFromTestDataSheet("Emp_FName"),
+					(commonFunc.getDataFromTestDataSheet("Emp_LName") + RandomStringUtils.randomAlphanumeric(5)));
 			selectGenderEnterDOBAndDOJ(commonFunc.getDataFromTestDataSheet("Emp_MaleGender"),
 					commonFunc.getDataFromTestDataSheet("Emp_DOB"), commonFunc.getDataFromTestDataSheet("Emp_DOJ"));
 			selectShiftEnterCalerdarAndZone(commonFunc.getDataFromTestDataSheet("Emp_GeneralShift"),
@@ -1013,7 +978,6 @@ public class EmployeeMasterFunctions {
 			clickPostButtonAndVerifyEmployeePosted();
 			clickViewProfileAndStoreProfileAndBatchNo();
 			clickEmployeeProfileNoAndReverse();
-//			flag = commonFunc.logoutUser();
 			return flag;
 		} catch (Exception e) {
 			logs.logging("INFO",
@@ -1030,8 +994,6 @@ public class EmployeeMasterFunctions {
 	 */
 	public boolean verifyEmployeeMigrationWithTemplates() {
 		try {
-//			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
-//					"HariUsername");
 			commonFunc.navigateEmployeeMasterScreenInPayroll();
 			clickAndNavigateEmployeeMigration();
 			clickAddAndFillDetailsInEmployeeMigration(commonFunc.getDataFromTestDataSheet("Emp_1to31Calendar"),
@@ -1041,7 +1003,6 @@ public class EmployeeMasterFunctions {
 			uploadEmployeeMigrationTemplate();
 			checkExceptionAndSaveHeaderInEmpMigration();
 			postUploadedTemplateInEmployeeMigration();
-//			commonFunc.logoutUser();
 			return true;
 		} catch (Exception e) {
 			logs.logging("INFO", "Exception occur while executing 'verifyEmployeeMigrationWithTemplates': " + e);
@@ -1057,8 +1018,6 @@ public class EmployeeMasterFunctions {
 	 */
 	public boolean verifyEmployeeDetailsMigrationWithTemplates() {
 		try {
-//			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
-//					"HariUsername");
 			commonFunc.navigateEmployeeMasterScreenInPayroll();
 			clickAndNavigateEmployeeDetailsMigration();
 			createAndFillDetailsInEmpDetailsMigration(commonFunc.getDataFromTestDataSheet("RefText_Test"));
@@ -1070,7 +1029,6 @@ public class EmployeeMasterFunctions {
 			checkExceptionAndSaveHeaderInEmpDetailsMigration();
 			commonFunc.hardWait(3000);
 			postUploadedTemplateInEmployeeDetailsMigration();
-//			commonFunc.logoutUser();
 			return true;
 		} catch (Exception e) {
 			logs.logging("INFO", "Exception occur while executing 'verifyEmployeeDetailsMigrationWithTemplates': " + e);
@@ -1087,14 +1045,12 @@ public class EmployeeMasterFunctions {
 	 */
 	public boolean verifyEmployeeCreationForwardApproval() {
 		try {
-			commonFunc.enterUrl();
-			commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
-					"HrRqtUsername");
 			commonFunc.navigateEmployeeMasterScreenInPayroll();
 			clickAddIconAddEmployee();
 			clickEmployeeMasterSideNavBar();
 			selectSalutionEnterFirstAndLastName(commonFunc.getDataFromTestDataSheet("Emp_Salution"),
-					commonFunc.getDataFromTestDataSheet("Emp_FName"), commonFunc.getDataFromTestDataSheet("Emp_LName"));
+					commonFunc.getDataFromTestDataSheet("Emp_FName"),
+					(commonFunc.getDataFromTestDataSheet("Emp_LName") + RandomStringUtils.randomAlphanumeric(5)));
 			selectGenderEnterDOBAndDOJ(commonFunc.getDataFromTestDataSheet("Emp_MaleGender"),
 					commonFunc.getDataFromTestDataSheet("Emp_DOB"), commonFunc.getDataFromTestDataSheet("Emp_DOJ"));
 			selectShiftEnterCalerdarAndZone(commonFunc.getDataFromTestDataSheet("Emp_GeneralShift"),
@@ -1126,9 +1082,6 @@ public class EmployeeMasterFunctions {
 				approvalFunc.navigateToApprovals();
 				approvalFunc.filterDocumentsforApproval(VariableHandler.getEmpID());
 				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getEmpID());
-//				commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getEmpID(),
-//						webDB.getDataFromProperties("ROAUAdminEmpId"), null, System.getProperty("HariUsername"));
-//				commonFunc.logoutUser();
 			}
 			return true;
 		} catch (Exception e) {
@@ -1146,14 +1099,12 @@ public class EmployeeMasterFunctions {
 	 */
 	public boolean verifyEmployeeCreationReturnApproval() {
 		try {
-			commonFunc.enterUrl();
-			commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
-					"HrRqtUsername");
 			commonFunc.navigateEmployeeMasterScreenInPayroll();
 			clickAddIconAddEmployee();
 			clickEmployeeMasterSideNavBar();
 			selectSalutionEnterFirstAndLastName(commonFunc.getDataFromTestDataSheet("Emp_Salution"),
-					commonFunc.getDataFromTestDataSheet("Emp_FName"), commonFunc.getDataFromTestDataSheet("Emp_LName"));
+					commonFunc.getDataFromTestDataSheet("Emp_FName"),
+					(commonFunc.getDataFromTestDataSheet("Emp_LName") + RandomStringUtils.randomAlphanumeric(5)));
 			selectGenderEnterDOBAndDOJ(commonFunc.getDataFromTestDataSheet("Emp_MaleGender"),
 					commonFunc.getDataFromTestDataSheet("Emp_DOB"), commonFunc.getDataFromTestDataSheet("Emp_DOJ"));
 			selectShiftEnterCalerdarAndZone(commonFunc.getDataFromTestDataSheet("Emp_GeneralShift"),
@@ -1186,11 +1137,8 @@ public class EmployeeMasterFunctions {
 				approvalFunc.filterDocumentsforApproval(VariableHandler.getEmpID());
 				approvalFunc.verifyReturnWithDocNumber(VariableHandler.getEmpID(),
 						webDB.getDataFromProperties("HRuserEmpId"));
-//				commonFunc.returnDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getEmpID(),
-//						webDB.getDataFromProperties("ROAUAdminEmpId"), null, System.getProperty("HariUsername"),
-//						webDB.getDataFromProperties("HRuserEmpId"));
-//				flag = commonFunc.logoutUser();
 			}
+			commonFunc.logoutUser();
 			return true;
 		} catch (Exception e) {
 			logs.logging("INFO", "Exception occur while executing 'verifyEmployeeCreationReturnApproval': " + e);
@@ -1206,14 +1154,12 @@ public class EmployeeMasterFunctions {
 	 */
 	public boolean verifyEmployeeCreationProbationComplete() {
 		try {
-			commonFunc.enterUrl();
-			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
-					"HariUsername");
 			commonFunc.navigateEmployeeMasterScreenInPayroll();
 			clickAddIconAddEmployee();
 			clickEmployeeMasterSideNavBar();
 			selectSalutionEnterFirstAndLastName(commonFunc.getDataFromTestDataSheet("Emp_Salution"),
-					commonFunc.getDataFromTestDataSheet("Emp_FName"), commonFunc.getDataFromTestDataSheet("Emp_LName"));
+					commonFunc.getDataFromTestDataSheet("Emp_FName"),
+					(commonFunc.getDataFromTestDataSheet("Emp_LName") + RandomStringUtils.randomAlphanumeric(5)));
 			selectGenderEnterDOBAndDOJ(commonFunc.getDataFromTestDataSheet("Emp_MaleGender"),
 					commonFunc.getDataFromTestDataSheet("Emp_DOB"), commonFunc.getDataFromTestDataSheet("Emp_DOJ"));
 			selectShiftEnterCalerdarAndZone(commonFunc.getDataFromTestDataSheet("Emp_GeneralShift"),
@@ -1240,7 +1186,6 @@ public class EmployeeMasterFunctions {
 			clickPostButtonAndVerifyEmployeePosted();
 			enablePTAdjustmentFlagsInSalaryDetails();
 			clickProbationCompleteAndCheckProbationStatus();
-//			flag = commonFunc.logoutUser();
 			return flag;
 		} catch (Exception e) {
 			logs.logging("INFO", "Exception occur while executing 'verifyEmployeeCreationProbationComplete': " + e);
@@ -1257,8 +1202,6 @@ public class EmployeeMasterFunctions {
 	 */
 	public boolean verifyEmployeeCreationFindWithLineWiseRecord() {
 		try {
-//			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
-//					"HariUsername");
 			commonFunc.navigateEmployeeMasterScreenInPayroll();
 			findWithZone(commonFunc.getDataFromTestDataSheet("Emp_GeneralZone"));
 			webDB.navigateToRefresh();
@@ -1270,7 +1213,6 @@ public class EmployeeMasterFunctions {
 			webDB.navigateToRefresh();
 			findWithUnit(commonFunc.getDataFromTestDataSheet("Unit1"));
 			webDB.navigateToRefresh();
-//			flag = commonFunc.logoutUser();
 			return flag;
 		} catch (Exception e) {
 			logs.logging("INFO",
@@ -1305,6 +1247,7 @@ public class EmployeeMasterFunctions {
 	 * @param LName
 	 */
 	public void selectSalutionEnterFirstAndLastName(String SalutionValue, String FName, String LName) {
+		VariableHandler.setEmployeeFullName(FName + LName);
 		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_SelectSalution, ElementType.Xpath);
 		if (flag) {
 			webDB.selectDropDownByText(EmployeeMasterLocators.AddEmp_SelectSalution, SalutionValue, ElementType.Xpath);
@@ -1586,22 +1529,22 @@ public class EmployeeMasterFunctions {
 				}
 			}
 		}
-		commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.AddEmp_ContactNameData,
-				EmployeeMasterLocators.AddEmp_ContactNameDataInput, ContactName);
+		commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.AddEmp_ContactNameData(),
+				EmployeeMasterLocators.AddEmp_ContactNameDataInput(), ContactName);
 		VariableHandler.setEmpContactName(ContactName);
-		commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.AddEmp_RelationshipData,
-				EmployeeMasterLocators.AddEmp_RelationshipDataInput, Relationship);
+		commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.AddEmp_RelationshipData(),
+				EmployeeMasterLocators.AddEmp_RelationshipDataInput(), Relationship);
 		VariableHandler.setEmpContactRelationship(Relationship);
-		commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.AddEmp_MobileNoData,
-				EmployeeMasterLocators.AddEmp_MobileNoDataInput, MobileNo);
+		commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.AddEmp_MobileNoData(),
+				EmployeeMasterLocators.AddEmp_MobileNoDataInput(), MobileNo);
 		VariableHandler.setEmpContactMobileNo(MobileNo);
-		commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.AddEmp_AddressData,
-				EmployeeMasterLocators.AddEmp_AddressDataInput, Address);
+		commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.AddEmp_AddressData(),
+				EmployeeMasterLocators.AddEmp_AddressDataInput(), Address);
 		VariableHandler.setEmpContactAddress(Address);
-		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_City, ElementType.Xpath);
+		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_City(), ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(EmployeeMasterLocators.AddEmp_City, ElementType.Xpath);
-			commonFunc.searchAndSelectValueInFilters(EmployeeMasterLocators.AddEmp_CityLovBtn, City);
+			webDB.clickAnElement(EmployeeMasterLocators.AddEmp_City(), ElementType.Xpath);
+			commonFunc.searchAndSelectValueInFilters(EmployeeMasterLocators.AddEmp_CityLovBtn(), City);
 			VariableHandler.setEmpContactCity(City);
 			flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_ContactSaveLinesIcon, ElementType.Xpath);
 			if (flag) {
@@ -1642,31 +1585,32 @@ public class EmployeeMasterFunctions {
 				}
 			}
 		}
-		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_Qualification, ElementType.Xpath);
+		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_Qualification(), ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(EmployeeMasterLocators.AddEmp_Qualification, ElementType.Xpath);
-			commonFunc.searchAndSelectValueInFilters(EmployeeMasterLocators.AddEmp_QualificationLovBtn, Qualification);
+			webDB.clickAnElement(EmployeeMasterLocators.AddEmp_Qualification(), ElementType.Xpath);
+			commonFunc.searchAndSelectValueInFilters(EmployeeMasterLocators.AddEmp_QualificationLovBtn(),
+					Qualification);
 			VariableHandler.setEmpQualification(Qualification);
-			flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_BranchOfStudy, ElementType.Xpath);
+			flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_BranchOfStudy(), ElementType.Xpath);
 			if (flag) {
-				webDB.clickAnElement(EmployeeMasterLocators.AddEmp_BranchOfStudy, ElementType.Xpath);
-				commonFunc.searchAndSelectValueInFilters(EmployeeMasterLocators.AddEmp_BranchOfStudyLovBtn,
+				webDB.clickAnElement(EmployeeMasterLocators.AddEmp_BranchOfStudy(), ElementType.Xpath);
+				commonFunc.searchAndSelectValueInFilters(EmployeeMasterLocators.AddEmp_BranchOfStudyLovBtn(),
 						branchOfStudy);
 				VariableHandler.setEmpQualBranchOfStudy(branchOfStudy);
-				commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.AddEmp_InstituteData,
-						EmployeeMasterLocators.AddEmp_InstituteDataInput, Institute);
+				commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.AddEmp_InstituteData(),
+						EmployeeMasterLocators.AddEmp_InstituteDataInput(), Institute);
 				VariableHandler.setEmpQualInstitute(Institute);
-				commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.AddEmp_TotalYearsData,
-						EmployeeMasterLocators.AddEmp_TotalYearsDataInput, Totalyears);
+				commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.AddEmp_TotalYearsData(),
+						EmployeeMasterLocators.AddEmp_TotalYearsDataInput(), Totalyears);
 				VariableHandler.setEmpQualTotalYears(Totalyears);
-				commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.AddEmp_YearOfPassingData,
-						EmployeeMasterLocators.AddEmp_YearOfPassingDataInput, YearofPassing);
+				commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.AddEmp_YearOfPassingData(),
+						EmployeeMasterLocators.AddEmp_YearOfPassingDataInput(), YearofPassing);
 				VariableHandler.setEmpQualYearOfPassing(YearofPassing);
-				commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.AddEmp_GradeClassData,
-						EmployeeMasterLocators.AddEmp_GradeClassDataInput, GradeClass);
+				commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.AddEmp_GradeClassData(),
+						EmployeeMasterLocators.AddEmp_GradeClassDataInput(), GradeClass);
 				VariableHandler.setEmpQualGradeClass(GradeClass);
-				commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.AddEmp_AggData,
-						EmployeeMasterLocators.AddEmp_AggDataInput, Agg);
+				commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.AddEmp_AggData(),
+						EmployeeMasterLocators.AddEmp_AggDataInput(), Agg);
 				VariableHandler.setEmpQualAGG(Agg);
 				flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_QualificationSaveLinesIcon,
 						ElementType.Xpath);
@@ -1702,15 +1646,15 @@ public class EmployeeMasterFunctions {
 				}
 			}
 		}
-		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_SkillData, ElementType.Xpath);
+		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_SkillData(), ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(EmployeeMasterLocators.AddEmp_SkillData, ElementType.Xpath);
-			commonFunc.searchAndSelectValueInFilters(EmployeeMasterLocators.AddEmp_SkillDataLov, Skill);
+			webDB.clickAnElement(EmployeeMasterLocators.AddEmp_SkillData(), ElementType.Xpath);
+			commonFunc.searchAndSelectValueInFilters(EmployeeMasterLocators.AddEmp_SkillDataLov(), Skill);
 			VariableHandler.setEmpSkill(Skill);
-			flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_LevelData, ElementType.Xpath);
+			flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_LevelData(), ElementType.Xpath);
 			if (flag) {
-				webDB.clickAnElement(EmployeeMasterLocators.AddEmp_LevelData, ElementType.Xpath);
-				commonFunc.searchAndSelectValueInFilters(EmployeeMasterLocators.AddEmp_LevelDataLov, Level);
+				webDB.clickAnElement(EmployeeMasterLocators.AddEmp_LevelData(), ElementType.Xpath);
+				commonFunc.searchAndSelectValueInFilters(EmployeeMasterLocators.AddEmp_LevelDataLov(), Level);
 				VariableHandler.setEmpSkillLevel(Level);
 				flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_SkillSaveLinesIcon, ElementType.Xpath);
 				if (flag) {
@@ -1766,7 +1710,8 @@ public class EmployeeMasterFunctions {
 		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_LoadAllowanceBtn, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(EmployeeMasterLocators.AddEmp_LoadAllowanceBtn, ElementType.Xpath);
-			flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_AllowanceTableFirstTrashIcon, ElementType.Xpath);
+			flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_AllowanceTableTotalAmountData(),
+					ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Load Allowance Button Clicked and Allowances Displayed");
 			}
@@ -1783,22 +1728,22 @@ public class EmployeeMasterFunctions {
 	 */
 	public void fillAllowanceAmountsAndVerifyTotalInSalaryDetails(String[] amounts) {
 		int totalAllowanceAmounts = 0;
-		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_AllowanceTableAmountData, ElementType.Xpath);
+		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_AllowanceTableAmountData(), ElementType.Xpath);
 		if (flag) {
-			List<WebElement> elements = webDB.getDriver()
-					.findElements(By.xpath(EmployeeMasterLocators.AddEmp_AllowanceTableAmountData));
+			List<WebElement> elements = WebDriverBase.getDriver()
+					.findElements(By.xpath(EmployeeMasterLocators.AddEmp_AllowanceTableAmountData()));
 			for (int i = 0; i < elements.size() - 1; i++) {
 				WebElement element = elements.get(i);
 				commonFunc.checkRefreshCellsDisappear();
-				Actions action = new Actions(webDB.getDriver());
+				Actions action = new Actions(WebDriverBase.getDriver());
 				action.doubleClick(element).build().perform();
-				flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_AllowanceTableAmountDataInput,
+				flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_AllowanceTableAmountDataInput(),
 						ElementType.Xpath);
 				if (flag) {
 					try {
-						JavascriptExecutor js = (JavascriptExecutor) webDB.getDriver();
-						WebElement InputElement = webDB.getDriver()
-								.findElement(By.xpath(EmployeeMasterLocators.AddEmp_AllowanceTableAmountDataInput));
+						JavascriptExecutor js = (JavascriptExecutor) WebDriverBase.getDriver();
+						WebElement InputElement = WebDriverBase.getDriver()
+								.findElement(By.xpath(EmployeeMasterLocators.AddEmp_AllowanceTableAmountDataInput()));
 						js.executeScript("arguments[0].value='" + (amounts[i].toString()) + "';", InputElement);
 						totalAllowanceAmounts += Integer.parseInt(amounts[i].toString());
 						logs.logging("INFO",
@@ -1811,9 +1756,9 @@ public class EmployeeMasterFunctions {
 			}
 			saveAllowanceTableInSalary();
 			commonFunc.checkRefreshCellsDisappear();
-			webDB.waitForElement(EmployeeMasterLocators.AddEmp_AllowanceTableTotalAmountData, ElementType.Xpath);
-			String displayingTotalData = webDB
-					.getTextFromElement(EmployeeMasterLocators.AddEmp_AllowanceTableTotalAmountData, ElementType.Xpath);
+			webDB.waitForElement(EmployeeMasterLocators.AddEmp_AllowanceTableTotalAmountData(), ElementType.Xpath);
+			String displayingTotalData = webDB.getTextFromElement(
+					EmployeeMasterLocators.AddEmp_AllowanceTableTotalAmountData(), ElementType.Xpath);
 			flag = Integer.parseInt(displayingTotalData) == totalAllowanceAmounts;
 			logs.logging("INFO", "Total Allowance Amount Displayed: " + displayingTotalData);
 			logs.logging("INFO", "Expected Total Amount by adding sent text: " + totalAllowanceAmounts);
@@ -1849,7 +1794,7 @@ public class EmployeeMasterFunctions {
 		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_AdjustmentAddIcon, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(EmployeeMasterLocators.AddEmp_AdjustmentAddIcon, ElementType.Xpath);
-			flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_AdjustmentPeriodAmountData, ElementType.Xpath);
+			flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_AdjustmentPeriodAmountData(), ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Add Adjustment Button is Clicked");
 			}
@@ -1980,10 +1925,10 @@ public class EmployeeMasterFunctions {
 			commonFunc.checkRefreshCellsDisappear();
 			commonFunc.searchAndSelectValueInFilters(EmployeeMasterLocators.AddEmp_AdjustmentElementLovBtn, Element);
 			VariableHandler.setEmpSalaryAdjmntElement(Element);
-			flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_AdjustmentStartYearData, ElementType.Xpath);
+			flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_AdjustmentStartYearData(), ElementType.Xpath);
 			if (flag) {
 				commonFunc.checkRefreshCellsDisappear();
-				webDB.clickAnElement(EmployeeMasterLocators.AddEmp_AdjustmentStartYearData, ElementType.Xpath);
+				webDB.clickAnElement(EmployeeMasterLocators.AddEmp_AdjustmentStartYearData(), ElementType.Xpath);
 				webDB.waitForElement(EmployeeMasterLocators.AddEmp_AdjustmentStartYearSelect, ElementType.Xpath);
 				flag = webDB.selectDropDownByText(EmployeeMasterLocators.AddEmp_AdjustmentStartYearSelect, StartYear,
 						ElementType.Xpath);
@@ -1991,12 +1936,12 @@ public class EmployeeMasterFunctions {
 					VariableHandler.setEmpSalaryAdjmntStartYear(StartYear);
 					logs.logging("INFO",
 							"Adjustment Start Year Selected Text: " + VariableHandler.getEmpSalaryAdjmntStartYear());
-					flag = webDB.waitForClickElement(EmployeeMasterLocators.AddEmp_AdjustmentPeriodData,
+					flag = webDB.waitForClickElement(EmployeeMasterLocators.AddEmp_AdjustmentPeriodData(),
 							ElementType.Xpath);
 					if (flag) {
 						commonFunc.checkRefreshCellsDisappear();
-						webDB.moveToElement(EmployeeMasterLocators.AddEmp_AdjustmentPeriodData, ElementType.Xpath);
-						webDB.clickAnElement(EmployeeMasterLocators.AddEmp_AdjustmentPeriodData, ElementType.Xpath);
+						webDB.moveToElement(EmployeeMasterLocators.AddEmp_AdjustmentPeriodData(), ElementType.Xpath);
+						webDB.clickAnElement(EmployeeMasterLocators.AddEmp_AdjustmentPeriodData(), ElementType.Xpath);
 						flag = webDB.selectDropDownByText(EmployeeMasterLocators.AddEmp_AdjustmentPeriodSelect, Period,
 								ElementType.Xpath);
 						if (flag) {
@@ -2020,11 +1965,11 @@ public class EmployeeMasterFunctions {
 	 * @param PeriodAmount
 	 */
 	public void fillAdjustmentSalaryTotalPeriodAndPeriodAmount(String TotalPeriod, String PeriodAmount) {
-		commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.AddEmp_AdjustmentTotalPeriodData,
-				EmployeeMasterLocators.AddEmp_AdjustmentTotalPeriodDataInput, TotalPeriod);
+		commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.AddEmp_AdjustmentTotalPeriodData(),
+				EmployeeMasterLocators.AddEmp_AdjustmentTotalPeriodDataInput(), TotalPeriod);
 		VariableHandler.setEmpSalaryAdjmntTotalPeriod(TotalPeriod);
-		commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.AddEmp_AdjustmentPeriodAmountData,
-				EmployeeMasterLocators.AddEmp_AdjustmentPeriodAmountDataInput, PeriodAmount);
+		commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.AddEmp_AdjustmentPeriodAmountData(),
+				EmployeeMasterLocators.AddEmp_AdjustmentPeriodAmountDataInput(), PeriodAmount);
 		VariableHandler.setEmpSalaryAdjmntPeriodAmnt(PeriodAmount);
 	}
 
@@ -2042,8 +1987,8 @@ public class EmployeeMasterFunctions {
 			flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_SalaryAdjustmentsRestoreIcon, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Salary Adjustment Maximize Icon Clicked Successfully");
-				webDB.moveToElement(EmployeeMasterLocators.AddEmp_AdjustmentActivateIcon, ElementType.Xpath);
-				webDB.clickAnElement(EmployeeMasterLocators.AddEmp_AdjustmentActivateIcon, ElementType.Xpath);
+				webDB.moveToElement(EmployeeMasterLocators.AddEmp_AdjustmentActivateIcon(), ElementType.Xpath);
+				webDB.clickAnElement(EmployeeMasterLocators.AddEmp_AdjustmentActivateIcon(), ElementType.Xpath);
 				flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_AdjustmentOkBtn, ElementType.Xpath);
 				if (flag) {
 					flag = webDB.clickAnElement(EmployeeMasterLocators.AddEmp_AdjustmentOkBtn, ElementType.Xpath);
@@ -2070,8 +2015,8 @@ public class EmployeeMasterFunctions {
 	public void clickDeleteIconInLastAddedAdjustment() {
 		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_AdjustmentTableFirstTrashIcon, ElementType.Xpath);
 		if (flag) {
-			webDB.moveToElement(EmployeeMasterLocators.AddEmp_AdjustmentTotalPeriodData, ElementType.Xpath);
-			webDB.moveToElement(EmployeeMasterLocators.AddEmp_AdjustmentActivateIcon, ElementType.Xpath);
+			webDB.moveToElement(EmployeeMasterLocators.AddEmp_AdjustmentTotalPeriodData(), ElementType.Xpath);
+			webDB.moveToElement(EmployeeMasterLocators.AddEmp_AdjustmentActivateIcon(), ElementType.Xpath);
 			webDB.moveToElement(EmployeeMasterLocators.AddEmp_AdjustmentTableFirstTrashIcon, ElementType.Xpath);
 			webDB.clickAnElement(EmployeeMasterLocators.AddEmp_AdjustmentTableFirstTrashIcon, ElementType.Xpath);
 			flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_AdjustmentOkBtn, ElementType.Xpath);
@@ -2112,7 +2057,7 @@ public class EmployeeMasterFunctions {
 		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_SalaryAdjustmentSaveBtn, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(EmployeeMasterLocators.AddEmp_SalaryAdjustmentSaveBtn, ElementType.Xpath);
-			flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_AdjustmentActivateIcon, ElementType.Xpath);
+			flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_AdjustmentActivateIcon(), ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Salary Tab Adjustment Save Icon Clicked");
 			}
@@ -2136,7 +2081,7 @@ public class EmployeeMasterFunctions {
 				logs.logging("INFO", "Maximize Button Clicked and Maximized Successfully");
 				webDB.moveToElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityAddBtn, ElementType.Xpath);
 				webDB.clickAnElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityAddBtn, ElementType.Xpath);
-				flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityLeaveLovBtn,
+				flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityLeaveLovBtn(),
 						ElementType.Xpath);
 				if (flag) {
 					logs.logging("INFO", "Leave Eligibility Add Icon Clicked");
@@ -2155,13 +2100,14 @@ public class EmployeeMasterFunctions {
 	 * @param Days
 	 */
 	public void fillLeaveAndDaysInLeaveEligibility(String Leave, String Days) {
-		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityLeaveLovBtn, ElementType.Xpath);
+		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityLeaveLovBtn(), ElementType.Xpath);
 		if (flag) {
-			commonFunc.searchAndSelectValueInFilters(EmployeeMasterLocators.AddEmp_LeaveEligibilityLeaveLovBtn, Leave);
+			commonFunc.searchAndSelectValueInFilters(EmployeeMasterLocators.AddEmp_LeaveEligibilityLeaveLovBtn(),
+					Leave);
 			VariableHandler.setEmpLeaveElgblLeave(Leave);
-			webDB.clickAnElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityDescription, ElementType.Xpath);
-			commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.AddEmp_LeaveEligibilityDaysData,
-					EmployeeMasterLocators.AddEmp_LeaveEligibilityDaysInput, Days);
+			webDB.clickAnElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityDescription(), ElementType.Xpath);
+			commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.AddEmp_LeaveEligibilityDaysData(),
+					EmployeeMasterLocators.AddEmp_LeaveEligibilityDaysInput(), Days);
 			VariableHandler.setEmpLeaveElgblDays(Days);
 			logs.logging("INFO", "Days Entered in Leave Eligibility: " + Days);
 		}
@@ -2177,19 +2123,19 @@ public class EmployeeMasterFunctions {
 	 * @param EligibleDays
 	 */
 	public void fillEveryAndEligibleDaysInLeaveEligibility(String Every, String EligibleDays) {
-		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityEveryData, ElementType.Xpath);
+		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityEveryData(), ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityEveryData, ElementType.Xpath);
-			webDB.waitForElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityEverySelect, ElementType.Xpath);
-			flag = webDB.selectDropDownByText(EmployeeMasterLocators.AddEmp_LeaveEligibilityEverySelect, Every,
+			webDB.clickAnElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityEveryData(), ElementType.Xpath);
+			webDB.waitForElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityEverySelect(), ElementType.Xpath);
+			flag = webDB.selectDropDownByText(EmployeeMasterLocators.AddEmp_LeaveEligibilityEverySelect(), Every,
 					ElementType.Xpath);
 			if (flag) {
 				VariableHandler.setEmpLeaveElgblEvery(Every);
 				logs.logging("INFO",
 						"Leave Eligibility Every Data Selected Text: " + VariableHandler.getEmpLeaveElgblEvery());
 				commonPayrollFunc.addDetailInTableWithoutLovButton(
-						EmployeeMasterLocators.AddEmp_LeaveEligibilityEligibleDaysData,
-						EmployeeMasterLocators.AddEmp_LeaveEligibilityEligibleDaysInput, EligibleDays);
+						EmployeeMasterLocators.AddEmp_LeaveEligibilityEligibleDaysData(),
+						EmployeeMasterLocators.AddEmp_LeaveEligibilityEligibleDaysInput(), EligibleDays);
 				VariableHandler.setEmpLeaveElgblEligibileDays(EligibleDays);
 				logs.logging("INFO", "Eligible Days Entered in Leave Eligibility: " + EligibleDays);
 			}
@@ -2206,24 +2152,25 @@ public class EmployeeMasterFunctions {
 	 * @param MaxCarryFreq
 	 */
 	public void fillRoundOffDaysAndMaxCarryFrequencyInLeaveEligibility(String RoundOff, String MaxCarryFreq) {
-		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityRoundOffData, ElementType.Xpath);
+		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityRoundOffData(), ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityRoundOffData, ElementType.Xpath);
-			webDB.waitForElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityRoundOffSelect, ElementType.Xpath);
-			flag = webDB.selectDropDownByText(EmployeeMasterLocators.AddEmp_LeaveEligibilityRoundOffSelect, RoundOff,
+			webDB.clickAnElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityRoundOffData(), ElementType.Xpath);
+			webDB.waitForElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityRoundOffSelect(), ElementType.Xpath);
+			flag = webDB.selectDropDownByText(EmployeeMasterLocators.AddEmp_LeaveEligibilityRoundOffSelect(), RoundOff,
 					ElementType.Xpath);
 			if (flag) {
 				VariableHandler.setEmpLeaveElgblRoundOff(RoundOff);
 				logs.logging("INFO", "Leave Eligibility RoundOff Selected Text: " + RoundOff);
-				flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityMaxCarryFreqData,
+				flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityMaxCarryFreqData(),
 						ElementType.Xpath);
 				if (flag) {
-					webDB.clickAnElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityMaxCarryFreqData,
+					webDB.clickAnElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityMaxCarryFreqData(),
 							ElementType.Xpath);
-					webDB.waitForElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityMaxCarryFreqSelect,
+					webDB.waitForElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityMaxCarryFreqSelect(),
 							ElementType.Xpath);
-					flag = webDB.selectDropDownByText(EmployeeMasterLocators.AddEmp_LeaveEligibilityMaxCarryFreqSelect,
-							MaxCarryFreq, ElementType.Xpath);
+					flag = webDB.selectDropDownByText(
+							EmployeeMasterLocators.AddEmp_LeaveEligibilityMaxCarryFreqSelect(), MaxCarryFreq,
+							ElementType.Xpath);
 					if (flag) {
 						VariableHandler.setEmpLeaveElgblMaxCarryFreq(MaxCarryFreq);
 						logs.logging("INFO", "Leave Eligibility Max Carry Frequency Selected Text: " + MaxCarryFreq);
@@ -2244,16 +2191,16 @@ public class EmployeeMasterFunctions {
 	 */
 	public void fillMaxCarryDayAndEffectiveYearInLeaveEligibility(String MaxCarryDay, String EffYear) {
 		commonPayrollFunc.addDetailInTableWithoutLovButton(
-				EmployeeMasterLocators.AddEmp_LeaveEligibilityMaxCarryDayData,
-				EmployeeMasterLocators.AddEmp_LeaveEligibilityMaxCarryDayInput, MaxCarryDay);
+				EmployeeMasterLocators.AddEmp_LeaveEligibilityMaxCarryDayData(),
+				EmployeeMasterLocators.AddEmp_LeaveEligibilityMaxCarryDayInput(), MaxCarryDay);
 		VariableHandler.setEmpLeaveElgblMaxCarryDay(MaxCarryDay);
 		logs.logging("INFO", "" + "Max Carry Days Entered in Leave Eligibility: " + MaxCarryDay);
-		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityEffYearData, ElementType.Xpath);
+		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityEffYearData(), ElementType.Xpath);
 		if (flag) {
-			webDB.moveToElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityEffYearData, ElementType.Xpath);
-			webDB.clickAnElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityEffYearData, ElementType.Xpath);
-			webDB.waitForElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityEffYearSelect, ElementType.Xpath);
-			flag = webDB.selectDropDownByText(EmployeeMasterLocators.AddEmp_LeaveEligibilityEffYearSelect, EffYear,
+			webDB.moveToElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityEffYearData(), ElementType.Xpath);
+			webDB.clickAnElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityEffYearData(), ElementType.Xpath);
+			webDB.waitForElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityEffYearSelect(), ElementType.Xpath);
+			flag = webDB.selectDropDownByText(EmployeeMasterLocators.AddEmp_LeaveEligibilityEffYearSelect(), EffYear,
 					ElementType.Xpath);
 			if (flag) {
 				VariableHandler.setEmpLeaveElgblEffYear(EffYear);
@@ -2272,16 +2219,17 @@ public class EmployeeMasterFunctions {
 	 * @param MinDay
 	 */
 	public void fillMaxDaysAndMinDaysInLeaveEligibility(String MaxDay, String MinDay, String MinEncashDay) {
-		commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.AddEmp_LeaveEligibilityMaxDaysData,
-				EmployeeMasterLocators.AddEmp_LeaveEligibilityMaxDaysInput, MaxDay);
+		commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.AddEmp_LeaveEligibilityMaxDaysData(),
+				EmployeeMasterLocators.AddEmp_LeaveEligibilityMaxDaysInput(), MaxDay);
 		VariableHandler.setEmpLeaveElgblMaxDay(MaxDay);
 		logs.logging("INFO", "" + "Max Days Entered in Leave Eligibility: " + MaxDay);
-		commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.AddEmp_LeaveEligibilityMinDaysData,
-				EmployeeMasterLocators.AddEmp_LeaveEligibilityMinDaysInput, MinDay);
+		commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.AddEmp_LeaveEligibilityMinDaysData(),
+				EmployeeMasterLocators.AddEmp_LeaveEligibilityMinDaysInput(), MinDay);
 		VariableHandler.setEmpLeaveElgblMinDay(MinDay);
 		logs.logging("INFO", "" + "Min Days Entered in Leave Eligibility: " + MinDay);
-		commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.AddEmp_LeaveEligibilityMinEncashData,
-				EmployeeMasterLocators.AddEmp_LeaveEligibilityMinEncashInput, MinEncashDay);
+		commonPayrollFunc.addDetailInTableWithoutLovButton(
+				EmployeeMasterLocators.AddEmp_LeaveEligibilityMinEncashData(),
+				EmployeeMasterLocators.AddEmp_LeaveEligibilityMinEncashInput(), MinEncashDay);
 		logs.logging("INFO", "" + "Min Encash Days Entered in Leave Eligibility: " + MinEncashDay);
 	}
 
@@ -2338,11 +2286,11 @@ public class EmployeeMasterFunctions {
 	 * @author Sakthi-GWL
 	 */
 	public void validateUpdatedLeaveDetailsWithSetupScreenEntitlement() {
-		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityLeaveData, ElementType.Xpath);
+		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityLeaveData(), ElementType.Xpath);
 		if (flag) {
 			int a = 0;
-			List<WebElement> LeaveIDs = webDB.getDriver()
-					.findElements(By.xpath(EmployeeMasterLocators.AddEmp_LeaveEligibilityLeaveData));
+			List<WebElement> LeaveIDs = WebDriverBase.getDriver()
+					.findElements(By.xpath(EmployeeMasterLocators.AddEmp_LeaveEligibilityLeaveData()));
 			flag = LeaveIDs.size() == VariableHandler.getEmpSetupScreenGreenFlagLeaveIDs().size();
 			if (flag) {
 				aa: for (int i = 0; i < LeaveIDs.size(); i++) {
@@ -2855,7 +2803,7 @@ public class EmployeeMasterFunctions {
 		if (flag) {
 			webDB.moveToElement(EmployeeMasterLocators.AddEmp_DependentAddIcon, ElementType.Xpath);
 			webDB.clickAnElement(EmployeeMasterLocators.AddEmp_DependentAddIcon, ElementType.Xpath);
-			flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_DependentNameData, ElementType.Xpath);
+			flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_DependentNameData(), ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Add Employee Dependent Details Add Icon Clicked");
 			}
@@ -2878,24 +2826,24 @@ public class EmployeeMasterFunctions {
 	 */
 	public void fillRequiredDetailsInDependentDetails(String DependentName, String RelationShip, String DOB,
 			String AadharNo, String EmailId, String ContactNo, String MonthlyEarning) {
-		commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.AddEmp_DependentNameData,
-				EmployeeMasterLocators.AddEmp_DependentNameInput, DependentName);
-		commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.AddEmp_DependentAadharNoData,
-				EmployeeMasterLocators.AddEmp_DependentAadharNoInput, AadharNo);
-		commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.AddEmp_DependentContactNoData,
-				EmployeeMasterLocators.AddEmp_DependentContactNoInput, ContactNo);
-		commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.AddEmp_DependentEmailIdData,
-				EmployeeMasterLocators.AddEmp_DependentEmailIdInput, EmailId);
-		commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.AddEmp_DependentDOBData,
-				EmployeeMasterLocators.AddEmp_DependentDOBInput, DOB);
-		commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.AddEmp_DependentMonthEarningData,
-				EmployeeMasterLocators.AddEmp_DependentMonthEarningInput, MonthlyEarning);
-		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_DependentRelationshipData, ElementType.Xpath);
+		commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.AddEmp_DependentNameData(),
+				EmployeeMasterLocators.AddEmp_DependentNameInput(), DependentName);
+		commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.AddEmp_DependentAadharNoData(),
+				EmployeeMasterLocators.AddEmp_DependentAadharNoInput(), AadharNo);
+		commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.AddEmp_DependentContactNoData(),
+				EmployeeMasterLocators.AddEmp_DependentContactNoInput(), ContactNo);
+		commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.AddEmp_DependentEmailIdData(),
+				EmployeeMasterLocators.AddEmp_DependentEmailIdInput(), EmailId);
+		commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.AddEmp_DependentDOBData(),
+				EmployeeMasterLocators.AddEmp_DependentDOBInput(), DOB);
+		commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.AddEmp_DependentMonthEarningData(),
+				EmployeeMasterLocators.AddEmp_DependentMonthEarningInput(), MonthlyEarning);
+		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_DependentRelationshipData(), ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(EmployeeMasterLocators.AddEmp_DependentRelationshipData, ElementType.Xpath);
-			flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_DependentRelationshipSelect, ElementType.Xpath);
+			webDB.clickAnElement(EmployeeMasterLocators.AddEmp_DependentRelationshipData(), ElementType.Xpath);
+			flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_DependentRelationshipSelect(), ElementType.Xpath);
 			if (flag) {
-				flag = webDB.selectDropDownByText(EmployeeMasterLocators.AddEmp_DependentRelationshipSelect,
+				flag = webDB.selectDropDownByText(EmployeeMasterLocators.AddEmp_DependentRelationshipSelect(),
 						RelationShip, ElementType.Xpath);
 				if (flag) {
 					logs.logging("Relationship Selected in Dependent Details: ", RelationShip);
@@ -3320,16 +3268,16 @@ public class EmployeeMasterFunctions {
 		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityActiveIcon(LeaveType),
 				ElementType.Xpath);
 		if (flag) {
-			webDB.moveToElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityEffYearData, ElementType.Xpath);
-			webDB.scrollToAnElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityMinDaysData, ElementType.Xpath);
+			webDB.moveToElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityEffYearData(), ElementType.Xpath);
+			webDB.scrollToAnElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityMinDaysData(), ElementType.Xpath);
 			webDB.scrollToAnElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityActiveIcon(LeaveType),
 					ElementType.Xpath);
 			webDB.clickAnElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityActiveIcon(LeaveType),
 					ElementType.Xpath);
 			flag = webDB.waitForElement(CommonUiLocators.SuccessToastMessage, ElementType.Xpath);
 			if (!flag) {
-				webDB.moveToElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityEffYearData, ElementType.Xpath);
-				webDB.scrollToAnElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityMinDaysData, ElementType.Xpath);
+				webDB.moveToElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityEffYearData(), ElementType.Xpath);
+				webDB.scrollToAnElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityMinDaysData(), ElementType.Xpath);
 				webDB.scrollToAnElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityActiveIcon(LeaveType),
 						ElementType.Xpath);
 				webDB.javaScriptClickAnElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityActiveIcon(LeaveType),
@@ -3418,7 +3366,7 @@ public class EmployeeMasterFunctions {
 		if (flag) {
 			webDB.moveToElement(EmployeeMasterLocators.UpdateEmp_DependentAddIcon, ElementType.Xpath);
 			webDB.clickAnElement(EmployeeMasterLocators.UpdateEmp_DependentAddIcon, ElementType.Xpath);
-			flag = webDB.waitForElement(EmployeeMasterLocators.UpdateEmp_DependentNameData, ElementType.Xpath);
+			flag = webDB.waitForElement(EmployeeMasterLocators.UpdateEmp_DependentNameData(), ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Add Icon Clicked in Update Dependent Details");
 			}
@@ -3478,31 +3426,31 @@ public class EmployeeMasterFunctions {
 	public void fillDetailsInUpdateDependentDetails(String DependentName, String Relation, String DOB, String Aadhar,
 			String Email, String Contact, String MonthEarn) {
 		switchToUpdateIframe();
-		commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.UpdateEmp_DependentNameData,
-				EmployeeMasterLocators.UpdateEmp_DependentNameInput, DependentName);
+		commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.UpdateEmp_DependentNameData(),
+				EmployeeMasterLocators.UpdateEmp_DependentNameInput(), DependentName);
 		logs.logging("INFo", "Dependent Name Entered: " + DependentName);
-		commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.UpdateEmp_DependentDOBData,
-				EmployeeMasterLocators.UpdateEmp_DependentDOBInput, DOB);
+		commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.UpdateEmp_DependentDOBData(),
+				EmployeeMasterLocators.UpdateEmp_DependentDOBInput(), DOB);
 		logs.logging("INFo", "DOB Entered: " + DOB);
-		commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.UpdateEmp_DependentEmailData,
-				EmployeeMasterLocators.UpdateEmp_DependentEmailInput, Email);
+		commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.UpdateEmp_DependentEmailData(),
+				EmployeeMasterLocators.UpdateEmp_DependentEmailInput(), Email);
 		logs.logging("INFo", "Email Entered: " + Email);
-		commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.UpdateEmp_DependentAadharData,
-				EmployeeMasterLocators.UpdateEmp_DependentAadharInput, Aadhar);
+		commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.UpdateEmp_DependentAadharData(),
+				EmployeeMasterLocators.UpdateEmp_DependentAadharInput(), Aadhar);
 		logs.logging("INFo", "Aadhar No Entered: " + Aadhar);
-		commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.UpdateEmp_DependentContactData,
-				EmployeeMasterLocators.UpdateEmp_DependentContactInput, Contact);
+		commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.UpdateEmp_DependentContactData(),
+				EmployeeMasterLocators.UpdateEmp_DependentContactInput(), Contact);
 		logs.logging("INFo", "Contact Entered: " + Contact);
-		commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.UpdateEmp_DependentMonthlyEarnData,
-				EmployeeMasterLocators.UpdateEmp_DependentMonthlyEarnInput, MonthEarn);
+		commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.UpdateEmp_DependentMonthlyEarnData(),
+				EmployeeMasterLocators.UpdateEmp_DependentMonthlyEarnInput(), MonthEarn);
 		logs.logging("INFo", "Monthly Earn Entered: " + MonthEarn);
-		flag = webDB.waitForClickElement(EmployeeMasterLocators.UpdateEmp_DependentRelationData, ElementType.Xpath);
+		flag = webDB.waitForClickElement(EmployeeMasterLocators.UpdateEmp_DependentRelationData(), ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(EmployeeMasterLocators.UpdateEmp_DependentRelationData, ElementType.Xpath);
-			flag = webDB.waitForClickElement(EmployeeMasterLocators.UpdateEmp_DependentRelationSelect,
+			webDB.clickAnElement(EmployeeMasterLocators.UpdateEmp_DependentRelationData(), ElementType.Xpath);
+			flag = webDB.waitForClickElement(EmployeeMasterLocators.UpdateEmp_DependentRelationSelect(),
 					ElementType.Xpath);
 			if (flag) {
-				flag = webDB.selectDropDownByText(EmployeeMasterLocators.UpdateEmp_DependentRelationSelect, Relation,
+				flag = webDB.selectDropDownByText(EmployeeMasterLocators.UpdateEmp_DependentRelationSelect(), Relation,
 						ElementType.Xpath);
 				if (flag) {
 					logs.logging("INFo", "Relation Selected: " + Relation);
@@ -3572,7 +3520,7 @@ public class EmployeeMasterFunctions {
 		if (flag) {
 			webDB.moveToElement(EmployeeMasterLocators.UpdateEmp_ContactAddIcon, ElementType.Xpath);
 			webDB.clickAnElement(EmployeeMasterLocators.UpdateEmp_ContactAddIcon, ElementType.Xpath);
-			flag = webDB.waitForElement(EmployeeMasterLocators.UpdateEmp_ContactNameData, ElementType.Xpath);
+			flag = webDB.waitForElement(EmployeeMasterLocators.UpdateEmp_ContactNameData(), ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Add Icon Clicked in Update contact Details");
 			}
@@ -3629,22 +3577,22 @@ public class EmployeeMasterFunctions {
 	public void fillDetailsInUpdateContactDetails(String ContactName, String Relation, String MblNo, String Address,
 			String City) {
 		switchToUpdateIframe();
-		commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.UpdateEmp_ContactNameData,
-				EmployeeMasterLocators.UpdateEmp_ContactNameInput, ContactName);
+		commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.UpdateEmp_ContactNameData(),
+				EmployeeMasterLocators.UpdateEmp_ContactNameInput(), ContactName);
 		logs.logging("INFo", "Contact Name Entered: " + ContactName);
-		commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.UpdateEmp_ContactRelationData,
-				EmployeeMasterLocators.UpdateEmp_ContactRelationInput, Relation);
+		commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.UpdateEmp_ContactRelationData(),
+				EmployeeMasterLocators.UpdateEmp_ContactRelationInput(), Relation);
 		logs.logging("INFo", "Relation Entered: " + Relation);
-		commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.UpdateEmp_ContactMobileData,
-				EmployeeMasterLocators.UpdateEmp_ContactMobileInput, MblNo);
+		commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.UpdateEmp_ContactMobileData(),
+				EmployeeMasterLocators.UpdateEmp_ContactMobileInput(), MblNo);
 		logs.logging("INFo", "Mobile No Entered: " + MblNo);
-		commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.UpdateEmp_ContactAddressData,
-				EmployeeMasterLocators.UpdateEmp_ContactAddressInput, Address);
+		commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.UpdateEmp_ContactAddressData(),
+				EmployeeMasterLocators.UpdateEmp_ContactAddressInput(), Address);
 		logs.logging("INFo", "Address Entered: " + Address);
-		flag = webDB.waitForElement(EmployeeMasterLocators.UpdateEmp_ContactCityData, ElementType.Xpath);
+		flag = webDB.waitForElement(EmployeeMasterLocators.UpdateEmp_ContactCityData(), ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(EmployeeMasterLocators.UpdateEmp_ContactCityData, ElementType.Xpath);
-			commonFunc.searchAndSelectValueInFilters(EmployeeMasterLocators.UpdateEmp_ContactCityLovBtn, City);
+			webDB.clickAnElement(EmployeeMasterLocators.UpdateEmp_ContactCityData(), ElementType.Xpath);
+			commonFunc.searchAndSelectValueInFilters(EmployeeMasterLocators.UpdateEmp_ContactCityLovBtn(), City);
 			logs.logging("INFo", "City Selected: " + City);
 		}
 		webDB.switchToDefaultContent();
@@ -3713,7 +3661,7 @@ public class EmployeeMasterFunctions {
 		if (flag) {
 			webDB.moveToElement(EmployeeMasterLocators.UpdateEmp_QualificationAddIcon, ElementType.Xpath);
 			webDB.clickAnElement(EmployeeMasterLocators.UpdateEmp_QualificationAddIcon, ElementType.Xpath);
-			flag = webDB.waitForElement(EmployeeMasterLocators.UpdateEmp_QualificationTableData, ElementType.Xpath);
+			flag = webDB.waitForElement(EmployeeMasterLocators.UpdateEmp_QualificationTableData(), ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Add Icon Clicked in Update qualification Details");
 			}
@@ -3772,32 +3720,33 @@ public class EmployeeMasterFunctions {
 	public void fillDetailsInUpdateQualificationDetails(String Qualification, String BranchOfStudy, String Institute,
 			String TotalYear, String YearOfPass, String Grade, String Aggregate) {
 		switchToUpdateIframe();
-		commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.UpdateEmp_QualInstituteData,
-				EmployeeMasterLocators.UpdateEmp_QualInstituteInput, Institute);
+		commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.UpdateEmp_QualInstituteData(),
+				EmployeeMasterLocators.UpdateEmp_QualInstituteInput(), Institute);
 		logs.logging("INFo", "Institute Entered: " + Institute);
-		commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.UpdateEmp_QualTotalYearData,
-				EmployeeMasterLocators.UpdateEmp_QualTotalYearInput, TotalYear);
+		commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.UpdateEmp_QualTotalYearData(),
+				EmployeeMasterLocators.UpdateEmp_QualTotalYearInput(), TotalYear);
 		logs.logging("INFo", "Total Year Entered: " + TotalYear);
-		commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.UpdateEmp_QualYearOfPassData,
-				EmployeeMasterLocators.UpdateEmp_QualYearOfPassInput, YearOfPass);
+		commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.UpdateEmp_QualYearOfPassData(),
+				EmployeeMasterLocators.UpdateEmp_QualYearOfPassInput(), YearOfPass);
 		logs.logging("INFo", "Year Of Passing Entered: " + YearOfPass);
-		commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.UpdateEmp_QualGradeData,
-				EmployeeMasterLocators.UpdateEmp_QualGradeInput, Grade);
+		commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.UpdateEmp_QualGradeData(),
+				EmployeeMasterLocators.UpdateEmp_QualGradeInput(), Grade);
 		logs.logging("INFo", "Grade Entered: " + Grade);
-		commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.UpdateEmp_QualAggregateData,
-				EmployeeMasterLocators.UpdateEmp_QualAggregateInput, Aggregate);
+		commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.UpdateEmp_QualAggregateData(),
+				EmployeeMasterLocators.UpdateEmp_QualAggregateInput(), Aggregate);
 		logs.logging("INFo", "Aggregate percent Entered: " + Aggregate);
-		flag = webDB.waitForClickElement(EmployeeMasterLocators.UpdateEmp_QualificationTableData, ElementType.Xpath);
+		flag = webDB.waitForClickElement(EmployeeMasterLocators.UpdateEmp_QualificationTableData(), ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(EmployeeMasterLocators.UpdateEmp_QualificationTableData, ElementType.Xpath);
-			commonFunc.searchAndSelectValueInFilters(EmployeeMasterLocators.UpdateEmp_QualificationTableLovBtn,
+			webDB.clickAnElement(EmployeeMasterLocators.UpdateEmp_QualificationTableData(), ElementType.Xpath);
+			commonFunc.searchAndSelectValueInFilters(EmployeeMasterLocators.UpdateEmp_QualificationTableLovBtn(),
 					Qualification);
 			logs.logging("INFo", "Qualification Selected: " + Qualification);
 			switchToUpdateIframe();
-			flag = webDB.waitForClickElement(EmployeeMasterLocators.UpdateEmp_QualBranchOfStudyData, ElementType.Xpath);
+			flag = webDB.waitForClickElement(EmployeeMasterLocators.UpdateEmp_QualBranchOfStudyData(),
+					ElementType.Xpath);
 			if (flag) {
-				webDB.clickAnElement(EmployeeMasterLocators.UpdateEmp_QualBranchOfStudyData, ElementType.Xpath);
-				commonFunc.searchAndSelectValueInFilters(EmployeeMasterLocators.UpdateEmp_QualBranchOfStudyLovBtn,
+				webDB.clickAnElement(EmployeeMasterLocators.UpdateEmp_QualBranchOfStudyData(), ElementType.Xpath);
+				commonFunc.searchAndSelectValueInFilters(EmployeeMasterLocators.UpdateEmp_QualBranchOfStudyLovBtn(),
 						BranchOfStudy);
 				logs.logging("INFo", "Branch Of Study Selected: " + BranchOfStudy);
 			}
@@ -3865,7 +3814,7 @@ public class EmployeeMasterFunctions {
 		if (flag) {
 			webDB.moveToElement(EmployeeMasterLocators.UpdateEmp_SkillAddIcon, ElementType.Xpath);
 			webDB.clickAnElement(EmployeeMasterLocators.UpdateEmp_SkillAddIcon, ElementType.Xpath);
-			flag = webDB.waitForElement(EmployeeMasterLocators.UpdateEmp_SkillTableData, ElementType.Xpath);
+			flag = webDB.waitForElement(EmployeeMasterLocators.UpdateEmp_SkillTableData(), ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Add Icon Clicked in Update Skill Details");
 			}
@@ -3918,16 +3867,16 @@ public class EmployeeMasterFunctions {
 	 */
 	public void fillDetailsInUpdateSkillDetails(String Skill, String Level) {
 		switchToUpdateIframe();
-		flag = webDB.waitForClickElement(EmployeeMasterLocators.UpdateEmp_SkillTableData, ElementType.Xpath);
+		flag = webDB.waitForClickElement(EmployeeMasterLocators.UpdateEmp_SkillTableData(), ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(EmployeeMasterLocators.UpdateEmp_SkillTableData, ElementType.Xpath);
-			commonFunc.searchAndSelectValueInFilters(EmployeeMasterLocators.UpdateEmp_SkillTableLovBtn, Skill);
+			webDB.clickAnElement(EmployeeMasterLocators.UpdateEmp_SkillTableData(), ElementType.Xpath);
+			commonFunc.searchAndSelectValueInFilters(EmployeeMasterLocators.UpdateEmp_SkillTableLovBtn(), Skill);
 			logs.logging("INFo", "Skill Selected: " + Skill);
 			switchToUpdateIframe();
-			flag = webDB.waitForClickElement(EmployeeMasterLocators.UpdateEmp_SkillLevelData, ElementType.Xpath);
+			flag = webDB.waitForClickElement(EmployeeMasterLocators.UpdateEmp_SkillLevelData(), ElementType.Xpath);
 			if (flag) {
-				webDB.clickAnElement(EmployeeMasterLocators.UpdateEmp_SkillLevelData, ElementType.Xpath);
-				commonFunc.searchAndSelectValueInFilters(EmployeeMasterLocators.UpdateEmp_SkillLevelLovBtn, Level);
+				webDB.clickAnElement(EmployeeMasterLocators.UpdateEmp_SkillLevelData(), ElementType.Xpath);
+				commonFunc.searchAndSelectValueInFilters(EmployeeMasterLocators.UpdateEmp_SkillLevelLovBtn(), Level);
 				logs.logging("INFo", "Skill Level Selected: " + Level);
 			}
 		}
@@ -4657,7 +4606,7 @@ public class EmployeeMasterFunctions {
 		commonFunc.searchAndSelectValueInFilters(EmployeeMasterLocators.FindZoneLovBtn, Zone);
 		clickFindSearchButton();
 		commonFunc.checkRefreshCellsDisappear();
-		List<WebElement> elements = webDB.getListOfElements(EmployeeMasterLocators.FindZoneResultTable,
+		List<WebElement> elements = webDB.getListOfElements(EmployeeMasterLocators.FindZoneResultTable(),
 				ElementType.Xpath);
 		a: for (WebElement webElement : elements) {
 			if (webElement.getText().contains(Zone)) {
@@ -4681,7 +4630,7 @@ public class EmployeeMasterFunctions {
 		commonFunc.searchAndSelectValueInFilters(EmployeeMasterLocators.FindCategoryLovBtn, Category);
 		clickFindSearchButton();
 		commonFunc.checkRefreshCellsDisappear();
-		List<WebElement> elements = webDB.getListOfElements(EmployeeMasterLocators.FindCategoryResultTable,
+		List<WebElement> elements = webDB.getListOfElements(EmployeeMasterLocators.FindCategoryResultTable(),
 				ElementType.Xpath);
 		a: for (WebElement webElement : elements) {
 			if (webElement.getText().contains(Category)) {
@@ -4705,7 +4654,7 @@ public class EmployeeMasterFunctions {
 		commonFunc.searchAndSelectValueInFilters(EmployeeMasterLocators.FindDesignationLovBtn, Designation);
 		clickFindSearchButton();
 		commonFunc.checkRefreshCellsDisappear();
-		List<WebElement> elements = webDB.getListOfElements(EmployeeMasterLocators.FindDesignationResultTable,
+		List<WebElement> elements = webDB.getListOfElements(EmployeeMasterLocators.FindDesignationResultTable(),
 				ElementType.Xpath);
 		a: for (WebElement webElement : elements) {
 			if (webElement.getText().contains(Designation)) {
@@ -4729,7 +4678,7 @@ public class EmployeeMasterFunctions {
 		commonFunc.searchAndSelectValueInFilters(EmployeeMasterLocators.FindDepartmentLovBtn, Department);
 		clickFindSearchButton();
 		commonFunc.checkRefreshCellsDisappear();
-		List<WebElement> elements = webDB.getListOfElements(EmployeeMasterLocators.FindDepartmentResultTable,
+		List<WebElement> elements = webDB.getListOfElements(EmployeeMasterLocators.FindDepartmentResultTable(),
 				ElementType.Xpath);
 		a: for (WebElement webElement : elements) {
 			if (webElement.getText().contains(Department)) {
@@ -4753,7 +4702,7 @@ public class EmployeeMasterFunctions {
 		commonFunc.searchAndSelectValueInFilters(EmployeeMasterLocators.FindUnitLovBtn, Unit);
 		clickFindSearchButton();
 		commonFunc.checkRefreshCellsDisappear();
-		List<WebElement> elements = webDB.getListOfElements(EmployeeMasterLocators.FindUnitResultTable,
+		List<WebElement> elements = webDB.getListOfElements(EmployeeMasterLocators.FindUnitResultTable(),
 				ElementType.Xpath);
 		a: for (WebElement webElement : elements) {
 			if (webElement.getText().contains(Unit)) {
@@ -4774,7 +4723,7 @@ public class EmployeeMasterFunctions {
 	 */
 	public void verifyDeleteSPLAllowanceInSalaryDetails() {
 		clickSalarySideNavBar();
-		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_AllowanceTableTotalAmountData, ElementType.Xpath);
+		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_AllowanceTableTotalAmountData(), ElementType.Xpath);
 		if (flag) {
 			webDB.moveToElement(EmployeeMasterLocators.AllowanceSPLDeleteIcon, ElementType.Xpath);
 			webDB.clickAnElement(EmployeeMasterLocators.AllowanceSPLDeleteIcon, ElementType.Xpath);

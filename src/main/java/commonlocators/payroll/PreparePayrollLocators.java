@@ -1,5 +1,7 @@
 package commonlocators.payroll;
 
+import commonfunctions.CommonFunctions;
+
 /**
  * @author Sakthi-GWL
  * @company Galaxy Weblinks April 30, 2025
@@ -65,17 +67,38 @@ public class PreparePayrollLocators {
 	}
 
 	/** @locatorType Xpath */
-	public static final String AttendanceEmpNameList = "//div[@id='ATTD_ig_grid_vc']//table/tbody/tr/td[2]";
+	public static final String AttendanceTable = "//div[@id='ATTD_ig_grid_vc']//table/thead/tr/th";
+
 	/** @locatorType Xpath */
-	public static final String AttendanceCalDaysList = "//div[@id='ATTD_ig_grid_vc']//table/tbody/tr/td[6]";
+	public static String AttendanceEmpNameList() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(AttendanceTable, "Emp. Name");
+	}
+
 	/** @locatorType Xpath */
-	public static final String AttendanceWorkDaysList = "//div[@id='ATTD_ig_grid_vc']//table/tbody/tr/td[7]";
+	public static String AttendanceCalDaysList() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(AttendanceTable, "Cal. Days");
+	}
+
 	/** @locatorType Xpath */
-	public static final String AttendanceHolidaysList = "//div[@id='ATTD_ig_grid_vc']//table/tbody/tr/td[8]";
+	public static String AttendanceWorkDaysList() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(AttendanceTable, "Wrk. Days");
+	}
+
 	/** @locatorType Xpath */
-	public static final String AttendanceWeekendsList = "//div[@id='ATTD_ig_grid_vc']//table/tbody/tr/td[9]";
+	public static String AttendanceHolidaysList() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(AttendanceTable, "Holidays");
+	}
+
 	/** @locatorType Xpath */
-	public static final String AttendancePaidDaysList = "//div[@id='ATTD_ig_grid_vc']//table/tbody/tr/td[12]";
+	public static String AttendanceWeekendsList() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(AttendanceTable, "Weekends");
+	}
+
+	/** @locatorType Xpath */
+	public static String AttendancePaidDaysList() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(AttendanceTable, "Paid Days");
+	}
+
 	/** @locatorType Xpath */
 	public static final String AttendanceSaveIcon = "//button[@data-testid='HPPH_SAVE_Button']";
 
@@ -146,19 +169,41 @@ public class PreparePayrollLocators {
 	/** @locatorType Xpath */
 	public static final String PayrollEmpIdDisplay = "//input[@id='P16251310506_EMP_ID']";
 	/** @locatorType Xpath */
-	public static final String PayrollAllowanceTable = "//table[contains(@aria-label,'Addition')]";
+	public static final String PayrollAllowanceTable = "//table[contains(@aria-label,'Addition')]//tbody/tr/th";
+
 	/** @locatorType Xpath */
-	public static final String PayrollAllowanceDescriptionList = "//table[contains(@aria-label,'Addition')]//tr/td[2]/span[last()]";
+	public static String PayrollAllowanceDescriptionList() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(PayrollAllowanceTable, "Description")
+				+ "/span[last()]";
+	}
+
 	/** @locatorType Xpath */
-	public static final String PayrollAllowanceActualAmntList = "//table[contains(@aria-label,'Addition')]//tr/td[3]/span[last()]";
+	public static String PayrollAllowanceActualAmntList() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(PayrollAllowanceTable, "Actual Amount")
+				+ "/span[last()]";
+	}
+
 	/** @locatorType Xpath */
-	public static final String PayrollAllowanceAmountList = "//table[contains(@aria-label,'Addition')]//tr/td[4]/span[last()]";
+	public static String PayrollAllowanceAmountList() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(PayrollAllowanceTable, "Amount")
+				+ "/span[last()]";
+	}
+
 	/** @locatorType Xpath */
-	public static final String PayrollAdjustmentTable = "//table[contains(@aria-label,'Deduction')]";
+	public static final String PayrollAdjustmentTable = "//table[contains(@aria-label,'Deduction')]//tbody/tr/th";
+
 	/** @locatorType Xpath */
-	public static final String PayrollAdjustmentDescriptionList = "//table[contains(@aria-label,'Deduction')]//tr/td[2]/span[last()]";
+	public static String PayrollAdjustmentDescriptionList() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(PayrollAdjustmentTable, "Description")
+				+ "/span[last()]";
+	}
+
 	/** @locatorType Xpath */
-	public static final String PayrollAdjustmentAmountList = "//table[contains(@aria-label,'Deduction')]//tr/td[3]/span[last()]";
+	public static String PayrollAdjustmentAmountList() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(PayrollAdjustmentTable, "Amount")
+				+ "/span[last()]";
+	}
+
 	/** @locatorType Xpath */
 	public static final String PayrollTotalAdditionDisplayText = "//span[@id='P16251310506_TOT_ADD_DISPLAY']";
 	/** @locatorType Xpath */
@@ -194,20 +239,47 @@ public class PreparePayrollLocators {
 	/** @locatorType Xpath */
 	public static final String FindUnitLovBtn = "//*[@data-testid='PRE_UNIT']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String FindYearHeaderResultTable = "//table[contains(@aria-label,'Result(s)h')]//tr/td[3]";
+	public static final String FindHeaderResultTable = "//table[contains(@aria-label,'Result(s)h')]//tr/th";
 	/** @locatorType Xpath */
-	public static final String FindPeriodHeaderResultTable = "//table[contains(@aria-label,'Result(s)h')]//tr/td[4]";
-	/** @locatorType Xpath */
-	public static final String FindCalenderHeaderResultTable = "//table[contains(@aria-label,'Result(s)h')]//tr/td[2]";
-	/** @locatorType Xpath */
-	public static final String FindYearLineResultTable = "//table[contains(@aria-label,'Result(s)l')]//tr/td[2]";
-	/** @locatorType Xpath */
-	public static final String FindPeriodLineResultTable = "//table[contains(@aria-label,'Result(s)l')]//tr/td[3]";
-	/** @locatorType Xpath */
-	public static final String FindDesignationLineResultTable = "//table[contains(@aria-label,'Result(s)l')]//tr/td[7]";
-	/** @locatorType Xpath */
-	public static final String FindDepartmentLineResultTable = "//table[contains(@aria-label,'Result(s)l')]//tr/td[8]";
-	/** @locatorType Xpath */
-	public static final String FindUnitLineResultTable = "//table[contains(@aria-label,'Result(s)l')]//tr/td[9]";
+	public static final String FindLinesResultTable = "//table[contains(@aria-label,'Result(s)l')]//tr/th";
 
+	/** @locatorType Xpath */
+	public static String FindYearHeaderResultTable() {
+		return CommonFunctions.checkAndReturnLocatorForFindPageTable(FindHeaderResultTable, "Year");
+	}
+
+	/** @locatorType Xpath */
+	public static String FindPeriodHeaderResultTable() {
+		return CommonFunctions.checkAndReturnLocatorForFindPageTable(FindHeaderResultTable, "Period");
+	}
+
+	/** @locatorType Xpath */
+	public static String FindCalenderHeaderResultTable() {
+		return CommonFunctions.checkAndReturnLocatorForFindPageTable(FindHeaderResultTable, "Calendar");
+	}
+
+	/** @locatorType Xpath */
+	public static String FindYearLineResultTable() {
+		return CommonFunctions.checkAndReturnLocatorForFindPageTable(FindLinesResultTable, "Year");
+	}
+
+	/** @locatorType Xpath */
+	public static String FindPeriodLineResultTable() {
+		return CommonFunctions.checkAndReturnLocatorForFindPageTable(FindLinesResultTable, "Period");
+	}
+
+	/** @locatorType Xpath */
+	public static String FindDesignationLineResultTable() {
+		return CommonFunctions.checkAndReturnLocatorForFindPageTable(FindLinesResultTable, "Designation");
+	}
+
+	/** @locatorType Xpath */
+	public static String FindDepartmentLineResultTable() {
+		return CommonFunctions.checkAndReturnLocatorForFindPageTable(FindLinesResultTable, "Department");
+	}
+
+	/** @locatorType Xpath */
+	public static String FindUnitLineResultTable() {
+		return CommonFunctions.checkAndReturnLocatorForFindPageTable(FindLinesResultTable, "Unit");
+	}
 }

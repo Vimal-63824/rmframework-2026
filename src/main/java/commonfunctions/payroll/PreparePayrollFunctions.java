@@ -365,17 +365,17 @@ public class PreparePayrollFunctions {
 	private void verifyAttendanceDataValuesInPreparePayroll() {
 		flag = webDB.waitForElement(PreparePayrollLocators.AttendanceContentContainer, ElementType.Xpath);
 		if (flag) {
-			List<WebElement> EmpName = webDB.getListOfElements(PreparePayrollLocators.AttendanceEmpNameList,
+			List<WebElement> EmpName = webDB.getListOfElements(PreparePayrollLocators.AttendanceEmpNameList(),
 					ElementType.Xpath);
-			List<WebElement> CalDays = webDB.getListOfElements(PreparePayrollLocators.AttendanceCalDaysList,
+			List<WebElement> CalDays = webDB.getListOfElements(PreparePayrollLocators.AttendanceCalDaysList(),
 					ElementType.Xpath);
-			List<WebElement> WorkDays = webDB.getListOfElements(PreparePayrollLocators.AttendanceWorkDaysList,
+			List<WebElement> WorkDays = webDB.getListOfElements(PreparePayrollLocators.AttendanceWorkDaysList(),
 					ElementType.Xpath);
-			List<WebElement> Holidays = webDB.getListOfElements(PreparePayrollLocators.AttendanceHolidaysList,
+			List<WebElement> Holidays = webDB.getListOfElements(PreparePayrollLocators.AttendanceHolidaysList(),
 					ElementType.Xpath);
-			List<WebElement> Weekends = webDB.getListOfElements(PreparePayrollLocators.AttendanceWeekendsList,
+			List<WebElement> Weekends = webDB.getListOfElements(PreparePayrollLocators.AttendanceWeekendsList(),
 					ElementType.Xpath);
-			List<WebElement> PaidDays = webDB.getListOfElements(PreparePayrollLocators.AttendancePaidDaysList,
+			List<WebElement> PaidDays = webDB.getListOfElements(PreparePayrollLocators.AttendancePaidDaysList(),
 					ElementType.Xpath);
 			int count = EmpName.size();
 			if ((count == CalDays.size()) && (count == WorkDays.size()) && (count == Holidays.size())
@@ -528,11 +528,11 @@ public class PreparePayrollFunctions {
 	private void verifyAllowanceValuesInEmpIdAdditionPage() {
 		flag = webDB.waitForElement(PreparePayrollLocators.PayrollAllowanceTable, ElementType.Xpath);
 		if (flag) {
-			List<WebElement> Desc = webDB.getListOfElements(PreparePayrollLocators.PayrollAllowanceDescriptionList,
+			List<WebElement> Desc = webDB.getListOfElements(PreparePayrollLocators.PayrollAllowanceDescriptionList(),
 					ElementType.Xpath);
-			List<WebElement> ActualAmnt = webDB.getListOfElements(PreparePayrollLocators.PayrollAllowanceActualAmntList,
-					ElementType.Xpath);
-			List<WebElement> Amnt = webDB.getListOfElements(PreparePayrollLocators.PayrollAllowanceAmountList,
+			List<WebElement> ActualAmnt = webDB
+					.getListOfElements(PreparePayrollLocators.PayrollAllowanceActualAmntList(), ElementType.Xpath);
+			List<WebElement> Amnt = webDB.getListOfElements(PreparePayrollLocators.PayrollAllowanceAmountList(),
 					ElementType.Xpath);
 			for (int i = 1; i <= Amnt.size(); i++) {
 				if (i <= Desc.size()) {
@@ -560,9 +560,9 @@ public class PreparePayrollFunctions {
 	private void verifyAdjustmentValuesInEmpIdAdditionPage() {
 		flag = webDB.waitForElement(PreparePayrollLocators.PayrollAdjustmentTable, ElementType.Xpath);
 		if (flag) {
-			List<WebElement> Desc = webDB.getListOfElements(PreparePayrollLocators.PayrollAdjustmentDescriptionList,
+			List<WebElement> Desc = webDB.getListOfElements(PreparePayrollLocators.PayrollAdjustmentDescriptionList(),
 					ElementType.Xpath);
-			List<WebElement> Amnt = webDB.getListOfElements(PreparePayrollLocators.PayrollAdjustmentAmountList,
+			List<WebElement> Amnt = webDB.getListOfElements(PreparePayrollLocators.PayrollAdjustmentAmountList(),
 					ElementType.Xpath);
 			for (int i = 1; i <= Amnt.size(); i++) {
 				if (i <= Desc.size()) {
@@ -677,7 +677,8 @@ public class PreparePayrollFunctions {
 			empMasterFunc.clickAddIconAddEmployee();
 			empMasterFunc.clickEmployeeMasterSideNavBar();
 			empMasterFunc.selectSalutionEnterFirstAndLastName(commonFunc.getDataFromTestDataSheet("Emp_Salution"),
-					commonFunc.getDataFromTestDataSheet("Emp_FName"), commonFunc.getDataFromTestDataSheet("Emp_LName"));
+					commonFunc.getDataFromTestDataSheet("Emp_FName"),
+					(commonFunc.getDataFromTestDataSheet("Emp_LName") + RandomStringUtils.randomAlphanumeric(5)));
 			empMasterFunc.selectGenderEnterDOBAndDOJ(commonFunc.getDataFromTestDataSheet("Emp_MaleGender"),
 					commonFunc.getDataFromTestDataSheet("Emp_DOB"), JoinedDate);
 			empMasterFunc.selectShiftEnterCalerdarAndZone(commonFunc.getDataFromTestDataSheet("Emp_GeneralShift"),
@@ -721,7 +722,7 @@ public class PreparePayrollFunctions {
 			unSelectedAllAndSearchAndSelectEmployee(VariableHandler.getEmpID());
 			selectEmployeeWithNameInLoadPayroll(VariableHandler.getEmpID());
 			clickAttendanceLabelInPreparePayroll();
-			updatePaidAndUnpaidLeaveInAttendancePayroll(VariableHandler.getEmpID(), "1", "1");
+			updatePaidAndUnpaidLeaveInAttendancePayroll(VariableHandler.getEmpID(), "0", "0");
 			verifyAttendanceDataValuesInPreparePayroll();
 			verifyOTHrsOnDutyAndPermissionHrsInAttendance(VariableHandler.getEmpID());
 			clickPreparePayrollButton();
@@ -805,7 +806,7 @@ public class PreparePayrollFunctions {
 	private void findWithUnitInLineWise(String Unit) {
 		commonFunc.searchAndSelectValueInFilters(PreparePayrollLocators.FindUnitLovBtn, Unit);
 		clickSearchButtonInPreparePayroll();
-		List<WebElement> elements = webDB.getListOfElements(PreparePayrollLocators.FindUnitLineResultTable,
+		List<WebElement> elements = webDB.getListOfElements(PreparePayrollLocators.FindUnitLineResultTable(),
 				ElementType.Xpath);
 		a: for (WebElement webElement : elements) {
 			if (webElement.getText().equalsIgnoreCase(Unit)) {
@@ -828,7 +829,7 @@ public class PreparePayrollFunctions {
 	private void findWithDesignationInLineWise(String Designation) {
 		commonFunc.searchAndSelectValueInFilters(PreparePayrollLocators.FindDesignationLovBtn, Designation);
 		clickSearchButtonInPreparePayroll();
-		List<WebElement> elements = webDB.getListOfElements(PreparePayrollLocators.FindDesignationLineResultTable,
+		List<WebElement> elements = webDB.getListOfElements(PreparePayrollLocators.FindDesignationLineResultTable(),
 				ElementType.Xpath);
 		a: for (WebElement webElement : elements) {
 			if (webElement.getText().equalsIgnoreCase(Designation)) {
@@ -851,7 +852,7 @@ public class PreparePayrollFunctions {
 	private void findWithDepartmentInLineWise(String Department) {
 		commonFunc.searchAndSelectValueInFilters(PreparePayrollLocators.FindDepartmentLovBtn, Department);
 		clickSearchButtonInPreparePayroll();
-		List<WebElement> elements = webDB.getListOfElements(PreparePayrollLocators.FindDepartmentLineResultTable,
+		List<WebElement> elements = webDB.getListOfElements(PreparePayrollLocators.FindDepartmentLineResultTable(),
 				ElementType.Xpath);
 		a: for (WebElement webElement : elements) {
 			if (webElement.getText().equalsIgnoreCase(Department)) {
@@ -874,7 +875,7 @@ public class PreparePayrollFunctions {
 	private void findWithYearInLineWise(String Year) {
 		commonFunc.searchAndSelectValueInFilters(PreparePayrollLocators.FindYearLovBtn, Year);
 		clickSearchButtonInPreparePayroll();
-		List<WebElement> elements = webDB.getListOfElements(PreparePayrollLocators.FindYearLineResultTable,
+		List<WebElement> elements = webDB.getListOfElements(PreparePayrollLocators.FindYearLineResultTable(),
 				ElementType.Xpath);
 		a: for (WebElement webElement : elements) {
 			if (webElement.getText().equalsIgnoreCase(Year)) {
@@ -897,7 +898,7 @@ public class PreparePayrollFunctions {
 	private void findWithPeriodInLineWise(String Period) {
 		commonFunc.searchAndSelectValueInFilters(PreparePayrollLocators.FindPeriodLovBtn, Period);
 		clickSearchButtonInPreparePayroll();
-		List<WebElement> elements = webDB.getListOfElements(PreparePayrollLocators.FindPeriodLineResultTable,
+		List<WebElement> elements = webDB.getListOfElements(PreparePayrollLocators.FindPeriodLineResultTable(),
 				ElementType.Xpath);
 		a: for (WebElement webElement : elements) {
 			if (webElement.getText().equalsIgnoreCase(Period)) {
@@ -959,7 +960,7 @@ public class PreparePayrollFunctions {
 	private void findWithYearInHeaderWise(String Year) {
 		commonFunc.searchAndSelectValueInFilters(PreparePayrollLocators.FindYearLovBtn, Year);
 		clickSearchButtonInPreparePayroll();
-		List<WebElement> elements = webDB.getListOfElements(PreparePayrollLocators.FindYearHeaderResultTable,
+		List<WebElement> elements = webDB.getListOfElements(PreparePayrollLocators.FindYearHeaderResultTable(),
 				ElementType.Xpath);
 		a: for (WebElement webElement : elements) {
 			if (webElement.getText().equalsIgnoreCase(Year)) {
@@ -982,7 +983,7 @@ public class PreparePayrollFunctions {
 	private void findWithCalenderInHeaderWise(String Calender) {
 		commonFunc.searchAndSelectValueInFilters(PreparePayrollLocators.FindCalenderLovBtn, Calender);
 		clickSearchButtonInPreparePayroll();
-		List<WebElement> elements = webDB.getListOfElements(PreparePayrollLocators.FindCalenderHeaderResultTable,
+		List<WebElement> elements = webDB.getListOfElements(PreparePayrollLocators.FindCalenderHeaderResultTable(),
 				ElementType.Xpath);
 		a: for (WebElement webElement : elements) {
 			if (webElement.getText().equalsIgnoreCase(Calender)) {
@@ -1005,7 +1006,7 @@ public class PreparePayrollFunctions {
 	private void findWithPeriodInHeaderWise(String searchvalue, String verifyValue) {
 		commonFunc.searchAndSelectValueInFilters(PreparePayrollLocators.FindPeriodLovBtn, searchvalue);
 		clickSearchButtonInPreparePayroll();
-		List<WebElement> elements = webDB.getListOfElements(PreparePayrollLocators.FindPeriodHeaderResultTable,
+		List<WebElement> elements = webDB.getListOfElements(PreparePayrollLocators.FindPeriodHeaderResultTable(),
 				ElementType.Xpath);
 		a: for (WebElement webElement : elements) {
 			if (webElement.getText().equalsIgnoreCase(verifyValue)

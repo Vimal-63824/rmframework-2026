@@ -238,7 +238,7 @@ public class BillOfMaterialsFunctions {
 		if (flag) {
 			webDB.moveToElement(BillOfMaterialsLocators.RoutingAddLineBtn, ElementType.Xpath);
 			webDB.clickAnElement(BillOfMaterialsLocators.RoutingAddLineBtn, ElementType.Xpath);
-			flag = webDB.waitForElement(BillOfMaterialsLocators.RoutingProcessIdData, ElementType.Xpath);
+			flag = webDB.waitForElement(BillOfMaterialsLocators.RoutingProcessIdData(), ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Add Line Icon Clicked in Routing tab");
 			}
@@ -275,7 +275,7 @@ public class BillOfMaterialsFunctions {
 	 */
 	public void clickIRFlagInRoutingTabForProcess(String process) {
 		commonFunc.checkRefreshCellsDisappear();
-		flag = webDB.waitForElement(BillOfMaterialsLocators.RoutingIRFlagData, ElementType.Xpath);
+		flag = webDB.waitForElement(BillOfMaterialsLocators.RoutingIRFlagData(), ElementType.Xpath);
 		if (flag) {
 			webDB.moveToElement(BillOfMaterialsLocators.RoutingIRDiv(process), ElementType.Xpath);
 			flag = webDB.javaScriptClickAnElement(BillOfMaterialsLocators.RoutingIRDiv(process), ElementType.Xpath);
@@ -301,16 +301,16 @@ public class BillOfMaterialsFunctions {
 	 * @param ProcessId
 	 */
 	public void fillProcSeqNoOprnNoAndProcessIdInRouting(String ProcessNo, String OprnNo, String ProcessId) {
-		commonPayrollFunc.addDetailInTableWithoutLovButton(BillOfMaterialsLocators.RoutingProcSeqNoData,
-				BillOfMaterialsLocators.RoutingProcSeqNoInput, ProcessNo);
+		commonPayrollFunc.addDetailInTableWithoutLovButton(BillOfMaterialsLocators.RoutingProcSeqNoData(),
+				BillOfMaterialsLocators.RoutingProcSeqNoInput(), ProcessNo);
 		logs.logging("INFO", "Process No Entered: " + ProcessNo);
-		commonPayrollFunc.addDetailInTableWithoutLovButton(BillOfMaterialsLocators.RoutingOprnNoData,
-				BillOfMaterialsLocators.RoutingOprnNoInput, OprnNo);
+		commonPayrollFunc.addDetailInTableWithoutLovButton(BillOfMaterialsLocators.RoutingOprnNoData(),
+				BillOfMaterialsLocators.RoutingOprnNoInput(), OprnNo);
 		logs.logging("INFO", "Oprn No Entered: " + OprnNo);
-		flag = webDB.waitForElement(BillOfMaterialsLocators.RoutingProcessIdData, ElementType.Xpath);
+		flag = webDB.waitForElement(BillOfMaterialsLocators.RoutingProcessIdData(), ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(BillOfMaterialsLocators.RoutingProcessIdData, ElementType.Xpath);
-			commonFunc.searchAndSelectValueInFilters(BillOfMaterialsLocators.RoutingProcessIdLovBtn, ProcessId);
+			webDB.clickAnElement(BillOfMaterialsLocators.RoutingProcessIdData(), ElementType.Xpath);
+			commonFunc.searchAndSelectValueInFilters(BillOfMaterialsLocators.RoutingProcessIdLovBtn(), ProcessId);
 			logs.logging("INFO", "Process Id Selected: " + ProcessId);
 		}
 		assertTrue(flag);
@@ -325,19 +325,19 @@ public class BillOfMaterialsFunctions {
 	 * @param WorkCenter
 	 */
 	public void fillTypeAndWorkCenterInRouting(String Type, String WorkCenter) {
-		flag = webDB.waitForElement(BillOfMaterialsLocators.RoutingTypeData, ElementType.Xpath);
+		flag = webDB.waitForElement(BillOfMaterialsLocators.RoutingTypeData(), ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(BillOfMaterialsLocators.RoutingTypeData, ElementType.Xpath);
+			webDB.clickAnElement(BillOfMaterialsLocators.RoutingTypeData(), ElementType.Xpath);
 			commonFunc.hardWait(500);
-			flag = webDB.waitForClickElement(BillOfMaterialsLocators.RoutingTypeSelect, ElementType.Xpath);
+			flag = webDB.waitForClickElement(BillOfMaterialsLocators.RoutingTypeSelect(), ElementType.Xpath);
 			if (flag) {
-				flag = webDB.selectDropDownByText(BillOfMaterialsLocators.RoutingTypeSelect, Type, ElementType.Xpath);
+				flag = webDB.selectDropDownByText(BillOfMaterialsLocators.RoutingTypeSelect(), Type, ElementType.Xpath);
 				if (flag) {
 					logs.logging("INFO", "Process Type Selected: " + Type);
-					flag = webDB.waitForElement(BillOfMaterialsLocators.RoutingWorkCenterData, ElementType.Xpath);
+					flag = webDB.waitForElement(BillOfMaterialsLocators.RoutingWorkCenterData(), ElementType.Xpath);
 					if (flag) {
-						webDB.clickAnElement(BillOfMaterialsLocators.RoutingWorkCenterData, ElementType.Xpath);
-						commonFunc.searchAndSelectValueInFilters(BillOfMaterialsLocators.RoutingWorkCenterLovBtn,
+						webDB.clickAnElement(BillOfMaterialsLocators.RoutingWorkCenterData(), ElementType.Xpath);
+						commonFunc.searchAndSelectValueInFilters(BillOfMaterialsLocators.RoutingWorkCenterLovBtn(),
 								WorkCenter);
 						logs.logging("INFO", "Work Center Selected: " + WorkCenter);
 					}
@@ -434,7 +434,7 @@ public class BillOfMaterialsFunctions {
 		if (flag) {
 			webDB.moveToElement(BillOfMaterialsLocators.MaterialAddLineBtn, ElementType.Xpath);
 			webDB.clickAnElement(BillOfMaterialsLocators.MaterialAddLineBtn, ElementType.Xpath);
-			flag = webDB.waitForElement(BillOfMaterialsLocators.MaterialProcessDescData, ElementType.Xpath);
+			flag = webDB.waitForElement(BillOfMaterialsLocators.MaterialProcessDescData(), ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Add Line Icon Clicked in Material tab");
 			}
@@ -472,19 +472,19 @@ public class BillOfMaterialsFunctions {
 	 * @param UOM
 	 */
 	public void fillProcessItemUOMInMaterial(String Process, String Item, String UOM) {
-		commonFunc.searchAndSelectValueInFilters(BillOfMaterialsLocators.MaterialProcessDescLovBtn, Process);
+		commonFunc.searchAndSelectValueInFilters(BillOfMaterialsLocators.MaterialProcessDescLovBtn(), Process);
 		logs.logging("INFO", "Process Selected in Material: " + Process);
-		flag = webDB.waitForElement(BillOfMaterialsLocators.MaterialItemData, ElementType.Xpath);
+		flag = webDB.waitForElement(BillOfMaterialsLocators.MaterialItemData(), ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(BillOfMaterialsLocators.MaterialItemData, ElementType.Xpath);
-			commonFunc.searchAndSelectValueInFilters(BillOfMaterialsLocators.MaterialItemLovBtn, Item);
+			webDB.clickAnElement(BillOfMaterialsLocators.MaterialItemData(), ElementType.Xpath);
+			commonFunc.searchAndSelectValueInFilters(BillOfMaterialsLocators.MaterialItemLovBtn(), Item);
 			logs.logging("INFO", "Item Selected in Material: " + Item);
-			flag = webDB.waitForElement(BillOfMaterialsLocators.MaterialUOMData, ElementType.Xpath);
+			flag = webDB.waitForElement(BillOfMaterialsLocators.MaterialUOMData(), ElementType.Xpath);
 			if (flag) {
-				webDB.clickAnElement(BillOfMaterialsLocators.MaterialUOMData, ElementType.Xpath);
-				flag = webDB.waitForElement(BillOfMaterialsLocators.MaterialUOMSelect, ElementType.Xpath);
+				webDB.clickAnElement(BillOfMaterialsLocators.MaterialUOMData(), ElementType.Xpath);
+				flag = webDB.waitForElement(BillOfMaterialsLocators.MaterialUOMSelect(), ElementType.Xpath);
 				if (flag) {
-					flag = webDB.selectDropDownByText(BillOfMaterialsLocators.MaterialUOMSelect, UOM,
+					flag = webDB.selectDropDownByText(BillOfMaterialsLocators.MaterialUOMSelect(), UOM,
 							ElementType.Xpath);
 					if (flag) {
 						logs.logging("INFO", "UOM Selected in Material: " + UOM);
@@ -505,16 +505,16 @@ public class BillOfMaterialsFunctions {
 	 * @param WH
 	 */
 	public void fillReqQntyConvFactorAndSourceWHInMaterial(String ReqQnty, String ConvFac, String WH) {
-		commonPayrollFunc.addDetailInTableWithoutLovButton(BillOfMaterialsLocators.MaterialRequestQntyData,
-				BillOfMaterialsLocators.MaterialRequestQntyInput, ReqQnty);
+		commonPayrollFunc.addDetailInTableWithoutLovButton(BillOfMaterialsLocators.MaterialRequestQntyData(),
+				BillOfMaterialsLocators.MaterialRequestQntyInput(), ReqQnty);
 		logs.logging("INFO", "Request Quantity Enterted in Material: " + ReqQnty);
-		commonPayrollFunc.addDetailInTableWithoutLovButton(BillOfMaterialsLocators.MaterialConventionFactorData,
-				BillOfMaterialsLocators.MaterialConventionFactorInput, ConvFac);
+		commonPayrollFunc.addDetailInTableWithoutLovButton(BillOfMaterialsLocators.MaterialConventionFactorData(),
+				BillOfMaterialsLocators.MaterialConventionFactorInput(), ConvFac);
 		logs.logging("INFO", "Convention Factor Enterted in Material: " + ConvFac);
-		flag = webDB.waitForElement(BillOfMaterialsLocators.MaterialSourceWHData, ElementType.Xpath);
+		flag = webDB.waitForElement(BillOfMaterialsLocators.MaterialSourceWHData(), ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(BillOfMaterialsLocators.MaterialSourceWHData, ElementType.Xpath);
-			flag = webDB.waitForElement(BillOfMaterialsLocators.MaterialSourceWHSelect, ElementType.Xpath);
+			webDB.clickAnElement(BillOfMaterialsLocators.MaterialSourceWHData(), ElementType.Xpath);
+			flag = webDB.waitForElement(BillOfMaterialsLocators.MaterialSourceWHSelect(), ElementType.Xpath);
 			if (flag) {
 //				flag = webDB.selectDropDownByText(BillOfMaterialsLocators.MaterialSourceWHSelect, WH,
 //						ElementType.Xpath);
@@ -553,7 +553,7 @@ public class BillOfMaterialsFunctions {
 		if (flag) {
 			webDB.moveToElement(BillOfMaterialsLocators.BORAddLineBtn, ElementType.Xpath);
 			webDB.clickAnElement(BillOfMaterialsLocators.BORAddLineBtn, ElementType.Xpath);
-			flag = webDB.waitForElement(BillOfMaterialsLocators.BORProcessIdData, ElementType.Xpath);
+			flag = webDB.waitForElement(BillOfMaterialsLocators.BORProcessIdData(), ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Add Line Icon Clicked in BOR tab");
 			}
@@ -588,13 +588,13 @@ public class BillOfMaterialsFunctions {
 	 * @param ProcessId
 	 */
 	public void fillLineSnoAndProcessIdInBORTab(String LineSno, String ProcessId) {
-		commonPayrollFunc.addDetailInTableWithoutLovButton(BillOfMaterialsLocators.BORLineSnoData,
-				BillOfMaterialsLocators.BORLineSnoInput, LineSno);
+		commonPayrollFunc.addDetailInTableWithoutLovButton(BillOfMaterialsLocators.BORLineSnoData(),
+				BillOfMaterialsLocators.BORLineSnoInput(), LineSno);
 		logs.logging("INFO", "Line Sno Entered: " + LineSno);
-		flag = webDB.waitForElement(BillOfMaterialsLocators.BORProcessIdData, ElementType.Xpath);
+		flag = webDB.waitForElement(BillOfMaterialsLocators.BORProcessIdData(), ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(BillOfMaterialsLocators.BORProcessIdData, ElementType.Xpath);
-			commonFunc.searchAndSelectValueInFilters(BillOfMaterialsLocators.BORProcessIdLovBtn, ProcessId);
+			webDB.clickAnElement(BillOfMaterialsLocators.BORProcessIdData(), ElementType.Xpath);
+			commonFunc.searchAndSelectValueInFilters(BillOfMaterialsLocators.BORProcessIdLovBtn(), ProcessId);
 			logs.logging("INFO", "Process Id Selected: " + ProcessId);
 		}
 		assertTrue(flag);
@@ -608,19 +608,19 @@ public class BillOfMaterialsFunctions {
 	 * @param resource
 	 */
 	public void fillResourceTypeAndResourceInBORTab(String type, String resource) {
-		flag = webDB.waitForElement(BillOfMaterialsLocators.BORResourceTypeData, ElementType.Xpath);
+		flag = webDB.waitForElement(BillOfMaterialsLocators.BORResourceTypeData(), ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(BillOfMaterialsLocators.BORResourceTypeData, ElementType.Xpath);
-			flag = webDB.waitForElement(BillOfMaterialsLocators.BORResourceTypeSelect, ElementType.Xpath);
+			webDB.clickAnElement(BillOfMaterialsLocators.BORResourceTypeData(), ElementType.Xpath);
+			flag = webDB.waitForElement(BillOfMaterialsLocators.BORResourceTypeSelect(), ElementType.Xpath);
 			if (flag) {
-				flag = webDB.selectDropDownByText(BillOfMaterialsLocators.BORResourceTypeSelect, type,
+				flag = webDB.selectDropDownByText(BillOfMaterialsLocators.BORResourceTypeSelect(), type,
 						ElementType.Xpath);
 				if (flag) {
 					logs.logging("INFO", "Resource Type Selected: " + type);
-					flag = webDB.waitForElement(BillOfMaterialsLocators.BORResourceData, ElementType.Xpath);
+					flag = webDB.waitForElement(BillOfMaterialsLocators.BORResourceData(), ElementType.Xpath);
 					if (flag) {
-						webDB.clickAnElement(BillOfMaterialsLocators.BORResourceData, ElementType.Xpath);
-						commonFunc.searchAndSelectValueInFilters(BillOfMaterialsLocators.BORResourceLovBtn, resource);
+						webDB.clickAnElement(BillOfMaterialsLocators.BORResourceData(), ElementType.Xpath);
+						commonFunc.searchAndSelectValueInFilters(BillOfMaterialsLocators.BORResourceLovBtn(), resource);
 						logs.logging("INFO", "Resource Selected: " + resource);
 					}
 				}
@@ -639,12 +639,12 @@ public class BillOfMaterialsFunctions {
 	 * @param LotQnty
 	 */
 	public void fillSetupHrsMinAndSetupLotQntyInBORTab(String Hrs, String Min, String LotQnty) {
-		commonPayrollFunc.addDetailInTableWithoutLovButton(BillOfMaterialsLocators.BORSetupHrsData,
-				BillOfMaterialsLocators.BORSetupHrsInput, Hrs);
-		commonPayrollFunc.addDetailInTableWithoutLovButton(BillOfMaterialsLocators.BORSetupMinsData,
-				BillOfMaterialsLocators.BORSetupMinsInput, Min);
-		commonPayrollFunc.addDetailInTableWithoutLovButton(BillOfMaterialsLocators.BORSetupLotQntyData,
-				BillOfMaterialsLocators.BORSetupLotQntyInput, LotQnty);
+		commonPayrollFunc.addDetailInTableWithoutLovButton(BillOfMaterialsLocators.BORSetupHrsData(),
+				BillOfMaterialsLocators.BORSetupHrsInput(), Hrs);
+		commonPayrollFunc.addDetailInTableWithoutLovButton(BillOfMaterialsLocators.BORSetupMinsData(),
+				BillOfMaterialsLocators.BORSetupMinsInput(), Min);
+		commonPayrollFunc.addDetailInTableWithoutLovButton(BillOfMaterialsLocators.BORSetupLotQntyData(),
+				BillOfMaterialsLocators.BORSetupLotQntyInput(), LotQnty);
 	}
 
 	/**
@@ -658,14 +658,14 @@ public class BillOfMaterialsFunctions {
 	 * @param Sec
 	 */
 	public void fillCycleTimeUnitOrHrsMinAndSecInBORTab(String TimeUnit, String Hrs, String Mins, String Sec) {
-		commonPayrollFunc.addDetailInTableWithoutLovButton(BillOfMaterialsLocators.BORCycleTimeUnitPerHourData,
-				BillOfMaterialsLocators.BORCycleTimeUnitPerHourInput, TimeUnit);
-		commonPayrollFunc.addDetailInTableWithoutLovButton(BillOfMaterialsLocators.BORCycleTimeHourData,
-				BillOfMaterialsLocators.BORCycleTimeHourInput, Hrs);
-		commonPayrollFunc.addDetailInTableWithoutLovButton(BillOfMaterialsLocators.BORCycleTimeMinData,
-				BillOfMaterialsLocators.BORCycleTimeMinInput, Mins);
-		commonPayrollFunc.addDetailInTableWithoutLovButton(BillOfMaterialsLocators.BORCycleTimeSecData,
-				BillOfMaterialsLocators.BORCycleTimeSecInput, Sec);
+		commonPayrollFunc.addDetailInTableWithoutLovButton(BillOfMaterialsLocators.BORCycleTimeUnitPerHourData(),
+				BillOfMaterialsLocators.BORCycleTimeUnitPerHourInput(), TimeUnit);
+		commonPayrollFunc.addDetailInTableWithoutLovButton(BillOfMaterialsLocators.BORCycleTimeHourData(),
+				BillOfMaterialsLocators.BORCycleTimeHourInput(), Hrs);
+		commonPayrollFunc.addDetailInTableWithoutLovButton(BillOfMaterialsLocators.BORCycleTimeMinData(),
+				BillOfMaterialsLocators.BORCycleTimeMinInput(), Mins);
+		commonPayrollFunc.addDetailInTableWithoutLovButton(BillOfMaterialsLocators.BORCycleTimeSecData(),
+				BillOfMaterialsLocators.BORCycleTimeSecInput(), Sec);
 	}
 
 	/**
@@ -677,10 +677,10 @@ public class BillOfMaterialsFunctions {
 	 * @param BatchHrs
 	 */
 	public void fillCycleTimeBatchQntyAndHrsInBORTab(String BatchQnty, String BatchHrs) {
-		commonPayrollFunc.addDetailInTableWithoutLovButton(BillOfMaterialsLocators.BORCycleTimeBatchQntyData,
-				BillOfMaterialsLocators.BORCycleTimeBatchQntyInput, BatchQnty);
-		commonPayrollFunc.addDetailInTableWithoutLovButton(BillOfMaterialsLocators.BORCycleTimeBatchHrsData,
-				BillOfMaterialsLocators.BORCycleTimeBatchHrsInput, BatchHrs);
+		commonPayrollFunc.addDetailInTableWithoutLovButton(BillOfMaterialsLocators.BORCycleTimeBatchQntyData(),
+				BillOfMaterialsLocators.BORCycleTimeBatchQntyInput(), BatchQnty);
+		commonPayrollFunc.addDetailInTableWithoutLovButton(BillOfMaterialsLocators.BORCycleTimeBatchHrsData(),
+				BillOfMaterialsLocators.BORCycleTimeBatchHrsInput(), BatchHrs);
 	}
 
 	/**
@@ -692,12 +692,12 @@ public class BillOfMaterialsFunctions {
 	 * @param NoOfUnit
 	 */
 	public void fillLagPriorityAndNoOfUnitsInBORTab(String Lag, String Priority, String NoOfUnit) {
-		commonPayrollFunc.addDetailInTableWithoutLovButton(BillOfMaterialsLocators.BORLagHrsData,
-				BillOfMaterialsLocators.BORLagHrsInput, Lag);
-		commonPayrollFunc.addDetailInTableWithoutLovButton(BillOfMaterialsLocators.BORPriorityData,
-				BillOfMaterialsLocators.BORPriorityInput, Priority);
-		commonPayrollFunc.addDetailInTableWithoutLovButton(BillOfMaterialsLocators.BORNoOfUnitsData,
-				BillOfMaterialsLocators.BORNoOfUnitsInput, NoOfUnit);
+		commonPayrollFunc.addDetailInTableWithoutLovButton(BillOfMaterialsLocators.BORLagHrsData(),
+				BillOfMaterialsLocators.BORLagHrsInput(), Lag);
+		commonPayrollFunc.addDetailInTableWithoutLovButton(BillOfMaterialsLocators.BORPriorityData(),
+				BillOfMaterialsLocators.BORPriorityInput(), Priority);
+		commonPayrollFunc.addDetailInTableWithoutLovButton(BillOfMaterialsLocators.BORNoOfUnitsData(),
+				BillOfMaterialsLocators.BORNoOfUnitsInput(), NoOfUnit);
 	}
 
 	/**
