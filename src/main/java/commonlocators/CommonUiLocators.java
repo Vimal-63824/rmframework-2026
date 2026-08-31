@@ -438,4 +438,6 @@ public class CommonUiLocators {
 	public static final String OkayButton = "//button[text()='OK']";
 	/** @locatorType Xpath */
 	public static final String ItemLovButton = "//input[@data-testid='P93132130_ITEM']/following-sibling::button";
+	/** @locatorType Xpath */
+	public static String PendingPoShowMore = "//button[@aria-controls='a_Collapsible1_FS_content']";
 }

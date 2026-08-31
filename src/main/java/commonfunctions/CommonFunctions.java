@@ -335,7 +335,7 @@ public class CommonFunctions {
 				hardWait(1000);
 				checkRefreshCellsDisappear();
 				checkRefreshCellsDisappear();
- 
+
 				List<WebElement> Elements = webDB.getDriver()
 						.findElements(By.xpath(CommonUiLocators.convertListOfXPath(Value)));
 				for (WebElement webElement : Elements) {
@@ -378,7 +378,7 @@ public class CommonFunctions {
 		}
 		Assert.assertTrue(flag);
 	}
- 
+
 	public boolean fluentWaitClickElement(WebElement element) {
 		Wait<WebDriver> wait = new FluentWait<WebDriver>(WebDriverBase.getDriver()).withTimeout(Duration.ofSeconds(10))
 				.pollingEvery(Duration.ofSeconds(2)).ignoring(StaleElementReferenceException.class);
@@ -3479,4 +3479,18 @@ public class CommonFunctions {
 		return Locator;
 //		return Locator.replace("/th", "/td").concat("[1]");
 	}
+
+	/**
+	 * This Methods Is Used To Expand The Find Page
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+	public void expandFindTable() {
+		if (webDB.getAttributeFromElement(CommonUiLocators.PendingPoShowMore, ElementType.Xpath, "aria-expanded")
+				.equals("false")) {
+			webDB.clickAnElement(CommonUiLocators.PendingPoShowMore, ElementType.Xpath);
+		} else {
+		}
+	}
+
 }

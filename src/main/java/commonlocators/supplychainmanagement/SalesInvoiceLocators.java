@@ -1,5 +1,7 @@
 package commonlocators.supplychainmanagement;
 
+import commonfunctions.CommonFunctions;
+
 /**
  * @author Sakthi-GWL
  * @company Galaxy Weblinks February 5, 2025
@@ -808,4 +810,74 @@ public class SalesInvoiceLocators {
 	public static final String RW_Pend_Outside_Supl_Lov = "//input[@data-testid='Rework_Prim_SUP_Lov']/following-sibling::button";
 	/** @Locator XPATH */
 	public static final String CreatePreDispatchButton = "//button[@data-testid='Cre_pre_disp']";
+	/** @Locator XPATH */
+	public static final String SI_LineTable = "(//table[@data-testid='ig_line_ig_report_settings_Result_Data'])[2]";
+	/** @locatorType Xpath */
+	public static final String SIPageItemTable() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(SI_LineTable, "Item");
+	}
+	/** @locatorType Xpath */
+	public static final String SIPageGLAcctTable() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(SI_LineTable, "Sales GL A/C Desc.");
+	}
+	/** @locatorType Xpath */
+	public static final String SIPageInvQtyTable() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(SI_LineTable, "Invoice Qty.");
+	}
+	/** @locatorType Xpath */
+	public static final String SIPageUnitPriceTable() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(SI_LineTable, "Unit Price");
+	}
+	/** @locatorType Xpath */
+	public static final String SIPageHSNTable() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(SI_LineTable, "HSN Code");
+	}
+	/** @Locator XPATH */
+	public static final String PI_LineTable = "(//table[@data-testid='line1_ig_report_settings_Result_Data'])[2]";
+	/** @locatorType Xpath */
+	public static final String PIPageItemTable() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(PI_LineTable, "Item ID");
+	}
+	/** @locatorType Xpath */
+	public static final String PIPageSOrefTable() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(PI_LineTable, "SO/Prj.Ref.");
+	}
+	/** @locatorType Xpath */
+	public static final String PIPageQtyTable() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(PI_LineTable, "PI Qty.");
+	}
+	/** @locatorType Xpath */
+	public static final String PIPageUnitPriceTable() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(PI_LineTable, "Unit Price");
+	}
+	/** @locatorType Xpath */
+	public static final String PIPageHSNTable() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(PI_LineTable, "HSN/SAC Code");
+	}
+	/** @Locator XPATH */
+	public static final String CR_LineTable = "(//table[@data-testid='ig_line_ig_report_settings_Result_Data'])[2]";
+	/** @locatorType Xpath */
+	public static final String CRPageItemTable() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(CR_LineTable, "Item");
+	}
+	/** @locatorType Xpath */
+	public static final String CRPageGLAcctTable() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(CR_LineTable, "GL Acct.Desc.");
+	}
+	/** @locatorType Xpath */
+	public static final String CRPageCPCTable() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(CR_LineTable, "CPC Desc.");
+	}
+	/** @locatorType Xpath */
+	public static final String CRPageReturnQtyTable() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(CR_LineTable, "Return Qty.");
+	}
+	/** @locatorType Xpath */
+	public static final String CRPageHSNTable() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(CR_LineTable, "HSN / SAC Code");
+	}
+	/** @locatorType Xpath */
+	public static final String CRPageUnitPriceTable() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(CR_LineTable, "Unit Price");
+	}
 }

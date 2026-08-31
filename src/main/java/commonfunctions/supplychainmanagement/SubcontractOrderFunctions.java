@@ -880,10 +880,10 @@ public class SubcontractOrderFunctions {
 			commonFunc.hardWait(1000);
 			commonFunc.searchAndSelectValueInFilters(SubcontractOrderLocators.SubcontractItemId, SCOItemID);
 			commonFunc.hardWait(1000);
-			verifyAddTableSpecs(SubcontractOrderLocators.SubcontractQtyField,
+			verifyAddTableSpecs(SubcontractOrderLocators.SCOPageOrdQtyTable(),
 					SubcontractOrderLocators.SubcontractQtyInput, SCOQty);
 			webDB.pressTabKey();
-			commonFunc.hardWait(2000);
+			commonFunc.hardWait(3000);
 			flag = webDB.waitForElement(SubcontractOrderLocators.SubcontractLineSaveIcon, ElementType.Xpath);
 			if (flag) {
 				webDB.clickAnElement(SubcontractOrderLocators.SubcontractLineSaveIcon, ElementType.Xpath);
@@ -899,9 +899,9 @@ public class SubcontractOrderFunctions {
 					commonFunc.hardWait(1000);
 					webDB.pressTabKey();
 					commonFunc.hardWait(1000);
-					flag = webDB.waitForElement(SubcontractOrderLocators.GLacctField, ElementType.Xpath);
+					flag = webDB.waitForElement(SubcontractOrderLocators.SCOPageGLAcctTable(), ElementType.Xpath);
 					if (flag) {
-						webDB.clickAnElement(SubcontractOrderLocators.GLacctField, ElementType.Xpath);
+						webDB.clickAnElement(SubcontractOrderLocators.SCOPageGLAcctTable(), ElementType.Xpath);
 						commonFunc.searchAndSelectValueInFilters(SubcontractOrderLocators.ProcessGLacct_lov,
 								ProcessGLacct);
 						flag = webDB.waitForElement(SubcontractOrderLocators.SubcontractProcessSaveIcon,
