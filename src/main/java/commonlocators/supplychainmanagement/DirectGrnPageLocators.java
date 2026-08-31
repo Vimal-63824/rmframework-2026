@@ -1,5 +1,7 @@
 package commonlocators.supplychainmanagement;
 
+import commonfunctions.CommonFunctions;
+
 /**
  * @author Durai
  * @company Roadmap May 02, 2025
@@ -37,6 +39,32 @@ public class DirectGrnPageLocators {
 	public static final String GrnLineSupQtyInputHK = "//table[@class='a-GV-table']/tbody/tr/td[8]//input";
 	/** @locatorType Xpath */
 	public static final String GrnLineSupQty = "//table[@class='a-GV-table']/tbody/tr/td[8]";
+	
+	/** @locatorType Xpath */
+	public static final String AddTableGRNScreen = "(//table[@data-testid=\"add_line_Result_Data\"])[2]";
+	
+	/** @locatorType Xpath */
+	public static final String GRNPageItemTable() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(AddTableGRNScreen, "Item");
+	}
+	
+	/** @locatorType Xpath */
+	public static final String GRNPageHSNTable() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(AddTableGRNScreen, "HSN Code");
+	}
+	/** @locatorType Xpath */
+	public static final String GRNPageSupQtyTable() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(AddTableGRNScreen, "Suplr. Bill Qty.");
+	}
+	/** @locatorType Xpath */
+	public static final String GRNPageRcptQtyTable() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(AddTableGRNScreen, "Rcpt.  Qty.");
+	}
+	/** @locatorType Xpath */
+	public static final String GRNPageUnitCostTable() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(AddTableGRNScreen, "Unit Cost");
+	}
+	
 	/** @locatorType Xpath */
 	public static final String GrnLineRcpQty = "//table[@class='a-GV-table']/tbody/tr/td[9]";
 	/** @locatorType Xpath */
@@ -54,7 +82,7 @@ public class DirectGrnPageLocators {
 	/** @locatorType Xpath */
 	public static final String InspAttrTab = "//*[@id='SR_R5658842567854189405_tab']/a/span";
 	/** @locatorType Xpath */
-	public static final String InspAttrTabBtn = "//span[text()='Attribute']/../..";
+	public static final String InspAttrTabBtn = "//li[@id='SR_R7310093216860621686_tab']";
 	/** @locatorType Xpath */
 	public static final String InspAttrSpecField = "//*[@id='ig_line_attr_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[6]";
 	/** @locatorType Xpath */
@@ -62,7 +90,7 @@ public class DirectGrnPageLocators {
 	/** @locatorType Xpath */
 	public static final String InspBottomPage = "//*[@id='t_Body_content']/footer/div[1]/div[2]/table/tbody/tr/th[1]";
 	/** @locatorType Xpath */
-	public static final String InspTextTab = "//span[text()='Text']/../..";
+	public static final String InspTextTab = "//li[@id='SR_R7312113616688198563_tab']";
 	/** @locatorType Xpath */
 	public static final String InspTextField = "//*[@id='ig_line_text_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[6]";
 	/** @locatorType Xpath */
@@ -151,9 +179,9 @@ public class DirectGrnPageLocators {
 	/** @locatorType Xpath */
 	public static final String OpenPoSearchButton = "//button/span[text()='Search']";
 	/** @locatorType Xpath */
-	public static final String AddHeaderFrame = "//iframe[@title='GRN - Purchase']";
+	public static final String AddHeaderFrame = "//iframe[@title='Create GRN - Purchase']";
 	/** @locatorType Xpath */
-	public static final String AmendLineFindTable = "//table[@data-testid='H_Result_Data']/tbody/tr[2]/td[2]";
+	public static final String AmendLineFindTable = "//table[@data-testid='H_Result_Data']/tbody/tr[2]/td[1]";
 
 	/** @locatorType Xpath */
 	public static final String AmendLineFindTableData(int i) {
@@ -174,7 +202,7 @@ public class DirectGrnPageLocators {
 	/** @locatorType Xpath */
 	public static final String LineCheckBox = "//label[text()='Line(s)']";
 	/** @locatorType Xpath */
-	public static final String AmendFindTable = "//table[@data-testid='L_Result_Title']/tbody/tr[2]/td[2]";
+	public static final String AmendFindTable = "//table[@data-testid='L_Result_Title']/tr/th[2]";
 	/** @locatorType Xpath */
 	public static final String GRN_Status = "//select[@id='P1615131103_STATUS']";
 	/** @locatorType Xpath */
@@ -206,4 +234,20 @@ public class DirectGrnPageLocators {
 	/** @locatorType Xpath */
 	public static final String DCDateInput = "//a-date-picker[contains(@id,'PORH_DC_DATE')]//input";
 
+	/** @locatorType Xpath */
+	public static final String GRNAmendFindTableData(String i) {
+		return CommonFunctions.checkAndReturnLocatorForFindPageTable(GRNFindTable, i);
+	}
+
+	/** @locatorType Xpath */
+	public static final String GRNFindTable = "//table[@data-testid='L_Result_Data']/tr/th";
+	/** @locatorType Xpath */
+	public static final String GRNLineFindTable = "//table[@data-testid='H_Result_Data']/tbody/tr/th";
+
+	
+
+	/** @locatorType Xpath */
+	public static final String GRNAmendLineFindTableData(String i) {
+		return CommonFunctions.checkAndReturnLocatorForFindPageTable(GRNLineFindTable, i);
+	}
 }

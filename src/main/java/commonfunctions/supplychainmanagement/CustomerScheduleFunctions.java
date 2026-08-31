@@ -156,7 +156,7 @@ public class CustomerScheduleFunctions {
 			webDB.clickAnElement(CustomerScheduleLocators.CSLineWiseItemField, ElementType.Xpath);
 			commonFunc.searchAndSelectValueInFilters(CustomerScheduleLocators.CSLineWiseItemLov, Item);
 			webDB.pressTabKey();
-//			commonFunc.checkRefreshCellsDisappear();
+			commonFunc.checkRefreshCellsDisappear();
 		}
 		assertTrue(flag);
 	}
@@ -189,6 +189,8 @@ public class CustomerScheduleFunctions {
 				CustomerScheduleLocators.CSLineWiseDiscInputField, Discount);
 		webDB.pressTabKey();
 		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.hardWait(2000);
 		flag = webDB.waitForElement(CustomerScheduleLocators.CSLineWiseEndDateField, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(CustomerScheduleLocators.CSLineWiseEndDateField, ElementType.Xpath);
@@ -1149,7 +1151,7 @@ public class CustomerScheduleFunctions {
 		flag = webDB.waitForElement(SalesPriceListLocators.PriceList, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(SalesPriceListLocators.PriceList, ElementType.Xpath);
-			flag = webDB.waitForElement(SalesPriceListLocators.PriceListSingle, ElementType.Xpath);
+			flag = webDB.waitForElement(SalesPriceListLocators.PriceListSingle1, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Successfully Clicked Price List");
 				if (PLType.contains("Multi")) {
@@ -1162,9 +1164,9 @@ public class CustomerScheduleFunctions {
 						}
 					}
 				} else {
-					flag = webDB.waitForElement(SalesPriceListLocators.PriceListSingle, ElementType.Xpath);
+					flag = webDB.waitForElement(SalesPriceListLocators.PriceListSingle1, ElementType.Xpath);
 					if (flag) {
-						webDB.clickAnElement(SalesPriceListLocators.PriceListSingle, ElementType.Xpath);
+						webDB.clickAnElement(SalesPriceListLocators.PriceListSingle1, ElementType.Xpath);
 						flag = webDB.waitForElement(SalesPriceListLocators.PlusButton, ElementType.Xpath);
 						if (flag) {
 							logs.logging("INFO", "Price List Single Button Is Clicked Successfully");
@@ -2322,13 +2324,18 @@ public class CustomerScheduleFunctions {
 		flag = webDB.waitForElement(CustomerScheduleLocators.CSAmdCancelButton, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(CustomerScheduleLocators.CSAmdCancelButton, ElementType.Xpath);
-			flag = webDB.waitForElement(CustomerScheduleLocators.CSAmdCancelAlert, ElementType.Xpath);
+			//flag = webDB.waitForElement(CustomerScheduleLocators.CSAmdCancelAlert, ElementType.Xpath);
+			flag = webDB.waitForClickElement(OpenSalesOrderLocators.CancelCaution, ElementType.Xpath);
 			if (flag) {
-				String Alert = webDB.getTextFromElement(CustomerScheduleLocators.CSAmdCancelAlert, ElementType.Xpath);
-				if (Alert.equalsIgnoreCase("Document is Cancelled.")) {
-					logs.logging("INFO", "Customer Schedule Document Cancelled Sucessfully");
-				} else {
-					logs.logging("INFO", "Failed To Cancel The Customer Schedule Document");
+				webDB.clickAnElement(OpenSalesOrderLocators.CancelCaution, ElementType.Xpath);
+				if (flag) {
+					String Alert = webDB.getTextFromElement(CustomerScheduleLocators.CSAmdCancelAlert,
+							ElementType.Xpath);
+					if (Alert.equalsIgnoreCase("Document is Cancelled.")) {
+						logs.logging("INFO", "Customer Schedule Document Cancelled Sucessfully");
+					} else {
+						logs.logging("INFO", "Failed To Cancel The Customer Schedule Document");
+					}
 				}
 			}
 		}

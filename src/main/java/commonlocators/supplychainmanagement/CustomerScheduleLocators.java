@@ -103,7 +103,7 @@ public class CustomerScheduleLocators {
 	/** @Locator Xpath */
 	public static final String CSAmdFetchButton = "//button[@data-testid='CSAmdFetchButton']";
 	/** @Locator Xpath */
-	public static final String CSAmdCancelAlert = "//H6[@CLASS='succ_msg']/SPAN";
+	public static final String CSAmdCancelAlert = "//h6[@class='succ_msg']";
 	/** @Locator Xpath */
 	public static final String CSAmdPostButton = "//button[@data-testid='CSAmdPostButton']";
 	/** @Locator Xpath */
