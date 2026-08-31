@@ -395,11 +395,11 @@ public class CommonUiLocators {
 	/** @locatorType Xpath */
 	public static final String CreatePoButton = "//button[contains(@onclick,'ADD_PO')]";
 	/** @locatorType Xpath */
-	public static final String PoCreateFrame = "//iframe[@title='Purchase Order']";
+	public static final String PoCreateFrame = "//iframe[contains(@title,'Create')]";
 	/** @locatorType Xpath */
 	public static final String PrCreateButton = "//button[@title='Create PR/SSR']";
 	/** @locatorType Xpath */
-	public static final String PrCreateFrame = "//iframe[@title='Purchase Request']";
+	public static final String PrCreateFrame = "//iframe[contains(@title,'Create')]";
 	/** @locatorType Xpath */
 	public static final String CreatePrButton = "//button[@data-testid='ADD_PR']";
 	/** @locatorType Xpath */
@@ -439,5 +439,5 @@ public class CommonUiLocators {
 	/** @locatorType Xpath */
 	public static final String ItemLovButton = "//input[@data-testid='P93132130_ITEM']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static String PendingPoShowMore = "//button[@aria-controls='a_Collapsible1_FS_content']";
+	public static final String PendingPoShowMore = "//button[@aria-controls='a_Collapsible1_FS_content']";
 }

@@ -184,7 +184,7 @@ public class PurchaseRequestLocators {
 	/** @locatorType Xpath */
 	public static final String PR_LineDetailsIframe = "//iframe[@title='Line Details']";
 	/** @locatorType Xpath */
-	public static final String PRLineDetails_Class = "//span[@id='P161513103003_PRL_CLASS_DESC_DISPLAY']";
+	public static final String PRLineDetails_Class = "//input[@data-testid='P161513103003_PRL_STORE_NAME']/..";
 	/** @locatorType Xpath */
 	public static final String PRLineDetails_SubClass = "//span[@id='P161513103003_PRL_SUB_CLS_DESC_DISPLAY']";
 	/** @locatorType Xpath */

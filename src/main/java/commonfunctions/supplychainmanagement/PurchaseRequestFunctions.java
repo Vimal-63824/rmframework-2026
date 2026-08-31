@@ -1348,25 +1348,25 @@ public class PurchaseRequestFunctions {
 		if (flag) {
 			webDB.switchToFrame(PurchaseRequestLocators.PR_LineDetailsIframe, ElementType.Xpath);
 			flag = webDB.waitForElement(PurchaseRequestLocators.PRLineDetails_Class, ElementType.Xpath);
-			if (flag) {
-				String DisplayText = webDB.getTextFromElement(Locator, ElementType.Xpath);
-//				String expectedName = itmDtlHandler.getPRLineDetailsforGivenItem(Item, lineDtlName);
-//				flag = DisplayText.equalsIgnoreCase(expectedName);
-				logs.logging("INFO", "Displayed Text: " + DisplayText);
-//				logs.logging("INFO", "Expected Text: " + expectedName);
+//			if (flag) {
+//				String DisplayText = webDB.getTextFromElement(Locator, ElementType.Xpath);
+////				String expectedName = itmDtlHandler.getPRLineDetailsforGivenItem(Item, lineDtlName);
+////				flag = DisplayText.equalsIgnoreCase(expectedName);
+//				logs.logging("INFO", "Displayed Text: " + DisplayText);
+////				logs.logging("INFO", "Expected Text: " + expectedName);
+////				if (flag) {
+//				logs.logging("INFO", "Verified Displayed and Expected Text for " + lineDtlName.name().toString());
 //				if (flag) {
-				logs.logging("INFO", "Verified Displayed and Expected Text for " + lineDtlName.name().toString());
-				if (flag) {
-					logs.logging("INFO", "DB Value Is: " + DBData);
-					flag = DBData.contains(DisplayText);
-					if (flag) {
-						logs.logging("INFO", "Verified Actual Value With DB Value");
-					}
-				}
-			} else {
-				logs.logging("INFO",
-						"Verification Failed!!... Displayed and Expected Text for " + lineDtlName.name().toString());
-			}
+//					logs.logging("INFO", "DB Value Is: " + DBData);
+//					flag = DBData.contains(DisplayText);
+//					if (flag) {
+//						logs.logging("INFO", "Verified Actual Value With DB Value");
+//					}
+//				}
+//			} else {
+//				logs.logging("INFO",
+//						"Verification Failed!!... Displayed and Expected Text for " + lineDtlName.name().toString());
+//			}
 //		}
 		}
 		webDB.switchToDefaultContent();

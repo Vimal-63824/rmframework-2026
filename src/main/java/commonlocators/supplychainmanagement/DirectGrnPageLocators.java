@@ -39,32 +39,35 @@ public class DirectGrnPageLocators {
 	public static final String GrnLineSupQtyInputHK = "//table[@class='a-GV-table']/tbody/tr/td[8]//input";
 	/** @locatorType Xpath */
 	public static final String GrnLineSupQty = "//table[@class='a-GV-table']/tbody/tr/td[8]";
-	
+
 	/** @locatorType Xpath */
 	public static final String AddTableGRNScreen = "(//table[@data-testid=\"add_line_Result_Data\"])[2]";
-	
+
 	/** @locatorType Xpath */
 	public static final String GRNPageItemTable() {
 		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(AddTableGRNScreen, "Item");
 	}
-	
+
 	/** @locatorType Xpath */
 	public static final String GRNPageHSNTable() {
 		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(AddTableGRNScreen, "HSN Code");
 	}
+
 	/** @locatorType Xpath */
 	public static final String GRNPageSupQtyTable() {
 		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(AddTableGRNScreen, "Suplr. Bill Qty.");
 	}
+
 	/** @locatorType Xpath */
 	public static final String GRNPageRcptQtyTable() {
 		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(AddTableGRNScreen, "Rcpt.  Qty.");
 	}
+
 	/** @locatorType Xpath */
 	public static final String GRNPageUnitCostTable() {
 		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(AddTableGRNScreen, "Unit Cost");
 	}
-	
+
 	/** @locatorType Xpath */
 	public static final String GrnLineRcpQty = "//table[@class='a-GV-table']/tbody/tr/td[9]";
 	/** @locatorType Xpath */
@@ -179,7 +182,7 @@ public class DirectGrnPageLocators {
 	/** @locatorType Xpath */
 	public static final String OpenPoSearchButton = "//button/span[text()='Search']";
 	/** @locatorType Xpath */
-	public static final String AddHeaderFrame = "//iframe[@title='Create GRN - Purchase']";
+	public static final String AddHeaderFrame = "//iframe[contains(@title,'Create')]";
 	/** @locatorType Xpath */
 	public static final String AmendLineFindTable = "//table[@data-testid='H_Result_Data']/tbody/tr[2]/td[1]";
 
@@ -243,8 +246,6 @@ public class DirectGrnPageLocators {
 	public static final String GRNFindTable = "//table[@data-testid='L_Result_Data']/tr/th";
 	/** @locatorType Xpath */
 	public static final String GRNLineFindTable = "//table[@data-testid='H_Result_Data']/tbody/tr/th";
-
-	
 
 	/** @locatorType Xpath */
 	public static final String GRNAmendLineFindTableData(String i) {

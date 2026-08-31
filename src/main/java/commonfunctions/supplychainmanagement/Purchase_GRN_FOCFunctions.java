@@ -85,7 +85,7 @@ public class Purchase_GRN_FOCFunctions {
 				webDB.pressEscapeKey();
 				POfunc.verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
 				webDB.pressEscapeKey();
-				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode,
+				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode(),
 						PurchaseOrderPageLocators.HsnCodeLovButton, HsnCode, PurchaseOrderPageLocators.HsnCodeInput);
 				webDB.pressEscapeKey();
 				commonFunc.checkRefreshCellsDisappear();
@@ -172,7 +172,7 @@ public class Purchase_GRN_FOCFunctions {
 				String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 				POfunc.verifyCreateItemInPo(item);
 				POfunc.verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
-				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode,
+				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode(),
 						PurchaseOrderPageLocators.HsnCodeLovButton, HsnCode, PurchaseOrderPageLocators.HsnCodeInput);
 				POfunc.verifyTickIconcreateItem();
 				commonFunc.checkRefreshCellsDisappear();
@@ -256,7 +256,7 @@ public class Purchase_GRN_FOCFunctions {
 				String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 				POfunc.verifyCreateItemInPo(item);
 				POfunc.verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
-				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode,
+				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode(),
 						PurchaseOrderPageLocators.HsnCodeLovButton, HsnCode, PurchaseOrderPageLocators.HsnCodeInput);
 				POfunc.verifyTickIconcreateItem();
 				POfunc.verifyLineAmountValidationAndPom(item, LineAmount);
@@ -339,7 +339,7 @@ public class Purchase_GRN_FOCFunctions {
 				String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 				POfunc.verifyCreateItemInPo(item);
 				POfunc.verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
-				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode,
+				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode(),
 						PurchaseOrderPageLocators.HsnCodeLovButton, HsnCode, PurchaseOrderPageLocators.HsnCodeInput);
 				POfunc.verifyTickIconcreateItem();
 				POfunc.verifyLineAmountValidationAndPom(item, LineAmount);
@@ -422,7 +422,7 @@ public class Purchase_GRN_FOCFunctions {
 				String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 				POfunc.verifyCreateItemInPo(item);
 				POfunc.verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
-				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode,
+				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode(),
 						PurchaseOrderPageLocators.HsnCodeLovButton, HsnCode, PurchaseOrderPageLocators.HsnCodeInput);
 				POfunc.verifyTickIconcreateItem();
 				POfunc.verifyLineAmountValidationAndPom(item, LineAmount);
@@ -505,7 +505,7 @@ public class Purchase_GRN_FOCFunctions {
 				String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 				POfunc.verifyCreateItemInPo(item);
 				POfunc.verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
-				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode,
+				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode(),
 						PurchaseOrderPageLocators.HsnCodeLovButton, HsnCode, PurchaseOrderPageLocators.HsnCodeInput);
 				POfunc.verifyTickIconcreateItem();
 				POfunc.verifyLineAmountValidationAndPom(item, LineAmount);
@@ -588,7 +588,7 @@ public class Purchase_GRN_FOCFunctions {
 				String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 				POfunc.verifyCreateItemInPo(item);
 				POfunc.verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
-				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode,
+				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode(),
 						PurchaseOrderPageLocators.HsnCodeLovButton, HsnCode, PurchaseOrderPageLocators.HsnCodeInput);
 				POfunc.verifyTickIconcreateItem();
 				POfunc.verifyLineAmountValidationAndPom(item, LineAmount);
@@ -671,7 +671,7 @@ public class Purchase_GRN_FOCFunctions {
 				String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 				POfunc.verifyCreateItemInPo(item);
 				POfunc.verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
-				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode,
+				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode(),
 						PurchaseOrderPageLocators.HsnCodeLovButton, HsnCode, PurchaseOrderPageLocators.HsnCodeInput);
 				POfunc.verifyTickIconcreateItem();
 				POfunc.verifyLineAmountValidationAndPom(item, LineAmount);
@@ -754,7 +754,7 @@ public class Purchase_GRN_FOCFunctions {
 				String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 				POfunc.verifyCreateItemInPo(item);
 				POfunc.verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
-				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode,
+				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode(),
 						PurchaseOrderPageLocators.HsnCodeLovButton, HsnCode, PurchaseOrderPageLocators.HsnCodeInput);
 				POfunc.verifyTickIconcreateItem();
 				POfunc.verifyLineAmountValidationAndPom(item, LineAmount);
@@ -837,7 +837,7 @@ public class Purchase_GRN_FOCFunctions {
 				String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 				POfunc.verifyCreateItemInPo(item);
 				POfunc.verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
-				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode,
+				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode(),
 						PurchaseOrderPageLocators.HsnCodeLovButton, HsnCode, PurchaseOrderPageLocators.HsnCodeInput);
 				POfunc.verifyTickIconcreateItem();
 				POfunc.verifyLineAmountValidationAndPom(item, LineAmount);
@@ -3337,7 +3337,7 @@ public class Purchase_GRN_FOCFunctions {
 				String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 				POfunc.verifyCreateItemInPo(item);
 				POfunc.verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
-				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode,
+				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode(),
 						PurchaseOrderPageLocators.HsnCodeLovButton, HsnCode, PurchaseOrderPageLocators.HsnCodeInput);
 				POfunc.verifyTickIconcreateItem();
 				POfunc.verifyLineAmountValidationAndPom(item, LineAmount);
@@ -3425,7 +3425,7 @@ public class Purchase_GRN_FOCFunctions {
 				String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 				POfunc.verifyCreateItemInPo(item);
 				POfunc.verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
-				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode,
+				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode(),
 						PurchaseOrderPageLocators.HsnCodeLovButton, HsnCode, PurchaseOrderPageLocators.HsnCodeInput);
 				POfunc.verifyTickIconcreateItem();
 				POfunc.verifyLineAmountValidationAndPom(item, LineAmount);
@@ -3550,7 +3550,7 @@ public class Purchase_GRN_FOCFunctions {
 				String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 				POfunc.verifyCreateItemInPo(item);
 				POfunc.verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
-				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode,
+				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode(),
 						PurchaseOrderPageLocators.HsnCodeLovButton, HsnCode, PurchaseOrderPageLocators.HsnCodeInput);
 				POfunc.verifyTickIconcreateItem();
 				POfunc.verifyLineAmountValidationAndPom(item, LineAmount);
@@ -3675,7 +3675,7 @@ public class Purchase_GRN_FOCFunctions {
 				String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 				POfunc.verifyCreateItemInPo(item);
 				POfunc.verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
-				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode,
+				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode(),
 						PurchaseOrderPageLocators.HsnCodeLovButton, HsnCode, PurchaseOrderPageLocators.HsnCodeInput);
 				POfunc.verifyTickIconcreateItem();
 				POfunc.verifyLineAmountValidationAndPom(item, LineAmount);
@@ -3800,7 +3800,7 @@ public class Purchase_GRN_FOCFunctions {
 				String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 				POfunc.verifyCreateItemInPo(item);
 				POfunc.verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
-				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode,
+				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode(),
 						PurchaseOrderPageLocators.HsnCodeLovButton, HsnCode, PurchaseOrderPageLocators.HsnCodeInput);
 				POfunc.verifyTickIconcreateItem();
 				POfunc.verifyLineAmountValidationAndPom(item, LineAmount);
@@ -3926,7 +3926,7 @@ public class Purchase_GRN_FOCFunctions {
 				POfunc.verifyCreateItemInPo(item);
 				commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.PoQtyFieldClick,
 						PurchaseOrderPageLocators.PoQtyInput, Quantity);
-				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode,
+				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode(),
 						PurchaseOrderPageLocators.HsnCodeLovButton, HsnCode, PurchaseOrderPageLocators.HsnCodeInput);
 				POfunc.verifyTickIconcreateItem();
 				POfunc.verifyLineAmountValidationAndPom(item, LineAmount);
@@ -4052,7 +4052,7 @@ public class Purchase_GRN_FOCFunctions {
 				POfunc.verifyCreateItemInPo(item);
 				commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.PoQtyFieldClick,
 						PurchaseOrderPageLocators.PoQtyInput, Quantity);
-				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode,
+				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode(),
 						PurchaseOrderPageLocators.HsnCodeLovButton, HsnCode, PurchaseOrderPageLocators.HsnCodeInput);
 				POfunc.verifyTickIconcreateItem();
 				POfunc.verifyLineAmountValidationAndPom(item, LineAmount);
@@ -4178,7 +4178,7 @@ public class Purchase_GRN_FOCFunctions {
 				POfunc.verifyCreateItemInPo(item);
 				commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.PoQtyFieldClick,
 						PurchaseOrderPageLocators.PoQtyInput, Quantity);
-				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode,
+				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode(),
 						PurchaseOrderPageLocators.HsnCodeLovButton, HsnCode, PurchaseOrderPageLocators.HsnCodeInput);
 				POfunc.verifyTickIconcreateItem();
 				POfunc.verifyLineAmountValidationAndPom(item, LineAmount);
@@ -4304,7 +4304,7 @@ public class Purchase_GRN_FOCFunctions {
 				POfunc.verifyCreateItemInPo(item);
 				commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.PoQtyFieldClick,
 						PurchaseOrderPageLocators.PoQtyInput, Quantity);
-				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode,
+				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode(),
 						PurchaseOrderPageLocators.HsnCodeLovButton, HsnCode, PurchaseOrderPageLocators.HsnCodeInput);
 				POfunc.verifyTickIconcreateItem();
 				POfunc.verifyLineAmountValidationAndPom(item, LineAmount);
@@ -4429,7 +4429,7 @@ public class Purchase_GRN_FOCFunctions {
 				String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 				POfunc.verifyCreateItemInPo(item);
 				POfunc.verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
-				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode,
+				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode(),
 						PurchaseOrderPageLocators.HsnCodeLovButton, HsnCode, PurchaseOrderPageLocators.HsnCodeInput);
 				POfunc.verifyTickIconcreateItem();
 				POfunc.verifyLineAmountValidationAndPom(item, LineAmount);
@@ -4554,7 +4554,7 @@ public class Purchase_GRN_FOCFunctions {
 				String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 				POfunc.verifyCreateItemInPo(item);
 				POfunc.verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
-				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode,
+				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode(),
 						PurchaseOrderPageLocators.HsnCodeLovButton, HsnCode, PurchaseOrderPageLocators.HsnCodeInput);
 				POfunc.verifyTickIconcreateItem();
 				POfunc.verifyLineAmountValidationAndPom(item, LineAmount);
@@ -4679,7 +4679,7 @@ public class Purchase_GRN_FOCFunctions {
 				String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 				POfunc.verifyCreateItemInPo(item);
 				POfunc.verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
-				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode,
+				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode(),
 						PurchaseOrderPageLocators.HsnCodeLovButton, HsnCode, PurchaseOrderPageLocators.HsnCodeInput);
 				POfunc.verifyTickIconcreateItem();
 				POfunc.verifyLineAmountValidationAndPom(item, LineAmount);
@@ -4804,7 +4804,7 @@ public class Purchase_GRN_FOCFunctions {
 				String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 				POfunc.verifyCreateItemInPo(item);
 				POfunc.verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
-				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode,
+				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode(),
 						PurchaseOrderPageLocators.HsnCodeLovButton, HsnCode, PurchaseOrderPageLocators.HsnCodeInput);
 				POfunc.verifyTickIconcreateItem();
 				POfunc.verifyLineAmountValidationAndPom(item, LineAmount);
