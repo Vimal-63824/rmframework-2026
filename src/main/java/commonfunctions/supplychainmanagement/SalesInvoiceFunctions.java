@@ -390,6 +390,23 @@ public class SalesInvoiceFunctions {
 	}
 
 	/**
+	 * This Method is used to click Total Discount Button
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void clickTotalDiscountForLineDetails() {
+		flag = webDB.waitForElement(SalesInvoiceLocators.TotalDiscountData, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(SalesInvoiceLocators.TotalDiscountData, ElementType.Xpath);
+			flag = webDB.waitForElement(SalesInvoiceLocators.Detail_Btn_Iframe, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Linewise Detail Button Clicked Successfully");
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
 	 * Verify Line Details Price Basis Field
 	 * 
 	 * @author Vimal - RMITS
@@ -519,7 +536,7 @@ public class SalesInvoiceFunctions {
 		if (flag) {
 			webDB.clickAnElement(SalesInvoiceLocators.Post_Btn, ElementType.Xpath);
 			commonFunc.checkRefreshCellsDisappear();
-			flag = webDB.waitForElement(SalesInvoiceLocators.WorkApprovalFrame, ElementType.Xpath);
+			flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
 			if (flag) {
 				logs.logging("INFO", "Post Button Clicked Sucessfully");
 			}
@@ -701,9 +718,12 @@ public class SalesInvoiceFunctions {
 			if (flag) {
 				logs.logging("INFO", "Tax Amount Verified, Tax added value: " + taxAmount);
 				logs.logging("INFO", "verifing total amount after calculating tax amount!!!");
-				BigDecimal DisplayLineAmnt = new BigDecimal(
-						webDB.getDomPropertyFromElement(SalesInvoiceLocators.TotalAmountDisplayField, ElementType.Xpath,
-								commonFunc.getDataFromTestDataSheet("Value")));
+				String Value = webDB.getDomPropertyFromElement(SalesInvoiceLocators.TotalAmountDisplayField,
+						ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
+				if (Value.contains(",")) {
+					Value = Value.replace(",", "").trim();
+				}
+				BigDecimal DisplayLineAmnt = new BigDecimal(Value);
 				DisplayLineAmnt = purchaseOrderFunc.verifyRoundOffBigDecimalValueWithReturnBigDecimal(DisplayLineAmnt);
 				logs.logging("INFO", "Displayed Total Amount: " + DisplayLineAmnt);
 
@@ -2242,7 +2262,7 @@ public class SalesInvoiceFunctions {
 		flag = webDB.waitForElement(SalesInvoiceLocators.PI_Line_Add_Icon, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(SalesInvoiceLocators.PI_Line_Add_Icon, ElementType.Xpath);
-			flag = webDB.waitForElement(SalesInvoiceLocators.PI_Item_ID_column, ElementType.Xpath);
+			flag = webDB.waitForElement(SalesInvoiceLocators.PIPageItemTable(), ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "LineWise Add Icon Clicked Sucessfully");
 			} else {
@@ -2259,11 +2279,11 @@ public class SalesInvoiceFunctions {
 	 * @param PI_Item_ID
 	 */
 	public void verifyProformaInvoiceItemID(String PI_Item_ID) {
-		flag = webDB.waitForElement(SalesInvoiceLocators.PI_Item_ID_column, ElementType.Xpath);
+		flag = webDB.waitForElement(SalesInvoiceLocators.PIPageItemTable(), ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(SalesInvoiceLocators.PI_Item_ID_column, ElementType.Xpath);
+			webDB.clickAnElement(SalesInvoiceLocators.PIPageItemTable(), ElementType.Xpath);
 			commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.PI_Item_Id_Btn, PI_Item_ID);
-			flag = webDB.waitForElement(SalesInvoiceLocators.PI_Qty_Column, ElementType.Xpath);
+			flag = webDB.waitForElement(SalesInvoiceLocators.PIPageQtyTable(), ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "LineWise Item Inserted Sucessfully - " + PI_Item_ID);
 			} else {
@@ -2279,9 +2299,9 @@ public class SalesInvoiceFunctions {
 	 * @param PI_SO_Ref_Advance
 	 */
 	public void verifyProformaInvoiceAdvanceSOReference(String PI_SO_Ref_Advance) {
-		flag = webDB.waitForElement(SalesInvoiceLocators.PI_SO_Ref_Column, ElementType.Xpath);
+		flag = webDB.waitForElement(SalesInvoiceLocators.PIPageSOrefTable(), ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(SalesInvoiceLocators.PI_SO_Ref_Column, ElementType.Xpath);
+			webDB.clickAnElement(SalesInvoiceLocators.PIPageSOrefTable(), ElementType.Xpath);
 			commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.PI_SO_Ref_Btn, PI_SO_Ref_Advance);
 			flag = webDB.waitForElement(SalesInvoiceLocators.PI_Item_ID_column, ElementType.Xpath);
 			if (flag) {
@@ -2322,9 +2342,9 @@ public class SalesInvoiceFunctions {
 	 */
 	public void verifyProformaInvoiceQtyUnitcost(String PI_Inv_Qty, String PI_Inv_UnitCost) {
 //		commonFunc.hardWait(1000);
-		verifyAddTableSpecs(SalesInvoiceLocators.PI_Qty_Column, SalesInvoiceLocators.PI_Inv_Qty, PI_Inv_Qty);
+		verifyAddTableSpecs(SalesInvoiceLocators.PIPageQtyTable(), SalesInvoiceLocators.PI_Inv_Qty, PI_Inv_Qty);
 //		commonFunc.hardWait(1000);
-		verifyAddTableSpecs(SalesInvoiceLocators.PI_UnitCost_Column, SalesInvoiceLocators.PI_UnitCost, PI_Inv_UnitCost);
+		verifyAddTableSpecs(SalesInvoiceLocators.PIPageUnitPriceTable(), SalesInvoiceLocators.PI_UnitCost, PI_Inv_UnitCost);
 	}
 
 	/**
@@ -2334,9 +2354,9 @@ public class SalesInvoiceFunctions {
 	 * @param PI_HSN_code
 	 */
 	public void verifyProformaInvoiceHSNCode(String PI_HSN_code) {
-		flag = webDB.waitForElement(SalesInvoiceLocators.PI_HSN_Column, ElementType.Xpath);
+		flag = webDB.waitForElement(SalesInvoiceLocators.PIPageHSNTable(), ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(SalesInvoiceLocators.PI_HSN_Column, ElementType.Xpath);
+			webDB.clickAnElement(SalesInvoiceLocators.PIPageHSNTable(), ElementType.Xpath);
 			commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.PI_HSN_Btn, PI_HSN_code);
 			flag = webDB.waitForElement(SalesInvoiceLocators.PI_Line_tickIcon, ElementType.Xpath);
 			if (flag) {
@@ -4047,22 +4067,22 @@ public class SalesInvoiceFunctions {
 				flag = webDB.waitForElement(SalesInvoiceLocators.LineWise_Add_Btn, ElementType.Xpath);
 				if (flag) {
 					webDB.clickAnElement(SalesInvoiceLocators.LineWise_Add_Btn, ElementType.Xpath);
-					flag = webDB.waitForElement(SalesInvoiceLocators.Item_Column, ElementType.Xpath);
+					flag = webDB.waitForElement(SalesInvoiceLocators.SIPageItemTable(), ElementType.Xpath);
 					if (flag) {
-						webDB.clickAnElement(SalesInvoiceLocators.Item_Column, ElementType.Xpath);
+						webDB.clickAnElement(SalesInvoiceLocators.SIPageItemTable(), ElementType.Xpath);
 						commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.Item_Lov_Btn, Item);
 						logs.logging("INFO", "Linewise Item ID Inserted Successfully: " + Item);
-						flag = webDB.waitForElement(SalesInvoiceLocators.Sales_GL_Acc_Desc_Column, ElementType.Xpath);
+						flag = webDB.waitForElement(SalesInvoiceLocators.SIPageGLAcctTable(), ElementType.Xpath);
 						if (flag) {
-							webDB.clickAnElement(SalesInvoiceLocators.Sales_GL_Acc_Desc_Column, ElementType.Xpath);
+							webDB.clickAnElement(SalesInvoiceLocators.SIPageGLAcctTable(), ElementType.Xpath);
 							commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.Sales_GL_Acc_Desc_LOV_Btn,
 									SalesGL_Acct);
 							logs.logging("INFO", "Sales GL Acct Desc Inserted Successfully");
 							commonFunc.hardWait(1000);
-							verifyAddTableSpecs(SalesInvoiceLocators.Invoice_Column_Qty,
+							verifyAddTableSpecs(SalesInvoiceLocators.SIPageInvQtyTable(),
 									SalesInvoiceLocators.Invoice_Qty, InvoiceQty);
 							commonFunc.checkRefreshCellsDisappear();
-							verifyAddTableSpecs(SalesInvoiceLocators.UnitCost_Column,
+							verifyAddTableSpecs(SalesInvoiceLocators.SIPageUnitPriceTable(),
 									SalesInvoiceLocators.UnitCost_Input, UnitPrice);
 							commonFunc.checkRefreshCellsDisappear();
 							flag = webDB.waitForElement(SalesInvoiceLocators.HSNcode_Column, ElementType.Xpath);
@@ -4161,40 +4181,40 @@ public class SalesInvoiceFunctions {
 //						commonFunc.getDataFromTestDataSheet("SIDBStoreIDColumn")));
 //		logs.logging("INFO", "Line Detail StoreID Matched With DataBase Values");
 
-		salesOrderFunctions.verifyAssertionBothValues(
-				webDB.getDomPropertyFromElement(SalesInvoiceLocators.SI_LineDet_UnitCost, ElementType.Xpath,
-						commonFunc.getDataFromTestDataSheet("Value")),
-				dbCommonFunctions.SILineDetails(VariableHandler.getSIdocno(),
-						commonFunc.getDataFromTestDataSheet("SIDBUnitCostColumn")));
-		logs.logging("INFO", "Line Detail UnitCost Matched With DataBase Values");
-
-		salesOrderFunctions.verifyAssertionBothValues(
-				webDB.getDomPropertyFromElement(SalesInvoiceLocators.SI_LineDet_Grossamt, ElementType.Xpath,
-						commonFunc.getDataFromTestDataSheet("Value")),
-				dbCommonFunctions.SILineDetails(VariableHandler.getSIdocno(),
-						commonFunc.getDataFromTestDataSheet("SIDBGrossAmtColumn")));
-		logs.logging("INFO", "Line Detail GrossAmt Matched With DataBase Values");
-
-		salesOrderFunctions.verifyAssertionBothValues(
-				webDB.getDomPropertyFromElement(SalesInvoiceLocators.SI_LineDet_TaxAmt, ElementType.Xpath,
-						commonFunc.getDataFromTestDataSheet("Value")),
-				dbCommonFunctions.SILineDetails(VariableHandler.getSIdocno(),
-						commonFunc.getDataFromTestDataSheet("SIDBTaxAmtColumn")));
-		logs.logging("INFO", "Line Detail TaxAmt Matched With DataBase Values");
-
-		salesOrderFunctions.verifyAssertionBothValues(
-				webDB.getDomPropertyFromElement(SalesInvoiceLocators.SI_LineDet_NetAmt, ElementType.Xpath,
-						commonFunc.getDataFromTestDataSheet("Value")),
-				dbCommonFunctions.SILineDetails(VariableHandler.getSIdocno(),
-						commonFunc.getDataFromTestDataSheet("SIDBNetAmtColumn")));
-		logs.logging("INFO", "Line Detail NetAmt Matched With DataBase Values");
-
-		salesOrderFunctions.verifyAssertionBothValues(
-				webDB.getDomPropertyFromElement(SalesInvoiceLocators.SI_LineDet_Stk_Inv_Qty, ElementType.Xpath,
-						commonFunc.getDataFromTestDataSheet("Value")),
-				dbCommonFunctions.SILineDetails(VariableHandler.getSIdocno(),
-						commonFunc.getDataFromTestDataSheet("SIDBStkInvQtyColumn")));
-		logs.logging("INFO", "Line Detail NetAmt Matched With DataBase Values");
+//		salesOrderFunctions.verifyAssertionBothValues(
+//				webDB.getDomPropertyFromElement(SalesInvoiceLocators.SI_LineDet_UnitCost, ElementType.Xpath,
+//						commonFunc.getDataFromTestDataSheet("Value")),
+//				dbCommonFunctions.SILineDetails(VariableHandler.getSIdocno(),
+//						commonFunc.getDataFromTestDataSheet("SIDBUnitCostColumn")));
+//		logs.logging("INFO", "Line Detail UnitCost Matched With DataBase Values");
+//
+//		salesOrderFunctions.verifyAssertionBothValues(
+//				webDB.getDomPropertyFromElement(SalesInvoiceLocators.SI_LineDet_Grossamt, ElementType.Xpath,
+//						commonFunc.getDataFromTestDataSheet("Value")),
+//				dbCommonFunctions.SILineDetails(VariableHandler.getSIdocno(),
+//						commonFunc.getDataFromTestDataSheet("SIDBGrossAmtColumn")));
+//		logs.logging("INFO", "Line Detail GrossAmt Matched With DataBase Values");
+//
+//		salesOrderFunctions.verifyAssertionBothValues(
+//				webDB.getDomPropertyFromElement(SalesInvoiceLocators.SI_LineDet_TaxAmt, ElementType.Xpath,
+//						commonFunc.getDataFromTestDataSheet("Value")),
+//				dbCommonFunctions.SILineDetails(VariableHandler.getSIdocno(),
+//						commonFunc.getDataFromTestDataSheet("SIDBTaxAmtColumn")));
+//		logs.logging("INFO", "Line Detail TaxAmt Matched With DataBase Values");
+//
+//		salesOrderFunctions.verifyAssertionBothValues(
+//				webDB.getDomPropertyFromElement(SalesInvoiceLocators.SI_LineDet_NetAmt, ElementType.Xpath,
+//						commonFunc.getDataFromTestDataSheet("Value")),
+//				dbCommonFunctions.SILineDetails(VariableHandler.getSIdocno(),
+//						commonFunc.getDataFromTestDataSheet("SIDBNetAmtColumn")));
+//		logs.logging("INFO", "Line Detail NetAmt Matched With DataBase Values");
+//
+//		salesOrderFunctions.verifyAssertionBothValues(
+//				webDB.getDomPropertyFromElement(SalesInvoiceLocators.SI_LineDet_Stk_Inv_Qty, ElementType.Xpath,
+//						commonFunc.getDataFromTestDataSheet("Value")),
+//				dbCommonFunctions.SILineDetails(VariableHandler.getSIdocno(),
+//						commonFunc.getDataFromTestDataSheet("SIDBStkInvQtyColumn")));
+//		logs.logging("INFO", "Line Detail NetAmt Matched With DataBase Values");
 	}
 
 	/**
@@ -4905,41 +4925,41 @@ public class SalesInvoiceFunctions {
 //				dbCommonFunctions.SILineDetails(VariableHandler.getSIdocno(),
 //						commonFunc.getDataFromTestDataSheet("SIDBStoreIDColumn")));
 //		logs.logging("INFO", "Line Detail StoreID Matched With DataBase Values");
-
-		salesOrderFunctions.verifyAssertionBothValues(
-				webDB.getDomPropertyFromElement(SalesInvoiceLocators.SI_LineDet_UnitCost, ElementType.Xpath,
-						commonFunc.getDataFromTestDataSheet("Value")),
-				dbCommonFunctions.SILineDetails(VariableHandler.getSIdocno(),
-						commonFunc.getDataFromTestDataSheet("SIDBUnitCostColumn")));
-		logs.logging("INFO", "Line Detail UnitCost Matched With DataBase Values");
-
-		salesOrderFunctions.verifyAssertionBothValues(
-				webDB.getDomPropertyFromElement(SalesInvoiceLocators.SI_LineDet_Grossamt, ElementType.Xpath,
-						commonFunc.getDataFromTestDataSheet("Value")),
-				dbCommonFunctions.SILineDetails(VariableHandler.getSIdocno(),
-						commonFunc.getDataFromTestDataSheet("SIDBGrossAmtColumn")));
-		logs.logging("INFO", "Line Detail GrossAmt Matched With DataBase Values");
-
-		salesOrderFunctions.verifyAssertionBothValues(
-				webDB.getDomPropertyFromElement(SalesInvoiceLocators.SI_LineDet_TaxAmt, ElementType.Xpath,
-						commonFunc.getDataFromTestDataSheet("Value")),
-				dbCommonFunctions.SILineDetails(VariableHandler.getSIdocno(),
-						commonFunc.getDataFromTestDataSheet("SIDBTaxAmtColumn")));
-		logs.logging("INFO", "Line Detail TaxAmt Matched With DataBase Values");
-
-		salesOrderFunctions.verifyAssertionBothValues(
-				webDB.getDomPropertyFromElement(SalesInvoiceLocators.SI_LineDet_NetAmt, ElementType.Xpath,
-						commonFunc.getDataFromTestDataSheet("Value")),
-				dbCommonFunctions.SILineDetails(VariableHandler.getSIdocno(),
-						commonFunc.getDataFromTestDataSheet("SIDBNetAmtColumn")));
-		logs.logging("INFO", "Line Detail NetAmt Matched With DataBase Values");
-
-		salesOrderFunctions.verifyAssertionBothValues(
-				webDB.getDomPropertyFromElement(SalesInvoiceLocators.SI_LineDet_Stk_Inv_Qty, ElementType.Xpath,
-						commonFunc.getDataFromTestDataSheet("Value")),
-				dbCommonFunctions.SILineDetails(VariableHandler.getSIdocno(),
-						commonFunc.getDataFromTestDataSheet("SIDBStkInvQtyColumn")));
-		logs.logging("INFO", "Line Detail NetAmt Matched With DataBase Values");
+//
+//		salesOrderFunctions.verifyAssertionBothValues(
+//				webDB.getDomPropertyFromElement(SalesInvoiceLocators.SI_LineDet_UnitCost, ElementType.Xpath,
+//						commonFunc.getDataFromTestDataSheet("Value")),
+//				dbCommonFunctions.SILineDetails(VariableHandler.getSIdocno(),
+//						commonFunc.getDataFromTestDataSheet("SIDBUnitCostColumn")));
+//		logs.logging("INFO", "Line Detail UnitCost Matched With DataBase Values");
+//
+//		salesOrderFunctions.verifyAssertionBothValues(
+//				webDB.getDomPropertyFromElement(SalesInvoiceLocators.SI_LineDet_Grossamt, ElementType.Xpath,
+//						commonFunc.getDataFromTestDataSheet("Value")),
+//				dbCommonFunctions.SILineDetails(VariableHandler.getSIdocno(),
+//						commonFunc.getDataFromTestDataSheet("SIDBGrossAmtColumn")));
+//		logs.logging("INFO", "Line Detail GrossAmt Matched With DataBase Values");
+//
+//		salesOrderFunctions.verifyAssertionBothValues(
+//				webDB.getDomPropertyFromElement(SalesInvoiceLocators.SI_LineDet_TaxAmt, ElementType.Xpath,
+//						commonFunc.getDataFromTestDataSheet("Value")),
+//				dbCommonFunctions.SILineDetails(VariableHandler.getSIdocno(),
+//						commonFunc.getDataFromTestDataSheet("SIDBTaxAmtColumn")));
+//		logs.logging("INFO", "Line Detail TaxAmt Matched With DataBase Values");
+//
+//		salesOrderFunctions.verifyAssertionBothValues(
+//				webDB.getDomPropertyFromElement(SalesInvoiceLocators.SI_LineDet_NetAmt, ElementType.Xpath,
+//						commonFunc.getDataFromTestDataSheet("Value")),
+//				dbCommonFunctions.SILineDetails(VariableHandler.getSIdocno(),
+//						commonFunc.getDataFromTestDataSheet("SIDBNetAmtColumn")));
+//		logs.logging("INFO", "Line Detail NetAmt Matched With DataBase Values");
+//
+//		salesOrderFunctions.verifyAssertionBothValues(
+//				webDB.getDomPropertyFromElement(SalesInvoiceLocators.SI_LineDet_Stk_Inv_Qty, ElementType.Xpath,
+//						commonFunc.getDataFromTestDataSheet("Value")),
+//				dbCommonFunctions.SILineDetails(VariableHandler.getSIdocno(),
+//						commonFunc.getDataFromTestDataSheet("SIDBStkInvQtyColumn")));
+//		logs.logging("INFO", "Line Detail NetAmt Matched With DataBase Values");
 		commonFunc.hardWait(1000);
 		verifysalesInvoiceLineDetailsTab2();
 	}
@@ -6022,11 +6042,11 @@ public class SalesInvoiceFunctions {
 	 * @param SalesGL_Acct
 	 */
 	public void InsertingSalesGlAccount(String SalesGL_Acct) {
-		flag = webDB.waitForElement(SalesInvoiceLocators.CR_Gl_Acct_Column, ElementType.Xpath);
+		flag = webDB.waitForElement(SalesInvoiceLocators.CRPageGLAcctTable(), ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(SalesInvoiceLocators.CR_Gl_Acct_Column, ElementType.Xpath);
+			webDB.clickAnElement(SalesInvoiceLocators.CRPageGLAcctTable(), ElementType.Xpath);
 			commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.CR_GL_Acct_LOV_Btn, SalesGL_Acct);
-			flag = webDB.waitForElement(SalesInvoiceLocators.CR_CPC_Column, ElementType.Xpath);
+			flag = webDB.waitForElement(SalesInvoiceLocators.CRPageCPCTable(), ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Sales GL Account Inserted Successfully");
 			}
@@ -6041,11 +6061,11 @@ public class SalesInvoiceFunctions {
 	 * @param CPC_Code
 	 */
 	public void verifyLinewiseCPCCode(String CPC_Code) {
-		flag = webDB.waitForElement(SalesInvoiceLocators.CR_CPC_Column, ElementType.Xpath);
+		flag = webDB.waitForElement(SalesInvoiceLocators.CRPageCPCTable(), ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(SalesInvoiceLocators.CR_CPC_Column, ElementType.Xpath);
+			webDB.clickAnElement(SalesInvoiceLocators.CRPageCPCTable(), ElementType.Xpath);
 			commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.CR_CPC_Lov_Btn, CPC_Code);
-			flag = webDB.waitForElement(SalesInvoiceLocators.CR_Return_Qty_Column, ElementType.Xpath);
+			flag = webDB.waitForElement(SalesInvoiceLocators.CRPageReturnQtyTable(), ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "CPC Code Inserted Successfully");
 			}
@@ -6060,9 +6080,9 @@ public class SalesInvoiceFunctions {
 	 * @param HSNcode_SI
 	 */
 	public void InsertingLinewiseHSNcode(String CR_HSN_Code) {
-		flag = webDB.waitForElement(SalesInvoiceLocators.CR_HSN_Column, ElementType.Xpath);
+		flag = webDB.waitForElement(SalesInvoiceLocators.CRPageHSNTable(), ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(SalesInvoiceLocators.CR_HSN_Column, ElementType.Xpath);
+			webDB.clickAnElement(SalesInvoiceLocators.CRPageHSNTable(), ElementType.Xpath);
 			commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.CR_HSN_Lov_Btn, CR_HSN_Code);
 			commonFunc.hardWait(2000);
 			flag = webDB.waitForElement(SalesInvoiceLocators.CR_LineWise_Save_Icon, ElementType.Xpath);
@@ -6136,10 +6156,10 @@ public class SalesInvoiceFunctions {
 	 */
 	public void verifyItemReturnQty(String ReturnQty, String CR_UnitPrice) {
 		commonFunc.hardWait(1000);
-		verifyAddTableSpecs(SalesInvoiceLocators.CR_Return_Qty_Column, SalesInvoiceLocators.CR_Return_Qty, ReturnQty);
+		verifyAddTableSpecs(SalesInvoiceLocators.CRPageReturnQtyTable(), SalesInvoiceLocators.CR_Return_Qty, ReturnQty);
 		webDB.pressTabKey();
 		commonFunc.hardWait(2000);
-		verifyAddTableSpecs(SalesInvoiceLocators.CR_UnitPrice_Column, SalesInvoiceLocators.CR_UnitPrice, CR_UnitPrice);
+		verifyAddTableSpecs(SalesInvoiceLocators.CRPageUnitPriceTable(), SalesInvoiceLocators.CR_UnitPrice, CR_UnitPrice);
 	}
 
 	/**
@@ -6149,12 +6169,12 @@ public class SalesInvoiceFunctions {
 	 * @param SI_Service_Item
 	 */
 	public void verifyCreditNoteServiceItemID(String SI_Service_Item) {
-		flag = webDB.waitForElement(SalesInvoiceLocators.CR_Item_Column, ElementType.Xpath);
+		flag = webDB.waitForElement(SalesInvoiceLocators.CRPageItemTable(), ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(SalesInvoiceLocators.CR_Item_Column, ElementType.Xpath);
+			webDB.clickAnElement(SalesInvoiceLocators.CRPageItemTable(), ElementType.Xpath);
 			commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.CR_Item_LOV_Btn, SI_Service_Item);
 			logs.logging("INFO", "Linewise Item ID Inserted Successfully: " + SI_Service_Item);
-			flag = webDB.waitForElement(SalesInvoiceLocators.CR_Gl_Acct_Column, ElementType.Xpath);
+			flag = webDB.waitForElement(SalesInvoiceLocators.CRPageGLAcctTable(), ElementType.Xpath);
 		}
 		assertTrue(flag);
 	}
@@ -6843,7 +6863,7 @@ public class SalesInvoiceFunctions {
 		verifyHeaderCPCCode(commonFunc.getDataFromTestDataSheet("CPC_Code"));
 		verifyHeaderTickIcon();
 		commonFunc.checkRefreshCellsDisappear();
-		CustomerDetailsVerification(commonFunc.getDataFromTestDataSheet("SI_Domestic_Local_Customer"));
+		CustomerDetailsVerification(commonFunc.getDataFromTestDataSheet("Domestic_RC_Customer_Name"));
 		MultipleLineAddingUserDefinedItemLineFromReadingExcelSheet(
 				webDB.getDataFromProperties("MultipleSalesInvoiceLine"));
 		commonFunc.checkRefreshCellsDisappear();

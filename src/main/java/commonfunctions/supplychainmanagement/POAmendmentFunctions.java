@@ -355,10 +355,10 @@ public class POAmendmentFunctions {
 		if (flag) {
 			logs.logging("INFO", "Item Add Button Is Displayed Successfully");
 			webDB.clickAnElement(POAmendmentLocators.AddItemButton, ElementType.Xpath);
-			flag = webDB.waitForElement(POAmendmentLocators.ItemTable(1), ElementType.Xpath);
+			flag = webDB.waitForElement(POAmendmentLocators.ItemTable(), ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Item Add Button Is Clicked");
-				webDB.clickAnElement(POAmendmentLocators.ItemTable(1), ElementType.Xpath);
+				webDB.clickAnElement(POAmendmentLocators.ItemTable(), ElementType.Xpath);
 				commonFunc.searchAndSelectValueInFilters(POAmendmentLocators.ItemInputButton, Item);
 				flag = webDB.waitForElement(POAmendmentLocators.ItemInput, ElementType.Xpath);
 				if (flag) {
@@ -383,12 +383,12 @@ public class POAmendmentFunctions {
 	public void verifyAddItemInPOWithQuantityAndUnitCost(String quantity, String unitcost) {
 		try {
 			commonFunc.hardWait(1000);
-			purchaseOrderFunctions.verifyAddTableSpecs(POAmendmentLocators.NewQuantity(1),
+			purchaseOrderFunctions.verifyAddTableSpecs(POAmendmentLocators.NewQuantity(),
 					POAmendmentLocators.NewQuantity, quantity);
 			webDB.pressEnterKey();
 			commonFunc.checkRefreshCellsDisappear();
 			commonFunc.hardWait(5000);
-			purchaseOrderFunctions.verifyAddTableSpecs(POAmendmentLocators.NewUnitCost(1),
+			purchaseOrderFunctions.verifyAddTableSpecs(POAmendmentLocators.NewUnitCost(),
 					POAmendmentLocators.NewUnitCost, unitcost);
 			webDB.pressEnterKey();
 			commonFunc.checkRefreshCellsDisappear();
@@ -433,11 +433,11 @@ public class POAmendmentFunctions {
 	 * @param Item
 	 */
 	public void LineDetailValidation(String Item) {
-		purchaseOrderFunctions.verifyGetTextValidation(POAmendmentLocators.ItemTable(1),
+		purchaseOrderFunctions.verifyGetTextValidation(POAmendmentLocators.ItemTable(),
 				itemDetailHandler.getPOALineDetailsforGivenItem(Item, POALineDetailsName.ITEMID));
-		purchaseOrderFunctions.verifyGetTextValidation(POAmendmentLocators.ItemDesc(1),
+		purchaseOrderFunctions.verifyGetTextValidation(POAmendmentLocators.ItemDesc(),
 				itemDetailHandler.getPOALineDetailsforGivenItem(Item, POALineDetailsName.ITEM_DESCRIPTION));
-		purchaseOrderFunctions.verifyGetTextValidation(POAmendmentLocators.UOM(1),
+		purchaseOrderFunctions.verifyGetTextValidation(POAmendmentLocators.UOM(),
 				itemDetailHandler.getPOALineDetailsforGivenItem(Item, POALineDetailsName.UOM));
 	}
 
@@ -448,11 +448,11 @@ public class POAmendmentFunctions {
 	 * 
 	 */
 	public void navigateToLineDetailPage() {
-		webDB.moveToElement(POAmendmentLocators.ItemTable(1), ElementType.Xpath);
-		webDB.moveToElement(POAmendmentLocators.Details(1), ElementType.Xpath);
-		flag = webDB.waitForElement(POAmendmentLocators.Details(1), ElementType.Xpath);
+		webDB.moveToElement(POAmendmentLocators.ItemTable(), ElementType.Xpath);
+		webDB.moveToElement(POAmendmentLocators.Details(), ElementType.Xpath);
+		flag = webDB.waitForElement(POAmendmentLocators.Details(), ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(POAmendmentLocators.Details(1), ElementType.Xpath);
+			webDB.clickAnElement(POAmendmentLocators.Details(), ElementType.Xpath);
 			flag = webDB.waitForElement(POAmendmentLocators.Details, ElementType.Xpath);
 			if (flag) {
 				webDB.switchToFrame(POAmendmentLocators.LineDetailsIframe, ElementType.Xpath);
@@ -538,11 +538,11 @@ public class POAmendmentFunctions {
 		commonFunc.checkRefreshCellsDisappear();
 //		List<WebElement> OrderedQtyList = webDB.getDriver().findElements(By.xpath(POAmendmentLocators.ListQuantity));
 //		for (int i = 1; i <= OrderedQtyList.size(); i++) {
-		Item = webDB.getDriver().findElement(By.xpath(POAmendmentLocators.ItemTable(i))).getText();
+		Item = webDB.getDriver().findElement(By.xpath(POAmendmentLocators.ItemTable())).getText();
 		logs.logging("INFO", "Get Text Item For Calculation Is: " + Item);
-		String OrderedQty = webDB.getDriver().findElement(By.xpath(POAmendmentLocators.NewQuantity(i))).getText();
+		String OrderedQty = webDB.getDriver().findElement(By.xpath(POAmendmentLocators.NewQuantity())).getText();
 		logs.logging("INFO", "Get Text Ordered Quantity Is: " + OrderedQty);
-		String UnitCost = webDB.getDriver().findElement(By.xpath(POAmendmentLocators.NewUnitCost(i))).getText();
+		String UnitCost = webDB.getDriver().findElement(By.xpath(POAmendmentLocators.NewUnitCost())).getText();
 		logs.logging("INFO", "Get Text Unit Cost Is: " + UnitCost);
 
 		BigDecimal Quantityd = new BigDecimal(OrderedQty);
@@ -750,7 +750,7 @@ public class POAmendmentFunctions {
 			String[] item, boolean... Potypeflag) {
 		flag = true;
 		List<WebElement> OrderedQtyList = webDB.getDriver()
-				.findElements(By.xpath(PurchaseOrderPageLocators.OrderedQuantity));
+				.findElements(By.xpath(PurchaseOrderPageLocators.OrderedQuantity()));
 		if (OrderedQtyList.size() == 2) {
 
 			for (int i = 1; i <= OrderedQtyList.size(); i++) {
@@ -1846,7 +1846,7 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("UnitCostValue"));
 		verifyTickIconcreateItem();
 		verifyItemCalculationWithLineAmount();
-		String Item = webDB.getTextFromElement(POAmendmentLocators.ItemTable(1), ElementType.Xpath);
+		String Item = webDB.getTextFromElement(POAmendmentLocators.ItemTable(), ElementType.Xpath);
 		if (Item.equals(commonFunc.getDataFromTestDataSheet("GwlItem_Serial"))) {
 			LineDetailValidation(commonFunc.getDataFromTestDataSheet("GwlItem_Serial"));
 			navigateToLineDetailPage();
@@ -1958,7 +1958,7 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("UnitCostValue"));
 		verifyTickIconcreateItem();
 		verifyItemCalculationWithLineAmount();
-		String Item = webDB.getTextFromElement(POAmendmentLocators.ItemTable(1), ElementType.Xpath);
+		String Item = webDB.getTextFromElement(POAmendmentLocators.ItemTable(), ElementType.Xpath);
 		if (Item.equals(commonFunc.getDataFromTestDataSheet("GwlItem_Serial"))) {
 			LineDetailValidation(commonFunc.getDataFromTestDataSheet("GwlItem_Serial"));
 			navigateToLineDetailPage();
@@ -2016,7 +2016,7 @@ public class POAmendmentFunctions {
 	public void verifyPurchaseOrderValidationWithAmendmentForModify(String currency, String Quantity, String discount,
 			String Item, boolean... Potypeflag) {
 		List<WebElement> OrderedQtyList = webDB.getDriver()
-				.findElements(By.xpath(PurchaseOrderPageLocators.OrderedQuantity));
+				.findElements(By.xpath(PurchaseOrderPageLocators.OrderedQuantity()));
 		if (OrderedQtyList.size() == 2) {
 			for (int i = 1; i <= OrderedQtyList.size(); i++) {
 				String ItemName = webDB.getDriver().findElement(By.xpath(PurchaseOrderPageLocators.ItemName(i)))
@@ -2059,7 +2059,7 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("UnitCostValue"));
 		verifyTickIconcreateItem();
 		verifyItemCalculationWithLineAmount();
-		String Item = webDB.getTextFromElement(POAmendmentLocators.ItemTable(1), ElementType.Xpath);
+		String Item = webDB.getTextFromElement(POAmendmentLocators.ItemTable(), ElementType.Xpath);
 		if (Item.equals(commonFunc.getDataFromTestDataSheet("GwlItem_Serial"))) {
 			LineDetailValidation(commonFunc.getDataFromTestDataSheet("GwlItem_Serial"));
 			navigateToLineDetailPage();
@@ -2132,7 +2132,7 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("UnitCostValue"));
 		verifyTickIconcreateItem();
 		verifyItemCalculationWithLineAmount();
-		String Item = webDB.getTextFromElement(POAmendmentLocators.ItemTable(1), ElementType.Xpath);
+		String Item = webDB.getTextFromElement(POAmendmentLocators.ItemTable(), ElementType.Xpath);
 		if (Item.equals(commonFunc.getDataFromTestDataSheet("GwlItem_Serial"))) {
 			LineDetailValidation(commonFunc.getDataFromTestDataSheet("GwlItem_Serial"));
 			navigateToLineDetailPage();
@@ -2204,7 +2204,7 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("UnitCostValue"));
 		verifyTickIconcreateItem();
 		verifyItemCalculationWithLineAmount();
-		String Item = webDB.getTextFromElement(POAmendmentLocators.ItemTable(1), ElementType.Xpath);
+		String Item = webDB.getTextFromElement(POAmendmentLocators.ItemTable(), ElementType.Xpath);
 		if (Item.equals(commonFunc.getDataFromTestDataSheet("GwlItem_Service"))) {
 			LineDetailValidation(commonFunc.getDataFromTestDataSheet("GwlItem_Service"));
 			navigateToLineDetailPage();
@@ -2388,7 +2388,7 @@ public class POAmendmentFunctions {
 	 * 
 	 */
 	public void navigateToLineDetailPage(String Item) {
-		webDB.moveToElement(POAmendmentLocators.ItemTable(1), ElementType.Xpath);
+		webDB.moveToElement(POAmendmentLocators.ItemTable(), ElementType.Xpath);
 		webDB.moveToElement(POAmendmentLocators.LineDetails(Item), ElementType.Xpath);
 		flag = webDB.waitForElement(POAmendmentLocators.LineDetails(Item), ElementType.Xpath);
 		if (flag) {
@@ -5419,8 +5419,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("PR_General"),
 				webDB.getDataFromProperties("CloseshortPOADissimilarPRTOPOSheet"),
 				commonFunc.getDataFromTestDataSheet("Prefix_PR100"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername-Admin");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -5447,7 +5447,7 @@ public class POAmendmentFunctions {
 		}
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
-		commonFunc.logoutUser();
+//		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
@@ -5456,8 +5456,8 @@ public class POAmendmentFunctions {
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
+//			flag = commonFunc.logoutUser();
+//			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 
@@ -5475,7 +5475,7 @@ public class POAmendmentFunctions {
 					}
 				}
 			}
-			flag = commonFunc.logoutUser();
+//			flag = commonFunc.logoutUser();
 		}
 
 	}
@@ -5573,11 +5573,15 @@ public class POAmendmentFunctions {
 			flag = webDB.waitForElement(POAmendmentLocators.CancelDoc, ElementType.Xpath);
 			if (flag) {
 				webDB.clickAnElement(POAmendmentLocators.CancelDoc, ElementType.Xpath);
-				flag = webDB.waitForElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+				flag = webDB.waitForElement(POAmendmentLocators.OKButtonLast, ElementType.Xpath);
 				if (flag) {
-					logs.logging("INFO", "Toast Message Displayed, POA Cancelled Successfully");
-					if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
-						webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+					webDB.clickAnElement(POAmendmentLocators.OKButtonLast, ElementType.Xpath);
+					flag = webDB.waitForElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Toast Message Displayed, POA Cancelled Successfully");
+						if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+							webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+						}
 					}
 				}
 			}
@@ -11915,7 +11919,7 @@ public class POAmendmentFunctions {
 				System.getProperty("HariUsername"));
 		commonFunc.navigatePoAmendmentPage();
 		verifyValidatePOAStatus(VariableHandler.getPOANumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		flag = commonFunc.logoutUser();
+//		flag = commonFunc.logoutUser();
 		assertTrue(flag);
 	}
 

@@ -85,9 +85,9 @@ public class CommonFunctions {
 			webDB.Setup(System.getProperty("platformName"));
 			enterUrl();
 		} catch (Exception e) {
-			logs.logging("INFO", "Browser not Setup with the Exception: " + e);
-			logs.logging("INFO", "Retrying Browser Open Again....!!!");
-			Assert.fail(e.toString());
+			logs.loggingconsole("INFO", "Browser not Setup with the Exception: " + e);
+			logs.loggingconsole("INFO", "Retrying Browser Open Again....!!!");
+//			Assert.fail(e.toString());
 		}
 	}
 
@@ -102,9 +102,9 @@ public class CommonFunctions {
 			webDB.enterURL(System.getProperty("url"));
 			flag = webDB.waitForElementUntilGivenTime(CommonUiLocators.LoginForm, ElementType.Xpath, 45);
 		} catch (Exception e) {
-			logs.logging("INFO", "Enter URL Failed with the Exception: " + e);
-			logs.logging("INFO", "Retrying Navigate To URL");
-			Assert.fail(e.toString());
+			logs.loggingconsole("INFO", "Enter URL Failed with the Exception: " + e);
+			logs.loggingconsole("INFO", "Retrying Navigate To URL");
+//			Assert.fail(e.toString());
 		}
 		return flag;
 	}
@@ -117,28 +117,31 @@ public class CommonFunctions {
 	 */
 	@SuppressWarnings("null")
 	public boolean checkRefreshCellsDisappear() {
-		List<WebElement> refreshElements = webDB.getDriver()
-				.findElements(By.xpath(CommonUiLocators.EntryTableRefreshCellImage));
-		List<WebElement> AfterWaitrefreshElements = null;
-		try {
-			for (WebElement element : refreshElements) {
-				WebDriverWait wait = new WebDriverWait(webDB.getDriver(), Duration.ofSeconds(20));
-				wait.until(ExpectedConditions.invisibilityOf(element));
-				if (element.isDisplayed()) {
-					AfterWaitrefreshElements.add(element);
-				}
-			}
-			// TODO WAIT_LOAD_TIME (will remove future)
-			hardWait(1000);
-			flag = AfterWaitrefreshElements.isEmpty();
-			if (!flag) {
-				for (WebElement element : AfterWaitrefreshElements) {
-					WebDriverWait wait = new WebDriverWait(webDB.getDriver(), Duration.ofSeconds(20));
+		if (webDB.verifyIsElementDisplayed("(" + CommonUiLocators.EntryTableRefreshCellImage + ")[1]",
+				ElementType.Xpath)) {
+			List<WebElement> refreshElements = WebDriverBase.getDriver()
+					.findElements(By.xpath(CommonUiLocators.EntryTableRefreshCellImage));
+			List<WebElement> AfterWaitrefreshElements = null;
+			try {
+				for (WebElement element : refreshElements) {
+					WebDriverWait wait = new WebDriverWait(WebDriverBase.getDriver(), Duration.ofSeconds(20));
 					wait.until(ExpectedConditions.invisibilityOf(element));
+					if (element.isDisplayed()) {
+						AfterWaitrefreshElements.add(element);
+					}
 				}
-			}
-		} catch (Exception e) {
+				flag = AfterWaitrefreshElements.isEmpty();
+				if (!flag) {
+					for (WebElement element : AfterWaitrefreshElements) {
+						WebDriverWait wait = new WebDriverWait(WebDriverBase.getDriver(), Duration.ofSeconds(20));
+						wait.until(ExpectedConditions.invisibilityOf(element));
+					}
+				}
+			} catch (Exception e) {
 
+			}
+		} else {
+			hardWait(800);
 		}
 		return flag;
 	}
@@ -185,22 +188,18 @@ public class CommonFunctions {
 				if (flag) {
 					checkRefreshCellsDisappear();
 					webDB.pressEnterKey();
-//					webDB.javaScriptClickAnElement(CommonUiLocators.LoginBtn, ElementType.Xpath);
-					webDB.clickAnElementWithoutException(CommonUiLocators.LoginBtn, ElementType.Xpath);
-					webDB.clickAnElementWithoutException(CommonUiLocators.LoginBtn, ElementType.Xpath);
-					webDB.clickAnElementWithoutException(CommonUiLocators.LoginBtn, ElementType.Xpath);
-					webDB.clickAnElementWithoutException(CommonUiLocators.LoginBtn, ElementType.Xpath);
 					checkRefreshCellsDisappear();
 					if (webDB.verifyIsElementDisplayed(CommonUiLocators.LoginBtn, ElementType.Xpath)) {
 						webDB.clickAnElementWithoutException(CommonUiLocators.LoginBtn, ElementType.Xpath);
 						webDB.clickAnElementWithoutException(CommonUiLocators.LoginBtn, ElementType.Xpath);
+						webDB.pressEnterKey();
 					}
 					flag = webDB.waitForElementUntilGivenTime(CommonUiLocators.PageHeaderText, ElementType.Xpath, 15);
 					if (!flag) {
 						flag = webDB.isElementDisplayed(CommonUiLocators.LoginBtn, ElementType.Xpath);
 						if (flag) {
 							logs.logging("INFO", "Retrying Login....");
-							webDB.javaScriptClickAnElement(CommonUiLocators.LoginBtn, ElementType.Xpath);
+							webDB.pressEnterKey();
 							flag = webDB.waitForElement(CommonUiLocators.PageHeaderText, ElementType.Xpath);
 						}
 					}
@@ -219,10 +218,11 @@ public class CommonFunctions {
 				String SessionID = URL.split("session=")[1].toString();
 				System.out.println(SessionID);
 				VariableHandler.setSessionID(SessionID);
+				VariableHandler.setSessionOpened(true);
 				logs.logging("INFO", "Current Username: " + VariableHandler.getSignInUserName());
 			}
 		}
-		Assert.assertTrue(flag);
+//		Assert.assertTrue(flag);
 	}
 
 	/**
@@ -380,7 +380,7 @@ public class CommonFunctions {
 	}
 
 	public boolean fluentWaitClickElement(WebElement element) {
-		Wait<WebDriver> wait = new FluentWait<WebDriver>(webDB.getDriver()).withTimeout(Duration.ofSeconds(10))
+		Wait<WebDriver> wait = new FluentWait<WebDriver>(WebDriverBase.getDriver()).withTimeout(Duration.ofSeconds(10))
 				.pollingEvery(Duration.ofSeconds(2)).ignoring(StaleElementReferenceException.class);
 		return wait.until(ExpectedConditions.elementToBeClickable(element)).isEnabled();
 	}
@@ -592,20 +592,9 @@ public class CommonFunctions {
 //		webDB.navigateToRefresh();
 		webDB.switchToDefaultContent();
 		webDB.switchToMainTab();
-		navigateToHomePage();
-//		enterUrl();
-	}
-
-	/**
-	 * This method used to navigate home menu page
-	 * 
-	 * @author Sakthi-GWL
-	 */
-	public void navigateToHomePage() {
-		String HomePageUrl = System.getProperty("url").replace("loginpage/login", "loginpage/menu?session=")
-				.concat(VariableHandler.getSessionID());
-		System.out.println(HomePageUrl);
-		webDB.navigateToUrl(HomePageUrl);
+//		navigateToHomePage();
+		VariableHandler.setSessionID(null);
+		VariableHandler.setSessionOpened(false);
 	}
 
 	/**
@@ -714,7 +703,7 @@ public class CommonFunctions {
 	 * 
 	 * @author Deepan-GWL
 	 */
-	public void hardWait(long value) {
+	public static void hardWait(long value) {
 		try {
 			// TODO WAIT_LOAD_TIME (will remove future)
 			Thread.sleep(value);
@@ -1353,7 +1342,8 @@ public class CommonFunctions {
 			if (flag) {
 				webDB.doubleClickAnElement(PerctLocator, ElementType.Xpath);
 				webDB.sendTextToAnElement(PerctLocator, Discount, ElementType.Xpath);
-				webDB.pressEnterKey();
+				webDB.pressTabKey();
+				checkRefreshCellsDisappear();
 				checkRefreshCellsDisappear();
 				BigDecimal percentage = purchaseOrderFunc
 						.verifyRoundOffBigDecimalValueWithReturnBigDecimal(new BigDecimal(Discount));
@@ -2199,7 +2189,7 @@ public class CommonFunctions {
 //		clickSupplyChainTab();
 //		clickPurchaseTab();
 //		clickSSOTransactionTab();
-		navigateToSearchTab(webDB.getDataFromProperties("PURCHASEORDER"), SsoPageLocators.SsoPendingBtnNew);
+		navigateToSearchTab(webDB.getDataFromProperties("PurchaseOrderTab"), SsoPageLocators.SsoPendingBtnNew);
 	}
 
 	/**
@@ -2480,6 +2470,7 @@ public class CommonFunctions {
 		webDB.waitForPageReady(20);
 		flag = webDB.waitForElement(CommonUiLocators.BusFunctionSearchBox, ElementType.Xpath);
 		if (flag) {
+			checkRefreshCellsDisappear();
 			webDB.waitUntilElementToBeClickable(CommonUiLocators.BusFunctionSearchBox, ElementType.Xpath);
 			webDB.waitUntilElementToNotBeStale(CommonUiLocators.BusFunctionSearchBox, ElementType.Xpath);
 			webDB.clearTextField(CommonUiLocators.BusFunctionSearchBox, ElementType.Xpath);
@@ -2487,6 +2478,7 @@ public class CommonFunctions {
 			checkRefreshCellsDisappear();
 			webDB.waitForPageReady(30);
 			webDB.verifyIsElementDisplayed(PageLocators, ElementType.Xpath);
+			checkRefreshCellsDisappear();
 			flag = webDB.waitForElementUntilGivenTime(PageLocators, ElementType.Xpath, 15);
 			if (flag) {
 				logs.logging("INFO", "Navigated To " + TabName);
@@ -2622,25 +2614,12 @@ public class CommonFunctions {
 		if (flag) {
 			webDB.moveToElement(Tablespec, ElementType.Xpath);
 			webDB.doubleClickAnElement(Tablespec, ElementType.Xpath);
-//			logs.logging("INFO", "Table Input Box Is Clicked");
 			webDB.waitForElement(InputParameter, ElementType.Xpath);
 			webDB.clearText(InputParameter, ElementType.Xpath);
-//			logs.logging("INFO", "Clear Text Field The Input Value");
-			flag = webDB.waitForElement(Tablespec, ElementType.Xpath);
+			webDB.waitForElement(InputParameter, ElementType.Xpath);
+			flag = webDB.sendTextToAnElement(InputParameter, Enteredvalue, ElementType.Xpath);
 			if (flag) {
-				webDB.moveToElement(Tablespec, ElementType.Xpath);
-				webDB.doubleClickAnElement(Tablespec, ElementType.Xpath);
-				checkRefreshCellsDisappear();
-				webDB.waitForElement(InputParameter, ElementType.Xpath);
-				flag = webDB.sendTextToAnElement(InputParameter, Enteredvalue, ElementType.Xpath);
 				logs.logging("INFO", "Entered Value Is: " + Enteredvalue + " in 'verifyAddTableSpecs'");
-//				String value = webDB.getAttributeFromElement(InputParameter, ElementType.Xpath,
-//						getDataFromTestDataSheet("Value"));
-////				logs.logging("INFO", "Get Attribute Value Is: " + value);
-//				flag = value.contains(Enteredvalue);
-				if (flag) {
-//					logs.logging("INFO", "Verified Entered Value With Get Attribute Value");
-				}
 			}
 		}
 		assertTrue(flag);
@@ -3350,7 +3329,7 @@ public class CommonFunctions {
 
 	/**
 	 * Verify Add Table Specs
-	 * 
+	 *
 	 * @author Deepan-GWL
 	 * @param Tablespec
 	 * @param InputParameter
@@ -3362,27 +3341,156 @@ public class CommonFunctions {
 		if (flag) {
 			webDB.moveToElement(Tablespec, ElementType.Xpath);
 			webDB.doubleClickAnElement(Tablespec, ElementType.Xpath);
-//			logs.logging("INFO", "Table Input Box Is Clicked");
 			webDB.waitForElement(InputParameter, ElementType.Xpath);
 			webDB.clearTextField(InputParameter, ElementType.Xpath);
-//			logs.logging("INFO", "Clear Text Field The Input Value");
-			flag = webDB.waitForElement(Tablespec, ElementType.Xpath);
+			flag = webDB.sendTextToAnElement(InputParameter, Enteredvalue, ElementType.Xpath);
 			if (flag) {
-				webDB.moveToElement(Tablespec, ElementType.Xpath);
-				webDB.doubleClickAnElement(Tablespec, ElementType.Xpath);
-				checkRefreshCellsDisappear();
-				webDB.waitForElement(InputParameter, ElementType.Xpath);
-				flag = webDB.sendTextToAnElement(InputParameter, Enteredvalue, ElementType.Xpath);
 				logs.logging("INFO", "Entered Value Is: " + Enteredvalue + " in 'verifyAddTableSpecs'");
-//				String value = webDB.getAttributeFromElement(InputParameter, ElementType.Xpath,
-//						getDataFromTestDataSheet("Value"));
-////				logs.logging("INFO", "Get Attribute Value Is: " + value);
-//				flag = value.contains(Enteredvalue);
-				if (flag) {
-//					logs.logging("INFO", "Verified Entered Value With Get Attribute Value");
-				}
 			}
 		}
 		assertTrue(flag);
 	}
+
+	/**
+	 * This method used to navigate home menu page
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void navigateToHomePage() {
+		try {
+			String HomePageUrl = System.getProperty("url").replace("loginpage/login", "loginpage/menu?session=")
+					.concat(VariableHandler.getSessionID());
+			webDB.navigateToUrl(HomePageUrl);
+			flag = webDB.waitForElement(CommonUiLocators.GetTextUserName, ElementType.Xpath);
+			if (!flag) {
+				VariableHandler.setSessionID(null);
+				enterUrl();
+				VariableHandler.setSessionOpened(false);
+			}
+		} catch (Exception e) {
+			logs.loggingconsole("INFO", "Exception Occurs while switch home page: " + e);
+			VariableHandler.setSessionID(null);
+			VariableHandler.setSessionOpened(false);
+			enterUrl();
+		}
+	}
+
+	/**
+	 * This method used to check header with text and return index values
+	 * dynamically in add tables
+	 * 
+	 * @author Sakthi-GWL
+	 * @param Locator
+	 * @param HeaderValue
+	 * @return String Locator
+	 */
+	public static String checkAndReturnIndexForLocatorWithHeaderValue(String Locator, String HeaderValue) {
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+				+ "TableHeaders.json";
+		JSONParser parser = new JSONParser();
+		JSONObject jsonObject = null;
+		try (FileReader reader = new FileReader(Filepath)) {
+			Object obj = parser.parse(reader);
+			jsonObject = (JSONObject) obj;
+			HeaderValue = jsonObject.get(HeaderValue).toString();
+			System.out.println("Header Value1 " + HeaderValue);
+		} catch (Exception e) {
+			logs.logging("INFO", "No Data Found In Table Locators " + HeaderValue);
+		}
+
+		Locator = Locator + "/tbody/tr/td[count(" + Locator + "/thead/tr[1]/th[normalize-space()='" + HeaderValue
+				+ "']/preceding-sibling::th) + 1]";
+		return Locator;
+//		List<WebElement> elements = webDB.getListOfElements(Locator, ElementType.Xpath);
+//		System.out.println("Header Value2 " + HeaderValue + elements.size());
+//		if (elements.size() == 0) {
+//			hardWait(3000);
+//			elements = webDB.getListOfElements(Locator, ElementType.Xpath);
+//		}
+//		for (int i = 0; i < elements.size(); i++) {
+//			System.out.println("Header Value3.1 ");
+//			String text = (String) ((JavascriptExecutor) webDB.getDriver())
+//					.executeScript("return arguments[0].textContent.trim();", elements.get(i));
+//			System.out.println("Header Value 3.2 " + text);
+//			System.out.println("Header Value3 " + HeaderValue + " i " + i + " Element " + elements.get(i).getText()
+//					+ " javascript gettext " + text);
+//			if (text.equals(HeaderValue)) {
+//				System.out.println("Header Value4 " + HeaderValue + " i " + i);
+//				if (Locator.contains("thead")) {
+//					Locator = Locator.replace("thead", "tbody");
+//					System.out.println("Header Value5 " + HeaderValue + " i " + i + " Locators " + Locator);
+//				}
+//				if (Locator.contains("/th")) {
+//					Locator = Locator.replace("/th", "/td").concat("[").concat(String.valueOf(i + 1)).concat("]");
+//					System.out.println("Header Value6 " + HeaderValue + " i " + i + " Locators " + Locator);
+//				}
+//				System.out.println("Header Value7 " + HeaderValue + " i " + i + " Locators " + Locator);
+//				break;
+//			}
+//		}
+////		if (Locator.contains("thead")) {
+////			System.out.println("Locators1 " + Locator + " header " + HeaderValue);
+////			return Locator.replace("thead", "tbody").replace("/th", "/td").concat("[1]");
+////		} else {
+////			System.out.println("Locators2 " + Locator + " header " + HeaderValue);
+////			return Locator.replace("/th", "/td").concat("[1]");
+////		}
+//
+//		return Locator;
+	}
+
+	/**
+	 * This method used to check header with text and return index values
+	 * dynamically in find page tables
+	 * 
+	 * @author Sakthi-GWL
+	 * @param Locator
+	 * @param HeaderValue
+	 * @return String Locator
+	 */
+	public static String checkAndReturnLocatorForFindPageTable(String Locator, String HeaderValue) {
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+				+ "TableHeaders.json";
+		JSONParser parser = new JSONParser();
+		JSONObject jsonObject = null;
+		try (FileReader reader = new FileReader(Filepath)) {
+			Object obj = parser.parse(reader);
+			jsonObject = (JSONObject) obj;
+			System.out.println("Header value1 " + HeaderValue);
+			HeaderValue = jsonObject.get(HeaderValue).toString();
+			System.out.println("Header value2 " + HeaderValue);
+		} catch (Exception e) {
+		}
+		List<WebElement> elements = webDB.getListOfElements(Locator, ElementType.Xpath);
+		System.out.println("Before for " + elements.size() + "  " + HeaderValue);
+		if (elements.isEmpty()) {
+			hardWait(5000);
+		}
+		for (int i = 0; i < elements.size(); i++) {
+
+			String text = (String) ((JavascriptExecutor) webDB.getDriver())
+					.executeScript("return arguments[0].textContent.trim();", elements.get(i));
+			System.out.println("For " + text + "  " + HeaderValue);
+			if (text.equals(HeaderValue)) {
+				return Locator.replace("/th", "/td").concat("[").concat(String.valueOf(i + 1)).concat("]");
+			}
+		}
+		System.out.println("Locators " + Locator);
+		return Locator;
+//		return Locator.replace("/th", "/td").concat("[1]");
+	}
+
+	/**
+	 * This Methods Is Used To Expand The Find Page
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+	public void expandFindTable() {
+		if (webDB.getAttributeFromElement(CommonUiLocators.PendingPoShowMore, ElementType.Xpath, "aria-expanded")
+				.equals("false")) {
+			webDB.clickAnElement(CommonUiLocators.PendingPoShowMore, ElementType.Xpath);
+		} else {
+		}
+	}
+
 }

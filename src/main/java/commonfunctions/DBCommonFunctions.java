@@ -20,8 +20,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
 
+import commonlocators.CommonUiLocators;
 import utils.ExcelUtils;
 import utils.WebDriverBase;
+import utils.WebDriverBase.ElementType;
 
 public class DBCommonFunctions {
 	ExcelUtils excelUtils = new ExcelUtils();
@@ -1804,7 +1806,7 @@ public class DBCommonFunctions {
 				commonFunc.getDataFromTestDataSheet("SONO"), SONo, DBHeaderColumnValue);
 		return value;
 	}
-	
+
 	/**
 	 * ARM Control
 	 * 
@@ -2359,5 +2361,6 @@ public class DBCommonFunctions {
 		System.out.println("value check " + value);
 		return value;
 	}
+
 
 }

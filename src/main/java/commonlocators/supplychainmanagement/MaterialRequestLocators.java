@@ -15,7 +15,7 @@ public class MaterialRequestLocators {
 	/** @locatorType Xpath */
 	public static final String EmployeeLovButton = "//input[@data-testid='EmployeeLovButton']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String TickIconMaterialRequest = "//button[@id='B1570968790523758830']";
+	public static final String TickIconMaterialRequest = "//button[@title='Create']";
 	/** @locatorType Xpath */
 	public static final String FindSearchBtn = "//button[@data-testid='FindSearchBtn']";
 	/** @locatorType Xpath */
@@ -63,9 +63,13 @@ public class MaterialRequestLocators {
 	/** @locatorType Xpath */
 	public static final String HeaderSource = "//span[@id='P9313101001_IMRHD_REC_SOURCE_DISPLAY']";
 	/** @locatorType Xpath */
-	public static final String AddButton = "//button[@id='B4452017982282795340']";
+	public static final String AddButton = "//button[@data-testid='ADD']";
 	/** @locatorType Xpath */
 	public static final String ItemTableButton = "//div[@id='line_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[1]/td[3]";
+	/** @locatorType Xpath */
+	public static final String ProductionOrderNo = "//div[@id='line_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[1]/td[10]";
+	/** @locatorType Xpath */
+	public static final String ProductionOrderNoLovButton = "//div[@id='line_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[1]/td[10]//button";
 	/** @locatorType Xpath */
 	public static final String ItemLovButton = "//div[@id='line_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[1]/td[3]//button";
 	/** @locatorType Xpath */
@@ -77,15 +81,15 @@ public class MaterialRequestLocators {
 	/** @locatorType Xpath */
 	public static final String Warehouse = "//div[@id='line_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[1]/td[8]";
 	/** @locatorType Xpath */
-	public static final String LineTickIcon = "//button[@id='B4452018261765795340']";
+	public static final String LineTickIcon = "//button[@data-testid='SAVE1']";
 	/** @locatorType Xpath */
 	public static final String ViewLineDetails = "(//div[@id='line_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[last()]/td/a/span[contains(@class,'list')])";
 	/** @locatorType Xpath */
 	public static final String IFrame = "//iframe[@title='Other Details']";
 	/** @locatorType Xpath */
-	public static final String UnitCostLineDetail = "//input[@id='P9313101003_IMRLN_UNIT_COST']";
+	public static final String UnitCostLineDetail = "//input[@data-testid='P9313101003_IMRLN_UNIT_COST']";
 	/** @locatorType Xpath */
-	public static final String LineDetailLineAmount = "//input[@id='P9313101003_IMRL_TOT_AMT']";
+	public static final String LineDetailLineAmount = "//input[@data-testid='P9313101003_IMRL_TOT_AMT']";
 	/** @locatorType Xpath */
 	public static final String CloseLineDetail = "//h1[text()='Other Details']/../button";
 	/** @locatorType Xpath */
@@ -109,7 +113,7 @@ public class MaterialRequestLocators {
 
 	/** @locatorType Xpath */
 	public static final String RequestMRNo(String MRNumber) {
-		return "//table[@id='3711590988044709235_orig']//a[text()='" + MRNumber + "']";
+		return "//table[@data-testid='H_Result_Data']//a[text()='" + MRNumber + "']";
 	}
 
 	/** @locatorType Xpath */

@@ -245,37 +245,41 @@ public class DirectGrnPageFunctions {
 		String Today = date.format(formatter);
 		String DCNO = BillNo + SupBillNo;
 		VerifyToClickGrnFrame();
-		flag = webDB.waitForElement(DirectGrnPageLocators.GrnLocLov, ElementType.Xpath);
-		if (flag) {
-			commonFunc.searchAndSelectValueInFilters(DirectGrnPageLocators.GrnLocLov, Location);
-			logs.logging("INFO", "Location Is Entered:" + Location);
-			VerifyToClickGrnFrame();
-			flag = webDB.waitForElement(DirectGrnPageLocators.GrnType, ElementType.Xpath);
+		String GetTextLocation = webDB.getDomPropertyFromElement(DirectGrnPageLocators.LocationLOV, ElementType.Xpath,
+				commonFunc.getDataFromTestDataSheet("Value"));
+		if (!GetTextLocation.equals(Location)) {
+			flag = webDB.waitForElement(DirectGrnPageLocators.GrnLocLov, ElementType.Xpath);
 			if (flag) {
-				webDB.selectDropDownByValue(DirectGrnPageLocators.GrnType, Type, ElementType.Xpath);
-				logs.logging("INFO", "Type Is Entered:" + Type);
-				flag = webDB.waitForElement(DirectGrnPageLocators.GrnSupplierLov, ElementType.Xpath);
+				commonFunc.searchAndSelectValueInFilters(DirectGrnPageLocators.GrnLocLov, Location);
+				logs.logging("INFO", "Location Is Entered:" + Location);
+			}
+			VerifyToClickGrnFrame();
+		}
+		flag = webDB.waitForElement(DirectGrnPageLocators.GrnType, ElementType.Xpath);
+		if (flag) {
+			webDB.selectDropDownByValue(DirectGrnPageLocators.GrnType, Type, ElementType.Xpath);
+			logs.logging("INFO", "Type Is Entered:" + Type);
+			flag = webDB.waitForElement(DirectGrnPageLocators.GrnSupplierLov, ElementType.Xpath);
+			if (flag) {
+				commonFunc.searchAndSelectValueInFilters(DirectGrnPageLocators.GrnSupplierLov, Supplier);
+				logs.logging("INFO", "Supplier Is Entered:" + Supplier);
+				VerifyToClickGrnFrame();
+				flag = webDB.waitForElement(DirectGrnPageLocators.GrnSupplierBillNo, ElementType.Xpath);
 				if (flag) {
-					commonFunc.searchAndSelectValueInFilters(DirectGrnPageLocators.GrnSupplierLov, Supplier);
-					logs.logging("INFO", "Supplier Is Entered:" + Supplier);
-					VerifyToClickGrnFrame();
-					flag = webDB.waitForElement(DirectGrnPageLocators.GrnSupplierBillNo, ElementType.Xpath);
+					webDB.sendTextToAnElement(DirectGrnPageLocators.GrnSupplierBillNo, DCNO, ElementType.Xpath);
+					logs.logging("INFO", "Supplier Bill NO Is Entered");
+					flag = webDB.waitForElement(DirectGrnPageLocators.GrnDcNo, ElementType.Xpath);
 					if (flag) {
-						webDB.sendTextToAnElement(DirectGrnPageLocators.GrnSupplierBillNo, DCNO, ElementType.Xpath);
-						logs.logging("INFO", "Supplier Bill NO Is Entered");
-						flag = webDB.waitForElement(DirectGrnPageLocators.GrnDcNo, ElementType.Xpath);
+						webDB.sendTextToAnElement(DirectGrnPageLocators.GrnDcNo, DCNO, ElementType.Xpath);
+						logs.logging("INFO", "DC NO Is Entered");
+						commonFunc.verifyAddTableSpecsClearField(DirectGrnPageLocators.DCDateInput,
+								DirectGrnPageLocators.DCDateInput, Today);
+						flag = webDB.waitForElement(DirectGrnPageLocators.GrnCreate, ElementType.Xpath);
 						if (flag) {
-							webDB.sendTextToAnElement(DirectGrnPageLocators.GrnDcNo, DCNO, ElementType.Xpath);
-							logs.logging("INFO", "DC NO Is Entered");
-							commonFunc.verifyAddTableSpecsClearField(DirectGrnPageLocators.DCDateInput,
-									DirectGrnPageLocators.DCDateInput, Today);
-							flag = webDB.waitForElement(DirectGrnPageLocators.GrnCreate, ElementType.Xpath);
-							if (flag) {
-								webDB.clickAnElement(DirectGrnPageLocators.GrnCreate, ElementType.Xpath);
-								logs.logging("INFO", "GRN Is Created");
-								webDB.switchToDefaultContent();
-								flag = webDB.waitForElement(GrnLocators.GrnDocNumber, ElementType.Xpath);
-							}
+							webDB.clickAnElement(DirectGrnPageLocators.GrnCreate, ElementType.Xpath);
+							logs.logging("INFO", "GRN Is Created");
+							webDB.switchToDefaultContent();
+							flag = webDB.waitForElement(GrnLocators.GrnDocNumber, ElementType.Xpath);
 						}
 					}
 				}
@@ -531,9 +535,9 @@ public class DirectGrnPageFunctions {
 	 * @author Durai-RMITS
 	 */
 	public void verifyClickingItemField(String ITEM_NAME) {
-		flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineItemField, ElementType.Xpath);
+		flag = webDB.waitForElement(DirectGrnPageLocators.GRNPageItemTable(), ElementType.Xpath);
 		if (flag) {
-			flag = webDB.doubleClickAnElement(DirectGrnPageLocators.GrnLineItemField, ElementType.Xpath);
+			flag = webDB.doubleClickAnElement(DirectGrnPageLocators.GRNPageItemTable(), ElementType.Xpath);
 			logs.logging("INFO", "Item Lov Is Clicked");
 			commonFunc.searchAndSelectValueInFilters(DirectGrnPageLocators.GrnLineItemLov, ITEM_NAME);
 			logs.logging("INFO", "Entered Item Is: " + ITEM_NAME);
@@ -551,11 +555,11 @@ public class DirectGrnPageFunctions {
 	 */
 	public void verifyClickingHsnField(String HSN) {
 //		commonFunc.checkRefreshCellsDisappear();
-		flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineHsnField, ElementType.Xpath);
+		flag = webDB.waitForElement(DirectGrnPageLocators.GRNPageHSNTable(), ElementType.Xpath);
 		if (flag) {
-			String GetTextHSN = webDB.getTextFromElement(DirectGrnPageLocators.GrnLineHsnField, ElementType.Xpath);
+			String GetTextHSN = webDB.getTextFromElement(DirectGrnPageLocators.GRNPageHSNTable(), ElementType.Xpath);
 			if (!GetTextHSN.equals(HSN)) {
-				webDB.doubleClickAnElement(DirectGrnPageLocators.GrnLineHsnField, ElementType.Xpath);
+				webDB.doubleClickAnElement(DirectGrnPageLocators.GRNPageHSNTable(), ElementType.Xpath);
 				logs.logging("INFO", "HSN Field Is Clicked");
 				commonFunc.searchAndSelectValueInFilters(DirectGrnPageLocators.GrnLineHsnLov, HSN);
 				logs.logging("INFO", "Entered HSN Code Is:" + HSN);
@@ -572,9 +576,9 @@ public class DirectGrnPageFunctions {
 	 * @author Durai-RMITS
 	 */
 	public void verifyClickingSuppQuantity(String QTY) {
-		flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineSupQty, ElementType.Xpath);
+		flag = webDB.waitForElement(DirectGrnPageLocators.GRNPageSupQtyTable(), ElementType.Xpath);
 		if (flag) {
-			commonFunc.verifyAddTableSpecs(DirectGrnPageLocators.GrnLineSupQty,
+			commonFunc.verifyAddTableSpecs(DirectGrnPageLocators.GRNPageSupQtyTable(),
 					DirectGrnPageLocators.GrnLineSupQtyInput, QTY);
 			logs.logging("INFO", "Entered Supply Quantity Is:" + QTY);
 			commonFunc.checkRefreshCellsDisappear();
@@ -589,9 +593,9 @@ public class DirectGrnPageFunctions {
 	 * @author Durai-RMITS
 	 */
 	public void verifyClickingSuppQuantityHK(String QTY) {
-		flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineSupQty, ElementType.Xpath);
+		flag = webDB.waitForElement(DirectGrnPageLocators.GRNPageSupQtyTable(), ElementType.Xpath);
 		if (flag) {
-			salesOrderFunctions.verifyClickAndEnterValueInTableFields(DirectGrnPageLocators.GrnLineSupQty,
+			salesOrderFunctions.verifyClickAndEnterValueInTableFields(DirectGrnPageLocators.GRNPageSupQtyTable(),
 					DirectGrnPageLocators.GrnLineSupQtyInputHK, QTY);
 			webDB.pressTabKey();
 //			logs.logging("INFO", "Entered Supply Quantity Is:" + QTY);
@@ -607,9 +611,9 @@ public class DirectGrnPageFunctions {
 	 * @author Durai-RMITS
 	 */
 	public void verifyClickingReceiptQuantityHK(String QTY) {
-		flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineRcpQty, ElementType.Xpath);
+		flag = webDB.waitForElement(DirectGrnPageLocators.GRNPageRcptQtyTable(), ElementType.Xpath);
 		if (flag) {
-			salesOrderFunctions.verifyClickAndEnterValueInTableFields(DirectGrnPageLocators.GrnLineRcpQty,
+			salesOrderFunctions.verifyClickAndEnterValueInTableFields(DirectGrnPageLocators.GRNPageRcptQtyTable(),
 					DirectGrnPageLocators.GrnLineRcpQtyInputHK, QTY);
 			webDB.pressTabKey();
 //			logs.logging("INFO", "Entered Supply Quantity Is:" + QTY);
@@ -624,9 +628,9 @@ public class DirectGrnPageFunctions {
 	 * @author Durai-RMITS
 	 */
 	public void verifyClickingReceiptQuantity(String QTY) {
-		flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineRcpQty, ElementType.Xpath);
+		flag = webDB.waitForElement(DirectGrnPageLocators.GRNPageRcptQtyTable(), ElementType.Xpath);
 		if (flag) {
-			commonFunc.verifyAddTableSpecs(DirectGrnPageLocators.GrnLineRcpQty,
+			commonFunc.verifyAddTableSpecs(DirectGrnPageLocators.GRNPageRcptQtyTable(),
 					DirectGrnPageLocators.GrnLineRcpQtyInput, QTY);
 			logs.logging("INFO", "Entered Supply Quantity Is:" + QTY);
 			commonFunc.checkRefreshCellsDisappear();
@@ -640,9 +644,9 @@ public class DirectGrnPageFunctions {
 	 * @author Durai-RMITS
 	 */
 	public void verifyClickingCost(String COST) {
-		flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineCost, ElementType.Xpath);
+		flag = webDB.waitForElement(DirectGrnPageLocators.GRNPageUnitCostTable(), ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(DirectGrnPageLocators.GrnLineCost, ElementType.Xpath);
+			webDB.clickAnElement(DirectGrnPageLocators.GRNPageUnitCostTable(), ElementType.Xpath);
 			webDB.clearText(DirectGrnPageLocators.GrnLineCostInput, ElementType.Xpath);
 			webDB.sendTextToAnElement(DirectGrnPageLocators.GrnLineCostInput, COST, ElementType.Xpath);
 			logs.logging("INFO", "Entered Cost Is:" + COST);
@@ -656,9 +660,9 @@ public class DirectGrnPageFunctions {
 	 * @author Durai-RMITS
 	 */
 	public void verifyClickingCostHK(String COST) {
-		flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineCost, ElementType.Xpath);
+		flag = webDB.waitForElement(DirectGrnPageLocators.GRNPageUnitCostTable(), ElementType.Xpath);
 		if (flag) {
-			salesOrderFunctions.verifyClickAndEnterValueInTableFields(DirectGrnPageLocators.GrnLineCost,
+			salesOrderFunctions.verifyClickAndEnterValueInTableFields(DirectGrnPageLocators.GRNPageUnitCostTable(),
 					DirectGrnPageLocators.GrnLineCostInputHK, COST);
 			webDB.pressTabKey();
 //			webDB.clickAnElement(DirectGrnPageLocators.GrnLineCost, ElementType.Xpath);
@@ -2844,27 +2848,27 @@ public class DirectGrnPageFunctions {
 		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
 				"DuraiUsername");
 		commonFunc.naviagteGrnPage();
-		verifyAmendFilterSearchSOB(DirectGrnPageLocators.LocId, commonFunc.getDataFromTestDataSheet("Loc_100"), 3,
+		verifyAmendFilterSearchSOB(DirectGrnPageLocators.LocId, commonFunc.getDataFromTestDataSheet("Loc_100"),
+				"Loc.ID", commonFunc.getDataFromTestDataSheet("HeaderSearchType"),
+				commonFunc.getDataFromTestDataSheet("LovButton"));
+		verifyAmendFilterSearchSOB(DirectGrnPageLocators.Unit, commonFunc.getDataFromTestDataSheet("Unit_100"), "Unit",
 				commonFunc.getDataFromTestDataSheet("HeaderSearchType"),
 				commonFunc.getDataFromTestDataSheet("LovButton"));
-		verifyAmendFilterSearchSOB(DirectGrnPageLocators.Unit, commonFunc.getDataFromTestDataSheet("Unit_100"), 4,
-				commonFunc.getDataFromTestDataSheet("HeaderSearchType"),
-				commonFunc.getDataFromTestDataSheet("LovButton"));
-		verifyAmendFilterSearchSOB(DirectGrnPageLocators.GRNNO, commonFunc.getDataFromTestDataSheet("GRNNumber"), 9,
-				commonFunc.getDataFromTestDataSheet("LineSearchType"),
+		verifyAmendFilterSearchSOB(DirectGrnPageLocators.GRNNO, commonFunc.getDataFromTestDataSheet("GRNNumber"),
+				"GRN No.", commonFunc.getDataFromTestDataSheet("LineSearchType"),
 				commonFunc.getDataFromTestDataSheet("LovButton"));
 		verifyAmendFilterSearchSOB(DirectGrnPageLocators.SupplierNameLovButton,
-				commonFunc.getDataFromTestDataSheet("OpenPOSupplier"), 10,
+				commonFunc.getDataFromTestDataSheet("OpenPOSupplier"), "Supplier ID",
 				commonFunc.getDataFromTestDataSheet("LineSearchType"),
 				commonFunc.getDataFromTestDataSheet("LovButton"));
-		verifyAmendFilterSearchSOB(DirectGrnPageLocators.ItemId, commonFunc.getDataFromTestDataSheet("GRNItem"), 12,
+		verifyAmendFilterSearchSOB(DirectGrnPageLocators.ItemId, commonFunc.getDataFromTestDataSheet("GRNItem"), "Item",
 				commonFunc.getDataFromTestDataSheet("LineSearchType"),
 				commonFunc.getDataFromTestDataSheet("LovButton"));
-		verifyAmendFilterSearchSOB(DirectGrnPageLocators.ItemDesc, commonFunc.getDataFromTestDataSheet("GRNItem"), 14,
-				commonFunc.getDataFromTestDataSheet("LineSearchType"),
+		verifyAmendFilterSearchSOB(DirectGrnPageLocators.ItemDesc, commonFunc.getDataFromTestDataSheet("GRNItem"),
+				"Item Desc.", commonFunc.getDataFromTestDataSheet("LineSearchType"),
 				commonFunc.getDataFromTestDataSheet("SendTextInput"));
 		verifyAmendFilterSearchSOB(DirectGrnPageLocators.GRN_Status,
-				commonFunc.getDataFromTestDataSheet("ApproveStatus"), 16,
+				commonFunc.getDataFromTestDataSheet("ApproveStatus"), "Status",
 				commonFunc.getDataFromTestDataSheet("HeaderSearchType"),
 				commonFunc.getDataFromTestDataSheet("SelectType"));
 		verifyDateAfterAndBefore();
@@ -2880,7 +2884,7 @@ public class DirectGrnPageFunctions {
 	 * @param i
 	 */
 	@SuppressWarnings("unlikely-arg-type")
-	public void verifyAmendFilterSearchSOB(String LovButton, String Value, int i, String Type, String selectflag) {
+	public void verifyAmendFilterSearchSOB(String LovButton, String Value, String i, String Type, String selectflag) {
 		webDB.scrollToAnElement(LovButton, ElementType.Xpath);
 		if (selectflag.equals(commonFunc.getDataFromTestDataSheet("LovButton"))) {
 			commonFunc.searchAndSelectValueInFilters(LovButton, Value);
@@ -2912,14 +2916,14 @@ public class DirectGrnPageFunctions {
 				ElementType.Xpath);
 		clickSearchButton();
 		commonFunc.hardWait(3000);
-		verifyAmendTableValueAfterDate(6, commonFunc.getDataFromTestDataSheet("EffFrom"));
+		verifyAmendTableValueAfterDate(8, commonFunc.getDataFromTestDataSheet("EffFrom"));
 		clearSearchFilter();
 		flag = webDB.waitForElement(DirectGrnPageLocators.GRNDtTo, ElementType.Xpath);
 		webDB.sendTextToAnElement(DirectGrnPageLocators.GRNDtTo, commonFunc.getDataFromTestDataSheet("EffTo"),
 				ElementType.Xpath);
 		clickSearchButton();
 		commonFunc.hardWait(3000);
-		verifyAmendTableValueBeforeDate(6, commonFunc.getDataFromTestDataSheet("EffTo"));
+		verifyAmendTableValueBeforeDate(8, commonFunc.getDataFromTestDataSheet("EffTo"));
 		clearSearchFilter();
 //		flag = webDB.waitForElement(PurchaseOrderPageLocators.RequestDtFrom, ElementType.Xpath);
 //		webDB.sendTextToAnElement(PurchaseOrderPageLocators.RequestDtFrom,
@@ -2990,10 +2994,10 @@ public class DirectGrnPageFunctions {
 	 * @param i
 	 * @param Value
 	 */
-	public void verifyAmendTableValue(int i, String Value) {
+	public void verifyAmendTableValue(String i, String Value) {
 
 		List<WebElement> elements = webDB.getDriver()
-				.findElements(By.xpath(DirectGrnPageLocators.AmendFindTableData(i)));
+				.findElements(By.xpath(DirectGrnPageLocators.GRNAmendFindTableData(i)));
 		for (WebElement element : elements) {
 			if (element.isDisplayed()) {
 				flag = element.getText().contains(Value);
@@ -3015,9 +3019,9 @@ public class DirectGrnPageFunctions {
 	 * @param i
 	 * @param Value
 	 */
-	public void verifyLineAmendTableValue(int i, String Value) {
+	public void verifyLineAmendTableValue(String i, String Value) {
 		List<WebElement> elements = webDB.getDriver()
-				.findElements(By.xpath(DirectGrnPageLocators.AmendLineFindTableData(i)));
+				.findElements(By.xpath(DirectGrnPageLocators.GRNAmendLineFindTableData(i)));
 		for (WebElement element : elements) {
 			if (element.isDisplayed()) {
 				flag = element.getText().contains(Value);
@@ -3195,8 +3199,8 @@ public class DirectGrnPageFunctions {
 			String FileName) throws IOException {
 		verifyDirectGRNStockQtyAndCostForQualityWhHK(SheetName, FileName);
 		verifyDirectGRNStockQtyAndCostForSourceWHHK(SheetName, FileName);
-		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("DuraiUsername"));
+//		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("LoginPassword"),
+//				System.getProperty("DuraiUsername"));
 		commonFunc.naviagteGrnPage();
 		verifyGrnAdd();
 		verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -4194,6 +4198,7 @@ public class DirectGrnPageFunctions {
 							DirectGrnPageLocators.GrnLineSupQtyInput, QTY);
 					commonFunc.verifyAddTableSpecs(DirectGrnPageLocators.GrnLineRcpQty,
 							DirectGrnPageLocators.GrnLineRcpQtyInput, QTY);
+					commonFunc.checkRefreshCellsDisappear();
 					verifyClickingSaveLine();
 					verifyUnitcostAndDiscountAmountForOpenPoItemForDirectGRN(i, SheetName,
 							commonFunc.getDataFromTestDataSheet("OpenPOSupplier"));

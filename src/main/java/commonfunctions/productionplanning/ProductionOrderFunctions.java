@@ -19,6 +19,7 @@ import java.util.Random;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 
 import commonfunctions.CommonFunctions;
 import commonfunctions.DBCommonFunctions;
@@ -36,6 +37,7 @@ import commonfunctions.supplychainmanagement.SalesOrderFunctions;
 import commonfunctions.supplychainmanagement.StockTransactionPageFunctions;
 import commonfunctions.supplychainmanagement.SubcontractOrderFunctions;
 import commonlocators.CommonUiLocators;
+import commonlocators.productionplanning.CompletionProductionOrderLocators;
 import commonlocators.productionplanning.ProductionOrderLocators;
 import utils.ExcelUtils;
 import utils.ReportLoger;
@@ -63,6 +65,24 @@ public class ProductionOrderFunctions {
 	private static InspectionDocumentFunctions qcFunc = new InspectionDocumentFunctions();
 	private static BillOfMaterialsFunctions bomFunc = new BillOfMaterialsFunctions();
 	private static PricelistPageFunctions priceListFunc = new PricelistPageFunctions();
+
+	/**
+	 * This method used to click production completion in Inside
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void clickPendingProdCompletion() {
+		flag = webDB.waitForElement(CompletionProductionOrderLocators.Pending_InsideProcCreateBtn, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(CompletionProductionOrderLocators.Pending_InsideProcCreateBtn, ElementType.Xpath);
+			webDB.clickAnElement(CompletionProductionOrderLocators.Pending_InsideProcCreateBtn, ElementType.Xpath);
+			flag = webDB.waitForElement(CompletionProductionOrderLocators.PendingProdOrderIframe, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Pending Production Completion Clicked");
+			}
+		}
+		Assert.assertTrue(flag);
+	}
 
 	/**
 	 * This Method used to verify Status of Production Order with MRP Number
@@ -721,19 +741,19 @@ public class ProductionOrderFunctions {
 		if (flag) {
 			logs.logging("INFO", "Show More Button Is Displayed");
 			webDB.clickAnElement(ProductionOrderLocators.ShowMore, ElementType.Xpath);
-			flag = webDB.waitForElement(ProductionOrderLocators.FirstOprSelect, ElementType.Xpath);
+//			flag = webDB.waitForElement(ProductionOrderLocators.FirstOprSelect, ElementType.Xpath);
+//			if (flag) {
+//				logs.logging("INFO", "First Opr Select DropDown Is Displayed");
+//				webDB.selectDropDownByText(ProductionOrderLocators.FirstOprSelect,
+//						commonFunc.getDataFromTestDataSheet("ComQty"), ElementType.Xpath);
+//				webDB.selectDropDownByText(ProductionOrderLocators.RestOprSelect,
+//						commonFunc.getDataFromTestDataSheet("ComQty"), ElementType.Xpath);
+			flag = webDB.waitForElement(ProductionOrderLocators.ShowLess, ElementType.Xpath);
 			if (flag) {
-				logs.logging("INFO", "First Opr Select DropDown Is Displayed");
-				webDB.selectDropDownByText(ProductionOrderLocators.FirstOprSelect,
-						commonFunc.getDataFromTestDataSheet("ComQty"), ElementType.Xpath);
-				webDB.selectDropDownByText(ProductionOrderLocators.RestOprSelect,
-						commonFunc.getDataFromTestDataSheet("ComQty"), ElementType.Xpath);
-				flag = webDB.waitForElement(ProductionOrderLocators.ShowLess, ElementType.Xpath);
-				if (flag) {
-					logs.logging("INFO", "Show Less Button Is Displayed");
-					webDB.clickAnElement(ProductionOrderLocators.ShowLess, ElementType.Xpath);
-				}
+				logs.logging("INFO", "Show Less Button Is Displayed");
+				webDB.clickAnElement(ProductionOrderLocators.ShowLess, ElementType.Xpath);
 			}
+//			}
 		}
 		assertTrue(flag);
 	}
@@ -7773,8 +7793,9 @@ public class ProductionOrderFunctions {
 				StartIndex);
 		materialIssuanceVoucherFunc.verifyStockTransactionValidationInMIVForRawMaterials(FileName, SheetName,
 				StartIndex);
-		commonFunc.navigateToCompletionProductionOrderMultipleProcessInProdPlanning();
-		completionProductionOrderFunc.clickPendingIconInCompletionMultiProcess();
+		commonFunc.navigateToCompletionProductionOrderInProdPlanning();
+		completionProductionOrderFunc.clickPendingIconInCompletionProcess();
+		clickPendingProdCompletion();
 		if (i == 0) {
 			completionProductionOrderFunc.selectPendingMultipleProdOrderAndClickCreateCompletionProcessWithNoButton(
 					VariableHandler.getProductionOrderNumber());
@@ -7863,8 +7884,9 @@ public class ProductionOrderFunctions {
 				StartIndex);
 		materialIssuanceVoucherFunc.verifyStockTransactionValidationInMIVForRawMaterials(FileName, SheetName,
 				StartIndex);
-		commonFunc.navigateToCompletionProductionOrderMultipleProcessInProdPlanning();
-		completionProductionOrderFunc.clickPendingIconInCompletionMultiProcess();
+		commonFunc.navigateToCompletionProductionOrderInProdPlanning();
+		completionProductionOrderFunc.clickPendingIconInCompletionProcess();
+		clickPendingProdCompletion();
 		completionProductionOrderFunc
 				.searchMultipleProductionOrderNoAndVerifyFilter(VariableHandler.getProductionOrderNumber());
 		completionProductionOrderFunc.selectPendingMultipleProdOrderAndClickCreateCompletionProcess(
@@ -8201,8 +8223,8 @@ public class ProductionOrderFunctions {
 	 */
 	public boolean verifyProdOrderWithoutSOAllInsideMoveTypeSingle() {
 		try {
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
+//			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//					"AdminUsername");
 			commonFunc.navigateToProductionOrderInProdPlanning();
 			verifyWriteBeforeStockForFGAndRawMaterials(webDB.getDataFromProperties("PMFFileName"),
 					webDB.getDataFromProperties("AllInsideSheetName-Single"));
@@ -8255,7 +8277,7 @@ public class ProductionOrderFunctions {
 					commonFunc.getDataFromTestDataSheet("CompletedStatus"));
 			verifyValidationOfAfterStockUnitCostAndQuantityInFGItem(webDB.getDataFromProperties("PMFFileName"),
 					webDB.getDataFromProperties("AllInsideSheetName-Single"));
-			flag = commonFunc.logoutUser();
+//			flag = commonFunc.logoutUser();
 			return flag;
 		} catch (Exception e) {
 			logs.logging("INFO",
@@ -8272,8 +8294,8 @@ public class ProductionOrderFunctions {
 	 */
 	public boolean verifyProdOrderWithoutSOAllInsideMoveTypeMultiple() {
 		try {
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
+//			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//					"AdminUsername");
 			commonFunc.navigateToProductionOrderInProdPlanning();
 			verifyWriteBeforeStockForFGAndRawMaterials(webDB.getDataFromProperties("PMFFileName"),
 					webDB.getDataFromProperties("AllInsideSheetName-Multiple"));
@@ -8326,7 +8348,7 @@ public class ProductionOrderFunctions {
 					commonFunc.getDataFromTestDataSheet("CompletedStatus"));
 			verifyValidationOfAfterStockUnitCostAndQuantityInFGItem(webDB.getDataFromProperties("PMFFileName"),
 					webDB.getDataFromProperties("AllInsideSheetName-Multiple"));
-			flag = commonFunc.logoutUser();
+//			flag = commonFunc.logoutUser();
 			return flag;
 		} catch (Exception e) {
 			logs.logging("INFO",
@@ -8343,8 +8365,8 @@ public class ProductionOrderFunctions {
 	 */
 	public boolean verifyProdOrderWithoutSOAllInsideMoveTypeItem() {
 		try {
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
+//			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//					"AdminUsername");
 			commonFunc.navigateToProductionOrderInProdPlanning();
 			verifyWriteBeforeStockForFGAndRawMaterials(webDB.getDataFromProperties("PMFFileName"),
 					webDB.getDataFromProperties("AllInsideSheetName-Item"));
@@ -8397,7 +8419,7 @@ public class ProductionOrderFunctions {
 					commonFunc.getDataFromTestDataSheet("CompletedStatus"));
 			verifyValidationOfAfterStockUnitCostAndQuantityInFGItem(webDB.getDataFromProperties("PMFFileName"),
 					webDB.getDataFromProperties("AllInsideSheetName-Item"));
-			flag = commonFunc.logoutUser();
+//			flag = commonFunc.logoutUser();
 			return flag;
 		} catch (Exception e) {
 			logs.logging("INFO",
@@ -13199,8 +13221,8 @@ public class ProductionOrderFunctions {
 		completionProductionOrderFunc.clickPendingIconInCompletionProcess();
 		completionProductionOrderFunc
 				.clickMaterialRequestCreationAndSearchProdNo(VariableHandler.getProductionOrderNumber());
-		completionProductionOrderFunc
-				.clickCheckBoxTableAndCreateAndStoreMRNo(VariableHandler.getProductionOrderNumber());
+		completionProductionOrderFunc.clickCheckBoxTableAndCreateAndStoreMRNo(
+				commonFunc.getDataFromTestDataSheet("Loc_100"), VariableHandler.getProductionOrderNumber());
 		commonFunc.navigateToInventoryMaterialRequest();
 		materialRequestFunc.storeMRNoAndCheckStatusDraftAndPostWithProdNo(VariableHandler.getProductionOrderNumber());
 		materialIssuanceVoucherFunc.verifyWriteBeforeLotQuantityInLotForRawMaterials(FileName, SheetName, StartIndex);
@@ -13267,8 +13289,8 @@ public class ProductionOrderFunctions {
 		completionProductionOrderFunc.clickPendingIconInCompletionProcess();
 		completionProductionOrderFunc
 				.clickMaterialRequestCreationAndSearchProdNo(VariableHandler.getProductionOrderNumber());
-		completionProductionOrderFunc
-				.clickCheckBoxTableAndCreateAndStoreMRNo(VariableHandler.getProductionOrderNumber());
+		completionProductionOrderFunc.clickCheckBoxTableAndCreateAndStoreMRNo(
+				commonFunc.getDataFromTestDataSheet("Loc_100"), VariableHandler.getProductionOrderNumber());
 		commonFunc.navigateToInventoryMaterialRequest();
 		materialRequestFunc.storeMRNoAndCheckStatusDraftAndPostWithProdNo(VariableHandler.getProductionOrderNumber());
 		materialIssuanceVoucherFunc.verifyWriteBeforeLotQuantityInLotForRawMaterials(FileName, SheetName, StartIndex);
@@ -15195,4 +15217,57 @@ public class ProductionOrderFunctions {
 			return false;
 		}
 	}
+
+	/**
+	 * This method used to click select all and create MR
+	 *
+	 * @author Sakthi-GWL
+	 * @param String LocId
+	 * @param String ProdNumber
+	 */
+	public void clickCheckBoxTableAndCreateAndStoreMRNo(String LocId, String ProdNumber) {
+		flag = webDB.waitForElement(CompletionProductionOrderLocators.PendingMRCreateIframe, ElementType.Xpath);
+		if (flag) {
+			webDB.switchToFrame(CompletionProductionOrderLocators.PendingMRCreateIframe, ElementType.Xpath);
+			flag = webDB.waitForElement(CompletionProductionOrderLocators.PendingMRSelectAllBtn(ProdNumber),
+					ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Pending MR Iframe Switched");
+				webDB.moveToElement(CompletionProductionOrderLocators.PendingMRSelectAllBtn(ProdNumber),
+						ElementType.Xpath);
+				webDB.clickAnElement(CompletionProductionOrderLocators.PendingMRSelectAllBtn(ProdNumber),
+						ElementType.Xpath);
+				flag = webDB.waitForElement(CompletionProductionOrderLocators.CreateMRButton, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Pending MR Select All Button Clicked");
+					webDB.moveToElement(CompletionProductionOrderLocators.CreateMRButton, ElementType.Xpath);
+					webDB.clickAnElement(CompletionProductionOrderLocators.CreateMRButton, ElementType.Xpath);
+					commonFunc.searchAndSelectValueInFilters(CompletionProductionOrderLocators.CreateMRLocIdLov, LocId);
+					webDB.waitForElement(CompletionProductionOrderLocators.PendingMRCreateIframe, ElementType.Xpath);
+					webDB.switchToFrame(CompletionProductionOrderLocators.PendingMRCreateIframe, ElementType.Xpath);
+					flag = webDB.waitForElement(CompletionProductionOrderLocators.CreateMROkButton, ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Create MR Button Clicked");
+						webDB.clickAnElement(CompletionProductionOrderLocators.CreateMROkButton, ElementType.Xpath);
+						commonFunc.checkRefreshCellsDisappear();
+						webDB.switchToDefaultContent();
+						flag = webDB.waitForElementUntilGivenTime(CommonUiLocators.PostToastMessage, ElementType.Xpath,
+								60);
+						if (flag) {
+							logs.logging("INFO", "Material Request Created Successfully");
+							String Message = webDB.getTextFromElement(CommonUiLocators.PostToastMessage,
+									ElementType.Xpath);
+							logs.logging("INFO", "Success Message: " + Message);
+							Message = Message.replace("Material Request Created-", "").trim();
+							logs.logging("INFO", "After Split MR No: " + Message);
+							VariableHandler.setMaterialRequestNo(Message);
+							VariableHandler.setMRNumber(Message);
+						}
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
 }

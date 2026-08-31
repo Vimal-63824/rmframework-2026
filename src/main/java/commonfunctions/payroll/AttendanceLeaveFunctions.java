@@ -1472,7 +1472,7 @@ public class AttendanceLeaveFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyLeaveAccrualUploadMigrationWithTemplates() {
-		LocalDate date1 = LocalDate.now();
+		LocalDate date1 = LocalDate.now().plusDays(13);
 		DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("MMMM");
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		String Month = date1.format(formatter1).toUpperCase();
@@ -1719,11 +1719,12 @@ public class AttendanceLeaveFunctions {
 	 * @author Sakthi-GWL
 	 */
 	private void switchPendingRequestIframeLeaveEntry() {
+		commonFunc.checkRefreshCellsDisappear();
 		flag = webDB.waitForElement(AttendanceLeaveLocators.LeaveEntryPendingRequestIframe, ElementType.Xpath);
-		if (flag) {
-			webDB.switchToFrame(AttendanceLeaveLocators.LeaveEntryPendingRequestIframe, ElementType.Xpath);
-			flag = webDB.waitForElement(AttendanceLeaveLocators.LeaveEntryPendReqSearchBar, ElementType.Xpath);
-		}
+//		if (flag) {
+		webDB.switchToFrame(AttendanceLeaveLocators.LeaveEntryPendingRequestIframe, ElementType.Xpath);
+		flag = webDB.waitForElement(AttendanceLeaveLocators.LeaveEntryPendReqSearchBar, ElementType.Xpath);
+//		}
 		Assert.assertTrue(flag);
 	}
 
@@ -1854,6 +1855,8 @@ public class AttendanceLeaveFunctions {
 	 */
 	private void clickSearchAndClickFirstLeaveEntryWithEmpName(String EmpName) {
 		commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.LeaveEntryFindEmpIdLovBtn, EmpName);
+		webDB.waitForElement(AttendanceLeaveLocators.LeaveEntryFindStatusSelect, ElementType.Xpath);
+		webDB.selectDropDownByValue(AttendanceLeaveLocators.LeaveEntryFindStatusSelect, "P", ElementType.Xpath);
 		flag = webDB.waitForElement(AttendanceLeaveLocators.LeaveEntryFindSearchBtn, ElementType.Xpath);
 		if (flag) {
 			webDB.moveToElement(AttendanceLeaveLocators.LeaveEntryFindSearchBtn, ElementType.Xpath);

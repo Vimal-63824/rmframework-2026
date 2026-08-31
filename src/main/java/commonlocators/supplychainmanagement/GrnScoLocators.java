@@ -81,7 +81,7 @@ public class GrnScoLocators {
 
 	/** @locatorType Xpath */
 	public static final String DCNumber(int i) {
-		return "//div[@aria-label='DC Details']/div[3]/div[3]/table/tbody/tr[" + i + "]/td[3]";
+		return "//div[@aria-label='DC Details']/div[3]/div[3]/table/tbody/tr[" + i + "]/td[2]";
 	}
 
 	/** @locatorType Xpath */

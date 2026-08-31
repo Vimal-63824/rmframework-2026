@@ -93,13 +93,13 @@ public class GrnLocators {
 	/** @locatorType Xpath */
 	public static final String GrnNumberSelect = "//button[@id='P1615131103_GRN_NO_lov_btn']";
 	/** @locatorType Xpath */
-	public static final String SearchButton = "//button[@id='B1177499091828681684']";
+	public static final String SearchButton = "//*[text()='Search']/..";
 	/** @locatorType Xpath */
 	public static final String ExpiryDate = "//input[@id='C1885842449099241908_input']";
 
 	/** @locatorType Xpath */
 	public static final String GrnStatusTableText(String Grnno) {
-		return "//a[text()='" + Grnno + "']/../../td[14]";
+		return "//a[text()='" + Grnno + "']/../../td[17]";
 	}
 
 	/** @locatorType Xpath */
@@ -360,9 +360,9 @@ public class GrnLocators {
 	/** @locatorType Xpath */
 	public static final String LotSerialRecptQtyTable = "//div[@id='grn_lot_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[8]";
 	/** @locatorType Xpath */
-	public static final String ReceptInput = "//input[@id='C4768865118094179423']";
+	public static final String ReceptInput = LotSerialRecptQtyTable + "//input";
 	/** @locatorType Xpath */
-	public static final String LineSaveButton = "//button[@id='B4802463974728134482']";
+	public static final String LineSaveButton = "(//button[@title='Save'])[3]";
 
 	/** @locatorType Xpath */
 	public static final String GrnDocNo(String DocNo) {
@@ -378,6 +378,6 @@ public class GrnLocators {
 	/** @locatorType Xpath */
 	public static final String AcceptQuantity = "//div[@id='grn_lot_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[9]";
 	/** @locatorType Xpath */
-	public static String GrnDocumentStatus = "//table[@data-testid='L_Result_Title']/tbody/tr/td[17]";
+	public static String GrnDocumentStatus = "//table[@data-testid='L_Result_Data']/tbody/tr/td[18]";
 
 }

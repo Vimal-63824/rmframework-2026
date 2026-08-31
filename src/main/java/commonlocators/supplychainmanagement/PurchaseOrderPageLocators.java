@@ -1,5 +1,7 @@
 package commonlocators.supplychainmanagement;
 
+import commonfunctions.CommonFunctions;
+
 /**
  * @author Deepan-GWL, Sakthi
  * @company Galaxy Weblinks Feburary 12, 2025
@@ -43,19 +45,33 @@ public class PurchaseOrderPageLocators {
 	public static final String DPOTickButton = "//div[@data-testid='TickButton']";
 	/** @locatorType Xpath */
 	public static final String ItemAddButton = "//button[@data-testid='PO_Item_Add_Button']";
+
 	/** @locatorType Xpath */
-	public static final String POPageItemTable = "//*[@id='ig_po_lineitems_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[2]";
+	public static final String AddTablePOScreen = "(//table[@data-testid='Reset_Region_Result_Data'])[2]";
+
+	/** @locatorType Xpath */
+	public static final String POPageItemTable() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(AddTablePOScreen, "Item ID");
+	}
 
 	/** @locatorType Xpath */
 	public static final String ItemSelectButton = "//input[@data-testid='DUM_PROD_ID_REV']/following-sibling::button";
 	/** @locatorType Xpath */
 	public static final String InputItemPO = "//input[@data-testid='DUM_PROD_ID_REV']";
+
 	/** @locatorType Xpath */
-	public static final String OrderedQuantity = "(//*[@id='ig_po_lineitems_ig_grid_vc']/div/div/table[1])[2]/tbody/tr/td[6]";
+	public static final String OrderedQuantity() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(AddTablePOScreen, "Ord. Qty.");
+	}
+
 	/** @locatorType Xpath */
 	public static final String OrderedQuantityInput = "//input[@data-testid='POL_ORDERED_QTY']";
+
 	/** @locatorType Xpath */
-	public static final String UnitCost = "(//*[@id='ig_po_lineitems_ig_grid_vc']/div/div/table[1])[2]/tbody/tr/td[7]";
+	public static final String UnitCost() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(AddTablePOScreen, "UnitCost");
+	}
+
 	/** @locatorType Xpath */
 	public static final String UnitCostInput = "//input[@data-testid='POL_SC_UNIT_COST']";
 	/** @locatorType Xpath */
@@ -114,22 +130,22 @@ public class PurchaseOrderPageLocators {
 
 	/** @locatorType Xpath */
 	public static final String LineAmount(String text) {
-		return "//td[text()='" + text + "']/../td[9]";
-	}
-
-	/** @locatorType Xpath */
-	public static final String TaxPercentage(String text) {
 		return "//td[text()='" + text + "']/../td[11]";
 	}
 
 	/** @locatorType Xpath */
-	public static final String TaxCGST(String text) {
+	public static final String TaxPercentage(String text) {
 		return "//td[text()='" + text + "']/../td[13]";
 	}
 
 	/** @locatorType Xpath */
+	public static final String TaxCGST(String text) {
+		return "//td[text()='" + text + "']/../td[15]";
+	}
+
+	/** @locatorType Xpath */
 	public static final String TaxSGST(String text) {
-		return "//td[text()='" + text + "']/../td[14]";
+		return "//td[text()='" + text + "']/../td[16]";
 	}
 
 	/** @locatorType Xpath */
@@ -167,31 +183,35 @@ public class PurchaseOrderPageLocators {
 
 	/** @locatorType Xpath */
 	public static final String ItemName(int i) {
-		return "(//*[@id='ig_po_lineitems_ig_grid_vc']/div/div/table[1])[2]/tbody/tr[" + i + "]/td[2]";
+		return "(//table[@data-testid='Reset_Region_Result_Data'])[2]/tbody/tr[" + i + "]/td[2]";
 	}
 
 	/** @locatorType Xpath */
 	public static final String OrderedQty(int i) {
-		return "(//*[@id='ig_po_lineitems_ig_grid_vc']/div/div/table[1])[2]/tbody/tr[" + i + "]/td[6]";
+		return "(//table[@data-testid='Reset_Region_Result_Data'])[2]/tbody/tr[" + i + "]/td[6]";
 	}
 
 	/** @locatorType Xpath */
 	public static final String UnitCostTable(int i) {
-		return "(//*[@id='ig_po_lineitems_ig_grid_vc']/div/div/table[1])[2]/tbody/tr[" + i + "]/td[7]";
+		return "(//table[@data-testid='Reset_Region_Result_Data'])[2]/tbody/tr[" + i + "]/td[7]";
 	}
 
 	/** @locatorType Xpath */
+	public static final String UnitCostTable = CommonFunctions
+			.checkAndReturnIndexForLocatorWithHeaderValue(AddTablePOScreen, "UnitCost");
+
+	/** @locatorType Xpath */
 	public static final String LineAmount(int i) {
-		return "(//*[@id='ig_po_lineitems_ig_grid_vc']/div/div/table[1])[2]/tbody/tr[" + i + "]/td[9]";
+		return "(//table[@data-testid='Reset_Region_Result_Data'])[2]/tbody/tr[" + i + "]/td[11]";
 	}
 
 	/** @locatorType Xpath */
 	public static final String TaxAmount(int i, int j) {
-		return "(//*[@id='ig_po_lineitems_ig_grid_vc']/div/div/table[1])[2]/tbody/tr[" + i + "]/td[" + j + "]";
+		return "(//table[@data-testid='Reset_Region_Result_Data'])[2]/tbody/tr[" + i + "]/td[" + j + "]";
 	}
 
 	/** @locatorType Xpath */
-	public static final String UOMTable = "(//*[@id='ig_po_lineitems_ig_grid_vc']/div/div/table[1])[2]/tbody/tr/td[5]";
+	public static final String UOMTable = "(//table[@data-testid='Reset_Region_Result_Data'])[2]/tbody/tr/td[5]";
 	/** @locatorType Xpath */
 	public static final String PendingPRTable = "//table[contains(@aria-label,'PENDING')]/tbody/tr/td[1]";
 	/** @locatorType Xpath */
@@ -207,27 +227,27 @@ public class PurchaseOrderPageLocators {
 
 	/** @locatorType Xpath */
 	public static final String ItemDescription(int i) {
-		return "(//*[@id='ig_po_lineitems_ig_grid_vc']/div/div/table[1])[2]/tbody/tr[" + i + "]/td[4]";
+		return "(//table[@data-testid='Reset_Region_Result_Data'])[2]/tbody/tr[" + i + "]/td[4]";
 	}
 
 	/** @locatorType Xpath */
 	public static final String UOM(int i) {
-		return "(//*[@id='ig_po_lineitems_ig_grid_vc']/div/div/table[1])[2]/tbody/tr[" + i + "]/td[5]";
+		return "(//table[@data-testid='Reset_Region_Result_Data'])[2]/tbody/tr[" + i + "]/td[5]";
 	}
 
 	/** @locatorType Xpath */
 	public static final String HSNSACCode(int i) {
-		return "(//*[@id='ig_po_lineitems_ig_grid_vc']/div/div/table[1])[2]/tbody/tr[" + i + "]/td[10]";
+		return "(//table[@data-testid='Reset_Region_Result_Data'])[2]/tbody/tr[" + i + "]/td[10]";
 	}
 
 	/** @locatorType Xpath */
 	public static final String TaxPercent(int i) {
-		return "(//*[@id='ig_po_lineitems_ig_grid_vc']/div/div/table[1])[2]/tbody/tr[" + i + "]/td[11]";
+		return "(//table[@data-testid='Reset_Region_Result_Data'])[2]/tbody/tr[" + i + "]/td[11]";
 	}
 
 	/** @locatorType Xpath */
 	public static final String LineDetailButton(int i) {
-		return "(//*[@id='ig_po_lineitems_ig_grid_vc']/div/div/table[1])[2]/tbody/tr[" + i
+		return "(//table[@data-testid='Reset_Region_Result_Data'])[2]/tbody/tr[" + i
 				+ "]/td/a/span[contains(@style,'004153')]";
 	}
 
@@ -325,7 +345,7 @@ public class PurchaseOrderPageLocators {
 
 	/** @locatorType Xpath */
 	public static final String DiscountAmount(String item) {
-		return "(//*[@id='ig_po_lineitems_ig_grid_vc']/div/div/table[1])[2]/tbody/tr[" + item + "]/td[8]";
+		return "(//table[@data-testid='Reset_Region_Result_Data'])[2]/tbody/tr[" + item + "]/td[8]";
 	}
 
 	/** @locatorType Xpath */
@@ -333,7 +353,7 @@ public class PurchaseOrderPageLocators {
 
 	/** @locatorType Xpath */
 	public static final String ServiceLineDetailButton(int i) {
-		return "(//*[@id='ig_po_lineitems_ig_grid_vc']/div/div/table[1])[2]/tbody/tr[" + i
+		return "(//table[@data-testid='Reset_Region_Result_Data'])[2]/tbody/tr[" + i
 				+ "]/td/a/span[contains(@style,'Orange')]";
 	}
 
@@ -416,17 +436,25 @@ public class PurchaseOrderPageLocators {
 	public static final String AmendLineFindTable = "//table[@class='a-IRR-table' and contains(@id,'orig')]/tbody/tr[2]/td[3]";
 
 	/** @locatorType Xpath */
-	public static final String AmendLineFindTableData(int i) {
-		return "//table[contains(@id,'orig')]/tbody/tr/td[" + i + "]";
+	public static final String AmendLineFindTableData(String i) {
+		return CommonFunctions.checkAndReturnLocatorForFindPageTable(PoLineFindTable, i);
 	}
 
 	/** @locatorType Xpath */
-	public static final String AmendFindTableData(int i) {
-		return "//table[contains(@id,'orig')]/tbody/tr/td[" + i + "]";
+	public static final String PoFindTable = "//table[@data-testid='H_Result_Data']/tbody/tr/th";
+	/** @locatorType Xpath */
+	public static final String PoLineFindTable = "//table[@data-testid='L_Result_Data']/tbody/tr/th";
+
+	/** @locatorType Xpath */
+	public static final String AmendFindTableData(String i) {
+		return CommonFunctions.checkAndReturnLocatorForFindPageTable(PoFindTable, i);
 	}
 
 	/** @locatorType Xpath */
-	public static final String HsnCode = "(//*[@id='ig_po_lineitems_ig_grid_vc']/div/div/table[1])[2]/tbody/tr/td[12]";
+	public static final String HsnCode() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(AddTablePOScreen, "HSN /SAC Code");
+	}
+
 	/** @locatorType Xpath */
 	public static final String HsnCodeLovButton = "//input[@data-testid='POL_HSN_CODE']/following-sibling::button";
 	/** @locatorType Xpath */
@@ -435,8 +463,10 @@ public class PurchaseOrderPageLocators {
 	public static final String GlAccountNoLovButton = "//input[contains(@id,'POL_PUR_ACCT')]/following-sibling::button";
 
 	/** @locatorType Xpath */
-	public static final String HsnCodeTableWithItem(String Item) {
-		return "(//td[text()='" + Item + "']/../td[12])[1]";
+	public static final String HsnCodeTableWithItem(String item) {
+		return "//table[.//td[normalize-space()='" + item + "']]//tr[td[normalize-space()='" + item
+				+ "']]/td[count(//table[.//td[normalize-space()='" + item
+				+ "']]//th[normalize-space()='HSN /SAC Code']/preceding-sibling::th) + 1]";
 	}
 
 	/** @locatorType Xpath */
@@ -452,12 +482,12 @@ public class PurchaseOrderPageLocators {
 
 	/** @locatorType Xpath */
 	public static final String PurchaseOrderLineDetailForServiceItem(int i) {
-		return "//*[@id='ig_po_lineitems_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[" + i + "]/td[39]";
+		return "//*[@id='ig_po_lineitems_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[" + i + "]/td[36]";
 	}
 
 	/** @locatorType Xpath */
 	public static final String PurchaseOrderLineDetail(int i) {
-		return "//*[@id='ig_po_lineitems_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[" + i + "]/td[38]";
+		return "//*[@id='ig_po_lineitems_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[" + i + "]/td[35]";
 	}
 
 	/** @locatorType Xpath */
@@ -472,7 +502,7 @@ public class PurchaseOrderPageLocators {
 	/** @locatorType Xpath */
 	public static final String NextPageButton = "//button[@class=\"a-GV-pageButton a-GV-pageButton--nav a-Button js-pg-next\"]";
 	/** @locatorType Xpath */
-	public static final String PurchaseOrderAddButtonframe = "//iframe[@title='Purchase Order']";
+	public static final String PurchaseOrderAddButtonframe = "//iframe[contains(@title,'Create')]";
 	/** @locatorType Xpath */
 	public static final String LineLabel = "//input[@data-display='Line(s)']/following-sibling::label";
 	/** @locatorType Xpath */
@@ -482,7 +512,7 @@ public class PurchaseOrderPageLocators {
 	/** @locatorType Xpath */
 	public static final String PurchaseOrderHsnInput = "//input[@data-testid='POL_HSN_CODE']";
 	/** @locatorType Xpath */
-	public static final String PurchaseOrderHsnField = "//*[@id=\"ig_po_lineitems_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[10]";
+	public static final String PurchaseOrderHsnField = "//*[@id='ig_po_lineitems_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[12]";
 	/** @locatorType Xpath */
 	public static final String PendingGE_SelectAllCheckBox = "(//input[@id='check_allge'])";
 	/** @locatorType Xpath */
@@ -530,5 +560,15 @@ public class PurchaseOrderPageLocators {
 	public static final String CancelText = "//button[text()='Cancel']";
 	/** @locatorType Xpath */
 	public static final String ServiceSelect = "//select[@data-testid='P161513106045_POL_SERV_IO_TYPE']";
+	
+	/** @locatorType Xpath */
+	public static final String HsnField() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(AddTablePOScreen, "HSN /SAC Code");
+	}
+
+	/** @locatorType Xpath */
+	public static final String GrnRequired() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(AddTablePOScreen, "GRN Rqrd.");
+	}
 
 }

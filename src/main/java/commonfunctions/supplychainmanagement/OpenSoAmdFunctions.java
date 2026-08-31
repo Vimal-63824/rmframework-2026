@@ -35,7 +35,6 @@ public class OpenSoAmdFunctions {
 	private static DBCommonFunctions dbCommonFunctions = new DBCommonFunctions();
 	private static CustomerItemsFunctions cusItems = new CustomerItemsFunctions();
 
-
 	/**
 	 * To Click a Open Sales Order Amd
 	 * 
@@ -436,12 +435,11 @@ public class OpenSoAmdFunctions {
 			VariableHandler.setApprovalFlag(flag);
 			webDB.switchToFrame(OpenSalesOrderLocators.OpsoWorkApprovalFrame, ElementType.Xpath);
 			logs.logging("INFO", "Switched To Workflow Frame");
-			 commonFunc.searchAndSelectValueInFilters(OpenSalesOrderLocators.OpsoForwardApproval,
-			 commonFunc.getDataFromTestDataSheet("HodValue"));
-			 commonFunc.hardWait(2000);
-			 webDB.switchToFrame(OpenSalesOrderLocators.OpsoWorkApprovalFrame,
-			 ElementType.Xpath);
-			 logs.logging("INFO", "Switched To WorkFlow Frame");
+			commonFunc.searchAndSelectValueInFilters(OpenSalesOrderLocators.OpsoForwardApproval,
+					commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.hardWait(2000);
+			webDB.switchToFrame(OpenSalesOrderLocators.OpsoWorkApprovalFrame, ElementType.Xpath);
+			logs.logging("INFO", "Switched To WorkFlow Frame");
 			flag = webDB.waitForElement(OpenSalesOrderLocators.OpsoOkButtonForward, ElementType.Xpath);
 			if (flag) {
 				webDB.clickAnElement(OpenSalesOrderLocators.OpsoOkButtonForward, ElementType.Xpath);
@@ -526,11 +524,18 @@ public class OpenSoAmdFunctions {
 		flag = webDB.waitForElement(OpenSoAmdLocators.CancelButton, ElementType.Xpath);
 		if (flag) {
 			webDB.doubleClickAnElement(OpenSoAmdLocators.CancelButton, ElementType.Xpath);
-			flag = webDB.waitForElement(OpenSoAmdLocators.OsoaDocSearchField, ElementType.Xpath);
+			flag = webDB.waitForClickElement(OpenSalesOrderLocators.CancelCaution, ElementType.Xpath);
 			if (flag) {
-				logs.logging("Info", "Successfully Clicked a Cancel Button");
+				webDB.clickAnElement(OpenSalesOrderLocators.CancelCaution, ElementType.Xpath);
+				flag = webDB.waitForElementUntilGivenTime(OpenSalesOrderLocators.NoteAlertMessage, ElementType.Xpath,
+						45);
+				flag = webDB.waitForElement(OpenSoAmdLocators.OsoaDocSearchField, ElementType.Xpath);
+				if (flag) {
+					logs.logging("Info", "Successfully Clicked a Cancel Button");
+				}
 			}
 		}
+
 		assertTrue(flag);
 	}
 
@@ -572,17 +577,19 @@ public class OpenSoAmdFunctions {
 				logs.logging("Info", "Hsn Code Is Clicked");
 				commonFunc.searchAndSelectValueInFilters(OpenSoAmdLocators.HsnCodeLov, Hsn_Code);
 				ToChangesPriceChanges1(commonFunc.getDataFromTestDataSheet("Price_Class_OSOA"));
-			//	toClickaSaveButton();
-			} else {			
+				// toClickaSaveButton();
+			} else {
 				ToChangesPriceChanges1(commonFunc.getDataFromTestDataSheet("Price_Class_OSOA"));
-			//	toClickaSaveButton();
-				
+				// toClickaSaveButton();
+
 				logs.logging("Info", "Item has been Already Inserted a Hsn Code ");
 			}
 		}
 		assertTrue(flag);
 	}
-	/**To Passes a Price Class
+
+	/**
+	 * To Passes a Price Class
 	 * 
 	 * @author Kowshik-RMITS
 	 * @param Priceclass
@@ -590,20 +597,19 @@ public class OpenSoAmdFunctions {
 	public void verifyPriceClassNullOrNot(String Priceclass) {
 		commonFunc.checkRefreshCellsDisappear();
 		flag = webDB.waitForElement(OpenSoAmdLocators.PriceClassField, ElementType.Xpath);
-		if(flag) {
+		if (flag) {
 			String Text = webDB.getTextFromElement(OpenSoAmdLocators.PriceClassField, ElementType.Xpath);
-			logs.logging("INFO","Price Class" +  Text);
-			if(Text == null || Text.trim().isEmpty()) {
+			logs.logging("INFO", "Price Class" + Text);
+			if (Text == null || Text.trim().isEmpty()) {
 				webDB.clickAnElement(OpenSoAmdLocators.PriceClassField, ElementType.Xpath);
-				logs.logging("info","Price Class Is Clicked " );
+				logs.logging("info", "Price Class Is Clicked ");
 				webDB.selectDropDownByText(OpenSoAmdLocators.PriceClassSelect, Priceclass, ElementType.Xpath);
-			}else {
+			} else {
 				logs.logging("Info", "Price Class Already Linked ");
 			}
-			
+
 		}
 	}
-
 
 	/**
 	 * To Valid Tax Amount In Curcy Against To The Customer
@@ -1011,7 +1017,7 @@ public class OpenSoAmdFunctions {
 	 * @author Kowshik-RMITS
 	 * @return boolean flag
 	 */
-	public boolean verifyLocalCustomerDomesticDeletationofItem() {	
+	public boolean verifyLocalCustomerDomesticDeletationofItem() {
 		cusItems.createOpenSoForLocalCustomer();
 		createOpenSoDocLocalCustomer();
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
@@ -1153,7 +1159,7 @@ public class OpenSoAmdFunctions {
 		if (Mrp.equals("000")) {
 			Mrp = "100";
 		}
-		String MrpValue = String.valueOf(Integer.parseInt(Mrp) + 1000);		
+		String MrpValue = String.valueOf(Integer.parseInt(Mrp) + 1000);
 		cusItems.createOpenItemInterstateForAdditionOfItem();
 		commonFunc.logoutUser();
 		openso.verifyOfOpenSoItemInterstateCustomer();
@@ -1211,7 +1217,7 @@ public class OpenSoAmdFunctions {
 			Mrp = "100";
 		}
 
-		String MrpValue = String.valueOf(Integer.parseInt(Mrp) + 1000);		
+		String MrpValue = String.valueOf(Integer.parseInt(Mrp) + 1000);
 		cusItems.createOpenItemInterstateForAdditionOfItem();
 		commonFunc.logoutUser();
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
@@ -1313,7 +1319,7 @@ public class OpenSoAmdFunctions {
 		}
 
 		String MrpValue = String.valueOf(Integer.parseInt(Mrp) + 1000);
-		
+
 		cusItems.createOpenSoForExportCustomer();
 		commonFunc.logoutUser();
 		openso.verifyOfOpenSoItemExportCustomer();
@@ -1371,7 +1377,7 @@ public class OpenSoAmdFunctions {
 		if (Mrp.equals("000")) {
 			Mrp = "100";
 		}
-		String MrpValue = String.valueOf(Integer.parseInt(Mrp) + 1000);		
+		String MrpValue = String.valueOf(Integer.parseInt(Mrp) + 1000);
 		cusItems.createOpenSoForExportCustomer();
 		commonFunc.logoutUser();
 		openso.verifyOfOpenSoItemExportCustomer();
@@ -1429,7 +1435,7 @@ public class OpenSoAmdFunctions {
 		if (Mrp.equals("000")) {
 			Mrp = "100";
 		}
-		String MrpValue = String.valueOf(Integer.parseInt(Mrp) + 1000);	
+		String MrpValue = String.valueOf(Integer.parseInt(Mrp) + 1000);
 		cusItems.createOpenSoForExportCustomer();
 		commonFunc.logoutUser();
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
@@ -1479,7 +1485,7 @@ public class OpenSoAmdFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyExportCustomerDeletationOfItem() {
-		cusItems.createOpenSoForExportCustomer();		
+		cusItems.createOpenSoForExportCustomer();
 		createOpenSoExportCustomer();
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
@@ -1531,7 +1537,7 @@ public class OpenSoAmdFunctions {
 		}
 
 		String MrpValue = String.valueOf(Integer.parseInt(Mrp) + 1000);
-		
+
 		cusItems.createOpenSoForUTGSTCustomer();
 		commonFunc.logoutUser();
 		openso.verifyOpenSoUTGSTCustomer();
@@ -1592,7 +1598,7 @@ public class OpenSoAmdFunctions {
 			Mrp = "100";
 		}
 		String MrpValue = String.valueOf(Integer.parseInt(Mrp) + 1000);
-		
+
 		cusItems.createOpenSoForUTGSTCustomer();
 		commonFunc.logoutUser();
 		openso.verifyOpenSoUTGSTCustomer();
@@ -1654,7 +1660,7 @@ public class OpenSoAmdFunctions {
 		}
 
 		String MrpValue = String.valueOf(Integer.parseInt(Mrp) + 1000);
-		
+
 		cusItems.createOpenSoForUTGSTCustomer();
 		commonFunc.logoutUser();
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
@@ -1747,7 +1753,8 @@ public class OpenSoAmdFunctions {
 		return flag;
 	}
 
-	/**Verify Multiples Types In Open So Amd
+	/**
+	 * Verify Multiples Types In Open So Amd
 	 * 
 	 * @author Kowshik-RMITS
 	 */
@@ -1855,7 +1862,7 @@ public class OpenSoAmdFunctions {
 		String OpenSOPrefix1 = commonFunc.getDataFromTestDataSheet("Prefix_OP100");
 		String OpenSOHSN = commonFunc.getDataFromTestDataSheet("HSN2022-5%");
 		String Item = VariableHandler.getItemName();
-		
+
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		fetchingOpenSoDoc();
@@ -1903,10 +1910,9 @@ public class OpenSoAmdFunctions {
 			Cost1 = "10";
 		String Mrp = String.valueOf(Integer.parseInt(Cost1) + 10);
 		String OpenSOPrefix1 = commonFunc.getDataFromTestDataSheet("Prefix_OP100");
-		//1
+		// 1
 		String Item = VariableHandler.getItemName();
 		String OpenSOHSN = commonFunc.getDataFromTestDataSheet("HSN2022-5%");
-		
 
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
@@ -1914,7 +1920,7 @@ public class OpenSoAmdFunctions {
 		openso.fillLocationCustomerPrefixInOpenSO(commonFunc.getDataFromTestDataSheet("Loc_100"), CustomerID,
 				OpenSOPrefix1);
 		openso.clickTickIconAndSetPODateInAddOpenSOAndStoreDocNo();
-		//2
+		// 2
 		openso.clickFetchCustomerAndSelectItemInOpenSoUpdated();
 		openso.fillPriceMRPAndHSNCodeforAddedLastItemInOpenSO(Cost1, Mrp, OpenSOHSN);
 		openso.fillDiscountAndSaveLinesforAddedLastItemInOpenSO("0");
@@ -1936,8 +1942,10 @@ public class OpenSoAmdFunctions {
 
 		return flag;
 	}
-	/**Creates Open So Document UTGST Customer For Deletation Scenrios
-	 *  
+
+	/**
+	 * Creates Open So Document UTGST Customer For Deletation Scenrios
+	 * 
 	 * @author Kowshik-Rmits
 	 */
 	public void createOpenSoForUTGSTCustomerForDeletationProcess() {
@@ -1977,7 +1985,6 @@ public class OpenSoAmdFunctions {
 //		approveFunc.verifyApproveWithDocNumber(VariableHandler.getOpenSONumber());
 		commonFunc.logoutUser();
 
-		
 	}
 
 	/**
@@ -1991,7 +1998,8 @@ public class OpenSoAmdFunctions {
 		openso.clickAddNewOpenSOPlsIcon();
 	}
 
-	/**Multiples Lines Addition Types In Open So Amd
+	/**
+	 * Multiples Lines Addition Types In Open So Amd
 	 * 
 	 * @author Kowshik- RMITS
 	 * 
@@ -2024,7 +2032,7 @@ public class OpenSoAmdFunctions {
 				webDB.clickAnElement(OpenSoAmdLocators.AddButtoninAdditionType, ElementType.Xpath);
 				flag = webDB.waitForElement(OpenSoAmdLocators.ItemClickField, ElementType.Xpath);
 				if (flag) {
-					logs.logging("Info", "Successfully Clicked A Add Button ");					
+					logs.logging("Info", "Successfully Clicked A Add Button ");
 					flag = webDB.waitForElement(OpenSoAmdLocators.ItemClickField, ElementType.Xpath);
 					if (flag) {
 						webDB.clickAnElement(OpenSoAmdLocators.ItemClickField, ElementType.Xpath);

@@ -10,10 +10,12 @@ import java.lang.reflect.Method;
 import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import commonfunctions.Author;
 import commonfunctions.CommonFunctions;
+import commonfunctions.VariableHandler;
 import commonfunctions.supplychainmanagement.GrnPageFunctions;
 import commonfunctions.supplychainmanagement.PurchaseOrderFunctions;
 import commonfunctions.supplychainmanagement.SupplierScheduleRequestFunctions;
@@ -34,6 +36,17 @@ public class PoToMRVTest2 extends RoadMapERPTest {
 
 	// -------------------------------PO to GRN With Free pass Items-With Gate
 	// Entry------------
+
+	@BeforeMethod(alwaysRun = true)
+	private void VerifyLogin() {
+		if (VariableHandler.getSessionID() == null || VariableHandler.getSessionID().equalsIgnoreCase("")
+				|| VariableHandler.getSessionOpened() == false || VariableHandler.getSessionID().equals(null)) {
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+					"AdminUsername");
+		} else {
+			commonFunc.navigateToHomePage();
+		}
+	}
 
 	/**
 	 * PO to GRN-General-User Defined-Same Stock and Supplier UOM
@@ -1291,7 +1304,9 @@ public class PoToMRVTest2 extends RoadMapERPTest {
 	@AfterMethod
 	public void VerifyAfterMethod(ITestResult result, Method method) {
 		previousStatus = result.getStatus();
-		commonFunc.verifyAfterMethod();
+		if (previousStatus == ITestResult.FAILURE || previousStatus == ITestResult.SKIP) {
+			commonFunc.verifyAfterMethod();
+		}
 		commonFunc.enterAuthorNamesInExtentReport(method);
 	}
 }

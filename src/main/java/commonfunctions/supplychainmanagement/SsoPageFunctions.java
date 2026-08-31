@@ -547,6 +547,7 @@ public class SsoPageFunctions {
 	 * @author Durai-RMITS
 	 */
 	public void verifyFetchOpenPoButton() {
+		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.hardWait(4000);
 		flag = webDB.waitForElement(SsoPageLocators.FetchOPOBtn, ElementType.Xpath);
 		if (flag) {
@@ -741,6 +742,15 @@ public class SsoPageFunctions {
 		if (flag) {
 			webDB.clickAnElement(SsoPageLocators.SsoHeaderCancel, ElementType.Xpath);
 			logs.logging("INFO", "Header is Cancelled");
+			flag = webDB.waitForElement(SsoPageLocators.SsoCancelOk, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(SsoPageLocators.SsoCancelOk, ElementType.Xpath);
+				logs.logging("INFO", "Cancel Ok Button is Clicked");
+				commonFunc.hardWait(3000);
+				flag = webDB.waitForElement(SsoPageLocators.SsoCancelFindSearch, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(SsoPageLocators.SsoCancelFindSearch, ElementType.Xpath);
+					logs.logging("INFO", "Search Button is Clicked");
 			flag = webDB.waitForElement(SsoPageLocators.SsoDocNoLovFindPage, ElementType.Xpath);
 			if (flag) {
 //				webDB.clickAnElement(SsoPageLocators.SsoDocNoLovFindPage, ElementType.Xpath);
@@ -766,7 +776,8 @@ public class SsoPageFunctions {
 					}
 				}
 			}
-
+			}
+		}
 		}
 		assertTrue(flag);
 	}
@@ -971,7 +982,7 @@ public class SsoPageFunctions {
 	 */
 	public void verifyGenerateItemSim(String Itm) {
 		String ItemSeqNo = RandomStringUtils.randomNumeric(6);
-		if (ItemSeqNo.equals("0000")) {
+		if (ItemSeqNo.equals("00000")) {
 			ItemSeqNo = "10";
 		}
 		String SimItemId = Itm + ItemSeqNo;

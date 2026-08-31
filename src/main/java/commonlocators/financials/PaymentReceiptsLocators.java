@@ -6,17 +6,17 @@ package commonlocators.financials;
  */
 public class PaymentReceiptsLocators {
 	/** @locatorType Xpath */
-	public static final String PendingPayable = "//button[@id='B1542375393165918464']";
+	public static final String PendingPayable = "//button[@data-testid='PendingPayables']";
 	/** @locatorType Xpath */
 	public static final String PendingPayableFrame = "//iframe[@title='Pending Payables']";
 	/** @locatorType Xpath */
-	public static final String PendDocumentsNoLovBtn = "//input[@data-testid='DocNo']/following-sibling::button";
+	public static final String PendDocumentsNoLovBtn = "//input[contains(@data-testid,'DOC_NO')]/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String SearchButton = "//button[@id='B1891433450341546296']";
+	public static final String SearchButton = "//button[@data-testid='Search1']";
 	/** @locatorType Xpath */
-	public static final String CreateButton = "//button[@id='B5']";
+	public static final String CreateButton = "//button[@data-testid='Create']";
 	/** @locatorType Xpath */
-	public static final String OkButton = "//button[@id='B1327513084777172846']";
+	public static final String OkButton = "//button[@data-testid='Ok']";
 	/** @locatorType Xpath */
 	public static final String PayMode = "//select[@id='P3413101001_SUPHD_PYMT_TYPE']";
 	/** @locatorType Xpath */
@@ -42,9 +42,9 @@ public class PaymentReceiptsLocators {
 	/** @locatorType Xpath */
 	public static final String BpvNumber = "//span[@data-testid='VouNo']";
 	/** @locatorType Xpath */
-	public static final String ReferenceInputNumber = "//input[@data-testid='RefNo']";
+	public static final String ReferenceInputNumber = "//input[@data-testid='RefNo1']";
 	/** @locatorType Xpath */
-	public static final String WorkApprovalOkButton = "//button[@id='B1457704718951134857']";
+	public static final String WorkApprovalOkButton = "//span[text()='Ok']/..";
 	/** @locatorType Xpath */
 	public static final String VoucherNumberLovButton = "//input[@data-testid='VoucherPfx']/following-sibling::button";
 	/** @locatorType Xpath */
@@ -52,7 +52,7 @@ public class PaymentReceiptsLocators {
 
 	/** @locatorType Xpath */
 	public static final String IssuedStatus(String BpvNumber) {
-		return "(//a[text()='" + BpvNumber + "']/../../td/div[text()='Cleared'])";
+		return "(//a[text()='" + BpvNumber + "']/../../td/div[text()='Issued'])[last()]";
 	}
 
 	/** @locatorType Xpath */
@@ -61,7 +61,7 @@ public class PaymentReceiptsLocators {
 	}
 
 	/** @locatorType Xpath */
-	public static final String PendingDrDocsBtn = "//button[@id='B1920165549588853813']";
+	public static final String PendingDrDocsBtn = "//button[@data-testid='PendingDrDocs']";
 	/** @locatorType Xpath */
 	public static final String PendingReceivablesBtn = "//span[text()='Pending Receivable']/parent::button";
 	/** @locatorType Xpath */

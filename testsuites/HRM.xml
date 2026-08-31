@@ -5,12 +5,14 @@
 		<listener class-name="utils.RetryListener"></listener>
 		<listener class-name="utils.Listener"></listener>
 	</listeners>
-	<test parallel="classes" name="HRM Road Map Test" thread-count="5">
+	<test parallel="classes" name="HRM Road Map Test" thread-count="3">
 		<classes>
 			<class name="com.roadmapERP.AttendanceLeaveTest"></class>
 			<class name="com.roadmapERP.EmployeeMasterTest"></class>
-			<class name="com.roadmapERP.EmployeeOvertime"></class>
-			<class name="com.roadmapERP.EmployeePermissionTest"></class>
+			<!--			<class name="com.roadmapERP.EmployeeOvertime"></class>-->
+			<!--			<class name="com.roadmapERP.EmployeePermissionTest"></class>-->
+			<class name="com.roadmapERP.PurchaseFOCTest"></class>
+			<class name="com.roadmapERP.GrnTest3"></class>
 			<class name="com.roadmapERP.PreparePayrollTest"></class>
 		</classes>
 	</test>

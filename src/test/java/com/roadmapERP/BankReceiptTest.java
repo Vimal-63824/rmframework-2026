@@ -12,10 +12,12 @@ import java.lang.reflect.Method;
 import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import commonfunctions.Author;
 import commonfunctions.CommonFunctions;
+import commonfunctions.VariableHandler;
 import commonfunctions.financials.BankReceiptFunctions;
 import commonfunctions.supplychainmanagement.ShareOfBusinessFunctions;
 import commonfunctions.supplychainmanagement.StockAdjustmentFunctions;
@@ -27,6 +29,18 @@ public class BankReceiptTest extends RoadMapERPTest {
 	static CommonFunctions commonFunc = new CommonFunctions();
 	static WebDriverBase webDB = new WebDriverBase();
 	static BankReceiptFunctions bankReceiptFunc = new BankReceiptFunctions();
+	private static int previousStatus = ITestResult.SUCCESS;
+
+	@BeforeMethod(alwaysRun = true)
+	private void VerifyLogin() {
+		if (VariableHandler.getSessionID() == null || VariableHandler.getSessionID().equalsIgnoreCase("")
+				|| VariableHandler.getSessionOpened() == false || VariableHandler.getSessionID().equals(null)) {
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+					"AdminUsername");
+		} else {
+			commonFunc.navigateToHomePage();
+		}
+	}
 
 	/**
 	 * Receipt Against single Party, Single invoice(Through Add button)
@@ -40,6 +54,7 @@ public class BankReceiptTest extends RoadMapERPTest {
 	public void CreateBankReceiptSinglePartySingleInvoiceThroughAddButton() throws IOException {
 		bankReceiptFunc.BRSinglePartySingleInvoiceThroughAddButton(webDB.getDataFromProperties("BankReceipt"));
 	}
+
 //
 	/**
 	 * Receipt Against single Party, Single Invoice (Get document )
@@ -1045,7 +1060,7 @@ public class BankReceiptTest extends RoadMapERPTest {
 				commonFunc.getDataFromTestDataSheet("BankTransCurcyUSD"),
 				commonFunc.getDataFromTestDataSheet("BankName"));
 	}
-	
+
 	/**
 	 * Advance Against New Reference Bank Curcy USD
 	 * 
@@ -1070,6 +1085,10 @@ public class BankReceiptTest extends RoadMapERPTest {
 	@AfterMethod
 	public void VerifyAfterMethod(ITestResult result, Method method) {
 		bankReceiptFunc.verifyAfterMethod();
+		previousStatus = result.getStatus();
+		if (previousStatus == ITestResult.FAILURE || previousStatus == ITestResult.SKIP) {
+			commonFunc.verifyAfterMethod();
+		}
 		commonFunc.enterAuthorNamesInExtentReport(method);
 	}
 

@@ -247,7 +247,7 @@ public class ApprovalPageFunctions {
 				commonFunc.checkSuccessToastMessageDisappear();
 				commonFunc.checkRefreshCellsDisappear();
 				commonFunc.checkRefreshCellsDisappear();
-				 webDB.waitForElementUntilGivenTime(CommonUiLocators.PostToastMessage, ElementType.Xpath, 15);
+				webDB.waitForElementUntilGivenTime(CommonUiLocators.PostToastMessage, ElementType.Xpath, 15);
 				if (!webDB.verifyIsElementDisplayed(CommonUiLocators.WorkAppoval_OkBtn, ElementType.Xpath)) {
 					logs.logging("INFO", "Workflow Approval Ok Button Clicked");
 				}

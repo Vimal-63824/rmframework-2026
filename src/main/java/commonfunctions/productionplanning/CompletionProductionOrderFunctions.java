@@ -68,6 +68,7 @@ public class CompletionProductionOrderFunctions {
 		flag = webDB.waitForElement(CompletionProductionOrderLocators.PendingProdOrderIframe, ElementType.Xpath);
 		if (flag) {
 			webDB.switchToFrame(CompletionProductionOrderLocators.PendingProdOrderIframe, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
 			flag = webDB.waitForElement(CompletionProductionOrderLocators.PendingProdOrderSearchGoBtn,
 					ElementType.Xpath);
 		}
@@ -1140,6 +1141,9 @@ public class CompletionProductionOrderFunctions {
 			flag = webDB.waitForElement(CompletionProductionOrderLocators.SearchButton, ElementType.Xpath);
 			if (flag) {
 				webDB.clickAnElement(CompletionProductionOrderLocators.SearchButton, ElementType.Xpath);
+				commonFunc.checkRefreshCellsDisappear();
+				webDB.waitUntilElementToNotBeStale(CompletionProductionOrderLocators.SearchResultStatusData,
+						ElementType.Xpath);
 				flag = webDB.waitForElement(CompletionProductionOrderLocators.SearchResultStatusData,
 						ElementType.Xpath);
 				if (flag) {
@@ -1238,12 +1242,15 @@ public class CompletionProductionOrderFunctions {
 					logs.logging("INFO", "Pending MR Select All Button Clicked");
 					webDB.moveToElement(CompletionProductionOrderLocators.CreateMRButton, ElementType.Xpath);
 					webDB.clickAnElement(CompletionProductionOrderLocators.CreateMRButton, ElementType.Xpath);
+					
 					flag = webDB.waitForElement(CompletionProductionOrderLocators.CreateMROkButton, ElementType.Xpath);
 					if (flag) {
 						logs.logging("INFO", "Create MR Button Clicked");
 						webDB.clickAnElement(CompletionProductionOrderLocators.CreateMROkButton, ElementType.Xpath);
+						commonFunc.checkRefreshCellsDisappear();
 						webDB.switchToDefaultContent();
-						flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+						flag = webDB.waitForElementUntilGivenTime(CommonUiLocators.PostToastMessage, ElementType.Xpath,
+								60);
 						if (flag) {
 							logs.logging("INFO", "Material Request Created Successfully");
 							String Message = webDB.getTextFromElement(CommonUiLocators.PostToastMessage,
@@ -1686,5 +1693,57 @@ public class CompletionProductionOrderFunctions {
 		commonFunc.verifyAddTableSpecsClearField(CompletionProductionOrderLocators.ProdCompLineActualConsumptionQtyData,
 				CompletionProductionOrderLocators.ProdCompLineActualConsumptionQtyData, ActualConsQty);
 		logs.logging("INFO", "Actual ConsumpFtion Quantity Entered in Consumption: " + ActualConsQty);
+	}
+
+	/**
+	 * This method used to click select all and create MR
+	 *
+	 * @author Sakthi-GWL
+	 * @param String LocId
+	 * @param String ProdNumber
+	 */
+	public void clickCheckBoxTableAndCreateAndStoreMRNo(String LocId, String ProdNumber) {
+		flag = webDB.waitForElement(CompletionProductionOrderLocators.PendingMRCreateIframe, ElementType.Xpath);
+		if (flag) {
+			webDB.switchToFrame(CompletionProductionOrderLocators.PendingMRCreateIframe, ElementType.Xpath);
+			flag = webDB.waitForElement(CompletionProductionOrderLocators.PendingMRSelectAllBtn(ProdNumber),
+					ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Pending MR Iframe Switched");
+				webDB.moveToElement(CompletionProductionOrderLocators.PendingMRSelectAllBtn(ProdNumber),
+						ElementType.Xpath);
+				webDB.clickAnElement(CompletionProductionOrderLocators.PendingMRSelectAllBtn(ProdNumber),
+						ElementType.Xpath);
+				flag = webDB.waitForElement(CompletionProductionOrderLocators.CreateMRButton, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Pending MR Select All Button Clicked");
+					webDB.moveToElement(CompletionProductionOrderLocators.CreateMRButton, ElementType.Xpath);
+					webDB.clickAnElement(CompletionProductionOrderLocators.CreateMRButton, ElementType.Xpath);
+					commonFunc.searchAndSelectValueInFilters(CompletionProductionOrderLocators.CreateMRLocIdLov, LocId);
+					webDB.waitForElement(CompletionProductionOrderLocators.PendingMRCreateIframe, ElementType.Xpath);
+					webDB.switchToFrame(CompletionProductionOrderLocators.PendingMRCreateIframe, ElementType.Xpath);
+					flag = webDB.waitForElement(CompletionProductionOrderLocators.CreateMROkButton, ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Create MR Button Clicked");
+						webDB.clickAnElement(CompletionProductionOrderLocators.CreateMROkButton, ElementType.Xpath);
+						commonFunc.checkRefreshCellsDisappear();
+						webDB.switchToDefaultContent();
+						flag = webDB.waitForElementUntilGivenTime(CommonUiLocators.PostToastMessage, ElementType.Xpath,
+								60);
+						if (flag) {
+							logs.logging("INFO", "Material Request Created Successfully");
+							String Message = webDB.getTextFromElement(CommonUiLocators.PostToastMessage,
+									ElementType.Xpath);
+							logs.logging("INFO", "Success Message: " + Message);
+							Message = Message.replace("Material Request Created-", "").trim();
+							logs.logging("INFO", "After Split MR No: " + Message);
+							VariableHandler.setMaterialRequestNo(Message);
+							VariableHandler.setMRNumber(Message);
+						}
+					}
+				}
+			}
+		}
+		assertTrue(flag);
 	}
 }

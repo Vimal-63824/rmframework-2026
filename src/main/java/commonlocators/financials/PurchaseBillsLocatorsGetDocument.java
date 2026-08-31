@@ -100,6 +100,7 @@ public class PurchaseBillsLocatorsGetDocument {
 	public static final String PBCostInput = "//input[@data-testid='SUPLN_UNIT_COST']";
 	/** @locatorType Xpath */
 	public static final String PBCostField = "//*[@id=\"IN_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr[1]/td[10]";
+
 	public static String PBCostField(int i) {
 		return "//*[@id=\"IN_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr[" + i + "]/td[10]";
 	}
@@ -175,11 +176,11 @@ public class PurchaseBillsLocatorsGetDocument {
 	/** @locatorType Xpath */
 	public static final String PBGstSupplyergrid = "//*[@id=\"IN_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr[1]/td[25]";
 	/** @locatorType Xpath */
-	public static final String PBSupplySelect= "//select[@data-testid='SUPLN_TAX_EXMPT_FLAG']";
+	public static final String PBSupplySelect = "//select[@data-testid='SUPLN_TAX_EXMPT_FLAG']";
 	/** @locatorType Xpath */
-	public static final String PBRefType= "//select[@data-testid='Ref']";
+	public static final String PBRefType = "//select[@data-testid='Ref']";
 	/** @locatorType Xpath */
-	public static final String PBSubcontractTab= "//label[@for='P11613101001_TABS_1']";
+	public static final String PBSubcontractTab = "//label[@for='P11613101001_TABS_1']";
 	/** @locatorType Xpath */
 	public static final String PBSubcontractTabProcLOV = "//input[@data-testid='SDPLH_PROC_ID']/following-sibling::button";
 	/** @locatorType Xpath */

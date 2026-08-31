@@ -1,5 +1,7 @@
 package commonlocators.supplychainmanagement;
 
+import commonfunctions.CommonFunctions;
+
 /**
  * @author Sakthi-GWL
  * @company Galaxy Weblinks February 5, 2025
@@ -53,7 +55,7 @@ public class SalesInvoiceLocators {
 	/** @Locator XPATH */
 	public static final String Item_Lov_Btn = "//input[@data-testid='SILN_PROD_ID_REV']/following-sibling::button";
 	/** @Locator XPATH */
-	public static final String Sales_GL_Acc_Desc_Column = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[6]";
+	public static final String Sales_GL_Acc_Desc_Column = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[7]";
 	/** @Locator XPATH */
 	public static final String Sales_GL_Acc_Desc_LOV_Btn = "//input[@data-testid='SILN_SAL_ACCT_ID']/following-sibling::button";
 	/** @Locator XPATH */
@@ -99,7 +101,9 @@ public class SalesInvoiceLocators {
 	/** @Locator XPATH */
 	public static final String CPC_Column = "//*[@id='P191513109001_SIHD_CC_CODE']";
 	/** @Locator XPATH */
-	public static final String Details_Btn = "(//span[contains(@class,'fa fa-list')])[3]";
+	public static final String Details_Btn = "(//span[contains(@class,'fa fa-indent')])[1]";
+	/** @Locator XPATH */
+	public static final String TotalDiscountData = "//table[@data-testid='ig_line_ig_report_settings_Result_Data']/tbody/tr/td[11]/a";
 	/** @Locator XPATH */
 	public static final String Detail_Btn_Iframe = "//iframe[contains(@title,'Sales Invoice Details')]";
 	/** @Locator XPATH */
@@ -151,23 +155,23 @@ public class SalesInvoiceLocators {
 	/** @Locator XPATH */
 	public static final String FindSalesInvoiceSearchBtn = "//button[@data-testid='Find_line']";
 	/** @Locator XPATH */
-	public static final String InvoiceQntyTableData = "//table/tbody/tr/td[8]";
+	public static final String InvoiceQntyTableData = "//table/tbody/tr/td[9]";
 	/** @Locator XPATH */
-	public static final String UnitPriceTableData = "//table/tbody/tr/td[9]";
+	public static final String UnitPriceTableData = "//table/tbody/tr/td[10]";
 	/** @Locator XPATH */
-	public static final String DiscountAmountTableData = "//table/tbody/tr/td[12]";
+	public static final String DiscountAmountTableData = "//table[@data-testid='ig_line_ig_report_settings_Result_Data']/tbody/tr/td[11]";
 	/** @Locator XPATH */
-	public static final String LineAmountTableData = "//table/tbody/tr/td[13]";
+	public static final String LineAmountTableData = "//table[@data-testid='ig_line_ig_report_settings_Result_Data']/tbody/tr/td[12]";
 	/** @Locator XPATH */
-	public static final String TaxPercentField = "//table/tbody/tr/td[15]";
+	public static final String TaxPercentField = "//table[@data-testid='ig_line_ig_report_settings_Result_Data']/tbody/tr/td[14]";
 	/** @Locator XPATH */
-	public static final String IGSTTaxAmountField = "//table/tbody/tr/td[16]";
+	public static final String IGSTTaxAmountField = "//table[@data-testid='ig_line_ig_report_settings_Result_Data']/tbody/tr/td[15]";
 	/** @Locator XPATH */
-	public static final String CGSTTaxAmountField = "//table/tbody/tr/td[17]";
+	public static final String CGSTTaxAmountField = "//table[@data-testid='ig_line_ig_report_settings_Result_Data']/tbody/tr/td[16]";
 	/** @Locator XPATH */
-	public static final String SGSTTaxAmountField = "//table/tbody/tr/td[18]";
+	public static final String SGSTTaxAmountField = "//table[@data-testid='ig_line_ig_report_settings_Result_Data']/tbody/tr/td[17]";
 	/** @Locator XPATH */
-	public static final String UTGSTTaxAmountField = "//table/tbody/tr/td[19]";
+	public static final String UTGSTTaxAmountField = "//table[@data-testid='ig_line_ig_report_settings_Result_Data']/tbody/tr/td[18]";
 	/** @Locator XPATH */
 	public static final String TotalAmountDisplayField = "//input[@id='P191513109001_SIHD_TOT_AMT']";
 
@@ -426,8 +430,8 @@ public class SalesInvoiceLocators {
 
 	/** @locatorType Xpath */
 	public static final String LineDetails(int i) {
-		return "//*[@id=\'ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[" + i
-				+ "]/td[20]/a/span[contains(@style,'blue')]";
+		return "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[" + i
+				+ "]/td[23]/a/span[contains(@style,'blue')]";
 	}
 
 	/** @locatorType Xpath */
@@ -806,4 +810,74 @@ public class SalesInvoiceLocators {
 	public static final String RW_Pend_Outside_Supl_Lov = "//input[@data-testid='Rework_Prim_SUP_Lov']/following-sibling::button";
 	/** @Locator XPATH */
 	public static final String CreatePreDispatchButton = "//button[@data-testid='Cre_pre_disp']";
+	/** @Locator XPATH */
+	public static final String SI_LineTable = "(//table[@data-testid='ig_line_ig_report_settings_Result_Data'])[2]";
+	/** @locatorType Xpath */
+	public static final String SIPageItemTable() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(SI_LineTable, "Item");
+	}
+	/** @locatorType Xpath */
+	public static final String SIPageGLAcctTable() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(SI_LineTable, "Sales GL A/C Desc.");
+	}
+	/** @locatorType Xpath */
+	public static final String SIPageInvQtyTable() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(SI_LineTable, "Invoice Qty.");
+	}
+	/** @locatorType Xpath */
+	public static final String SIPageUnitPriceTable() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(SI_LineTable, "Unit Price");
+	}
+	/** @locatorType Xpath */
+	public static final String SIPageHSNTable() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(SI_LineTable, "HSN Code");
+	}
+	/** @Locator XPATH */
+	public static final String PI_LineTable = "(//table[@data-testid='line1_ig_report_settings_Result_Data'])[2]";
+	/** @locatorType Xpath */
+	public static final String PIPageItemTable() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(PI_LineTable, "Item ID");
+	}
+	/** @locatorType Xpath */
+	public static final String PIPageSOrefTable() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(PI_LineTable, "SO/Prj.Ref.");
+	}
+	/** @locatorType Xpath */
+	public static final String PIPageQtyTable() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(PI_LineTable, "PI Qty.");
+	}
+	/** @locatorType Xpath */
+	public static final String PIPageUnitPriceTable() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(PI_LineTable, "Unit Price");
+	}
+	/** @locatorType Xpath */
+	public static final String PIPageHSNTable() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(PI_LineTable, "HSN/SAC Code");
+	}
+	/** @Locator XPATH */
+	public static final String CR_LineTable = "(//table[@data-testid='ig_line_ig_report_settings_Result_Data'])[2]";
+	/** @locatorType Xpath */
+	public static final String CRPageItemTable() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(CR_LineTable, "Item");
+	}
+	/** @locatorType Xpath */
+	public static final String CRPageGLAcctTable() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(CR_LineTable, "GL Acct.Desc.");
+	}
+	/** @locatorType Xpath */
+	public static final String CRPageCPCTable() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(CR_LineTable, "CPC Desc.");
+	}
+	/** @locatorType Xpath */
+	public static final String CRPageReturnQtyTable() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(CR_LineTable, "Return Qty.");
+	}
+	/** @locatorType Xpath */
+	public static final String CRPageHSNTable() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(CR_LineTable, "HSN / SAC Code");
+	}
+	/** @locatorType Xpath */
+	public static final String CRPageUnitPriceTable() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(CR_LineTable, "Unit Price");
+	}
 }

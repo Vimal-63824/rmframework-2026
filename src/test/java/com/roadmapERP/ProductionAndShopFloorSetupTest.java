@@ -6,10 +6,12 @@ import java.lang.reflect.Method;
 import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import commonfunctions.Author;
 import commonfunctions.CommonFunctions;
+import commonfunctions.VariableHandler;
 import commonfunctions.productionplanning.ProductionAndShopFloorSetupFunctions;
 import utils.WebDriverBase;
 
@@ -19,6 +21,18 @@ public class ProductionAndShopFloorSetupTest extends RoadMapERPTest {
 	static CommonFunctions commonFunc = new CommonFunctions();
 	static WebDriverBase webDB = new WebDriverBase();
 	static ProductionAndShopFloorSetupFunctions ppShopFloorSetupFunc = new ProductionAndShopFloorSetupFunctions();
+	private static int previousStatus = ITestResult.SUCCESS;
+
+	@BeforeMethod(alwaysRun = true)
+	private void VerifyLogin() {
+		if (VariableHandler.getSessionID() == null || VariableHandler.getSessionID().equalsIgnoreCase("")
+				|| VariableHandler.getSessionOpened() == false || VariableHandler.getSessionID().equals(null)) {
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+					"AdminUsername");
+		} else {
+			commonFunc.navigateToHomePage();
+		}
+	}
 
 //	/**
 //	 * How to define Workcenters
@@ -106,7 +120,7 @@ public class ProductionAndShopFloorSetupTest extends RoadMapERPTest {
 //		flag = ppShopFloorSetupFunc.howtoCreateResourceGroupandResourcesforTool();
 //		Assert.assertTrue(flag);
 //	}
-	
+
 	/**
 	 * Verify After Method
 	 * 
@@ -115,6 +129,10 @@ public class ProductionAndShopFloorSetupTest extends RoadMapERPTest {
 	 */
 	@AfterMethod
 	public void VerifyAfterMethod(ITestResult result, Method method) {
+		previousStatus = result.getStatus();
+		if (previousStatus == ITestResult.FAILURE || previousStatus == ITestResult.SKIP) {
+			commonFunc.verifyAfterMethod();
+		}
 		commonFunc.enterAuthorNamesInExtentReport(method);
 	}
 }

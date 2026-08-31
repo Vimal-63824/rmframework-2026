@@ -210,7 +210,7 @@ public class ProductionAndShopFloorSetupFunctions {
 	 * @param Proc_UOM
 	 * @param Proc_Outside_Type
 	 * @param Proc_Suffix_input
-	 * @param Proc_Charge_Item @
+	 * @param Proc_Charge_Item  @
 	 */
 	public void addingProcessOutSideType(String ProcessIDinput, String ProcessNameInput, String Proc_UOM,
 			String Proc_Outside_Type, String Proc_Suffix_input, String Proc_Charge_Item) {
@@ -289,7 +289,7 @@ public class ProductionAndShopFloorSetupFunctions {
 	 * @param Proc_UOM
 	 * @param Proc_Outside_Type
 	 * @param Proc_Suffix_input
-	 * @param Proc_Charge_Item @
+	 * @param Proc_Charge_Item  @
 	 */
 	public void addingProcessOutSideTypeForRevise(String ProcessIDinput, String ProcessNameInput, String Proc_UOM,
 			String Proc_Outside_Type, String Proc_Suffix_input, String Proc_Charge_Item) {

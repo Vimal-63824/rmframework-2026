@@ -31,8 +31,7 @@ public class SsoPageLocators {
 	public static final String SsoPendingBtnNew = "//button[@data-testid='Create_PO']";
 	/** @locatorType Xpath */
 	public static final String PendingSso = "//span[text()='Create  SSO']";
-	
-	
+
 	/** @locatorType Xpath */
 	public static final String OPOAddBtn = "//button[@data-testid='Add']";
 	/** @locatorType Xpath */
@@ -82,16 +81,14 @@ public class SsoPageLocators {
 	/** @locatorType Xpath */
 	public static final String FetchOPOSearchOkBtn = "//button[@id='QC_search_button']";
 	/** @locatorType Xpath */
-	public static final String FetchOPOSelectall = "//*[@id=\"3604799706044095932_orig\"]/tbody/tr[2]/td[11]";
+	public static final String FetchOPOSelectall = "//table[contains(@aria-label,'PENDING')]/tbody/tr/td[11]/input";
 	/** @locatorType Xpath */
 	public static final String FetchOPOOKBtn = "//button[@data-testid='OK']";
 	/** @locatorType Xpath */
 	public static final String FetchOPODocNumChoose = "//*[@id=\"QC_sort_widget_rows\"]/a[1]";
-	
-	
-	
+
 	/** @locatorType Xpath */
-	
+
 	public static final String SSOItemFieldLine = "//*[@id=\"LINES_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr[1]/td[2]";
 	/** @locatorType Xpath */
 	public static final String SSOFirmQtyInput = "//input[@data-testid='SSLN_REVISED_QTY']";
@@ -131,14 +128,14 @@ public class SsoPageLocators {
 	public static final String SsoLineCount = "//*[@id=\"LINES_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[1]";
 	/** @locatorType Xpath */
 	public static final String SsoLineCancel = "//*[@id=\"LINES_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[19]/a/span";
-	/** @locatorType Xpath */                     
+	/** @locatorType Xpath */
 	public static final String SsoHeaderCancel = "//button[@data-testid='Cancel']";
 	/** @locatorType Xpath */
 	public static final String SsoFindSsoNumFiled = "//input[@id='P1615131026_DOC_NO']";
 	/** @locatorType Xpath */
 	public static final String SsoFindSearchBtn = "//button[@data-testid='Find']";
 	/** @locatorType Xpath */
-	public static final String SsoCanclStatus = "//*[@id=\"9746272170729027653_orig\"]/tbody/tr[2]/td[16]";
+	public static final String SsoCanclStatus = "//table[@data-testid='L_Result_Data']/tbody/tr/td[16]";
 	/** @locatorType Xpath */
 	public static final String SsoDocNoLovFindPage = "//input[@data-testid='P1615132060_PO_SSO_NO']/following-sibling::button";
 
@@ -176,6 +173,13 @@ public class SsoPageLocators {
 	public static final String SSOTentDateToField(int i) {
 		return "//*[@id=\"LINES_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr[" + i + "]/td[13]";
 	}
+	
+	/** @locatorType Xpath */
+	public static final String SsoCancelOk = "//button[contains(text(),'OK')]";
+	/** @locatorType Xpath */
+	public static final String SsoCancelFindSearch = "//button[@data-testid='Search']";
+	
+	
 	
 	
 }

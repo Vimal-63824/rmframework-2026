@@ -64,7 +64,7 @@ public class MaterialIssuanceVoucherLocators {
 	public static final String SearchButton = "//button[@data-testid=' PendingMRSearchBar']";
 	/** @locatorType XPATH */
 
-	public static final String CheckBox = "//table[contains(@aria-label,'PENDINGMIV')]//tr/th//input[@id='check_all']";
+	public static final String CheckBox = "(//div[@id='PEND_data_panel']//table//tr/th//input[@id='check_all'])[1]";
 	/** @locatorType XPATH */
 	public static final String CreateMiButton = "//button[@data-testid='PendingMRCreateMIBtn']";
 	/** @locatorType XPATH */
@@ -131,7 +131,7 @@ public class MaterialIssuanceVoucherLocators {
 	/** @locatorType XPATH */
 	public static final String CreateMIVButton = "//div[@id='CRE_MIV']//table//button";
 	/** @locatorType XPATH */
-	public static final String PendingCreateMIV = "//button[@id='B2183708502436997799']";
+	public static final String PendingCreateMIV = "//button[@id='B632033311871649640']";
 	/** @locatorType XPATH */
 	public static final String Pending_TableShowMyRecordBtn = "//button[@id='hid']";
 	/** @locatorType XPATH */

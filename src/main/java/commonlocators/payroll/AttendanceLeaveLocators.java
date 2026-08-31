@@ -252,6 +252,8 @@ public class AttendanceLeaveLocators {
 	/** @locatorType Xpath */
 	public static final String LRMigrationLOPPostBtn = "//*[normalize-space()='Post']/parent::button";
 	/** @locatorType Xpath */
+	public static final String LeaveEntryFindStatusSelect = "//*[@data-testid='Status_EL_Input']";
+	/** @locatorType Xpath */
 	public static final String LeaveEntryFindEmpIdLovBtn = "//*[@data-testid='Emp_ID_EL_Input']/following-sibling::button";
 	/** @locatorType Xpath */
 	public static final String LeaveEntryFindDateFromInput = "//*[@data-testid='DATE_From_EL_Input']/input";

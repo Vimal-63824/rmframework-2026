@@ -141,7 +141,7 @@ public class SalesStandardPriceFunctions {
 		webDB.navigateToRefresh();
 		commonFunc.checkRefreshCellsDisappear();
 		StdPriceDbValidation();
-		
+
 		clickActiveButton();
 		commonFunc.hardWait(2000);
 		commonFunc.logoutUser();

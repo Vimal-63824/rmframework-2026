@@ -2393,6 +2393,7 @@ public class EmployeeMasterFunctions {
 				if (flag) {
 					webDB.sendTextToAnElement(EmployeeMasterLocators.AddEmp_SignUploadInput, file.getAbsolutePath(),
 							ElementType.Xpath);
+					commonFunc.checkRefreshCellsDisappear();
 					flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_SignUploadFileNameText,
 							ElementType.Xpath);
 					if (flag) {
@@ -2401,6 +2402,7 @@ public class EmployeeMasterFunctions {
 						if (flag) {
 							logs.logging("INFO", ImageName + " - was uploaded and FileName Displayed");
 							webDB.waitForElement(EmployeeMasterLocators.AddEmp_UploadBtn, ElementType.Xpath);
+							commonFunc.checkRefreshCellsDisappear();
 							webDB.clickAnElement(EmployeeMasterLocators.AddEmp_UploadBtn, ElementType.Xpath);
 							flag = checkSignImageUploadedWithClearButton();
 							if (flag) {
@@ -2467,6 +2469,7 @@ public class EmployeeMasterFunctions {
 				if (flag) {
 					webDB.sendTextToAnElement(EmployeeMasterLocators.AddEmp_ProfileImgUploadInput,
 							file.getAbsolutePath(), ElementType.Xpath);
+					commonFunc.checkRefreshCellsDisappear();
 					flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_ProfileUploadFileNameText,
 							ElementType.Xpath);
 					if (flag) {
@@ -2475,6 +2478,7 @@ public class EmployeeMasterFunctions {
 						if (flag) {
 							logs.logging("INFO", ImageName + " - was uploaded and File Name Displayed");
 							webDB.waitForElement(EmployeeMasterLocators.AddEmp_ProfileUploadIcon, ElementType.Xpath);
+							commonFunc.checkRefreshCellsDisappear();
 							webDB.moveToElement(EmployeeMasterLocators.AddEmp_ProfileUploadIcon, ElementType.Xpath);
 							webDB.clickAnElement(EmployeeMasterLocators.AddEmp_ProfileUploadIcon, ElementType.Xpath);
 							flag = checkProfileImageUploadedWithClearButton();
@@ -4141,10 +4145,11 @@ public class EmployeeMasterFunctions {
 				logs.logging("INFO", "Upload Icon Clicked for Employee Migration");
 				webDB.sendTextToAnElement(EmployeeMasterLocators.EmpMigrationUploadInput, file.getAbsolutePath(),
 						ElementType.Xpath);
+				commonFunc.checkRefreshCellsDisappear();
 				flag = webDB.waitForElement(EmployeeMasterLocators.EmpMigrationUploadBtn, ElementType.Xpath);
 				if (flag) {
-					webDB.clickAnElement(EmployeeMasterLocators.EmpMigrationUploadBtn, ElementType.Xpath);
 					commonFunc.checkRefreshCellsDisappear();
+					webDB.clickAnElement(EmployeeMasterLocators.EmpMigrationUploadBtn, ElementType.Xpath);
 					commonFunc.checkRefreshCellsDisappear();
 					flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
 					if (flag) {
@@ -4349,14 +4354,15 @@ public class EmployeeMasterFunctions {
 						VariableHandler.testdataDir + webDB.getDataFromProperties("EmpDetailsMigrationFileName"));
 				flag = webDB.waitForElement(EmployeeMasterLocators.EmpDetailsMigrationUploadInput, ElementType.Xpath);
 				if (flag) {
+					commonFunc.checkRefreshCellsDisappear();
 					logs.logging("INFO", "Upload Icon Clicked for Employee Details Migration");
 					webDB.sendTextToAnElement(EmployeeMasterLocators.EmpDetailsMigrationUploadInput,
 							file.getAbsolutePath(), ElementType.Xpath);
 					flag = webDB.waitForElement(EmployeeMasterLocators.EmpDetailsMigrationUploadBtn, ElementType.Xpath);
 					if (flag) {
+						commonFunc.checkRefreshCellsDisappear();
 						webDB.clickAnElement(EmployeeMasterLocators.EmpDetailsMigrationUploadBtn, ElementType.Xpath);
 						webDB.switchToDefaultContent();
-						commonFunc.checkRefreshCellsDisappear();
 						commonFunc.checkRefreshCellsDisappear();
 						flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
 						if (flag) {

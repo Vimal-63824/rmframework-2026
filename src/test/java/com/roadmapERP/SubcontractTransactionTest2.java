@@ -9,10 +9,12 @@ import java.lang.reflect.Method;
 import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import commonfunctions.Author;
 import commonfunctions.CommonFunctions;
+import commonfunctions.VariableHandler;
 import commonfunctions.supplychainmanagement.SubcontractOrderFunctions;
 import utils.WebDriverBase;
 
@@ -22,8 +24,18 @@ public class SubcontractTransactionTest2 extends RoadMapERPTest {
 	static CommonFunctions commonFunc = new CommonFunctions();
 	static WebDriverBase webDB = new WebDriverBase();
 	static SubcontractOrderFunctions SubcontractFunc = new SubcontractOrderFunctions();
+	private static int previousStatus = ITestResult.SUCCESS;
 
-	
+	@BeforeMethod(alwaysRun = true)
+	private void VerifyLogin() {
+		if (VariableHandler.getSessionID() == null || VariableHandler.getSessionID().equalsIgnoreCase("")
+				|| VariableHandler.getSessionOpened() == false || VariableHandler.getSessionID().equals(null)) {
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+					"AdminUsername");
+		} else {
+			commonFunc.navigateToHomePage();
+		}
+	}
 
 	/**
 	 * Create Serial Item Subcontract Order From Pending With
@@ -400,6 +412,7 @@ public class SubcontractTransactionTest2 extends RoadMapERPTest {
 	public void DirectSerialItemSubcontractOrderWithBOMForStandardTypeWithProjectInterstateRegistered() {
 		SubcontractFunc.directSerialItemSubcontractOrderWithBOMForStandardTypeWithProjectInterstateRegistered();
 	}
+
 	/**
 	 * Pending Subcontract Order to GRN With Gate Entry for PR type - Free pass
 	 * Items
@@ -412,6 +425,7 @@ public class SubcontractTransactionTest2 extends RoadMapERPTest {
 	public void CreateProductionOrderFromSubcontractorderToGRNWithGateEntryTypePR() {
 		SubcontractFunc.createProductionOrderFromSubcontractorderToGRNWithGateEntryTypePR();
 	}
+
 	/**
 	 * Pending Subcontract Order to GRN With Gate Entry for UP type - Free pass
 	 * Items
@@ -424,6 +438,7 @@ public class SubcontractTransactionTest2 extends RoadMapERPTest {
 	public void CreateProductionOrderFromSubcontractorderToGRNWithGateEntryTypeUP() {
 		SubcontractFunc.createProductionOrderFromSubcontractorderToGRNWithGateEntryTypeUP();
 	}
+
 	/**
 	 * Pending Subcontract Order to GRN With Gate Entry for US type - Free pass
 	 * Items
@@ -436,6 +451,7 @@ public class SubcontractTransactionTest2 extends RoadMapERPTest {
 	public void CreateProductionOrderFromSubcontractorderToGRNWithGateEntryTypeUS() {
 		SubcontractFunc.createProductionOrderFromSubcontractorderToGRNWithGateEntryTypeUS();
 	}
+
 	/**
 	 * Pending Subcontract Order to GRN With Gate Entry for CS type - Free pass
 	 * Items
@@ -448,6 +464,7 @@ public class SubcontractTransactionTest2 extends RoadMapERPTest {
 	public void CreateProductionOrderFromSubcontractorderToGRNWithGateEntryTypeCS() {
 		SubcontractFunc.createProductionOrderFromSubcontractorderToGRNWithGateEntryTypeCS();
 	}
+
 	/**
 	 * Pending Subcontract Order to GRN With Gate Entry for PR type - QC Enabled
 	 * Items
@@ -460,6 +477,7 @@ public class SubcontractTransactionTest2 extends RoadMapERPTest {
 	public void CreateProductionOrderFromSubcontractorderToGRNQCEnableWithGateEntryTypePR() {
 		SubcontractFunc.createProductionOrderFromSubcontractorderToGRNQCEnableWithGateEntryTypePR();
 	}
+
 	/**
 	 * Pending Subcontract Order to GRN With Gate Entry for UP type - QC Enabled
 	 * Items
@@ -472,6 +490,7 @@ public class SubcontractTransactionTest2 extends RoadMapERPTest {
 	public void CreateProductionOrderFromSubcontractorderToGRNWithQCEnableGateEntryTypeUP() {
 		SubcontractFunc.createProductionOrderFromSubcontractorderToGRNWithQCEnableGateEntryTypeUP();
 	}
+
 	/**
 	 * Pending Subcontract Order to GRN With Gate Entry for US type - QC Enabled
 	 * Items
@@ -484,6 +503,7 @@ public class SubcontractTransactionTest2 extends RoadMapERPTest {
 	public void CreateProductionOrderFromSubcontractorderToGRNQCEnableWithGateEntryTypeUS() {
 		SubcontractFunc.createProductionOrderFromSubcontractorderToGRNQCEnableWithGateEntryTypeUS();
 	}
+
 	/**
 	 * Linewise Cancel The Subcontract GRN
 	 * 
@@ -494,6 +514,7 @@ public class SubcontractTransactionTest2 extends RoadMapERPTest {
 	public void LineWiseCancelTheSubcontractGRN() {
 		SubcontractFunc.lineWiseCancelTheSubcontractGRN();
 	}
+
 	/**
 	 * Cancel The Subcontract GRN Document
 	 * 
@@ -504,16 +525,20 @@ public class SubcontractTransactionTest2 extends RoadMapERPTest {
 	public void HeaderWiseCancelTheSubcontractGRN() {
 		SubcontractFunc.headerWiseCancelTheSubcontractGRN();
 	}
+
 	/**
-	 * Direct Subcontract Order to GRN without Gate Entry for PR type - Free pass Items
+	 * Direct Subcontract Order to GRN without Gate Entry for PR type - Free pass
+	 * Items
 	 * 
 	 * @author Vimal - RMITS
 	 */
 	@Author("Vimal-RMITS")
-	@Test(priority = 78, groups = { "Subcontract" }, description = "Direct Subcontract Order to GRN without Gate Entry for PR type - Free pass Items")
+	@Test(priority = 78, groups = {
+			"Subcontract" }, description = "Direct Subcontract Order to GRN without Gate Entry for PR type - Free pass Items")
 	public void DirectSubcontractorderToGRNTypePR() {
 		SubcontractFunc.directSubcontractorderToGRNTypePR();
 	}
+
 	/**
 	 * Direct Subcontract Order to GRN without Gate Entry for CS type - Free pass
 	 * Items
@@ -526,6 +551,7 @@ public class SubcontractTransactionTest2 extends RoadMapERPTest {
 	public void DirectSubcontractorderToGRNTypeCS() {
 		SubcontractFunc.directSubcontractorderToGRNTypeCS();
 	}
+
 	/**
 	 * Direct Subcontract Order to GRN With Gate Entry for PR type - Free pass Items
 	 * 
@@ -537,6 +563,7 @@ public class SubcontractTransactionTest2 extends RoadMapERPTest {
 	public void DirectSubcontractorderToGRNWithGateEntryTypePR() {
 		SubcontractFunc.directSubcontractorderToGRNWithGateEntryTypePR();
 	}
+
 	/**
 	 * Direct Subcontract Order to GRN With Gate Entry for CS type - Free pass Items
 	 * 
@@ -548,6 +575,7 @@ public class SubcontractTransactionTest2 extends RoadMapERPTest {
 	public void DirectSubcontractorderToGRNWithGateEntryTypeCS() {
 		SubcontractFunc.directSubcontractorderToGRNWithGateEntryTypeCS();
 	}
+
 	/**
 	 * Direct Subcontract Order to GRN without Gate Entry for PR type - QC Enabled
 	 * Items
@@ -560,6 +588,7 @@ public class SubcontractTransactionTest2 extends RoadMapERPTest {
 	public void DirectSubcontractorderToGRNWithQCTypePR() {
 		SubcontractFunc.directSubcontractorderToGRNWithQCTypePR();
 	}
+
 	/**
 	 * Direct Subcontract Order to GRN With Gate Entry for PR type - QC Enabled
 	 * Items
@@ -585,6 +614,7 @@ public class SubcontractTransactionTest2 extends RoadMapERPTest {
 	public void PendingSerialSubcontractOrderToGRNWithOutGateEntryPRtype() {
 		SubcontractFunc.pendingSerialSubcontractOrderToGRNWithOutGateEntryPRtype();
 	}
+
 	/**
 	 * Pending Serial Item Subcontract Order to GRN without Gate Entry for UP type -
 	 * Free pass Items
@@ -597,6 +627,7 @@ public class SubcontractTransactionTest2 extends RoadMapERPTest {
 	public void PendingSerialSubcontractOrderToGRNWithOutGateEntryUPtype() {
 		SubcontractFunc.pendingSerialSubcontractOrderToGRNWithOutGateEntryUPtype();
 	}
+
 	/**
 	 * Pending Serial Item Subcontract Order to GRN without Gate Entry for US type -
 	 * Free pass Items
@@ -609,6 +640,7 @@ public class SubcontractTransactionTest2 extends RoadMapERPTest {
 	public void PendingSerialSubcontractOrderToGRNWithOutGateEntryUStype() {
 		SubcontractFunc.pendingSerialSubcontractOrderToGRNWithOutGateEntryUStype();
 	}
+
 	/**
 	 * Pending Serial Item Subcontract Order to GRN without Gate Entry for CS type -
 	 * Free pass Items
@@ -621,6 +653,7 @@ public class SubcontractTransactionTest2 extends RoadMapERPTest {
 	public void PendingSerialSubcontractOrderToGRNWithOutGateEntryCStype() {
 		SubcontractFunc.pendingSerialSubcontractOrderToGRNWithOutGateEntryCStype();
 	}
+
 	/**
 	 * Pending Serial Item Subcontract Order to GRN With Gate Entry for PR type -
 	 * Free pass Items
@@ -633,6 +666,7 @@ public class SubcontractTransactionTest2 extends RoadMapERPTest {
 	public void PendingSerialSubcontractOrderToGRNWithGateEntryPRtype() {
 		SubcontractFunc.pendingSerialSubcontractOrderToGRNWithGateEntryPRtype();
 	}
+
 	/**
 	 * Pending Serial Item Subcontract Order to GRN With Gate Entry for PR type -
 	 * Free pass Items
@@ -645,6 +679,7 @@ public class SubcontractTransactionTest2 extends RoadMapERPTest {
 	public void PendingSerialSubcontractOrderToGRNWithGateEntryUPtype() {
 		SubcontractFunc.pendingSerialSubcontractOrderToGRNWithGateEntryUPtype();
 	}
+
 	/**
 	 * Pending Serial Item Subcontract Order to GRN With Gate Entry for US type -
 	 * Free pass Items
@@ -657,6 +692,7 @@ public class SubcontractTransactionTest2 extends RoadMapERPTest {
 	public void PendingSerialSubcontractOrderToGRNWithGateEntryUStype() {
 		SubcontractFunc.pendingSerialSubcontractOrderToGRNWithGateEntryUStype();
 	}
+
 	/**
 	 * Pending Serial Item Subcontract Order to GRN With Gate Entry for CS type -
 	 * Free pass Items
@@ -682,6 +718,7 @@ public class SubcontractTransactionTest2 extends RoadMapERPTest {
 	public void PendingSerialSubcontractOrderToGRNWithOutGateEntryPRtypeQCEnable() {
 		SubcontractFunc.pendingSerialSubcontractOrderToGRNWithOutGateEntryPRtypeQCEnable();
 	}
+
 	/**
 	 * Pending Serial Item Subcontract Order to GRN without Gate Entry for UP type -
 	 * QC Enabled Items
@@ -694,6 +731,7 @@ public class SubcontractTransactionTest2 extends RoadMapERPTest {
 	public void PendingSerialSubcontractOrderToGRNWithOutGateEntryUPtypeQCEnable() {
 		SubcontractFunc.pendingSerialSubcontractOrderToGRNWithOutGateEntryUPtypeQCEnable();
 	}
+
 	/**
 	 * Pending Serial Item Subcontract Order to GRN without Gate Entry for CS type -
 	 * QC Enabled Items
@@ -706,6 +744,7 @@ public class SubcontractTransactionTest2 extends RoadMapERPTest {
 	public void PendingSerialSubcontractOrderToGRNWithOutGateEntryCStypeQCEnable() {
 		SubcontractFunc.pendingSerialSubcontractOrderToGRNWithOutGateEntryCStypeQCEnable();
 	}
+
 	/**
 	 * Pending Serial Item Subcontract Order to GRN With Gate Entry for PR type - QC
 	 * Enabled Items
@@ -844,6 +883,7 @@ public class SubcontractTransactionTest2 extends RoadMapERPTest {
 	public void DirectSerialItemSubcontractOrdertoGRNwithGateEntryforPRtypeQCenable() {
 		SubcontractFunc.directSerialItemSubcontractOrdertoGRNwithGateEntryforPRtypeQCenable();
 	}
+
 	/**
 	 * Standard SCO Type Changing Batch Qty And Post
 	 * 
@@ -877,28 +917,29 @@ public class SubcontractTransactionTest2 extends RoadMapERPTest {
 	public void StandardSCOTypeChangingBatchQtyBatchCostAndPost() {
 		SubcontractFunc.standardSCOTypeChangingBatchQtyBatchCostAndPost();
 	}
+
 	/**
 	 * Value Addition Type Changing Batch Qty And Post
 	 * 
 	 * @author Vimal - RMITS
 	 */
 	@Author("Vimal-RMITS")
-	@Test(priority = 146, groups = {
-			"Subcontract" }, description = "Value Addition Type Changing Batch Qty And Post")
+	@Test(priority = 146, groups = { "Subcontract" }, description = "Value Addition Type Changing Batch Qty And Post")
 	public void ValueAdditionSCOTypeChangingBatchQtyAndPost() {
 		SubcontractFunc.valueAdditionSCOTypeChangingBatchQtyAndPost();
 	}
+
 	/**
 	 * Value Addition Type Changing Batch Cost And Post
 	 * 
 	 * @author Vimal - RMITS
 	 */
 	@Author("Vimal-RMITS")
-	@Test(priority = 147, groups = {
-			"Subcontract" }, description = "Value Addition Type Changing Batch Cost And Post")
+	@Test(priority = 147, groups = { "Subcontract" }, description = "Value Addition Type Changing Batch Cost And Post")
 	public void ValueAdditionSCOTypeChangingBatchcostAndPost() {
 		SubcontractFunc.valueAdditionSCOTypeChangingBatchcostAndPost();
 	}
+
 	/**
 	 * SCO Value Addition Type Changing Batch Qty, Batch Cost, SAC Code And Post
 	 * 
@@ -910,6 +951,7 @@ public class SubcontractTransactionTest2 extends RoadMapERPTest {
 	public void ValueAdditionSCOTypeChangingBatchQtyBatchcostAndPost() {
 		SubcontractFunc.valueAdditionSCOTypeChangingBatchQtyBatchcostAndPost();
 	}
+
 	/**
 	 * Standard SCO Type Changing Batch Qty, Batch Cost And CloseShort The Line
 	 * 
@@ -929,7 +971,7 @@ public class SubcontractTransactionTest2 extends RoadMapERPTest {
 	 * @author Vimal - RMITS
 	 */
 	@Author("Vimal-RMITS")
-	@Test(priority = 150 , groups = {
+	@Test(priority = 150, groups = {
 			"Subcontract" }, description = "SCO Value Addition Type Changing Batch Qty, Batch Cost And CloseShort The Line")
 	public void ValueAdditionSCOTypeChangingBatchQtyBatchcostCloseShortAndPost() {
 		SubcontractFunc.valueAdditionSCOTypeChangingBatchQtyBatchcostCloseShortAndPost();
@@ -945,6 +987,7 @@ public class SubcontractTransactionTest2 extends RoadMapERPTest {
 	public void CancelTheSCOCloseShortDocument() {
 		SubcontractFunc.cancelTheSCOCloseShortDocument();
 	}
+
 	/**
 	 * Create Direct GRN With Subcontract Referance
 	 * 
@@ -967,6 +1010,7 @@ public class SubcontractTransactionTest2 extends RoadMapERPTest {
 	public void CreateReworkSubcontractOrderForStandardReworkType() {
 		SubcontractFunc.createReworkSubcontractOrderForStandardReworkType();
 	}
+
 	/**
 	 * How to create Repair - rework order for Subcontract Primary rejection?
 	 * 
@@ -978,6 +1022,7 @@ public class SubcontractTransactionTest2 extends RoadMapERPTest {
 	public void CreateRepairreworkorderforSubcontractPrimaryrejection() {
 		SubcontractFunc.createRepairreworkorderforSubcontractPrimaryrejection();
 	}
+
 	/**
 	 * How to create Scrap - rework order for Subcontract Primary rejection?
 	 * 
@@ -989,6 +1034,7 @@ public class SubcontractTransactionTest2 extends RoadMapERPTest {
 	public void CreateScrapreworkorderforSubcontractPrimaryrejection() {
 		SubcontractFunc.createScrapreworkorderforSubcontractPrimaryrejection();
 	}
+
 	/**
 	 * Create Rework Subcontract Order For Value Addition Rework Type
 	 * 
@@ -1000,8 +1046,10 @@ public class SubcontractTransactionTest2 extends RoadMapERPTest {
 	public void CreateReworkSubcontractOrderForValueAdditionReworkType() {
 		SubcontractFunc.createReworkSubcontractOrderForValueAdditionReworkType();
 	}
+
 	/**
-	 * Pending Subcontract Order to GRN without Gate Entry for SDS type - Free pass Items
+	 * Pending Subcontract Order to GRN without Gate Entry for SDS type - Free pass
+	 * Items
 	 * 
 	 * @author Vimal - RMITS
 	 */
@@ -1011,8 +1059,10 @@ public class SubcontractTransactionTest2 extends RoadMapERPTest {
 	public void CreateProductionOrderFromSubcontractorderToGRNSDSType() {
 		SubcontractFunc.createProductionOrderFromSubcontractorderToGRNSDSType();
 	}
+
 	/**
-	 * Pending Subcontract Order to GRN without Gate Entry for SDS type - Free pass Items
+	 * Pending Subcontract Order to GRN without Gate Entry for SDS type - Free pass
+	 * Items
 	 * 
 	 * @author Vimal - RMITS
 	 */
@@ -1022,6 +1072,7 @@ public class SubcontractTransactionTest2 extends RoadMapERPTest {
 	public void PendingSubcontractOrdertoGRNwithGateEntryforSDStype() {
 		SubcontractFunc.pendingSubcontractOrdertoGRNwithGateEntryforSDStype();
 	}
+
 	/**
 	 * Pending Serial Item Subcontract Order to GRN without Gate Entry for SDS type
 	 * - QC Items
@@ -1034,9 +1085,10 @@ public class SubcontractTransactionTest2 extends RoadMapERPTest {
 	public void PendingSerialItemSubcontractOrdertoGRNwithoutGateEntryforPRtypeQCItems() {
 		SubcontractFunc.pendingSerialItemSubcontractOrdertoGRNwithoutGateEntryforPRtypeQCItems();
 	}
+
 	/**
-	 * Pending Serial Item Subcontract Order to GRN with Gate Entry for SDS type
-	 * - QC Items
+	 * Pending Serial Item Subcontract Order to GRN with Gate Entry for SDS type -
+	 * QC Items
 	 * 
 	 * @author Vimal - RMITS
 	 */
@@ -1046,6 +1098,7 @@ public class SubcontractTransactionTest2 extends RoadMapERPTest {
 	public void PendingSerialSubcontractOrdertoGRNwithGateEntryforSDStype() {
 		SubcontractFunc.pendingSerialSubcontractOrdertoGRNwithGateEntryforSDStype();
 	}
+
 	/**
 	 * Create Serial Item Direct GRN With Subcontract Referance
 	 * 
@@ -1057,6 +1110,7 @@ public class SubcontractTransactionTest2 extends RoadMapERPTest {
 	public void createDirectSerialGRNWithSubcontractReferance() {
 		SubcontractFunc.createDirectSerialGRNWithSubcontractReferance();
 	}
+
 	/**
 	 * Direct Subcontract Order to GRN without Gate Entry for SDS type - QC Item
 	 * 
@@ -1081,6 +1135,7 @@ public class SubcontractTransactionTest2 extends RoadMapERPTest {
 	public void directSerialItemSubcontractOrdertoGRNwithGateEntryforSDStypeQCenable() {
 		SubcontractFunc.directSerialItemSubcontractOrdertoGRNwithGateEntryforSDStypeQCenable();
 	}
+
 	/**
 	 * Verify After Method
 	 * 
@@ -1089,6 +1144,10 @@ public class SubcontractTransactionTest2 extends RoadMapERPTest {
 	 */
 	@AfterMethod
 	public void VerifyAfterMethod(ITestResult result, Method method) {
+		previousStatus = result.getStatus();
+		if (previousStatus == ITestResult.FAILURE || previousStatus == ITestResult.SKIP) {
+			commonFunc.verifyAfterMethod();
+		}
 		commonFunc.enterAuthorNamesInExtentReport(method);
 	}
 }

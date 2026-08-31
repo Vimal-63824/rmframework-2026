@@ -5,6 +5,7 @@ import java.lang.reflect.Method;
 
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import commonfunctions.Author;
@@ -13,6 +14,7 @@ import commonfunctions.Author;
  * @company Galaxy Weblinks Feburary 05, 2025
  */
 import commonfunctions.CommonFunctions;
+import commonfunctions.VariableHandler;
 import commonfunctions.qualitycontrol.InspectionDocumentFunctions;
 import commonfunctions.supplychainmanagement.GrnPageFunctions;
 import commonfunctions.supplychainmanagement.MaterialReceiptVoucherFunctions;
@@ -31,6 +33,18 @@ public class GrnTest2 extends RoadMapERPTest {
 	private static ReportLoger logs = new ReportLoger();
 	InspectionDocumentFunctions InsFunc = new InspectionDocumentFunctions();
 	MaterialReceiptVoucherFunctions MrvFunc = new MaterialReceiptVoucherFunctions();
+	private static int previousStatus = ITestResult.SUCCESS;
+
+	@BeforeMethod(alwaysRun = true)
+	private void VerifyLogin() {
+		if (VariableHandler.getSessionID() == null || VariableHandler.getSessionID().equalsIgnoreCase("")
+				|| VariableHandler.getSessionOpened() == false || VariableHandler.getSessionID().equals(null)) {
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+					"AdminUsername");
+		} else {
+			commonFunc.navigateToHomePage();
+		}
+	}
 
 	/**
 	 * This Methods Is Used To Create GRN Document from PO with Inspection PriceList
@@ -782,7 +796,8 @@ public class GrnTest2 extends RoadMapERPTest {
 			"GRN" }, description = "370 PO to GRN-Stock Transfer-Rate Contract-Different Stock and Supplier UOM")
 	public void POToGrnStockTransferRateContractDifferentStockandSupplierUOMForFreePassItem() throws Exception {
 		grnPageFunc.poToGrnStockTransferRateContractDifferentUOMForFreePassItem();
-	}	
+	}
+
 	/**
 	 * This Methods Is Used To Create GRN Document from PO with Inspection Stock
 	 * Transfer Price List Type
@@ -795,9 +810,7 @@ public class GrnTest2 extends RoadMapERPTest {
 			"GRN" }, description = "371 PO to GRN-Stock Transfer-User Defined-Same Stock and Supplier UOM - With Inspection Plan")
 	public void POToGrnStockTransferUserdefinedforDifferentStockandSupplierUOMFreepassItem() throws Exception {
 		grnPageFunc.PoToGRNStockTransferUserDefinedDifferentStockAndSupplierUOMForFreePass();
-	}	
-	
-	
+	}
 
 	/**
 	 * Verify After Method
@@ -807,7 +820,10 @@ public class GrnTest2 extends RoadMapERPTest {
 	 */
 	@AfterMethod
 	public void VerifyAfterMethod(ITestResult result, Method method) {
-		commonFunc.verifyAfterMethod();
+		previousStatus = result.getStatus();
+		if (previousStatus == ITestResult.FAILURE || previousStatus == ITestResult.SKIP) {
+			commonFunc.verifyAfterMethod();
+		}
 		commonFunc.enterAuthorNamesInExtentReport(method);
 	}
 

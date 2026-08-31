@@ -92,8 +92,8 @@ public class OpenPoRcFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyCreateStandardDomesticWithStockAndSupplierSimilarUOM() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("SimItem_ID"));
 		commonFunc.navigateOpenPORCPage();
@@ -155,8 +155,9 @@ public class OpenPoRcFunctions {
 	 */
 	public void verifyAddItemInOpenPOLine(String Item, String UnitCost, String DiscPercentage, String HSNCode) {
 		addItemButton(Item);
-		purchaseOrderFunc.verifyAddTableSpecs(OpenPoRcLocators.UnitCost, OpenPoRcLocators.UnitCostInput, UnitCost);
-		purchaseOrderFunc.verifyAddTableSpecs(OpenPoRcLocators.DiscPercentage, OpenPoRcLocators.DiscPercentageInput,
+		purchaseOrderFunc.verifyAddTableSpecs(OpenPoRcLocators.UnitCost(), OpenPoRcLocators.UnitCostInput, UnitCost);
+		System.out.println("Unitcost");
+		purchaseOrderFunc.verifyAddTableSpecs(OpenPoRcLocators.DiscPercentage(), OpenPoRcLocators.DiscPercentageInput,
 				DiscPercentage);
 		verifyHSNDetailsUpdation(HSNCode);
 		verifyItemTickButton();
@@ -177,6 +178,7 @@ public class OpenPoRcFunctions {
 			flag = webDB.waitForElement(OpenPoRcLocators.ItemTable, ElementType.Xpath);
 			if (flag) {
 				webDB.clickAnElement(OpenPoRcLocators.ItemTable, ElementType.Xpath);
+				commonFunc.hardWait(3000);
 				commonFunc.searchAndSelectValueInFilters(OpenPoRcLocators.ItemLovButton, Item);
 //				flag = webDB.waitForElement(OpenPoRcLocators.ItemTable, ElementType.Xpath);
 //				if (flag) {
@@ -198,11 +200,11 @@ public class OpenPoRcFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyHSNDetailsUpdation(String HSNCode) {
-		webDB.moveToElement(OpenPoRcLocators.HsnCodeTable, ElementType.Xpath);
-		flag = webDB.waitForElement(OpenPoRcLocators.HsnCodeTable, ElementType.Xpath);
+		webDB.moveToElement(OpenPoRcLocators.HsnCodeTable(), ElementType.Xpath);
+		flag = webDB.waitForElement(OpenPoRcLocators.HsnCodeTable(), ElementType.Xpath);
 		if (flag) {
 			logs.logging("INFO", "HSN Code In Table Is Displayed");
-			webDB.clickAnElement(OpenPoRcLocators.HsnCodeTable, ElementType.Xpath);
+			webDB.clickAnElement(OpenPoRcLocators.HsnCodeTable(), ElementType.Xpath);
 			commonFunc.searchAndSelectValueInFilters(OpenPoRcLocators.HSNCode, HSNCode);
 		}
 		assertTrue(flag);
@@ -344,14 +346,14 @@ public class OpenPoRcFunctions {
 	 */
 	public void verifyUnitCostValidation(String quantity, String UnitCost, String DiscValue, String AmendValue) {
 		commonFunc.checkRefreshCellsDisappear();
-		verifyAddTableSpecs(PurchaseOrderPageLocators.OrderedQuantity, PurchaseOrderPageLocators.OrderedQuantityInput,
+		verifyAddTableSpecs(PurchaseOrderPageLocators.OrderedQuantity(), PurchaseOrderPageLocators.OrderedQuantityInput,
 				quantity);
 		webDB.pressEnterKey();
 		commonFunc.checkRefreshCellsDisappear();
-		flag = webDB.waitForElement(PurchaseOrderPageLocators.UnitCostTable(1), ElementType.Xpath);
+		flag = webDB.waitForElement(PurchaseOrderPageLocators.UnitCostTable, ElementType.Xpath);
 		if (flag) {
 			commonFunc.hardWait(3000);
-			String Text = webDB.getTextFromElement(PurchaseOrderPageLocators.UnitCostTable(1), ElementType.Xpath);
+			String Text = webDB.getTextFromElement(PurchaseOrderPageLocators.UnitCostTable, ElementType.Xpath);
 			logs.logging("INFO", "Get Text Value Unit Cost Is: " + Text);
 			flag = Text.equals(UnitCost);
 			if (flag) {
@@ -412,8 +414,8 @@ public class OpenPoRcFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyCreateStandardDomesticWithStockAndSupplierDissimilarUOM() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem2(commonFunc.getDataFromTestDataSheet("DissimItem_ID"));
 		commonFunc.navigateOpenPORCPage();
@@ -455,8 +457,8 @@ public class OpenPoRcFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyCreateStandardImportWithStockAndSupplierSimilarUOM() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("SimItem_ID"));
 		commonFunc.navigateOpenPORCPage();
@@ -498,8 +500,8 @@ public class OpenPoRcFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyCreateStandardImportWithStockAndSupplierDissimilarUOM() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem2(commonFunc.getDataFromTestDataSheet("DissimItem_ID"));
 		commonFunc.navigateOpenPORCPage();
@@ -575,8 +577,8 @@ public class OpenPoRcFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyCreateStockTransferDomesticWithStockAndSupplierSimilarUOM() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("SimItem_ID"));
 		commonFunc.navigateOpenPORCPage();
@@ -617,8 +619,8 @@ public class OpenPoRcFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyCreateStockTransferDomesticWithStockAndSupplierDissimilarUOM() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("DissimItem_ID"));
 		commonFunc.navigateOpenPORCPage();
@@ -659,8 +661,8 @@ public class OpenPoRcFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyCreateServiceDomesticWithStockAndSupplierSimilarUOM() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("GwlItem_Service"));
 		commonFunc.navigateOpenPORCPage();
@@ -708,9 +710,12 @@ public class OpenPoRcFunctions {
 			webDB.moveToElement(OpenPoRcLocators.ItemTable, ElementType.Xpath);
 			webDB.moveToElement(OpenPoRcLocators.LineCancelButton, ElementType.Xpath);
 			webDB.doubleClickAnElement(OpenPoRcLocators.LineCancelButton, ElementType.Xpath);
-			webDB.switchToAlertAccept();
 			commonFunc.hardWait(2000);
-			commonFunc.checkRefreshCellsDisappear();
+//			webDB.pressEnterKey();
+//			webDB.switchToAlertAccept(5);
+//			commonFunc.hardWait(7000);
+//			webDB.switchToDefaultContent();
+//			commonFunc.checkRefreshCellsDisappear();
 			flag = webDB.waitForElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Toast Message Displayed, Line Deleted Successfully");
@@ -730,11 +735,12 @@ public class OpenPoRcFunctions {
 	 * 
 	 */
 	public void verifyCancelDocuments() {
-		webDB.moveToElement(OpenPoRcLocators.HeaderCancelButton, ElementType.Xpath);
+//		webDB.moveToElement(OpenPoRcLocators.HeaderCancelButton, ElementType.Xpath);
 		flag = webDB.waitForElement(OpenPoRcLocators.HeaderCancelButton, ElementType.Xpath);
 		if (flag) {
 			webDB.doubleClickAnElement(OpenPoRcLocators.HeaderCancelButton, ElementType.Xpath);
 //			webDB.switchToAlertAccept();
+//			commonFunc.hardWait(3000);
 			flag = webDB.waitForElement(CommonUiLocators.OkayButton, ElementType.Xpath);
 			if (flag) {
 				webDB.clickAnElement(CommonUiLocators.OkayButton, ElementType.Xpath);
@@ -754,8 +760,8 @@ public class OpenPoRcFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyCancelOpenPODocuments() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("SimItem_ID"));
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
@@ -771,7 +777,7 @@ public class OpenPoRcFunctions {
 		verifyCancelDocuments();
 		verifyOpenPoApprovalStatus(VariableHandler.getOpenPoNumber(),
 				commonFunc.getDataFromTestDataSheet("CancelStatus"));
-		commonFunc.logoutUser();
+//		commonFunc.logoutUser();
 	}
 
 	/**
@@ -782,7 +788,7 @@ public class OpenPoRcFunctions {
 	 * @param Value
 	 * @param i
 	 */
-	public void verifyFilterSearchOpenPO(String LovButton, String Value, int i) {
+	public void verifyFilterSearchOpenPO(String LovButton, String Value, String i) {
 		webDB.scrollToAnElement(LovButton, ElementType.Xpath);
 		commonFunc.searchAndSelectValueInFilters(LovButton, Value);
 		clickSearchButton();
@@ -820,8 +826,8 @@ public class OpenPoRcFunctions {
 	 * @param i
 	 * @param Value
 	 */
-	public void verifyTableValue(int i, String Value) {
-		List<WebElement> elements = webDB.getDriver().findElements(By.xpath(OpenPoRcLocators.FindTableData(i)));
+	public void verifyTableValue(String Header, String Value) {
+		List<WebElement> elements = webDB.getDriver().findElements(By.xpath(OpenPoRcLocators.FindTableData(Header)));
 		for (WebElement element : elements) {
 			if (element.isDisplayed()) {
 				flag = element.getText().contains(Value);
@@ -856,19 +862,21 @@ public class OpenPoRcFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyFilterOpenPOTableData() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 		commonFunc.navigateOpenPORCPage();
 		verifyClickOpenPORcButton();
 		verifyFilterSearchOpenPO(OpenPoRcLocators.FindOpenPoNoButton,
-				commonFunc.getDataFromTestDataSheet("SampleOpenPONumber"), 6);
-		verifyFilterSearchOpenPO(OpenPoRcLocators.FindLocationButton, commonFunc.getDataFromTestDataSheet("Loc_100"),
-				3);
-		verifyFilterSearchOpenPO(OpenPoRcLocators.FindUnitButton, commonFunc.getDataFromTestDataSheet("Unit_100"), 4);
-		verifyFilterSearchOpenPO(OpenPoRcLocators.FindSupplierButton,
-				commonFunc.getDataFromTestDataSheet("PraxairSupplier"), 11);
+				commonFunc.getDataFromTestDataSheet("SampleOpenPONumber"), "OpenPO");
 
-		commonFunc.logoutUser();
+		verifyFilterSearchOpenPO(OpenPoRcLocators.FindLocationButton, commonFunc.getDataFromTestDataSheet("Loc_100"),
+				"Loc. ID ");
+		verifyFilterSearchOpenPO(OpenPoRcLocators.FindUnitButton, commonFunc.getDataFromTestDataSheet("Unit_100"),
+				"Unit");
+		verifyFilterSearchOpenPO(OpenPoRcLocators.FindSupplierButton,
+				commonFunc.getDataFromTestDataSheet("PraxairSupplier"), " Supplier ID");
+
+//		commonFunc.logoutUser();
 	}
 
 	/**
@@ -877,8 +885,8 @@ public class OpenPoRcFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyAmendStandardDomesticWithStockAndSupplierSimilarUOM() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("SimItem_ID"));
 		commonFunc.navigateOpenPORCPage();
@@ -1021,10 +1029,10 @@ public class OpenPoRcFunctions {
 		flag = webDB.waitForElement(OpenPoRcLocators.AmendAddButton, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(OpenPoRcLocators.AmendAddButton, ElementType.Xpath);
-			flag = webDB.waitForElement(OpenPoRcLocators.AmendItemTable, ElementType.Xpath);
+			flag = webDB.waitForElement(OpenPoRcLocators.AmendItemTable(), ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Add Button IS Clicked");
-				webDB.clickAnElement(OpenPoRcLocators.AmendItemTable, ElementType.Xpath);
+				webDB.clickAnElement(OpenPoRcLocators.AmendItemTable(), ElementType.Xpath);
 				commonFunc.searchAndSelectValueInFilters(OpenPoRcLocators.AmendItemLovButton, Item);
 			}
 		}
@@ -1058,9 +1066,9 @@ public class OpenPoRcFunctions {
 	 */
 	public void verifyAddItemInAmendOpenPOLine(String Item, String UnitCost, String DiscPercentage, String HSNCode) {
 		addAmendItemButton(Item);
-		purchaseOrderFunc.verifyAddTableSpecs(OpenPoRcLocators.AmendNewUnitCostTable,
+		purchaseOrderFunc.verifyAddTableSpecs(OpenPoRcLocators.AmendNewUnitCostTable(),
 				OpenPoRcLocators.AmendNewUnitCostInput, UnitCost);
-		purchaseOrderFunc.verifyAddTableSpecs(OpenPoRcLocators.AmendDiscTable, OpenPoRcLocators.AmendDiscInput,
+		purchaseOrderFunc.verifyAddTableSpecs(OpenPoRcLocators.AmendDiscTable(), OpenPoRcLocators.AmendDiscInput,
 				DiscPercentage);
 		verifyAmendHSNDetailsUpdation(HSNCode);
 		verifyAmendItemTickButton();
@@ -1154,8 +1162,8 @@ public class OpenPoRcFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyAmendStandardDomesticWithStockAndSupplierDissimilarUOM() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem2(commonFunc.getDataFromTestDataSheet("DissimItem_ID"));
 		commonFunc.navigateOpenPORCPage();
@@ -1215,8 +1223,8 @@ public class OpenPoRcFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyAmendStandardImportWithStockAndSupplierSimilarUOM() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("SimItem_ID"));
 		commonFunc.navigateOpenPORCPage();
@@ -1275,8 +1283,8 @@ public class OpenPoRcFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyAmendStandardImportWithStockAndSupplierDissimilarUOM() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem2(commonFunc.getDataFromTestDataSheet("DissimItem_ID"));
 		commonFunc.navigateOpenPORCPage();
@@ -1335,8 +1343,8 @@ public class OpenPoRcFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyAmendStockTransferDomesticWithStockAndSupplierSimilarUOM() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("SimItem_ID"));
 		commonFunc.navigateOpenPORCPage();
@@ -1396,8 +1404,8 @@ public class OpenPoRcFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyAmendStockTransferDomesticWithStockAndSupplierDissimilarUOM() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem2(commonFunc.getDataFromTestDataSheet("DissimItem_ID"));
 		commonFunc.navigateOpenPORCPage();
@@ -1456,10 +1464,11 @@ public class OpenPoRcFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyAmendSeviceDomesticWithStockAndSupplierSimilarUOM() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("GwlItem_Service"));
+//		VariableHandler.setItemName("ROAU-SIM-577496");
 		commonFunc.navigateOpenPORCPage();
 		verifyClickOpenPORcButton();
 		verifyCreateOpenPoDoc(commonFunc.getDataFromTestDataSheet("L0001"),
@@ -1534,7 +1543,7 @@ public class OpenPoRcFunctions {
 						logs.logging("INFO", "CheckBox IS Clicked");
 						webDB.clickAnElement(OpenPoRcLocators.AmendLineOkButton, ElementType.Xpath);
 						webDB.switchToDefaultContent();
-						flag = webDB.waitForElement(OpenPoRcLocators.AmendType, ElementType.Xpath);
+						flag = webDB.waitForElement(OpenPoRcLocators.AmendType(), ElementType.Xpath);
 						if (flag) {
 							logs.logging("INFO", "Added Open Po Lines Successfully");
 						}
@@ -1553,10 +1562,10 @@ public class OpenPoRcFunctions {
 	 * @param AmendType
 	 */
 	public void verifyChangeAmendType(String AmendType) {
-		flag = webDB.waitForElement(OpenPoRcLocators.AmendType, ElementType.Xpath);
+		flag = webDB.waitForElement(OpenPoRcLocators.AmendType(), ElementType.Xpath);
 		if (flag) {
 			logs.logging("INFO", "Amend Type Is Displayed");
-			webDB.doubleClickAnElement(OpenPoRcLocators.AmendType, ElementType.Xpath);
+			webDB.doubleClickAnElement(OpenPoRcLocators.AmendType(), ElementType.Xpath);
 			flag = webDB.waitForElement(OpenPoRcLocators.AmendTypeSelect, ElementType.Xpath);
 			if (flag) {
 				webDB.selectDropDownByText(OpenPoRcLocators.AmendTypeSelect, AmendType, ElementType.Xpath);
@@ -1572,8 +1581,8 @@ public class OpenPoRcFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyDOIAmendStandardDomesticWithStockAndSupplierSimilarUOM() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("SimItem_ID"));
 		commonFunc.navigateOpenPORCPage();
@@ -1630,8 +1639,8 @@ public class OpenPoRcFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyDOIAmendStandardDomesticWithStockAndSupplierDissimilarUOM() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem2(commonFunc.getDataFromTestDataSheet("DissimItem_ID"));
 		commonFunc.navigateOpenPORCPage();
@@ -1688,8 +1697,8 @@ public class OpenPoRcFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyDOIAmendStandardImportWithStockAndSupplierSimilarUOM() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("SimItem_ID"));
 		commonFunc.navigateOpenPORCPage();
@@ -1747,8 +1756,8 @@ public class OpenPoRcFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyDOIAmendStandardImportWithStockAndSupplierDissimilarUOM() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem2(commonFunc.getDataFromTestDataSheet("DissimItem_ID"));
 		commonFunc.navigateOpenPORCPage();
@@ -1809,7 +1818,7 @@ public class OpenPoRcFunctions {
 	 */
 	public void verifyDOIUnitCostValidation(String quantity) {
 		commonFunc.checkRefreshCellsDisappear();
-		verifyAddTableSpecs(PurchaseOrderPageLocators.OrderedQuantity, PurchaseOrderPageLocators.OrderedQuantityInput,
+		verifyAddTableSpecs(PurchaseOrderPageLocators.OrderedQuantity(), PurchaseOrderPageLocators.OrderedQuantityInput,
 				quantity);
 		webDB.pressEnterKey();
 		commonFunc.checkRefreshCellsDisappear();
@@ -1829,8 +1838,8 @@ public class OpenPoRcFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyDOIAmendStockTransferDomesticWithStockAndSupplierSimilarUOM() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("SimItem_ID"));
 		commonFunc.navigateOpenPORCPage();
@@ -1887,8 +1896,8 @@ public class OpenPoRcFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyDOIAmendStockTransferDomesticWithStockAndSupplierDissimilarUOM() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem2(commonFunc.getDataFromTestDataSheet("DissimItem_ID"));
 		commonFunc.navigateOpenPORCPage();
@@ -1944,8 +1953,8 @@ public class OpenPoRcFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyDOIAmendServiceDomesticWithStockAndSupplierSimilarUOM() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("GwlItem_Service"));
 		commonFunc.navigateOpenPORCPage();
@@ -2001,8 +2010,8 @@ public class OpenPoRcFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyPCAmendStandardDomesticWithStockAndSupplierSimilarUOM() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("SimItem_ID"));
 		commonFunc.navigateOpenPORCPage();
@@ -2029,9 +2038,9 @@ public class OpenPoRcFunctions {
 		createOpenPoAmendDocuments();
 		verifyAddPoLineItemForModify();
 		verifyChangeAmendType(commonFunc.getDataFromTestDataSheet("PriceChange"));
-		purchaseOrderFunc.verifyAddTableSpecs(OpenPoRcLocators.AmendNewUnitCostTable,
+		purchaseOrderFunc.verifyAddTableSpecs(OpenPoRcLocators.AmendNewUnitCostTable(),
 				OpenPoRcLocators.AmendNewUnitCostInput, commonFunc.getDataFromTestDataSheet("NewUnitPrice"));
-		purchaseOrderFunc.verifyAddTableSpecs(OpenPoRcLocators.AmendDiscTable, OpenPoRcLocators.AmendDiscInput,
+		purchaseOrderFunc.verifyAddTableSpecs(OpenPoRcLocators.AmendDiscTable(), OpenPoRcLocators.AmendDiscInput,
 				commonFunc.getDataFromTestDataSheet("SixValue"));
 		verifyAmendItemTickButton();
 		verifyOpenPoAmendHeaderSaveAndPost();
@@ -2065,8 +2074,8 @@ public class OpenPoRcFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyPCAmendStandardDomesticWithStockAndSupplierDissimilarUOM() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem2(commonFunc.getDataFromTestDataSheet("DissimItem_ID"));
 		commonFunc.navigateOpenPORCPage();
@@ -2093,9 +2102,9 @@ public class OpenPoRcFunctions {
 		createOpenPoAmendDocuments();
 		verifyAddPoLineItemForModify();
 		verifyChangeAmendType(commonFunc.getDataFromTestDataSheet("PriceChange"));
-		purchaseOrderFunc.verifyAddTableSpecs(OpenPoRcLocators.AmendNewUnitCostTable,
+		purchaseOrderFunc.verifyAddTableSpecs(OpenPoRcLocators.AmendNewUnitCostTable(),
 				OpenPoRcLocators.AmendNewUnitCostInput, commonFunc.getDataFromTestDataSheet("NewUnitPrice"));
-		purchaseOrderFunc.verifyAddTableSpecs(OpenPoRcLocators.AmendDiscTable, OpenPoRcLocators.AmendDiscInput,
+		purchaseOrderFunc.verifyAddTableSpecs(OpenPoRcLocators.AmendDiscTable(), OpenPoRcLocators.AmendDiscInput,
 				commonFunc.getDataFromTestDataSheet("SixValue"));
 		verifyAmendItemTickButton();
 		verifyOpenPoAmendHeaderSaveAndPost();
@@ -2129,8 +2138,8 @@ public class OpenPoRcFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyPCAmendStandardImportWithStockAndSupplierSimilarUOM() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("SimItem_ID"));
 		commonFunc.navigateOpenPORCPage();
@@ -2157,9 +2166,9 @@ public class OpenPoRcFunctions {
 		createOpenPoAmendDocuments();
 		verifyAddPoLineItemForModify();
 		verifyChangeAmendType(commonFunc.getDataFromTestDataSheet("PriceChange"));
-		purchaseOrderFunc.verifyAddTableSpecs(OpenPoRcLocators.AmendNewUnitCostTable,
+		purchaseOrderFunc.verifyAddTableSpecs(OpenPoRcLocators.AmendNewUnitCostTable(),
 				OpenPoRcLocators.AmendNewUnitCostInput, commonFunc.getDataFromTestDataSheet("NewUnitPrice"));
-		purchaseOrderFunc.verifyAddTableSpecs(OpenPoRcLocators.AmendDiscTable, OpenPoRcLocators.AmendDiscInput,
+		purchaseOrderFunc.verifyAddTableSpecs(OpenPoRcLocators.AmendDiscTable(), OpenPoRcLocators.AmendDiscInput,
 				commonFunc.getDataFromTestDataSheet("SixValue"));
 		verifyAmendItemTickButton();
 		verifyOpenPoAmendHeaderSaveAndPost();
@@ -2193,8 +2202,8 @@ public class OpenPoRcFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyPCAmendStandardImportWithStockAndSupplierDissimilarUOM() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem2(commonFunc.getDataFromTestDataSheet("DissimItem_ID"));
 		commonFunc.navigateOpenPORCPage();
@@ -2221,9 +2230,9 @@ public class OpenPoRcFunctions {
 		createOpenPoAmendDocuments();
 		verifyAddPoLineItemForModify();
 		verifyChangeAmendType(commonFunc.getDataFromTestDataSheet("PriceChange"));
-		purchaseOrderFunc.verifyAddTableSpecs(OpenPoRcLocators.AmendNewUnitCostTable,
+		purchaseOrderFunc.verifyAddTableSpecs(OpenPoRcLocators.AmendNewUnitCostTable(),
 				OpenPoRcLocators.AmendNewUnitCostInput, commonFunc.getDataFromTestDataSheet("NewUnitPrice"));
-		purchaseOrderFunc.verifyAddTableSpecs(OpenPoRcLocators.AmendDiscTable, OpenPoRcLocators.AmendDiscInput,
+		purchaseOrderFunc.verifyAddTableSpecs(OpenPoRcLocators.AmendDiscTable(), OpenPoRcLocators.AmendDiscInput,
 				commonFunc.getDataFromTestDataSheet("SixValue"));
 		verifyAmendItemTickButton();
 		verifyOpenPoAmendHeaderSaveAndPost();
@@ -2257,8 +2266,8 @@ public class OpenPoRcFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyPCAmendStockTransferDomesticWithStockAndSupplierSimilarUOM() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("SimItem_ID"));
 		commonFunc.navigateOpenPORCPage();
@@ -2285,9 +2294,9 @@ public class OpenPoRcFunctions {
 		createOpenPoAmendDocuments();
 		verifyAddPoLineItemForModify();
 		verifyChangeAmendType(commonFunc.getDataFromTestDataSheet("PriceChange"));
-		purchaseOrderFunc.verifyAddTableSpecs(OpenPoRcLocators.AmendNewUnitCostTable,
+		purchaseOrderFunc.verifyAddTableSpecs(OpenPoRcLocators.AmendNewUnitCostTable(),
 				OpenPoRcLocators.AmendNewUnitCostInput, commonFunc.getDataFromTestDataSheet("NewUnitPrice"));
-		purchaseOrderFunc.verifyAddTableSpecs(OpenPoRcLocators.AmendDiscTable, OpenPoRcLocators.AmendDiscInput,
+		purchaseOrderFunc.verifyAddTableSpecs(OpenPoRcLocators.AmendDiscTable(), OpenPoRcLocators.AmendDiscInput,
 				commonFunc.getDataFromTestDataSheet("SixValue"));
 		verifyAmendItemTickButton();
 		verifyOpenPoAmendHeaderSaveAndPost();
@@ -2321,8 +2330,8 @@ public class OpenPoRcFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyPCAmendStockTransferDomesticWithStockAndSupplierDissimilarUOM() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem2(commonFunc.getDataFromTestDataSheet("DissimItem_ID"));
 		commonFunc.navigateOpenPORCPage();
@@ -2349,9 +2358,9 @@ public class OpenPoRcFunctions {
 		createOpenPoAmendDocuments();
 		verifyAddPoLineItemForModify();
 		verifyChangeAmendType(commonFunc.getDataFromTestDataSheet("PriceChange"));
-		purchaseOrderFunc.verifyAddTableSpecs(OpenPoRcLocators.AmendNewUnitCostTable,
+		purchaseOrderFunc.verifyAddTableSpecs(OpenPoRcLocators.AmendNewUnitCostTable(),
 				OpenPoRcLocators.AmendNewUnitCostInput, commonFunc.getDataFromTestDataSheet("NewUnitPrice"));
-		purchaseOrderFunc.verifyAddTableSpecs(OpenPoRcLocators.AmendDiscTable, OpenPoRcLocators.AmendDiscInput,
+		purchaseOrderFunc.verifyAddTableSpecs(OpenPoRcLocators.AmendDiscTable(), OpenPoRcLocators.AmendDiscInput,
 				commonFunc.getDataFromTestDataSheet("SixValue"));
 		verifyAmendItemTickButton();
 		verifyOpenPoAmendHeaderSaveAndPost();
@@ -2384,8 +2393,8 @@ public class OpenPoRcFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyPCAmendServiceDomesticWithStockAndSupplierSimilarUOM() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("GwlItem_Service"));
 		commonFunc.navigateOpenPORCPage();
@@ -2412,9 +2421,9 @@ public class OpenPoRcFunctions {
 		createOpenPoAmendDocuments();
 		verifyAddPoLineItemForModify();
 		verifyChangeAmendType(commonFunc.getDataFromTestDataSheet("PriceChange"));
-		purchaseOrderFunc.verifyAddTableSpecs(OpenPoRcLocators.AmendNewUnitCostTable,
+		purchaseOrderFunc.verifyAddTableSpecs(OpenPoRcLocators.AmendNewUnitCostTable(),
 				OpenPoRcLocators.AmendNewUnitCostInput, commonFunc.getDataFromTestDataSheet("NewUnitPrice"));
-		purchaseOrderFunc.verifyAddTableSpecs(OpenPoRcLocators.AmendDiscTable, OpenPoRcLocators.AmendDiscInput,
+		purchaseOrderFunc.verifyAddTableSpecs(OpenPoRcLocators.AmendDiscTable(), OpenPoRcLocators.AmendDiscInput,
 				commonFunc.getDataFromTestDataSheet("SixValue"));
 		verifyAmendItemTickButton();
 		verifyOpenPoAmendHeaderSaveAndPost();
@@ -2569,8 +2578,8 @@ public class OpenPoRcFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyTermChangeAmendStandardDomesticWithStockAndSupplierSimilarUOM() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("SimItem_ID"));
 		commonFunc.navigateOpenPORCPage();
@@ -2621,8 +2630,8 @@ public class OpenPoRcFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyTermChangeAmendStandardDomesticWithStockAndSupplierDissimilarUOM() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem2(commonFunc.getDataFromTestDataSheet("DissimItem_ID"));
 		commonFunc.navigateOpenPORCPage();
@@ -2674,8 +2683,8 @@ public class OpenPoRcFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyTermChangeAmendStandardImportWithStockAndSupplierSimilarUOM() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("SimItem_ID"));
 		commonFunc.navigateOpenPORCPage();
@@ -2727,8 +2736,8 @@ public class OpenPoRcFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyTermChangeAmendStandardImportWithStockAndSupplierDissimilarUOM() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem2(commonFunc.getDataFromTestDataSheet("DissimItem_ID"));
 		commonFunc.navigateOpenPORCPage();
@@ -2825,8 +2834,8 @@ public class OpenPoRcFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyTermChangeAmendStockTransferDomesticWithStockAndSupplierSimilarUOM() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("SimItem_ID"));
 		commonFunc.navigateOpenPORCPage();
@@ -2878,8 +2887,8 @@ public class OpenPoRcFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyTermChangeAmendStockTransferDomesticWithStockAndSupplierDissimilarUOM() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem2(commonFunc.getDataFromTestDataSheet("DissimItem_ID"));
 		commonFunc.navigateOpenPORCPage();
@@ -2930,8 +2939,8 @@ public class OpenPoRcFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyTermChangeAmendServiceDomesticWithStockAndSupplierSimilarUOM() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("GwlItem_Service"));
 		commonFunc.navigateOpenPORCPage();
@@ -2982,8 +2991,8 @@ public class OpenPoRcFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyOpenPOAmendCancelDocumentAndLineWiseCancel() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("SimItem_ID"));
 		commonFunc.navigateOpenPORCPage();
@@ -3028,14 +3037,19 @@ public class OpenPoRcFunctions {
 		commonFunc.checkRefreshCellsDisappear();
 		flag = webDB.waitForElement(OpenPoRcLocators.LineCancelButton, ElementType.Xpath);
 		if (flag) {
-			webDB.moveToElement(OpenPoRcLocators.AmendItemTable, ElementType.Xpath);
+			webDB.moveToElement(OpenPoRcLocators.AmendItemTable(), ElementType.Xpath);
 			webDB.moveToElement(OpenPoRcLocators.LineCancelButton, ElementType.Xpath);
 			webDB.clickAnElement(OpenPoRcLocators.LineCancelButton, ElementType.Xpath);
-			flag = webDB.waitForElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+			flag = webDB.waitForElement(OpenPoRcLocators.OkButton, ElementType.Xpath);
 			if (flag) {
-				logs.logging("INFO", "Toast Message Displayed, Line Deleted Successfully");
-				if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
-					webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+				webDB.moveToElement(OpenPoRcLocators.OkButton, ElementType.Xpath);
+				webDB.clickAnElement(OpenPoRcLocators.OkButton, ElementType.Xpath);
+				flag = webDB.waitForElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Toast Message Displayed, Line Deleted Successfully");
+					if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+						webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+					}
 				}
 			}
 		}
@@ -3115,8 +3129,8 @@ public class OpenPoRcFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyOtherChangeAmendStandardDomesticWithStockAndSupplierSimilarUOM() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("SimItem_ID"));
 		commonFunc.navigateOpenPORCPage();
@@ -3166,8 +3180,8 @@ public class OpenPoRcFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyOtherChangeAmendStandardDomesticWithStockAndSupplierDissimilarUOM() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem2(commonFunc.getDataFromTestDataSheet("DissimItem_ID"));
 		commonFunc.navigateOpenPORCPage();
@@ -3217,8 +3231,8 @@ public class OpenPoRcFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyOtherChangeAmendStandardImportWithStockAndSupplierSimilarUOM() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("SimItem_ID"));
 		commonFunc.navigateOpenPORCPage();
@@ -3268,8 +3282,8 @@ public class OpenPoRcFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyOtherChangeAmendStandardImportWithStockAndSupplierDissimilarUOM() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem2(commonFunc.getDataFromTestDataSheet("DissimItem_ID"));
 		commonFunc.navigateOpenPORCPage();
@@ -3319,8 +3333,8 @@ public class OpenPoRcFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyOtherChangeAmendStockTransferDomesticWithStockAndSupplierSimilarUOM() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("SimItem_ID"));
 		commonFunc.navigateOpenPORCPage();
@@ -3370,8 +3384,8 @@ public class OpenPoRcFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyOtherChangeAmendStockTransferDomesticWithStockAndSupplierDissimilarUOM() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem2(commonFunc.getDataFromTestDataSheet("DissimItem_ID"));
 		commonFunc.navigateOpenPORCPage();
@@ -3420,8 +3434,8 @@ public class OpenPoRcFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyOtherChangeAmendServiceDomesticWithStockAndSupplierSimilarUOM() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunctions.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("GwlItem_Service"));
 		commonFunc.navigateOpenPORCPage();
@@ -3470,28 +3484,28 @@ public class OpenPoRcFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyFilterOpenPOAmendmentTableData() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 		commonFunc.navigateOpenPORCPage();
 		verifyClickOpenPOAmendmentButton();
 		verifyAmendFilterSearchOpenPO(OpenPoRcLocators.AmendItemButton,
-				commonFunc.getDataFromTestDataSheet("SampleItemName"), 16,
+				commonFunc.getDataFromTestDataSheet("SampleItemName"), "Item",
 				commonFunc.getDataFromTestDataSheet("LineSearchType"));
-		verifyAmendFilterSearchOpenPO(OpenPoRcLocators.AmendSelectStatus,
-				commonFunc.getDataFromTestDataSheet("ApproveStatus"), 13,
-				commonFunc.getDataFromTestDataSheet("HeaderSearchType"), true);
+//		verifyAmendFilterSearchOpenPO(OpenPoRcLocators.AmendSelectStatus,
+//				commonFunc.getDataFromTestDataSheet("ApproveStatus"), 13,
+//				commonFunc.getDataFromTestDataSheet("HeaderSearchType"), true);
 //		verifyAmendFilterSearchOpenPO(OpenPoRcLocators.AmendOpenPONo,
 //				commonFunc.getDataFromTestDataSheet("OpenPONumber"), 6,
 //				commonFunc.getDataFromTestDataSheet("HeaderSearchType"));
 		verifyAmendFilterSearchOpenPO(OpenPoRcLocators.AmendOOAPNo,
-				commonFunc.getDataFromTestDataSheet("SampleOpenPOANumber"), 7,
+				commonFunc.getDataFromTestDataSheet("SampleOpenPOANumber"), "OpenPOAmend",
 				commonFunc.getDataFromTestDataSheet("HeaderSearchType"));
 		verifyAmendFilterSearchOpenPO(OpenPoRcLocators.AmendLocationId, commonFunc.getDataFromTestDataSheet("Loc_100"),
-				3, commonFunc.getDataFromTestDataSheet("HeaderSearchType"));
-		verifyAmendFilterSearchOpenPO(OpenPoRcLocators.AmendUnitId, commonFunc.getDataFromTestDataSheet("Unit_100"), 4,
-				commonFunc.getDataFromTestDataSheet("HeaderSearchType"));
+				"LocId", commonFunc.getDataFromTestDataSheet("HeaderSearchType"));
+		verifyAmendFilterSearchOpenPO(OpenPoRcLocators.AmendUnitId, commonFunc.getDataFromTestDataSheet("Unit_100"),
+				"Unit", commonFunc.getDataFromTestDataSheet("HeaderSearchType"));
 
-		commonFunc.logoutUser();
+//		commonFunc.logoutUser();
 	}
 
 	/**
@@ -3547,8 +3561,30 @@ public class OpenPoRcFunctions {
 	 * @param i
 	 * @param Value
 	 */
-	public void verifyAmendTableValue(int i, String Value) {
+	public void verifyAmendTableValue(String i, String Value) {
 		List<WebElement> elements = webDB.getDriver().findElements(By.xpath(OpenPoRcLocators.AmendFindTableData(i)));
+		for (WebElement element : elements) {
+			if (element.isDisplayed()) {
+				flag = element.getText().contains(Value);
+				System.out.println(element.getText());
+				if (!flag) {
+					break;
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Verify Table Value
+	 * 
+	 * @author Deepan-GWL
+	 * @param i
+	 * @param Value
+	 */
+	public void verifyAmendTableLineValue(String i, String Value) {
+		List<WebElement> elements = webDB.getDriver()
+				.findElements(By.xpath(OpenPoRcLocators.AmendFindLineTableData(i)));
 		for (WebElement element : elements) {
 			if (element.isDisplayed()) {
 				flag = element.getText().contains(Value);
@@ -3569,7 +3605,7 @@ public class OpenPoRcFunctions {
 	 * @param Value
 	 * @param i
 	 */
-	public void verifyAmendFilterSearchOpenPO(String LovButton, String Value, int i, String Type,
+	public void verifyAmendFilterSearchOpenPO(String LovButton, String Value, String i, String Type,
 			boolean... selectflag) {
 		webDB.scrollToAnElement(LovButton, ElementType.Xpath);
 		if (selectflag != null) {
@@ -3579,11 +3615,13 @@ public class OpenPoRcFunctions {
 		}
 		if (Type.equals(commonFunc.getDataFromTestDataSheet("HeaderSearchType"))) {
 			clickAmendSearchButton();
+			commonFunc.hardWait(3000);
+			verifyAmendTableValue(i, Value);
 		} else if (Type.equals(commonFunc.getDataFromTestDataSheet("LineSearchType"))) {
 			clickAmendLineSearchButton();
+			commonFunc.hardWait(3000);
+			verifyAmendTableLineValue(i, Value);
 		}
-		commonFunc.hardWait(3000);
-		verifyAmendTableValue(i, Value);
 		clearSearchFilter();
 	}
 

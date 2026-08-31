@@ -1,5 +1,7 @@
 package commonlocators.supplychainmanagement;
 
+import commonfunctions.CommonFunctions;
+
 /**
  * @author Deepan-GWL, Sakthi-GWL
  * @company Galaxy Weblinks May 01, 2025
@@ -22,14 +24,27 @@ public class OpenPoRcLocators {
 	public static final String OpenPoNo = "//span[@data-testid='P161513102501_PRCHD_PO_NO']";
 	/** @locatorType Xpath */
 	public static final String AddItem = "//button[@data-testid='Add']";
+
 	/** @locatorType Xpath */
-	public static final String ItemTable = "//div[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[2]";
+	public static final String AddScreenHeaderLocators = "(//table[@data-testid='ig_line_ig_report_settings_Result_Data'])[2]";
 	/** @locatorType Xpath */
-	public static final String UnitCost = "//div[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[6]";
+	public static final String ItemTable = "(//table[@data-testid='ig_line_ig_report_settings_Result_Data'])[2]/tbody/tr/td[count((//table[@data-testid='ig_line_ig_report_settings_Result_Data'])[2]/thead/tr[1]/th[normalize-space()='Item']/preceding-sibling::th) + 1]";
+
 	/** @locatorType Xpath */
-	public static final String DiscPercentage = "//div[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[7]";
+	public static final String UnitCost() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(AddScreenHeaderLocators, "UnitCost");
+	}
+
 	/** @locatorType Xpath */
-	public static final String HsnCodeTable = "//div[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[9]";
+	public static final String DiscPercentage() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(AddScreenHeaderLocators, "Disc%");
+	}
+
+	/** @locatorType Xpath */
+	public static final String HsnCodeTable() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(AddScreenHeaderLocators, "HsnSacCode");
+	}
+
 	/** @locatorType Xpath */
 	public static final String ItemLovButton = "//input[@data-testid='DUM_PROD']/following-sibling::button";
 	/** @locatorType Xpath */
@@ -61,11 +76,11 @@ public class OpenPoRcLocators {
 	/** @locatorType Xpath */
 	public static final String HeaderCheckBox = "//label[contains(text(),'Header')]";
 	/** @locatorType Xpath */
-	public static final String LineCancelButton = "//div[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[last()]/a";
+	public static final String LineCancelButton = "(//table[@data-testid='ig_line_ig_report_settings_Result_Data'])[2]/tbody/tr[1]/td[last()]/a";
 	/** @locatorType Xpath */
 	public static final String HeaderCancelButton = "//span[text()='Cancel']/..";
 	/** @locatorType Xpath */
-	public static final String OpenPOTable = "//div[@id='SO_data_panel']/div[1]/div[1]/div[3]/table/tbody/tr[2]/td[1]";
+	public static final String OpenPOTable = "//table[@data-testid='L_Result_Data']/tbody/tr[2]/td[1]";
 	/** @locatorType Xpath */
 	public static final String FindLocationButton = "//input[@data-testid='P1615131025_LOC_NAME']/following-sibling::button";
 	/** @locatorType Xpath */
@@ -94,10 +109,12 @@ public class OpenPoRcLocators {
 	}
 
 	/** @locatorType Xpath */
-	public static final String FindTableData(int i) {
-		return "//div[@id='SO_data_panel']/div[1]/div[1]/div[3]/table/tbody/tr/td[" + i + "]";
+	public static final String FindTableData(String header) {
+		return CommonFunctions.checkAndReturnLocatorForFindPageTable(AddScreenOpenPoValue, header);
 	}
 
+	/** @locatorType Xpath */
+	public static final String AddScreenOpenPoValue = "//table[@data-testid='L_Result_Title']/tbody/tr/th";
 	/** @locatorType Xpath */
 	public static final String AmendOpenPoButton = "//button[@data-testid='Amend']";
 	/** @locatorType Xpath */
@@ -117,15 +134,31 @@ public class OpenPoRcLocators {
 	/** @locatorType Xpath */
 	public static final String AmendCreateItemButton = "//button[@data-testid='Add_Amd']";
 	/** @locatorType Xpath */
-	public static final String AmendItemTable = "//div[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[3]";
+	public static final String AmendTable = "(//table[@data-testid='ig_line_ig_report_settings_Result_Data'])[2]";
+
+//	"OOAP/2309/26-27"
+	/** @locatorType Xpath */
+	public static final String AmendItemTable() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(AmendTable, "Item");
+	}
+
 	/** @locatorType Xpath */
 	public static final String AmendItemLovButton = "//input[@data-testid='PROD_REV']/following-sibling::button";
+
 	/** @locatorType Xpath */
-	public static final String AmendNewUnitCostTable = "//div[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[8]";
+	public static String AmendNewUnitCostTable() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(AmendTable, "NewUnitCost");
+	}
+
 	/** @locatorType Xpath */
-	public static final String AmendHSNCodeTable = "//div[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[11]";
+	public static final String AmendHSNCodeTable = CommonFunctions
+			.checkAndReturnIndexForLocatorWithHeaderValue(AmendTable, "HSN/SAC Code");
+
 	/** @locatorType Xpath */
-	public static final String AmendDiscTable = "//div[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[9]";
+	public static final String AmendDiscTable() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(AmendTable, "Disc%");
+	}
+
 	/** @locatorType Xpath */
 	public static final String AmendNewUnitCostInput = "//input[@data-testid='PRCALN_NEW_PRICE']";
 	/** @locatorType Xpath */
@@ -165,7 +198,10 @@ public class OpenPoRcLocators {
 	}
 
 	/** @locatorType Xpath */
-	public static final String AmendType = "//div[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[2]";
+	public static final String AmendType() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(AmendTable, "AmendType");
+	}
+
 	/** @locatorType Xpath */
 	public static final String AmendTypeSelect = "//select[@data-testid='PRCALN_AMD_TYPE']";
 	/** @locatorType Xpath */
@@ -225,9 +261,9 @@ public class OpenPoRcLocators {
 	/** @locatorType Xpath */
 	public static final String AmendSelectStatus = "//select[@data-testid='P1615131021_STATUS']";
 	/** @locatorType Xpath */
-	public static final String AmendFindTable = "//table[@id='3601977330026062445_orig']/tbody/tr[2]/td[1]";
+	public static final String AmendFindTable = "//table[@data-testid='L_Result_Data']/tbody/tr[2]/td[1]";
 	/** @locatorType Xpath */
-	public static final String AmendLineFindTable = "//table[@id='2038672469665384362_orig']/tbody/tr[2]/td[1]";
+	public static final String AmendLineFindTable = "//table[@data-testid='H_Result_Data']/tbody/tr[2]/td[1]";
 	/** @locatorType Xpath */
 	public static final String LineCheckBox = "//label[text()='Line(s)']";
 
@@ -237,10 +273,20 @@ public class OpenPoRcLocators {
 	}
 
 	/** @locatorType Xpath */
-	public static final String AmendFindTableData(int i) {
-		return "//table[@id='1950966915442829331_orig']/tbody/tr/td[" + i + "]";
+	public static final String AmendFindTableScreen = "//table[@data-testid='L_Result_Data']/tbody/tr[1]/th";
+	/** @locatorType Xpath */
+	public static final String AmendFindLineTableScreen = "//table[@data-testid='H_Result_Data']/tbody/tr[1]/th/tbody/tr[1]/th";
+
+	/** @locatorType Xpath */
+	public static final String AmendFindTableData(String i) {
+		return CommonFunctions.checkAndReturnLocatorForFindPageTable(AmendFindTableScreen, i);
 	}
 
 	/** @locatorType Xpath */
-	public static final String CreateOpenPoFrame = "//iframe[@title='Open PO/RC ']";
+	public static final String AmendFindLineTableData(String i) {
+		return CommonFunctions.checkAndReturnLocatorForFindPageTable(AmendFindLineTableScreen, i);
+	}
+
+	/** @locatorType Xpath */
+	public static final String CreateOpenPoFrame = "//iframe[contains(@title,'Create')]";
 }

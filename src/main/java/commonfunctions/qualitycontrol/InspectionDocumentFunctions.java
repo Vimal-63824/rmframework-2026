@@ -183,9 +183,9 @@ public class InspectionDocumentFunctions {
 	 */
 	public void verifyValidateInspectionDocumentsStatus(String IdNo, String ExpectedStatus) {
 		commonFunc.searchAndSelectValueInFilters(InspectionDocumentsLocators.QcDocumentsButton, IdNo);
-		flag = webDB.waitForElement(InspectionDocumentsLocators.SearchButton, ElementType.Xpath);
+		flag = webDB.waitForElement(GrnLocators.SearchButton, ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(InspectionDocumentsLocators.SearchButton, ElementType.Xpath);
+			webDB.clickAnElement(GrnLocators.SearchButton, ElementType.Xpath);
 			logs.logging("INFO", "Search Button Is Clicked");
 			commonFunc.hardWait(1000);
 			commonFunc.checkRefreshCellsDisappear();
@@ -209,27 +209,21 @@ public class InspectionDocumentFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void AcceptInspectionDocuments() {
-		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("HodPassword"),
-				"HariUsername-Admin");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 		commonFunc.navigateInspectionDocumentsPage();
 		verifyPendingInspectionDocuments(VariableHandler.getGrnDocNumber());
 		clickTickAndPostIcon();
 		flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("AshokValue"));
-			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("AshokUsername"), System.getProperty("AshokPassword"));
-			approvalFunc.navigateToApprovals();
-			approvalFunc.filterDocumentsforApproval(VariableHandler.getIDNumber());
-			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getIDNumber());
-			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("HodPassword"),
-					"HariUsername-Admin");
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getIDNumber(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
 			commonFunc.navigateInspectionDocumentsPage();
 		}
 		verifyValidateInspectionDocumentsStatus(VariableHandler.getIDNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		flag = commonFunc.logoutUser();
 		assertTrue(flag);
 	}
 
@@ -254,7 +248,8 @@ public class InspectionDocumentFunctions {
 		waitingForApproval();
 		String alertText = VariableHandler.getIDAlertMessage();
 		logs.logging("INFO", "Alert text: " + alertText);
-		String pattern = "Pend\\. Inspection Request Moved\\s*-\\s*[A-Za-z0-9]+/\\d{5}/\\d{2}-\\d{2}\\s*~\\s*[A-Za-z0-9]+/\\d{5}/\\d{2}-\\d{2}";
+//		String pattern = "Pend\\. Inspection Request Moved\\s*-\\s*[A-Za-z0-9]+/\\d{5}/\\d{2}-\\d{2}\\s*~\\s*[A-Za-z0-9]+/\\d{5}/\\d{2}-\\d{2}";
+		String pattern = "Pend\\. Inspection Request Moved\\.\\s*:\\s*([A-Za-z0-9]+)/([0-9]{5})/([0-9]{2}-[0-9]{2})\\s*to\\s*([A-Za-z0-9]+)/([0-9]{5})/([0-9]{2}-[0-9]{2})";
 		if (alertText.matches(".*" + pattern + ".*")) {
 			documentSearchAndSelectLovForFindPage();
 			commonFunc.logoutUser();
@@ -820,9 +815,9 @@ public class InspectionDocumentFunctions {
 		try {
 			String alertText = VariableHandler.getIDAlertMessage();
 			logs.logging("INFO", "Alert text: " + alertText);
-			String pattern = "Pend\\. Inspection Request Moved\\s*-\\s*IDU2-\\d{4}-\\d{5}\\s*~\\s*IDU2-\\d{4}-\\d{5}";
-
-			if (alertText.matches(".*" + pattern + ".*")) {
+//			String pattern = "Pend\\. Inspection Request Moved\\s*-\\s*IDU2-\\d{4}-\\d{5}\\s*~\\s*IDU2-\\d{4}-\\d{5}";
+			String regex = "Pend\\. Inspection Request Moved\\.\\s*:\\s*[A-Za-z0-9]+-\\d{4}-\\d{5}\\s*to\\s*[A-Za-z0-9]+-\\d{4}-\\d{5}";
+			if (alertText.matches(".*" + regex + ".*")) {
 				documentSearchAndSelectLovForFindPage();
 				commonFunc.logoutUser();
 				logs.logging("INFO", "Specific alert found, proceeding with the process.");
@@ -1920,7 +1915,7 @@ public class InspectionDocumentFunctions {
 							flag = webDB.waitForElement(DirectGrnPageLocators.DefectQtyInput, ElementType.Xpath);
 							if (flag) {
 								webDB.clearText(DirectGrnPageLocators.DefectQtyInput, ElementType.Xpath);
-								commonFunc.hardWait(1000);
+								commonFunc.hardWait(2000);
 								webDB.sendTextToAnElement(DirectGrnPageLocators.DefectQtyInput, RejectQty,
 										ElementType.Xpath);
 								logs.logging("INFO", "Reject Quantity Is Entered:" + RejectQty);
@@ -1970,7 +1965,8 @@ public class InspectionDocumentFunctions {
 		waitingForApproval();
 		String alertText = VariableHandler.getIDAlertMessage();
 		logs.logging("INFO", "Alert text: " + alertText);
-		String pattern = "Pend\\. Inspection Request Moved\\s*-\\s*[A-Za-z]+-\\d{4}-\\d{4}\\s*~\\s*[A-Za-z]+-\\d{4}-\\d{4}";
+//		String pattern = "Pend\\. Inspection Request Moved\\s*-\\s*[A-Za-z]+-\\d{4}-\\d{4}\\s*~\\s*[A-Za-z]+-\\d{4}-\\d{4}";
+		String pattern = "Pend\\.\\s*Inspection Request Moved\\.\\s*:\\s*[A-Za-z]+-\\d{4}-\\d{4}\\s*(?:to|~)\\s*[A-Za-z]+-\\d{4}-\\d{4}";
 		if (alertText.matches(".*" + pattern + ".*")) {
 			documentSearchAndSelectLovForFindPage();
 //			commonFunc.logoutUser();

@@ -257,6 +257,7 @@ public class MRPFunctions {
 		webDB.waitForClickElement(MRPLocators.MRP_DemandSearchGoBtn, ElementType.Xpath);
 		webDB.clickAnElement(MRPLocators.MRP_DemandSearchGoBtn, ElementType.Xpath);
 		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.hardWait(1000);
 		flag = webDB.waitForElement(MRPLocators.MRP_DemandTableData_SONumber, ElementType.Xpath);
 		if (flag) {
@@ -759,28 +760,59 @@ public class MRPFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyCreateAndRunMRPThroughSalesOrder() {
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-		LocalDate date = LocalDate.now();
-		String MRPName = "TEST MRP - " + RandomStringUtils.randomNumeric(3);
-		String Today = date.format(formatter);
-		LocalDate nextmonthdate = LocalDate.now().plusMonths(1);
-		String NextMonthToday = nextmonthdate.format(formatter);
-		String FGItem = commonFunc.getDataFromTestDataSheet("FG-10001-Item");
-		String RMItem = commonFunc.getDataFromTestDataSheet("RM-10001-Item");
-		LocalDate previousDate = LocalDate.now().minusDays(1);
-		String YesterDay = previousDate.format(formatter);
-		String Qnty = RandomStringUtils.randomNumeric(2);
-		if (Qnty.equals("00")) {
-			Qnty = "10";
-		}
-		String Cost = RandomStringUtils.randomNumeric(2);
-		if (Cost.equals("00")) {
-			Cost = "10";
-		}
 		try {
-			saleOrderFunc.verifySalesOrderCreationForMRP();
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+			LocalDate date = LocalDate.now();
+			String MRPName = "TEST MRP - " + RandomStringUtils.randomNumeric(3);
+			String Today = date.format(formatter);
+			LocalDate previousDate = LocalDate.now().minusDays(1);
+			String YesterDay = previousDate.format(formatter);
+			LocalDate nextmonthdate = LocalDate.now().plusMonths(1);
+			String NextMonthToday = nextmonthdate.format(formatter);
+			String CustomerID = commonFunc.getDataFromTestDataSheet("CustomerName");
+			VariableHandler.setItemName(commonFunc.getDataFromTestDataSheet("NewItem"));
+			String RMItem = commonFunc.getDataFromTestDataSheet("RM-10001-Item");
+			String OpenSOHSN = commonFunc.getDataFromTestDataSheet("HSN2022-5%");
+			String Qnty = RandomStringUtils.randomNumeric(2);
+			if (Qnty.equals("00")) {
+				Qnty = "10";
+			}
+			String Cost = RandomStringUtils.randomNumeric(2);
+			if (Cost.equals("00")) {
+				Cost = "10";
+			}
+//			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//					"AdminUsername");
+			commonFunc.navigateSalesOrderPage();
+			saleOrderFunc.navigateToSalesOrderOrCustomerSchedule(webDB.getDataFromProperties("So"));
+			saleOrderFunc.createSalesOrderWithHeaderDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
+					commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("SO_General"),
+					CustomerID);
+			saleOrderFunc.addItemsInSO(VariableHandler.getItemName());
+			saleOrderFunc.addQuantityAndUnitCost(Qnty, Cost);
+			saleOrderFunc.chooseHsnCodeAndClickLineWiseSaveButton(OpenSOHSN);
+			saleOrderFunc.clickLineWiseSaveButton();
+//			saleOrderFunc.checkSaleOrderTaxCalculationForLastAddedItem();
+			saleOrderFunc.clickTotalDiscountForLineDetails();
+			saleOrderFunc.switchToLineDetailFrameInSaleOrder();
+			commonFunc.checkRefreshCellsDisappear();
+			commonFunc.checkDiscountInLineDetails(SalesOrderLocators.SOSpecialDiscountAssblValue,
+					SalesOrderLocators.SOSpecialDiscountpercentageField,
+					SalesOrderLocators.SOSpecialDiscountAmountField, RandomStringUtils.randomNumeric(1));
+			commonFunc.checkRefreshCellsDisappear();
+			commonFunc.checkDiscountInLineDetails(SalesOrderLocators.SOCashDiscountAssblValue,
+					SalesOrderLocators.SOCashDiscountpercentageField, SalesOrderLocators.SOCashDiscountAmountField,
+					RandomStringUtils.randomNumeric(1));
+			saleOrderFunc.clickLineWiseDetailsSaveButton();
+			webDB.switchToDefaultContent();
+			saleOrderFunc.getSalesOrderTotalAmount();
+			saleOrderFunc.clickPostButton();
+			if (!VariableHandler.getApprovalFlag()) {
+				approvalFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
+				commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getSONumber(),
+						webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+						System.getProperty("HariUsername"));
+			}
 			commonFunc.navigateToMRPScreenInProdPlanning();
 			clickAddIconInMRP();
 			fillDetailsInMRPCreationAndClickTickIcon(Today, MRPName, Today, "ALL");
@@ -798,14 +830,14 @@ public class MRPFunctions {
 			navigateToResultsTabInMRPScreen();
 			verifyUnitResultsDetails(new String[] { commonFunc.getDataFromTestDataSheet("Unit_100"),
 					commonFunc.getDataFromTestDataSheet("Unit_100") });
-			verifyItemResultsDetails(new String[] { FGItem, RMItem });
+			verifyItemResultsDetails(new String[] { VariableHandler.getItemName(), RMItem });
 			verifyUOMResultsDetails(new String[] { commonFunc.getDataFromTestDataSheet("UomNos"),
 					commonFunc.getDataFromTestDataSheet("Kgs") });
 			clickHeaderSaveAndClickPost();
 			if (!VariableHandler.getApprovalFlag()) {
-				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
-				commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getMRPNumber(),
-						webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				approvalFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
+				commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getMRPNumber(),
+						webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 						System.getProperty("HariUsername"));
 			}
 			commonFunc.navigateToMRPScreenInProdPlanning();
@@ -815,7 +847,6 @@ public class MRPFunctions {
 			chooseOrderTypeFromAndToDateInReleaseDetails("All", YesterDay, Today);
 			clickReleaseButtonInReleaseFrame();
 			checkStatusOfMRP(VariableHandler.getMRPNumber(), commonFunc.getDataFromTestDataSheet("ReleasedStatus"));
-			flag = commonFunc.logoutUser();
 			return flag;
 		} catch (Exception e) {
 			logs.logging("INFO", "Exception occur while executing 'verifyInactivateBillOfMaterials': " + e);

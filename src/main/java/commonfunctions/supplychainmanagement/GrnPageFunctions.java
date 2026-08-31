@@ -79,6 +79,8 @@ public class GrnPageFunctions {
 				flag = webDB.waitForElement(GrnLocators.PendingPOIframe, ElementType.Xpath);
 				if (flag) {
 					webDB.switchToFrame(GrnLocators.PendingPOIframe, ElementType.Xpath);
+					commonFunc.hardWait(2000);
+					commonFunc.expandFindTable();
 					commonFunc.searchAndSelectValueInFilters(GrnLocators.PendingPOHeaderPONumberInput,
 							VariableHandler.getPONumber());
 					logs.logging("INFO", "PO Number Succesfully search and Selected");
@@ -9445,7 +9447,7 @@ public class GrnPageFunctions {
 				commonFunc.getDataFromTestDataSheet("L49"), commonFunc.getDataFromTestDataSheet("WalmartSupId"),
 				commonFunc.getDataFromTestDataSheet("ServiceValue"),
 				webDB.getDataFromProperties("PoToMRVWOIpSerImpSheet"), webDB.getDataFromProperties("PoToMrvSheet"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigateToGateEntryDocument();
 		gateEntryPageFunc.verifyToCreateGateEntryFromPendingPoNumber();
 		gateEntryPageFunc.verifygateEntryDetailsPo();
@@ -12352,5 +12354,6 @@ public class GrnPageFunctions {
 		}
 
 	}
+
 
 }

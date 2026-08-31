@@ -1,5 +1,7 @@
 package commonlocators.supplychainmanagement;
 
+import commonfunctions.CommonFunctions;
+
 public class ShareOfBusinessLocators {
 
 	/** @locatorType Xpath */
@@ -59,9 +61,9 @@ public class ShareOfBusinessLocators {
 	/** @locatorType Xpath */
 	public static final String CancelDocuments = "//button[@data-testid='Cancel']";
 	/** @locatorType Xpath */
-	public static final String AmendFindTable = "//table[@id='3723985912015469765_orig']/tbody/tr[2]/td[1]";
+	public static final String AmendFindTable = "//table[@data-testid='H_Result_Data']/tbody/tr[2]/td[1]";
 	/** @locatorType Xpath */
-	public static final String AmendLineFindTable = "//table[@id='3719957022677766136_orig']/tbody/tr[2]/td[1]";
+	public static final String AmendLineFindTable = "//table[@data-testid='L_Result_Data']/tbody/tr[2]/td[1]";
 	/** @locatorType Xpath */
 	public static final String SOBLocId = "//input[@data-testid='P1615131010_LOC_NAME']/following-sibling::button";
 	/** @locatorType Xpath */
@@ -87,15 +89,21 @@ public class ShareOfBusinessLocators {
 	}
 
 	/** @locatorType Xpath */
-	public static final String AmendLineFindTableData(int i) {
-		return "//table[@id='2068946608094533022_orig']/tbody/tr/td[" + i + "]";
+	public static final String AmendLineFindTableData(String i) {
+		return CommonFunctions.checkAndReturnLocatorForFindPageTable(SobLineTable, i);
 	}
 
 	/** @locatorType Xpath */
-	public static final String AmendFindTableData(int i) {
-		return "//table[@id='2072975497432236651_orig']/tbody/tr/td[" + i + "]";
+	public static final String AmendFindTableData(String i) {
+		return CommonFunctions.checkAndReturnLocatorForFindPageTable(SobHeaderTable, i);
 	}
 
+	/** @locatorType Xpath */
+	public static final String SobLineTable = "//table[@data-testid='L_Result_Data']/tbody/tr/th";
+	/** @locatorType Xpath */
+	public static final String SobHeaderTable = "//table[@data-testid='H_Result_Data']/tbody/tr/th";
 	/** @locatorType Xpath */
 	public static final String SOBFrame = "//iframe[@title='Share of Business']";
+	/** @locatorType Xpath */
+	public static final String OkButton = "//button[text()='OK']";
 }

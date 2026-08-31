@@ -7,7 +7,7 @@ package commonlocators.supplychainmanagement;
 public class StockAdjustmentLocators {
 
 	/** @Locator Xpath */
-	public static final String FindAddButton = "//button[@id='B3925995802821860842']";
+	public static final String FindAddButton = "//button[@title='Add']";
 	/** @Locator Xpath */
 	public static final String LoactionLovButton = "//button[@id='P93131091_SATHD_PLNT_LOC_ID_lov_btn']";
 	/** @Locator Xpath */
@@ -17,13 +17,13 @@ public class StockAdjustmentLocators {
 	/** @Locator Xpath */
 	public static final String NarrationInputField = "//input[@id='P93131091_SATHD_REFERENCE']";
 	/** @Locator Xpath */
-	public static final String SaveButton = "//button[@id='B902803369716642400']";
+	public static final String SaveButton = "//button[@title='Save']";
 	/** @Locator Xpath */
 	public static final String StockAdjFrame = "//iframe[@title='Stock Adjustment']";
 	/** @Locator Xpath */
-	public static final String PostButton = "//button[@id='B3320865005112971691']";
+	public static final String PostButton = "//span[text()='Post']/parent::button";
 	/** @Locator Xpath */
-	public static final String CancelButton = "//button[@id='B3341186838056512919']";
+	public static final String CancelButton = "//span[text()='Cancel']/parent::button";
 	/** @Locator Xpath */
 	public static final String LocationField = "//span[@id='P9313109001_SATHD_PLNT_LOC_ID_DISPLAY']";
 	/** @Locator Xpath */
@@ -39,41 +39,41 @@ public class StockAdjustmentLocators {
 	/** @Locator Xpath */
 	public static final String NarrationField = "//input[@id='P9313109001_SATHD_REFERENCE']";
 	/** @Locator Xpath */
-	public static final String LineWiseAddButton = "//button[@id='B3341555976784669148']";
+	public static final String LineWiseAddButton = "//div[@id='line_ig']//button[@title='Add']";
 	/** @Locator Xpath */
 	public static final String LinePrefixField = "//*[@id='line_ig_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[2]";
 	/** @Locator Xpath */
-	public static final String LinePrefixLovButton = "//button[@id='C3341557087606669159_lov_btn']";
+	public static final String LinePrefixLovButton = "//*[@id='line_ig_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[2]//button";
 	/** @Locator Xpath */
 	public static final String LineItemField = "//*[@id='line_ig_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[3]";
 	/** @Locator Xpath */
-	public static final String LineItemLovButton = "//button[@id='C2730256548692805492_lov_btn']";
+	public static final String LineItemLovButton = "//*[@id='line_ig_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[3]//button";
 	/** @Locator Xpath */
-	public static final String LineQtyField = "//*[@id='line_ig_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[9]";
+	public static final String LineQtyField = "//*[@id='line_ig_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[10]";
 	/** @Locator Xpath */
-	public static final String LineQtyInputField = "//input[@id='C3341557711821669166']";
+	public static final String LineQtyInputField = "//*[@id='line_ig_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[10]//input";
 	/** @Locator Xpath */
-	public static final String LineUnitCostField = "//*[@id='line_ig_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[10]";
+	public static final String LineUnitCostField = "//*[@id='line_ig_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[11]";
 	/** @Locator Xpath */
-	public static final String LineUnitCostInputField = "//input[@id='unitcost']";
+	public static final String LineUnitCostInputField = "//*[@id='line_ig_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[11]//input";
 	/** @Locator Xpath */
-	public static final String LineWiseSaveButton = "//button[@id='B3341556253575669151']";
+	public static final String LineWiseSaveButton = "//div[@id='line_ig']//button[@title='Save']";
 	/** @Locator Xpath */
-	public static final String LotSerialAddButton = "//button[@id='B3789868778399673372']";
+	public static final String LotSerialAddButton = "//div[@id='LS']//button[@title='Add']";
 	/** @Locator Xpath */
-	public static final String LotNumberField = "//*[@id='LS_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[1]/td[3]";
+	public static final String LotNumberField = "//*[@id='LS_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[3]";
 	/** @Locator Xpath */
-	public static final String LotQtyField = "//*[@id='LS_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[1]/td[7]";
+	public static final String LotQtyField = "//*[@id='LS_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[7]";
 	/** @Locator Xpath */
-	public static final String LotNumberInputField = "//input[@id='LS_LOT']";
+	public static final String LotNumberInputField = "//*[@id='LS_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[1]/td[3]//input";
 	/** @Locator Xpath */
-	public static final String LotQtyInputField = "//input[@id='C3789604797237654465']";
+	public static final String LotQtyInputField = "//*[@id='LS_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[1]/td[7]//input";
 	/** @Locator Xpath */
-	public static final String LotWiseSaveButton = "//button[@id='B3789869055087673375']";
+	public static final String LotWiseSaveButton = "//div[@id='LS']//button[@title='Save']";
 	/** @Locator Xpath */
 	public static final String LotExpiryField = "//*[@id='LS_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[1]/td[12]";
 	/** @Locator Xpath */
-	public static final String LotExpiryInputField = "//input[@id='C2726176967127730875_input']";
+	public static final String LotExpiryInputField = "//*[@id='LS_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[1]/td[12]//input";
 	/** @Locator Xpath */
 	public static final String GenerateSerialButton = "//button[@id='B1125821607361253974']";
 	/** @Locator Xpath */

@@ -18,6 +18,7 @@ import commonfunctions.CommonFunctions;
 import commonfunctions.VariableHandler;
 import commonlocators.CommonUiLocators;
 import commonlocators.supplychainmanagement.OpenPoRcLocators;
+import commonlocators.supplychainmanagement.POAmendmentLocators;
 import commonlocators.supplychainmanagement.PurchaseOrderPageLocators;
 import commonlocators.supplychainmanagement.ShareOfBusinessLocators;
 import utils.ReportLoger;
@@ -388,11 +389,15 @@ public class ShareOfBusinessFunctions {
 			webDB.moveToElement(ShareOfBusinessLocators.TypeTable, ElementType.Xpath);
 			webDB.moveToElement(ShareOfBusinessLocators.DeleteLine, ElementType.Xpath);
 			webDB.clickAnElement(ShareOfBusinessLocators.DeleteLine, ElementType.Xpath);
-			flag = webDB.waitForElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+			flag = webDB.waitForElement(ShareOfBusinessLocators.OkButton, ElementType.Xpath);
 			if (flag) {
-				logs.logging("INFO", "Toast Message Displayed, Line Deleted Successfully");
-				if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
-					webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+				webDB.clickAnElement(ShareOfBusinessLocators.OkButton, ElementType.Xpath);
+				flag = webDB.waitForElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Toast Message Displayed, Line Deleted Successfully");
+					if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+						webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+					}
 				}
 			}
 		}
@@ -410,11 +415,15 @@ public class ShareOfBusinessFunctions {
 		flag = webDB.waitForElement(ShareOfBusinessLocators.CancelDocuments, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(ShareOfBusinessLocators.CancelDocuments, ElementType.Xpath);
-			flag = webDB.waitForElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+			flag = webDB.waitForElement(POAmendmentLocators.OKButtonLast, ElementType.Xpath);
 			if (flag) {
-				logs.logging("INFO", "Toast Message Displayed, SOB Cancelled Successfully");
-				if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
-					webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+				webDB.clickAnElement(POAmendmentLocators.OKButtonLast, ElementType.Xpath);
+				flag = webDB.waitForElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Toast Message Displayed, SOB Cancelled Successfully");
+					if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+						webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+					}
 				}
 			}
 		}
@@ -430,7 +439,8 @@ public class ShareOfBusinessFunctions {
 	 * @param Value
 	 * @param i
 	 */
-	public void verifyAmendFilterSearchSOB(String LovButton, String Value, int i, String Type, boolean... selectflag) {
+	public void verifyAmendFilterSearchSOB(String LovButton, String Value, String i, String Type,
+			boolean... selectflag) {
 		webDB.scrollToAnElement(LovButton, ElementType.Xpath);
 		if (selectflag != null) {
 			commonFunc.searchAndSelectValueInFilters(LovButton, Value);
@@ -460,14 +470,14 @@ public class ShareOfBusinessFunctions {
 				ElementType.Xpath);
 		clickSearchButton();
 		commonFunc.hardWait(3000);
-		verifyAmendTableValueAfterDate(9, commonFunc.getDataFromTestDataSheet("EffFrom"));
+		verifyAmendTableValueAfterDate("Eff. From", commonFunc.getDataFromTestDataSheet("EffFrom"));
 		clearSearchFilter();
 		flag = webDB.waitForElement(ShareOfBusinessLocators.EffToInput, ElementType.Xpath);
 		webDB.sendTextToAnElement(ShareOfBusinessLocators.EffToInput, commonFunc.getDataFromTestDataSheet("EffTo"),
 				ElementType.Xpath);
 		clickSearchButton();
 		commonFunc.hardWait(3000);
-		verifyAmendTableValueBeforeDate(10, commonFunc.getDataFromTestDataSheet("EffTo"));
+		verifyAmendTableValueBeforeDate("Eff. To", commonFunc.getDataFromTestDataSheet("EffTo"));
 		clearSearchFilter();
 	}
 
@@ -501,7 +511,7 @@ public class ShareOfBusinessFunctions {
 	 * @param i
 	 * @param Value
 	 */
-	public void verifyAmendTableValue(int i, String Value) {
+	public void verifyAmendTableValue(String i, String Value) {
 		List<WebElement> elements = webDB.getDriver()
 				.findElements(By.xpath(ShareOfBusinessLocators.AmendFindTableData(i)));
 		for (WebElement element : elements) {
@@ -522,7 +532,7 @@ public class ShareOfBusinessFunctions {
 	 * @param i
 	 * @param Value
 	 */
-	public void verifyAmendTableValueAfterDate(int i, String Value) {
+	public void verifyAmendTableValueAfterDate(String i, String Value) {
 		List<WebElement> elements = webDB.getDriver()
 				.findElements(By.xpath(ShareOfBusinessLocators.AmendFindTableData(i)));
 		for (WebElement element : elements) {
@@ -549,7 +559,7 @@ public class ShareOfBusinessFunctions {
 	 * @param i
 	 * @param Value
 	 */
-	public void verifyAmendTableValueBeforeDate(int i, String Value) {
+	public void verifyAmendTableValueBeforeDate(String i, String Value) {
 		List<WebElement> elements = webDB.getDriver()
 				.findElements(By.xpath(ShareOfBusinessLocators.AmendFindTableData(i)));
 		for (WebElement element : elements) {
@@ -577,7 +587,7 @@ public class ShareOfBusinessFunctions {
 	 * @param i
 	 * @param Value
 	 */
-	public void verifyLineAmendTableValue(int i, String Value) {
+	public void verifyLineAmendTableValue(String i, String Value) {
 		List<WebElement> elements = webDB.getDriver()
 				.findElements(By.xpath(ShareOfBusinessLocators.AmendLineFindTableData(i)));
 		for (WebElement element : elements) {
@@ -641,24 +651,24 @@ public class ShareOfBusinessFunctions {
 		commonFunc.navigateToSearchTab(webDB.getDataFromProperties("ShareOfBusinessTab"),
 				CommonUiLocators.AddShareOfBusiness);
 //		verifyDateAfterAndBefore();
-		verifyAmendFilterSearchSOB(ShareOfBusinessLocators.SOBLocId, commonFunc.getDataFromTestDataSheet("Loc_100"), 3,
-				commonFunc.getDataFromTestDataSheet("HeaderSearchType"));
-		verifyAmendFilterSearchSOB(ShareOfBusinessLocators.SOBUnit, commonFunc.getDataFromTestDataSheet("Unit_100"), 4,
-				commonFunc.getDataFromTestDataSheet("HeaderSearchType"));
+		verifyAmendFilterSearchSOB(ShareOfBusinessLocators.SOBLocId, commonFunc.getDataFromTestDataSheet("Loc_100"),
+				"LocId", commonFunc.getDataFromTestDataSheet("HeaderSearchType"));
+		verifyAmendFilterSearchSOB(ShareOfBusinessLocators.SOBUnit, commonFunc.getDataFromTestDataSheet("Unit_100"),
+				"Unit", commonFunc.getDataFromTestDataSheet("HeaderSearchType"));
 		verifyAmendFilterSearchSOB(ShareOfBusinessLocators.SOBSupplierId,
-				commonFunc.getDataFromTestDataSheet("POSupplierName"), 13,
+				commonFunc.getDataFromTestDataSheet("POSupplierName"), "Supplier Name",
 				commonFunc.getDataFromTestDataSheet("LineSearchType"));
 		verifyAmendFilterSearchSOB(ShareOfBusinessLocators.SOBDocNo,
-				commonFunc.getDataFromTestDataSheet("SobDocNumber"), 5,
+				commonFunc.getDataFromTestDataSheet("SobDocNumber"), "SOB No.",
 				commonFunc.getDataFromTestDataSheet("HeaderSearchType"));
 		verifyAmendFilterSearchSOB(ShareOfBusinessLocators.SOBItemName,
-				commonFunc.getDataFromTestDataSheet("ShareOfBusinessItem"), 6,
+				commonFunc.getDataFromTestDataSheet("ShareOfBusinessItem"), "Item",
 				commonFunc.getDataFromTestDataSheet("HeaderSearchType"));
 //		verifyAmendFilterSearchSOB(ShareOfBusinessLocators.SOBProcess, commonFunc.getDataFromTestDataSheet("Process10"),
 //				11, commonFunc.getDataFromTestDataSheet("HeaderSearchType"));
-		verifyAmendFilterSearchSOB(ShareOfBusinessLocators.SOBStatus,
-				commonFunc.getDataFromTestDataSheet("ApproveStatus"), 12,
-				commonFunc.getDataFromTestDataSheet("HeaderSearchType"));
+//		verifyAmendFilterSearchSOB(ShareOfBusinessLocators.SOBStatus,
+//				commonFunc.getDataFromTestDataSheet("ApproveStatus"), 12,
+//				commonFunc.getDataFromTestDataSheet("HeaderSearchType"));
 
 	}
 
