@@ -6236,19 +6236,19 @@ public class PurchaseOrderFunctions {
 	public void verifyPoWithGrnServiceFlagChecked() {
 		commonFunc.checkRefreshCellsDisappear();
 		webDB.pressEscapeKey();
-		flag = webDB.waitForElement(PurchaseOrderPageLocators.PoServiceWithGrn, ElementType.Xpath);
+		flag = webDB.waitForElement(PurchaseOrderPageLocators.GrnRequired(), ElementType.Xpath);
 		if (flag) {
-			webDB.moveToElement(PurchaseOrderPageLocators.PoServiceWithGrn, ElementType.Xpath);
-			webDB.doubleClickAnElement(PurchaseOrderPageLocators.PoServiceWithGrn, ElementType.Xpath);
-			flag = webDB.waitForElement(PurchaseOrderPageLocators.PoseriviceWithGrnSelectedValues, ElementType.Xpath);
-			if (flag) {
-				webDB.moveToElement(PurchaseOrderPageLocators.PoseriviceWithGrnSelectedValues, ElementType.Xpath);
-				logs.logging("INFO", "With GRN Click successfully");
+			webDB.moveToElement(PurchaseOrderPageLocators.GrnRequired(), ElementType.Xpath);
+			webDB.doubleClickAnElement(PurchaseOrderPageLocators.GrnRequired(), ElementType.Xpath);
+//			flag = webDB.waitForElement(PurchaseOrderPageLocators.GrnRequired(), ElementType.Xpath);
+//			if (flag) {
+//				webDB.moveToElement(PurchaseOrderPageLocators.GrnRequired(), ElementType.Xpath);
+//				logs.logging("INFO", "With GRN Click successfully");
 				flag = webDB.selectDropDownByValue(PurchaseOrderPageLocators.PoseriviceWithGrnSelectedValues,
 						commonFunc.getDataFromTestDataSheet("Y"), ElementType.Xpath);
 				logs.logging("INFO", "With GRN Changed successfully");
 			}
-		}
+//		}
 		assertTrue(flag);
 	}
 
