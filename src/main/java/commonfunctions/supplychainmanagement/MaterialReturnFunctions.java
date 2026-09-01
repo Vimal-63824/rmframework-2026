@@ -164,7 +164,7 @@ public class MaterialReturnFunctions {
 	 * @author Sakthi-GWL
 	 */
 	public void fillToolLifeRefAndSaveHeader(String Data) {
-		commonPayrollFunc.addDetailInTableWithoutLovButton(MaterialReturnLocators.ToolLifeRefTableData,
+		commonFunc.verifyAddTableSpecs(MaterialReturnLocators.ToolLifeRefTableData,
 				MaterialReturnLocators.ToolLifeRefTableInput, Data);
 		flag = webDB.waitForElement(MaterialReturnLocators.MR_HeaderSaveButton, ElementType.Xpath);
 		if (flag) {

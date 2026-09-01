@@ -171,10 +171,10 @@ public class InspectionPlanFunctions {
 	 * @param Type
 	 */
 	public void fillFromToDateAndInspectionType(String FromDate, String ToDate, String Type) {
-		commonPayrollFunc.addDetailInTableWithoutLovButton(InspectionPlanLocators.HeaderDateFromInput,
+		commonFunc.verifyAddTableSpecs(InspectionPlanLocators.HeaderDateFromInput,
 				InspectionPlanLocators.HeaderDateFromInput, FromDate);
 		logs.logging("INFO", "From Date Entered in Header of Inspection Plan: " + FromDate);
-		commonPayrollFunc.addDetailInTableWithoutLovButton(InspectionPlanLocators.HeaderDateToInput,
+		commonFunc.verifyAddTableSpecs(InspectionPlanLocators.HeaderDateToInput,
 				InspectionPlanLocators.HeaderDateToInput, ToDate);
 		logs.logging("INFO", "To Date Entered in Header of Inspection Plan: " + ToDate);
 		flag = webDB.waitForElement(InspectionPlanLocators.HeaderPlanTypeSelect, ElementType.Xpath);
@@ -255,7 +255,7 @@ public class InspectionPlanFunctions {
 //				webDB.doubleClickAnElement(InspectionPlanLocators.ProcessIdTableData, ElementType.Xpath);
 //				commonFunc.searchAndSelectValueInFilters(InspectionPlanLocators.ProcessIdTableLovButton, ProcessId);
 			logs.logging("INFO", "Process Id Selected in Lines of Inspection Plan: " + ProcessId);
-			commonPayrollFunc.addDetailInTableWithoutLovButton(InspectionPlanLocators.ModInspectionTableData,
+			commonFunc.verifyAddTableSpecs(InspectionPlanLocators.ModInspectionTableData,
 					InspectionPlanLocators.ModInspectionTableInput, Mod);
 			logs.logging("INFO", "Mod of Inspection Entered in Lines of Inspection Plan: " + Mod);
 		}
@@ -299,10 +299,10 @@ public class InspectionPlanFunctions {
 	 * @param Attribute
 	 */
 	public void fillNoOfSampleAndObservations(String sampleCount, String ObservationCount) {
-		commonPayrollFunc.addDetailInTableWithoutLovButton(InspectionPlanLocators.NoOfSampleData,
+		commonFunc.verifyAddTableSpecs(InspectionPlanLocators.NoOfSampleData,
 				InspectionPlanLocators.NoOfSampleInput, sampleCount);
 		logs.logging("INFO", "Sample Count entered in Lines of Inspection Plan: " + sampleCount);
-		commonPayrollFunc.addDetailInTableWithoutLovButton(InspectionPlanLocators.NoOfObservationData,
+		commonFunc.verifyAddTableSpecs(InspectionPlanLocators.NoOfObservationData,
 				InspectionPlanLocators.NoOfObservationInput, ObservationCount);
 		logs.logging("INFO", "Observation Count entered in Lines of Inspection Plan: " + ObservationCount);
 		assertTrue(flag);
@@ -335,7 +335,7 @@ public class InspectionPlanFunctions {
 							if (flag) {
 								logs.logging("INFO",
 										"Std Operator Selected in Lines of Inspection Plan: " + StdOperator);
-								commonPayrollFunc.addDetailInTableWithoutLovButton(
+								commonFunc.verifyAddTableSpecs(
 										InspectionPlanLocators.SpecValueTableData,
 										InspectionPlanLocators.SpecValueTableInput, SpecValue);
 								logs.logging("INFO", "Spec Value Entered in Lines of Inspection Plan: " + SpecValue);
@@ -364,7 +364,7 @@ public class InspectionPlanFunctions {
 				flag = webDB.selectDropDownByText(InspectionPlanLocators.UOMTableSelect, UOM, ElementType.Xpath);
 				if (flag) {
 					logs.logging("INFO", "UOM Selected in Lines of Inspection Plan: " + UOM);
-					commonPayrollFunc.addDetailInTableWithoutLovButton(InspectionPlanLocators.StdValTextTableData,
+					commonFunc.verifyAddTableSpecs(InspectionPlanLocators.StdValTextTableData,
 							InspectionPlanLocators.StdValTextTableInput, StdValText);
 					logs.logging("INFO", "Std Value Text Entered in Lines of Inspection Plan: " + StdValText);
 				}
@@ -1211,10 +1211,10 @@ public class InspectionPlanFunctions {
 	 * @param Type
 	 */
 	public void fillFromToDateAndInspectionTypeInProcess(String FromDate, String ToDate, String Type) {
-		commonPayrollFunc.addDetailInTableWithoutLovButton(InspectionPlanLocators.HeaderDateFromInput,
+		commonFunc.verifyAddTableSpecs(InspectionPlanLocators.HeaderDateFromInput,
 				InspectionPlanLocators.HeaderDateFromInput, FromDate);
 		logs.logging("INFO", "From Date Entered in Header of Inspection Plan: " + FromDate);
-		commonPayrollFunc.addDetailInTableWithoutLovButton(InspectionPlanLocators.HeaderDateToInput,
+		commonFunc.verifyAddTableSpecs(InspectionPlanLocators.HeaderDateToInput,
 				InspectionPlanLocators.HeaderDateToInput, ToDate);
 		logs.logging("INFO", "To Date Entered in Header of Inspection Plan: " + ToDate);
 		flag = webDB.waitForElement(InspectionPlanLocators.HeaderPlanTypeSelectInProcess, ElementType.Xpath);
@@ -1247,7 +1247,7 @@ public class InspectionPlanFunctions {
 				webDB.doubleClickAnElement(InspectionPlanLocators.ProcessIdTableData, ElementType.Xpath);
 				commonFunc.searchAndSelectValueInFilters(InspectionPlanLocators.ProcessIdTableLovButton, ProcessId);
 				logs.logging("INFO", "Process Id Selected in Lines of Inspection Plan: " + ProcessId);
-				commonPayrollFunc.addDetailInTableWithoutLovButton(InspectionPlanLocators.ModInspectionTableData,
+				commonFunc.verifyAddTableSpecs(InspectionPlanLocators.ModInspectionTableData,
 						InspectionPlanLocators.ModInspectionTableInput, Mod);
 				logs.logging("INFO", "Mod of Inspection Entered in Lines of Inspection Plan: " + Mod);
 			}
@@ -1285,7 +1285,7 @@ public class InspectionPlanFunctions {
 							if (flag) {
 								logs.logging("INFO",
 										"Std Operator Selected in Lines of Inspection Plan: " + StdOperator);
-								commonPayrollFunc.addDetailInTableWithoutLovButton(
+								commonFunc.verifyAddTableSpecs(
 										InspectionPlanLocators.SpecValueTableDataInProcess,
 										InspectionPlanLocators.SpecValueTableInputInProcess, SpecValue);
 								logs.logging("INFO", "Spec Value Entered in Lines of Inspection Plan: " + SpecValue);
@@ -1315,7 +1315,7 @@ public class InspectionPlanFunctions {
 						ElementType.Xpath);
 				if (flag) {
 					logs.logging("INFO", "UOM Selected in Lines of Inspection Plan: " + UOM);
-					commonPayrollFunc.addDetailInTableWithoutLovButton(
+					commonFunc.verifyAddTableSpecs(
 							InspectionPlanLocators.StdValTextTableDataInProcess,
 							InspectionPlanLocators.StdValTextTableInputInProcess, StdValText);
 					logs.logging("INFO", "Std Value Text Entered in Lines of Inspection Plan: " + StdValText);
@@ -1361,9 +1361,9 @@ public class InspectionPlanFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void enteringHigherAndLowerSpecValue() {
-		commonPayrollFunc.addDetailInTableWithoutLovButton(InspectionPlanLocators.HigherMaxTableData,
+		commonFunc.verifyAddTableSpecs(InspectionPlanLocators.HigherMaxTableData,
 				InspectionPlanLocators.HigherMaxTableInput, "20");
-		commonPayrollFunc.addDetailInTableWithoutLovButton(InspectionPlanLocators.LowerMinTableData,
+		commonFunc.verifyAddTableSpecs(InspectionPlanLocators.LowerMinTableData,
 				InspectionPlanLocators.LowerMinTableInput, "20");
 	}
 
@@ -1375,10 +1375,10 @@ public class InspectionPlanFunctions {
 	 * @param Attribute
 	 */
 	public void fillNoOfSampleAndObservationsForInProcess(String sampleCount, String ObservationCount) {
-		commonPayrollFunc.addDetailInTableWithoutLovButton(InspectionPlanLocators.NoOfSampleDataInProcess,
+		commonFunc.verifyAddTableSpecs(InspectionPlanLocators.NoOfSampleDataInProcess,
 				InspectionPlanLocators.NoOfSampleInputInProcess, sampleCount);
 		logs.logging("INFO", "Sample Count entered in Lines of Inspection Plan: " + sampleCount);
-		commonPayrollFunc.addDetailInTableWithoutLovButton(InspectionPlanLocators.NoOfObservationDataInProcess,
+		commonFunc.verifyAddTableSpecs(InspectionPlanLocators.NoOfObservationDataInProcess,
 				InspectionPlanLocators.NoOfObservationInputInProcess, ObservationCount);
 		logs.logging("INFO", "Observation Count entered in Lines of Inspection Plan: " + ObservationCount);
 		assertTrue(flag);
