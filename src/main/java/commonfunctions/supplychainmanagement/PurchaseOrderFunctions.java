@@ -1070,6 +1070,7 @@ public class PurchaseOrderFunctions {
 				logs.logging("INFO", "Navigated to the Pending PR Successfully");
 				commonFunc.checkRefreshCellsDisappear();
 				webDB.switchToFrame(PurchaseOrderPageLocators.PendingPRiframe, ElementType.Xpath);
+//				commonFunc.expandFindTable();
 				flag = webDB.waitForElement(PurchaseOrderPageLocators.PendingPR_FindPRNo, ElementType.Xpath);
 				if (flag) {
 					commonFunc.searchAndSelectValueInFilters(PurchaseOrderPageLocators.PendingPR_FindPRNo,
@@ -6244,10 +6245,10 @@ public class PurchaseOrderFunctions {
 //			if (flag) {
 //				webDB.moveToElement(PurchaseOrderPageLocators.GrnRequired(), ElementType.Xpath);
 //				logs.logging("INFO", "With GRN Click successfully");
-				flag = webDB.selectDropDownByValue(PurchaseOrderPageLocators.PoseriviceWithGrnSelectedValues,
-						commonFunc.getDataFromTestDataSheet("Y"), ElementType.Xpath);
-				logs.logging("INFO", "With GRN Changed successfully");
-			}
+			flag = webDB.selectDropDownByValue(PurchaseOrderPageLocators.PoseriviceWithGrnSelectedValues,
+					commonFunc.getDataFromTestDataSheet("Y"), ElementType.Xpath);
+			logs.logging("INFO", "With GRN Changed successfully");
+		}
 //		}
 		assertTrue(flag);
 	}
@@ -9092,7 +9093,7 @@ public class PurchaseOrderFunctions {
 
 				verifyCreateItemInPo(item);
 				verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
-				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode,
+				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode(),
 						PurchaseOrderPageLocators.HsnCodeLovButton, HsnCode, PurchaseOrderPageLocators.HsnCodeInput);
 				verifyTickIconcreateItem();
 				verifyLineAmountValidationAndPom(item, LineAmount);
@@ -9211,7 +9212,7 @@ public class PurchaseOrderFunctions {
 
 				verifyCreateItemInPo(item);
 				verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
-				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode,
+				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode(),
 						PurchaseOrderPageLocators.HsnCodeLovButton, HsnCode, PurchaseOrderPageLocators.HsnCodeInput);
 				verifyTickIconcreateItem();
 				verifyLineAmountValidationAndPom(item, LineAmount);
@@ -9286,7 +9287,7 @@ public class PurchaseOrderFunctions {
 
 				verifyCreateItemInPo(item);
 				verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
-				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode,
+				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode(),
 						PurchaseOrderPageLocators.HsnCodeLovButton, HsnCode, PurchaseOrderPageLocators.HsnCodeInput);
 				verifyTickIconcreateItem();
 				verifyLineAmountValidationAndPom(item, LineAmount);
@@ -9361,7 +9362,7 @@ public class PurchaseOrderFunctions {
 
 				verifyCreateItemInPo(item);
 				verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
-				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode,
+				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode(),
 						PurchaseOrderPageLocators.HsnCodeLovButton, HsnCode, PurchaseOrderPageLocators.HsnCodeInput);
 				verifyTickIconcreateItem();
 				verifyLineAmountValidationAndPom(item, LineAmount);
@@ -9432,7 +9433,7 @@ public class PurchaseOrderFunctions {
 				String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 				verifyCreateItemInPo(item);
 				verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
-				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode,
+				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode(),
 						PurchaseOrderPageLocators.HsnCodeLovButton, HsnCode, PurchaseOrderPageLocators.HsnCodeInput);
 				verifyTickIconcreateItem();
 				verifyLineAmountValidationAndPom(item, LineAmount);
@@ -9506,7 +9507,7 @@ public class PurchaseOrderFunctions {
 				String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 				verifyCreateItemInPo(item);
 				verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
-				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode,
+				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode(),
 						PurchaseOrderPageLocators.HsnCodeLovButton, HsnCode, PurchaseOrderPageLocators.HsnCodeInput);
 				verifyTickIconcreateItem();
 				verifyLineAmountValidationAndPom(item, LineAmount);
@@ -9587,7 +9588,7 @@ public class PurchaseOrderFunctions {
 				String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 				verifyCreateItemInPo(item);
 				verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
-				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode,
+				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode(),
 						PurchaseOrderPageLocators.HsnCodeLovButton, HsnCode, PurchaseOrderPageLocators.HsnCodeInput);
 				verifyTickIconcreateItem();
 				verifyLineAmountValidationAndPom(item, LineAmount);
@@ -9661,7 +9662,7 @@ public class PurchaseOrderFunctions {
 				String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 				verifyCreateItemInPo(item);
 				verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
-				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode,
+				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode(),
 						PurchaseOrderPageLocators.HsnCodeLovButton, HsnCode, PurchaseOrderPageLocators.HsnCodeInput);
 				verifyTickIconcreateItem();
 				verifyLineAmountValidationAndPom(item, LineAmount);
@@ -9738,7 +9739,7 @@ public class PurchaseOrderFunctions {
 
 				verifyCreateItemInPo(item);
 				verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
-				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode,
+				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode(),
 						PurchaseOrderPageLocators.HsnCodeLovButton, HsnCode, PurchaseOrderPageLocators.HsnCodeInput);
 				verifyTickIconcreateItem();
 				verifyLineAmountValidationAndPom(item, LineAmount);
@@ -9811,7 +9812,7 @@ public class PurchaseOrderFunctions {
 				String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 				verifyCreateItemInPo(item);
 				verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
-				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode,
+				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode(),
 						PurchaseOrderPageLocators.HsnCodeLovButton, HsnCode, PurchaseOrderPageLocators.HsnCodeInput);
 				verifyTickIconcreateItem();
 				verifyLineAmountValidationAndPom(item, LineAmount);
@@ -9885,7 +9886,7 @@ public class PurchaseOrderFunctions {
 
 				verifyCreateItemInPo(item);
 				verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
-				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode,
+				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode(),
 						PurchaseOrderPageLocators.HsnCodeLovButton, HsnCode, PurchaseOrderPageLocators.HsnCodeInput);
 				verifyTickIconcreateItem();
 				verifyLineAmountValidationAndPom(item, LineAmount);
@@ -9959,7 +9960,7 @@ public class PurchaseOrderFunctions {
 
 				verifyCreateItemInPo(item);
 				verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
-				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode,
+				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode(),
 						PurchaseOrderPageLocators.HsnCodeLovButton, HsnCode, PurchaseOrderPageLocators.HsnCodeInput);
 				verifyTickIconcreateItem();
 				verifyLineAmountValidationAndPom(item, LineAmount);
@@ -10034,7 +10035,7 @@ public class PurchaseOrderFunctions {
 
 				verifyCreateItemInPo(item);
 				verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
-				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode,
+				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode(),
 						PurchaseOrderPageLocators.HsnCodeLovButton, HsnCode, PurchaseOrderPageLocators.HsnCodeInput);
 				verifyTickIconcreateItem();
 				verifyLineAmountValidationAndPom(item, LineAmount);
@@ -10109,7 +10110,7 @@ public class PurchaseOrderFunctions {
 
 				verifyCreateItemInPo(item);
 				verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
-				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode,
+				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode(),
 						PurchaseOrderPageLocators.HsnCodeLovButton, HsnCode, PurchaseOrderPageLocators.HsnCodeInput);
 				verifyTickIconcreateItem();
 				verifyLineAmountValidationAndPom(item, LineAmount);
@@ -10183,7 +10184,7 @@ public class PurchaseOrderFunctions {
 
 				verifyCreateItemInPo(item);
 				verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
-				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode,
+				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode(),
 						PurchaseOrderPageLocators.HsnCodeLovButton, HsnCode, PurchaseOrderPageLocators.HsnCodeInput);
 				verifyTickIconcreateItem();
 				verifyLineAmountValidationAndPom(item, LineAmount);
@@ -11235,7 +11236,7 @@ public class PurchaseOrderFunctions {
 
 				verifyCreateItemInPo(item);
 				verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
-				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode,
+				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode(),
 						PurchaseOrderPageLocators.HsnCodeLovButton, HsnCode, PurchaseOrderPageLocators.HsnCodeInput);
 				verifyTickIconcreateItem();
 				verifyLineAmountValidationAndPom(item, LineAmount);
@@ -11309,7 +11310,7 @@ public class PurchaseOrderFunctions {
 
 				verifyCreateItemInPo(item);
 				verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
-				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode,
+				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode(),
 						PurchaseOrderPageLocators.HsnCodeLovButton, HsnCode, PurchaseOrderPageLocators.HsnCodeInput);
 				verifyTickIconcreateItem();
 				verifyLineAmountValidationAndPom(item, LineAmount);
@@ -11384,7 +11385,7 @@ public class PurchaseOrderFunctions {
 
 				verifyCreateItemInPo(item);
 				verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
-				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode,
+				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode(),
 						PurchaseOrderPageLocators.HsnCodeLovButton, HsnCode, PurchaseOrderPageLocators.HsnCodeInput);
 				verifyTickIconcreateItem();
 				verifyLineAmountValidationAndPom(item, LineAmount);
@@ -11459,7 +11460,7 @@ public class PurchaseOrderFunctions {
 
 				verifyCreateItemInPo(item);
 				verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
-				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode,
+				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode(),
 						PurchaseOrderPageLocators.HsnCodeLovButton, HsnCode, PurchaseOrderPageLocators.HsnCodeInput);
 				verifyTickIconcreateItem();
 				verifyLineAmountValidationAndPom(item, LineAmount);
@@ -11533,7 +11534,7 @@ public class PurchaseOrderFunctions {
 
 				verifyCreateItemInPo(item);
 				verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
-				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode,
+				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode(),
 						PurchaseOrderPageLocators.HsnCodeLovButton, HsnCode, PurchaseOrderPageLocators.HsnCodeInput);
 				verifyTickIconcreateItem();
 				verifyLineAmountValidationAndPom(item, LineAmount);
@@ -11608,7 +11609,7 @@ public class PurchaseOrderFunctions {
 
 				verifyCreateItemInPo(item);
 				verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
-				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode,
+				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode(),
 						PurchaseOrderPageLocators.HsnCodeLovButton, HsnCode, PurchaseOrderPageLocators.HsnCodeInput);
 				verifyTickIconcreateItem();
 				verifyLineAmountValidationAndPom(item, LineAmount);
@@ -11683,7 +11684,7 @@ public class PurchaseOrderFunctions {
 
 				verifyCreateItemInPo(item);
 				verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
-				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode,
+				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode(),
 						PurchaseOrderPageLocators.HsnCodeLovButton, HsnCode, PurchaseOrderPageLocators.HsnCodeInput);
 				verifyTickIconcreateItem();
 				verifyLineAmountValidationAndPom(item, LineAmount);
@@ -11758,7 +11759,7 @@ public class PurchaseOrderFunctions {
 
 				verifyCreateItemInPo(item);
 				verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
-				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode,
+				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode(),
 						PurchaseOrderPageLocators.HsnCodeLovButton, HsnCode, PurchaseOrderPageLocators.HsnCodeInput);
 				verifyTickIconcreateItem();
 				verifyLineAmountValidationAndPom(item, LineAmount);
@@ -11833,7 +11834,7 @@ public class PurchaseOrderFunctions {
 
 				verifyCreateItemInPo(item);
 				verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
-				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode,
+				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode(),
 						PurchaseOrderPageLocators.HsnCodeLovButton, HsnCode, PurchaseOrderPageLocators.HsnCodeInput);
 				verifyTickIconcreateItem();
 				verifyLineAmountValidationAndPom(item, LineAmount);
@@ -11907,7 +11908,7 @@ public class PurchaseOrderFunctions {
 
 				verifyCreateItemInPo(item);
 				verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
-				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode,
+				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode(),
 						PurchaseOrderPageLocators.HsnCodeLovButton, HsnCode, PurchaseOrderPageLocators.HsnCodeInput);
 				verifyTickIconcreateItem();
 				verifyLineAmountValidationAndPom(item, LineAmount);
@@ -12523,7 +12524,7 @@ public class PurchaseOrderFunctions {
 				String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 				verifyCreateItemInPo(item);
 				verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
-				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode,
+				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode(),
 						PurchaseOrderPageLocators.HsnCodeLovButton, HsnCode, PurchaseOrderPageLocators.HsnCodeInput);
 				verifyTickIconcreateItem();
 				verifyLineAmountValidationAndPom(item, LineAmount);
@@ -12625,7 +12626,7 @@ public class PurchaseOrderFunctions {
 				String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 				verifyCreateItemInPo(item);
 				verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
-				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode,
+				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode(),
 						PurchaseOrderPageLocators.HsnCodeLovButton, HsnCode, PurchaseOrderPageLocators.HsnCodeInput);
 				verifyTickIconcreateItem();
 				verifyLineAmountValidationAndPom(item, LineAmount);
@@ -13796,7 +13797,7 @@ public class PurchaseOrderFunctions {
 				String HsnCode = itemmultiple[i][19];
 				verifyCreateItemInPo(item);
 				verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
-				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode,
+				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode(),
 						PurchaseOrderPageLocators.HsnCodeLovButton, HsnCode, PurchaseOrderPageLocators.HsnCodeInput);
 				verifyTickIconcreateItem();
 				verifyLineAmountValidationAndPom(item, LineAmount);
@@ -15805,7 +15806,7 @@ public class PurchaseOrderFunctions {
 				String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 				verifyCreateItemInPo(item);
 				verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
-				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode,
+				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode(),
 						PurchaseOrderPageLocators.HsnCodeLovButton, HsnCode, PurchaseOrderPageLocators.HsnCodeInput);
 				verifyTickIconcreateItem();
 				verifyLineAmountValidationAndPom(item, LineAmount);
@@ -16239,7 +16240,7 @@ public class PurchaseOrderFunctions {
 							webDB.clickAnElement(PurchaseOrderPageLocators.CancelText, ElementType.Xpath);
 
 							verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
-							commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode,
+							commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode(),
 									PurchaseOrderPageLocators.HsnCodeLovButton, HsnCode,
 									PurchaseOrderPageLocators.HsnCodeInput);
 							verifyTickIconcreateItem();

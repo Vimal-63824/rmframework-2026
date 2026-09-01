@@ -147,16 +147,16 @@ public class ProductionOrderFunctions {
 	 * 
 	 */
 	public void storeRoutingProcessAndConsumptionAndRecipientWareHouse() {
-		flag = webDB.waitForElement(ProductionOrderLocators.RoutingProcessNameTableDataLists, ElementType.Xpath);
+		flag = webDB.waitForElement(ProductionOrderLocators.RoutingProcessNameTableDataLists(), ElementType.Xpath);
 		if (flag) {
-			List<WebElement> processName = webDB.getDriver()
-					.findElements(By.xpath(ProductionOrderLocators.RoutingProcessNameTableDataLists));
+			List<WebElement> processName = WebDriverBase.getDriver()
+					.findElements(By.xpath(ProductionOrderLocators.RoutingProcessNameTableDataLists()));
 			logs.logging("INFO", "Process Name Size: " + processName.size());
-			List<WebElement> consumptionWH = webDB.getDriver()
-					.findElements(By.xpath(ProductionOrderLocators.RoutingConsumptionWHTableDataLists));
+			List<WebElement> consumptionWH = WebDriverBase.getDriver()
+					.findElements(By.xpath(ProductionOrderLocators.RoutingConsumptionWHTableDataLists()));
 			logs.logging("INFO", "Consumption Warehouse Size: " + consumptionWH.size());
-			List<WebElement> recipientWH = webDB.getDriver()
-					.findElements(By.xpath(ProductionOrderLocators.RoutingRecipientWHTableDataLists));
+			List<WebElement> recipientWH = WebDriverBase.getDriver()
+					.findElements(By.xpath(ProductionOrderLocators.RoutingRecipientWHTableDataLists()));
 			logs.logging("INFO", "Recipient Warehouse Size: " + recipientWH.size());
 			flag = (processName.size() == consumptionWH.size()) && (processName.size() == recipientWH.size());
 			if (flag) {
@@ -190,13 +190,13 @@ public class ProductionOrderFunctions {
 	 * 
 	 */
 	public void storeRoutingProcessAndProcessType() {
-		flag = webDB.waitForElement(ProductionOrderLocators.RoutingProcessNameTableDataLists, ElementType.Xpath);
+		flag = webDB.waitForElement(ProductionOrderLocators.RoutingProcessNameTableDataLists(), ElementType.Xpath);
 		if (flag) {
-			List<WebElement> processName = webDB.getDriver()
-					.findElements(By.xpath(ProductionOrderLocators.RoutingProcessNameTableDataLists));
+			List<WebElement> processName = WebDriverBase.getDriver()
+					.findElements(By.xpath(ProductionOrderLocators.RoutingProcessNameTableDataLists()));
 			logs.logging("INFO", "Process Name Size: " + processName.size());
-			List<WebElement> processType = webDB.getDriver()
-					.findElements(By.xpath(ProductionOrderLocators.RoutingProcessTypeTableDataLists));
+			List<WebElement> processType = WebDriverBase.getDriver()
+					.findElements(By.xpath(ProductionOrderLocators.RoutingProcessTypeTableDataLists()));
 			logs.logging("INFO", "Process Type Size: " + processType.size());
 			flag = (processName.size() == processType.size());
 			if (flag) {
@@ -297,11 +297,11 @@ public class ProductionOrderFunctions {
 	 */
 	public void verifyItemInMaterialRequirement(String[] Item) {
 		try {
-			flag = webDB.waitForElement(ProductionOrderLocators.MaterialReqRMItemTableDataLists, ElementType.Xpath);
+			flag = webDB.waitForElement(ProductionOrderLocators.MaterialReqRMItemTableDataLists(), ElementType.Xpath);
 			if (flag) {
 				commonFunc.hardWait(2000);
-				List<WebElement> ItemList = webDB.getDriver()
-						.findElements(By.xpath(ProductionOrderLocators.MaterialReqRMItemTableDataLists));
+				List<WebElement> ItemList = WebDriverBase.getDriver()
+						.findElements(By.xpath(ProductionOrderLocators.MaterialReqRMItemTableDataLists()));
 				flag = ItemList.size() == Item.length;
 				if (flag) {
 					for (int i = 0; i < Item.length; i++) {
@@ -337,11 +337,11 @@ public class ProductionOrderFunctions {
 	 */
 	public void verifyProcessInMaterialRequirement(String[] Process) {
 		try {
-			flag = webDB.waitForElement(ProductionOrderLocators.MaterialReqProcessTableDataLists, ElementType.Xpath);
+			flag = webDB.waitForElement(ProductionOrderLocators.MaterialReqProcessTableDataLists(), ElementType.Xpath);
 			if (flag) {
 				commonFunc.hardWait(2000);
-				List<WebElement> ProcesList = webDB.getDriver()
-						.findElements(By.xpath(ProductionOrderLocators.MaterialReqProcessTableDataLists));
+				List<WebElement> ProcesList = WebDriverBase.getDriver()
+						.findElements(By.xpath(ProductionOrderLocators.MaterialReqProcessTableDataLists()));
 				flag = ProcesList.size() == Process.length;
 				if (flag) {
 					for (int i = 0; i < Process.length; i++) {
@@ -377,11 +377,11 @@ public class ProductionOrderFunctions {
 	 */
 	public void verifyProcessInResources(String[] Process) {
 		try {
-			flag = webDB.waitForElement(ProductionOrderLocators.ResourcesProcessTableDataLists, ElementType.Xpath);
+			flag = webDB.waitForElement(ProductionOrderLocators.ResourcesProcessTableDataLists(), ElementType.Xpath);
 			if (flag) {
 				commonFunc.hardWait(2000);
-				List<WebElement> ProcesList = webDB.getDriver()
-						.findElements(By.xpath(ProductionOrderLocators.ResourcesProcessTableDataLists));
+				List<WebElement> ProcesList = WebDriverBase.getDriver()
+						.findElements(By.xpath(ProductionOrderLocators.ResourcesProcessTableDataLists()));
 				flag = ProcesList.size() == Process.length;
 				if (flag) {
 					for (int i = 0; i < Process.length; i++) {
@@ -470,7 +470,7 @@ public class ProductionOrderFunctions {
 	public void validateNoExceptionsShowsInExceptionTab() {
 		flag = webDB.waitForElement(ProductionOrderLocators.ExceptionNoDataFoundContainer, ElementType.Xpath);
 		if (flag) {
-			List<WebElement> elements = webDB.getDriver()
+			List<WebElement> elements = WebDriverBase.getDriver()
 					.findElements(By.xpath(ProductionOrderLocators.ExceptionNoDataFoundContainer));
 			a: for (WebElement webElement : elements) {
 				if (webElement.isDisplayed()) {
@@ -732,7 +732,8 @@ public class ProductionOrderFunctions {
 	 */
 	public void verifySelectOrderedReleasesInPO() {
 		ArrayList<String> TotalProcess = new ArrayList<>();
-		List<WebElement> TotalElement = webDB.getDriver().findElements(By.xpath(ProductionOrderLocators.TotalProcess));
+		List<WebElement> TotalElement = WebDriverBase.getDriver()
+				.findElements(By.xpath(ProductionOrderLocators.TotalProcess));
 		for (WebElement element : TotalElement) {
 			TotalProcess.add(element.getText());
 		}
@@ -870,7 +871,8 @@ public class ProductionOrderFunctions {
 	 */
 	public void verifyStoreProcessAndRawMaterial() {
 		Map<String, String> ProcessTypeMap = new HashMap<String, String>();
-		List<WebElement> elements = webDB.getDriver().findElements(By.xpath(ProductionOrderLocators.ProcessTypeList));
+		List<WebElement> elements = WebDriverBase.getDriver()
+				.findElements(By.xpath(ProductionOrderLocators.ProcessTypeList));
 		for (int i = 1; i <= elements.size(); i++) {
 			flag = webDB.waitForElement(ProductionOrderLocators.ProcessName(i), ElementType.Xpath);
 			if (flag) {
@@ -887,7 +889,7 @@ public class ProductionOrderFunctions {
 			flag = webDB.waitForElement(ProductionOrderLocators.MaterialProcess, ElementType.Xpath);
 			if (flag) {
 				Map<String, String> ProcessItemMap = new HashMap<String, String>();
-				List<WebElement> MaterialProcess = webDB.getDriver()
+				List<WebElement> MaterialProcess = WebDriverBase.getDriver()
 						.findElements(By.xpath(ProductionOrderLocators.MaterialProcess));
 				for (int i = 1; i <= MaterialProcess.size(); i++) {
 					flag = webDB.waitForElement(ProductionOrderLocators.ItemName(i), ElementType.Xpath);
@@ -1056,7 +1058,8 @@ public class ProductionOrderFunctions {
 	 */
 	public void verifyProcessType(String FirstProcessType, String OtherProcessType) {
 		ArrayList<String> Process = new ArrayList<>();
-		List<WebElement> elements = webDB.getDriver().findElements(By.xpath(ProductionOrderLocators.ProcessTypeList));
+		List<WebElement> elements = WebDriverBase.getDriver()
+				.findElements(By.xpath(ProductionOrderLocators.ProcessTypeList));
 		for (int i = 1; i <= elements.size(); i++) {
 			flag = webDB.waitForElement(ProductionOrderLocators.ProcessType(i), ElementType.Xpath);
 			if (flag) {
@@ -2295,7 +2298,7 @@ public class ProductionOrderFunctions {
 		if (flag) {
 			webDB.moveToElement(ProductionOrderLocators.RoutingAddBtn, ElementType.Xpath);
 			webDB.clickAnElement(ProductionOrderLocators.RoutingAddBtn, ElementType.Xpath);
-			flag = webDB.waitForElement(ProductionOrderLocators.RoutingProcessSeqTableInput, ElementType.Xpath);
+			flag = webDB.waitForElement(ProductionOrderLocators.RoutingProcessSeqTableInput(), ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Add Line Icon Clicked in Routing tab");
 			}
@@ -2415,26 +2418,26 @@ public class ProductionOrderFunctions {
 	 * @param ProcessId
 	 */
 	private void fillProcSeqNoOprnNoAndProcessIdInRouting(String ProcessNo, String OprnNo, String ProcessId) {
-		commonPayrollFunc.addDetailInTableWithoutLovButton(ProductionOrderLocators.RoutingProcessSeqTableData,
-				ProductionOrderLocators.RoutingProcessSeqTableInput, ProcessNo);
+		commonPayrollFunc.addDetailInTableWithoutLovButton(ProductionOrderLocators.RoutingProcessSeqTableData(),
+				ProductionOrderLocators.RoutingProcessSeqTableInput(), ProcessNo);
 		logs.logging("INFO", "Process No Entered: " + ProcessNo);
-		commonPayrollFunc.addDetailInTableWithoutLovButton(ProductionOrderLocators.RoutingOprnNoTableData,
-				ProductionOrderLocators.RoutingOprnNoTableInput, OprnNo);
+		commonPayrollFunc.addDetailInTableWithoutLovButton(ProductionOrderLocators.RoutingOprnNoTableData(),
+				ProductionOrderLocators.RoutingOprnNoTableInput(), OprnNo);
 		logs.logging("INFO", "Oprn No Entered: " + OprnNo);
-		flag = webDB.waitForElement(ProductionOrderLocators.RoutingProcessTableData, ElementType.Xpath);
+		flag = webDB.waitForElement(ProductionOrderLocators.RoutingProcessTableData(), ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(ProductionOrderLocators.RoutingProcessTableData, ElementType.Xpath);
-			commonFunc.searchAndSelectValueInFilters(ProductionOrderLocators.RoutingProcessTableLovBtn, ProcessId);
+			webDB.clickAnElement(ProductionOrderLocators.RoutingProcessTableData(), ElementType.Xpath);
+			commonFunc.searchAndSelectValueInFilters(ProductionOrderLocators.RoutingProcessTableLovBtn(), ProcessId);
 			logs.logging("INFO", "Process Id Selected: " + ProcessId);
 		}
 		assertTrue(flag);
 	}
 
 	private void clickLineDetailsSelectLotSerialType() {
-		flag = webDB.waitForElement(ProductionOrderLocators.RoutingLineDetailsIcon, ElementType.Xpath);
+		flag = webDB.waitForElement(ProductionOrderLocators.RoutingLineDetailsIcon(), ElementType.Xpath);
 		if (flag) {
-			webDB.moveToElement(ProductionOrderLocators.RoutingLineDetailsIcon, ElementType.Xpath);
-			webDB.clickAnElement(ProductionOrderLocators.RoutingLineDetailsIcon, ElementType.Xpath);
+			webDB.moveToElement(ProductionOrderLocators.RoutingLineDetailsIcon(), ElementType.Xpath);
+			webDB.clickAnElement(ProductionOrderLocators.RoutingLineDetailsIcon(), ElementType.Xpath);
 			flag = webDB.waitForElement(ProductionOrderLocators.LineDetailsIframe, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Line Details Clicked");
@@ -2458,7 +2461,7 @@ public class ProductionOrderFunctions {
 									ElementType.Xpath);
 							if (flag) {
 								webDB.clickAnElement(ProductionOrderLocators.LineDetailsCloseIcon, ElementType.Xpath);
-								flag = webDB.waitForClickElement(ProductionOrderLocators.RoutingLineDetailsIcon,
+								flag = webDB.waitForClickElement(ProductionOrderLocators.RoutingLineDetailsIcon(),
 										ElementType.Xpath);
 								if (flag) {
 									logs.logging("INFO", "Line Details Saved and closed");
@@ -2534,38 +2537,38 @@ public class ProductionOrderFunctions {
 	 * @param RcptWH
 	 */
 	private void fillTypeAndWarehouseInRouting(String Type, String ConsWH, String RcptWH) {
-		flag = webDB.waitForElement(ProductionOrderLocators.RoutingTypeTableData, ElementType.Xpath);
+		flag = webDB.waitForElement(ProductionOrderLocators.RoutingTypeTableData(), ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(ProductionOrderLocators.RoutingTypeTableData, ElementType.Xpath);
+			webDB.clickAnElement(ProductionOrderLocators.RoutingTypeTableData(), ElementType.Xpath);
 			commonFunc.hardWait(500);
-			flag = webDB.waitForClickElement(ProductionOrderLocators.RoutingTypeTableSelect, ElementType.Xpath);
+			flag = webDB.waitForClickElement(ProductionOrderLocators.RoutingTypeTableSelect(), ElementType.Xpath);
 			if (flag) {
-				flag = webDB.selectDropDownByText(ProductionOrderLocators.RoutingTypeTableSelect, Type,
+				flag = webDB.selectDropDownByText(ProductionOrderLocators.RoutingTypeTableSelect(), Type,
 						ElementType.Xpath);
 				if (flag) {
 					logs.logging("INFO", "Process Type Selected: " + Type);
-					flag = webDB.waitForElement(ProductionOrderLocators.RoutingConsWHTableData, ElementType.Xpath);
+					flag = webDB.waitForElement(ProductionOrderLocators.RoutingConsWHTableData(), ElementType.Xpath);
 					if (flag) {
-						webDB.clickAnElement(ProductionOrderLocators.RoutingConsWHTableData, ElementType.Xpath);
+						webDB.clickAnElement(ProductionOrderLocators.RoutingConsWHTableData(), ElementType.Xpath);
 						commonFunc.hardWait(500);
-						flag = webDB.waitForClickElement(ProductionOrderLocators.RoutingConsWHTableSelect,
+						flag = webDB.waitForClickElement(ProductionOrderLocators.RoutingConsWHTableSelect(),
 								ElementType.Xpath);
 						if (flag) {
-							flag = webDB.selectDropDownByText(ProductionOrderLocators.RoutingConsWHTableSelect, ConsWH,
-									ElementType.Xpath);
+							flag = webDB.selectDropDownByText(ProductionOrderLocators.RoutingConsWHTableSelect(),
+									ConsWH, ElementType.Xpath);
 							if (flag) {
 								logs.logging("INFO", "Cons.WH Selected: " + ConsWH);
-								flag = webDB.waitForElement(ProductionOrderLocators.RoutingRcptWHTableData,
+								flag = webDB.waitForElement(ProductionOrderLocators.RoutingRcptWHTableData(),
 										ElementType.Xpath);
 								if (flag) {
-									webDB.clickAnElement(ProductionOrderLocators.RoutingRcptWHTableData,
+									webDB.clickAnElement(ProductionOrderLocators.RoutingRcptWHTableData(),
 											ElementType.Xpath);
 									commonFunc.hardWait(500);
-									flag = webDB.waitForClickElement(ProductionOrderLocators.RoutingRcptWHTableSelect,
+									flag = webDB.waitForClickElement(ProductionOrderLocators.RoutingRcptWHTableSelect(),
 											ElementType.Xpath);
 									if (flag) {
 										flag = webDB.selectDropDownByText(
-												ProductionOrderLocators.RoutingRcptWHTableSelect, RcptWH,
+												ProductionOrderLocators.RoutingRcptWHTableSelect(), RcptWH,
 												ElementType.Xpath);
 										if (flag) {
 											logs.logging("INFO", "Rcpt.WH Selected: " + RcptWH);
@@ -2878,7 +2881,7 @@ public class ProductionOrderFunctions {
 		if (flag) {
 			webDB.moveToElement(ProductionOrderLocators.MaterialReqAddBtn, ElementType.Xpath);
 			webDB.clickAnElement(ProductionOrderLocators.MaterialReqAddBtn, ElementType.Xpath);
-			flag = webDB.waitForElement(ProductionOrderLocators.MRItemTableData, ElementType.Xpath);
+			flag = webDB.waitForElement(ProductionOrderLocators.MRItemTableData(), ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Add Line Icon Clicked in Material tab");
 			}
@@ -2896,27 +2899,27 @@ public class ProductionOrderFunctions {
 	 * @param BomQnty
 	 */
 	private void fillProcessItemBomAndReqQntyInMR(String Process, String Item, String BomQnty) {
-		flag = webDB.waitForElement(ProductionOrderLocators.MRProcessTableData, ElementType.Xpath);
+		flag = webDB.waitForElement(ProductionOrderLocators.MRProcessTableData(), ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(ProductionOrderLocators.MRProcessTableData, ElementType.Xpath);
-			commonFunc.searchAndSelectValueInFilters(ProductionOrderLocators.MRProcessTableLovBtn, Process);
+			webDB.clickAnElement(ProductionOrderLocators.MRProcessTableData(), ElementType.Xpath);
+			commonFunc.searchAndSelectValueInFilters(ProductionOrderLocators.MRProcessTableLovBtn(), Process);
 			logs.logging("INFO", "Process Selected in Material: " + Process);
-			flag = webDB.waitForElement(ProductionOrderLocators.MRItemTableData, ElementType.Xpath);
+			flag = webDB.waitForElement(ProductionOrderLocators.MRItemTableData(), ElementType.Xpath);
 			if (flag) {
-				webDB.clickAnElement(ProductionOrderLocators.MRItemTableData, ElementType.Xpath);
-				commonFunc.searchAndSelectValueInFilters(ProductionOrderLocators.MRItemTableLovBtn, Item);
+				webDB.clickAnElement(ProductionOrderLocators.MRItemTableData(), ElementType.Xpath);
+				commonFunc.searchAndSelectValueInFilters(ProductionOrderLocators.MRItemTableLovBtn(), Item);
 				logs.logging("INFO", "Item Selected in Material: " + Item);
-				commonFunc.verifyAddTableSpecs(ProductionOrderLocators.MRBOMQntyTableData,
-						ProductionOrderLocators.MRBOMQntyTableInput, BomQnty);
+				commonFunc.verifyAddTableSpecs(ProductionOrderLocators.MRBOMQntyTableData(),
+						ProductionOrderLocators.MRBOMQntyTableInput(), BomQnty);
 				logs.logging("INFO", "BOM Quantity Entered: " + BomQnty);
 //				webDB.doubleClickAnElement(ProductionOrderLocators.MRBOMQntyTableData, ElementType.Xpath);
 				webDB.pressEnterKey();
-				flag = webDB.waitForElement(ProductionOrderLocators.MRReqQntyTableData, ElementType.Xpath);
+				flag = webDB.waitForElement(ProductionOrderLocators.MRReqQntyTableData(), ElementType.Xpath);
 				if (flag) {
-					webDB.moveToElement(ProductionOrderLocators.MRReqQntyTableData, ElementType.Xpath);
-					webDB.clickAnElement(ProductionOrderLocators.MRReqQntyTableData, ElementType.Xpath);
+					webDB.moveToElement(ProductionOrderLocators.MRReqQntyTableData(), ElementType.Xpath);
+					webDB.clickAnElement(ProductionOrderLocators.MRReqQntyTableData(), ElementType.Xpath);
 					commonFunc.checkRefreshCellsDisappear();
-					String ReqQnty = webDB.getTextFromElement(ProductionOrderLocators.MRReqQntyTableData,
+					String ReqQnty = webDB.getTextFromElement(ProductionOrderLocators.MRReqQntyTableData(),
 							ElementType.Xpath);
 //				commonPayrollFunc.addDetailInTableWithoutLovButton(ProductionOrderLocators.MRReqQntyTableData,
 //						ProductionOrderLocators.MRReqQntyTableInput, ReqQnty);
@@ -2958,7 +2961,7 @@ public class ProductionOrderFunctions {
 		if (flag) {
 			webDB.moveToElement(ProductionOrderLocators.ResourcesAddBtn, ElementType.Xpath);
 			webDB.clickAnElement(ProductionOrderLocators.ResourcesAddBtn, ElementType.Xpath);
-			flag = webDB.waitForElement(ProductionOrderLocators.ResourceProcessTableData, ElementType.Xpath);
+			flag = webDB.waitForElement(ProductionOrderLocators.ResourceProcessTableData(), ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Add Line Icon Clicked in Resouces tab");
 			}
@@ -2976,27 +2979,28 @@ public class ProductionOrderFunctions {
 	 * @param Basis
 	 */
 	private void fillProcessTypeBasisInResourceTab(String Process, String Type, String Basis) {
-		flag = webDB.waitForElement(ProductionOrderLocators.ResourceProcessTableData, ElementType.Xpath);
+		flag = webDB.waitForElement(ProductionOrderLocators.ResourceProcessTableData(), ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(ProductionOrderLocators.ResourceProcessTableData, ElementType.Xpath);
-			commonFunc.searchAndSelectValueInFilters(ProductionOrderLocators.ResourceProcessTableLovBtn, Process);
+			webDB.clickAnElement(ProductionOrderLocators.ResourceProcessTableData(), ElementType.Xpath);
+			commonFunc.searchAndSelectValueInFilters(ProductionOrderLocators.ResourceProcessTableLovBtn(), Process);
 			logs.logging("INFO", "Process Selected In Resources: " + Process);
-			flag = webDB.waitForElement(ProductionOrderLocators.ResourceTypeTableData, ElementType.Xpath);
+			flag = webDB.waitForElement(ProductionOrderLocators.ResourceTypeTableData(), ElementType.Xpath);
 			if (flag) {
-				webDB.clickAnElement(ProductionOrderLocators.ResourceTypeTableData, ElementType.Xpath);
-				flag = webDB.waitForElement(ProductionOrderLocators.ResourceTypeTableSelect, ElementType.Xpath);
+				webDB.clickAnElement(ProductionOrderLocators.ResourceTypeTableData(), ElementType.Xpath);
+				flag = webDB.waitForElement(ProductionOrderLocators.ResourceTypeTableSelect(), ElementType.Xpath);
 				if (flag) {
-					flag = webDB.selectDropDownByText(ProductionOrderLocators.ResourceTypeTableSelect, Type,
+					flag = webDB.selectDropDownByText(ProductionOrderLocators.ResourceTypeTableSelect(), Type,
 							ElementType.Xpath);
 					if (flag) {
 						logs.logging("INFO", "Type Seleced In Resources: " + Type);
-						flag = webDB.waitForElement(ProductionOrderLocators.ResourceBasisTableData, ElementType.Xpath);
+						flag = webDB.waitForElement(ProductionOrderLocators.ResourceBasisTableData(),
+								ElementType.Xpath);
 						if (flag) {
-							webDB.clickAnElement(ProductionOrderLocators.ResourceBasisTableData, ElementType.Xpath);
-							flag = webDB.waitForElement(ProductionOrderLocators.ResourceBasisTableSelect,
+							webDB.clickAnElement(ProductionOrderLocators.ResourceBasisTableData(), ElementType.Xpath);
+							flag = webDB.waitForElement(ProductionOrderLocators.ResourceBasisTableSelect(),
 									ElementType.Xpath);
 							if (flag) {
-								flag = webDB.selectDropDownByText(ProductionOrderLocators.ResourceBasisTableSelect,
+								flag = webDB.selectDropDownByText(ProductionOrderLocators.ResourceBasisTableSelect(),
 										Basis, ElementType.Xpath);
 								if (flag) {
 									logs.logging("INFO", "Basis Seleced In Resources: " + Basis);
@@ -3020,16 +3024,16 @@ public class ProductionOrderFunctions {
 	 * @param EffPerc
 	 */
 	private void fillResourceDateEffPercentInResourceTab(String Resource, String Date, String EffPerc) {
-		flag = webDB.waitForElement(ProductionOrderLocators.ResourceGroupTableData, ElementType.Xpath);
+		flag = webDB.waitForElement(ProductionOrderLocators.ResourceGroupTableData(), ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(ProductionOrderLocators.ResourceGroupTableData, ElementType.Xpath);
-			commonFunc.searchAndSelectValueInFilters(ProductionOrderLocators.ResourceGroupTableLovBtn, Resource);
+			webDB.clickAnElement(ProductionOrderLocators.ResourceGroupTableData(), ElementType.Xpath);
+			commonFunc.searchAndSelectValueInFilters(ProductionOrderLocators.ResourceGroupTableLovBtn(), Resource);
 			logs.logging("INFO", "Resource/Group Selected In Resources: " + Resource);
-			commonPayrollFunc.addDetailInTableWithoutLovButton(ProductionOrderLocators.ResourceDateTableData,
-					ProductionOrderLocators.ResourceDateTableInput, Date);
+			commonPayrollFunc.addDetailInTableWithoutLovButton(ProductionOrderLocators.ResourceDateTableData(),
+					ProductionOrderLocators.ResourceDateTableInput(), Date);
 			logs.logging("INFO", "Date Entered In Resources: " + Date);
-			commonPayrollFunc.addDetailInTableWithoutLovButton(ProductionOrderLocators.ResourceEffTableData,
-					ProductionOrderLocators.ResourceEffTableInput, EffPerc);
+			commonPayrollFunc.addDetailInTableWithoutLovButton(ProductionOrderLocators.ResourceEffTableData(),
+					ProductionOrderLocators.ResourceEffTableInput(), EffPerc);
 			logs.logging("INFO", "Eff-% Entered In Resources: " + EffPerc);
 		}
 		assertTrue(flag);
@@ -3047,17 +3051,17 @@ public class ProductionOrderFunctions {
 	 */
 	private void fillSetupHrsMinsAndPriorityLagHrsInResourceTab(String SetupHrs, String SetupMins, String Priority,
 			String LagHrs) {
-		commonPayrollFunc.addDetailInTableWithoutLovButton(ProductionOrderLocators.ResourceSetupHrsTableData,
-				ProductionOrderLocators.ResourceSetupHrsTableInput, SetupHrs);
+		commonPayrollFunc.addDetailInTableWithoutLovButton(ProductionOrderLocators.ResourceSetupHrsTableData(),
+				ProductionOrderLocators.ResourceSetupHrsTableInput(), SetupHrs);
 		logs.logging("INFO", "SetupHrs Entered In Resources: " + SetupHrs);
-		commonPayrollFunc.addDetailInTableWithoutLovButton(ProductionOrderLocators.ResourceSetupMinTableData,
-				ProductionOrderLocators.ResourceSetupMinTableInput, SetupMins);
+		commonPayrollFunc.addDetailInTableWithoutLovButton(ProductionOrderLocators.ResourceSetupMinTableData(),
+				ProductionOrderLocators.ResourceSetupMinTableInput(), SetupMins);
 		logs.logging("INFO", "SetupMins Entered In Resources: " + SetupMins);
-		commonPayrollFunc.addDetailInTableWithoutLovButton(ProductionOrderLocators.ResourcePriorityTableData,
-				ProductionOrderLocators.ResourcePriorityTableInput, Priority);
+		commonPayrollFunc.addDetailInTableWithoutLovButton(ProductionOrderLocators.ResourcePriorityTableData(),
+				ProductionOrderLocators.ResourcePriorityTableInput(), Priority);
 		logs.logging("INFO", "Priority Entered In Resources: " + Priority);
-		commonPayrollFunc.addDetailInTableWithoutLovButton(ProductionOrderLocators.ResourceLagHrsTableData,
-				ProductionOrderLocators.ResourceLagHrsTableInput, LagHrs);
+		commonPayrollFunc.addDetailInTableWithoutLovButton(ProductionOrderLocators.ResourceLagHrsTableData(),
+				ProductionOrderLocators.ResourceLagHrsTableInput(), LagHrs);
 		logs.logging("INFO", "LagHrs Entered In Resources: " + LagHrs);
 	}
 
@@ -3071,14 +3075,14 @@ public class ProductionOrderFunctions {
 	 * @param Sec
 	 */
 	private void fillHrsMinsAndSecInResourceTab(String Hrs, String Mins, String Sec) {
-		commonPayrollFunc.addDetailInTableWithoutLovButton(ProductionOrderLocators.ResourceHrsTableData,
-				ProductionOrderLocators.ResourceHrsTableInput, Hrs);
+		commonPayrollFunc.addDetailInTableWithoutLovButton(ProductionOrderLocators.ResourceHrsTableData(),
+				ProductionOrderLocators.ResourceHrsTableInput(), Hrs);
 		logs.logging("INFO", "Hrs Entered In Resources: " + Hrs);
-		commonPayrollFunc.addDetailInTableWithoutLovButton(ProductionOrderLocators.ResourceMinTableData,
-				ProductionOrderLocators.ResourceMinTableInput, Mins);
+		commonPayrollFunc.addDetailInTableWithoutLovButton(ProductionOrderLocators.ResourceMinTableData(),
+				ProductionOrderLocators.ResourceMinTableInput(), Mins);
 		logs.logging("INFO", "Mins Entered In Resources: " + Mins);
-		commonPayrollFunc.addDetailInTableWithoutLovButton(ProductionOrderLocators.ResourceSecTableData,
-				ProductionOrderLocators.ResourceSecTableInput, Sec);
+		commonPayrollFunc.addDetailInTableWithoutLovButton(ProductionOrderLocators.ResourceSecTableData(),
+				ProductionOrderLocators.ResourceSecTableInput(), Sec);
 		logs.logging("INFO", "Seconds Entered In Resources: " + Sec);
 	}
 
@@ -13221,8 +13225,8 @@ public class ProductionOrderFunctions {
 		completionProductionOrderFunc.clickPendingIconInCompletionProcess();
 		completionProductionOrderFunc
 				.clickMaterialRequestCreationAndSearchProdNo(VariableHandler.getProductionOrderNumber());
-		completionProductionOrderFunc.clickCheckBoxTableAndCreateAndStoreMRNo(
-				commonFunc.getDataFromTestDataSheet("Loc_100"), VariableHandler.getProductionOrderNumber());
+		completionProductionOrderFunc
+				.clickCheckBoxTableAndCreateAndStoreMRNo(VariableHandler.getProductionOrderNumber());
 		commonFunc.navigateToInventoryMaterialRequest();
 		materialRequestFunc.storeMRNoAndCheckStatusDraftAndPostWithProdNo(VariableHandler.getProductionOrderNumber());
 		materialIssuanceVoucherFunc.verifyWriteBeforeLotQuantityInLotForRawMaterials(FileName, SheetName, StartIndex);
@@ -13289,8 +13293,8 @@ public class ProductionOrderFunctions {
 		completionProductionOrderFunc.clickPendingIconInCompletionProcess();
 		completionProductionOrderFunc
 				.clickMaterialRequestCreationAndSearchProdNo(VariableHandler.getProductionOrderNumber());
-		completionProductionOrderFunc.clickCheckBoxTableAndCreateAndStoreMRNo(
-				commonFunc.getDataFromTestDataSheet("Loc_100"), VariableHandler.getProductionOrderNumber());
+		completionProductionOrderFunc
+				.clickCheckBoxTableAndCreateAndStoreMRNo(VariableHandler.getProductionOrderNumber());
 		commonFunc.navigateToInventoryMaterialRequest();
 		materialRequestFunc.storeMRNoAndCheckStatusDraftAndPostWithProdNo(VariableHandler.getProductionOrderNumber());
 		materialIssuanceVoucherFunc.verifyWriteBeforeLotQuantityInLotForRawMaterials(FileName, SheetName, StartIndex);
@@ -15217,57 +15221,4 @@ public class ProductionOrderFunctions {
 			return false;
 		}
 	}
-
-	/**
-	 * This method used to click select all and create MR
-	 *
-	 * @author Sakthi-GWL
-	 * @param String LocId
-	 * @param String ProdNumber
-	 */
-	public void clickCheckBoxTableAndCreateAndStoreMRNo(String LocId, String ProdNumber) {
-		flag = webDB.waitForElement(CompletionProductionOrderLocators.PendingMRCreateIframe, ElementType.Xpath);
-		if (flag) {
-			webDB.switchToFrame(CompletionProductionOrderLocators.PendingMRCreateIframe, ElementType.Xpath);
-			flag = webDB.waitForElement(CompletionProductionOrderLocators.PendingMRSelectAllBtn(ProdNumber),
-					ElementType.Xpath);
-			if (flag) {
-				logs.logging("INFO", "Pending MR Iframe Switched");
-				webDB.moveToElement(CompletionProductionOrderLocators.PendingMRSelectAllBtn(ProdNumber),
-						ElementType.Xpath);
-				webDB.clickAnElement(CompletionProductionOrderLocators.PendingMRSelectAllBtn(ProdNumber),
-						ElementType.Xpath);
-				flag = webDB.waitForElement(CompletionProductionOrderLocators.CreateMRButton, ElementType.Xpath);
-				if (flag) {
-					logs.logging("INFO", "Pending MR Select All Button Clicked");
-					webDB.moveToElement(CompletionProductionOrderLocators.CreateMRButton, ElementType.Xpath);
-					webDB.clickAnElement(CompletionProductionOrderLocators.CreateMRButton, ElementType.Xpath);
-					commonFunc.searchAndSelectValueInFilters(CompletionProductionOrderLocators.CreateMRLocIdLov, LocId);
-					webDB.waitForElement(CompletionProductionOrderLocators.PendingMRCreateIframe, ElementType.Xpath);
-					webDB.switchToFrame(CompletionProductionOrderLocators.PendingMRCreateIframe, ElementType.Xpath);
-					flag = webDB.waitForElement(CompletionProductionOrderLocators.CreateMROkButton, ElementType.Xpath);
-					if (flag) {
-						logs.logging("INFO", "Create MR Button Clicked");
-						webDB.clickAnElement(CompletionProductionOrderLocators.CreateMROkButton, ElementType.Xpath);
-						commonFunc.checkRefreshCellsDisappear();
-						webDB.switchToDefaultContent();
-						flag = webDB.waitForElementUntilGivenTime(CommonUiLocators.PostToastMessage, ElementType.Xpath,
-								60);
-						if (flag) {
-							logs.logging("INFO", "Material Request Created Successfully");
-							String Message = webDB.getTextFromElement(CommonUiLocators.PostToastMessage,
-									ElementType.Xpath);
-							logs.logging("INFO", "Success Message: " + Message);
-							Message = Message.replace("Material Request Created-", "").trim();
-							logs.logging("INFO", "After Split MR No: " + Message);
-							VariableHandler.setMaterialRequestNo(Message);
-							VariableHandler.setMRNumber(Message);
-						}
-					}
-				}
-			}
-		}
-		assertTrue(flag);
-	}
-
 }

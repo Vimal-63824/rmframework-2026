@@ -105,14 +105,14 @@ public class StocksPageFunctions {
 	 * 
 	 */
 	public void removeFilterStock() {
-		List<WebElement> removeFilter = webDB.getDriver().findElements(By.xpath(StocksPageLocators.RemoveFilter));
+		List<WebElement> removeFilter = WebDriverBase.getDriver()
+				.findElements(By.xpath(StocksPageLocators.RemoveFilter));
 		for (WebElement element : removeFilter) {
 			if (element.isDisplayed()) {
 				element.click();
 				break;
 			}
 		}
-		commonFunc.hardWait(2000);
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.checkRefreshCellsDisappear();
@@ -329,11 +329,12 @@ public class StocksPageFunctions {
 				}
 //			}
 //		}
-	}
+			}
 
-	}
+		}
 
-	assertTrue(flag);}
+		assertTrue(flag);
+	}
 
 	/**
 	 * This Method Is Used To Validate Stock Cost

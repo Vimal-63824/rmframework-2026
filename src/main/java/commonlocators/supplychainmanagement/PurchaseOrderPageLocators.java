@@ -451,7 +451,10 @@ public class PurchaseOrderPageLocators {
 	}
 
 	/** @locatorType Xpath */
-	public static final String HsnCode = "(//*[@id='ig_po_lineitems_ig_grid_vc']/div/div/table[1])[2]/tbody/tr/td[12]";
+	public static final String HsnCode() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(AddTablePOScreen, "HSN /SAC Code");
+	}
+
 	/** @locatorType Xpath */
 	public static final String HsnCodeLovButton = "//input[@data-testid='POL_HSN_CODE']/following-sibling::button";
 	/** @locatorType Xpath */
@@ -460,8 +463,10 @@ public class PurchaseOrderPageLocators {
 	public static final String GlAccountNoLovButton = "//input[contains(@id,'POL_PUR_ACCT')]/following-sibling::button";
 
 	/** @locatorType Xpath */
-	public static final String HsnCodeTableWithItem(String Item) {
-		return "(//td[text()='" + Item + "']/../td[12])[1]";
+	public static final String HsnCodeTableWithItem(String item) {
+		return "//table[.//td[normalize-space()='" + item + "']]//tr[td[normalize-space()='" + item
+				+ "']]/td[count(//table[.//td[normalize-space()='" + item
+				+ "']]//th[normalize-space()='HSN /SAC Code']/preceding-sibling::th) + 1]";
 	}
 
 	/** @locatorType Xpath */
@@ -497,7 +502,7 @@ public class PurchaseOrderPageLocators {
 	/** @locatorType Xpath */
 	public static final String NextPageButton = "//button[@class=\"a-GV-pageButton a-GV-pageButton--nav a-Button js-pg-next\"]";
 	/** @locatorType Xpath */
-	public static final String PurchaseOrderAddButtonframe = "//iframe[@title='Purchase Order']";
+	public static final String PurchaseOrderAddButtonframe = "//iframe[contains(@title,'Create')]";
 	/** @locatorType Xpath */
 	public static final String LineLabel = "//input[@data-display='Line(s)']/following-sibling::label";
 	/** @locatorType Xpath */

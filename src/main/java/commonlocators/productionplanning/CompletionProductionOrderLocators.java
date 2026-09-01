@@ -1,5 +1,7 @@
 package commonlocators.productionplanning;
 
+import commonfunctions.CommonFunctions;
+
 /**
  * @author Sakthi-GWL
  * @company Galaxy Weblinks March 05, 2025
@@ -15,11 +17,23 @@ public class CompletionProductionOrderLocators {
 	/** @locatorType XPATH */
 	public static final String PendingProdOrderSearchGoBtn = "//button[@id='PEND_search_button']";
 	/** @locatorType XPATH */
-	public static final String PendingProdOrder_ProdNoTableData = "//div[@id='PEND_content']//table/tbody/tr/td[4]";
+	public static final String PendingInsideCompletionTable = "(//table[contains(@aria-label,'PEND_PROD_PROC_IS')])[2]";
+
 	/** @locatorType XPATH */
-	public static final String PendingProdOrder_ItemTableData = "//div[@id='PEND_content']//table/tbody/tr/td[5]";
+	public static final String PendingProdOrder_ProdNoTableData() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(PendingInsideCompletionTable,
+				"Prod. Ord. No");
+	}
+
 	/** @locatorType XPATH */
-	public static final String PendingProdOrder_ProcessTableData = "//div[@id='PEND_content']//table/tbody/tr/td[15]";
+	public static final String PendingProdOrder_ItemTableData() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(PendingInsideCompletionTable, "Item");
+	}
+
+	/** @locatorType XPATH */
+	public static final String PendingProdOrder_ProcessTableData() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(PendingInsideCompletionTable, "Process ID");
+	}
 
 	/** @locatorType XPATH */
 	public static final String PendingProdOrder_SelectCheckboxTableData(String ProdNo) {
@@ -82,16 +96,35 @@ public class CompletionProductionOrderLocators {
 	public static final String MultiProc_PostBtn = "//button[@data-testid='MultiProc_PostBtn']";
 	/** @locatorType XPATH */
 	public static final String MultiProc_DisplayComplProdOrderNo = "//span[@data-testid='MultiProc_DisplayComplProdOrderNo']";
+
 	/** @locatorType XPATH */
-	public static final String ProcessName = "//table[@id='2554136343121425027_orig']/tbody/tr[2]/td[14]";
+	public static final String ProcessName() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(PendingInsideCompletionTable,
+				"Process Desc.");
+	}
+
 	/** @locatorType XPATH */
-	public static final String OrderQty = "//table[@id='2554136343121425027_orig']/tbody/tr[2]/td[15]";
+	public static final String OrderQty() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(PendingInsideCompletionTable, "Order Qty");
+	}
+
 	/** @locatorType XPATH */
-	public static final String QueueQty = "//table[@id='2554136343121425027_orig']/tbody/tr[2]/td[16]";
+	public static final String QueueQty() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(PendingInsideCompletionTable, "Queue Qty.");
+	}
+
 	/** @locatorType XPATH */
-	public static final String InsideQty = "//table[@id='2554136343121425027_orig']/tbody/tr[2]/td[17]";
+	public static final String InsideQty() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(PendingInsideCompletionTable,
+				"Inside Qty.");
+	}
+
 	/** @locatorType XPATH */
-	public static final String CompQty = "(//table[@id='2554136343121425027_orig']/tbody/tr[2]/td/input)[1]";
+	public static final String CompQty() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(PendingInsideCompletionTable, "Comp. Qty.")
+				+ "/input";
+	}
+
 	/** @locatorType XPATH */
 	public static final String OperatorLovButton = "//button[@id='P19631031010_PT_OPT_ID_lov_btn']";
 	/** @locatorType XPATH */
