@@ -261,7 +261,7 @@ public class PurchaseRequestLocators {
 	/** @locatorType Xpath */
 	public static final String RequiredDateInput = "(//table//tbody/tr[contains(@class,'a-GV-row')]/td[9])[1]//input";
 	/** @locatorType Xpath */
-	public static final String PRAddFrame = "//iframe[@title='Purchase Request']";
+	public static final String PRAddFrame = "//iframe[@title='Create Purchase Request']";
 	/** @locatorType Xpath */
 	public static final String HeaderCheckbox = "//label[@for='P161513103_RADIO_GRP_HD_LN_0']";
 	/** @locatorType Xpath */

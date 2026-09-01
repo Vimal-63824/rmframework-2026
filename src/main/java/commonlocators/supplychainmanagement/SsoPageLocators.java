@@ -39,9 +39,9 @@ public class SsoPageLocators {
 	/** @locatorType Xpath */
 	public static final String OPOLocLov = "//input[@data-testid='P1615131025_PRCHD_PLNT_LOC_ID']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String OpoFrame = "//iframe[@title='Open PO/RC ']";
+	public static final String OpoFrame = "//iframe[@title='Create Open PO/RC ']";
 	/** @locatorType Xpath */
-	public static final String SsoFrame = "//iframe[@title='Supplier Schedule Order']";
+	public static final String SsoFrame = "//iframe[@title='Create Supplier Schedule Order']";
 	/** @locatorType Xpath */
 	public static final String OPOSupplierLov = "//input[@data-testid='P1615131025_PRCHD_SUPLR_ID']/following-sibling::button";
 	/** @locatorType Xpath */
