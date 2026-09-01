@@ -269,6 +269,7 @@ public class VariableHandler {
 	private static ThreadLocal<Boolean> SessionOpened = ThreadLocal.withInitial(() -> false);
 	private static ThreadLocal<String> SessionID = ThreadLocal.withInitial(() -> null);
 	private static ThreadLocal<String> SignInUserName = ThreadLocal.withInitial(() -> null);
+	private static ThreadLocal<String> EmployeeFullName = ThreadLocal.withInitial(() -> null);
 
 	public static Boolean getSessionOpened() {
 		return SessionOpened.get();
@@ -2188,7 +2189,7 @@ public class VariableHandler {
 		SSODocNo.set(data);
 	}
 
-	public static String getGeneralReimbursementtDocNo() {
+	public static String getGeneralReimbursementDocNo() {
 		return GeneralReimbursementDocNo.get();
 	}
 
@@ -2322,5 +2323,13 @@ public class VariableHandler {
 
 	public static void setMultipleBankDocs(ArrayList<String> data) {
 		MultipleBankDocs.set(data);
+	}
+
+	public static String getEmployeeFullName() {
+		return EmployeeFullName.get();
+	}
+
+	public static void setEmployeeFullName(String Data) {
+		EmployeeFullName.set(Data);
 	}
 }

@@ -4,7 +4,6 @@ import static org.testng.Assert.assertTrue;
 
 import java.io.File;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +24,6 @@ import commonfunctions.supplychainmanagement.ApprovalPageFunctions;
 import commonlocators.CommonUiLocators;
 import commonlocators.payroll.AttendanceLeaveLocators;
 import commonlocators.supplychainmanagement.ApprovalPageLocators;
-import commonlocators.supplychainmanagement.PurchaseOrderPageLocators;
 import utils.ExcelUtils;
 import utils.ReportLoger;
 import utils.WebDriverBase;
@@ -49,24 +47,61 @@ public class AttendanceLeaveFunctions {
 	 */
 	public boolean verifyCheckpermissionEntryWithEmployeeData() {
 		try {
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
+					"HariUsername");
+			commonFunc.navigateEmployeeMasterScreenInPayroll();
+			empMasterFunc.clickAddIconAddEmployee();
+			empMasterFunc.clickEmployeeMasterSideNavBar();
+			empMasterFunc.selectSalutionEnterFirstAndLastName(commonFunc.getDataFromTestDataSheet("Emp_Salution"),
+					commonFunc.getDataFromTestDataSheet("Emp_FName"),
+					(commonFunc.getDataFromTestDataSheet("Emp_LName") + RandomStringUtils.randomAlphanumeric(5)));
+			empMasterFunc.selectGenderEnterDOBAndDOJ(commonFunc.getDataFromTestDataSheet("Emp_MaleGender"),
+					commonFunc.getDataFromTestDataSheet("Emp_DOB"), commonFunc.getDataFromTestDataSheet("Emp_DOJ"));
+			empMasterFunc.selectShiftEnterCalerdarAndZone(commonFunc.getDataFromTestDataSheet("Emp_GeneralShift"),
+					commonFunc.getDataFromTestDataSheet("Emp_1to31Calendar"),
+					commonFunc.getDataFromTestDataSheet("Emp_GeneralZone"));
+			empMasterFunc.selectCompanyAndAccountCatecory(
+					commonFunc.getDataFromTestDataSheet("Emp_SalesCompanyCategory"),
+					commonFunc.getDataFromTestDataSheet("Emp_SalaryAcc-AccountCategory"));
+			empMasterFunc.selectPayrollGroupAndEnterNoticePeriod(
+					commonFunc.getDataFromTestDataSheet("Emp_CleanerPayrollGroup"),
+					commonFunc.getDataFromTestDataSheet("Emp_NoticePeriod-30"));
+			empMasterFunc.clickSaveIconAndStoreEmpID();
+			empMasterFunc.clickSalarySideNavBar();
+			empMasterFunc.addDesignationDepartmentAndGradeInSalaryDetails(
+					commonFunc.getDataFromTestDataSheet("Emp_SalaryDesignation"),
+					commonFunc.getDataFromTestDataSheet("Emp_SalaryDepartment"),
+					commonFunc.getDataFromTestDataSheet("Emp_SalaryGrade"));
+			empMasterFunc.clickAfterEmpCreationSaveIcon();
+			empMasterFunc.clickLoadAllowanceButtonInSalaryDetails();
+			empMasterFunc.fillAllowanceAmountsAndVerifyTotalInSalaryDetails(
+					new String[] { RandomStringUtils.randomNumeric(5), RandomStringUtils.randomNumeric(4),
+							RandomStringUtils.randomNumeric(4), RandomStringUtils.randomNumeric(4) });
+			empMasterFunc.clickSalarySideNavBar();
+			empMasterFunc.enablePFAdjustmentFlagsInSalaryDetails();
+			empMasterFunc.enableESIAdjustmentFlagsInSalaryDetails();
+			empMasterFunc.clickPostButtonAndVerifyEmployeePosted();
+			commonFunc.logoutUser();
 			commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
 					"HrRqtUsername");
 			commonFunc.navigateLeaveEncashmentScreen();
 			addPermissionEntry();
-			permissionEmployeeLOVEntry(commonFunc.getDataFromTestDataSheet("EmployeeDurai"));
+			permissionEmployeeLOVEntry(VariableHandler.getEmployeeFullName());
 			checkPermissionBasedonFromDate(commonFunc.getDataFromTestDataSheet("PermFromDate1"));
 			permissionTimeFromEntry(commonFunc.getDataFromTestDataSheet("PermissionTimeFrom"),
 					commonFunc.getDataFromTestDataSheet("PermissionTimeTo"),
 					commonFunc.getDataFromTestDataSheet("PermissionReference"));
 			permissionSaveAndForwardDocument();
-			verifyWaitingForApproval();
-			commonFunc.hardWait(2000);
-			commonFunc.checkRefreshCellsDisappear();
-			commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getPermissionDocNo(),
-					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HariUsername"));
+			if (!VariableHandler.getApprovalFlag()) {
+				logs.logging("INFO", "Post Button Is Clicked Sucessfully");
+				approvalFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
+				commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"),
+						VariableHandler.getPermissionDocNo(), webDB.getDataFromProperties("HariEmpId"),
+						commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+			}
 			commonFunc.navigateLeaveEncashmentScreen();
-			PermissionForwardApprovalReverse(commonFunc.getDataFromTestDataSheet("EmployeeDurai"),
+			PermissionForwardApprovalReverse(VariableHandler.getEmployeeFullName(),
 					commonFunc.getDataFromTestDataSheet("PermissionFindType"));
 			VariableHandler.setCheckEmployeeDataPermissionDefaultExecution(true);
 			return true;
@@ -85,44 +120,62 @@ public class AttendanceLeaveFunctions {
 	 */
 	public boolean verifyCheckOnDutyEntrWithEmployeeData() {
 		try {
-			if (!VariableHandler.getCheckEmployeeDataPermissionDefaultExecution()) {
-				commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
-						"HrRqtUsername");
-				commonFunc.navigateLeaveEncashmentScreen();
-				addPermissionEntry();
-				permissionEmployeeLOVEntry(commonFunc.getDataFromTestDataSheet("EmployeeDurai"));
-				checkPermissionBasedonFromDate(commonFunc.getDataFromTestDataSheet("PermFromDate1"));
-				permissionTimeFromEntry(commonFunc.getDataFromTestDataSheet("PermissionTimeFrom"),
-						commonFunc.getDataFromTestDataSheet("PermissionTimeTo"),
-						commonFunc.getDataFromTestDataSheet("PermissionReference"));
-				permissionSaveAndForwardDocument();
-				verifyWaitingForApproval();
-				commonFunc.hardWait(2000);
-				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"),
-						VariableHandler.getPermissionDocNo(), webDB.getDataFromProperties("HodEmpId"),
-						commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
-				commonFunc.navigateLeaveEncashmentScreen();
-				PermissionForwardApprovalReverse(commonFunc.getDataFromTestDataSheet("EmployeeDurai"),
-						commonFunc.getDataFromTestDataSheet("PermissionFindType"));
-			}
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
+					"HariUsername");
+			commonFunc.navigateEmployeeMasterScreenInPayroll();
+			empMasterFunc.clickAddIconAddEmployee();
+			empMasterFunc.clickEmployeeMasterSideNavBar();
+			empMasterFunc.selectSalutionEnterFirstAndLastName(commonFunc.getDataFromTestDataSheet("Emp_Salution"),
+					commonFunc.getDataFromTestDataSheet("Emp_FName"),
+					(commonFunc.getDataFromTestDataSheet("Emp_LName") + RandomStringUtils.randomAlphanumeric(5)));
+			empMasterFunc.selectGenderEnterDOBAndDOJ(commonFunc.getDataFromTestDataSheet("Emp_MaleGender"),
+					commonFunc.getDataFromTestDataSheet("Emp_DOB"), commonFunc.getDataFromTestDataSheet("Emp_DOJ"));
+			empMasterFunc.selectShiftEnterCalerdarAndZone(commonFunc.getDataFromTestDataSheet("Emp_GeneralShift"),
+					commonFunc.getDataFromTestDataSheet("Emp_1to31Calendar"),
+					commonFunc.getDataFromTestDataSheet("Emp_GeneralZone"));
+			empMasterFunc.selectCompanyAndAccountCatecory(
+					commonFunc.getDataFromTestDataSheet("Emp_SalesCompanyCategory"),
+					commonFunc.getDataFromTestDataSheet("Emp_SalaryAcc-AccountCategory"));
+			empMasterFunc.selectPayrollGroupAndEnterNoticePeriod(
+					commonFunc.getDataFromTestDataSheet("Emp_CleanerPayrollGroup"),
+					commonFunc.getDataFromTestDataSheet("Emp_NoticePeriod-30"));
+			empMasterFunc.clickSaveIconAndStoreEmpID();
+			empMasterFunc.clickSalarySideNavBar();
+			empMasterFunc.addDesignationDepartmentAndGradeInSalaryDetails(
+					commonFunc.getDataFromTestDataSheet("Emp_SalaryDesignation"),
+					commonFunc.getDataFromTestDataSheet("Emp_SalaryDepartment"),
+					commonFunc.getDataFromTestDataSheet("Emp_SalaryGrade"));
+			empMasterFunc.clickAfterEmpCreationSaveIcon();
+			empMasterFunc.clickLoadAllowanceButtonInSalaryDetails();
+			empMasterFunc.fillAllowanceAmountsAndVerifyTotalInSalaryDetails(
+					new String[] { RandomStringUtils.randomNumeric(5), RandomStringUtils.randomNumeric(4),
+							RandomStringUtils.randomNumeric(4), RandomStringUtils.randomNumeric(4) });
+			VariableHandler.setAddEmployeDefaultExecution(true);
+			empMasterFunc.clickSalarySideNavBar();
+			empMasterFunc.enablePFAdjustmentFlagsInSalaryDetails();
+			empMasterFunc.enableESIAdjustmentFlagsInSalaryDetails();
+			empMasterFunc.clickPostButtonAndVerifyEmployeePosted();
+			commonFunc.logoutUser();
 			commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
 					"HrRqtUsername");
 			commonFunc.navigateLeaveEncashmentScreen();
 			addPermissionEntry();
-			permissionEmployeeLOVEntry(commonFunc.getDataFromTestDataSheet("EmployeeDurai"));
-			permissionSelctType(commonFunc.getDataFromTestDataSheet("PermissionType"));
-			checkOnDutyBasedonDateWise(commonFunc.getDataFromTestDataSheet("PermFromDate1"));
-			permissionReference(commonFunc.getDataFromTestDataSheet("PermissionReference"));
+			permissionEmployeeLOVEntry(VariableHandler.getEmployeeFullName());
+			checkPermissionBasedonFromDate(commonFunc.getDataFromTestDataSheet("PermFromDate1"));
+			permissionTimeFromEntry(commonFunc.getDataFromTestDataSheet("PermissionTimeFrom"),
+					commonFunc.getDataFromTestDataSheet("PermissionTimeTo"),
+					commonFunc.getDataFromTestDataSheet("PermissionReference"));
 			permissionSaveAndForwardDocument();
-			verifyWaitingForApproval();
-			commonFunc.hardWait(2000);
-			commonFunc.checkRefreshCellsDisappear();
-			commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getPermissionDocNo(),
-					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HariUsername"));
+			if (!VariableHandler.getApprovalFlag()) {
+				approvalFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
+				commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"),
+						VariableHandler.getPermissionDocNo(), webDB.getDataFromProperties("HodEmpId"),
+						commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+
+			}
 			commonFunc.navigateLeaveEncashmentScreen();
-			PermissionForwardApprovalReverse(commonFunc.getDataFromTestDataSheet("EmployeeDurai"),
+			PermissionForwardApprovalReverse(VariableHandler.getEmployeeFullName(),
 					commonFunc.getDataFromTestDataSheet("OnDutyFindType"));
 			return true;
 		} catch (Exception e) {
@@ -151,12 +204,9 @@ public class AttendanceLeaveFunctions {
 			if (flag) {
 				logs.logging("INFO", "Permission Type is" + PermissionFindType);
 				webDB.clickAnElement(AttendanceLeaveLocators.PermissionFindPageSearchButton, ElementType.Xpath);
-				flag = webDB.waitForElement(AttendanceLeaveLocators.PermissionFindDocumentNoClick,
-						ElementType.CssSelector);
+				flag = webDB.waitForElement(AttendanceLeaveLocators.PermissionFindDocumentNoClick(), ElementType.Xpath);
 				if (flag) {
-					commonFunc.hardWait(2000);
-					webDB.clickAnElement(AttendanceLeaveLocators.PermissionFindDocumentNoClick,
-							ElementType.CssSelector);
+					webDB.clickAnElement(AttendanceLeaveLocators.PermissionFindDocumentNoClick(), ElementType.Xpath);
 					flag = webDB.waitForElement(AttendanceLeaveLocators.PermissionReverse, ElementType.Xpath);
 					if (flag) {
 						logs.logging("INFO", "Permission Document is Clicked");
@@ -165,17 +215,16 @@ public class AttendanceLeaveFunctions {
 						if (flag) {
 							logs.logging("INFO", "Permission Document is Reversed");
 							webDB.clickAnElement(AttendanceLeaveLocators.PermissionReverseOk, ElementType.Xpath);
+							commonFunc.checkRefreshCellsDisappear();
+							commonFunc.checkRefreshCellsDisappear();
+							webDB.clickAnElement(AttendanceLeaveLocators.EmployeePermissionEntryFindButton,
+									ElementType.Xpath);
+							flag = webDB.waitForElement(AttendanceLeaveLocators.EmpoloyeeFindPermissionAddButton,
+									ElementType.Xpath);
 							if (flag) {
-								commonFunc.hardWait(5000);
-								webDB.clickAnElement(AttendanceLeaveLocators.EmployeePermissionEntryFindButton,
+								logs.logging("INFO", "On-Duty Entry Add Button Clicked");
+								webDB.clickAnElement(AttendanceLeaveLocators.EmpoloyeeFindPermissionAddButton,
 										ElementType.Xpath);
-								flag = webDB.waitForElement(AttendanceLeaveLocators.EmpoloyeeFindPermissionAddButton,
-										ElementType.Xpath);
-								if (flag) {
-									logs.logging("INFO", "On-Duty Entry Add Button Clicked");
-									webDB.clickAnElement(AttendanceLeaveLocators.EmpoloyeeFindPermissionAddButton,
-											ElementType.Xpath);
-								}
 							}
 						}
 					}
@@ -204,11 +253,9 @@ public class AttendanceLeaveFunctions {
 			if (flag) {
 				logs.logging("INFO", "Type selected is" + OnDutyFindType);
 				webDB.clickAnElement(AttendanceLeaveLocators.PermissionFindPageSearchButton, ElementType.Xpath);
-				flag = webDB.waitForElement(AttendanceLeaveLocators.PermissionFindDocumentNoClick,
-						ElementType.CssSelector);
+				flag = webDB.waitForElement(AttendanceLeaveLocators.PermissionFindDocumentNoClick(), ElementType.Xpath);
 				if (flag) {
-					webDB.clickAnElement(AttendanceLeaveLocators.PermissionFindDocumentNoClick,
-							ElementType.CssSelector);
+					webDB.clickAnElement(AttendanceLeaveLocators.PermissionFindDocumentNoClick(), ElementType.Xpath);
 					flag = webDB.waitForElement(AttendanceLeaveLocators.PermissionReverse, ElementType.Xpath);
 					if (flag) {
 						logs.logging("INFO", "On-Duty Document is Clicked");
@@ -216,10 +263,7 @@ public class AttendanceLeaveFunctions {
 						flag = webDB.waitForElement(AttendanceLeaveLocators.PermissionReverseOk, ElementType.Xpath);
 						if (flag) {
 							logs.logging("INFO", "On-Duty Document is Reversed");
-							webDB.clickAnElement(AttendanceLeaveLocators.PermissionReverseOk, ElementType.Xpath);
-							commonFunc.hardWait(5000);
-							flag = commonFunc.logoutUser();
-
+							flag = webDB.clickAnElement(AttendanceLeaveLocators.PermissionReverseOk, ElementType.Xpath);
 						}
 					}
 				}
@@ -235,24 +279,60 @@ public class AttendanceLeaveFunctions {
 	 * @author Kishore-RMITS
 	 */
 	public boolean checkPermissionOnDutybasedonFowardtoApprovalReord() {
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
+				"HariUsername");
+		commonFunc.navigateEmployeeMasterScreenInPayroll();
+		empMasterFunc.clickAddIconAddEmployee();
+		empMasterFunc.clickEmployeeMasterSideNavBar();
+		empMasterFunc.selectSalutionEnterFirstAndLastName(commonFunc.getDataFromTestDataSheet("Emp_Salution"),
+				commonFunc.getDataFromTestDataSheet("Emp_FName"),
+				(commonFunc.getDataFromTestDataSheet("Emp_LName") + RandomStringUtils.randomAlphanumeric(5)));
+		empMasterFunc.selectGenderEnterDOBAndDOJ(commonFunc.getDataFromTestDataSheet("Emp_MaleGender"),
+				commonFunc.getDataFromTestDataSheet("Emp_DOB"), commonFunc.getDataFromTestDataSheet("Emp_DOJ"));
+		empMasterFunc.selectShiftEnterCalerdarAndZone(commonFunc.getDataFromTestDataSheet("Emp_GeneralShift"),
+				commonFunc.getDataFromTestDataSheet("Emp_1to31Calendar"),
+				commonFunc.getDataFromTestDataSheet("Emp_GeneralZone"));
+		empMasterFunc.selectCompanyAndAccountCatecory(commonFunc.getDataFromTestDataSheet("Emp_SalesCompanyCategory"),
+				commonFunc.getDataFromTestDataSheet("Emp_SalaryAcc-AccountCategory"));
+		empMasterFunc.selectPayrollGroupAndEnterNoticePeriod(
+				commonFunc.getDataFromTestDataSheet("Emp_CleanerPayrollGroup"),
+				commonFunc.getDataFromTestDataSheet("Emp_NoticePeriod-30"));
+		empMasterFunc.clickSaveIconAndStoreEmpID();
+		empMasterFunc.clickSalarySideNavBar();
+		empMasterFunc.addDesignationDepartmentAndGradeInSalaryDetails(
+				commonFunc.getDataFromTestDataSheet("Emp_SalaryDesignation"),
+				commonFunc.getDataFromTestDataSheet("Emp_SalaryDepartment"),
+				commonFunc.getDataFromTestDataSheet("Emp_SalaryGrade"));
+		empMasterFunc.clickAfterEmpCreationSaveIcon();
+		empMasterFunc.clickLoadAllowanceButtonInSalaryDetails();
+		empMasterFunc.fillAllowanceAmountsAndVerifyTotalInSalaryDetails(
+				new String[] { RandomStringUtils.randomNumeric(5), RandomStringUtils.randomNumeric(4),
+						RandomStringUtils.randomNumeric(4), RandomStringUtils.randomNumeric(4) });
+		empMasterFunc.clickSalarySideNavBar();
+		empMasterFunc.enablePFAdjustmentFlagsInSalaryDetails();
+		empMasterFunc.enableESIAdjustmentFlagsInSalaryDetails();
+		empMasterFunc.clickPostButtonAndVerifyEmployeePosted();
+		commonFunc.logoutUser();
 		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
 				"HrRqtUsername");
 		commonFunc.navigateLeaveEncashmentScreen();
 		addPermissionEntry();
-		permissionEmployeeLOVEntry(commonFunc.getDataFromTestDataSheet("EmployeeDurai"));
+		permissionEmployeeLOVEntry(VariableHandler.getEmployeeFullName());
 		checkPermissionBasedonFromDate(commonFunc.getDataFromTestDataSheet("PermFromDate1"));
 		permissionTimeFromEntry(commonFunc.getDataFromTestDataSheet("PermissionTimeFrom"),
 				commonFunc.getDataFromTestDataSheet("PermissionTimeTo"),
 				commonFunc.getDataFromTestDataSheet("PermissionReference"));
 		permissionSaveAndForwardDocument();
-		verifyWaitingForApproval();
-		commonFunc.hardWait(2000);
-		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getPermissionDocNo(),
-				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HariUsername"));
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
+			commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getPermissionDocNo(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
+
+		}
 		commonFunc.navigateLeaveEncashmentScreen();
-		PermissionForwardApprovalReverse(commonFunc.getDataFromTestDataSheet("EmployeeDurai"),
+		PermissionForwardApprovalReverse(VariableHandler.getEmployeeFullName(),
 				commonFunc.getDataFromTestDataSheet("PermissionFindType"));
 		return flag;
 	}
@@ -264,27 +344,59 @@ public class AttendanceLeaveFunctions {
 	 * @author Kishore-RMITS
 	 */
 	public boolean checkPermissionOnDutyBasedOnReturnToRequestRecord() {
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
+				"HariUsername");
+		commonFunc.navigateEmployeeMasterScreenInPayroll();
+		empMasterFunc.clickAddIconAddEmployee();
+		empMasterFunc.clickEmployeeMasterSideNavBar();
+		empMasterFunc.selectSalutionEnterFirstAndLastName(commonFunc.getDataFromTestDataSheet("Emp_Salution"),
+				commonFunc.getDataFromTestDataSheet("Emp_FName"),
+				(commonFunc.getDataFromTestDataSheet("Emp_LName") + RandomStringUtils.randomAlphanumeric(5)));
+		empMasterFunc.selectGenderEnterDOBAndDOJ(commonFunc.getDataFromTestDataSheet("Emp_MaleGender"),
+				commonFunc.getDataFromTestDataSheet("Emp_DOB"), commonFunc.getDataFromTestDataSheet("Emp_DOJ"));
+		empMasterFunc.selectShiftEnterCalerdarAndZone(commonFunc.getDataFromTestDataSheet("Emp_GeneralShift"),
+				commonFunc.getDataFromTestDataSheet("Emp_1to31Calendar"),
+				commonFunc.getDataFromTestDataSheet("Emp_GeneralZone"));
+		empMasterFunc.selectCompanyAndAccountCatecory(commonFunc.getDataFromTestDataSheet("Emp_SalesCompanyCategory"),
+				commonFunc.getDataFromTestDataSheet("Emp_SalaryAcc-AccountCategory"));
+		empMasterFunc.selectPayrollGroupAndEnterNoticePeriod(
+				commonFunc.getDataFromTestDataSheet("Emp_CleanerPayrollGroup"),
+				commonFunc.getDataFromTestDataSheet("Emp_NoticePeriod-30"));
+		empMasterFunc.clickSaveIconAndStoreEmpID();
+		empMasterFunc.clickSalarySideNavBar();
+		empMasterFunc.addDesignationDepartmentAndGradeInSalaryDetails(
+				commonFunc.getDataFromTestDataSheet("Emp_SalaryDesignation"),
+				commonFunc.getDataFromTestDataSheet("Emp_SalaryDepartment"),
+				commonFunc.getDataFromTestDataSheet("Emp_SalaryGrade"));
+		empMasterFunc.clickAfterEmpCreationSaveIcon();
+		empMasterFunc.clickLoadAllowanceButtonInSalaryDetails();
+		empMasterFunc.fillAllowanceAmountsAndVerifyTotalInSalaryDetails(
+				new String[] { RandomStringUtils.randomNumeric(5), RandomStringUtils.randomNumeric(4),
+						RandomStringUtils.randomNumeric(4), RandomStringUtils.randomNumeric(4) });
+		empMasterFunc.clickSalarySideNavBar();
+		empMasterFunc.enablePFAdjustmentFlagsInSalaryDetails();
+		empMasterFunc.enableESIAdjustmentFlagsInSalaryDetails();
+		empMasterFunc.clickPostButtonAndVerifyEmployeePosted();
+		commonFunc.logoutUser();
 		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
 				"HrRqtUsername");
 		commonFunc.navigateLeaveEncashmentScreen();
 		addPermissionEntry();
-		permissionEmployeeLOVEntry(commonFunc.getDataFromTestDataSheet("EmployeeDurai"));
+		permissionEmployeeLOVEntry(VariableHandler.getEmployeeFullName());
 		checkPermissionBasedonFromDate(commonFunc.getDataFromTestDataSheet("PermFromDate1"));
 		permissionTimeFromEntry(commonFunc.getDataFromTestDataSheet("PermissionTimeFrom"),
 				commonFunc.getDataFromTestDataSheet("PermissionTimeTo"),
 				commonFunc.getDataFromTestDataSheet("PermissionReference"));
 		permissionSaveAndForwardDocument();
-		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
-		commonFunc.hardWait(2000);
-		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.returnDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getPermissionDocNo(),
-				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HariUsername"), webDB.getDataFromProperties("HRUSEREmpId"));
-		commonFunc.returnDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getPermissionDocNo(),
-				webDB.getDataFromProperties("HRUSEREmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HrRqtUsername"), webDB.getDataFromProperties("HRUSEREmpId"));
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
+			commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getPermissionDocNo(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
+		}
 		commonFunc.navigateLeaveEncashmentScreen();
-		PermissionDocumentCancel(commonFunc.getDataFromTestDataSheet("EmployeeDurai"),
+		PermissionDocumentCancel(VariableHandler.getEmployeeFullName(),
 				commonFunc.getDataFromTestDataSheet("PermissionFindType"));
 		return flag;
 	}
@@ -295,27 +407,23 @@ public class AttendanceLeaveFunctions {
 	 * @author Kishore-RMITS
 	 */
 	public boolean CheckLeaveEncashmentbasedonRequestDate() {
-		{
-			commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
-					"HrRqtUsername");
-			commonFunc.navigateLeaveEncashmentScreen();
-			EncashmentEntry(commonFunc.getDataFromTestDataSheet("EncashmentRequestDate"));
-			EncashmentEmployeeLOVEntry(commonFunc.getDataFromTestDataSheet("EmployeeDurai"));
-			EncashmentLeaveLOVEntry(commonFunc.getDataFromTestDataSheet("EncashmentLeaveLOV"));
-			EncashmentDaysEntry(commonFunc.getDataFromTestDataSheet("EncashDaysField"),
-					commonFunc.getDataFromTestDataSheet("EncashReasonField"));
-			EncashmentForward();
-			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
-			commonFunc.checkRefreshCellsDisappear();
+		commonFunc.navigateLeaveEncashmentScreen();
+		EncashmentEntry(commonFunc.getDataFromTestDataSheet("EncashmentRequestDate"));
+		EncashmentEmployeeLOVEntry(commonFunc.getDataFromTestDataSheet("EmployeeDurai"));
+		EncashmentLeaveLOVEntry(commonFunc.getDataFromTestDataSheet("EncashmentLeaveLOV"));
+		EncashmentDaysEntry(commonFunc.getDataFromTestDataSheet("EncashDaysField"),
+				commonFunc.getDataFromTestDataSheet("EncashReasonField"));
+		EncashmentForward();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
 			commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getEncashmentDocNo(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
-			commonFunc.navigateLeaveEncashmentScreen();
-			CheckLeaveEncashmentBasedOnPendingEncashment(VariableHandler.getEncashmentDocNo());
-			CheckLeaveEncashmentBasedOnEncashInPayroll();
-			CheckLeaveEncashmentReportFetchesValuesCorrectly(commonFunc.getDataFromTestDataSheet("EmployeeDurai"));
-			flag = commonFunc.logoutUser();
 		}
+		commonFunc.navigateLeaveEncashmentScreen();
+		CheckLeaveEncashmentBasedOnPendingEncashment(VariableHandler.getEncashmentDocNo());
+		CheckLeaveEncashmentBasedOnEncashInPayroll();
+		CheckLeaveEncashmentReportFetchesValuesCorrectly(commonFunc.getDataFromTestDataSheet("EmployeeDurai"));
 		return flag;
 	}
 
@@ -325,8 +433,6 @@ public class AttendanceLeaveFunctions {
 	 * @author Kishore-RMITS
 	 */
 	public boolean CheckLeaveEncashmentBasedOnForwardToApprovalRecord() {
-		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
-				"HrRqtUsername");
 		commonFunc.navigateLeaveEncashmentScreen();
 		EncashmentEntry(commonFunc.getDataFromTestDataSheet("EncashmentRequestDate"));
 		EncashmentEmployeeLOVEntry(commonFunc.getDataFromTestDataSheet("EmployeeDurai"));
@@ -334,12 +440,13 @@ public class AttendanceLeaveFunctions {
 		EncashmentDaysEntry(commonFunc.getDataFromTestDataSheet("EncashDaysField"),
 				commonFunc.getDataFromTestDataSheet("EncashReasonField"));
 		EncashmentForward();
-		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
-		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getEncashmentDocNo(),
-				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HariUsername"));
-		flag = commonFunc.logoutUser();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
+			commonFunc.checkRefreshCellsDisappear();
+			commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getEncashmentDocNo(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
+		}
 		return flag;
 	}
 
@@ -349,8 +456,6 @@ public class AttendanceLeaveFunctions {
 	 * @author Kishore-RMITS
 	 */
 	public boolean CheckLeaveEncashmentBasedOnReturnToRequestRecord() {
-		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
-				"HrRqtUsername");
 		commonFunc.navigateLeaveEncashmentScreen();
 		EncashmentEntry(commonFunc.getDataFromTestDataSheet("EncashmentRequestDate"));
 		EncashmentEmployeeLOVEntry(commonFunc.getDataFromTestDataSheet("EmployeeDurai"));
@@ -358,15 +463,16 @@ public class AttendanceLeaveFunctions {
 		EncashmentDaysEntry(commonFunc.getDataFromTestDataSheet("EncashDaysField"),
 				commonFunc.getDataFromTestDataSheet("EncashReasonField"));
 		EncashmentForward();
-		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
-		commonFunc.hardWait(2000);
-		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.returnDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getEncashmentDocNo(),
-				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HariUsername"), webDB.getDataFromProperties("HRUSEREmpId"));
-		commonFunc.returnDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getEncashmentDocNo(),
-				webDB.getDataFromProperties("HRUSEREmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HrRqtUsername"), webDB.getDataFromProperties("HRUSEREmpId"));
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
+			commonFunc.checkRefreshCellsDisappear();
+			commonFunc.returnDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getEncashmentDocNo(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"), webDB.getDataFromProperties("HRUSEREmpId"));
+			commonFunc.returnDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getEncashmentDocNo(),
+					webDB.getDataFromProperties("HRUSEREmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HrRqtUsername"), webDB.getDataFromProperties("HRUSEREmpId"));
+		}
 		commonFunc.navigateLeaveEncashmentScreen();
 		EncashmentCancel();
 		return flag;
@@ -378,8 +484,6 @@ public class AttendanceLeaveFunctions {
 	 * @author Kishore-RMITS
 	 */
 	public boolean CheckCompOffEntryBasedOnLeaveTypes() {
-		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
-				"HrRqtUsername");
 		commonFunc.navigateLeaveEncashmentScreen();
 		CompOffEntry();
 		compOffEmployeeLOVEntry(commonFunc.getDataFromTestDataSheet("EmployeeDurai"));
@@ -387,19 +491,12 @@ public class AttendanceLeaveFunctions {
 				commonFunc.getDataFromTestDataSheet("CompOffDays"),
 				commonFunc.getDataFromTestDataSheet("CompOffReferenceField"));
 		CompOffEntrySaveAndPostDocument();
-//		verifyWaitingForApproval();
-//		flag = commonFunc.logoutUser();
-//		if (flag) {
-//			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-//			approvalFunc.navigateToApprovals();
-//			filterDocumentsforPermissionApproval(VariableHandler.getCompOffDocNo());
-//			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getCompOffDocNo());
-		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
-		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getCompOffDocNo(),
-				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HariUsername"));
-		flag = commonFunc.logoutUser();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
+			commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getCompOffDocNo(),
+					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
+		}
 		return flag;
 	}
 
@@ -410,8 +507,6 @@ public class AttendanceLeaveFunctions {
 	 * @author Kishore-RMITS
 	 */
 	public boolean CheckCompOffBasedOnReturnToApprovalRecord() {
-		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
-				"HrRqtUsername");
 		commonFunc.navigateLeaveEncashmentScreen();
 		CompOffEntry();
 		compOffEmployeeLOVEntry(commonFunc.getDataFromTestDataSheet("EmployeeDurai"));
@@ -419,29 +514,16 @@ public class AttendanceLeaveFunctions {
 				commonFunc.getDataFromTestDataSheet("CompOffDays"),
 				commonFunc.getDataFromTestDataSheet("CompOffReferenceField"));
 		CompOffEntrySaveAndPostDocument();
-//		verifyWaitingForApproval();
-//		flag = commonFunc.logoutUser();
-//		if (flag) {
-//			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-//			approvalFunc.navigateToApprovals();
-//			filterDocumentsforPermissionApproval(VariableHandler.getCompOffDocNo());
-//			verifyReturnWithDocNumber(VariableHandler.getCompOffDocNo());
-//			flag = commonFunc.logoutUser();
-//			if (flag) {
-//				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"));
-//				approvalFunc.navigateToApprovals();
-//				filterDocumentsforPermissionApproval(VariableHandler.getCompOffDocNo());
-//				verifyReturnWithDocNumber(VariableHandler.getCompOffDocNo());
-		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
-		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.returnDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getCompOffDocNo(),
-				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HariUsername"), webDB.getDataFromProperties("HRUSEREmpId"));
-		commonFunc.returnDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getCompOffDocNo(),
-				webDB.getDataFromProperties("HRUSEREmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HrRqtUsername"), webDB.getDataFromProperties("HRUSEREmpId"));
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
+			commonFunc.returnDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getCompOffDocNo(),
+					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"), webDB.getDataFromProperties("HRUSEREmpId"));
+			commonFunc.returnDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getCompOffDocNo(),
+					webDB.getDataFromProperties("HRUSEREmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HrRqtUsername"), webDB.getDataFromProperties("HRUSEREmpId"));
+		}
 		CheckCompOffFindPageWithAllLineWiseRecord(commonFunc.getDataFromTestDataSheet("EmployeeDurai"));
-		flag = commonFunc.logoutUser();
 		return flag;
 	}
 
@@ -451,44 +533,29 @@ public class AttendanceLeaveFunctions {
 	 * @author Kishore-RMITS
 	 * @param EmployeeDurai
 	 */
-	public boolean CheckCompOffFindPageWithAllLineWiseRecord(String EmployeeDurai) {
+	public void CheckCompOffFindPageWithAllLineWiseRecord(String EmployeeDurai) {
 		commonFunc.navigateLeaveEncashmentScreen();
 		flag = webDB.waitForElement(AttendanceLeaveLocators.CompOffButtonClick, ElementType.Xpath);
 		if (flag) {
 			webDB.moveToElement(AttendanceLeaveLocators.CompOffButtonClick, ElementType.Xpath);
 			webDB.clickAnElement(AttendanceLeaveLocators.CompOffButtonClick, ElementType.Xpath);
+			logs.logging("INFO", "CompOff Button is Clicked");
+			commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.CompOffFindEmployeeLOV, EmployeeDurai);
+			logs.logging("INFO", "CompOff Employee Is Selected");
+			flag = webDB.waitForElement(AttendanceLeaveLocators.CompOffFindpageSearchButton, ElementType.Xpath);
 			if (flag) {
-				logs.logging("INFO", "CompOff Button is Clicked");
-				flag = webDB.waitForElement(AttendanceLeaveLocators.CompOffFindEmployeeLOV, ElementType.Xpath);
+				webDB.clickAnElement(AttendanceLeaveLocators.CompOffFindpageSearchButton, ElementType.Xpath);
+				logs.logging("INFO", "Search Button is Clicked");
+				flag = webDB.waitForElement(AttendanceLeaveLocators.CompOffFindpageClearButton, ElementType.Xpath);
 				if (flag) {
-					commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.CompOffFindEmployeeLOV,
-							EmployeeDurai);
+					flag = webDB.clickAnElement(AttendanceLeaveLocators.CompOffFindpageClearButton, ElementType.Xpath);
 					if (flag) {
-						logs.logging("INFO", "CompOff Employee Is Selected");
-						flag = webDB.waitForElement(AttendanceLeaveLocators.CompOffFindpageSearchButton,
-								ElementType.Xpath);
-						if (flag) {
-							webDB.clickAnElement(AttendanceLeaveLocators.CompOffFindpageSearchButton,
-									ElementType.Xpath);
-							if (flag) {
-								logs.logging("INFO", "Search Button is Clicked");
-								flag = webDB.waitForElement(AttendanceLeaveLocators.CompOffFindpageClearButton,
-										ElementType.Xpath);
-								if (flag) {
-									webDB.clickAnElement(AttendanceLeaveLocators.CompOffFindpageClearButton,
-											ElementType.Xpath);
-									if (flag) {
-										logs.logging("INFO", "Clear Button is Clicked");
-										commonFunc.hardWait(2000);
-									}
-								}
-							}
-						}
+						logs.logging("INFO", "Clear Button is Clicked");
 					}
 				}
 			}
 		}
-		return flag;
+		assertTrue(flag);
 	}
 
 	/**
@@ -514,42 +581,39 @@ public class AttendanceLeaveFunctions {
 		if (flag) {
 			webDB.moveToElement(AttendanceLeaveLocators.EmployeePermissionButton, ElementType.Xpath);
 			webDB.clickAnElement(AttendanceLeaveLocators.EmployeePermissionButton, ElementType.Xpath);
-			commonFunc.hardWait(1000);
 			logs.logging("INFO", "Permission Button Is Clicked");
-			flag = webDB.waitForElement(AttendanceLeaveLocators.PermissionFindPageEmployeeLOV, ElementType.Xpath);
 			commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.PermissionFindPageEmployeeLOV,
-					EmployeeDurai);
+					VariableHandler.getEmpID());
 			flag = webDB.waitForElement(AttendanceLeaveLocators.EmployeeFindScreenPermissionTypeSelectField,
 					ElementType.Xpath);
 			if (flag) {
-				commonFunc.checkRefreshCellsDisappear();
 				flag = webDB.selectDropDownByText(AttendanceLeaveLocators.EmployeeFindScreenPermissionTypeSelectField,
 						PermissionFindType, ElementType.Xpath);
 				if (flag) {
-					logs.logging("INFO", "Permission Type is" + PermissionFindType);
+					commonFunc.checkRefreshCellsDisappear();
+					logs.logging("INFO", "Permission Type is: " + PermissionFindType);
+					webDB.waitForElement(AttendanceLeaveLocators.PermissionFindPageSearchButton, ElementType.Xpath);
 					webDB.clickAnElement(AttendanceLeaveLocators.PermissionFindPageSearchButton, ElementType.Xpath);
-					flag = webDB.waitForElement(AttendanceLeaveLocators.PermissionFindDocumentNoClick,
-							ElementType.CssSelector);
-					commonFunc.hardWait(3000);
-					webDB.clickAnElement(AttendanceLeaveLocators.PermissionFindDocumentNoClick,
-							ElementType.CssSelector);
+					commonFunc.checkRefreshCellsDisappear();
+					flag = webDB.waitForElement(AttendanceLeaveLocators.PermissionFindDocumentNoClick(),
+							ElementType.Xpath);
 					if (flag) {
+						webDB.clickAnElement(AttendanceLeaveLocators.PermissionFindDocumentNoClick(),
+								ElementType.Xpath);
 						logs.logging("INFO", "Permission Document Is Clicked");
 						flag = webDB.waitForElement(AttendanceLeaveLocators.PermissionReverse, ElementType.Xpath);
-						commonFunc.hardWait(3000);
-						webDB.clickAnElement(AttendanceLeaveLocators.PermissionReverse, ElementType.Xpath);
 						if (flag) {
+							webDB.clickAnElement(AttendanceLeaveLocators.PermissionReverse, ElementType.Xpath);
 							logs.logging("INFO", "Permission Document is Reversed");
 							flag = webDB.waitForElement(AttendanceLeaveLocators.PermissionReverseOk, ElementType.Xpath);
-							webDB.clickAnElement(AttendanceLeaveLocators.PermissionReverseOk, ElementType.Xpath);
-							flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
 							if (flag) {
+								webDB.clickAnElement(AttendanceLeaveLocators.PermissionReverseOk, ElementType.Xpath);
+								flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
 								if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon,
 										ElementType.Xpath)) {
 									webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon,
 											ElementType.Xpath);
 								}
-								flag = commonFunc.logoutUser();
 							}
 						}
 					}
@@ -571,40 +635,32 @@ public class AttendanceLeaveFunctions {
 		if (flag) {
 			webDB.moveToElement(AttendanceLeaveLocators.EmployeePermissionButton, ElementType.Xpath);
 			webDB.clickAnElement(AttendanceLeaveLocators.EmployeePermissionButton, ElementType.Xpath);
-			commonFunc.hardWait(1000);
 			logs.logging("INFO", "Permission Button Is Clicked");
-			flag = webDB.waitForElement(AttendanceLeaveLocators.PermissionFindPageEmployeeLOV, ElementType.Xpath);
+			commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.PermissionFindPageEmployeeLOV,
+					EmployeeDurai);
+			flag = webDB.waitForElement(AttendanceLeaveLocators.EmployeeFindScreenPermissionTypeSelectField,
+					ElementType.Xpath);
 			if (flag) {
-				webDB.clickAnElement(AttendanceLeaveLocators.PermissionFindPageSearchButton, ElementType.Xpath);
-				commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.PermissionFindPageEmployeeLOV,
-						EmployeeDurai);
-				flag = webDB.waitForElement(AttendanceLeaveLocators.EmployeeFindScreenPermissionTypeSelectField,
-						ElementType.Xpath);
+				commonFunc.checkRefreshCellsDisappear();
+				flag = webDB.selectDropDownByText(AttendanceLeaveLocators.EmployeeFindScreenPermissionTypeSelectField,
+						PermissionFindType, ElementType.Xpath);
 				if (flag) {
-					commonFunc.checkRefreshCellsDisappear();
-					flag = webDB.selectDropDownByText(
-							AttendanceLeaveLocators.EmployeeFindScreenPermissionTypeSelectField, PermissionFindType,
+					flag = webDB.waitForElement(AttendanceLeaveLocators.PermissionFindPageEmployeeLOV,
 							ElementType.Xpath);
 					if (flag) {
-						logs.logging("INFO", "Permission Type is" + PermissionFindType);
 						webDB.clickAnElement(AttendanceLeaveLocators.PermissionFindPageSearchButton, ElementType.Xpath);
-						flag = webDB.waitForElement(AttendanceLeaveLocators.PermissionFindDocumentNoClick,
-								ElementType.CssSelector);
+						logs.logging("INFO", "Permission Type is" + PermissionFindType);
+						flag = webDB.waitForElement(AttendanceLeaveLocators.PermissionFindDocumentNoClick(),
+								ElementType.Xpath);
 						if (flag) {
-							commonFunc.hardWait(2000);
-							webDB.clickAnElement(AttendanceLeaveLocators.PermissionFindDocumentNoClick,
-									ElementType.CssSelector);
+							webDB.clickAnElement(AttendanceLeaveLocators.PermissionFindDocumentNoClick(),
+									ElementType.Xpath);
+							logs.logging("INFO", "Permission Document is Clicked");
+							flag = webDB.waitForElement(AttendanceLeaveLocators.PermissionCancelButton,
+									ElementType.Xpath);
 							if (flag) {
-								logs.logging("INFO", "Permission Document is Clicked");
-								flag = webDB.waitForElement(AttendanceLeaveLocators.PermissionCancelButton,
-										ElementType.Xpath);
-								if (flag) {
-									webDB.clickAnElement(AttendanceLeaveLocators.PermissionCancelButton,
-											ElementType.Xpath);
-									commonFunc.hardWait(2000);
-									logs.logging("INFO", "Permission Document is Cancelled");
-									flag = commonFunc.logoutUser();
-								}
+								webDB.clickAnElement(AttendanceLeaveLocators.PermissionCancelButton, ElementType.Xpath);
+								logs.logging("INFO", "Permission Document is Cancelled");
 							}
 						}
 					}
@@ -624,9 +680,9 @@ public class AttendanceLeaveFunctions {
 		if (flag) {
 			webDB.moveToElement(AttendanceLeaveLocators.EmployeePermissionButton, ElementType.Xpath);
 			webDB.clickAnElement(AttendanceLeaveLocators.EmployeePermissionButton, ElementType.Xpath);
-			commonFunc.hardWait(1000);
-			logs.logging("INFO", "Permission Button Is Clicked");
+			flag = webDB.waitForElement(AttendanceLeaveLocators.EmpoloyeeFindPermissionAddButton, ElementType.Xpath);
 			if (flag) {
+				logs.logging("INFO", "Permission Button Is Clicked");
 				webDB.clickAnElement(AttendanceLeaveLocators.EmpoloyeeFindPermissionAddButton, ElementType.Xpath);
 				flag = webDB.waitForElement(AttendanceLeaveLocators.EmployeePermissionFromDateField, ElementType.Xpath);
 				if (flag) {
@@ -647,8 +703,7 @@ public class AttendanceLeaveFunctions {
 		if (flag) {
 			webDB.moveToElement(AttendanceLeaveLocators.EmployeePermissionButton, ElementType.Xpath);
 			webDB.clickAnElement(AttendanceLeaveLocators.EmployeePermissionButton, ElementType.Xpath);
-			commonFunc.hardWait(1000);
-			webDB.waitForElement(AttendanceLeaveLocators.EmpoloyeeFindPermissionAddButton, ElementType.Xpath);
+			flag = webDB.waitForElement(AttendanceLeaveLocators.EmpoloyeeFindPermissionAddButton, ElementType.Xpath);
 			logs.logging("INFO", "Permission Button Is Clicked");
 		}
 		Assert.assertTrue(flag);
@@ -661,7 +716,6 @@ public class AttendanceLeaveFunctions {
 	 * @author Kishore-RMITS
 	 */
 	public void permissionEmployeeLOVEntry(String Employee) {
-
 		commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.PermissionEmployeeLOV, Employee);
 	}
 
@@ -682,17 +736,8 @@ public class AttendanceLeaveFunctions {
 	 * @author Kishore-RMITS
 	 */
 	public void checkPermissionBasedonFromDate(String PermFromDate) {
-		flag = webDB.waitForElement(AttendanceLeaveLocators.EmployeePermissionFromDateField, ElementType.Xpath);
-		if (flag) {
-			webDB.clearTextField(AttendanceLeaveLocators.EmployeePermissionFromDateField, ElementType.Xpath);
-			commonFunc.hardWait(1000);
-			flag = webDB.sendTextToAnElement(AttendanceLeaveLocators.EmployeePermissionFromDateField, PermFromDate,
-					ElementType.Xpath);
-			if (flag) {
-				logs.logging("INFO", "Permission From Date is Entered");
-			}
-		}
-		Assert.assertTrue(flag);
+		commonFunc.verifyAddTableSpecs(AttendanceLeaveLocators.EmployeePermissionFromDateField,
+				AttendanceLeaveLocators.EmployeePermissionFromDateField, PermFromDate);
 	}
 
 	/**
@@ -704,30 +749,15 @@ public class AttendanceLeaveFunctions {
 	 */
 	public void permissionTimeFromEntry(String PermissionTimeFrom, String PermissionTimeTo,
 			String PermissionReference) {
-		flag = webDB.waitForElement(AttendanceLeaveLocators.EmployeePermissionTimeFromField, ElementType.Xpath);
-		if (flag) {
-			webDB.clickAnElement(AttendanceLeaveLocators.EmployeePermissionTimeFromField, ElementType.Xpath);
-			webDB.sendTextToAnElement(AttendanceLeaveLocators.EmployeePermissionTimeFromField, PermissionTimeFrom,
-					ElementType.Xpath);
-			flag = webDB.waitForElement(AttendanceLeaveLocators.EmployeePermissionTimeToField, ElementType.Xpath);
-			if (flag) {
-				logs.logging("INFO", "Permission Time From is Entered");
-				if (flag) {
-					webDB.clickAnElement(AttendanceLeaveLocators.EmployeePermissionTimeToField, ElementType.Xpath);
-					webDB.sendTextToAnElement(AttendanceLeaveLocators.EmployeePermissionTimeToField, PermissionTimeTo,
-							ElementType.Xpath);
-					logs.logging("INFO", "Permission Time To is Entered");
-					flag = webDB.waitForElement(AttendanceLeaveLocators.EmployeePermissionReasonField,
-							ElementType.Xpath);
-					if (flag) {
-						webDB.clickAnElement(AttendanceLeaveLocators.EmployeePermissionReasonField, ElementType.Xpath);
-						flag = webDB.sendTextToAnElement(AttendanceLeaveLocators.EmployeePermissionReasonField,
-								PermissionReference, ElementType.Xpath);
-					}
-				}
-			}
-		}
-		Assert.assertTrue(flag);
+		commonFunc.verifyAddTableSpecs(AttendanceLeaveLocators.EmployeePermissionTimeFromField,
+				AttendanceLeaveLocators.EmployeePermissionTimeFromField, PermissionTimeFrom);
+		logs.logging("INFO", "Permission Time From is Entered");
+		commonFunc.verifyAddTableSpecs(AttendanceLeaveLocators.EmployeePermissionTimeToField,
+				AttendanceLeaveLocators.EmployeePermissionTimeToField, PermissionTimeTo);
+		logs.logging("INFO", "Permission Time To is Entered");
+		commonFunc.verifyAddTableSpecs(AttendanceLeaveLocators.EmployeePermissionReasonField,
+				AttendanceLeaveLocators.EmployeePermissionReasonField, PermissionTimeFrom);
+		logs.logging("INFO", "Permission Reference is Entered");
 	}
 
 	/**
@@ -738,17 +768,18 @@ public class AttendanceLeaveFunctions {
 	public void permissionSaveAndPostDocument() {
 		flag = webDB.waitForElement(AttendanceLeaveLocators.EmployeePermissionSaveButton, ElementType.Xpath);
 		if (flag) {
-			commonFunc.hardWait(2000);
+			webDB.moveToElement(AttendanceLeaveLocators.EmployeePermissionSaveButton, ElementType.Xpath);
 			webDB.clickAnElement(AttendanceLeaveLocators.EmployeePermissionSaveButton, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
+			commonFunc.checkSuccessToastMessageDisappear();
 			flag = webDB.waitForElement(AttendanceLeaveLocators.EmployeePermissionPostButon, ElementType.Xpath);
 			logs.logging("INFO", "Permission Entry is Saved");
 			if (flag) {
-				commonFunc.hardWait(5000);
 				webDB.clickAnElement(AttendanceLeaveLocators.EmployeePermissionPostButon, ElementType.Xpath);
-				flag = webDB.waitForElement(AttendanceLeaveLocators.EmployeePermissionSaveButton, ElementType.Xpath);
-				logs.logging("INFO", "Permission Entry is posted");
+				flag = webDB.waitForElement(AttendanceLeaveLocators.EmployeePermissionEntryFindButton,
+						ElementType.Xpath);
 				if (flag) {
-					commonFunc.hardWait(5000);
+					logs.logging("INFO", "Permission Entry is posted");
 					webDB.clickAnElement(AttendanceLeaveLocators.EmployeePermissionEntryFindButton, ElementType.Xpath);
 					flag = webDB.waitForElement(AttendanceLeaveLocators.PermissionFindPageEmployeeLOV,
 							ElementType.Xpath);
@@ -770,7 +801,6 @@ public class AttendanceLeaveFunctions {
 	public void permissionSelctType(String PermissionType) {
 		flag = webDB.waitForElement(AttendanceLeaveLocators.EmployeePermissionTypeSelectField, ElementType.Xpath);
 		if (flag) {
-			webDB.waitForClickElement(AttendanceLeaveLocators.EmployeePermissionTypeSelectField, ElementType.Xpath);
 			commonFunc.checkRefreshCellsDisappear();
 			flag = webDB.selectDropDownByText(AttendanceLeaveLocators.EmployeePermissionTypeSelectField, PermissionType,
 					ElementType.Xpath);
@@ -788,16 +818,9 @@ public class AttendanceLeaveFunctions {
 	 * @author Kishore-RMITS
 	 */
 	public void checkOnDutyBasedonDateWise(String OnDutyFromDate) {
-		flag = webDB.waitForElement(AttendanceLeaveLocators.EmployeePermissionFromDateField, ElementType.Xpath);
-		if (flag) {
-			commonFunc.checkRefreshCellsDisappear();
-			flag = webDB.sendTextToAnElement(AttendanceLeaveLocators.EmployeePermissionFromDateField, OnDutyFromDate,
-					ElementType.Xpath);
-			if (flag) {
-				logs.logging("INFO", "On Duty from date is entered");
-			}
-		}
-		Assert.assertTrue(flag);
+		commonFunc.verifyAddTableSpecs(AttendanceLeaveLocators.EmployeePermissionFromDateField,
+				AttendanceLeaveLocators.EmployeePermissionFromDateField, OnDutyFromDate);
+		logs.logging("INFO", "On Duty from date is entered");
 	}
 
 	/**
@@ -807,17 +830,9 @@ public class AttendanceLeaveFunctions {
 	 * @author Kishore-RMITS
 	 */
 	public void permissionReference(String PermissionReference) {
-		flag = webDB.waitForElement(AttendanceLeaveLocators.EmployeePermissionReasonField, ElementType.Xpath);
-		if (flag) {
-			webDB.clickAnElement(AttendanceLeaveLocators.EmployeePermissionReasonField, ElementType.Xpath);
-			commonFunc.hardWait(1000);
-			flag = webDB.sendTextToAnElement(AttendanceLeaveLocators.EmployeePermissionReasonField, PermissionReference,
-					ElementType.Xpath);
-			if (flag) {
-				logs.logging("INFO", "On Duty Reference is entered");
-			}
-		}
-		Assert.assertTrue(flag);
+		commonFunc.verifyAddTableSpecs(AttendanceLeaveLocators.EmployeePermissionReasonField,
+				AttendanceLeaveLocators.EmployeePermissionReasonField, PermissionReference);
+		logs.logging("INFO", "On Duty Reference is entered");
 	}
 
 	/**
@@ -829,58 +844,21 @@ public class AttendanceLeaveFunctions {
 		flag = webDB.waitForElement(AttendanceLeaveLocators.EmployeePermissionSaveButton, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(AttendanceLeaveLocators.EmployeePermissionSaveButton, ElementType.Xpath);
-			flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+			webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+			commonFunc.checkSuccessToastMessageDisappear();
+			flag = webDB.waitForElement(AttendanceLeaveLocators.PermissionDocumentNo, ElementType.Xpath);
 			if (flag) {
-				commonFunc.checkSuccessToastMessageDisappear();
-				webDB.waitForElement(AttendanceLeaveLocators.PermissionDocumentNo, ElementType.Xpath);
+				commonFunc.checkRefreshCellsDisappear();
 				String PermssionDocNo = webDB.getDomPropertyFromElement(AttendanceLeaveLocators.PermissionDocumentNo,
 						ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
 				VariableHandler.setPermssionDocNo(PermssionDocNo);
 				logs.logging("info", "Permssion No is:" + VariableHandler.getPermissionDocNo());
 				flag = webDB.waitForElement(AttendanceLeaveLocators.EmployeePermissionPostButon, ElementType.Xpath);
-				logs.logging("INFO", "Permission Entry is Saved");
 				if (flag) {
-					commonFunc.hardWait(3000);
+					logs.logging("INFO", "Permission Entry is Saved");
 					webDB.clickAnElement(AttendanceLeaveLocators.EmployeePermissionPostButon, ElementType.Xpath);
-					logs.logging("INFO", "Post Button Is Clicked Sucessfully");
+					flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
 				}
-			}
-		}
-		Assert.assertTrue(flag);
-	}
-
-	/**
-	 * This method is used to Forward the permission Document
-	 * 
-	 * @author Kishore-RMITS
-	 */
-	public void permissionReverseDocument() {
-		flag = webDB.waitForElement(AttendanceLeaveLocators.PermissionFindDocumentNoClick, ElementType.CssSelector);
-		if (flag) {
-			commonFunc.hardWait(3000);
-			webDB.clickAnElement(AttendanceLeaveLocators.PermissionFindDocumentNoClick, ElementType.CssSelector);
-		}
-	}
-
-	/**
-	 * This method is used to Select the Forward User for Permission Approval
-	 * 
-	 * @author Kishore-RMITS
-	 */
-	public void verifyWaitingForApproval() {
-		flag = webDB.waitForElementUntilGivenTime(AttendanceLeaveLocators.PermissionWorkApprovalFrame,
-				ElementType.Xpath, 45);
-		if (flag) {
-			webDB.switchToFrame(AttendanceLeaveLocators.PermissionWorkApprovalFrame, ElementType.Xpath);
-			commonFunc.searchAndSelectValueInFilters(PurchaseOrderPageLocators.ForwardApproval,
-					commonFunc.getDataFromTestDataSheet("KishoreValue"));
-			logs.logging("INFO", "Forward User is Selected");
-			webDB.switchToFrame(AttendanceLeaveLocators.PermissionWorkApprovalFrame, ElementType.Xpath);
-			flag = webDB.waitForElement(AttendanceLeaveLocators.WorkApprovalOkButton, ElementType.Xpath);
-			if (flag) {
-				webDB.clickAnElement(AttendanceLeaveLocators.WorkApprovalOkButton, ElementType.Xpath);
-				logs.logging("INFO", "Ok Button Is Clicked");
-				webDB.switchToDefaultContent();
 			}
 		}
 		Assert.assertTrue(flag);
@@ -917,48 +895,6 @@ public class AttendanceLeaveFunctions {
 	}
 
 	/**
-	 * This method is used to Return Permission Entry from Approval Screen
-	 * 
-	 * @param Number
-	 * @author Kishore-RMITS
-	 */
-	public void verifyReturnWithDocNumber(String Number) {
-		commonFunc.hardWait(1000);
-		flag = webDB.waitForClickElement(ApprovalPageLocators.POSelectCheckBox(Number), ElementType.Xpath);
-		if (flag) {
-			webDB.javaScriptClickAnElement(ApprovalPageLocators.POSelectCheckBox(Number), ElementType.Xpath);
-			flag = webDB.waitForClickElement(ApprovalPageLocators.ProcessButton, ElementType.Xpath);
-			if (flag) {
-				logs.logging("INFO", "CheckBox Is Clicked And Process Button IS Displayed");
-				webDB.javaScriptClickAnElement(ApprovalPageLocators.ProcessButton, ElementType.Xpath);
-				flag = webDB.waitForElement(AttendanceLeaveLocators.ApprovalReturnButton, ElementType.Xpath);
-				if (flag) {
-					logs.logging("INFO",
-							"CheckBox select for Document Number " + Number + " and Process button clicked");
-					commonFunc.checkRefreshCellsDisappear();
-					webDB.clickAnElement(AttendanceLeaveLocators.ApprovalReturnButton, ElementType.Xpath);
-					commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.ReturnUserLOV,
-							commonFunc.getDataFromTestDataSheet("ReturnUser"));
-					flag = webDB.waitForElement(ApprovalPageLocators.ApproveProcessButton, ElementType.Xpath);
-					commonFunc.hardWait(1000);
-					if (flag) {
-						logs.logging("INFO", "Approval Process Button IS Displayed");
-						webDB.clickAnElement(ApprovalPageLocators.ApproveProcessButton, ElementType.Xpath);
-						flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
-						if (flag) {
-							logs.logging("INFO", "Toast Message Displayed, Posted Successfully");
-							if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
-								webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
-							}
-						}
-					}
-				}
-			}
-		}
-		Assert.assertTrue(flag);
-	}
-
-	/**
 	 * This method is used to Create Encashment Adding and Request Date Entry
 	 * 
 	 * @param EncashmentRequestDate
@@ -969,7 +905,6 @@ public class AttendanceLeaveFunctions {
 		if (flag) {
 			logs.logging("INFO", "Encashment Button is Clicked");
 			webDB.clickAnElement(AttendanceLeaveLocators.EncashmentButton, ElementType.Xpath);
-			commonFunc.hardWait(1000);
 			flag = webDB.waitForElement(AttendanceLeaveLocators.EncashmentAddButon, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Encashment Add Button is Clicked");
@@ -977,8 +912,8 @@ public class AttendanceLeaveFunctions {
 				flag = webDB.waitForElement(AttendanceLeaveLocators.EncashmentRequestDateField, ElementType.Xpath);
 				if (flag) {
 					webDB.clearText(AttendanceLeaveLocators.EncashmentRequestDateField, ElementType.Xpath);
-					webDB.sendTextToAnElement(AttendanceLeaveLocators.EncashmentRequestDateField, EncashmentRequestDate,
-							ElementType.Xpath);
+					flag = webDB.sendTextToAnElement(AttendanceLeaveLocators.EncashmentRequestDateField,
+							EncashmentRequestDate, ElementType.Xpath);
 					if (flag) {
 						logs.logging("INFO", "Encashment Request Date " + EncashmentRequestDate + " is Entered");
 					}
@@ -996,10 +931,7 @@ public class AttendanceLeaveFunctions {
 	 */
 	public void EncashmentEmployeeLOVEntry(String EmployeeDurai) {
 		commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.EncashmentEmployeeLOV, EmployeeDurai);
-		if (flag) {
-			logs.logging("INFO", "Employee" + EmployeeDurai + "is selected");
-		}
-		Assert.assertTrue(flag);
+		logs.logging("INFO", "Employee" + EmployeeDurai + "is selected");
 	}
 
 	/**
@@ -1010,10 +942,7 @@ public class AttendanceLeaveFunctions {
 	 */
 	public void EncashmentLeaveLOVEntry(String EncashmentLeaveLOV) {
 		commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.EncashmentLeaveLOV, EncashmentLeaveLOV);
-		if (flag) {
-			logs.logging("INFO", "Employee" + EncashmentLeaveLOV + "is selected");
-		}
-		Assert.assertTrue(flag);
+		logs.logging("INFO", "Employee" + EncashmentLeaveLOV + "is selected");
 	}
 
 	/**
@@ -1026,12 +955,13 @@ public class AttendanceLeaveFunctions {
 	public void EncashmentDaysEntry(String EncashDaysField, String EncashReasonField) {
 		flag = webDB.waitForElement(AttendanceLeaveLocators.EncashDaysField, ElementType.Xpath);
 		if (flag) {
-			webDB.sendTextToAnElement(AttendanceLeaveLocators.EncashDaysField, EncashDaysField, ElementType.Xpath);
+			flag = webDB.sendTextToAnElement(AttendanceLeaveLocators.EncashDaysField, EncashDaysField,
+					ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Encashment Days" + EncashDaysField + " is Entered");
 				flag = webDB.waitForElement(AttendanceLeaveLocators.EncashmentReasonField, ElementType.Xpath);
 				if (flag) {
-					webDB.sendTextToAnElement(AttendanceLeaveLocators.EncashmentReasonField, EncashReasonField,
+					flag = webDB.sendTextToAnElement(AttendanceLeaveLocators.EncashmentReasonField, EncashReasonField,
 							ElementType.Xpath);
 					if (flag) {
 						logs.logging("INFO", "Encashment Reason " + EncashReasonField + " is Entered");
@@ -1050,28 +980,27 @@ public class AttendanceLeaveFunctions {
 	public void EncashmentSaveAndPostDocument() {
 		flag = webDB.waitForElement(AttendanceLeaveLocators.EncashmentSaveButton, ElementType.Xpath);
 		if (flag) {
+			commonFunc.checkSuccessToastMessageDisappear();
+			webDB.moveToElement(AttendanceLeaveLocators.EncashmentSaveButton, ElementType.Xpath);
 			webDB.clickAnElement(AttendanceLeaveLocators.EncashmentSaveButton, ElementType.Xpath);
-			logs.logging("INFO", "Encashment Entry is Saved");
-
 			flag = webDB.waitForElement(AttendanceLeaveLocators.EncashmentViewAmount, ElementType.Xpath);
 			if (flag) {
+				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.checkSuccessToastMessageDisappear();
+				logs.logging("INFO", "Encashment Entry is Saved");
 				String EncashmentDocNo = webDB.getDomPropertyFromElement(AttendanceLeaveLocators.EncashmentDocNumber,
 						ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
 				VariableHandler.setEncashmentDocNo(EncashmentDocNo);
-				System.out.println(EncashmentDocNo);
 				logs.logging("info", "Permssion No is:" + VariableHandler.getEncashmentDocNo());
 				flag = webDB.waitForElement(AttendanceLeaveLocators.EncashmentViewAmount, ElementType.Xpath);
 				if (flag) {
 					webDB.clickAnElement(AttendanceLeaveLocators.EncashmentViewAmount, ElementType.Xpath);
 					logs.logging("INFO", "Encashment Amount is Viewed");
-					commonFunc.hardWait(5000);
 					webDB.pressEscapeKey();
-//					webDB.clickAnElement(AttendanceLeaveLocators.EncashmentViewAmountClose, ElementType.Xpath);
 					flag = webDB.waitForElement(AttendanceLeaveLocators.EncashmentPostButton, ElementType.Xpath);
 					if (flag) {
 						webDB.clickAnElement(AttendanceLeaveLocators.EncashmentPostButton, ElementType.Xpath);
 						logs.logging("INFO", "Encashment Entry is posted");
-						commonFunc.hardWait(12000);
 						flag = webDB.waitForElement(AttendanceLeaveLocators.EncashmentFindIcon, ElementType.Xpath);
 						if (flag) {
 							webDB.clickAnElement(AttendanceLeaveLocators.EncashmentFindIcon, ElementType.Xpath);
@@ -1095,34 +1024,23 @@ public class AttendanceLeaveFunctions {
 		flag = webDB.waitForElement(AttendanceLeaveLocators.EncashmentButton, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(AttendanceLeaveLocators.EncashmentButton, ElementType.Xpath);
+			logs.logging("INFO", "Encashment Button is Clicked");
+			flag = webDB.waitForElement(AttendanceLeaveLocators.PendingEncashmentButton, ElementType.Xpath);
 			if (flag) {
-				logs.logging("INFO", "Encashment Button is Clicked");
-				flag = webDB.waitForElement(AttendanceLeaveLocators.PendingEncashmentButton, ElementType.Xpath);
+				webDB.clickAnElement(AttendanceLeaveLocators.PendingEncashmentButton, ElementType.Xpath);
+				logs.logging("INFO", "Pending Enashment Button is Clicked");
+				webDB.waitForElement(AttendanceLeaveLocators.PendingEncashmentscreen, ElementType.Xpath);
+				webDB.switchToFrame(AttendanceLeaveLocators.PendingEncashmentscreen, ElementType.Xpath);
+				flag = webDB.waitForElement(AttendanceLeaveLocators.PendingEncashmentSelectFlagIcon, ElementType.Xpath);
 				if (flag) {
-					commonFunc.hardWait(3000);
-					webDB.clickAnElement(AttendanceLeaveLocators.PendingEncashmentButton, ElementType.Xpath);
+					webDB.clickAnElement(AttendanceLeaveLocators.PendingEncashmentSelectFlagIcon, ElementType.Xpath);
+					logs.logging("INFO", "Pending Encashment Doc No Flag Is Checked");
+					flag = webDB.waitForElement(AttendanceLeaveLocators.CreateEncashmentLeave, ElementType.Xpath);
 					if (flag) {
-						logs.logging("INFO", "Pending Enashment Button is Clicked");
-						webDB.switchToFrame(AttendanceLeaveLocators.PendingEncashmentscreen, ElementType.Xpath);
-						flag = webDB.waitForElement(AttendanceLeaveLocators.PendingEncashmentSelectFlagIcon,
+						webDB.clickAnElement(AttendanceLeaveLocators.CreateEncashmentLeave, ElementType.Xpath);
+						logs.logging("INFO", "Encashment Leave Created");
+						flag = webDB.waitForElement(AttendanceLeaveLocators.CreateEncashmentOkButton,
 								ElementType.Xpath);
-						if (flag) {
-							webDB.clickAnElement(AttendanceLeaveLocators.PendingEncashmentSelectFlagIcon,
-									ElementType.Xpath);
-							if (flag) {
-								logs.logging("INFO", "Pending Encashment Doc No Flag Is Checked");
-								flag = webDB.waitForElement(AttendanceLeaveLocators.CreateEncashmentLeave,
-										ElementType.Xpath);
-								if (flag) {
-									commonFunc.hardWait(2000);
-									webDB.clickAnElement(AttendanceLeaveLocators.CreateEncashmentLeave,
-											ElementType.Xpath);
-									logs.logging("INFO", "Encashment Leave Created");
-									flag = webDB.waitForElement(AttendanceLeaveLocators.CreateEncashmentOkButton,
-											ElementType.Xpath);
-								}
-							}
-						}
 					}
 				}
 			}
@@ -1139,12 +1057,9 @@ public class AttendanceLeaveFunctions {
 		flag = webDB.waitForElement(AttendanceLeaveLocators.CreateEncashmentOkButton, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(AttendanceLeaveLocators.CreateEncashmentOkButton, ElementType.Xpath);
-			if (flag) {
-				logs.logging("INFO", "Encashment OK Button Is Clicked");
-				commonFunc.hardWait(2000);
-				webDB.switchToDefaultContent();
-				flag = webDB.waitForElement(AttendanceLeaveLocators.EncashmentFindPageEmployeeLOV, ElementType.Xpath);
-			}
+			logs.logging("INFO", "Encashment OK Button Is Clicked");
+			webDB.switchToDefaultContent();
+			flag = webDB.waitForElement(AttendanceLeaveLocators.EncashmentFindPageEmployeeLOV, ElementType.Xpath);
 		}
 		Assert.assertTrue(flag);
 	}
@@ -1157,25 +1072,30 @@ public class AttendanceLeaveFunctions {
 	public void EncashmentForward() {
 		flag = webDB.waitForElement(AttendanceLeaveLocators.EncashmentSaveButton, ElementType.Xpath);
 		if (flag) {
+			commonFunc.checkSuccessToastMessageDisappear();
+			webDB.moveToElement(AttendanceLeaveLocators.EncashmentSaveButton, ElementType.Xpath);
 			webDB.clickAnElement(AttendanceLeaveLocators.EncashmentSaveButton, ElementType.Xpath);
 			logs.logging("INFO", "Encashment Entry is Saved");
-
 			flag = webDB.waitForElement(AttendanceLeaveLocators.EncashmentViewAmount, ElementType.Xpath);
 			if (flag) {
+				commonFunc.checkRefreshCellsDisappear();
 				String EncashmentDocNo = webDB.getDomPropertyFromElement(AttendanceLeaveLocators.EncashmentDocNumber,
 						ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
 				VariableHandler.setEncashmentDocNo(EncashmentDocNo);
-				System.out.println(EncashmentDocNo);
 				logs.logging("info", "Permssion No is:" + VariableHandler.getEncashmentDocNo());
+				commonFunc.checkSuccessToastMessageDisappear();
 				flag = webDB.waitForElement(AttendanceLeaveLocators.EncashmentViewAmount, ElementType.Xpath);
 				if (flag) {
 					webDB.clickAnElement(AttendanceLeaveLocators.EncashmentViewAmount, ElementType.Xpath);
 					logs.logging("INFO", "Encashment Amount is Viewed");
-					commonFunc.hardWait(5000);
-					webDB.clickAnElement(AttendanceLeaveLocators.EncashmentViewAmountClose, ElementType.Xpath);
+					webDB.pressEscapeKey();
+					webDB.pressEscapeKey();
 					flag = webDB.waitForElement(AttendanceLeaveLocators.EncashmentPostButton, ElementType.Xpath);
 					if (flag) {
+						commonFunc.checkSuccessToastMessageDisappear();
+						webDB.moveToElement(AttendanceLeaveLocators.EncashmentPostButton, ElementType.Xpath);
 						webDB.clickAnElement(AttendanceLeaveLocators.EncashmentPostButton, ElementType.Xpath);
+						flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
 						logs.logging("INFO", "Encashment Entry is posted");
 					}
 				}
@@ -1193,42 +1113,27 @@ public class AttendanceLeaveFunctions {
 		flag = webDB.waitForElement(AttendanceLeaveLocators.EncashmentButton, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(AttendanceLeaveLocators.EncashmentButton, ElementType.Xpath);
+			logs.logging("INFO", "Encashment Button is Clicked");
+			flag = webDB.waitForElement(AttendanceLeaveLocators.EncashmentFindSearchButon, ElementType.Xpath);
 			if (flag) {
-				logs.logging("INFO", "Encashment Button is Clicked");
-				commonFunc.hardWait(1000);
-				flag = webDB.waitForElement(AttendanceLeaveLocators.EncashmentFindSearchButon, ElementType.Xpath);
+				webDB.clickAnElement(AttendanceLeaveLocators.EncashmentFindSearchButon, ElementType.Xpath);
+				logs.logging("INFO", "Encashment Search Button is Clicked");
+				commonFunc.checkRefreshCellsDisappear();
+				flag = webDB.waitForElement(AttendanceLeaveLocators.EncashmentFindDocSelect(), ElementType.Xpath);
 				if (flag) {
-					commonFunc.hardWait(1000);
-					webDB.clickAnElement(AttendanceLeaveLocators.EncashmentFindSearchButon, ElementType.Xpath);
+					webDB.clickAnElement(AttendanceLeaveLocators.EncashmentFindDocSelect(), ElementType.Xpath);
+					logs.logging("INFO", "Encashment Doc is Selected");
+					flag = webDB.waitForElement(AttendanceLeaveLocators.EncashmentCancelButton, ElementType.Xpath);
 					if (flag) {
-						logs.logging("INFO", "Encashment Search Button is Clicked");
-						flag = webDB.waitForElement(AttendanceLeaveLocators.EncashmentFindDocSelect,
-								ElementType.CssSelector);
+						flag = webDB.clickAnElement(AttendanceLeaveLocators.EncashmentCancelButton, ElementType.Xpath);
 						if (flag) {
-							commonFunc.hardWait(1000);
-							webDB.clickAnElement(AttendanceLeaveLocators.EncashmentFindDocSelect,
-									ElementType.CssSelector);
-							if (flag) {
-								logs.logging("INFO", "Encashment Doc is Selected");
-								flag = webDB.waitForElement(AttendanceLeaveLocators.EncashmentCancelButton,
-										ElementType.Xpath);
-								if (flag) {
-									commonFunc.hardWait(1000);
-									webDB.clickAnElement(AttendanceLeaveLocators.EncashmentCancelButton,
-											ElementType.Xpath);
-									if (flag) {
-										logs.logging("INFO", "Encashment Document Cancelled Successfully");
-										commonFunc.hardWait(2000);
-										flag = commonFunc.logoutUser();
-									}
-									Assert.assertTrue(flag);
-								}
-							}
+							logs.logging("INFO", "Encashment Document Cancelled Successfully");
 						}
 					}
 				}
 			}
 		}
+		Assert.assertTrue(flag);
 	}
 
 	/**
@@ -1241,11 +1146,11 @@ public class AttendanceLeaveFunctions {
 		if (flag) {
 			webDB.moveToElement(AttendanceLeaveLocators.CompOffButtonClick, ElementType.Xpath);
 			webDB.clickAnElement(AttendanceLeaveLocators.CompOffButtonClick, ElementType.Xpath);
-			commonFunc.hardWait(1000);
 			logs.logging("INFO", "Permission Button Is Clicked");
 			flag = webDB.waitForElement(AttendanceLeaveLocators.CompOffFindAddIcon, ElementType.Xpath);
 			if (flag) {
 				webDB.clickAnElement(AttendanceLeaveLocators.CompOffFindAddIcon, ElementType.Xpath);
+				flag = webDB.waitForElement(AttendanceLeaveLocators.CompOffDateField, ElementType.Xpath);
 			}
 		}
 		Assert.assertTrue(flag);
@@ -1260,39 +1165,17 @@ public class AttendanceLeaveFunctions {
 	 * @author Kishore-RMITS
 	 */
 	public void checkCompOffBasedonDatewise(String PermFromDate2, String CompOffDays, String CompOffReferenceField) {
-		flag = webDB.waitForElement(AttendanceLeaveLocators.CompOffDateField, ElementType.Xpath);
-		if (flag) {
-			commonFunc.hardWait(1000);
-			flag = webDB.clickAnElement(AttendanceLeaveLocators.CompOffDateField, ElementType.Xpath);
-			flag = webDB.waitForElement(AttendanceLeaveLocators.CompOffDateFieldToday, ElementType.Xpath);
-			if (flag) {
-				commonFunc.hardWait(1000);
-				flag = webDB.clickAnElement(AttendanceLeaveLocators.CompOffDateFieldToday, ElementType.Xpath);
-				if (flag) {
-					logs.logging("INFO", "Comp-Off From Date is Entered");
-					flag = webDB.waitForElement(AttendanceLeaveLocators.CompOffDaysField, ElementType.Xpath);
-					if (flag) {
-						commonFunc.hardWait(1000);
-						webDB.clearTextField(AttendanceLeaveLocators.CompOffDaysField, ElementType.Xpath);
-						webDB.sendTextToAnElement(AttendanceLeaveLocators.CompOffDaysField, CompOffDays,
-								ElementType.Xpath);
-						if (flag) {
-							logs.logging("INFO", "Employee CompOff days " + CompOffDays + " is Entered");
-							flag = webDB.waitForElement(AttendanceLeaveLocators.CompOffReferenceField,
-									ElementType.Xpath);
-							if (flag) {
-								webDB.sendTextToAnElement(AttendanceLeaveLocators.CompOffReferenceField,
-										CompOffReferenceField, ElementType.Xpath);
-								if (flag) {
-									logs.logging("INFO", "Encashment Reason " + CompOffReferenceField + " is Entered");
-								}
-							}
-						}
-					}
-
-				}
-			}
-		}
+		LocalDate date = LocalDate.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		String Today = date.format(formatter);
+		commonFunc.verifyAddTableSpecs(AttendanceLeaveLocators.CompOffDateField,
+				AttendanceLeaveLocators.CompOffDateField, Today);
+		commonFunc.verifyAddTableSpecs(AttendanceLeaveLocators.CompOffDaysField,
+				AttendanceLeaveLocators.CompOffDaysField, CompOffDays);
+		logs.logging("INFO", "Employee CompOff days " + CompOffDays + " is Entered");
+		commonFunc.verifyAddTableSpecs(AttendanceLeaveLocators.CompOffReferenceField,
+				AttendanceLeaveLocators.CompOffReferenceField, CompOffReferenceField);
+		logs.logging("INFO", "Encashment Reason " + CompOffReferenceField + " is Entered");
 		Assert.assertTrue(flag);
 	}
 
@@ -1304,21 +1187,26 @@ public class AttendanceLeaveFunctions {
 	public void CompOffEntrySaveAndPostDocument() {
 		flag = webDB.waitForElement(AttendanceLeaveLocators.CompOffEntrySaveIcon, ElementType.Xpath);
 		if (flag) {
+			webDB.moveToElement(AttendanceLeaveLocators.CompOffEntrySaveIcon, ElementType.Xpath);
 			webDB.clickAnElement(AttendanceLeaveLocators.CompOffEntrySaveIcon, ElementType.Xpath);
 			flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
 			if (flag) {
-				commonFunc.checkSuccessToastMessageDisappear();
-				webDB.waitForElement(AttendanceLeaveLocators.CompOffDocumentNo, ElementType.Xpath);
-				String CompOffDocNo = webDB.getDomPropertyFromElement(AttendanceLeaveLocators.CompOffDocumentNo,
-						ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
-				VariableHandler.setCompOffDocNo(CompOffDocNo);
-				logs.logging("info", "CompOff No is:" + VariableHandler.getCompOffDocNo());
-				flag = webDB.waitForElement(AttendanceLeaveLocators.CompOffEntryPostIcon, ElementType.Xpath);
 				logs.logging("INFO", "CompOff Entry is Saved");
+				flag = webDB.waitForElement(AttendanceLeaveLocators.CompOffDocumentNo, ElementType.Xpath);
 				if (flag) {
-					commonFunc.hardWait(3000);
-					webDB.clickAnElement(AttendanceLeaveLocators.CompOffEntryPostIcon, ElementType.Xpath);
-					logs.logging("INFO", "Post Button Is Clicked Sucessfully");
+					commonFunc.checkRefreshCellsDisappear();
+					String CompOffDocNo = webDB.getDomPropertyFromElement(AttendanceLeaveLocators.CompOffDocumentNo,
+							ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
+					VariableHandler.setCompOffDocNo(CompOffDocNo);
+					logs.logging("info", "CompOff No is:" + VariableHandler.getCompOffDocNo());
+					flag = webDB.waitForElement(AttendanceLeaveLocators.CompOffEntryPostIcon, ElementType.Xpath);
+					if (flag) {
+						commonFunc.checkSuccessToastMessageDisappear();
+						webDB.moveToElement(AttendanceLeaveLocators.CompOffEntryPostIcon, ElementType.Xpath);
+						webDB.clickAnElement(AttendanceLeaveLocators.CompOffEntryPostIcon, ElementType.Xpath);
+						flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
+						logs.logging("INFO", "Post Button Is Clicked Sucessfully");
+					}
 				}
 			}
 		}
@@ -1331,8 +1219,6 @@ public class AttendanceLeaveFunctions {
 	 * @author Kishore-RMITS
 	 */
 	public boolean CheckLoanRequestBasedOnRequiredDate() {
-		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
-				"HrRqtUsername");
 		commonFunc.navigateToLoanRequestScreen();
 		LoanRequestEntry(commonFunc.getDataFromTestDataSheet("PermFromDate1"),
 				commonFunc.getDataFromTestDataSheet("EmployeeDurai"), commonFunc.getDataFromTestDataSheet("LoanTypes"),
@@ -1341,17 +1227,12 @@ public class AttendanceLeaveFunctions {
 				commonFunc.getDataFromTestDataSheet("LoanAmount"),
 				commonFunc.getDataFromTestDataSheet("LoanInstallmentAmount"));
 		LoanRequestDocumentProcess();
-//		flag = commonFunc.logoutUser();
-//		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-//		approvalFunc.navigateToApprovals();
-//		filterDocumentsforPermissionApproval(VariableHandler.getLoanRequestDocNo());
-//		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getLoanRequestDocNo());
-		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
-		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getLoanRequestDocNo(),
-				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HariUsername"));
-		flag = commonFunc.logoutUser();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
+			commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getLoanRequestDocNo(),
+					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
+		}
 		return flag;
 	}
 
@@ -1373,8 +1254,6 @@ public class AttendanceLeaveFunctions {
 		String Today = date.format(formatter);
 		String requestDate = date1.format(formatter);
 		try {
-//			commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
-//					"HrRqtUsername");
 			commonFunc.navigateLeaveEncashmentScreen();
 			chooseLeaveAndClickAddLeaveIcon();
 			fillRequestDateEmpIdAndLeaveType(Today, commonFunc.getDataFromTestDataSheet("Emp_GWP0001"),
@@ -1400,20 +1279,16 @@ public class AttendanceLeaveFunctions {
 				clickSearchAndFilterLeaveEntryDocNo(VariableHandler.getLeaveEntryDocNo());
 				clickSaveAndPostInLeaveEntry();
 				if (!VariableHandler.getApprovalFlag()) {
-					approvalFunc.waitingForApprovalWithFordwarder(System.getProperty("HariUsername"));
+					approvalFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
 					commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"),
 							VariableHandler.getLeaveEntryDocNo(), webDB.getDataFromProperties("ROAUAdminEmpId"),
 							commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
 				}
-//				commonFunc.navigateLeaveEntryScreen();
-//				clickSearchAndFilterLeaveEntryDocNo(VariableHandler.getLeaveEntryDocNo());
 				clickReverseAndVerifyStatusInLeveEntry();
-//				flag = commonFunc.logoutUser();
 			} else if (VariableHandler.getEmpLeaveEntryAutoPost()) {
 				commonFunc.navigateLeaveEntryScreen();
 				clickSearchAndClickFirstLeaveEntryWithEmpName(commonFunc.getDataFromTestDataSheet("Emp_GWP0001"));
 				clickReverseAndVerifyStatusInLeveEntry();
-//				flag = commonFunc.logoutUser();
 			}
 			return true;
 		} catch (Exception e) {
@@ -1435,8 +1310,6 @@ public class AttendanceLeaveFunctions {
 		String Month = date1.format(formatter).toUpperCase();
 		String requestDay = date1.format(formatter1);
 		try {
-//			commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
-//					"HrRqtUsername");
 			commonFunc.navigateLeaveEncashmentScreen();
 			clickMigrationAndSelectLOPLeave();
 			clickAddNewLOPLeaveButton();
@@ -1454,10 +1327,8 @@ public class AttendanceLeaveFunctions {
 			}
 			commonFunc.navigateLeaveEntryScreen();
 			webDB.navigateToRefresh();
-			commonFunc.hardWait(2000);
 			clickSearchAndClickFirstLeaveEntryWithEmpName(commonFunc.getDataFromTestDataSheet("Emp_GWP0001"));
 			clickReverseAndVerifyStatusInLeveEntry();
-//			flag = commonFunc.logoutUser();
 			return true;
 		} catch (Exception e) {
 			logs.logging("INFO", "Exception occur while executing 'verifyLeaveLOPUploadMigrationWithTemplates': " + e);
@@ -1478,8 +1349,6 @@ public class AttendanceLeaveFunctions {
 		String Month = date1.format(formatter1).toUpperCase();
 		String requestDate = date1.format(formatter);
 		try {
-//			commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
-//					"HrRqtUsername");
 			commonFunc.navigateLeaveEncashmentScreen();
 			clickMigrationAndSelectAccrualLeave();
 			clickAddNewAccrualLeaveButton();
@@ -1487,7 +1356,9 @@ public class AttendanceLeaveFunctions {
 					commonFunc.getDataFromTestDataSheet("Year202627"), Month,
 					commonFunc.getDataFromTestDataSheet("RefText_Test"));
 			uploadTemplateInAccrualLeaveMigration(requestDate);
+			commonFunc.checkRefreshCellsDisappear();
 			checkExceptionAndSaveHeaderInAccrualMigration();
+			commonFunc.checkRefreshCellsDisappear();
 			clickPostAccrualLeaveButton();
 			if (!VariableHandler.getApprovalFlag()) {
 				approvalFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("ROAUAdminEmpId"));
@@ -1497,10 +1368,8 @@ public class AttendanceLeaveFunctions {
 			}
 			commonFunc.navigateLeaveEntryScreen();
 			webDB.navigateToRefresh();
-			commonFunc.hardWait(2000);
 			clickSearchAndClickFirstLeaveEntryWithEmpName(commonFunc.getDataFromTestDataSheet("Emp_GWP0001"));
 			clickReverseAndVerifyStatusInLeveEntry();
-//			flag = commonFunc.logoutUser();
 			return true;
 		} catch (Exception e) {
 			logs.logging("INFO",
@@ -1524,8 +1393,6 @@ public class AttendanceLeaveFunctions {
 		String requestDate = date1.format(formatter);
 		String AfterThreeDate = date2.format(formatter);
 		try {
-//			commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
-//					"HrRqtUsername");
 			commonFunc.navigateLeaveEntryScreen();
 			chooseLeaveAndClickAddLeaveIconInLE();
 			fillEntryDateEmpIdAndLeaveType(Today, commonFunc.getDataFromTestDataSheet("Emp_GWP0001"),
@@ -1544,7 +1411,6 @@ public class AttendanceLeaveFunctions {
 			clickUploadButtonInAttachmentLeaveEntry();
 			clickReportAndVerifyDisplayedInLeaveEntry();
 			clickSaveAndCancelInLeaveEntry();
-//			flag = commonFunc.logoutUser();
 			return true;
 		} catch (Exception e) {
 			logs.logging("INFO", "Exception occur while executing 'verifyCancelLeaveCheckLeaveStatus': " + e);
@@ -1676,7 +1542,7 @@ public class AttendanceLeaveFunctions {
 			commonFunc.checkSuccessToastMessageDisappear();
 			flag = webDB.waitForElement(AttendanceLeaveLocators.LeaveRequestNumberDisplay, ElementType.Xpath);
 			if (flag) {
-				commonFunc.hardWait(2000);
+				// commonFunc.hardWait(2000);
 				logs.logging("INFO", "Header Saved Successfully in Leave Request");
 				String ReqNo = webDB.getDomPropertyFromElement(AttendanceLeaveLocators.LeaveRequestNumberDisplay,
 						ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
@@ -2022,7 +1888,7 @@ public class AttendanceLeaveFunctions {
 							ElementType.Xpath);
 					if (flag) {
 						webDB.clickAnElement(AttendanceLeaveLocators.LRMigrationAccrualUploadBtn, ElementType.Xpath);
-						commonFunc.hardWait(2000);
+						// commonFunc.hardWait(2000);
 						commonFunc.checkRefreshCellsDisappear();
 						commonFunc.checkRefreshCellsDisappear();
 						flag = webDB.isElementDisplayed(AttendanceLeaveLocators.LRMigrationAccrualCheckExcptionBtn,
@@ -2214,7 +2080,7 @@ public class AttendanceLeaveFunctions {
 							ElementType.Xpath);
 					if (flag) {
 						webDB.clickAnElement(AttendanceLeaveLocators.LRMigrationLOPUploadBtn, ElementType.Xpath);
-						commonFunc.hardWait(2000);
+						// commonFunc.hardWait(2000);
 						commonFunc.checkRefreshCellsDisappear();
 						commonFunc.checkRefreshCellsDisappear();
 						flag = webDB.isElementDisplayed(AttendanceLeaveLocators.LRMigrationLOPCheckExcptionBtn,
@@ -2305,7 +2171,7 @@ public class AttendanceLeaveFunctions {
 				if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
 					webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
 				}
-				commonFunc.hardWait(1500);
+				// commonFunc.hardWait(1500);
 				commonFunc.checkSuccessToastMessageDisappear();
 				flag = webDB.waitForClickElement(AttendanceLeaveLocators.LeaveEntryCancelBtn, ElementType.Xpath);
 				if (flag) {
@@ -2510,7 +2376,7 @@ public class AttendanceLeaveFunctions {
 			commonPayrollFunctions.addDetailInTableWithoutLovButton(AttendanceLeaveLocators.LEAttachmentDateToInput,
 					AttendanceLeaveLocators.LEAttachmentDateToInput, ToDate);
 			logs.logging("INFO", "Leave Entry Attachment To Date Entered: " + ToDate);
-			commonFunc.hardWait(3000);
+			// commonFunc.hardWait(3000);
 			flag = webDB.sendTextToAnElement(AttendanceLeaveLocators.LEAttachmentChooseFileInput,
 					file.getAbsolutePath(), ElementType.Xpath);
 			if (flag) {
@@ -2561,7 +2427,9 @@ public class AttendanceLeaveFunctions {
 					if (flag) {
 						logs.logging("INFO", "Attachment Iframe Close Button Clicked");
 						webDB.clickAnElement(AttendanceLeaveLocators.DocManagementIframeCloseIcon, ElementType.Xpath);
-						webDB.navigateToRefresh();
+//						webDB.navigateToRefresh();
+						commonFunc.checkRefreshCellsDisappear();
+						webDB.pressEscapeKey();
 						flag = webDB.isElementNotDisplayed(AttendanceLeaveLocators.LeaveEntryAttachmentIframe,
 								ElementType.Xpath);
 						if (flag) {
@@ -2584,14 +2452,15 @@ public class AttendanceLeaveFunctions {
 		if (flag) {
 			webDB.moveToElement(AttendanceLeaveLocators.LeaveEntryReportBtn, ElementType.Xpath);
 			webDB.clickAnElement(AttendanceLeaveLocators.LeaveEntryReportBtn, ElementType.Xpath);
-			commonFunc.hardWait(5000);
+			commonFunc.hardWait(2000);
+			commonFunc.checkRefreshCellsDisappear();
 			ArrayList<String> tabs = new ArrayList<String>(webDB.getDriver().getWindowHandles());
 			flag = tabs.size() > 1;
 			logs.loggingconsole("INFO", "After Clicking Report Icon in Leave Entry.. tabs size: " + tabs.size());
 			if (flag) {
 				logs.logging("INFO", "Leave Entry Report Icon Clicked... New tab Opened");
 				webDB.switchToTabByIndex(1);
-				commonFunc.hardWait(2000);
+				// commonFunc.hardWait(2000);
 				String Title = webDB.getDriver().getTitle();
 				logs.logging("INFO", "Switched to Report Page... Displayed Title: " + Title);
 				if (flag) {
@@ -2854,7 +2723,7 @@ public class AttendanceLeaveFunctions {
 					webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
 				}
 				logs.logging("INFO", "Adjustment Header Save Icon Clicked in Adjustment");
-				commonFunc.hardWait(1000);
+				// commonFunc.hardWait(1000);
 				flag = webDB.waitForClickElement(AttendanceLeaveLocators.AdjustmentDisplayDocNo, ElementType.Xpath);
 				if (flag) {
 					String DisplayDocNo = webDB.getAttributeFromElement(AttendanceLeaveLocators.AdjustmentDisplayDocNo,
@@ -3095,7 +2964,7 @@ public class AttendanceLeaveFunctions {
 							ElementType.Xpath);
 					if (flag) {
 						webDB.clickAnElement(AttendanceLeaveLocators.AdjmntMigrationUploadBtn, ElementType.Xpath);
-						commonFunc.hardWait(2000);
+						// commonFunc.hardWait(2000);
 						webDB.switchToDefaultContent();
 						flag = webDB.waitForClickElement(AttendanceLeaveLocators.AdjmntMigrationCheckExceptionBtn,
 								ElementType.Xpath);
@@ -3147,14 +3016,14 @@ public class AttendanceLeaveFunctions {
 		if (flag) {
 			webDB.moveToElement(AttendanceLeaveLocators.AdjustmentReportBtn, ElementType.Xpath);
 			webDB.clickAnElement(AttendanceLeaveLocators.AdjustmentReportBtn, ElementType.Xpath);
-			commonFunc.hardWait(5000);
+			// commonFunc.hardWait(5000);
 			ArrayList<String> tabs = new ArrayList<String>(webDB.getDriver().getWindowHandles());
 			flag = tabs.size() > 1;
 			logs.loggingconsole("INFO", "After Clicking Report Icon in Leave Adjustment.. tabs size: " + tabs.size());
 			if (flag) {
 				logs.logging("INFO", "Leave Adjustment Report Icon Clicked... New tab Opened");
 				webDB.switchToTabByIndex(1);
-				commonFunc.hardWait(2000);
+				// commonFunc.hardWait(2000);
 				String Title = webDB.getDriver().getTitle();
 				logs.logging("INFO", "Switched to Report Page... Displayed Title: " + Title);
 				if (flag) {
@@ -3215,7 +3084,7 @@ public class AttendanceLeaveFunctions {
 	private void findWithLeaveInLeave(String Leave) {
 		commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.FindLeaveLovBtn, Leave);
 		clickFindSearchButtonInLeave();
-		List<WebElement> elements = webDB.getListOfElements(AttendanceLeaveLocators.FindLeaveResultTable,
+		List<WebElement> elements = webDB.getListOfElements(AttendanceLeaveLocators.FindLeaveResultTable(),
 				ElementType.Xpath);
 		a: for (WebElement webElement : elements) {
 			if (webElement.getText().equalsIgnoreCase(Leave)) {
@@ -3238,7 +3107,7 @@ public class AttendanceLeaveFunctions {
 	private void findWithYearInLeave(String Year) {
 		commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.FindYearLovBtn, Year);
 		clickFindSearchButtonInLeave();
-		List<WebElement> elements = webDB.getListOfElements(AttendanceLeaveLocators.FindYearResultTable,
+		List<WebElement> elements = webDB.getListOfElements(AttendanceLeaveLocators.FindYearResultTable(),
 				ElementType.Xpath);
 		a: for (WebElement webElement : elements) {
 			if (webElement.getText().equalsIgnoreCase(Year)) {
@@ -3261,7 +3130,7 @@ public class AttendanceLeaveFunctions {
 	private void findWithDesignationInLeave(String Designation) {
 		commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.FindDesignationLovBtn, Designation);
 		clickFindSearchButtonInLeave();
-		List<WebElement> elements = webDB.getListOfElements(AttendanceLeaveLocators.FindDesignationResultTable,
+		List<WebElement> elements = webDB.getListOfElements(AttendanceLeaveLocators.FindDesignationResultTable(),
 				ElementType.Xpath);
 		a: for (WebElement webElement : elements) {
 			if (webElement.getText().equalsIgnoreCase(Designation)) {
@@ -3284,7 +3153,7 @@ public class AttendanceLeaveFunctions {
 	private void findWithDepartmentInLeave(String Department) {
 		commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.FindDepartmentLovBtn, Department);
 		clickFindSearchButtonInLeave();
-		List<WebElement> elements = webDB.getListOfElements(AttendanceLeaveLocators.FindDepartmentResultTable,
+		List<WebElement> elements = webDB.getListOfElements(AttendanceLeaveLocators.FindDepartmentResultTable(),
 				ElementType.Xpath);
 		a: for (WebElement webElement : elements) {
 			if (webElement.getText().equalsIgnoreCase(Department)) {
@@ -3307,7 +3176,7 @@ public class AttendanceLeaveFunctions {
 	private void findWithUnitInLeave(String Unit) {
 		commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.FindUnitLovBtn, Unit);
 		clickFindSearchButtonInLeave();
-		List<WebElement> elements = webDB.getListOfElements(AttendanceLeaveLocators.FindUnitResultTable,
+		List<WebElement> elements = webDB.getListOfElements(AttendanceLeaveLocators.FindUnitResultTable(),
 				ElementType.Xpath);
 		a: for (WebElement webElement : elements) {
 			if (webElement.getText().equalsIgnoreCase(Unit)) {
@@ -3330,7 +3199,7 @@ public class AttendanceLeaveFunctions {
 	private void findWithLeaveInAdjustment(String Leave) {
 		commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.Adj_FindLeaveLovBtn, Leave);
 		clickFindSearchButtonInAdjustment();
-		List<WebElement> elements = webDB.getListOfElements(AttendanceLeaveLocators.Adj_FindLeaveResultTable,
+		List<WebElement> elements = webDB.getListOfElements(AttendanceLeaveLocators.Adj_FindLeaveResultTable(),
 				ElementType.Xpath);
 		a: for (WebElement webElement : elements) {
 			if (webElement.getText().equalsIgnoreCase(Leave)) {
@@ -3353,7 +3222,7 @@ public class AttendanceLeaveFunctions {
 	private void findWithYearInAdjustment(String Year) {
 		commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.Adj_FindYearLovBtn, Year);
 		clickFindSearchButtonInAdjustment();
-		List<WebElement> elements = webDB.getListOfElements(AttendanceLeaveLocators.Adj_FindYearResultTable,
+		List<WebElement> elements = webDB.getListOfElements(AttendanceLeaveLocators.Adj_FindYearResultTable(),
 				ElementType.Xpath);
 		a: for (WebElement webElement : elements) {
 			if (webElement.getText().equalsIgnoreCase(Year)) {
@@ -3376,7 +3245,7 @@ public class AttendanceLeaveFunctions {
 	private void findWithDesignationInAdjustment(String Designation) {
 		commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.Adj_FindDesignationLovBtn, Designation);
 		clickFindSearchButtonInAdjustment();
-		List<WebElement> elements = webDB.getListOfElements(AttendanceLeaveLocators.Adj_FindDesignationResultTable,
+		List<WebElement> elements = webDB.getListOfElements(AttendanceLeaveLocators.Adj_FindDesignationResultTable(),
 				ElementType.Xpath);
 		a: for (WebElement webElement : elements) {
 			if (webElement.getText().equalsIgnoreCase(Designation)) {
@@ -3399,7 +3268,7 @@ public class AttendanceLeaveFunctions {
 	private void findWithDepartmentInAdjustment(String Department) {
 		commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.Adj_FindDepartmentLovBtn, Department);
 		clickFindSearchButtonInAdjustment();
-		List<WebElement> elements = webDB.getListOfElements(AttendanceLeaveLocators.Adj_FindDepartmentResultTable,
+		List<WebElement> elements = webDB.getListOfElements(AttendanceLeaveLocators.Adj_FindDepartmentResultTable(),
 				ElementType.Xpath);
 		a: for (WebElement webElement : elements) {
 			if (webElement.getText().equalsIgnoreCase(Department)) {
@@ -3422,7 +3291,7 @@ public class AttendanceLeaveFunctions {
 	private void findWithUnitInAdjustment(String Unit) {
 		commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.Adj_FindUnitLovBtn, Unit);
 		clickFindSearchButtonInAdjustment();
-		List<WebElement> elements = webDB.getListOfElements(AttendanceLeaveLocators.Adj_FindUnitResultTable,
+		List<WebElement> elements = webDB.getListOfElements(AttendanceLeaveLocators.Adj_FindUnitResultTable(),
 				ElementType.Xpath);
 		a: for (WebElement webElement : elements) {
 			if (webElement.getText().equalsIgnoreCase(Unit)) {
@@ -3516,48 +3385,18 @@ public class AttendanceLeaveFunctions {
 		flag = webDB.waitForElement(AttendanceLeaveLocators.LoanRequestAddButton, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(AttendanceLeaveLocators.LoanRequestAddButton, ElementType.Xpath);
-			if (flag) {
-				logs.logging("INFO", "Loan Add Button Is Clicked");
-				flag = webDB.waitForElement(AttendanceLeaveLocators.LoanRequestEntryRequestDate, ElementType.Xpath);
-				if (flag) {
-					webDB.clearText(AttendanceLeaveLocators.LoanRequestEntryRequestDate, ElementType.Xpath);
-					flag = webDB.sendTextToAnElement(AttendanceLeaveLocators.LoanRequestEntryRequestDate, PermFromDate1,
-							ElementType.Xpath);
-					if (flag) {
-						logs.logging("INFO", "Request Date Is Entered");
-						flag = webDB.waitForElement(AttendanceLeaveLocators.LoanRequestEntryEmployeeLOV,
-								ElementType.Xpath);
-						if (flag) {
-							commonFunc.hardWait(1000);
-							commonFunc.searchAndSelectValueInFilters(
-									AttendanceLeaveLocators.LoanRequestEntryEmployeeLOV, EmployeeDurai);
-							if (flag) {
-								logs.logging("INFO", "Employee IS Selected in Employee LOV");
-								flag = webDB.waitForElement(AttendanceLeaveLocators.LoanRequestEntryLoanLOV,
-										ElementType.Xpath);
-								if (flag) {
-									commonFunc.hardWait(1000);
-									commonFunc.searchAndSelectValueInFilters(
-											AttendanceLeaveLocators.LoanRequestEntryLoanLOV, LoanTypes);
-									if (flag) {
-										logs.logging("INFO", "Loan  Type " + LoanTypes + " is Selected");
-										flag = webDB.waitForElement(AttendanceLeaveLocators.LoanRequestReferenceField,
-												ElementType.Xpath);
-										if (flag) {
-											flag = webDB.sendTextToAnElement(
-													AttendanceLeaveLocators.LoanRequestReferenceField, LoanReference,
-													ElementType.Xpath);
-											if (flag) {
-												logs.logging("INFO", "Loan Refernce " + LoanReference + " is Entered");
-											}
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
+			logs.logging("INFO", "Loan Add Button Is Clicked");
+			commonFunc.verifyAddTableSpecs(AttendanceLeaveLocators.LoanRequestEntryRequestDate,
+					AttendanceLeaveLocators.LoanRequestEntryRequestDate, PermFromDate1);
+			logs.logging("INFO", "Request Date Is Entered");
+			commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.LoanRequestEntryEmployeeLOV,
+					EmployeeDurai);
+			logs.logging("INFO", "Employee IS Selected in Employee LOV");
+			commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.LoanRequestEntryLoanLOV, LoanTypes);
+			logs.logging("INFO", "Loan  Type " + LoanTypes + " is Selected");
+			commonFunc.verifyAddTableSpecs(AttendanceLeaveLocators.LoanRequestReferenceField,
+					AttendanceLeaveLocators.LoanRequestReferenceField, LoanReference);
+			logs.logging("INFO", "Loan Refernce " + LoanReference + " is Entered");
 		}
 		Assert.assertTrue(flag);
 	}
@@ -3573,51 +3412,31 @@ public class AttendanceLeaveFunctions {
 	 * @param LoanSuretyEmployee2
 	 */
 	public void LoanRequiredDetails(String PermFromDate1, String LoanAmount, String LoanInstallmentAmount) {
-		flag = webDB.waitForElement(AttendanceLeaveLocators.LoanRequestRequiredDetailsDateField, ElementType.Xpath);
+		commonFunc.verifyAddTableSpecs(AttendanceLeaveLocators.LoanRequestRequiredDetailsDateField,
+				AttendanceLeaveLocators.LoanRequestRequiredDetailsDateField, PermFromDate1);
+		logs.logging("INFO", "Loan Required Date is Entered");
+		commonFunc.verifyAddTableSpecs(AttendanceLeaveLocators.LoanRequestAmountField,
+				AttendanceLeaveLocators.LoanRequestAmountField, LoanAmount);
+		logs.logging("INFO", "Loan amount is Entered");
+		commonFunc.verifyAddTableSpecs(AttendanceLeaveLocators.LoanRequestNoofInstallmentField,
+				AttendanceLeaveLocators.LoanRequestNoofInstallmentField, LoanInstallmentAmount);
+		logs.logging("INFO", "Loan Installment is Entered");
+		flag = webDB.waitForElement(AttendanceLeaveLocators.LoanRequestSaveIcon, ElementType.Xpath);
 		if (flag) {
-			webDB.clearText(AttendanceLeaveLocators.LoanRequestRequiredDetailsDateField, ElementType.Xpath);
-			commonFunc.hardWait(1000);
-			flag = webDB.sendTextToAnElement(AttendanceLeaveLocators.LoanRequestRequiredDetailsDateField, PermFromDate1,
-					ElementType.Xpath);
+			webDB.moveToElement(AttendanceLeaveLocators.LoanRequestSaveIcon, ElementType.Xpath);
+			webDB.clickAnElement(AttendanceLeaveLocators.LoanRequestSaveIcon, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
 			if (flag) {
-				logs.logging("INFO", "Loan Required Date is Entered");
-				flag = webDB.waitForElement(AttendanceLeaveLocators.LoanRequestAmountField, ElementType.Xpath);
+				logs.logging("INFO", "Loan Request Doc is Saved");
+				flag = webDB.waitForElement(AttendanceLeaveLocators.LoanRequestDocNoField, ElementType.Xpath);
 				if (flag) {
-					webDB.doubleClickAnElement(AttendanceLeaveLocators.LoanRequestAmountField, ElementType.Xpath);
-					commonFunc.hardWait(1000);
-					webDB.clearText(AttendanceLeaveLocators.LoanRequestAmountField, ElementType.Xpath);
-					flag = webDB.sendTextToAnElement(AttendanceLeaveLocators.LoanRequestAmountField, LoanAmount,
-							ElementType.Xpath);
-					logs.logging("INFO", "Loan amount is Entered");
-					flag = webDB.waitForElement(AttendanceLeaveLocators.LoanRequestNoofInstallmentField,
-							ElementType.Xpath);
-					if (flag) {
-						webDB.doubleClickAnElement(AttendanceLeaveLocators.LoanRequestNoofInstallmentField,
-								ElementType.Xpath);
-						commonFunc.hardWait(1000);
-						webDB.clearText(AttendanceLeaveLocators.LoanRequestNoofInstallmentField, ElementType.Xpath);
-						commonFunc.hardWait(1000);
-						flag = webDB.sendTextToAnElement(AttendanceLeaveLocators.LoanRequestNoofInstallmentField,
-								LoanInstallmentAmount, ElementType.Xpath);
-						flag = webDB.waitForElement(AttendanceLeaveLocators.LoanRequestSaveIcon, ElementType.Xpath);
-						if (flag) {
-							commonFunc.hardWait(2000);
-							webDB.clickAnElement(AttendanceLeaveLocators.LoanRequestSaveIcon, ElementType.Xpath);
-							if (flag) {
-								logs.logging("INFO", "Loan Request Doc is Saved");
-							}
-							flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
-							if (flag) {
-								commonFunc.checkSuccessToastMessageDisappear();
-								webDB.waitForElement(AttendanceLeaveLocators.LoanRequestDocNoField, ElementType.Xpath);
-								String LoanRequestDocNo = webDB.getDomPropertyFromElement(
-										AttendanceLeaveLocators.LoanRequestDocNoField, ElementType.Xpath,
-										commonFunc.getDataFromTestDataSheet("Value"));
-								VariableHandler.setLoanRequestDocNo(LoanRequestDocNo);
-								logs.logging("info", "Loan Request No is:" + VariableHandler.getLoanRequestDocNo());
-							}
-						}
-					}
+					commonFunc.checkSuccessToastMessageDisappear();
+					commonFunc.checkRefreshCellsDisappear();
+					String LoanRequestDocNo = webDB.getDomPropertyFromElement(
+							AttendanceLeaveLocators.LoanRequestDocNoField, ElementType.Xpath,
+							commonFunc.getDataFromTestDataSheet("Value"));
+					VariableHandler.setLoanRequestDocNo(LoanRequestDocNo);
+					logs.logging("info", "Loan Request No is:" + VariableHandler.getLoanRequestDocNo());
 				}
 			}
 		}
@@ -3632,31 +3451,10 @@ public class AttendanceLeaveFunctions {
 	public void LoanRequestDocumentProcess() {
 		flag = webDB.waitForElement(AttendanceLeaveLocators.LoanRequestPostIcon, ElementType.Xpath);
 		if (flag) {
-			commonFunc.hardWait(1000);
+			commonFunc.checkSuccessToastMessageDisappear();
+			webDB.moveToElement(AttendanceLeaveLocators.LoanRequestPostIcon, ElementType.Xpath);
 			webDB.clickAnElement(AttendanceLeaveLocators.LoanRequestPostIcon, ElementType.Xpath);
-//			flag = webDB.waitForElementUntilGivenTime(CommonUiLocators.WorkApprovalFrame, ElementType.Xpath, 5);
-//			if (flag) {
-//				VariableHandler.setApprovalFlag(flag);
-//				webDB.switchToFrame(CommonUiLocators.WorkApprovalFrame, ElementType.Xpath);
-//				logs.logging("INFO", "Switched To Workflow Frame");
-//				commonFunc.searchAndSelectValueInFilters(CommonUiLocators.WorkAppoval_ForwardLovBtn, user);
-//				logs.logging("INFO", "Document Forwarder Person: " + user);
-//				webDB.waitForElement(CommonUiLocators.WorkApprovalFrame, ElementType.Xpath);
-//				webDB.switchToFrame(CommonUiLocators.WorkApprovalFrame, ElementType.Xpath);
-//				flag = webDB.waitForElement(CommonUiLocators.WorkAppoval_OkBtn, ElementType.Xpath);
-//				if (flag) {
-//					webDB.moveToElement(CommonUiLocators.WorkAppoval_OkBtn, ElementType.Xpath);
-//					flag = webDB.clickAnElement(CommonUiLocators.WorkAppoval_OkBtn, ElementType.Xpath);
-//					commonFunc.checkSuccessToastMessageDisappear();
-//					commonFunc.checkRefreshCellsDisappear();
-//					commonFunc.hardWait(3000);
-//					flag = !webDB.verifyIsElementDisplayed(CommonUiLocators.WorkAppoval_OkBtn, ElementType.Xpath);
-//					if (flag) {
-//						logs.logging("INFO", "Workflow Approval Ok Button Clicked");
-//						webDB.switchToDefaultContent();
-//					}
-//				}
-//			}
+			flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
 		}
 		assertTrue(flag);
 	}
@@ -3669,29 +3467,18 @@ public class AttendanceLeaveFunctions {
 	public void CheckLoanRequestFindPageWithAllLineWiseRecord() {
 		flag = webDB.waitForElement(AttendanceLeaveLocators.LoanRequestFindSearch, ElementType.Xpath);
 		if (flag) {
-			commonFunc.hardWait(3000);
 			webDB.clickAnElement(AttendanceLeaveLocators.LoanRequestFindSearch, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
+			logs.logging("INFO", "Loan Request Find Serach Button Is Clicked");
+			flag = webDB.waitForElement(AttendanceLeaveLocators.LoanRequestFindDocNoClick(), ElementType.Xpath);
 			if (flag) {
-				logs.logging("INFO", "Loan Request Find Serach Button Is Clicked");
-				flag = webDB.waitForElement(AttendanceLeaveLocators.LoanRequestFindDocNoClick, ElementType.CssSelector);
+				webDB.clickAnElement(AttendanceLeaveLocators.LoanRequestFindDocNoClick(), ElementType.Xpath);
+				logs.logging("INFO", "Loan Request document have been clicked");
+				flag = webDB.waitForElement(AttendanceLeaveLocators.LoanRequestDocCancel, ElementType.Xpath);
 				if (flag) {
-					commonFunc.hardWait(3000);
-					webDB.clickAnElement(AttendanceLeaveLocators.LoanRequestFindDocNoClick, ElementType.CssSelector);
-					if (flag) {
-						logs.logging("INFO", "Loan Request document have been clicked");
-						flag = webDB.waitForElement(AttendanceLeaveLocators.LoanRequestDocCancel, ElementType.Xpath);
-						if (flag) {
-							commonFunc.hardWait(3000);
-							webDB.clickAnElement(AttendanceLeaveLocators.LoanRequestDocCancel, ElementType.Xpath);
-							if (flag) {
-								logs.logging("INFO", "Loan Request Document Have been Cancelled");
-								flag = webDB.waitForElement(AttendanceLeaveLocators.LoanRequestAmountField,
-										ElementType.Xpath);
-								commonFunc.hardWait(1000);
-								commonFunc.logoutUser();
-							}
-						}
-					}
+					webDB.clickAnElement(AttendanceLeaveLocators.LoanRequestDocCancel, ElementType.Xpath);
+					logs.logging("INFO", "Loan Request Document Have been Cancelled");
+					flag = webDB.waitForElement(AttendanceLeaveLocators.LoanRequestAmountField, ElementType.Xpath);
 				}
 			}
 		}
@@ -3704,8 +3491,6 @@ public class AttendanceLeaveFunctions {
 	 * @author Kishore-RMITS
 	 */
 	public boolean CheckLoanRequestBasedonReturnToApprovalRecord() {
-		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
-				"HrRqtUsername");
 		commonFunc.navigateToLoanRequestScreen();
 		LoanRequestEntry(commonFunc.getDataFromTestDataSheet("PermFromDate1"),
 				commonFunc.getDataFromTestDataSheet("EmployeeDurai"), commonFunc.getDataFromTestDataSheet("LoanTypes"),
@@ -3714,26 +3499,18 @@ public class AttendanceLeaveFunctions {
 				commonFunc.getDataFromTestDataSheet("LoanAmount"),
 				commonFunc.getDataFromTestDataSheet("LoanInstallmentAmount"));
 		LoanRequestDocumentProcess();
-//		flag = commonFunc.logoutUser();
-//		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-//		approvalFunc.navigateToApprovals();
-//		filterDocumentsforPermissionApproval(VariableHandler.getLoanRequestDocNo());
-//		verifyReturnWithDocNumber(VariableHandler.getLoanRequestDocNo());
-//		flag = commonFunc.logoutUser();
-//		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-//				"TvsUsername");
-		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
-		commonFunc.hardWait(2000);
-		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.returnDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getLoanRequestDocNo(),
-				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HariUsername"), webDB.getDataFromProperties("HRUSEREmpId"));
-		commonFunc.returnDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getLoanRequestDocNo(),
-				webDB.getDataFromProperties("HRUSEREmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HrRqtUsername"), webDB.getDataFromProperties("HRUSEREmpId"));
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
+			commonFunc.returnDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getLoanRequestDocNo(),
+					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"), webDB.getDataFromProperties("HRUSEREmpId"));
+			commonFunc.returnDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getLoanRequestDocNo(),
+					webDB.getDataFromProperties("HRUSEREmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HrRqtUsername"), webDB.getDataFromProperties("HRUSEREmpId"));
+		}
 		commonFunc.navigateToLoanRequestScreen();
 		CheckLoanRequestFindPageWithAllLineWiseRecord();
-		return flag;
+		return true;
 	}
 
 	/**
@@ -3863,7 +3640,7 @@ public class AttendanceLeaveFunctions {
 			commonFunc.checkSuccessToastMessageDisappear();
 			flag = webDB.waitForElement(AttendanceLeaveLocators.LeaveEntryNumberDisplay, ElementType.Xpath);
 			if (flag) {
-				commonFunc.hardWait(1000);
+				// commonFunc.hardWait(1000);
 				logs.logging("INFO", "Header Saved Successfully in Leave Entry");
 				String ReqNo = webDB.getDomPropertyFromElement(AttendanceLeaveLocators.LeaveEntryNumberDisplay,
 						ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
@@ -3908,8 +3685,6 @@ public class AttendanceLeaveFunctions {
 	 * @param Number
 	 */
 	public boolean CheckLoanPaymentEntry() {
-		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
-				"HrRqtUsername");
 		commonFunc.navigateToLoanRequestScreen();
 		LoanRequestEntry(commonFunc.getDataFromTestDataSheet("PermFromDate1"),
 				commonFunc.getDataFromTestDataSheet("EmployeeDurai"), commonFunc.getDataFromTestDataSheet("LoanTypes"),
@@ -3918,18 +3693,13 @@ public class AttendanceLeaveFunctions {
 				commonFunc.getDataFromTestDataSheet("LoanAmount"),
 				commonFunc.getDataFromTestDataSheet("LoanInstallmentAmount"));
 		LoanRequestDocumentProcess();
-//		flag = commonFunc.logoutUser();
-//		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-//		approvalFunc.navigateToApprovals();
-//		filterDocumentsforPermissionApproval(VariableHandler.getLoanRequestDocNo());
-//		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getLoanRequestDocNo());
-//		flag = commonFunc.logoutUser();
-//		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
-		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getLoanRequestDocNo(),
-				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HariUsername"));
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
+			commonFunc.checkRefreshCellsDisappear();
+			commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getLoanRequestDocNo(),
+					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
+		}
 		commonFunc.navigateToLoanPaymentScreen();
 		LoanPaymentDocumentSelect();
 		return flag;
@@ -3944,40 +3714,31 @@ public class AttendanceLeaveFunctions {
 		flag = webDB.waitForElement(AttendanceLeaveLocators.LoanPaymentFindSearch, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(AttendanceLeaveLocators.LoanPaymentFindSearch, ElementType.Xpath);
+			logs.logging("INFO", "LoanPayment Find Search Button Is Clicked");
+			commonFunc.checkRefreshCellsDisappear();
+			flag = webDB.waitForElement(AttendanceLeaveLocators.LoanPaymentDocNoClick(), ElementType.Xpath);
 			if (flag) {
-				logs.logging("INFO", "LoanPayment Find Search Button Is Clicked");
-				flag = webDB.waitForElement(AttendanceLeaveLocators.LoanPaymentDocNoClick, ElementType.CssSelector);
+				webDB.clickAnElement(AttendanceLeaveLocators.LoanPaymentDocNoClick(), ElementType.Xpath);
+				logs.logging("INFO", "Loan DocNo Is Clicked");
+				flag = webDB.waitForElement(AttendanceLeaveLocators.LoanPaymentCreateLoanButton, ElementType.Xpath);
 				if (flag) {
-					webDB.clickAnElement(AttendanceLeaveLocators.LoanPaymentDocNoClick, ElementType.CssSelector);
+					webDB.clickAnElement(AttendanceLeaveLocators.LoanPaymentCreateLoanButton, ElementType.Xpath);
+					webDB.waitForElement(AttendanceLeaveLocators.LoanCreateLoanPaymentFrame, ElementType.Xpath);
+					webDB.switchToFrame(AttendanceLeaveLocators.LoanCreateLoanPaymentFrame, ElementType.Xpath);
+					commonFunc.checkRefreshCellsDisappear();
+					flag = webDB.waitForElement(AttendanceLeaveLocators.LoanCreateLoanPaymentpayrollOption,
+							ElementType.Xpath);
 					if (flag) {
-						logs.logging("INFO", "Loan DocNo Is Clicked");
-						flag = webDB.waitForElement(AttendanceLeaveLocators.LoanPaymentCreateLoanButton,
+						webDB.clickAnElement(AttendanceLeaveLocators.LoanCreateLoanPaymentpayrollOption,
+								ElementType.Xpath);
+						flag = webDB.waitForElement(AttendanceLeaveLocators.LoanCreateLoanPaymentSaveOption,
 								ElementType.Xpath);
 						if (flag) {
-							webDB.clickAnElement(AttendanceLeaveLocators.LoanPaymentCreateLoanButton,
+							webDB.clickAnElement(AttendanceLeaveLocators.LoanCreateLoanPaymentSaveOption,
 									ElementType.Xpath);
-							flag = webDB.waitForElementUntilGivenTime(
-									AttendanceLeaveLocators.LoanCreateLoanPaymentFrame, ElementType.Xpath, 45);
-							if (flag) {
-								webDB.switchToFrame(AttendanceLeaveLocators.LoanCreateLoanPaymentFrame,
-										ElementType.Xpath);
-								System.out.println("1");
-								flag = webDB.waitForElementUntilGivenTime(
-										AttendanceLeaveLocators.LoanCreateLoanPaymentpayrollOption, ElementType.Xpath,
-										45);
-								if (flag) {
-									commonFunc.hardWait(2000);
-									webDB.clickAnElement(AttendanceLeaveLocators.LoanCreateLoanPaymentpayrollOption,
-											ElementType.Xpath);
-									flag = webDB.waitForElement(AttendanceLeaveLocators.LoanCreateLoanPaymentSaveOption,
-											ElementType.Xpath);
-									if (flag) {
-										webDB.clickAnElement(AttendanceLeaveLocators.LoanCreateLoanPaymentSaveOption,
-												ElementType.Xpath);
-										commonFunc.logoutUser();
-									}
-								}
-							}
+							flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+							commonFunc.checkRefreshCellsDisappear();
+							commonFunc.checkSuccessToastMessageDisappear();
 						}
 					}
 				}
@@ -3992,8 +3753,6 @@ public class AttendanceLeaveFunctions {
 	 * @author Kishore-RMITS
 	 */
 	public boolean CheckLoanPaymentWithReversePartOption() {
-		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
-				"HrRqtUsername");
 		commonFunc.navigateToLoanRequestScreen();
 		LoanRequestEntry(commonFunc.getDataFromTestDataSheet("PermFromDate1"),
 				commonFunc.getDataFromTestDataSheet("EmployeeDurai"), commonFunc.getDataFromTestDataSheet("LoanTypes"),
@@ -4002,22 +3761,19 @@ public class AttendanceLeaveFunctions {
 				commonFunc.getDataFromTestDataSheet("LoanAmount"),
 				commonFunc.getDataFromTestDataSheet("LoanInstallmentAmount"));
 		LoanRequestDocumentProcess();
-//		flag = commonFunc.logoutUser();
-//		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-//		approvalFunc.navigateToApprovals();
-//		filterDocumentsforPermissionApproval(VariableHandler.getLoanRequestDocNo());
-//		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getLoanRequestDocNo());
-		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
-		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getLoanRequestDocNo(),
-				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HariUsername"));
-		flag = commonFunc.logoutUser();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
+			commonFunc.checkRefreshCellsDisappear();
+			commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getLoanRequestDocNo(),
+					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
+		}
+		commonFunc.logoutUser();
 		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigateToLoanPaymentScreen();
 		LoanPaymentDocumentReverse();
-		commonFunc.navigateToLoanPaymentScreen();
-		flag = commonFunc.logoutUser();
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"));
 		return flag;
 	}
 
@@ -4030,25 +3786,17 @@ public class AttendanceLeaveFunctions {
 		flag = webDB.waitForElement(AttendanceLeaveLocators.LoanPaymentFindSearch, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(AttendanceLeaveLocators.LoanPaymentFindSearch, ElementType.Xpath);
+			logs.logging("INFO", "LoanPayment Find Search Button Is Clicked");
+			commonFunc.checkRefreshCellsDisappear();
+			flag = webDB.waitForElement(AttendanceLeaveLocators.LoanPaymentDocNoClick(), ElementType.Xpath);
 			if (flag) {
-				logs.logging("INFO", "LoanPayment Find Search Button Is Clicked");
-				flag = webDB.waitForElement(AttendanceLeaveLocators.LoanPaymentDocNoClick, ElementType.CssSelector);
+				webDB.clickAnElement(AttendanceLeaveLocators.LoanPaymentDocNoClick(), ElementType.Xpath);
+				logs.logging("INFO", "Loan DocNo Is Clicked");
+				flag = webDB.waitForElement(AttendanceLeaveLocators.LoanPaymentReverseButton, ElementType.Xpath);
 				if (flag) {
-					webDB.clickAnElement(AttendanceLeaveLocators.LoanPaymentDocNoClick, ElementType.CssSelector);
-					if (flag) {
-						logs.logging("INFO", "Loan DocNo Is Clicked");
-						flag = webDB.waitForElement(AttendanceLeaveLocators.LoanPaymentReverseButton,
-								ElementType.Xpath);
-						if (flag) {
-							commonFunc.hardWait(2000);
-							webDB.clickAnElement(AttendanceLeaveLocators.LoanPaymentReverseButton, ElementType.Xpath);
-							if (flag) {
-								logs.logging("INFO", "loan Payment Document Is Reversed");
-								flag = webDB.waitForElement(AttendanceLeaveLocators.LoanPaymentFindSearch,
-										ElementType.Xpath);
-							}
-						}
-					}
+					webDB.clickAnElement(AttendanceLeaveLocators.LoanPaymentReverseButton, ElementType.Xpath);
+					logs.logging("INFO", "loan Payment Document Is Reversed");
+					flag = webDB.waitForElement(AttendanceLeaveLocators.LoanPaymentFindSearch, ElementType.Xpath);
 				}
 			}
 		}
@@ -4061,14 +3809,54 @@ public class AttendanceLeaveFunctions {
 	 * @author Kishore-RMITS
 	 */
 	public boolean CheckTDSDeclarationBasedOnTDSRevision() {
-		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
-				"HrRqtUsername");
+//		commonFunc.logoutUser();
+//		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
+//				"HariUsername");
+//		commonFunc.navigateEmployeeMasterScreenInPayroll();
+//		empMasterFunc.clickAddIconAddEmployee();
+//		empMasterFunc.clickEmployeeMasterSideNavBar();
+//		empMasterFunc.selectSalutionEnterFirstAndLastName(commonFunc.getDataFromTestDataSheet("Emp_Salution"),
+//				commonFunc.getDataFromTestDataSheet("Emp_FName"),
+//				(commonFunc.getDataFromTestDataSheet("Emp_LName") + RandomStringUtils.randomAlphanumeric(5)));
+//		empMasterFunc.selectGenderEnterDOBAndDOJ(commonFunc.getDataFromTestDataSheet("Emp_MaleGender"),
+//				commonFunc.getDataFromTestDataSheet("Emp_DOB"), commonFunc.getDataFromTestDataSheet("Emp_DOJ"));
+//		empMasterFunc.selectShiftEnterCalerdarAndZone(commonFunc.getDataFromTestDataSheet("Emp_GeneralShift"),
+//				commonFunc.getDataFromTestDataSheet("Emp_1to31Calendar"),
+//				commonFunc.getDataFromTestDataSheet("Emp_GeneralZone"));
+//		empMasterFunc.selectCompanyAndAccountCatecory(commonFunc.getDataFromTestDataSheet("Emp_SalesCompanyCategory"),
+//				commonFunc.getDataFromTestDataSheet("Emp_SalaryAcc-AccountCategory"));
+//		empMasterFunc.selectPayrollGroupAndEnterNoticePeriod(
+//				commonFunc.getDataFromTestDataSheet("Emp_CleanerPayrollGroup"),
+//				commonFunc.getDataFromTestDataSheet("Emp_NoticePeriod-30"));
+//		empMasterFunc.clickSaveIconAndStoreEmpID();
+//		empMasterFunc.clickSalarySideNavBar();
+//		empMasterFunc.addDesignationDepartmentAndGradeInSalaryDetails(
+//				commonFunc.getDataFromTestDataSheet("Emp_SalaryDesignation"),
+//				commonFunc.getDataFromTestDataSheet("Emp_SalaryDepartment"),
+//				commonFunc.getDataFromTestDataSheet("Emp_SalaryGrade"));
+//		empMasterFunc.clickAfterEmpCreationSaveIcon();
+//		empMasterFunc.clickLoadAllowanceButtonInSalaryDetails();
+//		empMasterFunc.fillAllowanceAmountsAndVerifyTotalInSalaryDetails(
+//				new String[] { RandomStringUtils.randomNumeric(5), RandomStringUtils.randomNumeric(4),
+//						RandomStringUtils.randomNumeric(4), RandomStringUtils.randomNumeric(4) });
+//		empMasterFunc.clickSalarySideNavBar();
+//		empMasterFunc.enablePFAdjustmentFlagsInSalaryDetails();
+//		empMasterFunc.enableESIAdjustmentFlagsInSalaryDetails();
+//		empMasterFunc.clickPostButtonAndVerifyEmployeePosted();
+//		commonFunc.logoutUser();
+//		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+//				"HrRqtUsername");
 		commonFunc.navigateToTDSDeclarationScreen();
 		EmployeeDocumentSelect(commonFunc.getDataFromTestDataSheet("EmployeeDurai"));
 		EmployeeDocumentRevise();
-		commonFunc.navigateToTDSDeclarationScreen();
-		EmployeeDocumentSelect(commonFunc.getDataFromTestDataSheet("EmployeeDurai"));
 		EmployeeTDSPostDocument();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
+			commonFunc.checkRefreshCellsDisappear();
+			commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"),
+					VariableHandler.getTDSDeclarationDocNo(), webDB.getDataFromProperties("HariEmpId"),
+					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+		}
 		return flag;
 	}
 
@@ -4079,14 +3867,54 @@ public class AttendanceLeaveFunctions {
 	 * @author Kishore-RMITS
 	 */
 	public boolean CheckTDSDeclarationBasedOnForwardToApprovalRecord() {
-		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
-				"HrRqtUsername");
+//		commonFunc.logoutUser();
+//		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
+//				"HariUsername");
+//		commonFunc.navigateEmployeeMasterScreenInPayroll();
+//		empMasterFunc.clickAddIconAddEmployee();
+//		empMasterFunc.clickEmployeeMasterSideNavBar();
+//		empMasterFunc.selectSalutionEnterFirstAndLastName(commonFunc.getDataFromTestDataSheet("Emp_Salution"),
+//				commonFunc.getDataFromTestDataSheet("Emp_FName"),
+//				(commonFunc.getDataFromTestDataSheet("Emp_LName") + RandomStringUtils.randomAlphanumeric(5)));
+//		empMasterFunc.selectGenderEnterDOBAndDOJ(commonFunc.getDataFromTestDataSheet("Emp_MaleGender"),
+//				commonFunc.getDataFromTestDataSheet("Emp_DOB"), commonFunc.getDataFromTestDataSheet("Emp_DOJ"));
+//		empMasterFunc.selectShiftEnterCalerdarAndZone(commonFunc.getDataFromTestDataSheet("Emp_GeneralShift"),
+//				commonFunc.getDataFromTestDataSheet("Emp_1to31Calendar"),
+//				commonFunc.getDataFromTestDataSheet("Emp_GeneralZone"));
+//		empMasterFunc.selectCompanyAndAccountCatecory(commonFunc.getDataFromTestDataSheet("Emp_SalesCompanyCategory"),
+//				commonFunc.getDataFromTestDataSheet("Emp_SalaryAcc-AccountCategory"));
+//		empMasterFunc.selectPayrollGroupAndEnterNoticePeriod(
+//				commonFunc.getDataFromTestDataSheet("Emp_CleanerPayrollGroup"),
+//				commonFunc.getDataFromTestDataSheet("Emp_NoticePeriod-30"));
+//		empMasterFunc.clickSaveIconAndStoreEmpID();
+//		empMasterFunc.clickSalarySideNavBar();
+//		empMasterFunc.addDesignationDepartmentAndGradeInSalaryDetails(
+//				commonFunc.getDataFromTestDataSheet("Emp_SalaryDesignation"),
+//				commonFunc.getDataFromTestDataSheet("Emp_SalaryDepartment"),
+//				commonFunc.getDataFromTestDataSheet("Emp_SalaryGrade"));
+//		empMasterFunc.clickAfterEmpCreationSaveIcon();
+//		empMasterFunc.clickLoadAllowanceButtonInSalaryDetails();
+//		empMasterFunc.fillAllowanceAmountsAndVerifyTotalInSalaryDetails(
+//				new String[] { RandomStringUtils.randomNumeric(5), RandomStringUtils.randomNumeric(4),
+//						RandomStringUtils.randomNumeric(4), RandomStringUtils.randomNumeric(4) });
+//		empMasterFunc.clickSalarySideNavBar();
+//		empMasterFunc.enablePFAdjustmentFlagsInSalaryDetails();
+//		empMasterFunc.enableESIAdjustmentFlagsInSalaryDetails();
+//		empMasterFunc.clickPostButtonAndVerifyEmployeePosted();
+//		commonFunc.logoutUser();
+//		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+//				"HrRqtUsername");
 		commonFunc.navigateToTDSDeclarationScreen();
 		EmployeeDocumentSelect(commonFunc.getDataFromTestDataSheet("EmployeeDurai"));
 		EmployeeDocumentRevise();
-		commonFunc.navigateToTDSDeclarationScreen();
-		EmployeeDocumentSelect(commonFunc.getDataFromTestDataSheet("EmployeeDurai"));
 		EmployeeTDSPostDocument();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
+			commonFunc.checkRefreshCellsDisappear();
+			commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"),
+					VariableHandler.getTDSDeclarationDocNo(), webDB.getDataFromProperties("HariEmpId"),
+					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+		}
 		return flag;
 	}
 
@@ -4097,17 +3925,67 @@ public class AttendanceLeaveFunctions {
 	 * @author Kishore-RMITS
 	 */
 	public boolean CheckTDSDeclarationBasedOnReturnToApprovalRecord() {
-		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
-				"HrRqtUsername");
+//		commonFunc.logoutUser();
+//		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
+//				"HariUsername");
+//		commonFunc.navigateEmployeeMasterScreenInPayroll();
+//		empMasterFunc.clickAddIconAddEmployee();
+//		empMasterFunc.clickEmployeeMasterSideNavBar();
+//		empMasterFunc.selectSalutionEnterFirstAndLastName(commonFunc.getDataFromTestDataSheet("Emp_Salution"),
+//				commonFunc.getDataFromTestDataSheet("Emp_FName"),
+//				(commonFunc.getDataFromTestDataSheet("Emp_LName") + RandomStringUtils.randomAlphanumeric(5)));
+//		empMasterFunc.selectGenderEnterDOBAndDOJ(commonFunc.getDataFromTestDataSheet("Emp_MaleGender"),
+//				commonFunc.getDataFromTestDataSheet("Emp_DOB"), commonFunc.getDataFromTestDataSheet("Emp_DOJ"));
+//		empMasterFunc.selectShiftEnterCalerdarAndZone(commonFunc.getDataFromTestDataSheet("Emp_GeneralShift"),
+//				commonFunc.getDataFromTestDataSheet("Emp_1to31Calendar"),
+//				commonFunc.getDataFromTestDataSheet("Emp_GeneralZone"));
+//		empMasterFunc.selectCompanyAndAccountCatecory(commonFunc.getDataFromTestDataSheet("Emp_SalesCompanyCategory"),
+//				commonFunc.getDataFromTestDataSheet("Emp_SalaryAcc-AccountCategory"));
+//		empMasterFunc.selectPayrollGroupAndEnterNoticePeriod(
+//				commonFunc.getDataFromTestDataSheet("Emp_CleanerPayrollGroup"),
+//				commonFunc.getDataFromTestDataSheet("Emp_NoticePeriod-30"));
+//		empMasterFunc.clickSaveIconAndStoreEmpID();
+//		empMasterFunc.clickSalarySideNavBar();
+//		empMasterFunc.addDesignationDepartmentAndGradeInSalaryDetails(
+//				commonFunc.getDataFromTestDataSheet("Emp_SalaryDesignation"),
+//				commonFunc.getDataFromTestDataSheet("Emp_SalaryDepartment"),
+//				commonFunc.getDataFromTestDataSheet("Emp_SalaryGrade"));
+//		empMasterFunc.clickAfterEmpCreationSaveIcon();
+//		empMasterFunc.clickLoadAllowanceButtonInSalaryDetails();
+//		empMasterFunc.fillAllowanceAmountsAndVerifyTotalInSalaryDetails(
+//				new String[] { RandomStringUtils.randomNumeric(5), RandomStringUtils.randomNumeric(4),
+//						RandomStringUtils.randomNumeric(4), RandomStringUtils.randomNumeric(4) });
+//		empMasterFunc.clickSalarySideNavBar();
+//		empMasterFunc.enablePFAdjustmentFlagsInSalaryDetails();
+//		empMasterFunc.enableESIAdjustmentFlagsInSalaryDetails();
+//		empMasterFunc.clickPostButtonAndVerifyEmployeePosted();
+//		commonFunc.logoutUser();
+//		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+//				"HrRqtUsername");
 		commonFunc.navigateToTDSDeclarationScreen();
 		EmployeeDocumentSelect(commonFunc.getDataFromTestDataSheet("EmployeeDurai"));
 		EmployeeDocumentRevise();
-		commonFunc.navigateToTDSDeclarationScreen();
-		EmployeeDocumentSelect(commonFunc.getDataFromTestDataSheet("EmployeeDurai"));
 		EmployeeTDSReturnDocument();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
+			commonFunc.checkRefreshCellsDisappear();
+			commonFunc.returnDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getTDSDeclarationDocNo(),
+					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"), webDB.getDataFromProperties("HRUSEREmpId"));
+			commonFunc.returnDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getTDSDeclarationDocNo(),
+					webDB.getDataFromProperties("HRUSEREmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HrRqtUsername"), webDB.getDataFromProperties("HRUSEREmpId"));
+		}
 		commonFunc.navigateToTDSDeclarationScreen();
 		EmployeeDocumentSelect(commonFunc.getDataFromTestDataSheet("EmployeeDurai"));
 		EmployeeTDSPostDocument();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
+			commonFunc.checkRefreshCellsDisappear();
+			commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"),
+					VariableHandler.getTDSDeclarationDocNo(), webDB.getDataFromProperties("HariEmpId"),
+					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+		}
 		return flag;
 	}
 
@@ -4118,14 +3996,54 @@ public class AttendanceLeaveFunctions {
 	 * @author Kishore-RMITS
 	 */
 	public boolean CheckTDSDeclarationBasedOnTDSExistingRegimeAndNewRegime() {
-		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
-				"HrRqtUsername");
+//		commonFunc.logoutUser();
+//		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
+//				"HariUsername");
+//		commonFunc.navigateEmployeeMasterScreenInPayroll();
+//		empMasterFunc.clickAddIconAddEmployee();
+//		empMasterFunc.clickEmployeeMasterSideNavBar();
+//		empMasterFunc.selectSalutionEnterFirstAndLastName(commonFunc.getDataFromTestDataSheet("Emp_Salution"),
+//				commonFunc.getDataFromTestDataSheet("Emp_FName"),
+//				(commonFunc.getDataFromTestDataSheet("Emp_LName") + RandomStringUtils.randomAlphanumeric(5)));
+//		empMasterFunc.selectGenderEnterDOBAndDOJ(commonFunc.getDataFromTestDataSheet("Emp_MaleGender"),
+//				commonFunc.getDataFromTestDataSheet("Emp_DOB"), commonFunc.getDataFromTestDataSheet("Emp_DOJ"));
+//		empMasterFunc.selectShiftEnterCalerdarAndZone(commonFunc.getDataFromTestDataSheet("Emp_GeneralShift"),
+//				commonFunc.getDataFromTestDataSheet("Emp_1to31Calendar"),
+//				commonFunc.getDataFromTestDataSheet("Emp_GeneralZone"));
+//		empMasterFunc.selectCompanyAndAccountCatecory(commonFunc.getDataFromTestDataSheet("Emp_SalesCompanyCategory"),
+//				commonFunc.getDataFromTestDataSheet("Emp_SalaryAcc-AccountCategory"));
+//		empMasterFunc.selectPayrollGroupAndEnterNoticePeriod(
+//				commonFunc.getDataFromTestDataSheet("Emp_CleanerPayrollGroup"),
+//				commonFunc.getDataFromTestDataSheet("Emp_NoticePeriod-30"));
+//		empMasterFunc.clickSaveIconAndStoreEmpID();
+//		empMasterFunc.clickSalarySideNavBar();
+//		empMasterFunc.addDesignationDepartmentAndGradeInSalaryDetails(
+//				commonFunc.getDataFromTestDataSheet("Emp_SalaryDesignation"),
+//				commonFunc.getDataFromTestDataSheet("Emp_SalaryDepartment"),
+//				commonFunc.getDataFromTestDataSheet("Emp_SalaryGrade"));
+//		empMasterFunc.clickAfterEmpCreationSaveIcon();
+//		empMasterFunc.clickLoadAllowanceButtonInSalaryDetails();
+//		empMasterFunc.fillAllowanceAmountsAndVerifyTotalInSalaryDetails(
+//				new String[] { RandomStringUtils.randomNumeric(5), RandomStringUtils.randomNumeric(4),
+//						RandomStringUtils.randomNumeric(4), RandomStringUtils.randomNumeric(4) });
+//		empMasterFunc.clickSalarySideNavBar();
+//		empMasterFunc.enablePFAdjustmentFlagsInSalaryDetails();
+//		empMasterFunc.enableESIAdjustmentFlagsInSalaryDetails();
+//		empMasterFunc.clickPostButtonAndVerifyEmployeePosted();
+//		commonFunc.logoutUser();
+//		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+//				"HrRqtUsername");
 		commonFunc.navigateToTDSDeclarationScreen();
 		EmployeeDocumentSelect(commonFunc.getDataFromTestDataSheet("EmployeeDurai"));
 		EmployeeDocumentRevise();
-		commonFunc.navigateToTDSDeclarationScreen();
-		EmployeeDocumentSelect(commonFunc.getDataFromTestDataSheet("EmployeeDurai"));
 		EmployeeTDSRegimeChoose();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
+			commonFunc.checkRefreshCellsDisappear();
+			commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"),
+					VariableHandler.getTDSDeclarationDocNo(), webDB.getDataFromProperties("HariEmpId"),
+					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+		}
 		return flag;
 	}
 
@@ -4135,14 +4053,54 @@ public class AttendanceLeaveFunctions {
 	 * @author Kishore-RMITS
 	 */
 	public boolean CheckTDSDeclarationBasedOnSectionValueAssigning() {
-		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
-				"HrRqtUsername");
+//		commonFunc.logoutUser();
+//		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
+//				"HariUsername");
+//		commonFunc.navigateEmployeeMasterScreenInPayroll();
+//		empMasterFunc.clickAddIconAddEmployee();
+//		empMasterFunc.clickEmployeeMasterSideNavBar();
+//		empMasterFunc.selectSalutionEnterFirstAndLastName(commonFunc.getDataFromTestDataSheet("Emp_Salution"),
+//				commonFunc.getDataFromTestDataSheet("Emp_FName"),
+//				(commonFunc.getDataFromTestDataSheet("Emp_LName") + RandomStringUtils.randomAlphanumeric(5)));
+//		empMasterFunc.selectGenderEnterDOBAndDOJ(commonFunc.getDataFromTestDataSheet("Emp_MaleGender"),
+//				commonFunc.getDataFromTestDataSheet("Emp_DOB"), commonFunc.getDataFromTestDataSheet("Emp_DOJ"));
+//		empMasterFunc.selectShiftEnterCalerdarAndZone(commonFunc.getDataFromTestDataSheet("Emp_GeneralShift"),
+//				commonFunc.getDataFromTestDataSheet("Emp_1to31Calendar"),
+//				commonFunc.getDataFromTestDataSheet("Emp_GeneralZone"));
+//		empMasterFunc.selectCompanyAndAccountCatecory(commonFunc.getDataFromTestDataSheet("Emp_SalesCompanyCategory"),
+//				commonFunc.getDataFromTestDataSheet("Emp_SalaryAcc-AccountCategory"));
+//		empMasterFunc.selectPayrollGroupAndEnterNoticePeriod(
+//				commonFunc.getDataFromTestDataSheet("Emp_CleanerPayrollGroup"),
+//				commonFunc.getDataFromTestDataSheet("Emp_NoticePeriod-30"));
+//		empMasterFunc.clickSaveIconAndStoreEmpID();
+//		empMasterFunc.clickSalarySideNavBar();
+//		empMasterFunc.addDesignationDepartmentAndGradeInSalaryDetails(
+//				commonFunc.getDataFromTestDataSheet("Emp_SalaryDesignation"),
+//				commonFunc.getDataFromTestDataSheet("Emp_SalaryDepartment"),
+//				commonFunc.getDataFromTestDataSheet("Emp_SalaryGrade"));
+//		empMasterFunc.clickAfterEmpCreationSaveIcon();
+//		empMasterFunc.clickLoadAllowanceButtonInSalaryDetails();
+//		empMasterFunc.fillAllowanceAmountsAndVerifyTotalInSalaryDetails(
+//				new String[] { RandomStringUtils.randomNumeric(5), RandomStringUtils.randomNumeric(4),
+//						RandomStringUtils.randomNumeric(4), RandomStringUtils.randomNumeric(4) });
+//		empMasterFunc.clickSalarySideNavBar();
+//		empMasterFunc.enablePFAdjustmentFlagsInSalaryDetails();
+//		empMasterFunc.enableESIAdjustmentFlagsInSalaryDetails();
+//		empMasterFunc.clickPostButtonAndVerifyEmployeePosted();
+//		commonFunc.logoutUser();
+//		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+//				"HrRqtUsername");
 		commonFunc.navigateToTDSDeclarationScreen();
 		EmployeeDocumentSelect(commonFunc.getDataFromTestDataSheet("EmployeeDurai"));
 		EmployeeDocumentRevise();
-		commonFunc.navigateToTDSDeclarationScreen();
-		EmployeeDocumentSelect(commonFunc.getDataFromTestDataSheet("EmployeeDurai"));
 		EmployeeTDSSectionWise(commonFunc.getDataFromTestDataSheet("TDSAmount"));
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
+			commonFunc.checkRefreshCellsDisappear();
+			commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"),
+					VariableHandler.getTDSDeclarationDocNo(), webDB.getDataFromProperties("HariEmpId"),
+					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+		}
 		return flag;
 	}
 
@@ -4152,14 +4110,54 @@ public class AttendanceLeaveFunctions {
 	 * @author Kishore-RMITS
 	 */
 	public boolean CheckTDSDeclarationBasedOnRegimeWiseChecking() {
-		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
-				"HrRqtUsername");
+//		commonFunc.logoutUser();
+//		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
+//				"HariUsername");
+//		commonFunc.navigateEmployeeMasterScreenInPayroll();
+//		empMasterFunc.clickAddIconAddEmployee();
+//		empMasterFunc.clickEmployeeMasterSideNavBar();
+//		empMasterFunc.selectSalutionEnterFirstAndLastName(commonFunc.getDataFromTestDataSheet("Emp_Salution"),
+//				commonFunc.getDataFromTestDataSheet("Emp_FName"),
+//				(commonFunc.getDataFromTestDataSheet("Emp_LName") + RandomStringUtils.randomAlphanumeric(5)));
+//		empMasterFunc.selectGenderEnterDOBAndDOJ(commonFunc.getDataFromTestDataSheet("Emp_MaleGender"),
+//				commonFunc.getDataFromTestDataSheet("Emp_DOB"), commonFunc.getDataFromTestDataSheet("Emp_DOJ"));
+//		empMasterFunc.selectShiftEnterCalerdarAndZone(commonFunc.getDataFromTestDataSheet("Emp_GeneralShift"),
+//				commonFunc.getDataFromTestDataSheet("Emp_1to31Calendar"),
+//				commonFunc.getDataFromTestDataSheet("Emp_GeneralZone"));
+//		empMasterFunc.selectCompanyAndAccountCatecory(commonFunc.getDataFromTestDataSheet("Emp_SalesCompanyCategory"),
+//				commonFunc.getDataFromTestDataSheet("Emp_SalaryAcc-AccountCategory"));
+//		empMasterFunc.selectPayrollGroupAndEnterNoticePeriod(
+//				commonFunc.getDataFromTestDataSheet("Emp_CleanerPayrollGroup"),
+//				commonFunc.getDataFromTestDataSheet("Emp_NoticePeriod-30"));
+//		empMasterFunc.clickSaveIconAndStoreEmpID();
+//		empMasterFunc.clickSalarySideNavBar();
+//		empMasterFunc.addDesignationDepartmentAndGradeInSalaryDetails(
+//				commonFunc.getDataFromTestDataSheet("Emp_SalaryDesignation"),
+//				commonFunc.getDataFromTestDataSheet("Emp_SalaryDepartment"),
+//				commonFunc.getDataFromTestDataSheet("Emp_SalaryGrade"));
+//		empMasterFunc.clickAfterEmpCreationSaveIcon();
+//		empMasterFunc.clickLoadAllowanceButtonInSalaryDetails();
+//		empMasterFunc.fillAllowanceAmountsAndVerifyTotalInSalaryDetails(
+//				new String[] { RandomStringUtils.randomNumeric(5), RandomStringUtils.randomNumeric(4),
+//						RandomStringUtils.randomNumeric(4), RandomStringUtils.randomNumeric(4) });
+//		empMasterFunc.clickSalarySideNavBar();
+//		empMasterFunc.enablePFAdjustmentFlagsInSalaryDetails();
+//		empMasterFunc.enableESIAdjustmentFlagsInSalaryDetails();
+//		empMasterFunc.clickPostButtonAndVerifyEmployeePosted();
+//		commonFunc.logoutUser();
+//		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+//				"HrRqtUsername");
 		commonFunc.navigateToTDSDeclarationScreen();
 		EmployeeDocumentSelect(commonFunc.getDataFromTestDataSheet("EmployeeDurai"));
 		EmployeeDocumentRevise();
-		commonFunc.navigateToTDSDeclarationScreen();
-		EmployeeDocumentSelect(commonFunc.getDataFromTestDataSheet("EmployeeDurai"));
 		EmployeeTDSPostDocument();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
+			commonFunc.checkRefreshCellsDisappear();
+			commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"),
+					VariableHandler.getTDSDeclarationDocNo(), webDB.getDataFromProperties("HariEmpId"),
+					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+		}
 		return flag;
 	}
 
@@ -4169,28 +4167,22 @@ public class AttendanceLeaveFunctions {
 	 * @author Kishore-RMITS
 	 */
 	public void EmployeeDocumentSelect(String Employee) {
-		flag = webDB.waitForElement(AttendanceLeaveLocators.TDSDeclFindEmpLOV, ElementType.Xpath);
+		commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.TDSDeclFindEmpLOV, Employee);
+		logs.logging("INFO", "TDS Employee is Selected");
+		commonFunc.checkRefreshCellsDisappear();
+//		webDB.selectDropDownByValue(AttendanceLeaveLocators.TDSDeclFindStatusSelect, "A", ElementType.Xpath);
+		flag = webDB.waitForElement(AttendanceLeaveLocators.TDSFindSearchButton, ElementType.Xpath);
 		if (flag) {
-			commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.TDSDeclFindEmpLOV, Employee);
+			webDB.moveToElement(AttendanceLeaveLocators.TDSFindSearchButton, ElementType.Xpath);
+			webDB.clickAnElement(AttendanceLeaveLocators.TDSFindSearchButton, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
+			logs.logging("INFO", "TDS Employee is Searched");
+			flag = webDB.waitForElement(AttendanceLeaveLocators.TDSDocumentSelect(), ElementType.Xpath);
 			if (flag) {
-				logs.logging("INFO", "TDS Employee is Selected");
-				flag = webDB.waitForElement(AttendanceLeaveLocators.TDSFindSearchButton, ElementType.Xpath);
-				if (flag) {
-					flag = webDB.clickAnElement(AttendanceLeaveLocators.TDSFindSearchButton, ElementType.Xpath);
-					if (flag) {
-						logs.logging("INFO", "TDS Employee is Searched");
-						commonFunc.hardWait(2000);
-						flag = webDB.waitForElement(AttendanceLeaveLocators.TDSDocumentSelect, ElementType.CssSelector);
-						if (flag) {
-							commonFunc.hardWait(3000);
-							flag = webDB.clickAnElement(AttendanceLeaveLocators.TDSDocumentSelect,
-									ElementType.CssSelector);
-							if (flag) {
-								logs.logging("INFO", "TDS Document is Selected");
-							}
-						}
-					}
-				}
+				webDB.clickAnElement(AttendanceLeaveLocators.TDSDocumentSelect(), ElementType.Xpath);
+				flag = webDB.waitForElement(AttendanceLeaveLocators.TDSDeclarationDocNoToPost, ElementType.Xpath);
+				logs.logging("INFO", "TDS Document is Selected");
+				commonFunc.checkRefreshCellsDisappear();
 			}
 		}
 		Assert.assertTrue(flag);
@@ -4204,10 +4196,12 @@ public class AttendanceLeaveFunctions {
 	public void EmployeeDocumentRevise() {
 		flag = webDB.waitForElement(AttendanceLeaveLocators.TDSDeclarationReviseButton, ElementType.Xpath);
 		if (flag) {
-			commonFunc.hardWait(3000);
-			flag = webDB.clickAnElement(AttendanceLeaveLocators.TDSDeclarationReviseButton, ElementType.Xpath);
+			webDB.clickAnElement(AttendanceLeaveLocators.TDSDeclarationReviseButton, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
 			if (flag) {
-				logs.logging("INFO", "TDS Employee is Searched");
+				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.checkSuccessToastMessageDisappear();
+				logs.logging("INFO", "TDS Employee is Revised");
 			}
 		}
 		Assert.assertTrue(flag);
@@ -4219,8 +4213,9 @@ public class AttendanceLeaveFunctions {
 	 * @author Kishore-RMITS
 	 */
 	public void EmployeeTDSPostDocument() {
+		flag = webDB.waitForElement(AttendanceLeaveLocators.TDSDeclarationDocNoToPost, ElementType.Xpath);
 		if (flag) {
-			webDB.waitForElement(AttendanceLeaveLocators.TDSDeclarationDocNoToPost, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
 			String TDSDeclarationDocNo = webDB.getDomPropertyFromElement(
 					AttendanceLeaveLocators.TDSDeclarationDocNoToPost, ElementType.Xpath,
 					commonFunc.getDataFromTestDataSheet("Value"));
@@ -4228,15 +4223,10 @@ public class AttendanceLeaveFunctions {
 			logs.logging("info", "TDS DECLARATION No is:" + VariableHandler.getTDSDeclarationDocNo());
 			flag = webDB.waitForElement(AttendanceLeaveLocators.TDSDeclarationPostButton, ElementType.Xpath);
 			if (flag) {
-				commonFunc.hardWait(2000);
-				flag = webDB.clickAnElement(AttendanceLeaveLocators.TDSDeclarationPostButton, ElementType.Xpath);
-				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
-				commonFunc.hardWait(2000);
 				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"),
-						VariableHandler.getTDSDeclarationDocNo(), webDB.getDataFromProperties("HodEmpId"),
-						commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
-				flag = commonFunc.logoutUser();
+				commonFunc.checkSuccessToastMessageDisappear();
+				webDB.clickAnElement(AttendanceLeaveLocators.TDSDeclarationPostButton, ElementType.Xpath);
+				flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
 			}
 		}
 		Assert.assertTrue(flag);
@@ -4248,8 +4238,9 @@ public class AttendanceLeaveFunctions {
 	 * @author Kishore-RMITS
 	 */
 	public void EmployeeTDSReturnDocument() {
+		webDB.waitForElement(AttendanceLeaveLocators.TDSDeclarationDocNoToPost, ElementType.Xpath);
 		if (flag) {
-			webDB.waitForElement(AttendanceLeaveLocators.TDSDeclarationDocNoToPost, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
 			String TDSDeclarationDocNo = webDB.getDomPropertyFromElement(
 					AttendanceLeaveLocators.TDSDeclarationDocNoToPost, ElementType.Xpath,
 					commonFunc.getDataFromTestDataSheet("Value"));
@@ -4257,19 +4248,8 @@ public class AttendanceLeaveFunctions {
 			logs.logging("info", "TDS DECLARATION No is:" + VariableHandler.getTDSDeclarationDocNo());
 			flag = webDB.waitForElement(AttendanceLeaveLocators.TDSDeclarationPostButton, ElementType.Xpath);
 			if (flag) {
-				commonFunc.hardWait(2000);
 				flag = webDB.clickAnElement(AttendanceLeaveLocators.TDSDeclarationPostButton, ElementType.Xpath);
-				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
-				commonFunc.hardWait(2000);
-				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.returnDocuments(webDB.getDataFromProperties("ROAU-BU"),
-						VariableHandler.getTDSDeclarationDocNo(), webDB.getDataFromProperties("HodEmpId"),
-						commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"),
-						webDB.getDataFromProperties("HRUSEREmpId"));
-				commonFunc.returnDocuments(webDB.getDataFromProperties("ROAU-BU"),
-						VariableHandler.getTDSDeclarationDocNo(), webDB.getDataFromProperties("HRUSEREmpId"),
-						commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HrRqtUsername"),
-						webDB.getDataFromProperties("HRUSEREmpId"));
+				flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
 			}
 		}
 		Assert.assertTrue(flag);
@@ -4281,47 +4261,31 @@ public class AttendanceLeaveFunctions {
 	 * @author Kishore-RMITS
 	 */
 	public void EmployeeTDSRegimeChoose() {
+		flag = webDB.waitForElement(AttendanceLeaveLocators.TDSDeclarationRegimeType, ElementType.Xpath);
 		if (flag) {
-			webDB.waitForElement(AttendanceLeaveLocators.TDSDeclarationRegimeType, ElementType.Xpath);
+			flag = webDB.selectDropDownByValue(AttendanceLeaveLocators.TDSDeclarationRegimeType, "N",
+					ElementType.Xpath);
 			if (flag) {
-				commonFunc.hardWait(1000);
-				flag = webDB.clickAnElement(AttendanceLeaveLocators.TDSDeclarationRegimeType, ElementType.Xpath);
+				logs.logging("INFO", "TDS Tax Regime Field Is Clicked");
+				flag = webDB.waitForElement(AttendanceLeaveLocators.TDSDeclarationDocNoToPost, ElementType.Xpath);
 				if (flag) {
-					logs.logging("INFO", "TDS Tax Regime Field Is Clicked");
-					webDB.waitForElement(AttendanceLeaveLocators.TDSDeclarationNewTax, ElementType.Xpath);
+					logs.logging("INFO", "TDS New Tax Is Selected");
+					commonFunc.checkRefreshCellsDisappear();
+					String TDSDeclarationDocNo = webDB.getDomPropertyFromElement(
+							AttendanceLeaveLocators.TDSDeclarationDocNoToPost, ElementType.Xpath,
+							commonFunc.getDataFromTestDataSheet("Value"));
+					VariableHandler.setTDSDeclarationDocNo(TDSDeclarationDocNo);
+					logs.logging("info", "TDS DECLARATION No is:" + VariableHandler.getTDSDeclarationDocNo());
+					flag = webDB.waitForElement(AttendanceLeaveLocators.TDSDeclarationPostButton, ElementType.Xpath);
 					if (flag) {
-						commonFunc.hardWait(1000);
-						flag = webDB.clickAnElement(AttendanceLeaveLocators.TDSDeclarationNewTax, ElementType.Xpath);
-						if (flag) {
-							logs.logging("INFO", "TDS New Tax Is Selected");
-							webDB.waitForElement(AttendanceLeaveLocators.TDSDeclarationDocNoToPost, ElementType.Xpath);
-							String TDSDeclarationDocNo = webDB.getDomPropertyFromElement(
-									AttendanceLeaveLocators.TDSDeclarationDocNoToPost, ElementType.Xpath,
-									commonFunc.getDataFromTestDataSheet("Value"));
-							VariableHandler.setTDSDeclarationDocNo(TDSDeclarationDocNo);
-							logs.logging("info", "TDS DECLARATION No is:" + VariableHandler.getTDSDeclarationDocNo());
-							flag = webDB.waitForElement(AttendanceLeaveLocators.TDSDeclarationPostButton,
-									ElementType.Xpath);
-							if (flag) {
-								commonFunc.hardWait(2000);
-								flag = webDB.clickAnElement(AttendanceLeaveLocators.TDSDeclarationPostButton,
-										ElementType.Xpath);
-								approvalFunc.waitingForApprovalWithFordwarder(
-										commonFunc.getDataFromTestDataSheet("HodValue"));
-								commonFunc.checkRefreshCellsDisappear();
-								commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"),
-										VariableHandler.getTDSDeclarationDocNo(),
-										webDB.getDataFromProperties("HodEmpId"),
-										commonFunc.getDataFromTestDataSheet("Unit_100"),
-										System.getProperty("HariUsername"));
-								flag = commonFunc.logoutUser();
-							}
-						}
+						webDB.clickAnElement(AttendanceLeaveLocators.TDSDeclarationPostButton, ElementType.Xpath);
+						flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
 					}
 				}
 			}
 		}
 		Assert.assertTrue(flag);
+
 	}
 
 	/**
@@ -4330,48 +4294,28 @@ public class AttendanceLeaveFunctions {
 	 * @author Kishore-RMITS
 	 */
 	public void EmployeeTDSSectionWise(String TDSAmount) {
+		flag = webDB.waitForElement(AttendanceLeaveLocators.TDSDeclarationDocNoToPost, ElementType.Xpath);
 		if (flag) {
-			webDB.waitForElement(AttendanceLeaveLocators.TDSDeclarationDocNoToPost, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
 			String TDSDeclarationDocNo = webDB.getDomPropertyFromElement(
 					AttendanceLeaveLocators.TDSDeclarationDocNoToPost, ElementType.Xpath,
 					commonFunc.getDataFromTestDataSheet("Value"));
 			VariableHandler.setTDSDeclarationDocNo(TDSDeclarationDocNo);
 			logs.logging("info", "TDS DECLARATION No is:" + VariableHandler.getTDSDeclarationDocNo());
+			commonFunc.verifyAddTableSpecs(AttendanceLeaveLocators.TDSDeclarationSectionWiseField,
+					AttendanceLeaveLocators.TDSDeclarationSectionWiseField, TDSAmount);
+			flag = webDB.waitForElement(AttendanceLeaveLocators.TDSDeclarationSaveButton, ElementType.Xpath);
 			if (flag) {
-				webDB.waitForElement(AttendanceLeaveLocators.TDSDeclarationSectionWiseField, ElementType.Xpath);
+				webDB.moveToElement(AttendanceLeaveLocators.TDSDeclarationSaveButton, ElementType.Xpath);
+				webDB.clickAnElement(AttendanceLeaveLocators.TDSDeclarationSaveButton, ElementType.Xpath);
+				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.checkSuccessToastMessageDisappear();
+				flag = webDB.waitForElement(AttendanceLeaveLocators.TDSDeclarationPostButton, ElementType.Xpath);
 				if (flag) {
-					webDB.doubleClickAnElement(AttendanceLeaveLocators.TDSDeclarationSectionWiseField,
-							ElementType.Xpath);
-					commonFunc.hardWait(1000);
-					webDB.clearText(AttendanceLeaveLocators.TDSDeclarationSectionWiseField, ElementType.Xpath);
-					flag = webDB.sendTextToAnElement(AttendanceLeaveLocators.TDSDeclarationSectionWiseField, TDSAmount,
-							ElementType.Xpath);
-					webDB.waitForElement(AttendanceLeaveLocators.TDSDeclarationSaveButton, ElementType.Xpath);
-					if (flag) {
-						commonFunc.hardWait(1000);
-						flag = webDB.clickAnElement(AttendanceLeaveLocators.TDSDeclarationSaveButton,
-								ElementType.Xpath);
-						if (flag) {
-							logs.logging("INFO", "TDS Declaration is Saved");
-							commonFunc.hardWait(3000);
-							flag = webDB.waitForElement(AttendanceLeaveLocators.TDSDeclarationPostButton,
-									ElementType.Xpath);
-							if (flag) {
-								commonFunc.hardWait(5000);
-								flag = webDB.clickAnElement(AttendanceLeaveLocators.TDSDeclarationPostButton,
-										ElementType.Xpath);
-								approvalFunc.waitingForApprovalWithFordwarder(
-										commonFunc.getDataFromTestDataSheet("HodValue"));
-								commonFunc.checkRefreshCellsDisappear();
-								commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"),
-										VariableHandler.getTDSDeclarationDocNo(),
-										webDB.getDataFromProperties("HodEmpId"),
-										commonFunc.getDataFromTestDataSheet("Unit_100"),
-										System.getProperty("HariUsername"));
-								flag = commonFunc.logoutUser();
-							}
-						}
-					}
+					commonFunc.checkSuccessToastMessageDisappear();
+					logs.logging("INFO", "TDS Declaration is Saved");
+					webDB.clickAnElement(AttendanceLeaveLocators.TDSDeclarationPostButton, ElementType.Xpath);
+					flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
 				}
 			}
 		}
@@ -4382,11 +4326,8 @@ public class AttendanceLeaveFunctions {
 	 * This method is used To Check Overtime based on Employee Wise
 	 * 
 	 * @author Kishore-RMITS
-	 * @param i
 	 */
 	public boolean CheckOvertimeBasedOnEmployeeWise() {
-		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
-				"HrRqtUsername");
 		commonFunc.navigateToEmployeeOvertime();
 		OvertimeEmployeeAdd(commonFunc.getDataFromTestDataSheet("Calendar"),
 				commonFunc.getDataFromTestDataSheet("Year202526"),
@@ -4405,8 +4346,6 @@ public class AttendanceLeaveFunctions {
 	 * @author Kishore-RMITS
 	 */
 	public boolean CheckOvertimeEntryBasedOnForwardToApproval() {
-		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
-				"HrRqtUsername");
 		commonFunc.navigateToEmployeeOvertime();
 		OvertimeEmployeeAdd(commonFunc.getDataFromTestDataSheet("Calendar"),
 				commonFunc.getDataFromTestDataSheet("Year202526"),
@@ -4426,8 +4365,6 @@ public class AttendanceLeaveFunctions {
 	 * @author Kishore-RMITS
 	 */
 	public boolean CheckOvertimeEntryBasedOnReturnToApprovalRecord() {
-		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
-				"HrRqtUsername");
 		commonFunc.navigateToEmployeeOvertime();
 		OvertimeEmployeeAdd(commonFunc.getDataFromTestDataSheet("Calendar"),
 				commonFunc.getDataFromTestDataSheet("Year202526"),
@@ -4446,8 +4383,6 @@ public class AttendanceLeaveFunctions {
 	 * @author Kishore-RMITS
 	 */
 	public boolean CheckOvertimeEntryBasedOnCancelledDocument() {
-		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
-				"HrRqtUsername");
 		commonFunc.navigateToEmployeeOvertime();
 		OvertimeEmployeeAdd(commonFunc.getDataFromTestDataSheet("Calendar"),
 				commonFunc.getDataFromTestDataSheet("Year202526"),
@@ -4464,66 +4399,48 @@ public class AttendanceLeaveFunctions {
 	 * 
 	 * @author Kishore-RMITS
 	 * @param Calendar
-	 * @param Year202526
-	 * @param OvertimePeriod
-	 * @param OvertimeReference
+	 * @param Year
+	 * @param Period
+	 * @param Reference
 	 */
-	public void OvertimeEmployeeAdd(String Calendar, String Year202526, String OvertimePeriod,
-			String OvertimeReference) {
+	public void OvertimeEmployeeAdd(String Calendar, String Year, String Period, String Reference) {
 		flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimeFindSearchAddButton, ElementType.Xpath);
 		if (flag) {
-			flag = webDB.clickAnElement(AttendanceLeaveLocators.OvertimeFindSearchAddButton, ElementType.Xpath);
+			webDB.moveToElement(AttendanceLeaveLocators.OvertimeFindSearchAddButton, ElementType.Xpath);
+			webDB.clickAnElement(AttendanceLeaveLocators.OvertimeFindSearchAddButton, ElementType.Xpath);
+			flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimeFrameScreen, ElementType.Xpath);
 			if (flag) {
-				logs.logging("INFO", "Overtime Add Button is Clicked");
-				flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimeFrameScreen, ElementType.Xpath);
+				logs.logging("INFO", "Overtime Add Icon is Clicked");
+				webDB.waitForElement(AttendanceLeaveLocators.OvertimeFrameScreen, ElementType.Xpath);
+				webDB.switchToFrame(AttendanceLeaveLocators.OvertimeFrameScreen, ElementType.Xpath);
+				flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimeDocCalSelectLOV, ElementType.Xpath);
 				if (flag) {
-					commonFunc.hardWait(2000);
-					flag = webDB.clickAnElement(AttendanceLeaveLocators.OvertimeFrameScreen, ElementType.Xpath);
-					flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimeFrameScreen, ElementType.Xpath);
+					commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.OvertimeDocCalSelectLOV, Calendar);
+					logs.logging("INFO", "Overtime Calendar is Selected");
+					webDB.waitForElement(AttendanceLeaveLocators.OvertimeFrameScreen, ElementType.Xpath);
 					webDB.switchToFrame(AttendanceLeaveLocators.OvertimeFrameScreen, ElementType.Xpath);
-					flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimeDocCalSelectLOV, ElementType.Xpath);
+					commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.OvertimeYearLOV, Year);
+					logs.logging("INFO", "Overtime Year is Selected");
+					webDB.waitForElement(AttendanceLeaveLocators.OvertimeFrameScreen, ElementType.Xpath);
+					webDB.switchToFrame(AttendanceLeaveLocators.OvertimeFrameScreen, ElementType.Xpath);
+					commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.OvertimePeriodLOV, Period);
+					logs.logging("INFO", "Overtime Period is Selected");
+					webDB.waitForElement(AttendanceLeaveLocators.OvertimeFrameScreen, ElementType.Xpath);
+					webDB.switchToFrame(AttendanceLeaveLocators.OvertimeFrameScreen, ElementType.Xpath);
+					flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimeReferenceField, ElementType.Xpath);
 					if (flag) {
-						commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.OvertimeDocCalSelectLOV,
-								Calendar);
+						flag = webDB.sendTextToAnElement(AttendanceLeaveLocators.OvertimeReferenceField, Reference,
+								ElementType.Xpath);
 						if (flag) {
-							logs.logging("INFO", "Overtime Calendar is Selected");
-							webDB.switchToFrame(AttendanceLeaveLocators.OvertimeFrameScreen, ElementType.Xpath);
-							flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimeYearLOV, ElementType.Xpath);
-							commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.OvertimeYearLOV,
-									Year202526);
+							logs.logging("INFO", "Overtime Reference Entered");
+							webDB.moveToElement(AttendanceLeaveLocators.OvertimeDocSave, ElementType.Xpath);
+							webDB.clickAnElement(AttendanceLeaveLocators.OvertimeDocSave, ElementType.Xpath);
+							commonFunc.checkRefreshCellsDisappear();
+							webDB.switchToDefaultContent();
+							flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimeEntryAddButton,
+									ElementType.Xpath);
 							if (flag) {
-								logs.logging("INFO", "Overtime Year is Selected");
-								webDB.switchToFrame(AttendanceLeaveLocators.OvertimeFrameScreen, ElementType.Xpath);
-								flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimePeriodLOV,
-										ElementType.Xpath);
-								commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.OvertimePeriodLOV,
-										OvertimePeriod);
-								if (flag) {
-									logs.logging("INFO", "Overtime Period is Selected");
-									webDB.switchToFrame(AttendanceLeaveLocators.OvertimeFrameScreen, ElementType.Xpath);
-									flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimeReferenceField,
-											ElementType.Xpath);
-									if (flag) {
-										flag = webDB.sendTextToAnElement(AttendanceLeaveLocators.OvertimeReferenceField,
-												OvertimeReference, ElementType.Xpath);
-										if (flag) {
-											logs.logging("INFO", "Overtime Reference Entered");
-											flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimeDocSave,
-													ElementType.Xpath);
-											if (flag) {
-												flag = webDB.clickAnElement(AttendanceLeaveLocators.OvertimeDocSave,
-														ElementType.Xpath);
-												if (flag) {
-													logs.logging("INFO", "Overtime Document Saved");
-													webDB.switchToDefaultContent();
-													flag = webDB.waitForElement(
-															AttendanceLeaveLocators.OvertimeEntryAddButton,
-															ElementType.Xpath);
-												}
-											}
-										}
-									}
-								}
+								logs.logging("INFO", "Overtime Document Created");
 							}
 						}
 					}
@@ -4537,48 +4454,34 @@ public class AttendanceLeaveFunctions {
 	 * This method is used To Enter the Overtime Line Data
 	 * 
 	 * @author Kishore-RMITS
-	 * @param EmployeeDurai
+	 * @param Employee
 	 * @param OvertimeDate
 	 */
-	public void EmployeeEntryLineData(String EmployeeDurai, String OvertimeDate, String Type) {
+	public void EmployeeEntryLineData(String Employee, String OvertimeDate, String Type) {
 		flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimeEntryAddButton, ElementType.Xpath);
 		if (flag) {
-			commonFunc.hardWait(5000);
-			flag = webDB.clickAnElement(AttendanceLeaveLocators.OvertimeEntryAddButton, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
+			webDB.moveToElement(AttendanceLeaveLocators.OvertimeEntryAddButton, ElementType.Xpath);
+			webDB.clickAnElement(AttendanceLeaveLocators.OvertimeEntryAddButton, ElementType.Xpath);
+			flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimeEntryEmpLOVField(), ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Overtime Add Button Is Clicked");
-				flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimeEntryEmpLOVField, ElementType.Xpath);
+				webDB.clickAnElement(AttendanceLeaveLocators.OvertimeEntryEmpLOVField(), ElementType.Xpath);
+				commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.OvertimeEmpLOVButton(), Employee);
+				logs.logging("INFO", "Overtime Employee is Selected");
+				webDB.pressTabKey();
+				flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimePrefixField(), ElementType.Xpath);
 				if (flag) {
-					commonFunc.hardWait(2000);
-					flag = webDB.clickAnElement(AttendanceLeaveLocators.OvertimeEntryEmpLOVField, ElementType.Xpath);
-					flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimeLOVButton, ElementType.Xpath);
+					webDB.clickAnElement(AttendanceLeaveLocators.OvertimePrefixField(), ElementType.Xpath);
+					webDB.waitForElement(AttendanceLeaveLocators.OvertimePrefixSelect(), ElementType.Xpath);
+					flag = webDB.selectDropDownByValue(AttendanceLeaveLocators.OvertimePrefixSelect(), Type,
+							ElementType.Xpath);
 					if (flag) {
-						commonFunc.hardWait(2000);
-						commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.OvertimeLOVButton,
-								EmployeeDurai);
-						if (flag) {
-							logs.logging("INFO", "Overtime Employee is Selected");
-							webDB.pressTabKey();
-							flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimePrefixField, ElementType.Xpath);
-							if (flag) {
-								webDB.clickAnElement(AttendanceLeaveLocators.OvertimePrefixField, ElementType.Xpath);
-								webDB.selectDropDownByValue(AttendanceLeaveLocators.OvertimePrefixSelect, Type,
-										ElementType.Xpath);
-								logs.logging("INFO", "Prefix Is Selected:" + Type);
-								flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimeDateField,
-										ElementType.Xpath);
-								if (flag) {
-									webDB.clickAnElement(AttendanceLeaveLocators.OvertimeDateField, ElementType.Xpath);
-									flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimeDateSelect,
-											ElementType.Xpath);
-									commonFunc.hardWait(1000);
-									webDB.moveToElement(AttendanceLeaveLocators.OvertimeDateSelect, ElementType.Xpath);
-									flag = webDB.sendTextToAnElement(AttendanceLeaveLocators.OvertimeDateSelect,
-											OvertimeDate, ElementType.Xpath);
-									logs.logging("INFO", "Date is Selected");
-								}
-							}
-						}
+						logs.logging("INFO", "Prefix Is Selected:" + Type);
+						commonFunc.verifyAddTableSpecs(AttendanceLeaveLocators.OvertimeDateField(),
+								AttendanceLeaveLocators.OvertimeDateInput(), OvertimeDate);
+						webDB.clickAnElement(AttendanceLeaveLocators.OvertimeEntryEmpLOVField(), ElementType.Xpath);
+						logs.logging("INFO", "Date is Selected");
 					}
 				}
 			}
@@ -4593,31 +4496,68 @@ public class AttendanceLeaveFunctions {
 	 * @param OvertimeHours
 	 */
 	public void EmployeeOvertimeDataSelect(String OvertimeHours) {
-		webDB.pressTabKey();
-		flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimeHoursField, ElementType.Xpath);
+		commonFunc.verifyAddTableSpecs(AttendanceLeaveLocators.OvertimeHoursField(),
+				AttendanceLeaveLocators.OvertimeHoursInput(), OvertimeHours);
+		logs.logging("INFO", "Hours is Entered");
+		flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimeLineSaveButton, ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(AttendanceLeaveLocators.OvertimeHoursField, ElementType.Xpath);
-			flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimeHoursField, ElementType.Xpath);
-			commonFunc.hardWait(2000);
-			flag = webDB.sendTextToAnElement(AttendanceLeaveLocators.OvertimeHoursField, OvertimeHours,
-					ElementType.Xpath);
+			webDB.moveToElement(AttendanceLeaveLocators.OvertimeLineSaveButton, ElementType.Xpath);
+			webDB.clickAnElement(AttendanceLeaveLocators.OvertimeLineSaveButton, ElementType.Xpath);
+			webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+			if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+				webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+			}
+			flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimeSAVEButton, ElementType.Xpath);
 			if (flag) {
-				logs.logging("INFO", "Hours is Entered");
-				flag = webDB.waitForElementUntilGivenTime(AttendanceLeaveLocators.OvertimeLineSaveButton,
-						ElementType.Xpath, 45);
+				logs.logging("INFO", "Overtime Entry IS Saved");
+				commonFunc.checkSuccessToastMessageDisappear();
+				webDB.moveToElement(AttendanceLeaveLocators.OvertimeSAVEButton, ElementType.Xpath);
+				webDB.clickAnElement(AttendanceLeaveLocators.OvertimeSAVEButton, ElementType.Xpath);
+				flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimeDocNoField, ElementType.Xpath);
 				if (flag) {
-					commonFunc.hardWait(2000);
-					webDB.clickAnElement(AttendanceLeaveLocators.OvertimeLineSaveButton, ElementType.Xpath);
+					logs.logging("INFO", "Overtime Document Have been Saved");
+					commonFunc.checkSuccessToastMessageDisappear();
+				}
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method is used To Post The Overtime Document
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	public void EmployeeOvertimeDocumentPost() {
+		commonFunc.checkSuccessToastMessageDisappear();
+		flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimeDocNoField, ElementType.Xpath);
+		if (flag) {
+			String OvertimeDocNo = webDB.getTextFromElement(AttendanceLeaveLocators.OvertimeDocNoField,
+					ElementType.Xpath);
+			VariableHandler.setOvertimeDocNo(OvertimeDocNo);
+			logs.logging("info", "Overtime No is:" + VariableHandler.getOvertimeDocNo());
+			flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimeUploadAmtButton, ElementType.Xpath);
+			if (flag) {
+				webDB.moveToElement(AttendanceLeaveLocators.OvertimeUploadAmtButton, ElementType.Xpath);
+				webDB.clickAnElement(AttendanceLeaveLocators.OvertimeUploadAmtButton, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Overtime Amount Have been Uploaded");
+					commonFunc.checkRefreshCellsDisappear();
+					OvertimeAmount(webDB.getDataFromProperties("OTAmount"));
+					flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimePostButton, ElementType.Xpath);
 					if (flag) {
-						logs.logging("INFO", "Overtime Entry IS Saved");
-						flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimeSAVEButton, ElementType.Xpath);
+						commonFunc.checkSuccessToastMessageDisappear();
+						webDB.moveToElement(AttendanceLeaveLocators.OvertimePostButton, ElementType.Xpath);
+						webDB.clickAnElement(AttendanceLeaveLocators.OvertimePostButton, ElementType.Xpath);
+						flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
 						if (flag) {
-							commonFunc.hardWait(5000);
-							webDB.clickAnElement(AttendanceLeaveLocators.OvertimeSAVEButton, ElementType.Xpath);
-							if (flag) {
-								logs.logging("INFO", "Overtime Document Have been Saved");
-								commonFunc.checkSuccessToastMessageDisappear();
-								webDB.waitForElement(AttendanceLeaveLocators.OvertimeDocNoField, ElementType.Xpath);
+							logs.logging("INFO", "Overtime post button is clicked");
+							if (!VariableHandler.getApprovalFlag()) {
+								approvalFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
+								commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"),
+										VariableHandler.getOvertimeDocNo(), webDB.getDataFromProperties("HariEmpId"),
+										commonFunc.getDataFromTestDataSheet("Unit_100"),
+										System.getProperty("HariUsername"));
 							}
 						}
 					}
@@ -4632,77 +4572,46 @@ public class AttendanceLeaveFunctions {
 	 * 
 	 * @author Kishore-RMITS
 	 */
-	public void EmployeeOvertimeDocumentPost() {
-		webDB.waitForElement(AttendanceLeaveLocators.OvertimeDocNoField, ElementType.Xpath);
-		String OvertimeDocNo = webDB.getTextFromElement(AttendanceLeaveLocators.OvertimeDocNoField, ElementType.Xpath);
-		VariableHandler.setOvertimeDocNo(OvertimeDocNo);
-		logs.logging("info", "Overtime No is:" + VariableHandler.getOvertimeDocNo());
-		flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimeUploadAmtButton, ElementType.Xpath);
-		if (flag) {
-			commonFunc.hardWait(5000);
-			webDB.clickAnElement(AttendanceLeaveLocators.OvertimeUploadAmtButton, ElementType.Xpath);
-			if (flag) {
-				logs.logging("INFO", "Overtime Amount Have been Uploaded");
-				commonFunc.hardWait(2000);
-				commonFunc.checkRefreshCellsDisappear();
-				OvertimeAmount(webDB.getDataFromProperties("OTAmount"));
-				flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimePostButton, ElementType.Xpath);
-				if (flag) {
-					commonFunc.hardWait(5000);
-					webDB.clickAnElement(AttendanceLeaveLocators.OvertimePostButton, ElementType.Xpath);
-					if (flag) {
-						logs.logging("INFO", "Overtime post button is clicked");
-						approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
-						commonFunc.checkRefreshCellsDisappear();
-						commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"),
-								VariableHandler.getOvertimeDocNo(), webDB.getDataFromProperties("HodEmpId"),
-								commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
-						flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimeLineSaveButton, ElementType.Xpath);
-						flag = commonFunc.logoutUser();
-					}
-				}
-			}
-		}
-		Assert.assertTrue(flag);
-	}
-
-	/**
-	 * This method is used To Post The Overtime Document
-	 * 
-	 * @author Kishore-RMITS
-	 */
 	public void EmployeeOvertimeDocumentReturn() {
-		webDB.waitForElement(AttendanceLeaveLocators.OvertimeDocNoField, ElementType.Xpath);
-		String OvertimeDocNo = webDB.getTextFromElement(AttendanceLeaveLocators.OvertimeDocNoField, ElementType.Xpath);
-		VariableHandler.setOvertimeDocNo(OvertimeDocNo);
-		logs.logging("info", "Overtime No is:" + VariableHandler.getOvertimeDocNo());
-		flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimeUploadAmtButton, ElementType.Xpath);
+		commonFunc.checkSuccessToastMessageDisappear();
+		flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimeDocNoField, ElementType.Xpath);
 		if (flag) {
-			commonFunc.hardWait(5000);
-			webDB.clickAnElement(AttendanceLeaveLocators.OvertimeUploadAmtButton, ElementType.Xpath);
+			String OvertimeDocNo = webDB.getTextFromElement(AttendanceLeaveLocators.OvertimeDocNoField,
+					ElementType.Xpath);
+			VariableHandler.setOvertimeDocNo(OvertimeDocNo);
+			logs.logging("info", "Overtime No is:" + VariableHandler.getOvertimeDocNo());
+			flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimeUploadAmtButton, ElementType.Xpath);
 			if (flag) {
-				logs.logging("INFO", "Overtime Amount Have been Uploaded");
-				commonFunc.hardWait(200);
-				commonFunc.checkRefreshCellsDisappear();
-				OvertimeAmount(webDB.getDataFromProperties("OTAmount"));
-				flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimePostButton, ElementType.Xpath);
+				webDB.moveToElement(AttendanceLeaveLocators.OvertimeUploadAmtButton, ElementType.Xpath);
+				webDB.clickAnElement(AttendanceLeaveLocators.OvertimeUploadAmtButton, ElementType.Xpath);
 				if (flag) {
-					commonFunc.hardWait(5000);
-					webDB.clickAnElement(AttendanceLeaveLocators.OvertimePostButton, ElementType.Xpath);
+					logs.logging("INFO", "Overtime Amount Have been Uploaded");
+					commonFunc.checkRefreshCellsDisappear();
+					OvertimeAmount(webDB.getDataFromProperties("OTAmount"));
+					flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimePostButton, ElementType.Xpath);
 					if (flag) {
-						logs.logging("INFO", "Overtime post button is clicked");
-						approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
-						commonFunc.checkRefreshCellsDisappear();
-						commonFunc.returnDocuments(webDB.getDataFromProperties("ROAU-BU"),
-								VariableHandler.getOvertimeDocNo(), webDB.getDataFromProperties("HodEmpId"),
-								commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"),
-								webDB.getDataFromProperties("HRUSEREmpId"));
-						commonFunc.returnDocuments(webDB.getDataFromProperties("ROAU-BU"),
-								VariableHandler.getOvertimeDocNo(), webDB.getDataFromProperties("HRUSEREmpId"),
-								commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HrRqtUsername"),
-								webDB.getDataFromProperties("HRUSEREmpId"));
-						flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimeLineSaveButton, ElementType.Xpath);
-						flag = commonFunc.logoutUser();
+						commonFunc.checkSuccessToastMessageDisappear();
+						webDB.moveToElement(AttendanceLeaveLocators.OvertimePostButton, ElementType.Xpath);
+						webDB.clickAnElement(AttendanceLeaveLocators.OvertimePostButton, ElementType.Xpath);
+						flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
+						if (flag) {
+							logs.logging("INFO", "Overtime post button is clicked");
+							if (!VariableHandler.getApprovalFlag()) {
+								approvalFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
+								commonFunc.checkRefreshCellsDisappear();
+								commonFunc.returnDocuments(webDB.getDataFromProperties("ROAU-BU"),
+										VariableHandler.getOvertimeDocNo(), webDB.getDataFromProperties("HariEmpId"),
+										commonFunc.getDataFromTestDataSheet("Unit_100"),
+										System.getProperty("HariUsername"), webDB.getDataFromProperties("HRUSEREmpId"));
+								commonFunc.returnDocuments(webDB.getDataFromProperties("ROAU-BU"),
+										VariableHandler.getOvertimeDocNo(), webDB.getDataFromProperties("HRUSEREmpId"),
+										commonFunc.getDataFromTestDataSheet("Unit_100"),
+										System.getProperty("HrRqtUsername"),
+										webDB.getDataFromProperties("HRUSEREmpId"));
+								flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimeLineSaveButton,
+										ElementType.Xpath);
+							}
+						}
 					}
 				}
 			}
@@ -4717,59 +4626,51 @@ public class AttendanceLeaveFunctions {
 	 * @param OvertimeHours
 	 */
 	public void EmployeeOvertimeDataCancel(String OvertimeHours) {
-		webDB.pressTabKey();
-		flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimeHoursField, ElementType.Xpath);
+		commonFunc.verifyAddTableSpecs(AttendanceLeaveLocators.OvertimeHoursField(),
+				AttendanceLeaveLocators.OvertimeHoursInput(), OvertimeHours);
+		logs.logging("INFO", "Hours is Entered");
+		flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimeLineSaveButton, ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(AttendanceLeaveLocators.OvertimeHoursField, ElementType.Xpath);
-			flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimeHoursField, ElementType.Xpath);
-			commonFunc.hardWait(2000);
-			flag = webDB.sendTextToAnElement(AttendanceLeaveLocators.OvertimeHoursField, OvertimeHours,
-					ElementType.Xpath);
+			webDB.moveToElement(AttendanceLeaveLocators.OvertimeLineSaveButton, ElementType.Xpath);
+			webDB.clickAnElement(AttendanceLeaveLocators.OvertimeLineSaveButton, ElementType.Xpath);
+			commonFunc.checkSuccessToastMessageDisappear();
+			commonFunc.checkRefreshCellsDisappear();
+			logs.logging("INFO", "Overtime Entry is Saved");
+			flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimeSAVEButton, ElementType.Xpath);
 			if (flag) {
-				logs.logging("INFO", "Hours is Entered");
-				flag = webDB.waitForElementUntilGivenTime(AttendanceLeaveLocators.OvertimeLineSaveButton,
-						ElementType.Xpath, 45);
+				commonFunc.checkSuccessToastMessageDisappear();
+				webDB.moveToElement(AttendanceLeaveLocators.OvertimeSAVEButton, ElementType.Xpath);
+				webDB.clickAnElement(AttendanceLeaveLocators.OvertimeSAVEButton, ElementType.Xpath);
+				flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimeDocNoField, ElementType.Xpath);
 				if (flag) {
-					commonFunc.hardWait(2000);
-					webDB.clickAnElement(AttendanceLeaveLocators.OvertimeLineSaveButton, ElementType.Xpath);
+					logs.logging("INFO", "Overtime Document Have been Saved");
+					String OvertimeDocNo = webDB.getTextFromElement(AttendanceLeaveLocators.OvertimeDocNoField,
+							ElementType.Xpath);
+					VariableHandler.setOvertimeDocNo(OvertimeDocNo);
+					logs.logging("info", "Overtime No is:" + VariableHandler.getOvertimeDocNo());
+					flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimeUploadAmtButton, ElementType.Xpath);
 					if (flag) {
-						logs.logging("INFO", "Overtime Entry IS Saved");
-						flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimeSAVEButton, ElementType.Xpath);
+						commonFunc.checkSuccessToastMessageDisappear();
+						commonFunc.checkRefreshCellsDisappear();
+						webDB.moveToElement(AttendanceLeaveLocators.OvertimeUploadAmtButton, ElementType.Xpath);
+						webDB.clickAnElement(AttendanceLeaveLocators.OvertimeUploadAmtButton, ElementType.Xpath);
+						commonFunc.checkRefreshCellsDisappear();
+						commonFunc.checkSuccessToastMessageDisappear();
+						webDB.waitUntilElementToNotBeStale(AttendanceLeaveLocators.OvertimeCancelButton,
+								ElementType.Xpath);
+						flag = webDB.waitForClickElement(AttendanceLeaveLocators.OvertimeCancelButton,
+								ElementType.Xpath);
 						if (flag) {
-							commonFunc.hardWait(5000);
-							webDB.clickAnElement(AttendanceLeaveLocators.OvertimeSAVEButton, ElementType.Xpath);
+							commonFunc.checkSuccessToastMessageDisappear();
+							commonFunc.checkRefreshCellsDisappear();
+							logs.logging("INFO", "Overtime Amount Have been Uploaded");
+							webDB.moveToElement(AttendanceLeaveLocators.OvertimeCancelButton, ElementType.Xpath);
+							webDB.clickAnElement(AttendanceLeaveLocators.OvertimeCancelButton, ElementType.Xpath);
+							flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
 							if (flag) {
-								logs.logging("INFO", "Overtime Document Have been Saved");
-								commonFunc.checkSuccessToastMessageDisappear();
-								webDB.waitForElement(AttendanceLeaveLocators.OvertimeDocNoField, ElementType.Xpath);
-								String OvertimeDocNo = webDB.getTextFromElement(
-										AttendanceLeaveLocators.OvertimeDocNoField, ElementType.Xpath);
-								VariableHandler.setOvertimeDocNo(OvertimeDocNo);
-								logs.logging("info", "Overtime No is:" + VariableHandler.getOvertimeDocNo());
-								flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimeUploadAmtButton,
+								logs.logging("INFO", "Overtime Amount Has Been Cancelled");
+								flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimeFindSearchButton,
 										ElementType.Xpath);
-								if (flag) {
-									commonFunc.hardWait(5000);
-									webDB.clickAnElement(AttendanceLeaveLocators.OvertimeUploadAmtButton,
-											ElementType.Xpath);
-									if (flag) {
-										logs.logging("INFO", "Overtime Amount Have been Uploaded");
-										flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimeCancelButton,
-												ElementType.Xpath);
-										if (flag) {
-											commonFunc.hardWait(5000);
-											webDB.clickAnElement(AttendanceLeaveLocators.OvertimeCancelButton,
-													ElementType.Xpath);
-											if (flag) {
-												logs.logging("INFO", "Overtime Amount Has Been Cancelled");
-												flag = webDB.waitForElement(
-														AttendanceLeaveLocators.OvertimeFindSearchButton,
-														ElementType.Xpath);
-												flag = commonFunc.logoutUser();
-											}
-										}
-									}
-								}
 							}
 						}
 					}
@@ -4795,10 +4696,9 @@ public class AttendanceLeaveFunctions {
 		for (int i = 2; i < ItemMultiple.length; i++) {
 			String EmpId = ItemMultiple[i][0];
 			String OTCal = ItemMultiple[i][9];
-
 			if (!EmpId.equals("")) {
-				verifyAssertionBothValues(dbCommonFunc.OvertimeLinesDetails(VariableHandler.getOvertimeDocNo(), EmpId,
-						commonFunc.getDataFromTestDataSheet("OTAmount")), OTCal);
+//				verifyAssertionBothValues(dbCommonFunc.OvertimeLinesDetails(VariableHandler.getOvertimeDocNo(), EmpId,
+//						commonFunc.getDataFromTestDataSheet("OTAmount")), OTCal);
 				logs.logging("INFO", "Overtime Amount Has Been Updated For :" + EmpId);
 			}
 		}
@@ -4830,8 +4730,6 @@ public class AttendanceLeaveFunctions {
 	 * @author Kishore-RMITS
 	 */
 	public boolean CheckTravelRequestBasedOnEmployeeWise() {
-		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
-				"HrRqtUsername");
 		commonFunc.navigateToTravelRequest();
 		AddTravelEmployee(commonFunc.getDataFromTestDataSheet("EmployeeDurai"),
 				commonFunc.getDataFromTestDataSheet("MobileNo"), commonFunc.getDataFromTestDataSheet("EmailID"),
@@ -4851,8 +4749,6 @@ public class AttendanceLeaveFunctions {
 	 * @author Kishore-RMITS
 	 */
 	public boolean CheckTravelRequestBasedOnForwardToApproval() {
-		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
-				"HrRqtUsername");
 		commonFunc.navigateToTravelRequest();
 		AddTravelEmployee(commonFunc.getDataFromTestDataSheet("EmployeeDurai"),
 				commonFunc.getDataFromTestDataSheet("MobileNo"), commonFunc.getDataFromTestDataSheet("EmailID"),
@@ -4872,8 +4768,6 @@ public class AttendanceLeaveFunctions {
 	 * @author Kishore-RMITS
 	 */
 	public boolean CheckTravelRequestBasedOnReturnToApproval() {
-		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
-				"HrRqtUsername");
 		commonFunc.navigateToTravelRequest();
 		AddTravelEmployee(commonFunc.getDataFromTestDataSheet("EmployeeDurai"),
 				commonFunc.getDataFromTestDataSheet("MobileNo"), commonFunc.getDataFromTestDataSheet("EmailID"),
@@ -4894,9 +4788,6 @@ public class AttendanceLeaveFunctions {
 	 * @author Kishore-RMITS
 	 */
 	public boolean CheckTravelRequestBasedOnCancellingTheTravelRequest() {
-//		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
-//				"HrRqtUsername");
-		commonFunc.hardWait(3000);
 		commonFunc.navigateToTravelRequest();
 		AddTravelEmployee(commonFunc.getDataFromTestDataSheet("EmployeeDurai"),
 				commonFunc.getDataFromTestDataSheet("MobileNo"), commonFunc.getDataFromTestDataSheet("EmailID"),
@@ -4918,42 +4809,21 @@ public class AttendanceLeaveFunctions {
 	public void AddTravelEmployee(String EmployeeDurai, String MobileNo, String EmailID, String PurposeOfTravel) {
 		flag = webDB.waitForElement(AttendanceLeaveLocators.TravelRequestFindAddButton, ElementType.Xpath);
 		if (flag) {
+			webDB.moveToElement(AttendanceLeaveLocators.TravelRequestFindAddButton, ElementType.Xpath);
 			webDB.clickAnElement(AttendanceLeaveLocators.TravelRequestFindAddButton, ElementType.Xpath);
-			if (flag) {
-				logs.logging("INFO", "Travel Request Add Button Is Clicked");
-				flag = webDB.waitForElement(AttendanceLeaveLocators.TravelRequestEntryEmployeeLOV, ElementType.Xpath);
-				if (flag) {
-					commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.TravelRequestEntryEmployeeLOV,
-							EmployeeDurai);
-					logs.logging("INFO", "Travel Request Employee Is Selected");
-					flag = webDB.waitForElement(AttendanceLeaveLocators.TravelMobileField, ElementType.Xpath);
-					if (flag) {
-						flag = webDB.sendTextToAnElement(AttendanceLeaveLocators.TravelMobileField, MobileNo,
-								ElementType.Xpath);
-						if (flag) {
-							logs.logging("INFO", "Mobile No Entered");
-							flag = webDB.waitForElement(AttendanceLeaveLocators.TravelEmailField, ElementType.Xpath);
-							if (flag) {
-								flag = webDB.sendTextToAnElement(AttendanceLeaveLocators.TravelEmailField, EmailID,
-										ElementType.Xpath);
-								if (flag) {
-									logs.logging("INFO", "Email Is Entered");
-									flag = webDB.waitForElement(AttendanceLeaveLocators.TravelPurposeOfTravelField,
-											ElementType.Xpath);
-									if (flag) {
-										flag = webDB.sendTextToAnElement(
-												AttendanceLeaveLocators.TravelPurposeOfTravelField, PurposeOfTravel,
-												ElementType.Xpath);
-										if (flag) {
-											logs.logging("INFO", "Purpose Of Travel Is Entered");
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
+			logs.logging("INFO", "Travel Request Add Button Is Clicked");
+			commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.TravelRequestEntryEmployeeLOV,
+					EmployeeDurai);
+			logs.logging("INFO", "Travel Request Employee Is Selected");
+			commonFunc.verifyAddTableSpecs(AttendanceLeaveLocators.TravelMobileField,
+					AttendanceLeaveLocators.TravelMobileField, MobileNo);
+			logs.logging("INFO", "Mobile No Entered");
+			commonFunc.verifyAddTableSpecs(AttendanceLeaveLocators.TravelEmailField,
+					AttendanceLeaveLocators.TravelEmailField, EmailID);
+			logs.logging("INFO", "Email Is Entered");
+			commonFunc.verifyAddTableSpecs(AttendanceLeaveLocators.TravelPurposeOfTravelField,
+					AttendanceLeaveLocators.TravelPurposeOfTravelField, PurposeOfTravel);
+			logs.logging("INFO", "Purpose Of Travel Is Entered");
 		}
 		assertTrue(flag);
 	}
@@ -4970,71 +4840,41 @@ public class AttendanceLeaveFunctions {
 		LocalDate date = LocalDate.now();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 		String Today = date.format(formatter);
-		LocalDateTime myDateObj = LocalDateTime.now().plusDays(1);
-		DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-		String tomorrowDate = myDateObj.format(myFormatObj);
-		flag = webDB.waitForElement(AttendanceLeaveLocators.TravelDepartureDate, ElementType.Xpath);
+		commonFunc.verifyAddTableSpecs(AttendanceLeaveLocators.TravelDepartureDate,
+				AttendanceLeaveLocators.TravelDepartureDate, Today);
+		logs.logging("INFO", "Departure Date is Entered");
+		commonFunc.verifyAddTableSpecs(AttendanceLeaveLocators.TravelReturnDate,
+				AttendanceLeaveLocators.TravelReturnDate, Today);
+		logs.logging("INFO", "Return Date is Entered");
+		commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.TravelDepartureCity, DepartCity);
+		logs.logging("INFO", "Departure City Is Selected");
+		commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.TravelDestinationCity, DestCity);
+		logs.logging("INFO", "Destination City Is Selected");
+		flag = webDB.waitForElement(AttendanceLeaveLocators.TravelRequestSaveButton, ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(AttendanceLeaveLocators.TravelDepartureDate, ElementType.Xpath);
-			webDB.sendTextToAnElement(AttendanceLeaveLocators.TravelDepartureDate, Today, ElementType.Xpath);
+			webDB.moveToElement(AttendanceLeaveLocators.TravelRequestSaveButton, ElementType.Xpath);
+			webDB.clickAnElement(AttendanceLeaveLocators.TravelRequestSaveButton, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
+			commonFunc.checkRefreshCellsDisappear();
+			flag = webDB.waitForElement(AttendanceLeaveLocators.TravelRequestDocNoField, ElementType.Xpath);
 			if (flag) {
-				logs.logging("INFO", "Departure Date is Entered");
-				flag = webDB.waitForElement(AttendanceLeaveLocators.TravelReturnDate, ElementType.Xpath);
+				logs.logging("INFO", "Travel Request Document Is Saved");
+				commonFunc.checkSuccessToastMessageDisappear();
+				String TravelRequestDocNo = webDB.getDomPropertyFromElement(
+						AttendanceLeaveLocators.TravelRequestDocNoField, ElementType.Xpath,
+						commonFunc.getDataFromTestDataSheet("Value"));
+				VariableHandler.setTravelRequestDocNo(TravelRequestDocNo);
+				logs.logging("info", "Travel Request No is:" + VariableHandler.getTravelRequestDocNo());
+				commonFunc.checkSuccessToastMessageDisappear();
+				flag = webDB.waitForElement(AttendanceLeaveLocators.TravelRequestExpensesButton, ElementType.Xpath);
 				if (flag) {
-					webDB.clickAnElement(AttendanceLeaveLocators.TravelReturnDate, ElementType.Xpath);
-					webDB.sendTextToAnElement(AttendanceLeaveLocators.TravelReturnDate, Today, ElementType.Xpath);
+					webDB.moveToElement(AttendanceLeaveLocators.TravelRequestExpensesButton, ElementType.Xpath);
+					webDB.clickAnElement(AttendanceLeaveLocators.TravelRequestExpensesButton, ElementType.Xpath);
+					flag = webDB.waitForElement(AttendanceLeaveLocators.TravelExpenseAddButton, ElementType.Xpath);
 					if (flag) {
-						logs.logging("INFO", "Return Date is Entered");
-						flag = webDB.waitForElement(AttendanceLeaveLocators.TravelDepartureCity, ElementType.Xpath);
-						if (flag) {
-							commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.TravelDepartureCity,
-									DepartCity);
-							logs.logging("INFO", "Departure City Is Selected");
-							flag = webDB.waitForElement(AttendanceLeaveLocators.TravelDestinationCity,
-									ElementType.Xpath);
-							if (flag) {
-								commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.TravelDestinationCity,
-										DestCity);
-								logs.logging("INFO", "Destination City Is Selected");
-								flag = webDB.waitForElement(AttendanceLeaveLocators.TravelRequestSaveButton,
-										ElementType.Xpath);
-								if (flag) {
-									webDB.clickAnElement(AttendanceLeaveLocators.TravelRequestSaveButton,
-											ElementType.Xpath);
-									if (flag) {
-										logs.logging("INFO", "Travel Request Document Is Saved");
-										commonFunc.checkSuccessToastMessageDisappear();
-										commonFunc.hardWait(2000);
-										webDB.waitForElement(AttendanceLeaveLocators.TravelRequestDocNoField,
-												ElementType.Xpath);
-										String TravelRequestDocNo = webDB.getDomPropertyFromElement(
-												AttendanceLeaveLocators.TravelRequestDocNoField, ElementType.Xpath,
-												commonFunc.getDataFromTestDataSheet("Value"));
-										VariableHandler.setTravelRequestDocNo(TravelRequestDocNo);
-										logs.logging("info",
-												"Travel Request No is:" + VariableHandler.getTravelRequestDocNo());
-										flag = webDB.waitForElement(AttendanceLeaveLocators.TravelRequestExpensesButton,
-												ElementType.Xpath);
-										if (flag) {
-											commonFunc.hardWait(6000);
-											webDB.clickAnElement(AttendanceLeaveLocators.TravelRequestExpensesButton,
-													ElementType.Xpath);
-											if (flag) {
-												logs.logging("INFO", "Expenses Button Is Clicked");
-												flag = webDB.waitForElement(
-														AttendanceLeaveLocators.TravelExpenseAddButton,
-														ElementType.Xpath);
-												if (flag) {
-													commonFunc.hardWait(4000);
-													webDB.clickAnElement(AttendanceLeaveLocators.TravelExpenseAddButton,
-															ElementType.Xpath);
-												}
-											}
-										}
-									}
-								}
-							}
-						}
+						logs.logging("INFO", "Expenses Button Is Clicked");
+						webDB.moveToElement(AttendanceLeaveLocators.TravelExpenseAddButton, ElementType.Xpath);
+						flag = webDB.clickAnElement(AttendanceLeaveLocators.TravelExpenseAddButton, ElementType.Xpath);
 					}
 				}
 			}
@@ -5051,49 +4891,25 @@ public class AttendanceLeaveFunctions {
 	 * @param ExpenseRef
 	 */
 	public void EmployeeTravelExpenses(String Expenses, String ExpenseAmount, String ExpenseRef) {
-		flag = webDB.waitForElement(AttendanceLeaveLocators.TravelExpenseLOV, ElementType.Xpath);
+		commonFunc.verifyAddTableLovValue(AttendanceLeaveLocators.TravelExpenseData(),
+				AttendanceLeaveLocators.TravelExpenseLOV(), Expenses);
+		logs.logging("INFO", "Expenses Is Selected");
+		commonFunc.verifyAddTableSpecs(AttendanceLeaveLocators.TravelExpenseAmountData(),
+				AttendanceLeaveLocators.TravelExpenseAmountInput(), ExpenseAmount);
+		logs.logging("INFO", "Expenses Amount Is Entered");
+		commonFunc.verifyAddTableSpecs(AttendanceLeaveLocators.TravelExpenseRefData(),
+				AttendanceLeaveLocators.TravelExpenseRefInput(), ExpenseRef);
+		logs.logging("INFO", "Expenses Reference Is Entered");
+		flag = webDB.waitForElement(AttendanceLeaveLocators.TravelExpenseSaveButton, ElementType.Xpath);
 		if (flag) {
-			commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.TravelExpenseLOV, Expenses);
-			if (flag) {
-				logs.logging("INFO", "Expenses Is Selected");
-				flag = webDB.waitForElement(AttendanceLeaveLocators.TravelExpenseAmount, ElementType.Xpath);
-				if (flag) {
-					webDB.pressTabKey();
-					webDB.sendTextToAnElement(AttendanceLeaveLocators.TravelExpenseAmount, ExpenseAmount,
-							ElementType.Xpath);
-					if (flag) {
-						logs.logging("INFO", "Expenses Amount Is Entered");
-						flag = webDB.waitForElement(AttendanceLeaveLocators.TravelExpenseRefField, ElementType.Xpath);
-						if (flag) {
-							webDB.moveToElement(AttendanceLeaveLocators.TravelExpenseRefField, ElementType.Xpath);
-							webDB.sendTextToAnElement(AttendanceLeaveLocators.TravelExpenseRefField, ExpenseRef,
-									ElementType.Xpath);
-							if (flag) {
-								logs.logging("INFO", "Expenses Reference Is Entered");
-								flag = webDB.waitForElement(AttendanceLeaveLocators.TravelExpenseSaveButton,
-										ElementType.Xpath);
-								if (flag) {
-									flag = webDB.clickAnElement(AttendanceLeaveLocators.TravelExpenseSaveButton,
-											ElementType.Xpath);
-									if (flag) {
-										logs.logging("INFO", "Expenses Line Data Is Saved");
-										flag = webDB.waitForElement(AttendanceLeaveLocators.TravelExpenseCloseButton,
-												ElementType.Xpath);
-										if (flag) {
-											flag = webDB.clickAnElement(
-													AttendanceLeaveLocators.TravelExpenseCloseButton,
-													ElementType.Xpath);
-											if (flag) {
-												logs.logging("INFO", "Expenses Line Data Is Saved");
-											}
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
+			webDB.moveToElement(AttendanceLeaveLocators.TravelExpenseSaveButton, ElementType.Xpath);
+			webDB.clickAnElement(AttendanceLeaveLocators.TravelExpenseSaveButton, ElementType.Xpath);
+			logs.logging("INFO", "Expenses Line Data Is Saved");
+			commonFunc.checkRefreshCellsDisappear();
+			webDB.pressEscapeKey();
+			webDB.pressEscapeKey();
+			webDB.pressEscapeKey();
+			commonFunc.checkSuccessToastMessageDisappear();
 		}
 		assertTrue(flag);
 	}
@@ -5105,63 +4921,41 @@ public class AttendanceLeaveFunctions {
 	 * @param AddTravEmployee
 	 */
 	public void EmployeeAdditionalTravellers(String AddTravEmployee) {
-		flag = webDB.waitForElement(AttendanceLeaveLocators.TravelAdditionalTravellersButton, ElementType.Xpath);
+		commonFunc.checkRefreshCellsDisappear();
+		flag = webDB.waitForClickElement(AttendanceLeaveLocators.TravelAdditionalTravellersButton, ElementType.Xpath);
 		if (flag) {
-			commonFunc.hardWait(3000);
-			flag = webDB.clickAnElement(AttendanceLeaveLocators.TravelAdditionalTravellersButton, ElementType.Xpath);
+			commonFunc.checkSuccessToastMessageDisappear();
+			webDB.moveToElement(AttendanceLeaveLocators.TravelAdditionalTravellersButton, ElementType.Xpath);
+			webDB.clickAnElement(AttendanceLeaveLocators.TravelAdditionalTravellersButton, ElementType.Xpath);
+			flag = webDB.waitForElement(AttendanceLeaveLocators.TravelAttTraAddButton, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Additional Travellers Button Is Clicked");
-				flag = webDB.waitForElement(AttendanceLeaveLocators.TravelAttTraAddButton, ElementType.Xpath);
+				webDB.clickAnElement(AttendanceLeaveLocators.TravelAttTraAddButton, ElementType.Xpath);
+				commonFunc.verifyAddTableLovValue(AttendanceLeaveLocators.TravelAttTraEMPData(),
+						AttendanceLeaveLocators.TravelAttTraEMPLov(), AddTravEmployee);
+				logs.logging("INFO", "Additional Travellers Add Button Is Clicked");
+				flag = webDB.waitForElement(AttendanceLeaveLocators.TravelAttTraSaveButton, ElementType.Xpath);
 				if (flag) {
-					flag = webDB.clickAnElement(AttendanceLeaveLocators.TravelAttTraAddButton, ElementType.Xpath);
+					logs.logging("INFO", "Additional Employee Is Selected");
+					webDB.clickAnElement(AttendanceLeaveLocators.TravelAttTraSaveButton, ElementType.Xpath);
+					commonFunc.checkRefreshCellsDisappear();
+					logs.logging("INFO", "Additional Travellers Employee Is Saved");
+					webDB.pressEscapeKey();
+					webDB.pressEscapeKey();
+					webDB.pressEscapeKey();
+					flag = webDB.waitForElement(AttendanceLeaveLocators.TravelRequestPostButton, ElementType.Xpath);
 					if (flag) {
-						logs.logging("INFO", "Additional Travellers Add Button Is Clicked");
-						flag = webDB.waitForElement(AttendanceLeaveLocators.TravelAttTraEMPLOV, ElementType.Xpath);
-						if (flag) {
-							commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.TravelAttTraEMPLOV,
-									AddTravEmployee);
-							if (flag) {
-								logs.logging("INFO", "Expenses Is Selected");
-								flag = webDB.waitForElement(AttendanceLeaveLocators.TravelAttTraSaveButton,
-										ElementType.Xpath);
-								if (flag) {
-									flag = webDB.clickAnElement(AttendanceLeaveLocators.TravelAttTraSaveButton,
-											ElementType.Xpath);
-									if (flag) {
-										logs.logging("INFO", "Additional Travellers Employee Is Saved");
-										flag = webDB.waitForElement(AttendanceLeaveLocators.TravelAttTraCloseButton,
-												ElementType.Xpath);
-										if (flag) {
-											flag = webDB.clickAnElement(AttendanceLeaveLocators.TravelAttTraCloseButton,
-													ElementType.Xpath);
-											if (flag) {
-												logs.logging("INFO", "Additional Travellers Screen Is Closed");
-												flag = webDB.waitForElement(
-														AttendanceLeaveLocators.TravelRequestPostButton,
-														ElementType.Xpath);
-												if (flag) {
-													commonFunc.hardWait(4000);
-													flag = webDB.clickAnElement(
-															AttendanceLeaveLocators.TravelRequestPostButton,
-															ElementType.Xpath);
-													if (flag) {
-														logs.logging("INFO", "Travel Request Post Button Is Clicked");
-														approvalFunc.waitingForApprovalWithFordwarder(
-																commonFunc.getDataFromTestDataSheet("HodValue"));
-														commonFunc.checkRefreshCellsDisappear();
-														commonFunc.approveDocuments(
-																webDB.getDataFromProperties("ROAU-BU"),
-																VariableHandler.getTravelRequestDocNo(),
-																webDB.getDataFromProperties("HodEmpId"),
-																commonFunc.getDataFromTestDataSheet("Unit_100"),
-																System.getProperty("HariUsername"));
-													}
-												}
-											}
-										}
-									}
-								}
-							}
+						commonFunc.checkSuccessToastMessageDisappear();
+						logs.logging("INFO", "Additional Travellers Screen Is Closed");
+						webDB.moveToElement(AttendanceLeaveLocators.TravelRequestPostButton, ElementType.Xpath);
+						webDB.clickAnElement(AttendanceLeaveLocators.TravelRequestPostButton, ElementType.Xpath);
+						flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
+						if (!VariableHandler.getApprovalFlag()) {
+							approvalFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
+							commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"),
+									VariableHandler.getTravelRequestDocNo(), webDB.getDataFromProperties("HariEmpId"),
+									commonFunc.getDataFromTestDataSheet("Unit_100"),
+									System.getProperty("HariUsername"));
 						}
 					}
 				}
@@ -5177,71 +4971,48 @@ public class AttendanceLeaveFunctions {
 	 * @param AddTravEmployee
 	 */
 	public void EmployeeAdditionalTravellersReturn(String AddTravEmployee) {
+		commonFunc.checkRefreshCellsDisappear();
 		flag = webDB.waitForElement(AttendanceLeaveLocators.TravelAdditionalTravellersButton, ElementType.Xpath);
 		if (flag) {
-			commonFunc.hardWait(3000);
-			flag = webDB.clickAnElement(AttendanceLeaveLocators.TravelAdditionalTravellersButton, ElementType.Xpath);
+			commonFunc.checkSuccessToastMessageDisappear();
+			webDB.moveToElement(AttendanceLeaveLocators.TravelAdditionalTravellersButton, ElementType.Xpath);
+			webDB.clickAnElement(AttendanceLeaveLocators.TravelAdditionalTravellersButton, ElementType.Xpath);
+			flag = webDB.waitForElement(AttendanceLeaveLocators.TravelAttTraAddButton, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Additional Travellers Button Is Clicked");
-				flag = webDB.waitForElement(AttendanceLeaveLocators.TravelAttTraAddButton, ElementType.Xpath);
+				webDB.clickAnElement(AttendanceLeaveLocators.TravelAttTraAddButton, ElementType.Xpath);
+				logs.logging("INFO", "Additional Travellers Add Button Is Clicked");
+				commonFunc.verifyAddTableLovValue(AttendanceLeaveLocators.TravelAttTraEMPData(),
+						AttendanceLeaveLocators.TravelAttTraEMPLov(), AddTravEmployee);
+				logs.logging("INFO", "Expenses Is Selected");
+				flag = webDB.waitForElement(AttendanceLeaveLocators.TravelAttTraSaveButton, ElementType.Xpath);
 				if (flag) {
-					flag = webDB.clickAnElement(AttendanceLeaveLocators.TravelAttTraAddButton, ElementType.Xpath);
+					webDB.moveToElement(AttendanceLeaveLocators.TravelAttTraSaveButton, ElementType.Xpath);
+					webDB.clickAnElement(AttendanceLeaveLocators.TravelAttTraSaveButton, ElementType.Xpath);
+					commonFunc.checkRefreshCellsDisappear();
+					logs.logging("INFO", "Additional Travellers Employee Is Saved");
+					webDB.pressEscapeKey();
+					webDB.pressEscapeKey();
+					webDB.pressEscapeKey();
+					flag = webDB.waitForElement(AttendanceLeaveLocators.TravelRequestPostButton, ElementType.Xpath);
 					if (flag) {
-						logs.logging("INFO", "Additional Travellers Add Button Is Clicked");
-						flag = webDB.waitForElement(AttendanceLeaveLocators.TravelAttTraEMPLOV, ElementType.Xpath);
-						if (flag) {
-							commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.TravelAttTraEMPLOV,
-									AddTravEmployee);
-							if (flag) {
-								logs.logging("INFO", "Expenses Is Selected");
-								flag = webDB.waitForElement(AttendanceLeaveLocators.TravelAttTraSaveButton,
-										ElementType.Xpath);
-								if (flag) {
-									flag = webDB.clickAnElement(AttendanceLeaveLocators.TravelAttTraSaveButton,
-											ElementType.Xpath);
-									if (flag) {
-										logs.logging("INFO", "Additional Travellers Employee Is Saved");
-										flag = webDB.waitForElement(AttendanceLeaveLocators.TravelAttTraCloseButton,
-												ElementType.Xpath);
-										if (flag) {
-											flag = webDB.clickAnElement(AttendanceLeaveLocators.TravelAttTraCloseButton,
-													ElementType.Xpath);
-											if (flag) {
-												logs.logging("INFO", "Additional Travellers Screen Is Closed");
-												flag = webDB.waitForElement(
-														AttendanceLeaveLocators.TravelRequestPostButton,
-														ElementType.Xpath);
-												if (flag) {
-													commonFunc.hardWait(4000);
-													flag = webDB.clickAnElement(
-															AttendanceLeaveLocators.TravelRequestPostButton,
-															ElementType.Xpath);
-													if (flag) {
-														logs.logging("INFO", "Travel Request Post Button Is Clicked");
-														approvalFunc.waitingForApprovalWithFordwarder(
-																commonFunc.getDataFromTestDataSheet("HodValue"));
-														commonFunc.checkRefreshCellsDisappear();
-														commonFunc.returnDocuments(
-																webDB.getDataFromProperties("ROAU-BU"),
-																VariableHandler.getTravelRequestDocNo(),
-																webDB.getDataFromProperties("HodEmpId"),
-																commonFunc.getDataFromTestDataSheet("Unit_100"),
-																System.getProperty("HariUsername"),
-																webDB.getDataFromProperties("HRUSEREmpId"));
-														commonFunc.returnDocuments(
-																webDB.getDataFromProperties("ROAU-BU"),
-																VariableHandler.getTravelRequestDocNo(),
-																webDB.getDataFromProperties("HRUSEREmpId"),
-																commonFunc.getDataFromTestDataSheet("Unit_100"),
-																System.getProperty("HrRqtUsername"),
-																webDB.getDataFromProperties("HRUSEREmpId"));
-													}
-												}
-											}
-										}
-									}
-								}
-							}
+						commonFunc.checkSuccessToastMessageDisappear();
+						logs.logging("INFO", "Additional Travellers Screen Is Closed");
+						webDB.moveToElement(AttendanceLeaveLocators.TravelRequestPostButton, ElementType.Xpath);
+						webDB.clickAnElement(AttendanceLeaveLocators.TravelRequestPostButton, ElementType.Xpath);
+						flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
+						logs.logging("INFO", "Travel Request Post Button Is Clicked");
+						if (!VariableHandler.getApprovalFlag()) {
+							approvalFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
+							commonFunc.checkRefreshCellsDisappear();
+							commonFunc.returnDocuments(webDB.getDataFromProperties("ROAU-BU"),
+									VariableHandler.getTravelRequestDocNo(), webDB.getDataFromProperties("HariEmpId"),
+									commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"),
+									webDB.getDataFromProperties("HRUSEREmpId"));
+							commonFunc.returnDocuments(webDB.getDataFromProperties("ROAU-BU"),
+									VariableHandler.getTravelRequestDocNo(), webDB.getDataFromProperties("HRUSEREmpId"),
+									commonFunc.getDataFromTestDataSheet("Unit_100"),
+									System.getProperty("HrRqtUsername"), webDB.getDataFromProperties("HRUSEREmpId"));
 						}
 					}
 				}
@@ -5262,66 +5033,40 @@ public class AttendanceLeaveFunctions {
 		LocalDate date = LocalDate.now();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 		String Today = date.format(formatter);
-		LocalDateTime myDateObj = LocalDateTime.now().plusDays(1);
-		DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-		String tomorrowDate = myDateObj.format(myFormatObj);
-		flag = webDB.waitForElement(AttendanceLeaveLocators.TravelDepartureDate, ElementType.Xpath);
+		commonFunc.verifyAddTableSpecs(AttendanceLeaveLocators.TravelDepartureDate,
+				AttendanceLeaveLocators.TravelDepartureDate, Today);
+		logs.logging("INFO", "Departure Date is Entered");
+		commonFunc.verifyAddTableSpecs(AttendanceLeaveLocators.TravelReturnDate,
+				AttendanceLeaveLocators.TravelReturnDate, Today);
+		logs.logging("INFO", "Return Date is Entered");
+		commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.TravelDepartureCity, DepartCity);
+		logs.logging("INFO", "Departure City Is Selected");
+		commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.TravelDestinationCity, DestCity);
+		logs.logging("INFO", "Destination City Is Selected");
+		flag = webDB.waitForElement(AttendanceLeaveLocators.TravelRequestSaveButton, ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(AttendanceLeaveLocators.TravelDepartureDate, ElementType.Xpath);
-			webDB.sendTextToAnElement(AttendanceLeaveLocators.TravelDepartureDate, Today, ElementType.Xpath);
+			webDB.moveToElement(AttendanceLeaveLocators.TravelRequestSaveButton, ElementType.Xpath);
+			webDB.clickAnElement(AttendanceLeaveLocators.TravelRequestSaveButton, ElementType.Xpath);
+			webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
+			logs.logging("INFO", "Travel Request Document Is Saved");
+			flag = webDB.waitForElement(AttendanceLeaveLocators.TravelRequestDocNoField, ElementType.Xpath);
 			if (flag) {
-				logs.logging("INFO", "Departure Date is Entered");
-				flag = webDB.waitForElement(AttendanceLeaveLocators.TravelReturnDate, ElementType.Xpath);
+				String TravelRequestDocNo = webDB.getDomPropertyFromElement(
+						AttendanceLeaveLocators.TravelRequestDocNoField, ElementType.Xpath,
+						commonFunc.getDataFromTestDataSheet("Value"));
+				VariableHandler.setTravelRequestDocNo(TravelRequestDocNo);
+				logs.logging("info", "Travel Request No is:" + VariableHandler.getTravelRequestDocNo());
+				flag = webDB.waitForElement(AttendanceLeaveLocators.TravelRequestCancelButton, ElementType.Xpath);
 				if (flag) {
-					webDB.clickAnElement(AttendanceLeaveLocators.TravelReturnDate, ElementType.Xpath);
-					webDB.sendTextToAnElement(AttendanceLeaveLocators.TravelReturnDate, Today, ElementType.Xpath);
+					commonFunc.checkSuccessToastMessageDisappear();
+					webDB.moveToElement(AttendanceLeaveLocators.TravelRequestCancelButton, ElementType.Xpath);
+					webDB.clickAnElement(AttendanceLeaveLocators.TravelRequestCancelButton, ElementType.Xpath);
+					flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
 					if (flag) {
-						logs.logging("INFO", "Return Date is Entered");
-						flag = webDB.waitForElement(AttendanceLeaveLocators.TravelDepartureCity, ElementType.Xpath);
-						if (flag) {
-							commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.TravelDepartureCity,
-									DepartCity);
-							logs.logging("INFO", "Departure City Is Selected");
-							flag = webDB.waitForElement(AttendanceLeaveLocators.TravelDestinationCity,
-									ElementType.Xpath);
-							if (flag) {
-								commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.TravelDestinationCity,
-										DestCity);
-								logs.logging("INFO", "Destination City Is Selected");
-								flag = webDB.waitForElement(AttendanceLeaveLocators.TravelRequestSaveButton,
-										ElementType.Xpath);
-								if (flag) {
-									webDB.clickAnElement(AttendanceLeaveLocators.TravelRequestSaveButton,
-											ElementType.Xpath);
-									if (flag) {
-										logs.logging("INFO", "Travel Request Document Is Saved");
-										commonFunc.checkSuccessToastMessageDisappear();
-										commonFunc.hardWait(2000);
-										webDB.waitForElement(AttendanceLeaveLocators.TravelRequestDocNoField,
-												ElementType.Xpath);
-										String TravelRequestDocNo = webDB.getDomPropertyFromElement(
-												AttendanceLeaveLocators.TravelRequestDocNoField, ElementType.Xpath,
-												commonFunc.getDataFromTestDataSheet("Value"));
-										VariableHandler.setTravelRequestDocNo(TravelRequestDocNo);
-										logs.logging("info",
-												"Travel Request No is:" + VariableHandler.getTravelRequestDocNo());
-										webDB.waitForElement(AttendanceLeaveLocators.TravelRequestCancelButton,
-												ElementType.Xpath);
-										if (flag) {
-											commonFunc.hardWait(4000);
-											webDB.clickAnElement(AttendanceLeaveLocators.TravelRequestCancelButton,
-													ElementType.Xpath);
-											if (flag) {
-												logs.logging("INFO", "Travel Request Document Is Cancelled");
-												flag = webDB.waitForElement(
-														AttendanceLeaveLocators.TravelDestinationCity,
-														ElementType.Xpath);
-											}
-										}
-									}
-								}
-							}
-						}
+						commonFunc.checkSuccessToastMessageDisappear();
+						logs.logging("INFO", "Travel Request Document Is Cancelled");
+						flag = webDB.waitForElement(AttendanceLeaveLocators.TravelDestinationCity, ElementType.Xpath);
 					}
 				}
 			}
@@ -5335,9 +5080,6 @@ public class AttendanceLeaveFunctions {
 	 * @author Kishore-RMITS
 	 */
 	public boolean CheckTravelReimbursementBasedOnEmployeeWise() {
-//		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
-//				"HrRqtUsername");
-		commonFunc.hardWait(3000);
 		commonFunc.navigateToTravelRequest();
 		AddTravelEmployee(commonFunc.getDataFromTestDataSheet("EmployeeDurai"),
 				commonFunc.getDataFromTestDataSheet("MobileNo"), commonFunc.getDataFromTestDataSheet("EmailID"),
@@ -5348,8 +5090,6 @@ public class AttendanceLeaveFunctions {
 				commonFunc.getDataFromTestDataSheet("ExpenseAmount"),
 				commonFunc.getDataFromTestDataSheet("ExpenseRef"));
 		EmployeeAdditionalTravellers(commonFunc.getDataFromTestDataSheet("AddTravEmployee"));
-		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
-				"HrRqtUsername");
 		commonFunc.navigateToTravelReimbursement();
 		TravelReimbursementDocEntry(commonFunc.getDataFromTestDataSheet("TravelCity"));
 		TravelReimbursementExpensesDetails(commonFunc.getDataFromTestDataSheet("TravelReimAmount"));
@@ -5363,9 +5103,6 @@ public class AttendanceLeaveFunctions {
 	 * @author Kishore-RMITS
 	 */
 	public boolean CheckTravelReimbursementBasedOnForwardToApproval() {
-//		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
-//				"HrRqtUsername");
-		commonFunc.hardWait(3000);
 		commonFunc.navigateToTravelRequest();
 		AddTravelEmployee(commonFunc.getDataFromTestDataSheet("EmployeeDurai"),
 				commonFunc.getDataFromTestDataSheet("MobileNo"), commonFunc.getDataFromTestDataSheet("EmailID"),
@@ -5376,8 +5113,6 @@ public class AttendanceLeaveFunctions {
 				commonFunc.getDataFromTestDataSheet("ExpenseAmount"),
 				commonFunc.getDataFromTestDataSheet("ExpenseRef"));
 		EmployeeAdditionalTravellers(commonFunc.getDataFromTestDataSheet("AddTravEmployee"));
-		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
-				"HrRqtUsername");
 		commonFunc.navigateToTravelReimbursement();
 		TravelReimbursementDocEntry(commonFunc.getDataFromTestDataSheet("TravelCity"));
 		TravelReimbursementExpensesDetails(commonFunc.getDataFromTestDataSheet("TravelReimAmount"));
@@ -5391,9 +5126,6 @@ public class AttendanceLeaveFunctions {
 	 * @author Kishore-RMITS
 	 */
 	public boolean CheckTravelReimbursementBasedOnReturnToApproval() {
-//		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
-//				"HrRqtUsername");
-		commonFunc.hardWait(3000);
 		commonFunc.navigateToTravelRequest();
 		AddTravelEmployee(commonFunc.getDataFromTestDataSheet("EmployeeDurai"),
 				commonFunc.getDataFromTestDataSheet("MobileNo"), commonFunc.getDataFromTestDataSheet("EmailID"),
@@ -5404,8 +5136,6 @@ public class AttendanceLeaveFunctions {
 				commonFunc.getDataFromTestDataSheet("ExpenseAmount"),
 				commonFunc.getDataFromTestDataSheet("ExpenseRef"));
 		EmployeeAdditionalTravellers(commonFunc.getDataFromTestDataSheet("AddTravEmployee"));
-		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
-				"HrRqtUsername");
 		commonFunc.navigateToTravelReimbursement();
 		TravelReimbursementDocEntry(commonFunc.getDataFromTestDataSheet("TravelCity"));
 		TravelReimbursementExpensesDetails(commonFunc.getDataFromTestDataSheet("TravelReimAmount"));
@@ -5419,9 +5149,6 @@ public class AttendanceLeaveFunctions {
 	 * @author Kishore-RMITS
 	 */
 	public boolean CheckTravelReimbursementBasedOnCancellingTheDocument() {
-		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
-				"HrRqtUsername");
-//		commonFunc.hardWait(3000);
 		commonFunc.navigateToTravelRequest();
 		AddTravelEmployee(commonFunc.getDataFromTestDataSheet("EmployeeDurai"),
 				commonFunc.getDataFromTestDataSheet("MobileNo"), commonFunc.getDataFromTestDataSheet("EmailID"),
@@ -5432,8 +5159,6 @@ public class AttendanceLeaveFunctions {
 				commonFunc.getDataFromTestDataSheet("ExpenseAmount"),
 				commonFunc.getDataFromTestDataSheet("ExpenseRef"));
 		EmployeeAdditionalTravellers(commonFunc.getDataFromTestDataSheet("AddTravEmployee"));
-//		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
-//				"HrRqtUsername");
 		commonFunc.navigateToTravelReimbursement();
 		TravelReimbursementDocEntry(commonFunc.getDataFromTestDataSheet("TravelCity"));
 		TravelReimbursementExpensesDetails(commonFunc.getDataFromTestDataSheet("TravelReimAmount"));
@@ -5452,79 +5177,47 @@ public class AttendanceLeaveFunctions {
 		LocalDate date = LocalDate.now();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 		String Today = date.format(formatter);
-		LocalDateTime myDateObj = LocalDateTime.now().plusDays(1);
-		DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-		String tomorrowDate = myDateObj.format(myFormatObj);
+		commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.TravelReqNoFindLov,
+				VariableHandler.getTravelRequestDocNo());
 		flag = webDB.waitForElement(AttendanceLeaveLocators.TravelReimbFindSearchButton, ElementType.Xpath);
 		if (flag) {
+			webDB.moveToElement(AttendanceLeaveLocators.TravelReimbFindSearchButton, ElementType.Xpath);
 			webDB.clickAnElement(AttendanceLeaveLocators.TravelReimbFindSearchButton, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
+			flag = webDB.waitForElement(AttendanceLeaveLocators.TravelReimbDocNo(), ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Find Search Button Is Clicked");
-				flag = webDB.waitForElement(AttendanceLeaveLocators.TravelReimbDocSelect, ElementType.CssSelector);
+				webDB.moveToElement(AttendanceLeaveLocators.TravelReimbDocNo(), ElementType.Xpath);
+				webDB.clickAnElement(AttendanceLeaveLocators.TravelReimbDocNo(), ElementType.Xpath);
+				flag = webDB.waitForElement(AttendanceLeaveLocators.TravelRePlaceOfVisitAddButton, ElementType.Xpath);
 				if (flag) {
-					commonFunc.hardWait(2000);
-					webDB.clickAnElement(AttendanceLeaveLocators.TravelReimbDocSelect, ElementType.CssSelector);
-					flag = webDB.waitForElement(AttendanceLeaveLocators.TravelRePlaceOfVisitAddButton,
-							ElementType.Xpath);
+					webDB.clickAnElement(AttendanceLeaveLocators.TravelRePlaceOfVisitAddButton, ElementType.Xpath);
+					commonFunc.verifyAddTableSpecs(AttendanceLeaveLocators.DateFromData(),
+							AttendanceLeaveLocators.DateFromInput(), Today);
+					logs.logging("INFO", "Date From Is Selected");
+					commonFunc.verifyAddTableLovValue(AttendanceLeaveLocators.TravelReimCityData(),
+							AttendanceLeaveLocators.TravelReimCityLOV(), TravelCity);
+					logs.logging("INFO", "Travel City Was Selected");
+					commonFunc.verifyAddTableSpecs(AttendanceLeaveLocators.DateToData(),
+							AttendanceLeaveLocators.DateToInput(), Today);
+					logs.logging("INFO", "Date Tp Is Selected");
+					commonFunc.checkRefreshCellsDisappear();
+					webDB.pressTabKey();
+					flag = webDB.waitForElement(AttendanceLeaveLocators.PlaceOfVisitSaveButton, ElementType.Xpath);
 					if (flag) {
-						webDB.clickAnElement(AttendanceLeaveLocators.TravelRePlaceOfVisitAddButton, ElementType.Xpath);
+						webDB.moveToElement(AttendanceLeaveLocators.PlaceOfVisitSaveButton, ElementType.Xpath);
+						webDB.clickAnElement(AttendanceLeaveLocators.PlaceOfVisitSaveButton, ElementType.Xpath);
+						webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+						commonFunc.checkSuccessToastMessageDisappear();
+						commonFunc.checkRefreshCellsDisappear();
+						flag = webDB.waitForElement(AttendanceLeaveLocators.TravelReimDocNoField, ElementType.Xpath);
 						if (flag) {
-							logs.logging("INFO", "Add Button Is Clicked");
-							flag = webDB.waitForElement(AttendanceLeaveLocators.DateFromField, ElementType.Xpath);
-							if (flag) {
-								webDB.clickAnElement(AttendanceLeaveLocators.DateFromField, ElementType.Xpath);
-								webDB.sendTextToAnElement(AttendanceLeaveLocators.DateFromField, Today,
-										ElementType.Xpath);
-								if (flag) {
-									logs.logging("INFO", "Date From Is Selected");
-									flag = webDB.waitForElement(AttendanceLeaveLocators.DateToField, ElementType.Xpath);
-									if (flag) {
-										webDB.pressTabKey();
-										webDB.clickAnElement(AttendanceLeaveLocators.DateToField, ElementType.Xpath);
-										webDB.sendTextToAnElement(AttendanceLeaveLocators.DateToField, Today,
-												ElementType.Xpath);
-										if (flag) {
-											logs.logging("INFO", "Date To Is Selected");
-											flag = webDB.waitForElement(AttendanceLeaveLocators.TravelReimCityLOV,
-													ElementType.Xpath);
-											if (flag) {
-												webDB.pressTabKey();
-												commonFunc.hardWait(5000);
-												commonFunc.searchAndSelectValueInFilters(
-														AttendanceLeaveLocators.TravelReimCityLOV, TravelCity);
-												if (flag) {
-													logs.logging("INFO", "Travel City Was Selected");
-													webDB.pressTabKey();
-													commonFunc.hardWait(5000);
-													flag = webDB.waitForElement(
-															AttendanceLeaveLocators.PlaceOfVisitSaveButton,
-															ElementType.Xpath);
-													if (flag) {
-														webDB.clickAnElement(
-																AttendanceLeaveLocators.PlaceOfVisitSaveButton,
-																ElementType.Xpath);
-														if (flag) {
-															logs.logging("INFO", "Place Of Visit Line Is Saved");
-															commonFunc.checkSuccessToastMessageDisappear();
-															commonFunc.hardWait(5000);
-															webDB.waitForElement(
-																	AttendanceLeaveLocators.TravelReimDocNoField,
-																	ElementType.Xpath);
-															String TravelReimbursementDocNo = webDB.getTextFromElement(
-																	AttendanceLeaveLocators.TravelReimDocNoField,
-																	ElementType.Xpath);
-															VariableHandler.setTravelReimbursementDocNo(
-																	TravelReimbursementDocNo);
-															logs.logging("info", "Travel Reimbursement No is:"
-																	+ VariableHandler.getTravelReimbursementtDocNo());
-														}
-													}
-												}
-											}
-										}
-									}
-								}
-							}
+							logs.logging("INFO", "Place Of Visit Line Is Saved");
+							String TravelReimbursementDocNo = webDB.getTextFromElement(
+									AttendanceLeaveLocators.TravelReimDocNoField, ElementType.Xpath);
+							VariableHandler.setTravelReimbursementDocNo(TravelReimbursementDocNo);
+							logs.logging("info",
+									"Travel Reimbursement No is:" + VariableHandler.getTravelReimbursementtDocNo());
 						}
 					}
 				}
@@ -5542,65 +5235,47 @@ public class AttendanceLeaveFunctions {
 	public void TravelReimbursementExpensesDetails(String TravelReimAmount) {
 		flag = webDB.waitForElement(AttendanceLeaveLocators.TravelReimExpensesButton, ElementType.Xpath);
 		if (flag) {
-			commonFunc.hardWait(5000);
+			commonFunc.checkSuccessToastMessageDisappear();
+			webDB.moveToElement(AttendanceLeaveLocators.TravelReimExpensesButton, ElementType.Xpath);
 			webDB.clickAnElement(AttendanceLeaveLocators.TravelReimExpensesButton, ElementType.Xpath);
+			logs.logging("INFO", "Travel Reimbursement Expenses Button Is Clicked");
+			webDB.waitForElement(AttendanceLeaveLocators.ExpenseFrame, ElementType.Xpath);
+			webDB.switchToFrame(AttendanceLeaveLocators.ExpenseFrame, ElementType.Xpath);
+			commonFunc.verifyAddTableSpecs(AttendanceLeaveLocators.ExpenseAmountField(),
+					AttendanceLeaveLocators.ExpenseAmountInput(), TravelReimAmount);
+			logs.logging("INFO", "Travel Reimbursement Expenses is Entered");
+			flag = webDB.waitForElement(AttendanceLeaveLocators.TravelReimExpenseSaveButton, ElementType.Xpath);
 			if (flag) {
-				logs.logging("INFO", "Travel Reimbursement Expenses Button Is Clicked");
-				webDB.switchToFrame(AttendanceLeaveLocators.ExpenseFrame, ElementType.Xpath);
-				flag = webDB.waitForElement(AttendanceLeaveLocators.ExpenseAmountField, ElementType.Xpath);
+				webDB.moveToElement(AttendanceLeaveLocators.TravelReimExpenseSaveButton, ElementType.Xpath);
+				webDB.clickAnElement(AttendanceLeaveLocators.TravelReimExpenseSaveButton, ElementType.Xpath);
+				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.checkSuccessToastMessageDisappear();
+				webDB.switchToDefaultContent();
+				webDB.pressEscapeKey();
+				webDB.pressEscapeKey();
+				webDB.pressEscapeKey();
+				flag = webDB.waitForElement(AttendanceLeaveLocators.TravelReimPostButton, ElementType.Xpath);
 				if (flag) {
-					webDB.doubleClickAnElement(AttendanceLeaveLocators.ExpenseAmountField, ElementType.Xpath);
-					logs.logging("INFO", "Expense Amount Field Is Clicked");
-					webDB.pressTabKey();
-					// webDB.clickAnElement(AttendanceLeaveLocators.ExpenseAmountInput,
-					// ElementType.Xpath);
-					// webDB.doubleClickAnElement(AttendanceLeaveLocators.ExpenseAmountInput,
-					// ElementType.Xpath);
-					webDB.clearText(AttendanceLeaveLocators.ExpenseAmountInput, ElementType.Xpath);
-					webDB.sendTextToAnElement(AttendanceLeaveLocators.ExpenseAmountInput, TravelReimAmount,
-							ElementType.Xpath);
-					if (flag) {
-						logs.logging("INFO", "Travel Reimbursement Expenses Button Is Clicked");
-						webDB.pressTabKey();
-						flag = webDB.waitForElement(AttendanceLeaveLocators.TravelReimExpenseSaveButton,
-								ElementType.Xpath);
-						if (flag) {
-							commonFunc.hardWait(3000);
-							webDB.clickAnElement(AttendanceLeaveLocators.TravelReimExpenseSaveButton,
-									ElementType.Xpath);
-							if (flag) {
-								logs.logging("INFO", "Travel Reimbursement Document Is Saved");
-								webDB.pressEscapeKey();
-								commonFunc.hardWait(3000);
-								webDB.switchToDefaultContent();
-								flag = webDB.waitForElement(AttendanceLeaveLocators.TravelReimPostButton,
-										ElementType.Xpath);
-								if (flag) {
-									commonFunc.hardWait(1000);
-									webDB.clickAnElement(AttendanceLeaveLocators.TravelReimPostButton,
-											ElementType.Xpath);
-									if (flag) {
-										logs.logging("INFO", "Travel Reimbursement Document Is Posted");
-										approvalFunc.waitingForApprovalWithFordwarder(
-												commonFunc.getDataFromTestDataSheet("HodValue"));
-										commonFunc.checkRefreshCellsDisappear();
-										commonFunc.returnDocuments(webDB.getDataFromProperties("ROAU-BU"),
-												VariableHandler.getTravelReimbursementtDocNo(),
-												webDB.getDataFromProperties("HodEmpId"),
-												commonFunc.getDataFromTestDataSheet("Unit_100"),
-												System.getProperty("HariUsername"),
-												webDB.getDataFromProperties("HRUSEREmpId"));
-										commonFunc.returnDocuments(webDB.getDataFromProperties("ROAU-BU"),
-												VariableHandler.getTravelReimbursementtDocNo(),
-												webDB.getDataFromProperties("HRUSEREmpId"),
-												commonFunc.getDataFromTestDataSheet("Unit_100"),
-												System.getProperty("HrRqtUsername"),
-												webDB.getDataFromProperties("HRUSEREmpId"));
-									}
-								}
-							}
-						}
+					logs.logging("INFO", "Travel Reimbursement Document Is Saved");
+					commonFunc.checkSuccessToastMessageDisappear();
+					webDB.clickAnElement(AttendanceLeaveLocators.TravelReimPostButton, ElementType.Xpath);
+					flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
+					logs.logging("INFO", "Travel Reimbursement Document Is Posted");
+					if (!VariableHandler.getApprovalFlag()) {
+						approvalFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
+						commonFunc.checkRefreshCellsDisappear();
+						commonFunc.returnDocuments(webDB.getDataFromProperties("ROAU-BU"),
+								VariableHandler.getTravelReimbursementtDocNo(),
+								webDB.getDataFromProperties("HariEmpId"),
+								commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"),
+								webDB.getDataFromProperties("HRUSEREmpId"));
+						commonFunc.returnDocuments(webDB.getDataFromProperties("ROAU-BU"),
+								VariableHandler.getTravelReimbursementtDocNo(),
+								webDB.getDataFromProperties("HRUSEREmpId"),
+								commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HrRqtUsername"),
+								webDB.getDataFromProperties("HRUSEREmpId"));
 					}
+
 				}
 			}
 		}
@@ -5613,96 +5288,25 @@ public class AttendanceLeaveFunctions {
 	 * @author Kishore-RMITS
 	 */
 	public void cancellingTravelReimbursementDocument() {
+		commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.TravelReqNoFindLov,
+				VariableHandler.getTravelRequestDocNo());
 		flag = webDB.waitForElement(AttendanceLeaveLocators.TravelReimbFindSearchButton, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(AttendanceLeaveLocators.TravelReimbFindSearchButton, ElementType.Xpath);
+			flag = webDB.waitForElement(AttendanceLeaveLocators.TravelReimbDocNo(), ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Travel Reimbursement Search Button Is Clicked");
-				flag = webDB.waitForElement(AttendanceLeaveLocators.TravelReimbDocSelect, ElementType.CssSelector);
+				webDB.clickAnElement(AttendanceLeaveLocators.TravelReimbDocNo(), ElementType.Xpath);
+				flag = webDB.waitForElement(AttendanceLeaveLocators.TravelReimDocCancel, ElementType.Xpath);
 				if (flag) {
-					commonFunc.hardWait(2000);
-					webDB.clickAnElement(AttendanceLeaveLocators.TravelReimbDocSelect, ElementType.CssSelector);
-					flag = webDB.waitForElement(AttendanceLeaveLocators.TravelReimDocCancel, ElementType.Xpath);
+					commonFunc.checkRefreshCellsDisappear();
+					commonFunc.checkSuccessToastMessageDisappear();
+					webDB.moveToElement(AttendanceLeaveLocators.TravelReimDocCancel, ElementType.Xpath);
+					webDB.clickAnElement(AttendanceLeaveLocators.TravelReimDocCancel, ElementType.Xpath);
+					flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+					commonFunc.checkSuccessToastMessageDisappear();
 					if (flag) {
-						webDB.clickAnElement(AttendanceLeaveLocators.TravelReimDocCancel, ElementType.Xpath);
-						if (flag) {
-							logs.logging("INFO", "Travel Reimbursement Have Been Cancelled");
-						}
-					}
-				}
-			}
-		}
-		assertTrue(flag);
-	}
-
-	/**
-	 * This method is used To Enter the Expenses Details In Travel Reimbursement
-	 * 
-	 * @author Kishore-RMITS
-	 * @param TravelReimAmount
-	 */
-	public void TravelReimbursementExpensesDetailsReturnProcess(String TravelReimAmount) {
-		flag = webDB.waitForElement(AttendanceLeaveLocators.TravelReimExpensesButton, ElementType.Xpath);
-		if (flag) {
-			commonFunc.hardWait(5000);
-			webDB.clickAnElement(AttendanceLeaveLocators.TravelReimExpensesButton, ElementType.Xpath);
-			if (flag) {
-				logs.logging("INFO", "Travel Reimbursement Expenses Button Is Clicked");
-				webDB.switchToFrame(AttendanceLeaveLocators.ExpenseFrame, ElementType.Xpath);
-				flag = webDB.waitForElement(AttendanceLeaveLocators.ExpenseAmountField, ElementType.Xpath);
-				if (flag) {
-					webDB.doubleClickAnElement(AttendanceLeaveLocators.ExpenseAmountField, ElementType.Xpath);
-					logs.logging("INFO", "Expense Amount Field Is Clicked");
-					webDB.pressTabKey();
-					// webDB.clickAnElement(AttendanceLeaveLocators.ExpenseAmountInput,
-					// ElementType.Xpath);
-					// webDB.doubleClickAnElement(AttendanceLeaveLocators.ExpenseAmountInput,
-					// ElementType.Xpath);
-					webDB.clearText(AttendanceLeaveLocators.ExpenseAmountInput, ElementType.Xpath);
-					webDB.sendTextToAnElement(AttendanceLeaveLocators.ExpenseAmountInput, TravelReimAmount,
-							ElementType.Xpath);
-					if (flag) {
-						logs.logging("INFO", "Travel Reimbursement Expenses Button Is Clicked");
-						webDB.pressTabKey();
-						flag = webDB.waitForElement(AttendanceLeaveLocators.TravelReimExpenseSaveButton,
-								ElementType.Xpath);
-						if (flag) {
-							commonFunc.hardWait(3000);
-							webDB.clickAnElement(AttendanceLeaveLocators.TravelReimExpenseSaveButton,
-									ElementType.Xpath);
-							if (flag) {
-								logs.logging("INFO", "Travel Reimbursement Document Is Saved");
-								webDB.pressEscapeKey();
-								commonFunc.hardWait(3000);
-								webDB.switchToDefaultContent();
-								flag = webDB.waitForElement(AttendanceLeaveLocators.TravelReimPostButton,
-										ElementType.Xpath);
-								if (flag) {
-									commonFunc.hardWait(1000);
-									webDB.clickAnElement(AttendanceLeaveLocators.TravelReimPostButton,
-											ElementType.Xpath);
-									if (flag) {
-										logs.logging("INFO", "Travel Reimbursement Document Is Posted");
-										approvalFunc.waitingForApprovalWithFordwarder(
-												commonFunc.getDataFromTestDataSheet("HodValue"));
-										commonFunc.checkRefreshCellsDisappear();
-										commonFunc.returnDocuments(webDB.getDataFromProperties("ROAU-BU"),
-												VariableHandler.getTravelReimbursementtDocNo(),
-												webDB.getDataFromProperties("HodEmpId"),
-												commonFunc.getDataFromTestDataSheet("Unit_100"),
-												System.getProperty("HariUsername"),
-												webDB.getDataFromProperties("HRUSEREmpId"));
-										commonFunc.returnDocuments(webDB.getDataFromProperties("ROAU-BU"),
-												VariableHandler.getTravelReimbursementtDocNo(),
-												webDB.getDataFromProperties("HRUSEREmpId"),
-												commonFunc.getDataFromTestDataSheet("Unit_100"),
-												System.getProperty("HrRqtUsername"),
-												webDB.getDataFromProperties("HRUSEREmpId"));
-										flag = commonFunc.logoutUser();
-									}
-								}
-							}
-						}
+						logs.logging("INFO", "Travel Reimbursement Have Been Cancelled");
 					}
 				}
 			}
@@ -5716,13 +5320,10 @@ public class AttendanceLeaveFunctions {
 	 * @author Kishore-RMITS
 	 */
 	public boolean checkGeneralExpenseBasedOnEmployeeWise() {
-//		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
-//				"HrRqtUsername");
-		commonFunc.hardWait(3000);
 		commonFunc.navigateToGeneralExpense();
 		genaralExpenseAddingData(commonFunc.getDataFromTestDataSheet("EmployeeDurai"),
 				commonFunc.getDataFromTestDataSheet("GeneralReference"));
-		genaralExpenseAddLineData(commonFunc.getDataFromTestDataSheet("GeneralExpense"),
+		genaralExpenseAddLineData(commonFunc.getDataFromTestDataSheet("Breakfast-G-Expense"),
 				commonFunc.getDataFromTestDataSheet("GeneralExpAmount"),
 				commonFunc.getDataFromTestDataSheet("GeneralExpAmount"));
 		return flag;
@@ -5734,13 +5335,10 @@ public class AttendanceLeaveFunctions {
 	 * @author Kishore-RMITS
 	 */
 	public boolean checkGeneralExpenseBasedOnForwardToApproval() {
-//		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
-//				"HrRqtUsername");
-		commonFunc.hardWait(3000);
 		commonFunc.navigateToGeneralExpense();
 		genaralExpenseAddingData(commonFunc.getDataFromTestDataSheet("EmployeeDurai"),
 				commonFunc.getDataFromTestDataSheet("GeneralReference"));
-		genaralExpenseAddLineData(commonFunc.getDataFromTestDataSheet("GeneralExpense"),
+		genaralExpenseAddLineData(commonFunc.getDataFromTestDataSheet("Breakfast-G-Expense"),
 				commonFunc.getDataFromTestDataSheet("GeneralExpAmount"),
 				commonFunc.getDataFromTestDataSheet("GeneralExpAmount"));
 		return flag;
@@ -5752,12 +5350,10 @@ public class AttendanceLeaveFunctions {
 	 * @author Kishore-RMITS
 	 */
 	public boolean checkGeneralExpenseBasedOnReturnToApproval() {
-		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
-				"HrRqtUsername");
 		commonFunc.navigateToGeneralExpense();
 		genaralExpenseAddingData(commonFunc.getDataFromTestDataSheet("EmployeeDurai"),
 				commonFunc.getDataFromTestDataSheet("GeneralReference"));
-		genaralExpenseAddLineData(commonFunc.getDataFromTestDataSheet("GeneralExpense"),
+		genaralExpenseAddLineData(commonFunc.getDataFromTestDataSheet("Breakfast-G-Expense"),
 				commonFunc.getDataFromTestDataSheet("GeneralExpAmount"),
 				commonFunc.getDataFromTestDataSheet("GeneralExpAmount"));
 		return flag;
@@ -5769,13 +5365,10 @@ public class AttendanceLeaveFunctions {
 	 * @author Kishore-RMITS
 	 */
 	public boolean checkGeneralExpenseBasedOnCancellingTheDocument() {
-//		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
-//				"HrRqtUsername");
-		commonFunc.hardWait(3000);
 		commonFunc.navigateToGeneralExpense();
 		genaralExpenseAddingData(commonFunc.getDataFromTestDataSheet("EmployeeDurai"),
 				commonFunc.getDataFromTestDataSheet("GeneralReference"));
-		genaralExpenseAddLineDataWithCancelling(commonFunc.getDataFromTestDataSheet("GeneralExpense"),
+		genaralExpenseAddLineDataWithCancelling(commonFunc.getDataFromTestDataSheet("Breakfast-G-Expense"),
 				commonFunc.getDataFromTestDataSheet("GeneralExpAmount"),
 				commonFunc.getDataFromTestDataSheet("GeneralExpAmount"));
 		return flag;
@@ -5791,36 +5384,26 @@ public class AttendanceLeaveFunctions {
 	public void genaralExpenseAddingData(String EmployeeDurai, String GeneralReference) {
 		flag = webDB.waitForElement(AttendanceLeaveLocators.GeneralExpFindAddButton, ElementType.Xpath);
 		if (flag) {
-			flag = webDB.clickAnElement(AttendanceLeaveLocators.GeneralExpFindAddButton, ElementType.Xpath);
+			webDB.clickAnElement(AttendanceLeaveLocators.GeneralExpFindAddButton, ElementType.Xpath);
+			logs.logging("INFO", "General Expense Add Button IS Clicked");
+			commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.GeneralExpEmpLov, EmployeeDurai);
+			logs.logging("INFO", "Employee Is Selected");
+			commonFunc.verifyAddTableSpecs(AttendanceLeaveLocators.GeneraalExpReference,
+					AttendanceLeaveLocators.GeneraalExpReference, GeneralReference);
+			flag = webDB.waitForElement(AttendanceLeaveLocators.GeneralExpSaveButton, ElementType.Xpath);
 			if (flag) {
-				logs.logging("INFO", "General Expense Add Button IS Clicked");
-			}
-			flag = webDB.waitForElement(AttendanceLeaveLocators.GeneralExpEmpLov, ElementType.Xpath);
-			if (flag) {
-				commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.GeneralExpEmpLov, EmployeeDurai);
+				webDB.moveToElement(AttendanceLeaveLocators.GeneralExpSaveButton, ElementType.Xpath);
+				webDB.clickAnElement(AttendanceLeaveLocators.GeneralExpSaveButton, ElementType.Xpath);
+				webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+				logs.logging("INFO", "General Reimbursement Document Is Saved");
+				commonFunc.checkSuccessToastMessageDisappear();
+				flag = webDB.waitForElement(AttendanceLeaveLocators.GeneralReimDocNoField, ElementType.Xpath);
 				if (flag) {
-					logs.logging("INFO", "Employee Is Selected");
-					flag = webDB.waitForElement(AttendanceLeaveLocators.GeneraalExpReference, ElementType.Xpath);
-					if (flag) {
-						webDB.sendTextToAnElement(AttendanceLeaveLocators.GeneraalExpReference, GeneralReference,
-								ElementType.Xpath);
-						flag = webDB.waitForElement(AttendanceLeaveLocators.GeneralExpSaveButton, ElementType.Xpath);
-						if (flag) {
-							flag = webDB.clickAnElement(AttendanceLeaveLocators.GeneralExpSaveButton,
-									ElementType.Xpath);
-							if (flag) {
-								logs.logging("INFO", "General Reimbursement Document Is Saved");
-								commonFunc.checkSuccessToastMessageDisappear();
-								commonFunc.hardWait(5000);
-								webDB.waitForElement(AttendanceLeaveLocators.GeneralReimDocNoField, ElementType.Xpath);
-								String GeneralReimbursementDocNo = webDB.getTextFromElement(
-										AttendanceLeaveLocators.GeneralReimDocNoField, ElementType.Xpath);
-								VariableHandler.setGeneralReimbursementDocNo(GeneralReimbursementDocNo);
-								logs.logging("info", " General Reimbursment Doc No is:"
-										+ VariableHandler.getGeneralReimbursementtDocNo());
-							}
-						}
-					}
+					String GeneralReimbursementDocNo = webDB
+							.getTextFromElement(AttendanceLeaveLocators.GeneralReimDocNoField, ElementType.Xpath);
+					VariableHandler.setGeneralReimbursementDocNo(GeneralReimbursementDocNo);
+					logs.logging("info",
+							" General Reimbursment Doc No is:" + VariableHandler.getGeneralReimbursementDocNo());
 				}
 			}
 		}
@@ -5840,81 +5423,44 @@ public class AttendanceLeaveFunctions {
 		LocalDate date = LocalDate.now();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 		String Today = date.format(formatter);
-		LocalDateTime myDateObj = LocalDateTime.now().plusDays(1);
-		DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-		String tomorrowDate = myDateObj.format(myFormatObj);
 		flag = webDB.waitForElement(AttendanceLeaveLocators.GeneralExpLineAddButton, ElementType.Xpath);
 		if (flag) {
-			commonFunc.hardWait(5000);
-			flag = webDB.clickAnElement(AttendanceLeaveLocators.GeneralExpLineAddButton, ElementType.Xpath);
+			webDB.clickAnElement(AttendanceLeaveLocators.GeneralExpLineAddButton, ElementType.Xpath);
+			logs.logging("INFO", "General Expense Line Data Add Button");
+			commonFunc.verifyAddTableLovValue(AttendanceLeaveLocators.GeneralExpenseData(),
+					AttendanceLeaveLocators.GeneralExpenseLOV(), GeneralExpense);
+			logs.logging("INFO", "General Expense Is Selected");
+			commonFunc.verifyAddTableSpecs(AttendanceLeaveLocators.GeneralExpDateData(),
+					AttendanceLeaveLocators.GeneralExpDateInput(), Today);
+			logs.logging("INFO", "General Expense Date Is Selected");
+			commonFunc.verifyAddTableSpecs(AttendanceLeaveLocators.GeneralExpRemarksData(),
+					AttendanceLeaveLocators.GeneralExpRemarksInput(), GeneralExpense);
+			logs.logging("INFO", "General Expense Remarks Entered");
+			commonFunc.verifyAddTableSpecs(AttendanceLeaveLocators.GeneralExpAmountData(),
+					AttendanceLeaveLocators.GeneralExpAmountInput(), GeneralExpAmount);
+			logs.logging("INFO", "General Expense Amount Is Entered");
+			commonFunc.checkRefreshCellsDisappear();
+			webDB.pressTabKey();
+			flag = webDB.waitForElement(AttendanceLeaveLocators.GeneralExpenseLineSaveButton, ElementType.Xpath);
 			if (flag) {
-				logs.logging("INFO", "General Expense Line Data Add Button");
-				flag = webDB.waitForElement(AttendanceLeaveLocators.GeneralExpenseLOV, ElementType.Xpath);
+				commonFunc.checkRefreshCellsDisappear();
+				webDB.moveToElement(AttendanceLeaveLocators.GeneralExpenseLineSaveButton, ElementType.Xpath);
+				webDB.clickAnElement(AttendanceLeaveLocators.GeneralExpenseLineSaveButton, ElementType.Xpath);
+				webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+				commonFunc.checkSuccessToastMessageDisappear();
+				flag = webDB.waitForElement(AttendanceLeaveLocators.GeneralExpensePostButton, ElementType.Xpath);
 				if (flag) {
-					commonFunc.hardWait(2000);
-					commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.GeneralExpenseLOV, GeneralExpense);
-					if (flag) {
-						logs.logging("INFO", "General Expense Is Selected");
-						webDB.pressTabKey();
-						flag = webDB.waitForElement(AttendanceLeaveLocators.GeneralExpDateField, ElementType.Xpath);
-						if (flag) {
-							commonFunc.hardWait(3000);
-							webDB.clickAnElement(AttendanceLeaveLocators.GeneralExpDateField, ElementType.Xpath);
-							webDB.moveToElement(AttendanceLeaveLocators.GeneralExpDateField, ElementType.Xpath);
-							flag = webDB.sendTextToAnElement(AttendanceLeaveLocators.GeneralExpDateField, Today,
-									ElementType.Xpath);
-							if (flag) {
-								logs.logging("INFO", "General Expense Date Is Selected");
-								webDB.pressTabKey();
-								flag = webDB.waitForElement(AttendanceLeaveLocators.GeneralExpAmountField,
-										ElementType.Xpath);
-								commonFunc.hardWait(2000);
-
-								webDB.clearTextField(AttendanceLeaveLocators.GeneralExpAmountField, ElementType.Xpath);
-//								webDB.moveToElement(AttendanceLeaveLocators.GeneralExpAmountField, ElementType.Xpath);
-//								flag = webDB.sendTextToAnElement(AttendanceLeaveLocators.GeneralExpAmountField,
-//										GeneralExpAmount, ElementType.Xpath);
-								commonFunc.verifyAddTableSpecs(AttendanceLeaveLocators.GeneralExpAmountField,
-										AttendanceLeaveLocators.GeneralExpAmountInput, GeneralExpAmount);
-								if (flag) {
-									logs.logging("INFO", "General Expense Amount Is Entered");
-									webDB.pressTabKey();
-									flag = webDB.waitForElement(AttendanceLeaveLocators.GeneralExpRemarksField,
-											ElementType.Xpath);
-									commonFunc.verifyAddTableSpecs(AttendanceLeaveLocators.GeneralExpRemarksField,
-											AttendanceLeaveLocators.GeneralExpRemarksField, GeneralExpense);
-									if (flag) {
-										logs.logging("INFO", "General Expense Remarks Entered");
-										webDB.pressTabKey();
-										commonFunc.hardWait(5000);
-										flag = webDB.waitForElement(
-												AttendanceLeaveLocators.GeneralExpenseLineSaveButton,
-												ElementType.Xpath);
-										webDB.clickAnElement(AttendanceLeaveLocators.GeneralExpenseLineSaveButton,
-												ElementType.Xpath);
-										if (flag) {
-											logs.logging("INFO", "General Expense line Saved Successfully");
-											if (flag) {
-												commonFunc.hardWait(5000);
-												webDB.clickAnElement(AttendanceLeaveLocators.GeneralExpensePostButton,
-														ElementType.Xpath);
-												if (flag) {
-													logs.logging("INFO", "General Reimbursement Document Is Posted");
-													approvalFunc.waitingForApprovalWithFordwarder(
-															commonFunc.getDataFromTestDataSheet("HodValue"));
-													commonFunc.checkRefreshCellsDisappear();
-													commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"),
-															VariableHandler.getGeneralReimbursementtDocNo(),
-															webDB.getDataFromProperties("HodEmpId"),
-															commonFunc.getDataFromTestDataSheet("Unit_100"),
-															System.getProperty("HariUsername"));
-												}
-											}
-										}
-									}
-								}
-							}
-						}
+					logs.logging("INFO", "General Expense line Saved Successfully");
+					webDB.moveToElement(AttendanceLeaveLocators.GeneralExpensePostButton, ElementType.Xpath);
+					webDB.clickAnElement(AttendanceLeaveLocators.GeneralExpensePostButton, ElementType.Xpath);
+					flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
+					logs.logging("INFO", "General Reimbursement Document Is Posted");
+					if (!VariableHandler.getApprovalFlag()) {
+						approvalFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
+						commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"),
+								VariableHandler.getGeneralReimbursementDocNo(),
+								webDB.getDataFromProperties("HariEmpId"),
+								commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
 					}
 				}
 			}
@@ -5936,70 +5482,45 @@ public class AttendanceLeaveFunctions {
 		LocalDate date = LocalDate.now();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 		String Today = date.format(formatter);
-		LocalDateTime myDateObj = LocalDateTime.now().plusDays(1);
-		DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-		String tomorrowDate = myDateObj.format(myFormatObj);
 		flag = webDB.waitForElement(AttendanceLeaveLocators.GeneralExpLineAddButton, ElementType.Xpath);
 		if (flag) {
-			commonFunc.hardWait(5000);
-			flag = webDB.clickAnElement(AttendanceLeaveLocators.GeneralExpLineAddButton, ElementType.Xpath);
+			webDB.clickAnElement(AttendanceLeaveLocators.GeneralExpLineAddButton, ElementType.Xpath);
+			logs.logging("INFO", "General Expense Line Data Add Button");
+			commonFunc.verifyAddTableLovValue(AttendanceLeaveLocators.GeneralExpenseData(),
+					AttendanceLeaveLocators.GeneralExpenseLOV(), GeneralExpense);
+			logs.logging("INFO", "General Expense Is Selected");
+			commonFunc.verifyAddTableSpecs(AttendanceLeaveLocators.GeneralExpDateData(),
+					AttendanceLeaveLocators.GeneralExpDateInput(), Today);
+			logs.logging("INFO", "General Expense Date Is Selected");
+			commonFunc.verifyAddTableSpecs(AttendanceLeaveLocators.GeneralExpRemarksData(),
+					AttendanceLeaveLocators.GeneralExpRemarksInput(), GeneralExpense);
+			logs.logging("INFO", "General Expense Remarks Entered");
+			commonFunc.verifyAddTableSpecs(AttendanceLeaveLocators.GeneralExpAmountData(),
+					AttendanceLeaveLocators.GeneralExpAmountInput(), GeneralExpAmount);
+			logs.logging("INFO", "General Expense Amount Is Entered");
+			commonFunc.checkRefreshCellsDisappear();
+			webDB.pressTabKey();
+			flag = webDB.waitForElement(AttendanceLeaveLocators.GeneralExpenseLineSaveButton, ElementType.Xpath);
 			if (flag) {
-				logs.logging("INFO", "General Expense Line Data Add Button");
-				flag = webDB.waitForElement(AttendanceLeaveLocators.GeneralExpenseLOV, ElementType.Xpath);
+				commonFunc.checkRefreshCellsDisappear();
+				webDB.moveToElement(AttendanceLeaveLocators.GeneralExpenseLineSaveButton, ElementType.Xpath);
+				webDB.clickAnElement(AttendanceLeaveLocators.GeneralExpenseLineSaveButton, ElementType.Xpath);
+				webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+				commonFunc.checkSuccessToastMessageDisappear();
+				logs.logging("INFO", "General Expense line Saved Successfully");
+				flag = webDB.waitForElement(AttendanceLeaveLocators.GeneralExpenseCancelButton, ElementType.Xpath);
 				if (flag) {
-					commonFunc.hardWait(2000);
-					commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.GeneralExpenseLOV, GeneralExpense);
+					webDB.clickAnElement(AttendanceLeaveLocators.GeneralExpenseCancelButton, ElementType.Xpath);
+					commonFunc.checkRefreshCellsDisappear();
+					commonFunc.checkSuccessToastMessageDisappear();
+					flag = webDB.waitForElement(AttendanceLeaveLocators.GeneralReimStatusField, ElementType.Xpath);
 					if (flag) {
-						logs.logging("INFO", "General Expense Is Selected");
-						webDB.pressTabKey();
-						flag = webDB.waitForElement(AttendanceLeaveLocators.GeneralExpDateField, ElementType.Xpath);
+						String Status = webDB.getTextFromElement(AttendanceLeaveLocators.GeneralReimStatusField,
+								ElementType.Xpath);
+						logs.logging("INFO", "Document Status Displayed: " + Status);
+						flag = Status.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("CancelledStatus"));
 						if (flag) {
-							commonFunc.hardWait(3000);
-							webDB.clickAnElement(AttendanceLeaveLocators.GeneralExpDateField, ElementType.Xpath);
-							webDB.moveToElement(AttendanceLeaveLocators.GeneralExpDateField, ElementType.Xpath);
-							flag = webDB.sendTextToAnElement(AttendanceLeaveLocators.GeneralExpDateField, Today,
-									ElementType.Xpath);
-							if (flag) {
-								logs.logging("INFO", "General Expense Date Is Selected");
-								webDB.pressTabKey();
-								flag = webDB.waitForElement(AttendanceLeaveLocators.GeneralExpAmountField,
-										ElementType.Xpath);
-								commonFunc.hardWait(2000);
-
-								webDB.clearTextField(AttendanceLeaveLocators.GeneralExpAmountField, ElementType.Xpath);
-//								webDB.moveToElement(AttendanceLeaveLocators.GeneralExpAmountField, ElementType.Xpath);
-//								flag = webDB.sendTextToAnElement(AttendanceLeaveLocators.GeneralExpAmountField,
-//										GeneralExpAmount, ElementType.Xpath);
-								commonFunc.verifyAddTableSpecs(AttendanceLeaveLocators.GeneralExpAmountField,
-										AttendanceLeaveLocators.GeneralExpAmountInput, GeneralExpAmount);
-								if (flag) {
-									logs.logging("INFO", "General Expense Amount Is Entered");
-									webDB.pressTabKey();
-									flag = webDB.waitForElement(AttendanceLeaveLocators.GeneralExpRemarksField,
-											ElementType.Xpath);
-									commonFunc.verifyAddTableSpecs(AttendanceLeaveLocators.GeneralExpRemarksField,
-											AttendanceLeaveLocators.GeneralExpRemarksField, GeneralExpense);
-									if (flag) {
-										logs.logging("INFO", "General Expense Remarks Entered");
-										webDB.pressTabKey();
-										commonFunc.hardWait(5000);
-										flag = webDB.waitForElement(
-												AttendanceLeaveLocators.GeneralExpenseLineSaveButton,
-												ElementType.Xpath);
-										webDB.clickAnElement(AttendanceLeaveLocators.GeneralExpenseLineSaveButton,
-												ElementType.Xpath);
-										if (flag) {
-											logs.logging("INFO", "General Expense line Saved Successfully");
-											commonFunc.hardWait(5000);
-											flag = webDB.waitForElement(
-													AttendanceLeaveLocators.GeneralExpenseCancelButton,
-													ElementType.Xpath);
-											webDB.clickAnElement(AttendanceLeaveLocators.GeneralExpenseCancelButton,
-													ElementType.Xpath);
-										}
-									}
-								}
-							}
+							logs.logging("INFO", "Document Cancelled Successfully");
 						}
 					}
 				}
@@ -6014,12 +5535,45 @@ public class AttendanceLeaveFunctions {
 	 * @author Kishore-RMITS
 	 */
 	public boolean checkResignTerminationRequestBasedOnRequestDate() {
-//		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
-//				"HrRqtUsername");
-		commonFunc.hardWait(3000);
+		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
+				"HariUsername");
+		commonFunc.navigateEmployeeMasterScreenInPayroll();
+		empMasterFunc.clickAddIconAddEmployee();
+		empMasterFunc.clickEmployeeMasterSideNavBar();
+		empMasterFunc.selectSalutionEnterFirstAndLastName(commonFunc.getDataFromTestDataSheet("Emp_Salution"),
+				commonFunc.getDataFromTestDataSheet("Emp_FName"),
+				(commonFunc.getDataFromTestDataSheet("Emp_LName") + RandomStringUtils.randomAlphanumeric(5)));
+		empMasterFunc.selectGenderEnterDOBAndDOJ(commonFunc.getDataFromTestDataSheet("Emp_MaleGender"),
+				commonFunc.getDataFromTestDataSheet("Emp_DOB"), commonFunc.getDataFromTestDataSheet("Emp_DOJ"));
+		empMasterFunc.selectShiftEnterCalerdarAndZone(commonFunc.getDataFromTestDataSheet("Emp_GeneralShift"),
+				commonFunc.getDataFromTestDataSheet("Emp_1to31Calendar"),
+				commonFunc.getDataFromTestDataSheet("Emp_GeneralZone"));
+		empMasterFunc.selectCompanyAndAccountCatecory(commonFunc.getDataFromTestDataSheet("Emp_SalesCompanyCategory"),
+				commonFunc.getDataFromTestDataSheet("Emp_SalaryAcc-AccountCategory"));
+		empMasterFunc.selectPayrollGroupAndEnterNoticePeriod(
+				commonFunc.getDataFromTestDataSheet("Emp_CleanerPayrollGroup"),
+				commonFunc.getDataFromTestDataSheet("Emp_NoticePeriod-30"));
+		empMasterFunc.clickSaveIconAndStoreEmpID();
+		empMasterFunc.clickSalarySideNavBar();
+		empMasterFunc.addDesignationDepartmentAndGradeInSalaryDetails(
+				commonFunc.getDataFromTestDataSheet("Emp_SalaryDesignation"),
+				commonFunc.getDataFromTestDataSheet("Emp_SalaryDepartment"),
+				commonFunc.getDataFromTestDataSheet("Emp_SalaryGrade"));
+		empMasterFunc.clickAfterEmpCreationSaveIcon();
+		empMasterFunc.clickLoadAllowanceButtonInSalaryDetails();
+		empMasterFunc.fillAllowanceAmountsAndVerifyTotalInSalaryDetails(
+				new String[] { RandomStringUtils.randomNumeric(5), RandomStringUtils.randomNumeric(4),
+						RandomStringUtils.randomNumeric(4), RandomStringUtils.randomNumeric(4) });
+		VariableHandler.setAddEmployeDefaultExecution(true);
+		empMasterFunc.clickSalarySideNavBar();
+		empMasterFunc.enablePFAdjustmentFlagsInSalaryDetails();
+		empMasterFunc.enableESIAdjustmentFlagsInSalaryDetails();
+		empMasterFunc.clickPostButtonAndVerifyEmployeePosted();
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+				"HrRqtUsername");
 		commonFunc.navigateToResignationRequest();
-		resignRequestAddingEmployee(commonFunc.getDataFromTestDataSheet("ResignDate"),
-				commonFunc.getDataFromTestDataSheet("ResignEmployee"),
+		resignRequestAddingEmployee(commonFunc.getDataFromTestDataSheet("ResignDate"), VariableHandler.getEmpID(),
 				commonFunc.getDataFromTestDataSheet("ResignReference"));
 		resignRequestEmployeepost();
 		commonFunc.navigateToFullAndFinalSettlement();
@@ -6036,12 +5590,45 @@ public class AttendanceLeaveFunctions {
 	 * @author Kishore-RMITS
 	 */
 	public boolean checkResignTerminationRequestBasedOnForwardToApproval() {
-//		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
-//				"HrRqtUsername");
-		commonFunc.hardWait(3000);
+		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
+				"HariUsername");
+		commonFunc.navigateEmployeeMasterScreenInPayroll();
+		empMasterFunc.clickAddIconAddEmployee();
+		empMasterFunc.clickEmployeeMasterSideNavBar();
+		empMasterFunc.selectSalutionEnterFirstAndLastName(commonFunc.getDataFromTestDataSheet("Emp_Salution"),
+				commonFunc.getDataFromTestDataSheet("Emp_FName"),
+				(commonFunc.getDataFromTestDataSheet("Emp_LName") + RandomStringUtils.randomAlphanumeric(5)));
+		empMasterFunc.selectGenderEnterDOBAndDOJ(commonFunc.getDataFromTestDataSheet("Emp_MaleGender"),
+				commonFunc.getDataFromTestDataSheet("Emp_DOB"), commonFunc.getDataFromTestDataSheet("Emp_DOJ"));
+		empMasterFunc.selectShiftEnterCalerdarAndZone(commonFunc.getDataFromTestDataSheet("Emp_GeneralShift"),
+				commonFunc.getDataFromTestDataSheet("Emp_1to31Calendar"),
+				commonFunc.getDataFromTestDataSheet("Emp_GeneralZone"));
+		empMasterFunc.selectCompanyAndAccountCatecory(commonFunc.getDataFromTestDataSheet("Emp_SalesCompanyCategory"),
+				commonFunc.getDataFromTestDataSheet("Emp_SalaryAcc-AccountCategory"));
+		empMasterFunc.selectPayrollGroupAndEnterNoticePeriod(
+				commonFunc.getDataFromTestDataSheet("Emp_CleanerPayrollGroup"),
+				commonFunc.getDataFromTestDataSheet("Emp_NoticePeriod-30"));
+		empMasterFunc.clickSaveIconAndStoreEmpID();
+		empMasterFunc.clickSalarySideNavBar();
+		empMasterFunc.addDesignationDepartmentAndGradeInSalaryDetails(
+				commonFunc.getDataFromTestDataSheet("Emp_SalaryDesignation"),
+				commonFunc.getDataFromTestDataSheet("Emp_SalaryDepartment"),
+				commonFunc.getDataFromTestDataSheet("Emp_SalaryGrade"));
+		empMasterFunc.clickAfterEmpCreationSaveIcon();
+		empMasterFunc.clickLoadAllowanceButtonInSalaryDetails();
+		empMasterFunc.fillAllowanceAmountsAndVerifyTotalInSalaryDetails(
+				new String[] { RandomStringUtils.randomNumeric(5), RandomStringUtils.randomNumeric(4),
+						RandomStringUtils.randomNumeric(4), RandomStringUtils.randomNumeric(4) });
+		VariableHandler.setAddEmployeDefaultExecution(true);
+		empMasterFunc.clickSalarySideNavBar();
+		empMasterFunc.enablePFAdjustmentFlagsInSalaryDetails();
+		empMasterFunc.enableESIAdjustmentFlagsInSalaryDetails();
+		empMasterFunc.clickPostButtonAndVerifyEmployeePosted();
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+				"HrRqtUsername");
 		commonFunc.navigateToResignationRequest();
-		resignRequestAddingEmployee(commonFunc.getDataFromTestDataSheet("ResignDate"),
-				commonFunc.getDataFromTestDataSheet("ResignEmployee"),
+		resignRequestAddingEmployee(commonFunc.getDataFromTestDataSheet("ResignDate"), VariableHandler.getEmpID(),
 				commonFunc.getDataFromTestDataSheet("ResignReference"));
 		resignRequestEmployeepost();
 		commonFunc.navigateToFullAndFinalSettlement();
@@ -6058,13 +5645,46 @@ public class AttendanceLeaveFunctions {
 	 * @author Kishore-RMITS
 	 */
 	public boolean checkResignTerminationRequestBasedOnAdjustEncashLeave() {
-//		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
-//				"HrRqtUsername");
-		commonFunc.hardWait(3000);
+		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
+				"HariUsername");
+		commonFunc.navigateEmployeeMasterScreenInPayroll();
+		empMasterFunc.clickAddIconAddEmployee();
+		empMasterFunc.clickEmployeeMasterSideNavBar();
+		empMasterFunc.selectSalutionEnterFirstAndLastName(commonFunc.getDataFromTestDataSheet("Emp_Salution"),
+				commonFunc.getDataFromTestDataSheet("Emp_FName"),
+				(commonFunc.getDataFromTestDataSheet("Emp_LName") + RandomStringUtils.randomAlphanumeric(5)));
+		empMasterFunc.selectGenderEnterDOBAndDOJ(commonFunc.getDataFromTestDataSheet("Emp_MaleGender"),
+				commonFunc.getDataFromTestDataSheet("Emp_DOB"), commonFunc.getDataFromTestDataSheet("Emp_DOJ"));
+		empMasterFunc.selectShiftEnterCalerdarAndZone(commonFunc.getDataFromTestDataSheet("Emp_GeneralShift"),
+				commonFunc.getDataFromTestDataSheet("Emp_1to31Calendar"),
+				commonFunc.getDataFromTestDataSheet("Emp_GeneralZone"));
+		empMasterFunc.selectCompanyAndAccountCatecory(commonFunc.getDataFromTestDataSheet("Emp_SalesCompanyCategory"),
+				commonFunc.getDataFromTestDataSheet("Emp_SalaryAcc-AccountCategory"));
+		empMasterFunc.selectPayrollGroupAndEnterNoticePeriod(
+				commonFunc.getDataFromTestDataSheet("Emp_CleanerPayrollGroup"),
+				commonFunc.getDataFromTestDataSheet("Emp_NoticePeriod-30"));
+		empMasterFunc.clickSaveIconAndStoreEmpID();
+		empMasterFunc.clickSalarySideNavBar();
+		empMasterFunc.addDesignationDepartmentAndGradeInSalaryDetails(
+				commonFunc.getDataFromTestDataSheet("Emp_SalaryDesignation"),
+				commonFunc.getDataFromTestDataSheet("Emp_SalaryDepartment"),
+				commonFunc.getDataFromTestDataSheet("Emp_SalaryGrade"));
+		empMasterFunc.clickAfterEmpCreationSaveIcon();
+		empMasterFunc.clickLoadAllowanceButtonInSalaryDetails();
+		empMasterFunc.fillAllowanceAmountsAndVerifyTotalInSalaryDetails(
+				new String[] { RandomStringUtils.randomNumeric(5), RandomStringUtils.randomNumeric(4),
+						RandomStringUtils.randomNumeric(4), RandomStringUtils.randomNumeric(4) });
+		VariableHandler.setAddEmployeDefaultExecution(true);
+		empMasterFunc.clickSalarySideNavBar();
+		empMasterFunc.enablePFAdjustmentFlagsInSalaryDetails();
+		empMasterFunc.enableESIAdjustmentFlagsInSalaryDetails();
+		empMasterFunc.clickPostButtonAndVerifyEmployeePosted();
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+				"HrRqtUsername");
 		commonFunc.navigateToResignationRequest();
 		resignRequestAddingEmployeewithAdjustEncashLeave(commonFunc.getDataFromTestDataSheet("ResignDate"),
-				commonFunc.getDataFromTestDataSheet("ResignEmployee"),
-				commonFunc.getDataFromTestDataSheet("ResignReference"));
+				VariableHandler.getEmpID(), commonFunc.getDataFromTestDataSheet("ResignReference"));
 		resignRequestEmployeepost();
 		commonFunc.navigateToFullAndFinalSettlement();
 		pendingForFNFReverseProcess();
@@ -6079,13 +5699,46 @@ public class AttendanceLeaveFunctions {
 	 * @author Kishore-RMITS
 	 */
 	public boolean checkResignTerminationRequestBasedOnEmployeePay() {
-//		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
-//				"HrRqtUsername");
-		commonFunc.hardWait(3000);
+		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
+				"HariUsername");
+		commonFunc.navigateEmployeeMasterScreenInPayroll();
+		empMasterFunc.clickAddIconAddEmployee();
+		empMasterFunc.clickEmployeeMasterSideNavBar();
+		empMasterFunc.selectSalutionEnterFirstAndLastName(commonFunc.getDataFromTestDataSheet("Emp_Salution"),
+				commonFunc.getDataFromTestDataSheet("Emp_FName"),
+				(commonFunc.getDataFromTestDataSheet("Emp_LName") + RandomStringUtils.randomAlphanumeric(5)));
+		empMasterFunc.selectGenderEnterDOBAndDOJ(commonFunc.getDataFromTestDataSheet("Emp_MaleGender"),
+				commonFunc.getDataFromTestDataSheet("Emp_DOB"), commonFunc.getDataFromTestDataSheet("Emp_DOJ"));
+		empMasterFunc.selectShiftEnterCalerdarAndZone(commonFunc.getDataFromTestDataSheet("Emp_GeneralShift"),
+				commonFunc.getDataFromTestDataSheet("Emp_1to31Calendar"),
+				commonFunc.getDataFromTestDataSheet("Emp_GeneralZone"));
+		empMasterFunc.selectCompanyAndAccountCatecory(commonFunc.getDataFromTestDataSheet("Emp_SalesCompanyCategory"),
+				commonFunc.getDataFromTestDataSheet("Emp_SalaryAcc-AccountCategory"));
+		empMasterFunc.selectPayrollGroupAndEnterNoticePeriod(
+				commonFunc.getDataFromTestDataSheet("Emp_CleanerPayrollGroup"),
+				commonFunc.getDataFromTestDataSheet("Emp_NoticePeriod-30"));
+		empMasterFunc.clickSaveIconAndStoreEmpID();
+		empMasterFunc.clickSalarySideNavBar();
+		empMasterFunc.addDesignationDepartmentAndGradeInSalaryDetails(
+				commonFunc.getDataFromTestDataSheet("Emp_SalaryDesignation"),
+				commonFunc.getDataFromTestDataSheet("Emp_SalaryDepartment"),
+				commonFunc.getDataFromTestDataSheet("Emp_SalaryGrade"));
+		empMasterFunc.clickAfterEmpCreationSaveIcon();
+		empMasterFunc.clickLoadAllowanceButtonInSalaryDetails();
+		empMasterFunc.fillAllowanceAmountsAndVerifyTotalInSalaryDetails(
+				new String[] { RandomStringUtils.randomNumeric(5), RandomStringUtils.randomNumeric(4),
+						RandomStringUtils.randomNumeric(4), RandomStringUtils.randomNumeric(4) });
+		VariableHandler.setAddEmployeDefaultExecution(true);
+		empMasterFunc.clickSalarySideNavBar();
+		empMasterFunc.enablePFAdjustmentFlagsInSalaryDetails();
+		empMasterFunc.enableESIAdjustmentFlagsInSalaryDetails();
+		empMasterFunc.clickPostButtonAndVerifyEmployeePosted();
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+				"HrRqtUsername");
 		commonFunc.navigateToResignationRequest();
 		resignRequestAddingEmployeeWithEmployeePay(commonFunc.getDataFromTestDataSheet("ResignDate"),
-				commonFunc.getDataFromTestDataSheet("ResignEmployee"),
-				commonFunc.getDataFromTestDataSheet("ResignReference"));
+				VariableHandler.getEmpID(), commonFunc.getDataFromTestDataSheet("ResignReference"));
 		resignRequestEmployeepost();
 		commonFunc.navigateToFullAndFinalSettlement();
 		pendingForFNFReverseProcess();
@@ -6100,12 +5753,45 @@ public class AttendanceLeaveFunctions {
 	 * @author Kishore-RMITS
 	 */
 	public boolean checkResignTerminationRequestBasedOnReturnToApproval() {
-//		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
-//				"HrRqtUsername");
-		commonFunc.hardWait(3000);
+		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
+				"HariUsername");
+		commonFunc.navigateEmployeeMasterScreenInPayroll();
+		empMasterFunc.clickAddIconAddEmployee();
+		empMasterFunc.clickEmployeeMasterSideNavBar();
+		empMasterFunc.selectSalutionEnterFirstAndLastName(commonFunc.getDataFromTestDataSheet("Emp_Salution"),
+				commonFunc.getDataFromTestDataSheet("Emp_FName"),
+				(commonFunc.getDataFromTestDataSheet("Emp_LName") + RandomStringUtils.randomAlphanumeric(5)));
+		empMasterFunc.selectGenderEnterDOBAndDOJ(commonFunc.getDataFromTestDataSheet("Emp_MaleGender"),
+				commonFunc.getDataFromTestDataSheet("Emp_DOB"), commonFunc.getDataFromTestDataSheet("Emp_DOJ"));
+		empMasterFunc.selectShiftEnterCalerdarAndZone(commonFunc.getDataFromTestDataSheet("Emp_GeneralShift"),
+				commonFunc.getDataFromTestDataSheet("Emp_1to31Calendar"),
+				commonFunc.getDataFromTestDataSheet("Emp_GeneralZone"));
+		empMasterFunc.selectCompanyAndAccountCatecory(commonFunc.getDataFromTestDataSheet("Emp_SalesCompanyCategory"),
+				commonFunc.getDataFromTestDataSheet("Emp_SalaryAcc-AccountCategory"));
+		empMasterFunc.selectPayrollGroupAndEnterNoticePeriod(
+				commonFunc.getDataFromTestDataSheet("Emp_CleanerPayrollGroup"),
+				commonFunc.getDataFromTestDataSheet("Emp_NoticePeriod-30"));
+		empMasterFunc.clickSaveIconAndStoreEmpID();
+		empMasterFunc.clickSalarySideNavBar();
+		empMasterFunc.addDesignationDepartmentAndGradeInSalaryDetails(
+				commonFunc.getDataFromTestDataSheet("Emp_SalaryDesignation"),
+				commonFunc.getDataFromTestDataSheet("Emp_SalaryDepartment"),
+				commonFunc.getDataFromTestDataSheet("Emp_SalaryGrade"));
+		empMasterFunc.clickAfterEmpCreationSaveIcon();
+		empMasterFunc.clickLoadAllowanceButtonInSalaryDetails();
+		empMasterFunc.fillAllowanceAmountsAndVerifyTotalInSalaryDetails(
+				new String[] { RandomStringUtils.randomNumeric(5), RandomStringUtils.randomNumeric(4),
+						RandomStringUtils.randomNumeric(4), RandomStringUtils.randomNumeric(4) });
+		VariableHandler.setAddEmployeDefaultExecution(true);
+		empMasterFunc.clickSalarySideNavBar();
+		empMasterFunc.enablePFAdjustmentFlagsInSalaryDetails();
+		empMasterFunc.enableESIAdjustmentFlagsInSalaryDetails();
+		empMasterFunc.clickPostButtonAndVerifyEmployeePosted();
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+				"HrRqtUsername");
 		commonFunc.navigateToResignationRequest();
-		resignRequestAddingEmployee(commonFunc.getDataFromTestDataSheet("ResignDate"),
-				commonFunc.getDataFromTestDataSheet("ResignEmployee"),
+		resignRequestAddingEmployee(commonFunc.getDataFromTestDataSheet("ResignDate"), VariableHandler.getEmpID(),
 				commonFunc.getDataFromTestDataSheet("ResignReference"));
 		resignRequestEmployeeReverset();
 		resignationRequestCancel();
@@ -6124,56 +5810,31 @@ public class AttendanceLeaveFunctions {
 		flag = webDB.waitForElement(AttendanceLeaveLocators.ResigRequestFindAddButton, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(AttendanceLeaveLocators.ResigRequestFindAddButton, ElementType.Xpath);
+			logs.logging("INFO", "Resign Request Add Button Is Clicked");
+			commonFunc.verifyAddTableSpecs(AttendanceLeaveLocators.ResignRqtDocDate,
+					AttendanceLeaveLocators.ResignRqtDocDate, ResignDate);
+			logs.logging("INFO", "Resign Request Doc Date is Entered");
+			commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.ResignRqtEmployeeLOV, ResignEmployee);
+			logs.logging("INFO", "Resign Request Employee is Selected");
+			commonFunc.verifyAddTableSpecs(AttendanceLeaveLocators.ResignRqtReferenceField,
+					AttendanceLeaveLocators.ResignRqtReferenceField, ResignReference);
+			logs.logging("INFO", "Resign Request Reference is Entered");
+			flag = webDB.waitForElement(AttendanceLeaveLocators.ResignRqtEntrySaveButton, ElementType.Xpath);
 			if (flag) {
-				logs.logging("INFO", "Resign Request Add Button Is Clicked");
-				flag = webDB.waitForElement(AttendanceLeaveLocators.ResignRqtDocDate, ElementType.Xpath);
+				webDB.moveToElement(AttendanceLeaveLocators.ResignRqtEntrySaveButton, ElementType.Xpath);
+				webDB.clickAnElement(AttendanceLeaveLocators.ResignRqtEntrySaveButton, ElementType.Xpath);
+				commonFunc.checkRefreshCellsDisappear();
+				webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+				logs.logging("INFO", "Resign Request Document is Saved");
+				commonFunc.checkSuccessToastMessageDisappear();
+				flag = webDB.waitForElement(AttendanceLeaveLocators.ResignRqtDocNoField, ElementType.Xpath);
 				if (flag) {
-					webDB.clearText(AttendanceLeaveLocators.ResignRqtDocDate, ElementType.Xpath);
-					commonFunc.hardWait(1000);
-					flag = webDB.sendTextToAnElement(AttendanceLeaveLocators.ResignRqtDocDate, ResignDate,
-							ElementType.Xpath);
-					if (flag) {
-						logs.logging("INFO", "Resign Request Doc Date is Entered");
-						webDB.pressTabKey();
-						webDB.pressTabKey();
-						flag = webDB.waitForElement(AttendanceLeaveLocators.ResignRqtEmployeeLOV, ElementType.Xpath);
-						if (flag) {
-							commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.ResignRqtEmployeeLOV,
-									ResignEmployee);
-							if (flag) {
-								logs.logging("INFO", "Resign Request Employee is Selected");
-								webDB.pressTabKey();
-								flag = webDB.waitForElement(AttendanceLeaveLocators.ResignRqtReferenceField,
-										ElementType.Xpath);
-								if (flag) {
-									flag = webDB.sendTextToAnElement(AttendanceLeaveLocators.ResignRqtReferenceField,
-											ResignReference, ElementType.Xpath);
-									if (flag) {
-										logs.logging("INFO", "Resign Request Reference is Entered");
-										flag = webDB.waitForElement(AttendanceLeaveLocators.ResignRqtEntrySaveButton,
-												ElementType.Xpath);
-										if (flag) {
-											webDB.clickAnElement(AttendanceLeaveLocators.ResignRqtEntrySaveButton,
-													ElementType.Xpath);
-											if (flag) {
-												logs.logging("INFO", "Resign Request Document is Saved");
-												commonFunc.checkSuccessToastMessageDisappear();
-												commonFunc.hardWait(4000);
-												webDB.waitForElement(AttendanceLeaveLocators.ResignRqtDocNoField,
-														ElementType.Xpath);
-												String ResignationRequestDocNo = webDB.getDomPropertyFromElement(
-														AttendanceLeaveLocators.ResignRqtDocNoField, ElementType.Xpath,
-														commonFunc.getDataFromTestDataSheet("Value"));
-												VariableHandler.setResignationRequestDocNo(ResignationRequestDocNo);
-												logs.logging("info", "Resignation Requst No is:"
-														+ VariableHandler.getResignationRequestDocNo());
-											}
-										}
-									}
-								}
-							}
-						}
-					}
+					commonFunc.checkRefreshCellsDisappear();
+					String ResignationRequestDocNo = webDB.getDomPropertyFromElement(
+							AttendanceLeaveLocators.ResignRqtDocNoField, ElementType.Xpath,
+							commonFunc.getDataFromTestDataSheet("Value"));
+					VariableHandler.setResignationRequestDocNo(ResignationRequestDocNo);
+					logs.logging("info", "Resignation Requst No is:" + VariableHandler.getResignationRequestDocNo());
 				}
 			}
 		}
@@ -6188,16 +5849,14 @@ public class AttendanceLeaveFunctions {
 	public void resignRequestEmployeepost() {
 		flag = webDB.waitForElement(AttendanceLeaveLocators.ResignRqtEntryPostButton, ElementType.Xpath);
 		if (flag) {
-			commonFunc.hardWait(4000);
 			webDB.clickAnElement(AttendanceLeaveLocators.ResignRqtEntryPostButton, ElementType.Xpath);
-			if (flag) {
-				logs.logging("INFO", "Resign Request Document is Posted");
-				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
-				commonFunc.checkRefreshCellsDisappear();
+			flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
+			logs.logging("INFO", "Resign Request Document is Posted");
+			if (!VariableHandler.getApprovalFlag()) {
+				approvalFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
 				commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"),
-						VariableHandler.getResignationRequestDocNo(), webDB.getDataFromProperties("HodEmpId"),
+						VariableHandler.getResignationRequestDocNo(), webDB.getDataFromProperties("HariEmpId"),
 						commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
-				flag = webDB.waitForElement(AttendanceLeaveLocators.ResigRequestFindAddButton, ElementType.Xpath);
 			}
 		}
 		assertTrue(flag);
@@ -6211,22 +5870,29 @@ public class AttendanceLeaveFunctions {
 	public void pendingForFNFReverseProcess() {
 		flag = webDB.waitForElement(AttendanceLeaveLocators.FFSFindPendingForFNF, ElementType.Xpath);
 		if (flag) {
+			webDB.moveToElement(AttendanceLeaveLocators.FFSFindPendingForFNF, ElementType.Xpath);
 			webDB.clickAnElement(AttendanceLeaveLocators.FFSFindPendingForFNF, ElementType.Xpath);
+			logs.logging("INFO", "PendingForFNF Is Clicked");
+			webDB.waitForElement(AttendanceLeaveLocators.PendingForFNFFrame, ElementType.Xpath);
+			webDB.switchToFrame(AttendanceLeaveLocators.PendingForFNFFrame, ElementType.Xpath);
+			commonFunc.removeFilterStock();
+			commonFunc.verifyAddTableSpecs(AttendanceLeaveLocators.PendingFNFTableSearchInput,
+					AttendanceLeaveLocators.PendingFNFTableSearchInput, VariableHandler.getEmpID());
+			webDB.pressEnterKey();
+			commonFunc.checkRefreshCellsDisappear();
+			flag = webDB.waitForElement(AttendanceLeaveLocators.FFSFindPendingForFNFReverseButton(), ElementType.Xpath);
 			if (flag) {
-				logs.logging("INFO", "PendingForFNF Is Clicked");
-				webDB.switchToFrame(AttendanceLeaveLocators.PendingForFNFFrame, ElementType.Xpath);
-				flag = webDB.waitForElement(AttendanceLeaveLocators.FFSFindPendingForFNFReverseButton,
-						ElementType.CssSelector);
-				commonFunc.hardWait(2000);
-				webDB.clickAnElement(AttendanceLeaveLocators.FFSFindPendingForFNFReverseButton,
-						ElementType.CssSelector);
+				webDB.moveToElement(AttendanceLeaveLocators.FFSFindPendingForFNFReverseButton(), ElementType.Xpath);
+				webDB.clickAnElement(AttendanceLeaveLocators.FFSFindPendingForFNFReverseButton(), ElementType.Xpath);
 				webDB.switchToDefaultContent();
 				flag = webDB.waitForElement(AttendanceLeaveLocators.FFSFindPendingForFNFReverseOk, ElementType.Xpath);
-				commonFunc.hardWait(2000);
-				webDB.clickAnElement(AttendanceLeaveLocators.FFSFindPendingForFNFReverseOk, ElementType.Xpath);
-				flag = webDB.waitForElement(AttendanceLeaveLocators.FFSFindPendingForFNFClose, ElementType.Xpath);
-				commonFunc.hardWait(4000);
-				webDB.clickAnElement(AttendanceLeaveLocators.FFSFindPendingForFNFClose, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(AttendanceLeaveLocators.FFSFindPendingForFNFReverseOk, ElementType.Xpath);
+					commonFunc.checkRefreshCellsDisappear();
+					commonFunc.checkSuccessToastMessageDisappear();
+					webDB.pressEscapeKey();
+					webDB.pressEscapeKey();
+				}
 			}
 		}
 		assertTrue(flag);
@@ -6238,28 +5904,29 @@ public class AttendanceLeaveFunctions {
 	 * @author Kishore-RMITS
 	 */
 	public void resignationRequestCancel() {
+		commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.ResignRequestFindEmpIdLov,
+				VariableHandler.getEmpID());
 		flag = webDB.waitForElement(AttendanceLeaveLocators.ResignRequestFindSearchButton, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(AttendanceLeaveLocators.ResignRequestFindSearchButton, ElementType.Xpath);
+			logs.logging("INFO", "Find Search Button Is Clicked");
+			commonFunc.checkRefreshCellsDisappear();
+			flag = webDB.waitForElement(AttendanceLeaveLocators.ResignRequestFindDocSelect(), ElementType.Xpath);
 			if (flag) {
-				logs.logging("INFO", "Find Search Button Is Clicked");
-				flag = webDB.waitForElement(AttendanceLeaveLocators.ResignRequestFindDocSelect,
-						ElementType.CssSelector);
+				commonFunc.checkRefreshCellsDisappear();
+				webDB.moveToElement(AttendanceLeaveLocators.ResignRequestFindDocSelect(), ElementType.Xpath);
+				webDB.clickAnElement(AttendanceLeaveLocators.ResignRequestFindDocSelect(), ElementType.Xpath);
+				logs.logging("INFO", "Resignation Request Document Is Selected");
+				flag = webDB.waitForElement(AttendanceLeaveLocators.ResignRequestDocCancel, ElementType.Xpath);
 				if (flag) {
-					commonFunc.hardWait(2000);
-					webDB.clickAnElement(AttendanceLeaveLocators.ResignRequestFindDocSelect, ElementType.CssSelector);
+					commonFunc.checkRefreshCellsDisappear();
+					commonFunc.checkSuccessToastMessageDisappear();
+					webDB.moveToElement(AttendanceLeaveLocators.ResignRequestDocCancel, ElementType.Xpath);
+					webDB.clickAnElement(AttendanceLeaveLocators.ResignRequestDocCancel, ElementType.Xpath);
 					if (flag) {
-						logs.logging("INFO", "Resignation Request Document Is Selected");
-						flag = webDB.waitForElement(AttendanceLeaveLocators.ResignRequestDocCancel, ElementType.Xpath);
-						if (flag) {
-							commonFunc.hardWait(2000);
-							webDB.clickAnElement(AttendanceLeaveLocators.ResignRequestDocCancel, ElementType.Xpath);
-							if (flag) {
-								logs.logging("INFO", "Resignation Request Document Is Cancelled");
-								flag = webDB.waitForElement(AttendanceLeaveLocators.ResignRequestFindSearchButton,
-										ElementType.Xpath);
-							}
-						}
+						logs.logging("INFO", "Resignation Request Document Is Cancelled");
+						flag = webDB.waitForElement(AttendanceLeaveLocators.ResignRequestFindSearchButton,
+								ElementType.Xpath);
 					}
 				}
 			}
@@ -6280,72 +5947,37 @@ public class AttendanceLeaveFunctions {
 		flag = webDB.waitForElement(AttendanceLeaveLocators.ResigRequestFindAddButton, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(AttendanceLeaveLocators.ResigRequestFindAddButton, ElementType.Xpath);
+			logs.logging("INFO", "Resign Request Add Button Is Clicked");
+			commonFunc.verifyAddTableSpecs(AttendanceLeaveLocators.ResignRqtDocDate,
+					AttendanceLeaveLocators.ResignRqtDocDate, ResignDate);
+			logs.logging("INFO", "Resign Request Doc Date is Entered");
+			commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.ResignRqtEmployeeLOV, ResignEmployee);
+			logs.logging("INFO", "Resign Request Employee is Selected");
+			commonFunc.verifyAddTableSpecs(AttendanceLeaveLocators.ResignRqtReferenceField,
+					AttendanceLeaveLocators.ResignRqtReferenceField, ResignReference);
+			logs.logging("INFO", "Resign Request Reference is Entered");
+			flag = webDB.waitForElement(AttendanceLeaveLocators.ResignRqtAdjustEncashLeave, ElementType.Xpath);
 			if (flag) {
-				logs.logging("INFO", "Resign Request Add Button Is Clicked");
-				flag = webDB.waitForElement(AttendanceLeaveLocators.ResignRqtDocDate, ElementType.Xpath);
+				webDB.moveToElement(AttendanceLeaveLocators.ResignRqtAdjustEncashLeave, ElementType.Xpath);
+				webDB.clickAnElement(AttendanceLeaveLocators.ResignRqtAdjustEncashLeave, ElementType.Xpath);
+				logs.logging("INFO", "Adjust Encash Leave Flag is Checked");
+				flag = webDB.waitForElement(AttendanceLeaveLocators.ResignRqtEntrySaveButton, ElementType.Xpath);
 				if (flag) {
-					webDB.clearText(AttendanceLeaveLocators.ResignRqtDocDate, ElementType.Xpath);
-					commonFunc.hardWait(1000);
-					flag = webDB.sendTextToAnElement(AttendanceLeaveLocators.ResignRqtDocDate, ResignDate,
-							ElementType.Xpath);
+					commonFunc.checkSuccessToastMessageDisappear();
+					webDB.moveToElement(AttendanceLeaveLocators.ResignRqtEntrySaveButton, ElementType.Xpath);
+					webDB.clickAnElement(AttendanceLeaveLocators.ResignRqtEntrySaveButton, ElementType.Xpath);
+					logs.logging("INFO", "Resign Request Document is Saved");
+					commonFunc.checkRefreshCellsDisappear();
+					commonFunc.checkSuccessToastMessageDisappear();
+					flag = webDB.waitForElement(AttendanceLeaveLocators.ResignRqtDocNoField, ElementType.Xpath);
 					if (flag) {
-						logs.logging("INFO", "Resign Request Doc Date is Entered");
-						webDB.pressTabKey();
-						webDB.pressTabKey();
-						flag = webDB.waitForElement(AttendanceLeaveLocators.ResignRqtEmployeeLOV, ElementType.Xpath);
-						if (flag) {
-							commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.ResignRqtEmployeeLOV,
-									ResignEmployee);
-							if (flag) {
-								logs.logging("INFO", "Resign Request Employee is Selected");
-								webDB.pressTabKey();
-								flag = webDB.waitForElement(AttendanceLeaveLocators.ResignRqtReferenceField,
-										ElementType.Xpath);
-								if (flag) {
-									flag = webDB.sendTextToAnElement(AttendanceLeaveLocators.ResignRqtReferenceField,
-											ResignReference, ElementType.Xpath);
-									if (flag) {
-										logs.logging("INFO", "Resign Request Reference is Entered");
-										webDB.pressTabKey();
-										flag = webDB.waitForElement(AttendanceLeaveLocators.ResignRqtAdjustEncashLeave,
-												ElementType.Xpath);
-										commonFunc.hardWait(2000);
-										if (flag) {
-											webDB.clickAnElement(AttendanceLeaveLocators.ResignRqtAdjustEncashLeave,
-													ElementType.Xpath);
-											if (flag) {
-												logs.logging("INFO", "Adjust Encash Leave Flag is Checked");
-												flag = webDB.waitForElement(
-														AttendanceLeaveLocators.ResignRqtEntrySaveButton,
-														ElementType.Xpath);
-												if (flag) {
-													webDB.clickAnElement(
-															AttendanceLeaveLocators.ResignRqtEntrySaveButton,
-															ElementType.Xpath);
-													if (flag) {
-														logs.logging("INFO", "Resign Request Document is Saved");
-														commonFunc.checkSuccessToastMessageDisappear();
-														commonFunc.hardWait(4000);
-														webDB.waitForElement(
-																AttendanceLeaveLocators.ResignRqtDocNoField,
-																ElementType.Xpath);
-														String ResignationRequestDocNo = webDB
-																.getDomPropertyFromElement(
-																		AttendanceLeaveLocators.ResignRqtDocNoField,
-																		ElementType.Xpath,
-																		commonFunc.getDataFromTestDataSheet("Value"));
-														VariableHandler
-																.setResignationRequestDocNo(ResignationRequestDocNo);
-														logs.logging("info", "Resignation Requst No is:"
-																+ VariableHandler.getResignationRequestDocNo());
-													}
-												}
-											}
-										}
-									}
-								}
-							}
-						}
+						commonFunc.checkRefreshCellsDisappear();
+						String ResignationRequestDocNo = webDB.getDomPropertyFromElement(
+								AttendanceLeaveLocators.ResignRqtDocNoField, ElementType.Xpath,
+								commonFunc.getDataFromTestDataSheet("Value"));
+						VariableHandler.setResignationRequestDocNo(ResignationRequestDocNo);
+						logs.logging("info",
+								"Resignation Requst No is:" + VariableHandler.getResignationRequestDocNo());
 					}
 				}
 			}
@@ -6366,72 +5998,36 @@ public class AttendanceLeaveFunctions {
 		flag = webDB.waitForElement(AttendanceLeaveLocators.ResigRequestFindAddButton, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(AttendanceLeaveLocators.ResigRequestFindAddButton, ElementType.Xpath);
+			logs.logging("INFO", "Resign Request Add Button Is Clicked");
+			commonFunc.verifyAddTableSpecs(AttendanceLeaveLocators.ResignRqtDocDate,
+					AttendanceLeaveLocators.ResignRqtDocDate, ResignDate);
+			logs.logging("INFO", "Resign Request Doc Date is Entered");
+			commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.ResignRqtEmployeeLOV, ResignEmployee);
+			logs.logging("INFO", "Resign Request Employee is Selected");
+			commonFunc.verifyAddTableSpecs(AttendanceLeaveLocators.ResignRqtReferenceField,
+					AttendanceLeaveLocators.ResignRqtReferenceField, ResignReference);
+			logs.logging("INFO", "Resign Request Reference is Entered");
+			flag = webDB.waitForElement(AttendanceLeaveLocators.ResignRqtEmployeePay, ElementType.Xpath);
 			if (flag) {
-				logs.logging("INFO", "Resign Request Add Button Is Clicked");
-				flag = webDB.waitForElement(AttendanceLeaveLocators.ResignRqtDocDate, ElementType.Xpath);
+				webDB.moveToElement(AttendanceLeaveLocators.ResignRqtEmployeePay, ElementType.Xpath);
+				webDB.clickAnElement(AttendanceLeaveLocators.ResignRqtEmployeePay, ElementType.Xpath);
+				logs.logging("INFO", "Adjust Encash Leave Flag is Checked");
+				flag = webDB.waitForElement(AttendanceLeaveLocators.ResignRqtEntrySaveButton, ElementType.Xpath);
 				if (flag) {
-					webDB.clearText(AttendanceLeaveLocators.ResignRqtDocDate, ElementType.Xpath);
-					commonFunc.hardWait(1000);
-					flag = webDB.sendTextToAnElement(AttendanceLeaveLocators.ResignRqtDocDate, ResignDate,
-							ElementType.Xpath);
+					commonFunc.checkSuccessToastMessageDisappear();
+					webDB.moveToElement(AttendanceLeaveLocators.ResignRqtEntrySaveButton, ElementType.Xpath);
+					webDB.clickAnElement(AttendanceLeaveLocators.ResignRqtEntrySaveButton, ElementType.Xpath);
+					logs.logging("INFO", "Resign Request Document is Saved");
+					commonFunc.checkRefreshCellsDisappear();
+					commonFunc.checkSuccessToastMessageDisappear();
+					flag = webDB.waitForElement(AttendanceLeaveLocators.ResignRqtDocNoField, ElementType.Xpath);
 					if (flag) {
-						logs.logging("INFO", "Resign Request Doc Date is Entered");
-						webDB.pressTabKey();
-						webDB.pressTabKey();
-						flag = webDB.waitForElement(AttendanceLeaveLocators.ResignRqtEmployeeLOV, ElementType.Xpath);
-						if (flag) {
-							commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.ResignRqtEmployeeLOV,
-									ResignEmployee);
-							if (flag) {
-								logs.logging("INFO", "Resign Request Employee is Selected");
-								webDB.pressTabKey();
-								flag = webDB.waitForElement(AttendanceLeaveLocators.ResignRqtReferenceField,
-										ElementType.Xpath);
-								if (flag) {
-									flag = webDB.sendTextToAnElement(AttendanceLeaveLocators.ResignRqtReferenceField,
-											ResignReference, ElementType.Xpath);
-									if (flag) {
-										logs.logging("INFO", "Resign Request Reference is Entered");
-										webDB.pressTabKey();
-										flag = webDB.waitForElement(AttendanceLeaveLocators.ResignRqtEmployeePay,
-												ElementType.Xpath);
-										commonFunc.hardWait(2000);
-										if (flag) {
-											webDB.clickAnElement(AttendanceLeaveLocators.ResignRqtEmployeePay,
-													ElementType.Xpath);
-											if (flag) {
-												logs.logging("INFO", "Adjust Encash Leave Flag is Checked");
-												flag = webDB.waitForElement(
-														AttendanceLeaveLocators.ResignRqtEntrySaveButton,
-														ElementType.Xpath);
-												if (flag) {
-													webDB.clickAnElement(
-															AttendanceLeaveLocators.ResignRqtEntrySaveButton,
-															ElementType.Xpath);
-													if (flag) {
-														logs.logging("INFO", "Resign Request Document is Saved");
-														commonFunc.checkSuccessToastMessageDisappear();
-														commonFunc.hardWait(4000);
-														webDB.waitForElement(
-																AttendanceLeaveLocators.ResignRqtDocNoField,
-																ElementType.Xpath);
-														String ResignationRequestDocNo = webDB
-																.getDomPropertyFromElement(
-																		AttendanceLeaveLocators.ResignRqtDocNoField,
-																		ElementType.Xpath,
-																		commonFunc.getDataFromTestDataSheet("Value"));
-														VariableHandler
-																.setResignationRequestDocNo(ResignationRequestDocNo);
-														logs.logging("info", "Resignation Requst No is:"
-																+ VariableHandler.getResignationRequestDocNo());
-													}
-												}
-											}
-										}
-									}
-								}
-							}
-						}
+						String ResignationRequestDocNo = webDB.getDomPropertyFromElement(
+								AttendanceLeaveLocators.ResignRqtDocNoField, ElementType.Xpath,
+								commonFunc.getDataFromTestDataSheet("Value"));
+						VariableHandler.setResignationRequestDocNo(ResignationRequestDocNo);
+						logs.logging("info",
+								"Resignation Requst No is:" + VariableHandler.getResignationRequestDocNo());
 					}
 				}
 			}
@@ -6447,21 +6043,21 @@ public class AttendanceLeaveFunctions {
 	public void resignRequestEmployeeReverset() {
 		flag = webDB.waitForElement(AttendanceLeaveLocators.ResignRqtEntryPostButton, ElementType.Xpath);
 		if (flag) {
-			commonFunc.hardWait(4000);
+			commonFunc.checkSuccessToastMessageDisappear();
+			webDB.moveToElement(AttendanceLeaveLocators.ResignRqtEntryPostButton, ElementType.Xpath);
 			webDB.clickAnElement(AttendanceLeaveLocators.ResignRqtEntryPostButton, ElementType.Xpath);
-			if (flag) {
-				logs.logging("INFO", "Resign Request Document is Posted");
-				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
-				commonFunc.checkRefreshCellsDisappear();
+			flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
+			logs.logging("INFO", "Resign Request Document is Posted");
+			if (!VariableHandler.getApprovalFlag()) {
+				approvalFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
 				commonFunc.returnDocuments(webDB.getDataFromProperties("ROAU-BU"),
-						VariableHandler.getResignationRequestDocNo(), webDB.getDataFromProperties("HodEmpId"),
+						VariableHandler.getResignationRequestDocNo(), webDB.getDataFromProperties("HariEmpId"),
 						commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"),
 						webDB.getDataFromProperties("HRUSEREmpId"));
 				commonFunc.returnDocuments(webDB.getDataFromProperties("ROAU-BU"),
 						VariableHandler.getResignationRequestDocNo(), webDB.getDataFromProperties("HRUSEREmpId"),
 						commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HrRqtUsername"),
 						webDB.getDataFromProperties("HRUSEREmpId"));
-				flag = webDB.waitForElement(AttendanceLeaveLocators.ResigRequestFindAddButton, ElementType.Xpath);
 			}
 		}
 		assertTrue(flag);

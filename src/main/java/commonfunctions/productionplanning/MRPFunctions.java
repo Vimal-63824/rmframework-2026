@@ -7,17 +7,13 @@ package commonfunctions.productionplanning;
 import static org.testng.Assert.assertTrue;
 
 import java.math.BigDecimal;
-import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import commonfunctions.CommonFunctions;
 import commonfunctions.VariableHandler;
@@ -139,7 +135,7 @@ public class MRPFunctions {
 		flag = webDB.waitForElement(MRPLocators.MRP_AddNewLineSourcesBtn, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(MRPLocators.MRP_AddNewLineSourcesBtn, ElementType.Xpath);
-			flag = webDB.waitForElement(MRPLocators.MRP_SourceTableData_Unit, ElementType.Xpath);
+			flag = webDB.waitForElement(MRPLocators.MRP_SourceTableData_Unit(), ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Add Line Plus Button Clicked in Sources Sub Tab");
 			}
@@ -155,13 +151,13 @@ public class MRPFunctions {
 	 * @param CutOffDate
 	 */
 	public void enterUnitCutOffDateInSourcesLine(String Unit, String CutOffDate) {
-		flag = webDB.waitForElement(MRPLocators.MRP_SourceTableData_Unit, ElementType.Xpath);
+		flag = webDB.waitForElement(MRPLocators.MRP_SourceTableData_Unit(), ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(MRPLocators.MRP_SourceTableData_Unit, ElementType.Xpath);
-			commonFunc.searchAndSelectValueInFilters(MRPLocators.MRP_Source_UnitLovBtn, Unit);
+			webDB.clickAnElement(MRPLocators.MRP_SourceTableData_Unit(), ElementType.Xpath);
+			commonFunc.searchAndSelectValueInFilters(MRPLocators.MRP_Source_UnitLovBtn(), Unit);
 			logs.logging("INFO", "Unit Selected in Source Line: " + Unit);
-			commonPayrollFunc.addDetailInTableWithoutLovButton(MRPLocators.MRP_SourceTableData_CutOffDate,
-					MRPLocators.MRP_Source_CutOffDateInput, CutOffDate);
+			commonPayrollFunc.addDetailInTableWithoutLovButton(MRPLocators.MRP_SourceTableData_CutOffDate(),
+					MRPLocators.MRP_Source_CutOffDateInput(), CutOffDate);
 			logs.logging("INFO", "CutOff Date Entered in Source Line: " + CutOffDate);
 		}
 		assertTrue(flag);
@@ -173,10 +169,10 @@ public class MRPFunctions {
 	 * @author Sakthi-GWL
 	 */
 	public void clickSalesOrderDemandCheckBoxInSourceLines() {
-		flag = webDB.waitForClickElement(MRPLocators.MRP_Source_SalesOrderTableData, ElementType.Xpath);
+		flag = webDB.waitForClickElement(MRPLocators.MRP_Source_SalesOrderTableData(), ElementType.Xpath);
 		if (flag) {
-			webDB.moveToElement(MRPLocators.MRP_Source_SalesOrderTableData, ElementType.Xpath);
-			webDB.clickAnElement(MRPLocators.MRP_Source_SalesOrderTableData, ElementType.Xpath);
+			webDB.moveToElement(MRPLocators.MRP_Source_SalesOrderTableData(), ElementType.Xpath);
+			webDB.clickAnElement(MRPLocators.MRP_Source_SalesOrderTableData(), ElementType.Xpath);
 			commonFunc.hardWait(2000);
 			webDB.javaScriptClickAnElement(MRPLocators.MRP_Source_SalesOrderCheckbox, ElementType.Xpath);
 			flag = webDB.isElementSelected(MRPLocators.MRP_Source_SalesOrderCheckbox, ElementType.Xpath);
@@ -259,11 +255,11 @@ public class MRPFunctions {
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.hardWait(1000);
-		flag = webDB.waitForElement(MRPLocators.MRP_DemandTableData_SONumber, ElementType.Xpath);
+		flag = webDB.waitForElement(MRPLocators.MRP_DemandTableData_SONumber(), ElementType.Xpath);
 		if (flag) {
 			logs.logging("INFO", "Search Button Clicked, Searched SO Number: " + SONum);
 			List<WebElement> Elements = webDB.getDriver()
-					.findElements(By.xpath(MRPLocators.MRP_DemandTableData_SONumber));
+					.findElements(By.xpath(MRPLocators.MRP_DemandTableData_SONumber()));
 			a: for (WebElement webElement : Elements) {
 				String DisplayText = webElement.getText();
 				if (DisplayText.equalsIgnoreCase(SONum) || DisplayText.contains(SONum)) {
@@ -795,11 +791,9 @@ public class MRPFunctions {
 //			saleOrderFunc.checkSaleOrderTaxCalculationForLastAddedItem();
 			saleOrderFunc.clickTotalDiscountForLineDetails();
 			saleOrderFunc.switchToLineDetailFrameInSaleOrder();
-			commonFunc.checkRefreshCellsDisappear();
 			commonFunc.checkDiscountInLineDetails(SalesOrderLocators.SOSpecialDiscountAssblValue,
 					SalesOrderLocators.SOSpecialDiscountpercentageField,
 					SalesOrderLocators.SOSpecialDiscountAmountField, RandomStringUtils.randomNumeric(1));
-			commonFunc.checkRefreshCellsDisappear();
 			commonFunc.checkDiscountInLineDetails(SalesOrderLocators.SOCashDiscountAssblValue,
 					SalesOrderLocators.SOCashDiscountpercentageField, SalesOrderLocators.SOCashDiscountAmountField,
 					RandomStringUtils.randomNumeric(1));
