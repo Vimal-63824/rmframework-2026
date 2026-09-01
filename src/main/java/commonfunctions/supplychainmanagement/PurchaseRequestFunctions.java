@@ -35,6 +35,7 @@ import commonfunctions.ItemDetailsHandler;
 import commonfunctions.ItemDetailsHandler.PRLineDetailsName;
 import commonfunctions.VariableHandler;
 import commonlocators.CommonUiLocators;
+import commonlocators.supplychainmanagement.PurchaseOrderPageLocators;
 import commonlocators.supplychainmanagement.PurchaseRequestLocators;
 import utils.ExcelUtils;
 import utils.ReportLoger;
@@ -356,14 +357,19 @@ public class PurchaseRequestFunctions {
 		if (flag) {
 			webDB.moveToElement(PurchaseRequestLocators.PR_Cancelbtn, ElementType.Xpath);
 			webDB.clickAnElement(PurchaseRequestLocators.PR_Cancelbtn, ElementType.Xpath);
-			flag = webDB.waitForElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+			flag = webDB.waitForElement(PurchaseOrderPageLocators.ContractPriceOkButton, ElementType.Xpath);
 			if (flag) {
-				logs.logging("INFO", "Toast Message Displayed, PR Cancelled Successfully");
-				if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
-					webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+				webDB.moveToElement(PurchaseOrderPageLocators.ContractPriceOkButton, ElementType.Xpath);
+				webDB.clickAnElement(PurchaseOrderPageLocators.ContractPriceOkButton, ElementType.Xpath);
+				flag = webDB.waitForElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Toast Message Displayed, PR Cancelled Successfully");
+					if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+						webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+					}
+					searchPRAndCheckPRStatus(VariableHandler.getPRNumber(),
+							commonFunc.getDataFromTestDataSheet("CancelStatus"));
 				}
-				searchPRAndCheckPRStatus(VariableHandler.getPRNumber(),
-						commonFunc.getDataFromTestDataSheet("CancelStatus"));
 			}
 		}
 		Assert.assertTrue(flag);
@@ -1055,7 +1061,8 @@ public class PurchaseRequestFunctions {
 					if (flag) {
 						webDB.clickAnElement(PurchaseRequestLocators.PRCloseShort_OkBtn, ElementType.Xpath);
 						webDB.switchToDefaultContent();
-						flag = webDB.waitForElement(PurchaseRequestLocators.UnitCostDataLastRow(), ElementType.Xpath);
+						flag = webDB.waitForElement(PurchaseRequestLocators.PRAUnitCostDataLastRow(),
+								ElementType.Xpath);
 						if (flag) {
 							logs.logging("INFO",
 									"Select All Item Checkbox clicked and Items added Successfully in PR CloseShort");

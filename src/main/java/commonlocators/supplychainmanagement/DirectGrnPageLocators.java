@@ -60,7 +60,7 @@ public class DirectGrnPageLocators {
 
 	/** @locatorType Xpath */
 	public static final String GRNPageRcptQtyTable() {
-		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(AddTableGRNScreen, "Rcpt.  Qty.");
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(AddTableGRNScreen, "Rcpt. Qty.");
 	}
 
 	/** @locatorType Xpath */

@@ -4780,6 +4780,7 @@ public class GrnPageFunctions {
 				flag = webDB.waitForElement(GrnLocators.PendingPOIframe, ElementType.Xpath);
 				if (flag) {
 					webDB.switchToFrame(GrnLocators.PendingPOIframe, ElementType.Xpath);
+					commonFunc.expandFindTable();
 					commonFunc.searchAndSelectValueInFilters(GrnLocators.FindGELovButton,
 							VariableHandler.getGateEntryNumber());
 					logs.logging("INFO", "PO Number Succesfully search and Selected");
@@ -12360,6 +12361,5 @@ public class GrnPageFunctions {
 		}
 
 	}
-
 
 }
