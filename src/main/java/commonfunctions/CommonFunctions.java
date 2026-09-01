@@ -3502,4 +3502,17 @@ public class CommonFunctions {
 		}
 		assertTrue(flag);
 	}
+
+	/**
+	 * This Methods Is Used To Click Fully selected
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+	public void expandFindTable() {
+		if (webDB.getAttributeFromElement(CommonUiLocators.PendingPoShowMore, ElementType.Xpath, "aria-expanded")
+				.equals("false")) {
+			webDB.clickAnElement(CommonUiLocators.PendingPoShowMore, ElementType.Xpath);
+		} else {
+		}
+	}
 }

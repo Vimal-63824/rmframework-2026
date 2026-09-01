@@ -80,7 +80,7 @@ public class GrnPageFunctions {
 				if (flag) {
 					webDB.switchToFrame(GrnLocators.PendingPOIframe, ElementType.Xpath);
 					commonFunc.hardWait(2000);
-//					commonFunc.expandFindTable();
+					commonFunc.expandFindTable();
 					commonFunc.searchAndSelectValueInFilters(GrnLocators.PendingPOHeaderPONumberInput,
 							VariableHandler.getPONumber());
 					logs.logging("INFO", "PO Number Succesfully search and Selected");
@@ -915,6 +915,9 @@ public class GrnPageFunctions {
 					logs.logging("INFO", "Navigated to the Pending SO Successfully");
 					commonFunc.checkRefreshCellsDisappear();
 					webDB.switchToFrame(SalesInvoiceLocators.PendingSOIframe, ElementType.Xpath);
+					commonFunc.checkRefreshCellsDisappear();
+					commonFunc.expandFindTable();
+					commonFunc.checkRefreshCellsDisappear();
 					flag = webDB.waitForElement(SalesInvoiceLocators.PendingSalesOrderSearchLOVBTN, ElementType.Xpath);
 					if (flag) {
 						commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.PendingSalesOrderSearchLOVBTN,
@@ -1100,6 +1103,9 @@ public class GrnPageFunctions {
 				flag = webDB.waitForElement(GrnLocators.PendingPOIframe, ElementType.Xpath);
 				if (flag) {
 					webDB.switchToFrame(GrnLocators.PendingPOIframe, ElementType.Xpath);
+					commonFunc.checkRefreshCellsDisappear();
+					commonFunc.expandFindTable();
+					commonFunc.checkRefreshCellsDisappear();
 					commonFunc.searchAndSelectValueInFilters(GrnLocators.CustomerInvoiceNumberLov,
 							VariableHandler.getSalesInvoiceNumber());
 					logs.logging("INFO", "Stock Transfer Document Selected Successfully");
