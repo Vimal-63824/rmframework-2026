@@ -1,5 +1,7 @@
 package commonlocators.supplychainmanagement;
 
+import commonfunctions.CommonFunctions;
+
 /**
  * @author Durai
  * @company Roadmap May 02, 2025
@@ -320,6 +322,21 @@ public class RfqLocators {
 	/** @locatorType Xpath */
 	public static final String AmendFindTableData(int i) {
 		return "//table[@id='10319408940172414178_orig']/tbody/tr/td[" + i + "]";
+	}
+	
+	/** @locatorType Xpath */
+	public static final String RFQAmendFindTableData(String i) {
+		return CommonFunctions.checkAndReturnLocatorForFindPageTable(RFQFindTable, i);
+	}
+
+	/** @locatorType Xpath */
+	public static final String RFQFindTable = "//table[@data-testid=\"L_Result_Data\"]/tbody/tr/th";
+	/** @locatorType Xpath */
+	public static final String RFQLineFindTable = "//table[@data-testid='H_Result_Data']/tbody/tr/th";
+
+	/** @locatorType Xpath */
+	public static final String RFQAmendLineFindTableData(String i) {
+		return CommonFunctions.checkAndReturnLocatorForFindPageTable(RFQLineFindTable, i);
 	}
 
 }

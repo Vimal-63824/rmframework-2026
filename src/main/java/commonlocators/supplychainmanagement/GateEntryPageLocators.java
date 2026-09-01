@@ -1,5 +1,7 @@
 package commonlocators.supplychainmanagement;
 
+import commonfunctions.CommonFunctions;
+
 /**
  * @author Durai
  * @company Roadmap May 02, 2025
@@ -179,9 +181,9 @@ public class GateEntryPageLocators {
 	/** @locatorType Xpath */
 	public static final String GENSearchBtn = "//button[@data-testid='Find_header']";
 	/** @locatorType Xpath */
-	public static final String AmendFindTable = "//*[@id='22431851646172058626_orig']/tbody/tr[2]/td[1]";
+	public static final String AmendFindTable = "//table[@data-testid=\"H_Result_Data\"]/tbody/tr/td[2]";
 	/** @locatorType Xpath */
-	public static final String AmendLineFindTable = "//*[@id='1215462926911329139_orig']/tbody/tr[2]/td[1]";
+	public static final String AmendLineFindTable = "//table[@data-testid=\"L_Result_Data\"]/tbody/tr/td[3]";
 	/** @locatorType Xpath */
 	public static final String GENPendBtn = "//button[@data-testid='Create_GE']";
 
@@ -265,4 +267,19 @@ public class GateEntryPageLocators {
 	public static final String GateEntryHeaderSearchBar = "(//input[@title='Search Report'])[last()]";
 	/** @locatorType Xpath */
 	public static final String GateEntryHeaderSearchGoBtn = "(//input[@title='Search Report'])[last()]/../following-sibling::div/button";
+	
+	/** @locatorType Xpath */
+	public static final String GateAmendFindTableData(String i) {
+		return CommonFunctions.checkAndReturnLocatorForFindPageTable(GateFindTable, i);
+	}
+
+	/** @locatorType Xpath */
+	public static final String GateFindTable = "//table[@data-testid='H_Result_Data']/tr/th";
+	/** @locatorType Xpath */
+	public static final String GateLineFindTable = "//table[@data-testid='L_Result_Data']/tbody/tr/th";
+
+	/** @locatorType Xpath */
+	public static final String GateAmendLineFindTableData(String i) {
+		return CommonFunctions.checkAndReturnLocatorForFindPageTable(GateLineFindTable, i);
+	}
 }

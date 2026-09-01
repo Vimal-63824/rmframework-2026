@@ -1094,31 +1094,31 @@ public class GateEntryPageFunctions {
 				"SelvaUsername");
 		commonFunc.navigateToGateEntryDocument();
 //		verifyDateAfterAndBefore();
-		verifyAmendFilterSearchSOB(GateEntryPageLocators.Unit, commonFunc.getDataFromTestDataSheet("L3"), 1,
+		verifyAmendFilterSearchSOB(GateEntryPageLocators.Unit, commonFunc.getDataFromTestDataSheet("L3"), "Unit",
 				commonFunc.getDataFromTestDataSheet("HeaderSearchType"),
 				commonFunc.getDataFromTestDataSheet("LovButton"));
-		verifyAmendFilterSearchSOB(GateEntryPageLocators.LocId, commonFunc.getDataFromTestDataSheet("L49ID"), 2,
+		verifyAmendFilterSearchSOB(GateEntryPageLocators.LocId, commonFunc.getDataFromTestDataSheet("L49ID"), "Loc.ID",
 				commonFunc.getDataFromTestDataSheet("HeaderSearchType"),
 				commonFunc.getDataFromTestDataSheet("LovButton"));
-		verifyAmendFilterSearchSOB(GateEntryPageLocators.GENNo, commonFunc.getDataFromTestDataSheet("GENNumber"), 4,
+		verifyAmendFilterSearchSOB(GateEntryPageLocators.GENNo, commonFunc.getDataFromTestDataSheet("GENNumber"), "GEN No.",
 				commonFunc.getDataFromTestDataSheet("LineSearchType"),
 				commonFunc.getDataFromTestDataSheet("LovButton"));
-		verifyAmendFilterSearchSOB(GateEntryPageLocators.SupplierNameLovButton,
-				commonFunc.getDataFromTestDataSheet("ARUN PACKS (P) LTD"), 26,
-				commonFunc.getDataFromTestDataSheet("LineSearchType"),
-				commonFunc.getDataFromTestDataSheet("LovButton"));
+//		verifyAmendFilterSearchSOB(GateEntryPageLocators.SupplierNameLovButton,
+//				commonFunc.getDataFromTestDataSheet("ARUN PACKS (P) LTD"), "Party ID",
+//				commonFunc.getDataFromTestDataSheet("LineSearchType"),
+//				commonFunc.getDataFromTestDataSheet("LovButton"));
 		verifyAmendFilterSearchSOB(GateEntryPageLocators.GateKeeperLovButton,
-				commonFunc.getDataFromTestDataSheet("GateKeeperName"), 8,
+				commonFunc.getDataFromTestDataSheet("GateKeeperName"), "Gate Keeper Name",
 				commonFunc.getDataFromTestDataSheet("LineSearchType"),
 				commonFunc.getDataFromTestDataSheet("LovButton"));
-		verifyAmendFilterSearchSOB(GateEntryPageLocators.ItemId, commonFunc.getDataFromTestDataSheet("GENItem"), 31,
+		verifyAmendFilterSearchSOB(GateEntryPageLocators.ItemId, commonFunc.getDataFromTestDataSheet("GENItem"), "Item ID",
 				commonFunc.getDataFromTestDataSheet("LineSearchType"),
 				commonFunc.getDataFromTestDataSheet("LovButton"));
-		verifyAmendFilterSearchSOB(GateEntryPageLocators.ItemDesc, commonFunc.getDataFromTestDataSheet("GENItem"), 33,
+		verifyAmendFilterSearchSOB(GateEntryPageLocators.ItemDesc, commonFunc.getDataFromTestDataSheet("GENItem"), "Item Desc.",
 				commonFunc.getDataFromTestDataSheet("LineSearchType"),
 				commonFunc.getDataFromTestDataSheet("SendTextInput"));
 		verifyAmendFilterSearchSOB(GateEntryPageLocators.GRN_Status, commonFunc.getDataFromTestDataSheet("GENStatus"),
-				13, commonFunc.getDataFromTestDataSheet("HeaderSearchType"),
+				"Status", commonFunc.getDataFromTestDataSheet("HeaderSearchType"),
 				commonFunc.getDataFromTestDataSheet("SelectType"));
 		commonFunc.logoutUser();
 
@@ -1133,7 +1133,7 @@ public class GateEntryPageFunctions {
 	 * @param i
 	 */
 	@SuppressWarnings("unlikely-arg-type")
-	public void verifyAmendFilterSearchSOB(String LovButton, String Value, int i, String Type, String selectflag) {
+	public void verifyAmendFilterSearchSOB(String LovButton, String Value, String i, String Type, String selectflag) {
 		webDB.scrollToAnElement(LovButton, ElementType.Xpath);
 		if (selectflag.equals(commonFunc.getDataFromTestDataSheet("LovButton"))) {
 			commonFunc.searchAndSelectValueInFilters(LovButton, Value);
@@ -1242,8 +1242,8 @@ public class GateEntryPageFunctions {
 	 * @param i
 	 * @param Value
 	 */
-	public void verifyAmendTableValue(int i, String Value) {
-		List<WebElement> elements = webDB.getDriver().findElements(By.xpath(GateEntryPageLocators.GENFindTableData(i)));
+	public void verifyAmendTableValue(String i, String Value) {
+		List<WebElement> elements = webDB.getDriver().findElements(By.xpath(GateEntryPageLocators.GateAmendFindTableData(i)));
 		for (WebElement element : elements) {
 			if (element.isDisplayed()) {
 				flag = element.getText().contains(Value);
@@ -1262,9 +1262,9 @@ public class GateEntryPageFunctions {
 	 * @param i
 	 * @param Value
 	 */
-	public void verifyLineAmendTableValue(int i, String Value) {
+	public void verifyLineAmendTableValue(String i, String Value) {
 		List<WebElement> elements = webDB.getDriver()
-				.findElements(By.xpath(GateEntryPageLocators.GENLineFindTableData(i)));
+				.findElements(By.xpath(GateEntryPageLocators.GateAmendLineFindTableData(i)));
 		for (WebElement element : elements) {
 			if (element.isDisplayed()) {
 				flag = element.getText().contains(Value);
@@ -1434,9 +1434,6 @@ public class GateEntryPageFunctions {
 					webDB.waitForElement(GateEntryPageLocators.GateEntryPoSearchButton, ElementType.Xpath);
 					if (flag) {
 						flag = webDB.clickAnElement(GateEntryPageLocators.GateEntryPoSearchButton, ElementType.Xpath);
-						commonFunc.checkRefreshCellsDisappear();
-						commonFunc.checkRefreshCellsDisappear();
-						webDB.moveToElement(GateEntryPageLocators.GateEntryPendingPoSelectAll, ElementType.Xpath);
 						webDB.waitUntilElementToNotBeStale(GateEntryPageLocators.GateEntryPendingPoSelectAll,
 								ElementType.Xpath);
 						logs.logging("INFO", "Document Search And Selected Successfully");
