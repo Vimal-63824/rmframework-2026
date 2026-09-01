@@ -103,7 +103,7 @@ public class ShareOfBusinessLocators {
 	/** @locatorType Xpath */
 	public static final String SobHeaderTable = "//table[@data-testid='H_Result_Data']/tbody/tr/th";
 	/** @locatorType Xpath */
-	public static final String SOBFrame = "//iframe[@title='Share of Business']";
+	public static final String SOBFrame = "//iframe[contains(@title,'Create')]";
 	/** @locatorType Xpath */
 	public static final String OkButton = "//button[text()='OK']";
 }
