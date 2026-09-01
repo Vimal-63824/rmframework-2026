@@ -1068,7 +1068,7 @@ public class PurchaseOrderFunctions {
 				logs.logging("INFO", "Navigated to the Pending PR Successfully");
 				commonFunc.checkRefreshCellsDisappear();
 				webDB.switchToFrame(PurchaseOrderPageLocators.PendingPRiframe, ElementType.Xpath);
-//				commonFunc.expandFindTable();
+				commonFunc.expandFindTable();
 				flag = webDB.waitForElement(PurchaseOrderPageLocators.PendingPR_FindPRNo, ElementType.Xpath);
 				if (flag) {
 					commonFunc.searchAndSelectValueInFilters(PurchaseOrderPageLocators.PendingPR_FindPRNo,
