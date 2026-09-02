@@ -653,27 +653,10 @@ public class SalesOrderFunctions {
 		flag = webDB.waitForElementUntilGivenTime(SalesOrderLocators.LineWiseAddIcon, ElementType.Xpath, 30);
 		if (flag) {
 			webDB.clickAnElement(SalesOrderLocators.LineWiseAddIcon, ElementType.Xpath);
-			flag = webDB.waitForElement(SalesOrderLocators.ItemField, ElementType.Xpath);
-			if (flag) {
-				logs.logging("INFO", "Line Wise Add Button is Clicked");
-				webDB.clickAnElement(SalesOrderLocators.ItemField, ElementType.Xpath);
-				commonFunc.searchAndSelectValueInFilters(SalesOrderLocators.ItemLov, Item);
-				flag = webDB.waitForElement(SalesOrderLocators.ItemInputField, ElementType.Xpath);
-				if (flag) {
-					String Value = webDB.getAttributeFromElement(SalesOrderLocators.ItemInputField, ElementType.Xpath,
-							commonFunc.getDataFromTestDataSheet("Value"));
-					logs.logging("INFO", "Get Text Item Id : " + Value);
-					flag = Value.contains(Item);
-					if (flag) {
-						logs.logging("INFO", "Verified Item Id Successfully");
-					} else {
-						logs.logging("INFO", "Item Id Verification Failed In Sales Order Lines");
-						logs.logging("INFO", "Expected Item Id :" + Item + "Actual Item Id :" + Value);
-					}
-				}
-			}
+			commonFunc.checkRefreshCellsDisappear();
+			commonFunc.verifyAddTableLovValue(SalesOrderLocators.ItemField(), SalesOrderLocators.ItemLov(), Item);
+			logs.logging("INFO", "Line Wise Add Button is Clicked");
 		}
-		webDB.pressTabKey();
 		commonFunc.checkRefreshCellsDisappear();
 		assertTrue(flag);
 	}
@@ -720,13 +703,12 @@ public class SalesOrderFunctions {
 	 */
 	public void addQuantityAndUnitCost(String Qty, String UnitCost) {
 		commonFunc.checkRefreshCellsDisappear();
-		verifyClickAndEnterValueInTableFields(SalesOrderLocators.QtyField, SalesOrderLocators.QtyInputField, Qty);
-		webDB.pressTabKey();
+		commonFunc.verifyAddTableSpecs(SalesOrderLocators.QtyField(), SalesOrderLocators.QtyInputField(), Qty);
+		logs.logging("INFO", "Quantity Entered: " + Qty);
 		commonFunc.checkRefreshCellsDisappear();
-		verifyClickAndEnterValueInTableFields(SalesOrderLocators.UnitCostField, SalesOrderLocators.UnitCostInputField,
+		commonFunc.verifyAddTableSpecs(SalesOrderLocators.UnitCostField(), SalesOrderLocators.UnitCostInputField(),
 				UnitCost);
-		webDB.pressTabKey();
-		commonFunc.checkRefreshCellsDisappear();
+		logs.logging("INFO", "Unit Cost Entered: " + UnitCost);
 	}
 
 	/**
@@ -736,30 +718,8 @@ public class SalesOrderFunctions {
 	 * @param HSNCode
 	 */
 	public void chooseHsnCodeAndClickLineWiseSaveButton(String HSNCode) {
-		commonFunc.checkRefreshCellsDisappear();
-		flag = webDB.waitForElement(SalesOrderLocators.HSNCodeField, ElementType.Xpath);
-		if (flag) {
-			String text = webDB.getTextFromElement(SalesOrderLocators.HSNCodeField, ElementType.Xpath);
-			if (text == null || text.trim().isEmpty()) {
-				webDB.clickAnElement(SalesOrderLocators.HSNCodeField, ElementType.Xpath);
-				logs.logging("INFO", "HSC Code Field Is Clicked");
-				commonFunc.searchAndSelectValueInFilters(SalesOrderLocators.HSNCodeLOV, HSNCode);
-				flag = webDB.waitForElement(SalesOrderLocators.HSNCodeInputField, ElementType.Xpath);
-				if (flag) {
-					String Value = webDB.getDomPropertyFromElement(SalesOrderLocators.HSNCodeInputField,
-							ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
-					logs.logging("INFO", "Get text HSNCode Is :" + Value);
-					flag = Value.contains(HSNCode);
-					if (flag) {
-						logs.logging("INFO", "Verified HSNCode Sucessfully");
-					} else {
-						logs.logging("INFO", "HSNCode Verification Failed in Sales OrderLines");
-						logs.logging("INFO", "Expected HSNCode :" + HSNCode + "Actual HSNCode :" + Value);
-					}
-				}
-			}
-		}
-		assertTrue(flag);
+		commonFunc.verifyAddTableLovValue(SalesOrderLocators.HSNCodeField(), SalesOrderLocators.HSNCodeLOV(), HSNCode);
+		logs.logging("INFO", "HSC Code Field Is Clicked");
 	}
 
 	public void clickLineWiseSaveButton() {
@@ -962,9 +922,9 @@ public class SalesOrderFunctions {
 	 *         Button And Validate the Price Basis Of the Item
 	 */
 	public void clickLineWiseDetailsButton() {
-		flag = webDB.waitForElement(SalesOrderLocators.SOLineWiseDetailsButton, ElementType.CssSelector);
+		flag = webDB.waitForElement(SalesOrderLocators.SOLineWiseDetailsButton(), ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(SalesOrderLocators.SOLineWiseDetailsButton, ElementType.CssSelector);
+			webDB.clickAnElement(SalesOrderLocators.SOLineWiseDetailsButton(), ElementType.Xpath);
 			flag = webDB.waitForElement(SalesOrderLocators.LinewisedetailsHeader, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Sales order Line Wise Details Button is Clicked");
@@ -979,9 +939,9 @@ public class SalesOrderFunctions {
 	 * @author Sakthi-GWL
 	 */
 	public void clickTotalDiscountForLineDetails() {
-		flag = webDB.waitForElement(SalesOrderLocators.SOTotalDiscountData, ElementType.CssSelector);
+		flag = webDB.waitForElement(SalesOrderLocators.SOTotalDiscountData(), ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(SalesOrderLocators.SOTotalDiscountData, ElementType.CssSelector);
+			webDB.clickAnElement(SalesOrderLocators.SOTotalDiscountData(), ElementType.Xpath);
 			flag = webDB.waitForElement(SalesOrderLocators.DiscountEntryIframe, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Sales order Line Wise Details Button is Clicked");
@@ -1109,7 +1069,7 @@ public class SalesOrderFunctions {
 	 */
 	public void addLineItemQty(String Qty) {
 		commonFunc.checkRefreshCellsDisappear();
-		verifyClickAndEnterValueInTableFields(SalesOrderLocators.QtyField, SalesOrderLocators.QtyInputField, Qty);
+		verifyClickAndEnterValueInTableFields(SalesOrderLocators.QtyField(), SalesOrderLocators.QtyInputField(), Qty);
 		webDB.pressTabKey();
 		commonFunc.checkRefreshCellsDisappear();
 	}
@@ -1138,14 +1098,14 @@ public class SalesOrderFunctions {
 	 */
 	public void checkSaleOrderTaxCalculationForLastAddedItem() {
 		logs.logging("INFO", "Sales Order Tax Calculation!!!");
-		flag = webDB.waitForClickElement(SalesOrderLocators.QtyField, ElementType.Xpath);
+		flag = webDB.waitForClickElement(SalesOrderLocators.QtyField(), ElementType.Xpath);
 		if (flag) {
 			BigDecimal decimal_Qnty = new BigDecimal(
-					webDB.getTextFromElement(SalesOrderLocators.QtyField, ElementType.Xpath));
+					webDB.getTextFromElement(SalesOrderLocators.QtyField(), ElementType.Xpath));
 			decimal_Qnty = purchaseOrderFunc.verifyRoundOffBigDecimalValueWithReturnBigDecimal(decimal_Qnty);
 			logs.logging("INFO", "Quantity Passed for Calculation without tax: " + decimal_Qnty);
 			BigDecimal decimal_Cost = new BigDecimal(
-					webDB.getTextFromElement(SalesOrderLocators.UnitCostField, ElementType.Xpath));
+					webDB.getTextFromElement(SalesOrderLocators.UnitCostField(), ElementType.Xpath));
 			decimal_Cost = purchaseOrderFunc.verifyRoundOffBigDecimalValueWithReturnBigDecimal(decimal_Cost);
 			logs.logging("INFO", "Cost Passed for Calculation without tax: " + decimal_Cost);
 			BigDecimal totalCostWithoutTax = decimal_Qnty.multiply(decimal_Cost);
@@ -1269,7 +1229,7 @@ public class SalesOrderFunctions {
 	public void verifyItemCalculationWithLineAmount() {
 		String Item;
 		commonFunc.checkRefreshCellsDisappear();
-		List<WebElement> OrderedQtyList = webDB.getDriver().findElements(By.xpath(SalesOrderLocators.QtyField));
+		List<WebElement> OrderedQtyList = webDB.getDriver().findElements(By.xpath(SalesOrderLocators.QtyField()));
 		for (int i = 1; i <= OrderedQtyList.size(); i++) {
 			Item = webDB.getDriver().findElement(By.xpath(SalesOrderLocators.ItemName(i))).getText();
 			logs.logging("INFO", "Get Text Item For Calculation Is: " + Item);
@@ -3101,7 +3061,7 @@ public class SalesOrderFunctions {
 	 */
 	public void verifyItemCalculationWithLineAmount12(String Item) {
 		commonFunc.checkRefreshCellsDisappear();
-		List<WebElement> OrderedQtyList = webDB.getDriver().findElements(By.xpath(SalesOrderLocators.QtyField));
+		List<WebElement> OrderedQtyList = webDB.getDriver().findElements(By.xpath(SalesOrderLocators.QtyField()));
 		for (int i = 1; i <= OrderedQtyList.size(); i++) {
 			Item = webDB.getDriver().findElement(By.xpath(SalesOrderLocators.ItemName(i))).getText();
 			logs.logging("INFO", "Get Text Item For Calculation Is: " + Item);
@@ -7443,8 +7403,6 @@ public class SalesOrderFunctions {
 	 */
 	public void createSalesOrderWithHeaderDetails(String Location, String Unit, String SubVoucherType,
 			String Customer) {
-//		verifyClickAddButtonInSo();
-//		FrameSwitchingInSOCreation();
 		String LocationValue = webDB.getDomPropertyFromElement(SalesOrderLocators.SOLocationField, ElementType.Xpath,
 				commonFunc.getDataFromTestDataSheet("Value"));
 		if (!LocationValue.equalsIgnoreCase(Location)) {
@@ -7476,10 +7434,7 @@ public class SalesOrderFunctions {
 	public void navigateToSalesOrderOrCustomerSchedule(String ScreenName) {
 		flag = webDB.waitForElement(SalesOrderLocators.AddButtonSalesOrder, ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(SalesOrderLocators.AddButtonSalesOrder, ElementType.Xpath);
-//			flag = webDB.waitForElement(SalesOrderLocators.SOFrame, ElementType.Xpath);
-//			if (flag) {
-//				webDB.switchToFrame(SalesOrderLocators.SOFrame, ElementType.Xpath);
+			flag = webDB.clickAnElement(SalesOrderLocators.AddButtonSalesOrder, ElementType.Xpath);
 			logs.logging("INFO", "Create SO / CS Sub Screen Is Opened Successfully");
 			if (ScreenName.equals("SO")) {
 				clickSalesOrderButton();
@@ -7487,7 +7442,6 @@ public class SalesOrderFunctions {
 				CSFunc.clickCustomerScheduleButton();
 			}
 		}
-//		}
 		Assert.assertTrue(flag);
 	}
 }

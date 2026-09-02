@@ -1259,6 +1259,53 @@ public class AttendanceLeaveFunctions {
 		String Today = date.format(formatter);
 		String requestDate = date1.format(formatter);
 		try {
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
+					"HariUsername");
+			commonFunc.navigateEmployeeMasterScreenInPayroll();
+			empMasterFunc.clickAddIconAddEmployee();
+			empMasterFunc.clickEmployeeMasterSideNavBar();
+			empMasterFunc.selectSalutionEnterFirstAndLastName(commonFunc.getDataFromTestDataSheet("Emp_Salution"),
+					commonFunc.getDataFromTestDataSheet("Emp_FName"),
+					(commonFunc.getDataFromTestDataSheet("Emp_LName") + RandomStringUtils.randomAlphanumeric(5)));
+			empMasterFunc.selectGenderEnterDOBAndDOJ(commonFunc.getDataFromTestDataSheet("Emp_MaleGender"),
+					commonFunc.getDataFromTestDataSheet("Emp_DOB"), commonFunc.getDataFromTestDataSheet("Emp_DOJ"));
+			empMasterFunc.selectShiftEnterCalerdarAndZone(commonFunc.getDataFromTestDataSheet("Emp_GeneralShift"),
+					commonFunc.getDataFromTestDataSheet("Emp_1to31Calendar"),
+					commonFunc.getDataFromTestDataSheet("Emp_GeneralZone"));
+			empMasterFunc.selectCompanyAndAccountCatecory(
+					commonFunc.getDataFromTestDataSheet("Emp_SalesCompanyCategory"),
+					commonFunc.getDataFromTestDataSheet("Emp_SalaryAcc-AccountCategory"));
+			empMasterFunc.selectPayrollGroupAndEnterNoticePeriod(
+					commonFunc.getDataFromTestDataSheet("Emp_CleanerPayrollGroup"),
+					commonFunc.getDataFromTestDataSheet("Emp_NoticePeriod-30"));
+			empMasterFunc.clickSaveIconAndStoreEmpID();
+			empMasterFunc.clickSalarySideNavBar();
+			empMasterFunc.addDesignationDepartmentAndGradeInSalaryDetails(
+					commonFunc.getDataFromTestDataSheet("Emp_SalaryDesignation"),
+					commonFunc.getDataFromTestDataSheet("Emp_SalaryDepartment"),
+					commonFunc.getDataFromTestDataSheet("Emp_SalaryGrade"));
+			empMasterFunc.clickAfterEmpCreationSaveIcon();
+			empMasterFunc.clickLoadAllowanceButtonInSalaryDetails();
+			empMasterFunc.fillAllowanceAmountsAndVerifyTotalInSalaryDetails(
+					new String[] { RandomStringUtils.randomNumeric(5), RandomStringUtils.randomNumeric(4),
+							RandomStringUtils.randomNumeric(4), RandomStringUtils.randomNumeric(4) });
+			empMasterFunc.clickSalarySideNavBar();
+			empMasterFunc.enablePFAdjustmentFlagsInSalaryDetails();
+			empMasterFunc.enableESIAdjustmentFlagsInSalaryDetails();
+			empMasterFunc.clickPostButtonAndVerifyEmployeePosted();
+			commonFunc.navigateLeaveEntryScreen();
+			clickAdjustmentLabelButton();
+			clickAddNewIconInLeaveAdjustment();
+			fillRequestDateEmpIdAndLeaveInAdjustment(Today, VariableHandler.getEmpID(),
+					commonFunc.getDataFromTestDataSheet("CL-Text"));
+			fillLeavePrefixDaysAndReasonInAdjustment(commonFunc.getDataFromTestDataSheet("AdditionText"), "3",
+					commonFunc.getDataFromTestDataSheet("RefText_Test"));
+			clickSaveAndStoreDocNoInAdjustment();
+			clickPostButtonInAdjustmentVerifyStatus();
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+					"HrRqtUsername");
 			commonFunc.navigateLeaveEncashmentScreen();
 			chooseLeaveAndClickAddLeaveIcon();
 			fillRequestDateEmpIdAndLeaveType(Today, commonFunc.getDataFromTestDataSheet("Emp_GWP0001"),
@@ -1284,7 +1331,7 @@ public class AttendanceLeaveFunctions {
 				clickSearchAndFilterLeaveEntryDocNo(VariableHandler.getLeaveEntryDocNo());
 				clickSaveAndPostInLeaveEntry();
 				if (!VariableHandler.getApprovalFlag()) {
-					approvalFunc.waitingForApprovalWithFordwarder(System.getProperty("HariUsername"));
+					approvalFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
 					commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"),
 							VariableHandler.getLeaveEntryDocNo(), webDB.getDataFromProperties("ROAUAdminEmpId"),
 							commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
@@ -1398,9 +1445,56 @@ public class AttendanceLeaveFunctions {
 		String requestDate = date1.format(formatter);
 		String AfterThreeDate = date2.format(formatter);
 		try {
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
+					"HariUsername");
+			commonFunc.navigateEmployeeMasterScreenInPayroll();
+			empMasterFunc.clickAddIconAddEmployee();
+			empMasterFunc.clickEmployeeMasterSideNavBar();
+			empMasterFunc.selectSalutionEnterFirstAndLastName(commonFunc.getDataFromTestDataSheet("Emp_Salution"),
+					commonFunc.getDataFromTestDataSheet("Emp_FName"),
+					(commonFunc.getDataFromTestDataSheet("Emp_LName") + RandomStringUtils.randomAlphanumeric(5)));
+			empMasterFunc.selectGenderEnterDOBAndDOJ(commonFunc.getDataFromTestDataSheet("Emp_MaleGender"),
+					commonFunc.getDataFromTestDataSheet("Emp_DOB"), commonFunc.getDataFromTestDataSheet("Emp_DOJ"));
+			empMasterFunc.selectShiftEnterCalerdarAndZone(commonFunc.getDataFromTestDataSheet("Emp_GeneralShift"),
+					commonFunc.getDataFromTestDataSheet("Emp_1to31Calendar"),
+					commonFunc.getDataFromTestDataSheet("Emp_GeneralZone"));
+			empMasterFunc.selectCompanyAndAccountCatecory(
+					commonFunc.getDataFromTestDataSheet("Emp_SalesCompanyCategory"),
+					commonFunc.getDataFromTestDataSheet("Emp_SalaryAcc-AccountCategory"));
+			empMasterFunc.selectPayrollGroupAndEnterNoticePeriod(
+					commonFunc.getDataFromTestDataSheet("Emp_CleanerPayrollGroup"),
+					commonFunc.getDataFromTestDataSheet("Emp_NoticePeriod-30"));
+			empMasterFunc.clickSaveIconAndStoreEmpID();
+			empMasterFunc.clickSalarySideNavBar();
+			empMasterFunc.addDesignationDepartmentAndGradeInSalaryDetails(
+					commonFunc.getDataFromTestDataSheet("Emp_SalaryDesignation"),
+					commonFunc.getDataFromTestDataSheet("Emp_SalaryDepartment"),
+					commonFunc.getDataFromTestDataSheet("Emp_SalaryGrade"));
+			empMasterFunc.clickAfterEmpCreationSaveIcon();
+			empMasterFunc.clickLoadAllowanceButtonInSalaryDetails();
+			empMasterFunc.fillAllowanceAmountsAndVerifyTotalInSalaryDetails(
+					new String[] { RandomStringUtils.randomNumeric(5), RandomStringUtils.randomNumeric(4),
+							RandomStringUtils.randomNumeric(4), RandomStringUtils.randomNumeric(4) });
+			empMasterFunc.clickSalarySideNavBar();
+			empMasterFunc.enablePFAdjustmentFlagsInSalaryDetails();
+			empMasterFunc.enableESIAdjustmentFlagsInSalaryDetails();
+			empMasterFunc.clickPostButtonAndVerifyEmployeePosted();
+			commonFunc.navigateLeaveEntryScreen();
+			clickAdjustmentLabelButton();
+			clickAddNewIconInLeaveAdjustment();
+			fillRequestDateEmpIdAndLeaveInAdjustment(Today, VariableHandler.getEmpID(),
+					commonFunc.getDataFromTestDataSheet("CL-Text"));
+			fillLeavePrefixDaysAndReasonInAdjustment(commonFunc.getDataFromTestDataSheet("AdditionText"), "3",
+					commonFunc.getDataFromTestDataSheet("RefText_Test"));
+			clickSaveAndStoreDocNoInAdjustment();
+			clickPostButtonInAdjustmentVerifyStatus();
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+					"HrRqtUsername");
 			commonFunc.navigateLeaveEntryScreen();
 			chooseLeaveAndClickAddLeaveIconInLE();
-			fillEntryDateEmpIdAndLeaveType(Today, commonFunc.getDataFromTestDataSheet("Emp_GWP0001"),
+			fillEntryDateEmpIdAndLeaveType(Today, VariableHandler.getEmpID(),
 					commonFunc.getDataFromTestDataSheet("CL-Text"));
 			selectStartDateAndSessionWithAppliedDaysInLE(requestDate,
 					commonFunc.getDataFromTestDataSheet("FullSessionText"), "3");
@@ -1494,11 +1588,9 @@ public class AttendanceLeaveFunctions {
 			if (flag) {
 				logs.logging("INFO", "Leave Start Session Selected: " + Session);
 				commonFunc.checkRefreshCellsDisappear();
-				flag = webDB.sendTextToAnElement(AttendanceLeaveLocators.LeaveRequestAppliedDaysInput, AppliedDays,
-						ElementType.Xpath);
-				if (flag) {
-					logs.logging("INFO", "Applied Date Entered: " + AppliedDays);
-				}
+				commonFunc.verifyAddTableSpecs(AttendanceLeaveLocators.LeaveRequestAppliedDaysInput,
+						AttendanceLeaveLocators.LeaveRequestAppliedDaysInput, AppliedDays);
+				logs.logging("INFO", "Applied Date Entered: " + AppliedDays);
 			}
 		}
 		Assert.assertTrue(flag);
@@ -3579,11 +3671,9 @@ public class AttendanceLeaveFunctions {
 					ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Leave Start Session Selected: " + Session);
-				flag = webDB.sendTextToAnElement(AttendanceLeaveLocators.LeaveEntryAppliedDaysInput, AppliedDays,
-						ElementType.Xpath);
-				if (flag) {
-					logs.logging("INFO", "Applied Date Entered: " + AppliedDays);
-				}
+				commonFunc.verifyAddTableSpecs(AttendanceLeaveLocators.LeaveEntryAppliedDaysInput,
+						AttendanceLeaveLocators.LeaveEntryAppliedDaysInput, AppliedDays);
+				logs.logging("INFO", "Applied Date Entered: " + AppliedDays);
 			}
 		}
 		Assert.assertTrue(flag);
@@ -3816,6 +3906,10 @@ public class AttendanceLeaveFunctions {
 		String PayrollMonth = date.format(formatter).toUpperCase();
 		DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 		String JoinedDate = date.format(formatter1);
+		String Basic = "80000";
+		String CVA = "2000";
+		String DA = "7000";
+		String HRA = "6000";
 		commonFunc.logoutUser();
 		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
 				"HariUsername");
@@ -3843,9 +3937,7 @@ public class AttendanceLeaveFunctions {
 				commonFunc.getDataFromTestDataSheet("Emp_SalaryGrade"));
 		empMasterFunc.clickAfterEmpCreationSaveIcon();
 		empMasterFunc.clickLoadAllowanceButtonInSalaryDetails();
-		empMasterFunc.fillAllowanceAmountsAndVerifyTotalInSalaryDetails(
-				new String[] { RandomStringUtils.randomNumeric(5), RandomStringUtils.randomNumeric(4),
-						RandomStringUtils.randomNumeric(4), RandomStringUtils.randomNumeric(4) });
+		empMasterFunc.fillAllowanceAmountsAndVerifyTotalInSalaryDetails(new String[] { Basic, CVA, DA, HRA });
 		empMasterFunc.clickSalarySideNavBar();
 		empMasterFunc.enablePFAdjustmentFlagsInSalaryDetails();
 		empMasterFunc.enableESIAdjustmentFlagsInSalaryDetails();
@@ -3873,7 +3965,7 @@ public class AttendanceLeaveFunctions {
 		EmployeeDocumentSelect(VariableHandler.getEmpID(), "A");
 		EmployeeDocumentRevise();
 		commonFunc.navigateToTDSDeclarationScreen();
-		EmployeeDocumentSelect(VariableHandler.getEmpID(), "N");
+		EmployeeDocumentSelectWithSearchBarDocNo(VariableHandler.getEmpID(), "N");
 		selectNoForConstructionAndHomeLoanInTDS();
 		EmployeeTDSPostDocument();
 		if (!VariableHandler.getApprovalFlag()) {
@@ -3904,6 +3996,10 @@ public class AttendanceLeaveFunctions {
 		String PayrollMonth = date.format(formatter).toUpperCase();
 		DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 		String JoinedDate = date.format(formatter1);
+		String Basic = "80000";
+		String CVA = "2000";
+		String DA = "7000";
+		String HRA = "6000";
 		commonFunc.logoutUser();
 		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
 				"HariUsername");
@@ -3931,9 +4027,7 @@ public class AttendanceLeaveFunctions {
 				commonFunc.getDataFromTestDataSheet("Emp_SalaryGrade"));
 		empMasterFunc.clickAfterEmpCreationSaveIcon();
 		empMasterFunc.clickLoadAllowanceButtonInSalaryDetails();
-		empMasterFunc.fillAllowanceAmountsAndVerifyTotalInSalaryDetails(
-				new String[] { RandomStringUtils.randomNumeric(5), RandomStringUtils.randomNumeric(4),
-						RandomStringUtils.randomNumeric(4), RandomStringUtils.randomNumeric(4) });
+		empMasterFunc.fillAllowanceAmountsAndVerifyTotalInSalaryDetails(new String[] { Basic, CVA, DA, HRA });
 		empMasterFunc.clickSalarySideNavBar();
 		empMasterFunc.enablePFAdjustmentFlagsInSalaryDetails();
 		empMasterFunc.enableESIAdjustmentFlagsInSalaryDetails();
@@ -3961,7 +4055,7 @@ public class AttendanceLeaveFunctions {
 		EmployeeDocumentSelect(VariableHandler.getEmpID(), "A");
 		EmployeeDocumentRevise();
 		commonFunc.navigateToTDSDeclarationScreen();
-		EmployeeDocumentSelect(VariableHandler.getEmpID(), "N");
+		EmployeeDocumentSelectWithSearchBarDocNo(VariableHandler.getEmpID(), "N");
 		selectNoForConstructionAndHomeLoanInTDS();
 		EmployeeTDSPostDocument();
 		if (!VariableHandler.getApprovalFlag()) {
@@ -3992,6 +4086,10 @@ public class AttendanceLeaveFunctions {
 		String PayrollMonth = date.format(formatter).toUpperCase();
 		DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 		String JoinedDate = date.format(formatter1);
+		String Basic = "80000";
+		String CVA = "2000";
+		String DA = "7000";
+		String HRA = "6000";
 		commonFunc.logoutUser();
 		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
 				"HariUsername");
@@ -4019,9 +4117,7 @@ public class AttendanceLeaveFunctions {
 				commonFunc.getDataFromTestDataSheet("Emp_SalaryGrade"));
 		empMasterFunc.clickAfterEmpCreationSaveIcon();
 		empMasterFunc.clickLoadAllowanceButtonInSalaryDetails();
-		empMasterFunc.fillAllowanceAmountsAndVerifyTotalInSalaryDetails(
-				new String[] { RandomStringUtils.randomNumeric(5), RandomStringUtils.randomNumeric(4),
-						RandomStringUtils.randomNumeric(4), RandomStringUtils.randomNumeric(4) });
+		empMasterFunc.fillAllowanceAmountsAndVerifyTotalInSalaryDetails(new String[] { Basic, CVA, DA, HRA });
 		empMasterFunc.clickSalarySideNavBar();
 		empMasterFunc.enablePFAdjustmentFlagsInSalaryDetails();
 		empMasterFunc.enableESIAdjustmentFlagsInSalaryDetails();
@@ -4049,7 +4145,7 @@ public class AttendanceLeaveFunctions {
 		EmployeeDocumentSelect(VariableHandler.getEmpID(), "A");
 		EmployeeDocumentRevise();
 		commonFunc.navigateToTDSDeclarationScreen();
-		EmployeeDocumentSelect(VariableHandler.getEmpID(), "N");
+		EmployeeDocumentSelectWithSearchBarDocNo(VariableHandler.getEmpID(), "N");
 		selectNoForConstructionAndHomeLoanInTDS();
 		EmployeeTDSReturnDocument();
 		if (!VariableHandler.getApprovalFlag()) {
@@ -4063,10 +4159,7 @@ public class AttendanceLeaveFunctions {
 					System.getProperty("HrRqtUsername"), webDB.getDataFromProperties("HRUSEREmpId"));
 		}
 		commonFunc.navigateToTDSDeclarationScreen();
-		EmployeeDocumentSelect(VariableHandler.getEmpID(), "A");
-		EmployeeDocumentRevise();
-		commonFunc.navigateToTDSDeclarationScreen();
-		EmployeeDocumentSelect(VariableHandler.getEmpID(), "N");
+		EmployeeDocumentSelectWithSearchBarDocNo(VariableHandler.getEmpID(), "N");
 		selectNoForConstructionAndHomeLoanInTDS();
 		EmployeeTDSPostDocument();
 		if (!VariableHandler.getApprovalFlag()) {
@@ -4097,6 +4190,10 @@ public class AttendanceLeaveFunctions {
 		String PayrollMonth = date.format(formatter).toUpperCase();
 		DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 		String JoinedDate = date.format(formatter1);
+		String Basic = "80000";
+		String CVA = "2000";
+		String DA = "7000";
+		String HRA = "6000";
 		commonFunc.logoutUser();
 		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
 				"HariUsername");
@@ -4124,9 +4221,7 @@ public class AttendanceLeaveFunctions {
 				commonFunc.getDataFromTestDataSheet("Emp_SalaryGrade"));
 		empMasterFunc.clickAfterEmpCreationSaveIcon();
 		empMasterFunc.clickLoadAllowanceButtonInSalaryDetails();
-		empMasterFunc.fillAllowanceAmountsAndVerifyTotalInSalaryDetails(
-				new String[] { RandomStringUtils.randomNumeric(5), RandomStringUtils.randomNumeric(4),
-						RandomStringUtils.randomNumeric(4), RandomStringUtils.randomNumeric(4) });
+		empMasterFunc.fillAllowanceAmountsAndVerifyTotalInSalaryDetails(new String[] { Basic, CVA, DA, HRA });
 		empMasterFunc.clickSalarySideNavBar();
 		empMasterFunc.enablePFAdjustmentFlagsInSalaryDetails();
 		empMasterFunc.enableESIAdjustmentFlagsInSalaryDetails();
@@ -4154,8 +4249,7 @@ public class AttendanceLeaveFunctions {
 		EmployeeDocumentSelect(VariableHandler.getEmpID(), "A");
 		EmployeeDocumentRevise();
 		commonFunc.navigateToTDSDeclarationScreen();
-		EmployeeDocumentSelect(VariableHandler.getEmpID(), "N");
-		EmployeeDocumentRevise();
+		EmployeeDocumentSelectWithSearchBarDocNo(VariableHandler.getEmpID(), "N");
 		selectNoForConstructionAndHomeLoanInTDS();
 		EmployeeTDSRegimeChoose();
 		if (!VariableHandler.getApprovalFlag()) {
@@ -4185,6 +4279,10 @@ public class AttendanceLeaveFunctions {
 		String PayrollMonth = date.format(formatter).toUpperCase();
 		DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 		String JoinedDate = date.format(formatter1);
+		String Basic = "80000";
+		String CVA = "2000";
+		String DA = "7000";
+		String HRA = "6000";
 		commonFunc.logoutUser();
 		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
 				"HariUsername");
@@ -4212,9 +4310,7 @@ public class AttendanceLeaveFunctions {
 				commonFunc.getDataFromTestDataSheet("Emp_SalaryGrade"));
 		empMasterFunc.clickAfterEmpCreationSaveIcon();
 		empMasterFunc.clickLoadAllowanceButtonInSalaryDetails();
-		empMasterFunc.fillAllowanceAmountsAndVerifyTotalInSalaryDetails(
-				new String[] { RandomStringUtils.randomNumeric(5), RandomStringUtils.randomNumeric(4),
-						RandomStringUtils.randomNumeric(4), RandomStringUtils.randomNumeric(4) });
+		empMasterFunc.fillAllowanceAmountsAndVerifyTotalInSalaryDetails(new String[] { Basic, CVA, DA, HRA });
 		empMasterFunc.clickSalarySideNavBar();
 		empMasterFunc.enablePFAdjustmentFlagsInSalaryDetails();
 		empMasterFunc.enableESIAdjustmentFlagsInSalaryDetails();
@@ -4242,8 +4338,7 @@ public class AttendanceLeaveFunctions {
 		EmployeeDocumentSelect(VariableHandler.getEmpID(), "A");
 		EmployeeDocumentRevise();
 		commonFunc.navigateToTDSDeclarationScreen();
-		EmployeeDocumentSelect(VariableHandler.getEmpID(), "N");
-		EmployeeDocumentRevise();
+		EmployeeDocumentSelectWithSearchBarDocNo(VariableHandler.getEmpID(), "N");
 		selectNoForConstructionAndHomeLoanInTDS();
 		EmployeeTDSSectionWise(commonFunc.getDataFromTestDataSheet("TDSAmount"));
 		if (!VariableHandler.getApprovalFlag()) {
@@ -4273,6 +4368,10 @@ public class AttendanceLeaveFunctions {
 		String PayrollMonth = date.format(formatter).toUpperCase();
 		DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 		String JoinedDate = date.format(formatter1);
+		String Basic = "80000";
+		String CVA = "2000";
+		String DA = "7000";
+		String HRA = "6000";
 		commonFunc.logoutUser();
 		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
 				"HariUsername");
@@ -4300,9 +4399,7 @@ public class AttendanceLeaveFunctions {
 				commonFunc.getDataFromTestDataSheet("Emp_SalaryGrade"));
 		empMasterFunc.clickAfterEmpCreationSaveIcon();
 		empMasterFunc.clickLoadAllowanceButtonInSalaryDetails();
-		empMasterFunc.fillAllowanceAmountsAndVerifyTotalInSalaryDetails(
-				new String[] { RandomStringUtils.randomNumeric(5), RandomStringUtils.randomNumeric(4),
-						RandomStringUtils.randomNumeric(4), RandomStringUtils.randomNumeric(4) });
+		empMasterFunc.fillAllowanceAmountsAndVerifyTotalInSalaryDetails(new String[] { Basic, CVA, DA, HRA });
 		empMasterFunc.clickSalarySideNavBar();
 		empMasterFunc.enablePFAdjustmentFlagsInSalaryDetails();
 		empMasterFunc.enableESIAdjustmentFlagsInSalaryDetails();
@@ -4330,8 +4427,7 @@ public class AttendanceLeaveFunctions {
 		EmployeeDocumentSelect(VariableHandler.getEmpID(), "A");
 		EmployeeDocumentRevise();
 		commonFunc.navigateToTDSDeclarationScreen();
-		EmployeeDocumentSelect(VariableHandler.getEmpID(), "N");
-		EmployeeDocumentRevise();
+		EmployeeDocumentSelectWithSearchBarDocNo(VariableHandler.getEmpID(), "N");
 		selectNoForConstructionAndHomeLoanInTDS();
 		EmployeeTDSPostDocument();
 		if (!VariableHandler.getApprovalFlag()) {
@@ -4342,6 +4438,44 @@ public class AttendanceLeaveFunctions {
 					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
 		}
 		return flag;
+	}
+
+	/**
+	 * This method is used To Check Employee TDS Declaration Select
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	public void EmployeeDocumentSelectWithSearchBarDocNo(String Employee, String Status) {
+		commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.TDSDeclFindEmpLOV, Employee);
+		logs.logging("INFO", "TDS Employee is Selected");
+		commonFunc.checkRefreshCellsDisappear();
+		webDB.selectDropDownByValue(AttendanceLeaveLocators.TDSDeclFindStatusSelect, Status, ElementType.Xpath);
+		flag = webDB.waitForElement(AttendanceLeaveLocators.TDSFindSearchButton, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(AttendanceLeaveLocators.TDSFindSearchButton, ElementType.Xpath);
+			webDB.clickAnElement(AttendanceLeaveLocators.TDSFindSearchButton, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
+			logs.logging("INFO", "TDS Employee is Searched");
+			commonFunc.checkRefreshCellsDisappear();
+			commonFunc.verifyAddTableSpecs(CommonUiLocators.ReportSearchInput, CommonUiLocators.ReportSearchInput,
+					VariableHandler.getTDSDeclarationDocNo());
+			webDB.pressEnterKey();
+			commonFunc.checkRefreshCellsDisappear();
+			flag = webDB.waitForElement(AttendanceLeaveLocators.TDSDocumentSelect(), ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(AttendanceLeaveLocators.TDSDocumentSelect(), ElementType.Xpath);
+				flag = webDB.waitForElement(AttendanceLeaveLocators.TDSDeclarationDocNoToPost, ElementType.Xpath);
+				if (flag) {
+					commonFunc.checkRefreshCellsDisappear();
+					String DocNo = webDB.getTextFromElement(AttendanceLeaveLocators.TDSDeclarationDocNoToPost,
+							ElementType.Xpath);
+					VariableHandler.setTDSDeclarationDocNo(DocNo);
+				}
+				logs.logging("INFO", "TDS Document is Selected");
+				commonFunc.checkRefreshCellsDisappear();
+			}
+		}
+		Assert.assertTrue(flag);
 	}
 
 	/**
@@ -4364,6 +4498,12 @@ public class AttendanceLeaveFunctions {
 			if (flag) {
 				webDB.clickAnElement(AttendanceLeaveLocators.TDSDocumentSelect(), ElementType.Xpath);
 				flag = webDB.waitForElement(AttendanceLeaveLocators.TDSDeclarationDocNoToPost, ElementType.Xpath);
+				if (flag) {
+					commonFunc.checkRefreshCellsDisappear();
+					String DocNo = webDB.getTextFromElement(AttendanceLeaveLocators.TDSDeclarationDocNoToPost,
+							ElementType.Xpath);
+					VariableHandler.setTDSDeclarationDocNo(DocNo);
+				}
 				logs.logging("INFO", "TDS Document is Selected");
 				commonFunc.checkRefreshCellsDisappear();
 			}

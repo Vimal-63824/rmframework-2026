@@ -3505,7 +3505,7 @@ public class CommonFunctions {
 
 	/**
 	 * This Methods Is Used To Click Fully selected
-	 * 
+	 *
 	 * @author PremKumar.K-RMITS
 	 */
 	public void expandFindTable() {
@@ -3514,5 +3514,18 @@ public class CommonFunctions {
 			webDB.clickAnElement(CommonUiLocators.PendingPoShowMore, ElementType.Xpath);
 		} else {
 		}
+	}
+
+	/**
+	 * This Methods Is Used To Click Show More
+	 *
+	 * @author Sakthi-GWL
+	 */
+	public void clickShowMoreFindTable() {
+		checkRefreshCellsDisappear();
+		if (webDB.verifyIsElementDisplayed(CommonUiLocators.FindShowMore, ElementType.Xpath)) {
+			webDB.clickAnElementWithoutException(CommonUiLocators.FindShowMore, ElementType.Xpath);
+		}
+		checkRefreshCellsDisappear();
 	}
 }
