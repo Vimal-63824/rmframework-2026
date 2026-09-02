@@ -562,10 +562,10 @@ public class GrnPageFunctions2 {
 			flag = webDB.waitForElement(DirectGrnPageLocators.GRN_ImportBillNoInput, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Import / LR Button Clicked");
-				commonPayrollFunc.addDetailInTableWithoutLovButton(DirectGrnPageLocators.GRN_ImportBillNoInput,
+				commonFunc.verifyAddTableSpecs(DirectGrnPageLocators.GRN_ImportBillNoInput,
 						DirectGrnPageLocators.GRN_ImportBillNoInput, BillNo);
 				logs.logging("INFO", "Import / LR Bill No Entered: " + BillNo);
-				commonPayrollFunc.addDetailInTableWithoutLovButton(DirectGrnPageLocators.GRN_ImportBillDateInput,
+				commonFunc.verifyAddTableSpecs(DirectGrnPageLocators.GRN_ImportBillDateInput,
 						DirectGrnPageLocators.GRN_ImportBillDateInput, Date);
 				logs.logging("INFO", "Import / LR Date Entered: " + Date);
 				flag = webDB.waitForElement(DirectGrnPageLocators.GRN_ImportLROkBtn, ElementType.Xpath);

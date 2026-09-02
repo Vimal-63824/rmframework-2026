@@ -1,5 +1,7 @@
 package commonlocators.supplychainmanagement;
 
+import commonfunctions.CommonFunctions;
+
 /**
  * @author Durai
  * @company Roadmap May 02, 2025
@@ -321,5 +323,46 @@ public class RfqLocators {
 	public static final String AmendFindTableData(int i) {
 		return "//table[@id='10319408940172414178_orig']/tbody/tr/td[" + i + "]";
 	}
+	
+	/** @locatorType Xpath */
+	public static final String RFQAmendFindTableData(String i) {
+		return CommonFunctions.checkAndReturnLocatorForFindPageTable(RFQFindTable, i);
+	}
+
+	/** @locatorType Xpath */
+	public static final String RFQFindTable = "//table[@data-testid=\"L_Result_Data\"]/tbody/tr/th";
+	/** @locatorType Xpath */
+	public static final String RFQLineFindTable = "//table[@data-testid='H_Result_Data']/tbody/tr/th";
+
+	/** @locatorType Xpath */
+	public static final String RFQAmendLineFindTableData(String i) {
+		return CommonFunctions.checkAndReturnLocatorForFindPageTable(RFQLineFindTable, i);
+	}
+	/** @locatorType Xpath */
+	public static final String PRTable = "(//table[@data-testid='HD_Result_Data'])[2]";
+
+	/** @locatorType Xpath */
+	public static final String ItemDataLastRow() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(PRTable, "Item");
+	}
+
+	/** @locatorType Xpath */
+	public static final String ItemDataLastRowInput = ItemDataLastRow() + "//button";
+
+	/** @locatorType Xpath */
+	public static final String QuantityDataLastRow() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(PRTable, "RequestQuantity");
+	}
+
+	/** @locatorType Xpath */
+	public static final String QuantityDataLastRowInput = QuantityDataLastRow() + "//input";
+
+	/** @locatorType Xpath */
+	public static final String UnitCostDataLastRow() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(PRTable, "UnitCost");
+	}
+
+	/** @locatorType Xpath */
+	public static final String UnitCostDataLastRowInput = UnitCostDataLastRow() + "//input";
 
 }

@@ -69,7 +69,7 @@ public class InspectionRequestFunctions {
 	 */
 	public void fillDateVoucherTypeAndPrefixInCreationFrame(String date, String type, String prefix) {
 		switchToIRCreationIframe();
-		commonPayrollFunc.addDetailInTableWithoutLovButton(InspectionRequestLocators.IRCreateDocDateInput,
+		commonFunc.verifyAddTableSpecs(InspectionRequestLocators.IRCreateDocDateInput,
 				InspectionRequestLocators.IRCreateDocDateInput, date);
 		logs.logging("INFO", "Doc Date entered in Ins Req: " + date);
 		flag = webDB.selectDropDownByText(InspectionRequestLocators.IRCreateSubVoucherType, type, ElementType.Xpath);

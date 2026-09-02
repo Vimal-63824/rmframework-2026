@@ -31,7 +31,7 @@ public class VariableHandler {
 	private static ThreadLocal<BigDecimal> POALineAmount = ThreadLocal.withInitial(() -> BigDecimal.ZERO);
 	private static ThreadLocal<BigDecimal> POADiscountAmount = ThreadLocal.withInitial(() -> BigDecimal.ZERO);
 	private static ThreadLocal<BigDecimal> TotalPOADiscountAmount = ThreadLocal.withInitial(() -> BigDecimal.ZERO);
-	private static ThreadLocal<String> EmpID = new ThreadLocal<>();
+	private static ThreadLocal<String> EmpID = ThreadLocal.withInitial(() -> null);
 	private static ThreadLocal<String> EmpFirstName = new ThreadLocal<>();
 	private static ThreadLocal<String> EmpLastName = new ThreadLocal<>();
 	private static ThreadLocal<String> EmpSalution = new ThreadLocal<>();

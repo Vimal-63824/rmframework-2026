@@ -374,11 +374,11 @@ public class PurchaseOrderPageLocators {
 	/** @locatorType Xpath */
 	public static final String PoServiceWithGrn = "//*[@id='ig_po_lineitems_ig_grid_vc']//table/tbody/tr/td[33]";
 	/** @locatorType Xpath */
-	public static final String PoseriviceWithGrnSelectedValues = "//*[@id='ig_po_lineitems_ig_grid_vc']//table/tbody/tr/td[33]//select[@data-testid='GRN_RQRD_FLAG']";
+	public static final String PoseriviceWithGrnSelectedValues = "//select[@data-testid='GRN_RQRD_FLAG']";
 	/** @locatorType Xpath */
 	public static final String OkButtonFwdForQcDocument = "//button[@data-testid='Entry']";
 	/** @locatorType Xpath */
-	public static final String SaleOrderDrillDown = "//table[contains(@aria-label,'ALL_SOCS_LN')]/tbody/tr[2]/td[9]";
+	public static final String SaleOrderDrillDown = "//table[@data-testid='H_Result_Data']/tbody/tr[2]/td[10]";
 
 	/** @locatorType Xpath */
 	public static final String CsQty(int i) {

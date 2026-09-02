@@ -656,7 +656,7 @@ public class ProductionOrderFunctions {
 		commonFunc.searchAndSelectValueInFilters(ProductionOrderLocators.CreateProdOrd_ItemLovbtn, Item);
 		logs.logging("INFO", "Item Selected in Prod Order: " + Item);
 		switchToCreateProductionOrderFrame();
-		commonPayrollFunc.addDetailInTableWithoutLovButton(ProductionOrderLocators.CreateProdOrd_OrderQntyInput,
+		commonFunc.verifyAddTableSpecs(ProductionOrderLocators.CreateProdOrd_OrderQntyInput,
 				ProductionOrderLocators.CreateProdOrd_OrderQntyInput, OrdQnty);
 		logs.logging("INFO", "Order Quantity Entered in Prod Order: " + OrdQnty);
 		webDB.switchToDefaultContent();
@@ -715,7 +715,7 @@ public class ProductionOrderFunctions {
 				commonFunc.searchAndSelectValueInFilters(ProductionOrderLocators.SoDesc, SoDesc);
 				logs.logging("INFO", "So Desc Entered in Prod Order: " + SoDesc);
 				switchToCreateProductionOrderFrame();
-				commonPayrollFunc.addDetailInTableWithoutLovButton(ProductionOrderLocators.CreateProdOrd_OrderQntyInput,
+				commonFunc.verifyAddTableSpecs(ProductionOrderLocators.CreateProdOrd_OrderQntyInput,
 						ProductionOrderLocators.CreateProdOrd_OrderQntyInput, OrdQnty);
 				logs.logging("INFO", "Order Quantity Entered in Prod Order: " + OrdQnty);
 				webDB.switchToDefaultContent();
@@ -2418,10 +2418,10 @@ public class ProductionOrderFunctions {
 	 * @param ProcessId
 	 */
 	private void fillProcSeqNoOprnNoAndProcessIdInRouting(String ProcessNo, String OprnNo, String ProcessId) {
-		commonPayrollFunc.addDetailInTableWithoutLovButton(ProductionOrderLocators.RoutingProcessSeqTableData(),
+		commonFunc.verifyAddTableSpecs(ProductionOrderLocators.RoutingProcessSeqTableData(),
 				ProductionOrderLocators.RoutingProcessSeqTableInput(), ProcessNo);
 		logs.logging("INFO", "Process No Entered: " + ProcessNo);
-		commonPayrollFunc.addDetailInTableWithoutLovButton(ProductionOrderLocators.RoutingOprnNoTableData(),
+		commonFunc.verifyAddTableSpecs(ProductionOrderLocators.RoutingOprnNoTableData(),
 				ProductionOrderLocators.RoutingOprnNoTableInput(), OprnNo);
 		logs.logging("INFO", "Oprn No Entered: " + OprnNo);
 		flag = webDB.waitForElement(ProductionOrderLocators.RoutingProcessTableData(), ElementType.Xpath);
@@ -2921,7 +2921,7 @@ public class ProductionOrderFunctions {
 					commonFunc.checkRefreshCellsDisappear();
 					String ReqQnty = webDB.getTextFromElement(ProductionOrderLocators.MRReqQntyTableData(),
 							ElementType.Xpath);
-//				commonPayrollFunc.addDetailInTableWithoutLovButton(ProductionOrderLocators.MRReqQntyTableData,
+//				commonFunc.verifyAddTableSpecs(ProductionOrderLocators.MRReqQntyTableData,
 //						ProductionOrderLocators.MRReqQntyTableInput, ReqQnty);
 					logs.logging("INFO", "Required Quantity Displayed: " + ReqQnty);
 				}
@@ -3029,10 +3029,10 @@ public class ProductionOrderFunctions {
 			webDB.clickAnElement(ProductionOrderLocators.ResourceGroupTableData(), ElementType.Xpath);
 			commonFunc.searchAndSelectValueInFilters(ProductionOrderLocators.ResourceGroupTableLovBtn(), Resource);
 			logs.logging("INFO", "Resource/Group Selected In Resources: " + Resource);
-			commonPayrollFunc.addDetailInTableWithoutLovButton(ProductionOrderLocators.ResourceDateTableData(),
+			commonFunc.verifyAddTableSpecs(ProductionOrderLocators.ResourceDateTableData(),
 					ProductionOrderLocators.ResourceDateTableInput(), Date);
 			logs.logging("INFO", "Date Entered In Resources: " + Date);
-			commonPayrollFunc.addDetailInTableWithoutLovButton(ProductionOrderLocators.ResourceEffTableData(),
+			commonFunc.verifyAddTableSpecs(ProductionOrderLocators.ResourceEffTableData(),
 					ProductionOrderLocators.ResourceEffTableInput(), EffPerc);
 			logs.logging("INFO", "Eff-% Entered In Resources: " + EffPerc);
 		}
@@ -3051,16 +3051,16 @@ public class ProductionOrderFunctions {
 	 */
 	private void fillSetupHrsMinsAndPriorityLagHrsInResourceTab(String SetupHrs, String SetupMins, String Priority,
 			String LagHrs) {
-		commonPayrollFunc.addDetailInTableWithoutLovButton(ProductionOrderLocators.ResourceSetupHrsTableData(),
+		commonFunc.verifyAddTableSpecs(ProductionOrderLocators.ResourceSetupHrsTableData(),
 				ProductionOrderLocators.ResourceSetupHrsTableInput(), SetupHrs);
 		logs.logging("INFO", "SetupHrs Entered In Resources: " + SetupHrs);
-		commonPayrollFunc.addDetailInTableWithoutLovButton(ProductionOrderLocators.ResourceSetupMinTableData(),
+		commonFunc.verifyAddTableSpecs(ProductionOrderLocators.ResourceSetupMinTableData(),
 				ProductionOrderLocators.ResourceSetupMinTableInput(), SetupMins);
 		logs.logging("INFO", "SetupMins Entered In Resources: " + SetupMins);
-		commonPayrollFunc.addDetailInTableWithoutLovButton(ProductionOrderLocators.ResourcePriorityTableData(),
+		commonFunc.verifyAddTableSpecs(ProductionOrderLocators.ResourcePriorityTableData(),
 				ProductionOrderLocators.ResourcePriorityTableInput(), Priority);
 		logs.logging("INFO", "Priority Entered In Resources: " + Priority);
-		commonPayrollFunc.addDetailInTableWithoutLovButton(ProductionOrderLocators.ResourceLagHrsTableData(),
+		commonFunc.verifyAddTableSpecs(ProductionOrderLocators.ResourceLagHrsTableData(),
 				ProductionOrderLocators.ResourceLagHrsTableInput(), LagHrs);
 		logs.logging("INFO", "LagHrs Entered In Resources: " + LagHrs);
 	}
@@ -3075,13 +3075,13 @@ public class ProductionOrderFunctions {
 	 * @param Sec
 	 */
 	private void fillHrsMinsAndSecInResourceTab(String Hrs, String Mins, String Sec) {
-		commonPayrollFunc.addDetailInTableWithoutLovButton(ProductionOrderLocators.ResourceHrsTableData(),
+		commonFunc.verifyAddTableSpecs(ProductionOrderLocators.ResourceHrsTableData(),
 				ProductionOrderLocators.ResourceHrsTableInput(), Hrs);
 		logs.logging("INFO", "Hrs Entered In Resources: " + Hrs);
-		commonPayrollFunc.addDetailInTableWithoutLovButton(ProductionOrderLocators.ResourceMinTableData(),
+		commonFunc.verifyAddTableSpecs(ProductionOrderLocators.ResourceMinTableData(),
 				ProductionOrderLocators.ResourceMinTableInput(), Mins);
 		logs.logging("INFO", "Mins Entered In Resources: " + Mins);
-		commonPayrollFunc.addDetailInTableWithoutLovButton(ProductionOrderLocators.ResourceSecTableData(),
+		commonFunc.verifyAddTableSpecs(ProductionOrderLocators.ResourceSecTableData(),
 				ProductionOrderLocators.ResourceSecTableInput(), Sec);
 		logs.logging("INFO", "Seconds Entered In Resources: " + Sec);
 	}

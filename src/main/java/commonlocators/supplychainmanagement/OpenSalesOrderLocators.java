@@ -49,19 +49,19 @@ public class OpenSalesOrderLocators {
 	/** @locatorType Xpath */
 	public static final String ItemLastLineDataLov = "(//table//tbody/tr[contains(@class,'a-GV-row')]/td[2])[1]//button";
 	/** @locatorType Xpath */
-	public static final String PriceLastLineData = "(//table//tbody/tr[contains(@class,'a-GV-row')]/td[6])[1]";
+	public static final String PriceLastLineData = "(//table//tbody/tr[contains(@class,'a-GV-row')]/td[7])[1]";
 	/** @locatorType Xpath */
 	public static final String PriceLastLineInput = "//input[@data-testid='SRCLN_PRICE']";
 	/** @locatorType Xpath */
-	public static final String MRPLastLineData = "(//table//tbody/tr[contains(@class,'a-GV-row')]/td[7])[1]";
+	public static final String MRPLastLineData = "(//table//tbody/tr[contains(@class,'a-GV-row')]/td[8])[1]";
 	/** @locatorType Xpath */
 	public static final String MRPLastLineInput = "//input[@data-testid='SRCLN_MRP_PRICE']";
 	/** @locatorType Xpath */
-	public static final String DiscountLastLineData = "(//table//tbody/tr[contains(@class,'a-GV-row')]/td[8])[1]";
+	public static final String DiscountLastLineData = "(//table//tbody/tr[contains(@class,'a-GV-row')]/td[9])[1]";
 	/** @locatorType Xpath */
 	public static final String DiscountLastLineInput = "//input[@data-testid='SRCLN_DISC_PCT']";
 	/** @locatorType Xpath */
-	public static final String HSNCodeLastLineData = "(//table//tbody/tr[contains(@class,'a-GV-row')]/td[9])[1]";
+	public static final String HSNCodeLastLineData = "(//table//tbody/tr[contains(@class,'a-GV-row')]/td[10])[1]";
 	/** @locatorType Xpath */
 	public static final String HSNCodeLastLineLovBtn = "//input[@data-testid='SRCLN_HSN_CODE']/following-sibling::button";
 	/** @locatorType Xpath */
@@ -115,12 +115,12 @@ public class OpenSalesOrderLocators {
 
 	/** @locatorType Xpath */
 	public static final String FindStatusTableWithDocNo(String Docno) {
-		return "//*[text()='" + Docno + "']/../../td[43]/div";
+		return "//*[text()='" + Docno + "']/../../td[22]/div";
 	}
 
 	/** @locatorType Xpath */
 	public static final String FindStatusTableWithText(String Docno) {
-		return "//*[text()='" + Docno + "']/../td[43]/div";
+		return "//*[text()='" + Docno + "']/../td[22]/div";
 	}
 
 	/** @locatorType Xpath */

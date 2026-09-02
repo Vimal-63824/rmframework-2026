@@ -231,12 +231,10 @@ public class EmployeeAdjustmentFunctions {
 	 * @param Amount
 	 */
 	private void fillTotalPeriodAndPeriodicAmountInAdjustment(String TotalPeriod, String Amount) {
-		commonPayrollFunctions.addDetailInTableWithoutLovButton(
-				EmployeeAdjustmentLocators.AdjustmentTableTotalPeriodData(),
+		commonFunc.verifyAddTableSpecs(EmployeeAdjustmentLocators.AdjustmentTableTotalPeriodData(),
 				EmployeeAdjustmentLocators.AdjustmentTableTotalPeriodInput(), TotalPeriod);
 		logs.logging("INFO", "Total Period Entered in Adjustment: " + TotalPeriod);
-		commonPayrollFunctions.addDetailInTableWithoutLovButton(
-				EmployeeAdjustmentLocators.AdjustmentTablePeriodicAmntData(),
+		commonFunc.verifyAddTableSpecs(EmployeeAdjustmentLocators.AdjustmentTablePeriodicAmntData(),
 				EmployeeAdjustmentLocators.AdjustmentTablePeriodicAmntInput(), Amount);
 		logs.logging("INFO", "Periodic Amount Entered in Adjustment: " + Amount);
 		webDB.pressTabKey();
@@ -335,7 +333,7 @@ public class EmployeeAdjustmentFunctions {
 				flag = webDB.selectDropDownByText(EmployeeAdjustmentLocators.AdjustmentTableProcessHoldSelect(),
 						ProcessType, ElementType.Xpath);
 				if (flag) {
-					commonFunc.checkRefreshCellsDisappear();
+					webDB.pressTabKey();
 					clickSaveIconInAdjustmentTable();
 					commonFunc.checkRefreshCellsDisappear();
 					flag = webDB.waitForElement(EmployeeAdjustmentLocators.AdjustmentTableProcessHoldData(),
@@ -404,20 +402,19 @@ public class EmployeeAdjustmentFunctions {
 	 * @author Sakthi-GWL
 	 */
 	private void clickSaveIconInAdjustmentTable() {
-		commonFunc.checkRefreshCellsDisappear();
 		flag = webDB.waitForElement(EmployeeAdjustmentLocators.AdjustmentSaveIcon, ElementType.Xpath);
 		if (flag) {
 			commonFunc.checkRefreshCellsDisappear();
-			webDB.scrollToAnElement(EmployeeAdjustmentLocators.AdjustmentSaveIcon, ElementType.Xpath);
 			webDB.moveToElement(EmployeeAdjustmentLocators.AdjustmentSaveIcon, ElementType.Xpath);
-			webDB.clickAnElement(EmployeeAdjustmentLocators.AdjustmentSaveIcon, ElementType.Xpath);
+			flag = webDB.javaScriptClickAnElement(EmployeeAdjustmentLocators.AdjustmentSaveIcon, ElementType.Xpath);
+			webDB.clickAnElementWithoutException(EmployeeAdjustmentLocators.AdjustmentSaveIcon, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
 			webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
 			if (flag) {
 				if (!webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
 					commonFunc.checkRefreshCellsDisappear();
 					webDB.moveToElement(EmployeeAdjustmentLocators.AdjustmentSaveIcon, ElementType.Xpath);
 					webDB.clickAnElement(EmployeeAdjustmentLocators.AdjustmentSaveIcon, ElementType.Xpath);
-					commonFunc.checkRefreshCellsDisappear();
 				}
 				logs.logging("INFO", "Adjustment table Save Icon Clicked Successfully");
 				commonFunc.checkSuccessToastMessageDisappear();
@@ -746,7 +743,7 @@ public class EmployeeAdjustmentFunctions {
 	 * @param Mode
 	 */
 	private void fillHeaderDetailsInEmployeeAdjustmentMigration(String Ref, String Mode) {
-		commonPayrollFunctions.addDetailInTableWithoutLovButton(EmployeeAdjustmentLocators.EmpAdjMigrationRefInput,
+		commonFunc.verifyAddTableSpecs(EmployeeAdjustmentLocators.EmpAdjMigrationRefInput,
 				EmployeeAdjustmentLocators.EmpAdjMigrationRefInput, Ref);
 		logs.logging("INFO", "Reference Entered in Employee Adjustment: " + Ref);
 		flag = webDB.waitForElement(EmployeeAdjustmentLocators.EmpAdjMigrationModeSelect, ElementType.Xpath);
@@ -921,15 +918,13 @@ public class EmployeeAdjustmentFunctions {
 	 * @param Ref
 	 */
 	private void fillHeaderDetailsInEmployeeAllowanceMigration(String DateFrom, String DateTo, String Ref) {
-		commonPayrollFunctions.addDetailInTableWithoutLovButton(
-				EmployeeAdjustmentLocators.EmpAllowanceMigrationDateFrom,
+		commonFunc.verifyAddTableSpecs(EmployeeAdjustmentLocators.EmpAllowanceMigrationDateFrom,
 				EmployeeAdjustmentLocators.EmpAllowanceMigrationDateFrom, DateFrom);
 		logs.logging("INFO", "Date From Entered in Employee Allowance: " + DateFrom);
-		commonPayrollFunctions.addDetailInTableWithoutLovButton(EmployeeAdjustmentLocators.EmpAllowanceMigrationDateTo,
+		commonFunc.verifyAddTableSpecs(EmployeeAdjustmentLocators.EmpAllowanceMigrationDateTo,
 				EmployeeAdjustmentLocators.EmpAllowanceMigrationDateTo, DateTo);
 		logs.logging("INFO", "Date To Entered in Employee Allowance: " + DateTo);
-		commonPayrollFunctions.addDetailInTableWithoutLovButton(
-				EmployeeAdjustmentLocators.EmpAllowanceMigrationRefInput,
+		commonFunc.verifyAddTableSpecs(EmployeeAdjustmentLocators.EmpAllowanceMigrationRefInput,
 				EmployeeAdjustmentLocators.EmpAllowanceMigrationRefInput, Ref);
 		logs.logging("INFO", "Reference Entered in Employee Allowance: " + Ref);
 		flag = webDB.waitForElement(EmployeeAdjustmentLocators.EmpAllowanceMigrationCreateSaveIcon, ElementType.Xpath);

@@ -2457,10 +2457,10 @@ public class CommonFunctions {
 	 */
 	public void navigateToSearchTab(String TabName, String PageLocators) {
 		// TODO will comment the hard script lines once loading issue resolved
-//		webDB.waitForElement("//a[@class='t-Header-logo-link']", ElementType.Xpath);
-//		webDB.clickAnElement("//a[@class='t-Header-logo-link']", ElementType.Xpath);
-//		checkRefreshCellsDisappear();
-//		webDB.waitForElement("//button[@id='INFO']", ElementType.Xpath);
+		webDB.waitForElement("//a[@class='t-Header-logo-link']", ElementType.Xpath);
+		webDB.clickAnElement("//a[@class='t-Header-logo-link']", ElementType.Xpath);
+		checkRefreshCellsDisappear();
+		webDB.waitForElement("//button[@id='INFO']", ElementType.Xpath);
 		webDB.waitForPageReady(20);
 		flag = webDB.waitForElement(CommonUiLocators.BusFunctionSearchBox, ElementType.Xpath);
 		if (flag) {
@@ -3501,5 +3501,18 @@ public class CommonFunctions {
 			logs.logging("INFO", "Verified Filter Removed Successfully");
 		}
 		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Is Used To Click Fully selected
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+	public void expandFindTable() {
+		if (webDB.getAttributeFromElement(CommonUiLocators.PendingPoShowMore, ElementType.Xpath, "aria-expanded")
+				.equals("false")) {
+			webDB.clickAnElement(CommonUiLocators.PendingPoShowMore, ElementType.Xpath);
+		} else {
+		}
 	}
 }

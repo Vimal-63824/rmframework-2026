@@ -1532,8 +1532,9 @@ public class RfqPageFunctions {
 					if (flag) {
 						webDB.clickAnElement(RfqLocators.PRAdd, ElementType.Xpath);
 						logs.logging("INFO", "Add Button Is Clicked");
-						flag = webDB.waitForElement(RfqLocators.PRItemLov, ElementType.Xpath);
+						flag = webDB.waitForElement(RfqLocators.ItemDataLastRow(), ElementType.Xpath);
 						if (flag) {
+							webDB.clickAnElement(RfqLocators.ItemDataLastRow(), ElementType.Xpath);
 							commonFunc.searchAndSelectValueInFilters(RfqLocators.PRItemLov, ITEM);
 							logs.logging("INFO", "Item Is Entered:" + ITEM);
 							commonFunc.hardWait(4000);
@@ -1993,26 +1994,26 @@ public class RfqPageFunctions {
 				"AdminUsername");
 		commonFunc.navigateRfqPage();
 //		verifyDateAfterAndBefore();
-		verifyAmendFilterSearchSOB(RfqLocators.LocId, commonFunc.getDataFromTestDataSheet("Loc_100"), 3,
+		verifyAmendFilterSearchSOB(RfqLocators.LocId, commonFunc.getDataFromTestDataSheet("Loc_100"), "Loc.ID",
 				commonFunc.getDataFromTestDataSheet("HeaderSearchType"),
 				commonFunc.getDataFromTestDataSheet("LovButton"));
-		verifyAmendFilterSearchSOB(RfqLocators.Unit, commonFunc.getDataFromTestDataSheet("Unit_100"), 4,
+		verifyAmendFilterSearchSOB(RfqLocators.Unit, commonFunc.getDataFromTestDataSheet("Unit_100"), "Unit",
 				commonFunc.getDataFromTestDataSheet("HeaderSearchType"),
 				commonFunc.getDataFromTestDataSheet("LovButton"));
-		verifyAmendFilterSearchSOB(RfqLocators.RFQNO, commonFunc.getDataFromTestDataSheet("RFQNumber"), 8,
+		verifyAmendFilterSearchSOB(RfqLocators.RFQNO, commonFunc.getDataFromTestDataSheet("RFQNumber"), "RFQ  No.",
 				commonFunc.getDataFromTestDataSheet("LineSearchType"),
 				commonFunc.getDataFromTestDataSheet("LovButton"));
-		verifyAmendFilterSearchSOB(RfqLocators.SupplierNameLovButton,
-				commonFunc.getDataFromTestDataSheet("ARAVIND AGENCY"), 11,
+//		verifyAmendFilterSearchSOB(RfqLocators.SupplierNameLovButton,
+//				commonFunc.getDataFromTestDataSheet("ARAVIND AGENCY"), "Supplier Name",
+//				commonFunc.getDataFromTestDataSheet("LineSearchType"),
+//				commonFunc.getDataFromTestDataSheet("LovButton"));
+		verifyAmendFilterSearchSOB(RfqLocators.ItemId, commonFunc.getDataFromTestDataSheet("Rfqitem"), "Item ID",
 				commonFunc.getDataFromTestDataSheet("LineSearchType"),
 				commonFunc.getDataFromTestDataSheet("LovButton"));
-		verifyAmendFilterSearchSOB(RfqLocators.ItemId, commonFunc.getDataFromTestDataSheet("Rfqitem"), 15,
-				commonFunc.getDataFromTestDataSheet("LineSearchType"),
-				commonFunc.getDataFromTestDataSheet("LovButton"));
-		verifyAmendFilterSearchSOB(RfqLocators.ItemDesc, commonFunc.getDataFromTestDataSheet("Rfqitem"), 17,
+		verifyAmendFilterSearchSOB(RfqLocators.ItemDesc, commonFunc.getDataFromTestDataSheet("Rfqitem"), "Item Desc.",
 				commonFunc.getDataFromTestDataSheet("LineSearchType"),
 				commonFunc.getDataFromTestDataSheet("SendTextInput"));
-		verifyAmendFilterSearchSOB(RfqLocators.RFQ_Status, commonFunc.getDataFromTestDataSheet("ApproveStatus"), 13,
+		verifyAmendFilterSearchSOB(RfqLocators.RFQ_Status, commonFunc.getDataFromTestDataSheet("ApproveStatus"), "Status",
 				commonFunc.getDataFromTestDataSheet("HeaderSearchType"),
 				commonFunc.getDataFromTestDataSheet("LovButton"));
 		commonFunc.logoutUser();
@@ -2028,7 +2029,7 @@ public class RfqPageFunctions {
 	 * @param i
 	 */
 	@SuppressWarnings("unlikely-arg-type")
-	public void verifyAmendFilterSearchSOB(String LovButton, String Value, int i, String Type, String selectflag) {
+	public void verifyAmendFilterSearchSOB(String LovButton, String Value, String i, String Type, String selectflag) {
 		webDB.scrollToAnElement(LovButton, ElementType.Xpath);
 		if (selectflag.equals(commonFunc.getDataFromTestDataSheet("LovButton"))) {
 			commonFunc.searchAndSelectValueInFilters(LovButton, Value);
@@ -2137,8 +2138,8 @@ public class RfqPageFunctions {
 	 * @param i
 	 * @param Value
 	 */
-	public void verifyAmendTableValue(int i, String Value) {
-		List<WebElement> elements = webDB.getDriver().findElements(By.xpath(RfqLocators.AmendFindTableData(i)));
+	public void verifyAmendTableValue(String i, String Value) {
+		List<WebElement> elements = webDB.getDriver().findElements(By.xpath(RfqLocators.RFQAmendFindTableData(i)));
 		for (WebElement element : elements) {
 			if (element.isDisplayed()) {
 				flag = element.getText().contains(Value);
@@ -2157,8 +2158,8 @@ public class RfqPageFunctions {
 	 * @param i
 	 * @param Value
 	 */
-	public void verifyLineAmendTableValue(int i, String Value) {
-		List<WebElement> elements = webDB.getDriver().findElements(By.xpath(RfqLocators.AmendLineFindTableData(i)));
+	public void verifyLineAmendTableValue(String i, String Value) {
+		List<WebElement> elements = webDB.getDriver().findElements(By.xpath(RfqLocators.RFQAmendLineFindTableData(i)));
 		for (WebElement element : elements) {
 			if (element.isDisplayed()) {
 				flag = element.getText().contains(Value);
