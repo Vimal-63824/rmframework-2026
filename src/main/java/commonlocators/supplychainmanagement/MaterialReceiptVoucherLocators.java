@@ -1,5 +1,7 @@
 package commonlocators.supplychainmanagement;
 
+import commonfunctions.CommonFunctions;
+
 /**
  * @author Deepan-GWL, Sakthi
  * @company Galaxy Weblinks Feburary 12, 2025
@@ -188,4 +190,20 @@ public class MaterialReceiptVoucherLocators {
 	public static final String Pending_TableShowMyRecordBtnClicked = "//button[@id='hid']";
 	/** @locatorType XPATH */
 	public static final String Pending_TableNoDataSelected = "//div[@id='PEND_data_panel']//div[@class='a-IRR-noDataMsg-icon']";
+	/** @locatorType XPATH */
+	public static final String ShowMore = "//span[text()='Show More']";
+	/** @locatorType Xpath */
+	public static final String MRVFindTableData(String i) {
+		return CommonFunctions.checkAndReturnLocatorForFindPageTable(MRVFindTable, i);
+	}
+
+	/** @locatorType Xpath */
+	public static final String MRVFindTable = "//table[@data-testid=\"H_Result_Data\"]/tbody/tr/th";
+	/** @locatorType Xpath */
+	public static final String MRVLineFindTable = "//table[@data-testid=\"L_Result_Data\"]/tbody/tr/th";
+
+	/** @locatorType Xpath */
+	public static final String MRVLineFindTableData(String i) {
+		return CommonFunctions.checkAndReturnLocatorForFindPageTable(MRVLineFindTable, i);
+	}
 }
