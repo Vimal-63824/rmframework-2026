@@ -1226,43 +1226,45 @@ public class MaterialReceiptVoucherFunctions {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToMaterialReceiptVoucherAdminUser();
+		commonFunc.checkRefreshCellsDisappear();
+		FindPageShowMore();
 		verifyDateAfterAndBefore();
 		verifyAmendFilterSearchSOB(MaterialReceiptVoucherLocators.LocId, commonFunc.getDataFromTestDataSheet("Loc_100"),
-				2, commonFunc.getDataFromTestDataSheet("HeaderSearchType"),
+				"Loc.ID", commonFunc.getDataFromTestDataSheet("HeaderSearchType"),
 				commonFunc.getDataFromTestDataSheet("LovButton"));
 		verifyAmendFilterSearchSOB(MaterialReceiptVoucherLocators.Unit, commonFunc.getDataFromTestDataSheet("Unit_100"),
-				3, commonFunc.getDataFromTestDataSheet("HeaderSearchType"),
+				"Unit", commonFunc.getDataFromTestDataSheet("HeaderSearchType"),
 				commonFunc.getDataFromTestDataSheet("LovButton"));
 		verifyAmendFilterSearchSOB(MaterialReceiptVoucherLocators.MRVNumber,
-				commonFunc.getDataFromTestDataSheet("MRVNumber"), 5,
+				commonFunc.getDataFromTestDataSheet("MRVNumber"), "MRV No.",
 				commonFunc.getDataFromTestDataSheet("LineSearchType"),
 				commonFunc.getDataFromTestDataSheet("LovButton"));
 		verifyAmendFilterSearchSOB(MaterialReceiptVoucherLocators.ProdordNumber,
-				commonFunc.getDataFromTestDataSheet("ProdNumber"), 20,
+				commonFunc.getDataFromTestDataSheet("ProdNumber"), "Prod. Ord. No.",
 				commonFunc.getDataFromTestDataSheet("LineSearchType"),
 				commonFunc.getDataFromTestDataSheet("LovButton"));
 		verifyAmendFilterSearchSOB(MaterialReceiptVoucherLocators.SourceVoucherNumber,
-				commonFunc.getDataFromTestDataSheet("GrnSourceVoucherNumber"), 30,
+				commonFunc.getDataFromTestDataSheet("GrnSourceVoucherNumber"), "Vou. No.",
 				commonFunc.getDataFromTestDataSheet("LineSearchType"),
 				commonFunc.getDataFromTestDataSheet("SendTextInput"));
 		verifyAmendFilterSearchSOB(MaterialReceiptVoucherLocators.ReceiverWHID,
-				commonFunc.getDataFromTestDataSheet("ReceiverWH"), 7,
+				commonFunc.getDataFromTestDataSheet("ReceiverWH"), "Receiver W/H ID",
 				commonFunc.getDataFromTestDataSheet("LineSearchType"),
 				commonFunc.getDataFromTestDataSheet("LovButton"));
 		verifyAmendFilterSearchSOB(MaterialReceiptVoucherLocators.ReceiverWHDesc,
-				commonFunc.getDataFromTestDataSheet("ReceiverWHDesc"), 8,
+				commonFunc.getDataFromTestDataSheet("ReceiverWHDesc"), "Receiver W/H Desc.",
 				commonFunc.getDataFromTestDataSheet("LineSearchType"),
 				commonFunc.getDataFromTestDataSheet("SendTextInput"));
 		verifyAmendFilterSearchSOB(MaterialReceiptVoucherLocators.ItemId,
-				commonFunc.getDataFromTestDataSheet("MrvItem"), 11,
+				commonFunc.getDataFromTestDataSheet("MrvItem"), "Item",
 				commonFunc.getDataFromTestDataSheet("LineSearchType"),
 				commonFunc.getDataFromTestDataSheet("LovButton"));
 		verifyAmendFilterSearchSOB(MaterialReceiptVoucherLocators.ItemDesc,
-				commonFunc.getDataFromTestDataSheet("MrvItemDesc"), 13,
+				commonFunc.getDataFromTestDataSheet("MrvItemDesc"), "Item Desc.",
 				commonFunc.getDataFromTestDataSheet("LineSearchType"),
 				commonFunc.getDataFromTestDataSheet("SendTextInput"));
 		verifyAmendFilterSearchSOB(MaterialReceiptVoucherLocators.MRVStatus,
-				commonFunc.getDataFromTestDataSheet("Issued"), 23,
+				commonFunc.getDataFromTestDataSheet("Issued"), "Status",
 				commonFunc.getDataFromTestDataSheet("HeaderSearchType"),
 				commonFunc.getDataFromTestDataSheet("SelectType"));
 		commonFunc.logoutUser();
@@ -1278,7 +1280,7 @@ public class MaterialReceiptVoucherFunctions {
 	 * @param i
 	 */
 	@SuppressWarnings("unlikely-arg-type")
-	public void verifyAmendFilterSearchSOB(String LovButton, String Value, int i, String Type, String selectflag) {
+	public void verifyAmendFilterSearchSOB(String LovButton, String Value, String i, String Type, String selectflag) {
 		webDB.scrollToAnElement(LovButton, ElementType.Xpath);
 		if (selectflag.equals(commonFunc.getDataFromTestDataSheet("LovButton"))) {
 			commonFunc.searchAndSelectValueInFilters(LovButton, Value);
@@ -1334,9 +1336,9 @@ public class MaterialReceiptVoucherFunctions {
 	 * @param i
 	 * @param Value
 	 */
-	public void verifyAmendTableValue(int i, String Value) {
+	public void verifyAmendTableValue(String i, String Value) {
 		List<WebElement> elements = webDB.getDriver()
-				.findElements(By.xpath(MaterialReceiptVoucherLocators.AmendFindTableData(i)));
+				.findElements(By.xpath(MaterialReceiptVoucherLocators.MRVFindTableData(i)));
 		for (WebElement element : elements) {
 			if (element.isDisplayed()) {
 				flag = element.getText().contains(Value);
@@ -1378,9 +1380,9 @@ public class MaterialReceiptVoucherFunctions {
 	 * @param i
 	 * @param Value
 	 */
-	public void verifyLineAmendTableValue(int i, String Value) {
+	public void verifyLineAmendTableValue(String i, String Value) {
 		List<WebElement> elements = webDB.getDriver()
-				.findElements(By.xpath(MaterialReceiptVoucherLocators.AmendLineFindTableData(i)));
+				.findElements(By.xpath(MaterialReceiptVoucherLocators.MRVLineFindTableData(i)));
 		for (WebElement element : elements) {
 			if (element.isDisplayed()) {
 				flag = element.getText().contains(Value);
@@ -1594,6 +1596,25 @@ public class MaterialReceiptVoucherFunctions {
 					logs.logging("INFO", "Expected Status: " + ExpectedStatus);
 					logs.logging("INFO", "Verified Status ,Displayed Status: " + Status);
 				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Is Used To Post With or Without Locator Item
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+	public void findPageShowMore() {
+
+		flag = webDB.waitForElement(MaterialReceiptVoucherLocators.ShowMore, ElementType.Xpath);
+		if (flag) {
+			logs.logging("INFO", "Show More Button Is Displayed");
+			webDB.clickAnElement(MaterialReceiptVoucherLocators.ShowMore, ElementType.Xpath);
+			if (flag) {
+				flag = webDB.waitForElement(MaterialReceiptVoucherLocators.ItemId, ElementType.Xpath);
+				logs.logging("INFO", "MRV Document Find Page Show More Successfully Clicked");
 			}
 		}
 		assertTrue(flag);
