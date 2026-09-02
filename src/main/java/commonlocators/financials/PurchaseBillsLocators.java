@@ -16,7 +16,7 @@ public class PurchaseBillsLocators {
 	public static final String SearchButton = "//button[@data-testid='SearchGRN']";
 
 	/** @locatorType Xpath */
-	public static final String CheckBox = "(//div[@id='PEND_data_panel']//table)[2]/tbody/tr[2]//input[@type='checkbox']";
+	public static final String CheckBox = "(//div[@id='PEND_data_panel']//table)[1]/tbody/tr[2]//input[@type='checkbox']";
 
 	/** @locatorType Xpath */
 	public static final String CreateDoc = "//button[@data-testid='CreateDoc']";
@@ -117,7 +117,7 @@ public class PurchaseBillsLocators {
 	/** @locatorType Xpath */
 	public static final String WfOkButtton = "//button[@data-testid='OK']";
 	/** @locatorType Xpath */
-	public static final String gstClafField = "//*[@id='report_2503611658793812565_catch']/dl/dt[12]";
+	public static final String gstClafField = "//*[@id='report_2579044485620771825_catch']/dl/dd[12]";
 	/** @locatorType Xpath */
 	public static final String SideScroll = "//button[@id='t_Button_rightControlButton']";
 	/** @locatorType Xpath */
@@ -229,7 +229,7 @@ public class PurchaseBillsLocators {
 	/** @locatorType Xpath */
 	public static final String SearchButtonGetDoc = "//button[@data-testid='SearchPO']";
 	/** @locatorType Xpath */
-	public static final String CheckBoxPendingPo = "//table[@id='3862897427491378857']/tbody/tr[2]/td[13]";
+	public static final String CheckBoxPendingPo = "(//div[@id='PEND_data_panel']//table/tbody/tr/td)[13]//input[@type='checkbox']";
 	/** @locatorType Xpath */
 	public static final String OkButtonPendingPO = "//button[@data-testid='OK']";
 	/** @locatorType Xpath */
@@ -377,28 +377,30 @@ public class PurchaseBillsLocators {
 	public static final String Pending_Prefix_Lov_button = "//input[contains(@data-testid,'INV_PFX')]/following-sibling::button";
 	
 	/** @locatorType Xpath */
+	public static final String GlAccDescField1  = "//input[contains(@data-testid,'INV_PFX')]/following-sibling::button";
+	/** @locatorType Xpath */
 	public static final String PurchaseBillsTransLoc() {
-		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(GlAccDescField, "GL Acct. Desc.");
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(GlAccDescField1, "GL Acct. Desc.");
 	}
 	
 	/** @locatorType Xpath */
 	public static final String PurchaseBillsTransLocunitprice() {
-		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(GlAccDescField, "Unit Cost");
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(GlAccDescField1, "Unit Cost");
 	}
 	
 	/** @locatorType Xpath */
 	public static final String PurchaseBillsTransLocHsnCode() {
-		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(GlAccDescField, "HSN/SAC Code");
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(GlAccDescField1, "HSN/SAC Code");
 	}
 
 	/** @locatorType Xpath */
 	public static final String PurchaseBillsTransLocGstType() {
-		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(GlAccDescField, "Type");
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(GlAccDescField1, "Type");
 	}
 	
 	/** @locatorType Xpath */
 	public static final String PurchaseBillsTransLocGstInelSection() {
-		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(GlAccDescField, "Inel. Section");
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(GlAccDescField1, "Inel. Section");
 	}
 
 }

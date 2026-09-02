@@ -692,9 +692,12 @@ public class PurchaseBillsFunctions {
 			}
 			commonFunc.hardWait(2000);
 			commonFunc.checkRefreshCellsDisappear();
-			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getScoPurchaseNumber(),
-					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HariUsername"));
+			if (!VariableHandler.getApprovalFlag()) {
+				approvalPageFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
+				commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPONumber(),
+						webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+						System.getProperty("HariUsername"));
+			}
 			assertTrue(flag);
 		} else {
 			flag = false;
@@ -2042,10 +2045,12 @@ public class PurchaseBillsFunctions {
 		}
 		commonFunc.hardWait(3000);
 		POfunc.verifyHeaderTickAndPost();
-		POfunc.waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPONumber(),
-				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HariUsername"));
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalPageFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPONumber(),
+					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
+		}
 		flag = commonFunc.logoutUser();
 		assertTrue(flag);
 	}
@@ -2095,10 +2100,12 @@ public class PurchaseBillsFunctions {
 		}
 		commonFunc.hardWait(3000);
 		POfunc.verifyHeaderTickAndPost();
-		POfunc.waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPONumber(),
-				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HariUsername"));
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalPageFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPONumber(),
+					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
+		}
 		flag = commonFunc.logoutUser();
 		commonFunc.checkRefreshCellsDisappear();
 		assertTrue(flag);
@@ -2149,10 +2156,12 @@ public class PurchaseBillsFunctions {
 		}
 		commonFunc.hardWait(3000);
 		POfunc.verifyHeaderTickAndPost();
-		POfunc.waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPONumber(),
-				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HariUsername"));
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalPageFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPONumber(),
+					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
+		}
 		flag = commonFunc.logoutUser();
 		assertTrue(flag);
 	}
@@ -2202,10 +2211,12 @@ public class PurchaseBillsFunctions {
 		}
 		commonFunc.hardWait(3000);
 		POfunc.verifyHeaderTickAndPost();
-		POfunc.waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPONumber(),
-				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HariUsername"));
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalPageFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPONumber(),
+					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
+		}
 		flag = commonFunc.logoutUser();
 		assertTrue(flag);
 	}
@@ -2255,10 +2266,12 @@ public class PurchaseBillsFunctions {
 		}
 		commonFunc.hardWait(3000);
 		POfunc.verifyHeaderTickAndPost();
-		POfunc.waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPONumber(),
-				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HariUsername"));
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalPageFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPONumber(),
+					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
+		}
 		flag = commonFunc.logoutUser();
 		assertTrue(flag);
 	}
@@ -2308,10 +2321,12 @@ public class PurchaseBillsFunctions {
 		}
 		commonFunc.hardWait(3000);
 		POfunc.verifyHeaderTickAndPost();
-		POfunc.waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPONumber(),
-				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HariUsername"));
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalPageFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPONumber(),
+					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
+		}
 //		flag = commonFunc.logoutUser();
 		assertTrue(flag);
 	}
