@@ -794,6 +794,7 @@ public class MRPFunctions {
 			commonFunc.checkDiscountInLineDetails(SalesOrderLocators.SOSpecialDiscountAssblValue,
 					SalesOrderLocators.SOSpecialDiscountpercentageField,
 					SalesOrderLocators.SOSpecialDiscountAmountField, RandomStringUtils.randomNumeric(1));
+			commonFunc.checkRefreshCellsDisappear();
 			commonFunc.checkDiscountInLineDetails(SalesOrderLocators.SOCashDiscountAssblValue,
 					SalesOrderLocators.SOCashDiscountpercentageField, SalesOrderLocators.SOCashDiscountAmountField,
 					RandomStringUtils.randomNumeric(1));
