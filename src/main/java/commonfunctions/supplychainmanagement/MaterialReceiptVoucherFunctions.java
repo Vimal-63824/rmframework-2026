@@ -1227,7 +1227,7 @@ public class MaterialReceiptVoucherFunctions {
 				"AdminUsername");
 		commonFunc.navigateToMaterialReceiptVoucherAdminUser();
 		commonFunc.checkRefreshCellsDisappear();
-		FindPageShowMore();
+		findPageShowMore();
 		verifyDateAfterAndBefore();
 		verifyAmendFilterSearchSOB(MaterialReceiptVoucherLocators.LocId, commonFunc.getDataFromTestDataSheet("Loc_100"),
 				"Loc.ID", commonFunc.getDataFromTestDataSheet("HeaderSearchType"),
