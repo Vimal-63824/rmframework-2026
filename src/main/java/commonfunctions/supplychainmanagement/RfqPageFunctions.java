@@ -1532,8 +1532,9 @@ public class RfqPageFunctions {
 					if (flag) {
 						webDB.clickAnElement(RfqLocators.PRAdd, ElementType.Xpath);
 						logs.logging("INFO", "Add Button Is Clicked");
-						flag = webDB.waitForElement(RfqLocators.PRItemLov, ElementType.Xpath);
+						flag = webDB.waitForElement(RfqLocators.ItemDataLastRow(), ElementType.Xpath);
 						if (flag) {
+							webDB.clickAnElement(RfqLocators.ItemDataLastRow(), ElementType.Xpath);
 							commonFunc.searchAndSelectValueInFilters(RfqLocators.PRItemLov, ITEM);
 							logs.logging("INFO", "Item Is Entered:" + ITEM);
 							commonFunc.hardWait(4000);

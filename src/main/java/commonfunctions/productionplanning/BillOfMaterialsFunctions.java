@@ -129,7 +129,7 @@ public class BillOfMaterialsFunctions {
 			commonFunc.searchAndSelectValueInFilters(BillOfMaterialsLocators.CreateBOM_UnitLovBtn, Unit);
 			logs.logging("INFO", "Unit Selected: " + Unit);
 			switchToCreateBOMIframe();
-			commonPayrollFunc.addDetailInTableWithoutLovButton(BillOfMaterialsLocators.CreateBOM_BOMNameInput,
+			commonFunc.verifyAddTableSpecs(BillOfMaterialsLocators.CreateBOM_BOMNameInput,
 					BillOfMaterialsLocators.CreateBOM_BOMNameInput, BOMName);
 			logs.logging("INFO", "BOM Name Entered: " + BOMName);
 			commonFunc.searchAndSelectValueInFilters(BillOfMaterialsLocators.CreateBOM_ItemLovBtn, Item);
@@ -162,10 +162,10 @@ public class BillOfMaterialsFunctions {
 	 * @param toDate
 	 */
 	public void enterEffFromToDateAndSaveHeader(String fromDate, String toDate) {
-		commonPayrollFunc.addDetailInTableWithoutLovButton(BillOfMaterialsLocators.CreateBOM_EffFromInput,
+		commonFunc.verifyAddTableSpecs(BillOfMaterialsLocators.CreateBOM_EffFromInput,
 				BillOfMaterialsLocators.CreateBOM_EffFromInput, fromDate);
 		logs.logging("INFO", "Effective From Date Selected: " + fromDate);
-		commonPayrollFunc.addDetailInTableWithoutLovButton(BillOfMaterialsLocators.CreateBOM_EffToInput,
+		commonFunc.verifyAddTableSpecs(BillOfMaterialsLocators.CreateBOM_EffToInput,
 				BillOfMaterialsLocators.CreateBOM_EffToInput, toDate);
 		logs.logging("INFO", "Effective To Date Selected: " + toDate);
 		flag = webDB.waitForElement(BillOfMaterialsLocators.BOMSaveHeaderIcon, ElementType.Xpath);
@@ -301,10 +301,10 @@ public class BillOfMaterialsFunctions {
 	 * @param ProcessId
 	 */
 	public void fillProcSeqNoOprnNoAndProcessIdInRouting(String ProcessNo, String OprnNo, String ProcessId) {
-		commonPayrollFunc.addDetailInTableWithoutLovButton(BillOfMaterialsLocators.RoutingProcSeqNoData(),
+		commonFunc.verifyAddTableSpecs(BillOfMaterialsLocators.RoutingProcSeqNoData(),
 				BillOfMaterialsLocators.RoutingProcSeqNoInput(), ProcessNo);
 		logs.logging("INFO", "Process No Entered: " + ProcessNo);
-		commonPayrollFunc.addDetailInTableWithoutLovButton(BillOfMaterialsLocators.RoutingOprnNoData(),
+		commonFunc.verifyAddTableSpecs(BillOfMaterialsLocators.RoutingOprnNoData(),
 				BillOfMaterialsLocators.RoutingOprnNoInput(), OprnNo);
 		logs.logging("INFO", "Oprn No Entered: " + OprnNo);
 		flag = webDB.waitForElement(BillOfMaterialsLocators.RoutingProcessIdData(), ElementType.Xpath);
@@ -505,10 +505,10 @@ public class BillOfMaterialsFunctions {
 	 * @param WH
 	 */
 	public void fillReqQntyConvFactorAndSourceWHInMaterial(String ReqQnty, String ConvFac, String WH) {
-		commonPayrollFunc.addDetailInTableWithoutLovButton(BillOfMaterialsLocators.MaterialRequestQntyData(),
+		commonFunc.verifyAddTableSpecs(BillOfMaterialsLocators.MaterialRequestQntyData(),
 				BillOfMaterialsLocators.MaterialRequestQntyInput(), ReqQnty);
 		logs.logging("INFO", "Request Quantity Enterted in Material: " + ReqQnty);
-		commonPayrollFunc.addDetailInTableWithoutLovButton(BillOfMaterialsLocators.MaterialConventionFactorData(),
+		commonFunc.verifyAddTableSpecs(BillOfMaterialsLocators.MaterialConventionFactorData(),
 				BillOfMaterialsLocators.MaterialConventionFactorInput(), ConvFac);
 		logs.logging("INFO", "Convention Factor Enterted in Material: " + ConvFac);
 		flag = webDB.waitForElement(BillOfMaterialsLocators.MaterialSourceWHData(), ElementType.Xpath);
@@ -588,7 +588,7 @@ public class BillOfMaterialsFunctions {
 	 * @param ProcessId
 	 */
 	public void fillLineSnoAndProcessIdInBORTab(String LineSno, String ProcessId) {
-		commonPayrollFunc.addDetailInTableWithoutLovButton(BillOfMaterialsLocators.BORLineSnoData(),
+		commonFunc.verifyAddTableSpecs(BillOfMaterialsLocators.BORLineSnoData(),
 				BillOfMaterialsLocators.BORLineSnoInput(), LineSno);
 		logs.logging("INFO", "Line Sno Entered: " + LineSno);
 		flag = webDB.waitForElement(BillOfMaterialsLocators.BORProcessIdData(), ElementType.Xpath);
@@ -639,11 +639,11 @@ public class BillOfMaterialsFunctions {
 	 * @param LotQnty
 	 */
 	public void fillSetupHrsMinAndSetupLotQntyInBORTab(String Hrs, String Min, String LotQnty) {
-		commonPayrollFunc.addDetailInTableWithoutLovButton(BillOfMaterialsLocators.BORSetupHrsData(),
+		commonFunc.verifyAddTableSpecs(BillOfMaterialsLocators.BORSetupHrsData(),
 				BillOfMaterialsLocators.BORSetupHrsInput(), Hrs);
-		commonPayrollFunc.addDetailInTableWithoutLovButton(BillOfMaterialsLocators.BORSetupMinsData(),
+		commonFunc.verifyAddTableSpecs(BillOfMaterialsLocators.BORSetupMinsData(),
 				BillOfMaterialsLocators.BORSetupMinsInput(), Min);
-		commonPayrollFunc.addDetailInTableWithoutLovButton(BillOfMaterialsLocators.BORSetupLotQntyData(),
+		commonFunc.verifyAddTableSpecs(BillOfMaterialsLocators.BORSetupLotQntyData(),
 				BillOfMaterialsLocators.BORSetupLotQntyInput(), LotQnty);
 	}
 
@@ -658,13 +658,13 @@ public class BillOfMaterialsFunctions {
 	 * @param Sec
 	 */
 	public void fillCycleTimeUnitOrHrsMinAndSecInBORTab(String TimeUnit, String Hrs, String Mins, String Sec) {
-		commonPayrollFunc.addDetailInTableWithoutLovButton(BillOfMaterialsLocators.BORCycleTimeUnitPerHourData(),
+		commonFunc.verifyAddTableSpecs(BillOfMaterialsLocators.BORCycleTimeUnitPerHourData(),
 				BillOfMaterialsLocators.BORCycleTimeUnitPerHourInput(), TimeUnit);
-		commonPayrollFunc.addDetailInTableWithoutLovButton(BillOfMaterialsLocators.BORCycleTimeHourData(),
+		commonFunc.verifyAddTableSpecs(BillOfMaterialsLocators.BORCycleTimeHourData(),
 				BillOfMaterialsLocators.BORCycleTimeHourInput(), Hrs);
-		commonPayrollFunc.addDetailInTableWithoutLovButton(BillOfMaterialsLocators.BORCycleTimeMinData(),
+		commonFunc.verifyAddTableSpecs(BillOfMaterialsLocators.BORCycleTimeMinData(),
 				BillOfMaterialsLocators.BORCycleTimeMinInput(), Mins);
-		commonPayrollFunc.addDetailInTableWithoutLovButton(BillOfMaterialsLocators.BORCycleTimeSecData(),
+		commonFunc.verifyAddTableSpecs(BillOfMaterialsLocators.BORCycleTimeSecData(),
 				BillOfMaterialsLocators.BORCycleTimeSecInput(), Sec);
 	}
 
@@ -677,9 +677,9 @@ public class BillOfMaterialsFunctions {
 	 * @param BatchHrs
 	 */
 	public void fillCycleTimeBatchQntyAndHrsInBORTab(String BatchQnty, String BatchHrs) {
-		commonPayrollFunc.addDetailInTableWithoutLovButton(BillOfMaterialsLocators.BORCycleTimeBatchQntyData(),
+		commonFunc.verifyAddTableSpecs(BillOfMaterialsLocators.BORCycleTimeBatchQntyData(),
 				BillOfMaterialsLocators.BORCycleTimeBatchQntyInput(), BatchQnty);
-		commonPayrollFunc.addDetailInTableWithoutLovButton(BillOfMaterialsLocators.BORCycleTimeBatchHrsData(),
+		commonFunc.verifyAddTableSpecs(BillOfMaterialsLocators.BORCycleTimeBatchHrsData(),
 				BillOfMaterialsLocators.BORCycleTimeBatchHrsInput(), BatchHrs);
 	}
 
@@ -692,11 +692,11 @@ public class BillOfMaterialsFunctions {
 	 * @param NoOfUnit
 	 */
 	public void fillLagPriorityAndNoOfUnitsInBORTab(String Lag, String Priority, String NoOfUnit) {
-		commonPayrollFunc.addDetailInTableWithoutLovButton(BillOfMaterialsLocators.BORLagHrsData(),
+		commonFunc.verifyAddTableSpecs(BillOfMaterialsLocators.BORLagHrsData(),
 				BillOfMaterialsLocators.BORLagHrsInput(), Lag);
-		commonPayrollFunc.addDetailInTableWithoutLovButton(BillOfMaterialsLocators.BORPriorityData(),
+		commonFunc.verifyAddTableSpecs(BillOfMaterialsLocators.BORPriorityData(),
 				BillOfMaterialsLocators.BORPriorityInput(), Priority);
-		commonPayrollFunc.addDetailInTableWithoutLovButton(BillOfMaterialsLocators.BORNoOfUnitsData(),
+		commonFunc.verifyAddTableSpecs(BillOfMaterialsLocators.BORNoOfUnitsData(),
 				BillOfMaterialsLocators.BORNoOfUnitsInput(), NoOfUnit);
 	}
 
@@ -768,7 +768,7 @@ public class BillOfMaterialsFunctions {
 	 * @param Item
 	 */
 	public void fillLineSnoProcessDescAndItemInScrapProductTab(String LineSno, String Process, String Item) {
-		commonPayrollFunc.addDetailInTableWithoutLovButton(BillOfMaterialsLocators.ScrapProductLineSnoData,
+		commonFunc.verifyAddTableSpecs(BillOfMaterialsLocators.ScrapProductLineSnoData,
 				BillOfMaterialsLocators.ScrapProductLineSnoInput, LineSno);
 		logs.logging("INFO", "Line Sno Entered: " + LineSno);
 		flag = webDB.waitForElement(BillOfMaterialsLocators.ScrapProductProcessDescData, ElementType.Xpath);
@@ -795,7 +795,7 @@ public class BillOfMaterialsFunctions {
 	 * @param QntyWeight
 	 */
 	public void fillWarehouseAndQntyWeightInScrapProductTab(String WH, String QntyWeight) {
-		commonPayrollFunc.addDetailInTableWithoutLovButton(BillOfMaterialsLocators.ScrapProductQntyWeightData,
+		commonFunc.verifyAddTableSpecs(BillOfMaterialsLocators.ScrapProductQntyWeightData,
 				BillOfMaterialsLocators.ScrapProductQntyWeightInput, QntyWeight);
 		logs.logging("INFO", "Quantity Weight Entered: " + QntyWeight);
 		flag = webDB.waitForElement(BillOfMaterialsLocators.ScrapProductWarehouseData, ElementType.Xpath);
@@ -1193,10 +1193,10 @@ public class BillOfMaterialsFunctions {
 			flag = webDB.sendTextToAnElement(BillOfMaterialsLocators.CreRevisionRefInput, Ref, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Reference Entered in Cre. Revision: " + Ref);
-				commonPayrollFunc.addDetailInTableWithoutLovButton(BillOfMaterialsLocators.CreRevisionEffFromInput,
+				commonFunc.verifyAddTableSpecs(BillOfMaterialsLocators.CreRevisionEffFromInput,
 						BillOfMaterialsLocators.CreRevisionEffFromInput, effFrom);
 				logs.logging("INFO", "Effective From Date Entered: " + effFrom);
-				commonPayrollFunc.addDetailInTableWithoutLovButton(BillOfMaterialsLocators.CreRevisionEffToInput,
+				commonFunc.verifyAddTableSpecs(BillOfMaterialsLocators.CreRevisionEffToInput,
 						BillOfMaterialsLocators.CreRevisionEffToInput, effTo);
 				logs.logging("INFO", "Effective To Date Entered: " + effTo);
 				flag = webDB.waitForElement(BillOfMaterialsLocators.CreRevisionTickIcon, ElementType.Xpath);
@@ -1240,10 +1240,10 @@ public class BillOfMaterialsFunctions {
 			webDB.clickAnElement(BillOfMaterialsLocators.CopyBOMBtn, ElementType.Xpath);
 			switchToCopyBOMFrameInBOM();
 			logs.logging("INFO", "Copy BOM Button Clicked");
-			commonPayrollFunc.addDetailInTableWithoutLovButton(BillOfMaterialsLocators.CopyBOMEffFromInput,
+			commonFunc.verifyAddTableSpecs(BillOfMaterialsLocators.CopyBOMEffFromInput,
 					BillOfMaterialsLocators.CopyBOMEffFromInput, effFrom);
 			logs.logging("INFO", "Effective From Date Entered: " + effFrom);
-			commonPayrollFunc.addDetailInTableWithoutLovButton(BillOfMaterialsLocators.CopyBOMEffToInput,
+			commonFunc.verifyAddTableSpecs(BillOfMaterialsLocators.CopyBOMEffToInput,
 					BillOfMaterialsLocators.CopyBOMEffToInput, effTo);
 			logs.logging("INFO", "Effective To Date Entered: " + effTo);
 			commonFunc.searchAndSelectValueInFilters(BillOfMaterialsLocators.CopyBOMItemLovBtn, Item);

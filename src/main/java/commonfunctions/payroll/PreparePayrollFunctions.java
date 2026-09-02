@@ -38,7 +38,7 @@ public class PreparePayrollFunctions {
 	 * 
 	 * @author Sakthi-GWL
 	 */
-	private void clickAddIconInPreparePayroll() {
+	public void clickAddIconInPreparePayroll() {
 		flag = webDB.waitForElement(PreparePayrollLocators.PreparePayrollAddIcon, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(PreparePayrollLocators.PreparePayrollAddIcon, ElementType.Xpath);
@@ -59,14 +59,14 @@ public class PreparePayrollFunctions {
 	 * @param Period
 	 * @param Narration
 	 */
-	private void fillCreationFormInPreparePayroll(String Calendar, String Year, String Period, String Narration) {
+	public void fillCreationFormInPreparePayroll(String Calendar, String Year, String Period, String Narration) {
 		commonFunc.searchAndSelectValueInFilters(PreparePayrollLocators.CreatePayrollCalendarLovBtn, Calendar);
 		logs.logging("INFO", "Calendar Selected in Prepare Payroll: " + Calendar);
 		commonFunc.searchAndSelectValueInFilters(PreparePayrollLocators.CreatePayrollYearLovBtn, Year);
 		logs.logging("INFO", "Year Selected in Prepare Payroll: " + Year);
 		commonFunc.searchAndSelectValueInFilters(PreparePayrollLocators.CreatePayrollPeriodLovBtn, Period);
 		logs.logging("INFO", "Period Selected in Prepare Payroll: " + Period);
-		commonPayrollFunctions.addDetailInTableWithoutLovButton(PreparePayrollLocators.CreatePayrollNarrationInput,
+		commonFunc.verifyAddTableSpecs(PreparePayrollLocators.CreatePayrollNarrationInput,
 				PreparePayrollLocators.CreatePayrollNarrationInput, Narration);
 		logs.logging("INFO", "Narration Entered in Prepare Payroll: " + Narration);
 		flag = webDB.waitForElement(PreparePayrollLocators.CreatePayrollTickIcon, ElementType.Xpath);
@@ -100,7 +100,7 @@ public class PreparePayrollFunctions {
 	 * 
 	 * @author Sakthi-GWL
 	 */
-	private void clickLoadUnitGroupInPreparePayroll() {
+	public void clickLoadUnitGroupInPreparePayroll() {
 		flag = webDB.waitForElement(PreparePayrollLocators.LoadUnitGroupBtn, ElementType.Xpath);
 		if (flag) {
 			webDB.moveToElement(PreparePayrollLocators.LoadUnitGroupBtn, ElementType.Xpath);
@@ -122,7 +122,7 @@ public class PreparePayrollFunctions {
 	 * 
 	 * @author Sakthi-GWL
 	 */
-	private void clickUnloadUnitGroupInPreparePayroll() {
+	public void clickUnloadUnitGroupInPreparePayroll() {
 		commonFunc.checkSuccessToastMessageDisappear();
 		flag = webDB.waitForElement(PreparePayrollLocators.UnloadUnitGroupBtn, ElementType.Xpath);
 		if (flag) {
@@ -145,7 +145,7 @@ public class PreparePayrollFunctions {
 	 * 
 	 * @author Sakthi-GWL
 	 */
-	private void clickUnitGroupLabelInPreparePayroll() {
+	public void clickUnitGroupLabelInPreparePayroll() {
 		flag = webDB.waitForElement(PreparePayrollLocators.UnitGroupLabel, ElementType.Xpath);
 		if (flag) {
 			webDB.moveToElement(PreparePayrollLocators.UnitGroupLabel, ElementType.Xpath);
@@ -164,7 +164,7 @@ public class PreparePayrollFunctions {
 	 * @author Sakthi-GWL
 	 * @param Name
 	 */
-	private void unselectUnitAndGroupWithNameInLoadPayroll(String Name) {
+	public void unselectUnitAndGroupWithNameInLoadPayroll(String Name) {
 		flag = webDB.waitForElement(PreparePayrollLocators.UnitGroupCheckBoxInput(Name), ElementType.Xpath);
 		if (flag) {
 			if (webDB.isElementSelected(PreparePayrollLocators.UnitGroupCheckBoxInput(Name), ElementType.Xpath)) {
@@ -183,7 +183,7 @@ public class PreparePayrollFunctions {
 	 * @author Sakthi-GWL
 	 * @param Name
 	 */
-	private void selectUnitAndGroupWithNameInLoadPayroll(String Name) {
+	public void selectUnitAndGroupWithNameInLoadPayroll(String Name) {
 		flag = webDB.waitForElement(PreparePayrollLocators.UnitGroupCheckBoxInput(Name), ElementType.Xpath);
 		if (flag) {
 			if (!webDB.isElementSelected(PreparePayrollLocators.UnitGroupCheckBoxInput(Name), ElementType.Xpath)) {
@@ -201,7 +201,7 @@ public class PreparePayrollFunctions {
 	 * 
 	 * @author Sakthi-GWL
 	 */
-	private void clickLoadEmployeeInPreparePayroll() {
+	public void clickLoadEmployeeInPreparePayroll() {
 		flag = webDB.waitForElement(PreparePayrollLocators.LoadEmployeeBtn, ElementType.Xpath);
 		if (flag) {
 			webDB.moveToElement(PreparePayrollLocators.LoadEmployeeBtn, ElementType.Xpath);
@@ -220,7 +220,7 @@ public class PreparePayrollFunctions {
 	 * 
 	 * @author Sakthi-GWL
 	 */
-	private void clickUnloadEmployeeInPreparePayroll() {
+	public void clickUnloadEmployeeInPreparePayroll() {
 		flag = webDB.waitForElement(PreparePayrollLocators.UnloadEmployeeBtn, ElementType.Xpath);
 		if (flag) {
 			webDB.moveToElement(PreparePayrollLocators.UnloadEmployeeBtn, ElementType.Xpath);
@@ -239,7 +239,7 @@ public class PreparePayrollFunctions {
 	 * 
 	 * @author Sakthi-GWL
 	 */
-	private void clickEmployeeLabelInPreparePayroll() {
+	public void clickEmployeeLabelInPreparePayroll() {
 		flag = webDB.waitForElement(PreparePayrollLocators.EmployeeLabel, ElementType.Xpath);
 		if (flag) {
 			webDB.moveToElement(PreparePayrollLocators.EmployeeLabel, ElementType.Xpath);
@@ -259,7 +259,7 @@ public class PreparePayrollFunctions {
 	 * @author Sakthi-GWL
 	 * @param EmpId
 	 */
-	private void unSelectedAllAndSearchAndSelectEmployee(String EmpId) {
+	public void unSelectedAllAndSearchAndSelectEmployee(String EmpId) {
 		flag = webDB.waitForElement(PreparePayrollLocators.AllEmployeeCheckBoxInput, ElementType.Xpath);
 		if (flag) {
 			webDB.moveToElement(PreparePayrollLocators.AllEmployeeCheckBoxInput, ElementType.Xpath);
@@ -289,7 +289,7 @@ public class PreparePayrollFunctions {
 	 * @author Sakthi-GWL
 	 * @param Name
 	 */
-	private void selectEmployeeWithNameInLoadPayroll(String Name) {
+	public void selectEmployeeWithNameInLoadPayroll(String Name) {
 		flag = webDB.waitForElement(PreparePayrollLocators.EmployeeCheckBoxInput(Name), ElementType.Xpath);
 		if (flag) {
 			if (!webDB.isElementSelected(PreparePayrollLocators.EmployeeCheckBoxInput(Name), ElementType.Xpath)) {
@@ -307,7 +307,7 @@ public class PreparePayrollFunctions {
 	 * 
 	 * @author Sakthi-GWL
 	 */
-	private void clickAttendanceLabelInPreparePayroll() {
+	public void clickAttendanceLabelInPreparePayroll() {
 		flag = webDB.waitForElement(PreparePayrollLocators.AttendanceLabel, ElementType.Xpath);
 		if (flag) {
 			webDB.moveToElement(PreparePayrollLocators.AttendanceLabel, ElementType.Xpath);
@@ -329,15 +329,15 @@ public class PreparePayrollFunctions {
 	 * @param PL
 	 * @param UL
 	 */
-	private void updatePaidAndUnpaidLeaveInAttendancePayroll(String EmpName, String PL, String UL) {
+	public void updatePaidAndUnpaidLeaveInAttendancePayroll(String EmpName, String PL, String UL) {
 		webDB.waitForElement(PreparePayrollLocators.AttendanceContentContainer, ElementType.Xpath);
 		flag = webDB.waitForElement(PreparePayrollLocators.AttendancePaidLeaveData(EmpName), ElementType.Xpath);
 		if (flag) {
-			commonPayrollFunctions.addDetailInTableWithoutLovButton(
+			commonFunc.verifyAddTableSpecs(
 					PreparePayrollLocators.AttendancePaidLeaveData(EmpName),
 					PreparePayrollLocators.AttendancePaidLeaveInput(EmpName), PL);
 			logs.logging("INFO", "Paid Leave Updated - '" + PL + "' for EmpName: " + EmpName);
-			commonPayrollFunctions.addDetailInTableWithoutLovButton(
+			commonFunc.verifyAddTableSpecs(
 					PreparePayrollLocators.AttendanceUnpaidLeaveData(EmpName),
 					PreparePayrollLocators.AttendanceUnpaidLeaveInput(EmpName), UL);
 			logs.logging("INFO", "Unpaid Leave Updated - '" + UL + "' for EmpName: " + EmpName);
@@ -362,7 +362,7 @@ public class PreparePayrollFunctions {
 	 * 
 	 * @author Sakthi-GWL
 	 */
-	private void verifyAttendanceDataValuesInPreparePayroll() {
+	public void verifyAttendanceDataValuesInPreparePayroll() {
 		flag = webDB.waitForElement(PreparePayrollLocators.AttendanceContentContainer, ElementType.Xpath);
 		if (flag) {
 			List<WebElement> EmpName = webDB.getListOfElements(PreparePayrollLocators.AttendanceEmpNameList(),
@@ -404,7 +404,7 @@ public class PreparePayrollFunctions {
 	 * @author Sakthi-GWL
 	 * @param EmpName
 	 */
-	private void verifyOTHrsOnDutyAndPermissionHrsInAttendance(String EmpName) {
+	public void verifyOTHrsOnDutyAndPermissionHrsInAttendance(String EmpName) {
 		webDB.waitForElement(PreparePayrollLocators.AttendanceContentContainer, ElementType.Xpath);
 		flag = webDB.waitForElement(PreparePayrollLocators.AttendancePermHrsLeaveData(EmpName), ElementType.Xpath);
 		if (flag) {
@@ -433,7 +433,7 @@ public class PreparePayrollFunctions {
 	 * 
 	 * @author Sakthi-GWL
 	 */
-	private void clickPreparePayrollButton() {
+	public void clickPreparePayrollButton() {
 		flag = webDB.waitForElement(PreparePayrollLocators.PreparePayrollBtn, ElementType.Xpath);
 		if (flag) {
 			commonFunc.checkSuccessToastMessageDisappear();
@@ -457,7 +457,7 @@ public class PreparePayrollFunctions {
 	 * 
 	 * @author Sakthi-GWL
 	 */
-	private void clickExceptionLabelAndVerifyNoException() {
+	public void clickExceptionLabelAndVerifyNoException() {
 		flag = webDB.waitForElement(PreparePayrollLocators.ExceptionLabel, ElementType.Xpath);
 		if (flag) {
 			webDB.moveToElement(PreparePayrollLocators.ExceptionLabel, ElementType.Xpath);
@@ -479,7 +479,7 @@ public class PreparePayrollFunctions {
 	 * 
 	 * @author Sakthi-GWL
 	 */
-	private void clickPayrollLabelInPreparePayroll() {
+	public void clickPayrollLabelInPreparePayroll() {
 		flag = webDB.waitForElement(PreparePayrollLocators.PayrollLabel, ElementType.Xpath);
 		if (flag) {
 			webDB.moveToElement(PreparePayrollLocators.PayrollLabel, ElementType.Xpath);
@@ -498,7 +498,7 @@ public class PreparePayrollFunctions {
 	 * @author Sakthi-GWL
 	 * @param EmpId
 	 */
-	private void clickEmpIdInPayrollTabAndVerifyNavigated(String EmpId) {
+	public void clickEmpIdInPayrollTabAndVerifyNavigated(String EmpId) {
 		webDB.waitForElement(PreparePayrollLocators.PayrollContentContainer, ElementType.Xpath);
 		flag = webDB.waitForElement(PreparePayrollLocators.PayrollEmpIdTableData(EmpId), ElementType.Xpath);
 		if (flag) {
@@ -525,7 +525,7 @@ public class PreparePayrollFunctions {
 	 * 
 	 * @author Sakthi-GWL
 	 */
-	private void verifyAllowanceValuesInEmpIdAdditionPage() {
+	public void verifyAllowanceValuesInEmpIdAdditionPage() {
 		flag = webDB.waitForElement(PreparePayrollLocators.PayrollAllowanceTable, ElementType.Xpath);
 		if (flag) {
 			List<WebElement> Desc = webDB.getListOfElements(PreparePayrollLocators.PayrollAllowanceDescriptionList(),
@@ -557,7 +557,7 @@ public class PreparePayrollFunctions {
 	 * 
 	 * @author Sakthi-GWL
 	 */
-	private void verifyAdjustmentValuesInEmpIdAdditionPage() {
+	public void verifyAdjustmentValuesInEmpIdAdditionPage() {
 		flag = webDB.waitForElement(PreparePayrollLocators.PayrollAdjustmentTable, ElementType.Xpath);
 		if (flag) {
 			List<WebElement> Desc = webDB.getListOfElements(PreparePayrollLocators.PayrollAdjustmentDescriptionList(),
@@ -585,7 +585,7 @@ public class PreparePayrollFunctions {
 	 * 
 	 * @author Sakthi-GWL
 	 */
-	private void verifyTotalAdditionDeductionAndNetSalary() {
+	public void verifyTotalAdditionDeductionAndNetSalary() {
 		flag = webDB.waitForElement(PreparePayrollLocators.PayrollTotalAdditionDisplayText, ElementType.Xpath);
 		if (flag) {
 			String addText = webDB.getTextFromElement(PreparePayrollLocators.PayrollTotalAdditionDisplayText,
@@ -612,7 +612,7 @@ public class PreparePayrollFunctions {
 	 * 
 	 * @author Sakthi-GWL
 	 */
-	private void clickReviewCompletedInPreparePayroll() {
+	public void clickReviewCompletedInPreparePayroll() {
 		flag = webDB.waitForElement(PreparePayrollLocators.ReviewCompletedBtn, ElementType.Xpath);
 		if (flag) {
 			commonFunc.checkSuccessToastMessageDisappear();
@@ -634,7 +634,7 @@ public class PreparePayrollFunctions {
 	 * 
 	 * @author Sakthi-GWL
 	 */
-	private void clickProcessPayrollButtonInPreparePayroll() {
+	public void clickProcessPayrollButtonInPreparePayroll() {
 		flag = webDB.waitForElement(PreparePayrollLocators.ProcessPayrollBtn, ElementType.Xpath);
 		if (flag) {
 			commonFunc.checkSuccessToastMessageDisappear();
@@ -722,7 +722,7 @@ public class PreparePayrollFunctions {
 			unSelectedAllAndSearchAndSelectEmployee(VariableHandler.getEmpID());
 			selectEmployeeWithNameInLoadPayroll(VariableHandler.getEmpID());
 			clickAttendanceLabelInPreparePayroll();
-			updatePaidAndUnpaidLeaveInAttendancePayroll(VariableHandler.getEmpID(), "0", "0");
+			updatePaidAndUnpaidLeaveInAttendancePayroll(VariableHandler.getEmpID(), "1", "1");
 			verifyAttendanceDataValuesInPreparePayroll();
 			verifyOTHrsOnDutyAndPermissionHrsInAttendance(VariableHandler.getEmpID());
 			clickPreparePayrollButton();
@@ -782,7 +782,7 @@ public class PreparePayrollFunctions {
 	 * 
 	 * @author Sakthi-GWL
 	 */
-	private void clickSearchButtonInPreparePayroll() {
+	public void clickSearchButtonInPreparePayroll() {
 		flag = webDB.waitForElement(PreparePayrollLocators.PayrollFindSearchBtn, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(PreparePayrollLocators.PayrollFindSearchBtn, ElementType.Xpath);
@@ -803,7 +803,7 @@ public class PreparePayrollFunctions {
 	 * @author Sakthi-GWL
 	 * @param Unit
 	 */
-	private void findWithUnitInLineWise(String Unit) {
+	public void findWithUnitInLineWise(String Unit) {
 		commonFunc.searchAndSelectValueInFilters(PreparePayrollLocators.FindUnitLovBtn, Unit);
 		clickSearchButtonInPreparePayroll();
 		List<WebElement> elements = webDB.getListOfElements(PreparePayrollLocators.FindUnitLineResultTable(),
@@ -826,7 +826,7 @@ public class PreparePayrollFunctions {
 	 * @author Sakthi-GWL
 	 * @param Designation
 	 */
-	private void findWithDesignationInLineWise(String Designation) {
+	public void findWithDesignationInLineWise(String Designation) {
 		commonFunc.searchAndSelectValueInFilters(PreparePayrollLocators.FindDesignationLovBtn, Designation);
 		clickSearchButtonInPreparePayroll();
 		List<WebElement> elements = webDB.getListOfElements(PreparePayrollLocators.FindDesignationLineResultTable(),
@@ -849,7 +849,7 @@ public class PreparePayrollFunctions {
 	 * @author Sakthi-GWL
 	 * @param Department
 	 */
-	private void findWithDepartmentInLineWise(String Department) {
+	public void findWithDepartmentInLineWise(String Department) {
 		commonFunc.searchAndSelectValueInFilters(PreparePayrollLocators.FindDepartmentLovBtn, Department);
 		clickSearchButtonInPreparePayroll();
 		List<WebElement> elements = webDB.getListOfElements(PreparePayrollLocators.FindDepartmentLineResultTable(),
@@ -872,7 +872,7 @@ public class PreparePayrollFunctions {
 	 * @author Sakthi-GWL
 	 * @param Year
 	 */
-	private void findWithYearInLineWise(String Year) {
+	public void findWithYearInLineWise(String Year) {
 		commonFunc.searchAndSelectValueInFilters(PreparePayrollLocators.FindYearLovBtn, Year);
 		clickSearchButtonInPreparePayroll();
 		List<WebElement> elements = webDB.getListOfElements(PreparePayrollLocators.FindYearLineResultTable(),
@@ -895,7 +895,7 @@ public class PreparePayrollFunctions {
 	 * @author Sakthi-GWL
 	 * @param Period
 	 */
-	private void findWithPeriodInLineWise(String Period) {
+	public void findWithPeriodInLineWise(String Period) {
 		commonFunc.searchAndSelectValueInFilters(PreparePayrollLocators.FindPeriodLovBtn, Period);
 		clickSearchButtonInPreparePayroll();
 		List<WebElement> elements = webDB.getListOfElements(PreparePayrollLocators.FindPeriodLineResultTable(),
@@ -957,7 +957,7 @@ public class PreparePayrollFunctions {
 	 * @author Sakthi-GWL
 	 * @param Year
 	 */
-	private void findWithYearInHeaderWise(String Year) {
+	public void findWithYearInHeaderWise(String Year) {
 		commonFunc.searchAndSelectValueInFilters(PreparePayrollLocators.FindYearLovBtn, Year);
 		clickSearchButtonInPreparePayroll();
 		List<WebElement> elements = webDB.getListOfElements(PreparePayrollLocators.FindYearHeaderResultTable(),
@@ -980,7 +980,7 @@ public class PreparePayrollFunctions {
 	 * @author Sakthi-GWL
 	 * @param Calender
 	 */
-	private void findWithCalenderInHeaderWise(String Calender) {
+	public void findWithCalenderInHeaderWise(String Calender) {
 		commonFunc.searchAndSelectValueInFilters(PreparePayrollLocators.FindCalenderLovBtn, Calender);
 		clickSearchButtonInPreparePayroll();
 		List<WebElement> elements = webDB.getListOfElements(PreparePayrollLocators.FindCalenderHeaderResultTable(),
@@ -1003,7 +1003,7 @@ public class PreparePayrollFunctions {
 	 * @author Sakthi-GWL
 	 * @param Period
 	 */
-	private void findWithPeriodInHeaderWise(String searchvalue, String verifyValue) {
+	public void findWithPeriodInHeaderWise(String searchvalue, String verifyValue) {
 		commonFunc.searchAndSelectValueInFilters(PreparePayrollLocators.FindPeriodLovBtn, searchvalue);
 		clickSearchButtonInPreparePayroll();
 		List<WebElement> elements = webDB.getListOfElements(PreparePayrollLocators.FindPeriodHeaderResultTable(),
@@ -1026,7 +1026,7 @@ public class PreparePayrollFunctions {
 	 * 
 	 * @author Sakthi-GWL
 	 */
-	private void clickHeaderRadioButtonInFind() {
+	public void clickHeaderRadioButtonInFind() {
 		flag = webDB.waitForElement(PreparePayrollLocators.FindHeaderRadioBtn, ElementType.Xpath);
 		if (flag) {
 			webDB.moveToElement(PreparePayrollLocators.FindHeaderRadioBtn, ElementType.Xpath);
@@ -1046,7 +1046,7 @@ public class PreparePayrollFunctions {
 	 * 
 	 * @author Sakthi-GWL
 	 */
-	private void clickLinesRadioButtonInFind() {
+	public void clickLinesRadioButtonInFind() {
 		flag = webDB.waitForElement(PreparePayrollLocators.FindLinesRadioBtn, ElementType.Xpath);
 		if (flag) {
 			webDB.moveToElement(PreparePayrollLocators.FindLinesRadioBtn, ElementType.Xpath);

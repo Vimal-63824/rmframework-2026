@@ -564,6 +564,10 @@ public class AttendanceLeaveLocators {
 	}
 
 	/** @locatorType Xpath */
+	public static final String TDSConstructionCompletedSelect = "//*[@data-testid='HTDLD_HP_CONST_CO']";
+	/** @locatorType Xpath */
+	public static final String TDSFirstHomeLoanSelect = "//*[@data-testid='HTDLD_HP_FIRST_HL']";
+	/** @locatorType Xpath */
 	public static final String TDSDeclarationDocNoToPost = "//*[@data-testid='HTDH_DOC_NO']";
 	/** @locatorType Xpath */
 	public static final String TDSDeclarationReviseButton = "//button[@data-testid='Cre_rev_Btn']";

@@ -83,11 +83,11 @@ public class MRPFunctions {
 	public void fillDetailsInMRPCreationAndClickTickIcon(String MRPDate, String MRPName, String SafetyStkDate,
 			String MRPType) {
 		switchToCreateMRPIframe();
-		commonPayrollFunc.addDetailInTableWithoutLovButton(MRPLocators.MRP_AddMRPDateInput,
+		commonFunc.verifyAddTableSpecs(MRPLocators.MRP_AddMRPDateInput,
 				MRPLocators.MRP_AddMRPDateInput, MRPDate);
-		commonPayrollFunc.addDetailInTableWithoutLovButton(MRPLocators.MRP_AddMRPNameInput,
+		commonFunc.verifyAddTableSpecs(MRPLocators.MRP_AddMRPNameInput,
 				MRPLocators.MRP_AddMRPNameInput, MRPName);
-		commonPayrollFunc.addDetailInTableWithoutLovButton(MRPLocators.MRP_AddSafetyStkDateInput,
+		commonFunc.verifyAddTableSpecs(MRPLocators.MRP_AddSafetyStkDateInput,
 				MRPLocators.MRP_AddSafetyStkDateInput, SafetyStkDate);
 		flag = webDB.selectDropDownByText(MRPLocators.MRP_AddSupplyExceptionSelect, MRPType, ElementType.Xpath);
 		if (flag) {
@@ -156,7 +156,7 @@ public class MRPFunctions {
 			webDB.clickAnElement(MRPLocators.MRP_SourceTableData_Unit(), ElementType.Xpath);
 			commonFunc.searchAndSelectValueInFilters(MRPLocators.MRP_Source_UnitLovBtn(), Unit);
 			logs.logging("INFO", "Unit Selected in Source Line: " + Unit);
-			commonPayrollFunc.addDetailInTableWithoutLovButton(MRPLocators.MRP_SourceTableData_CutOffDate(),
+			commonFunc.verifyAddTableSpecs(MRPLocators.MRP_SourceTableData_CutOffDate(),
 					MRPLocators.MRP_Source_CutOffDateInput(), CutOffDate);
 			logs.logging("INFO", "CutOff Date Entered in Source Line: " + CutOffDate);
 		}
@@ -248,7 +248,7 @@ public class MRPFunctions {
 	 */
 	public void searchSONumberInDemandAndSelectSOItems(String SONum) {
 		commonFunc.checkRefreshCellsDisappear();
-		commonPayrollFunc.addDetailInTableWithoutLovButton(MRPLocators.MRP_DemandSearchBar,
+		commonFunc.verifyAddTableSpecs(MRPLocators.MRP_DemandSearchBar,
 				MRPLocators.MRP_DemandSearchBar, SONum);
 		webDB.waitForClickElement(MRPLocators.MRP_DemandSearchGoBtn, ElementType.Xpath);
 		webDB.clickAnElement(MRPLocators.MRP_DemandSearchGoBtn, ElementType.Xpath);
@@ -714,9 +714,9 @@ public class MRPFunctions {
 		switchToReleaseIframe();
 		flag = webDB.selectDropDownByText(MRPLocators.MRP_Release_OrderTypeSelect, OrderType, ElementType.Xpath);
 		if (flag) {
-//			commonPayrollFunc.addDetailInTableWithoutLovButton(MRPLocators.MRP_Release_FromData,
+//			commonFunc.verifyAddTableSpecs(MRPLocators.MRP_Release_FromData,
 //					MRPLocators.MRP_Release_FromData, FromDate);
-//			commonPayrollFunc.addDetailInTableWithoutLovButton(MRPLocators.MRP_Release_ToData,
+//			commonFunc.verifyAddTableSpecs(MRPLocators.MRP_Release_ToData,
 //					MRPLocators.MRP_Release_ToData, ToDate);
 			webDB.switchToDefaultContent();
 			flag = webDB.waitForElement(MRPLocators.MRP_ReleaseIframeCloseIcon, ElementType.Xpath);
