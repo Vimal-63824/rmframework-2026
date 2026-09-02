@@ -196,12 +196,12 @@ public class EmployeeMasterLocators {
 
 	/** @locatorType XPATH */
 	public static String AddEmp_GradeClassData() {
-		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(AddEmpQualificationDetailsTable, "Grade");
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(AddEmpQualificationDetailsTable, "GradeClass");
 	}
 
 	/** @locatorType XPATH */
 	public static String AddEmp_GradeClassDataInput() {
-		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(AddEmpQualificationDetailsTable, "Grade")
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(AddEmpQualificationDetailsTable, "GradeClass")
 				+ "//input";
 	}
 
@@ -769,6 +769,8 @@ public class EmployeeMasterLocators {
 	public static final String UpdateEmp_DependentPostBtn = "//*[@data-testid='BTN_Dependent_Post_Icon']";
 	/** @locatorType XPATH */
 	public static final String UpdateEmpDependentTable = "(//div[@id='ig_depent_ig_grid_vc']//table)[2]";
+	/** @locatorType XPATH */
+	public static final String TodayDateButton = "//button[contains(@class,'a-DatePicker--today')]";
 
 	/** @locatorType XPATH */
 	public static final String UpdateEmp_DependentNameData() {
@@ -911,13 +913,13 @@ public class EmployeeMasterLocators {
 
 	/** @locatorType XPATH */
 	public static final String UpdateEmp_ContactAddressData() {
-		return "(" + CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(UpdateEmpContactTable, "Address")
+		return "(" + CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(UpdateEmpContactTable, "Addres")
 				+ ")[1]";
 	}
 
 	/** @locatorType XPATH */
 	public static final String UpdateEmp_ContactAddressInput() {
-		return "(" + CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(UpdateEmpContactTable, "Address")
+		return "(" + CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(UpdateEmpContactTable, "Addres")
 				+ ")[1]//input";
 	}
 
@@ -965,13 +967,13 @@ public class EmployeeMasterLocators {
 	/** @locatorType XPATH */
 	public static final String UpdateEmp_QualBranchOfStudyData() {
 		return "(" + CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(UpdateEmpQualificationTable,
-				"Branch of stduy") + ")[1]";
+				"Branch of Stduy") + ")[1]";
 	}
 
 	/** @locatorType XPATH */
 	public static final String UpdateEmp_QualBranchOfStudyLovBtn() {
 		return "(" + CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(UpdateEmpQualificationTable,
-				"Branch of stduy") + ")[1]//button";
+				"Branch of Stduy") + ")[1]//button";
 	}
 
 	/** @locatorType XPATH */
@@ -1051,7 +1053,7 @@ public class EmployeeMasterLocators {
 	/** @locatorType XPATH */
 	public static final String UpdateEmp_SkillPostBtn = "//*[@data-testid='BTN_Skill_Post_Icon']";
 	/** @locatorType XPATH */
-	public static final String UpdateEmpSkillTable = "(//div[@id='ig_skill_ig_grid_vc'])[2]";
+	public static final String UpdateEmpSkillTable = "(//div[@id='ig_skill_ig_grid_vc']//table)[2]";
 
 	/** @locatorType XPATH */
 	public static final String UpdateEmp_SkillTableData() {

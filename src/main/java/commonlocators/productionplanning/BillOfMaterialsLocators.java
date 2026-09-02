@@ -25,7 +25,7 @@ public class BillOfMaterialsLocators {
 	/** @locatorType Xpath */
 	public static final String BOM_CreateBtnPlusIcon = "//button[@data-testid='BOM_CreateBtnPlusIcon']";
 	/** @locatorType Xpath */
-	public static final String CreateBOMIframe = "//iframe[@title='Create BOM']";
+	public static final String CreateBOMIframe = "//iframe[contains(@title,'Create')]";
 	/** @locatorType Xpath */
 	public static final String CreateBOM_UnitLovBtn = "//input[@data-testid='CreateBOM_UnitLovBtn']/following-sibling::button";
 	/** @locatorType Xpath */

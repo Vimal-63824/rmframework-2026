@@ -11,15 +11,15 @@ public class SetupPurchaseLocators {
 	/** @locatorType XPATH */
 	public static final String TickBuyerButton = "//button[@data-testid='BTN_SAVE_BUYER']";
 	/** @locatorType XPATH */
-	public static final String BuyerNameTable = "//div[@id='ig_line_buy_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[2]/td[1]";
+	public static final String BuyerNameTable = "//div[@id='ig_line_buy_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[1]";
 	/** @locatorType XPATH */
-	public static final String EmployeeIdTable = "//div[@id='ig_line_buy_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[2]/td[2]";
+	public static final String EmployeeIdTable = "//div[@id='ig_line_buy_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[2]";
 	/** @locatorType XPATH */
-	public static final String EffFromTable = "//div[@id='ig_line_buy_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[2]/td[4]";
+	public static final String EffFromTable = "//div[@id='ig_line_buy_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[4]";
 	/** @locatorType XPATH */
 	public static final String BuyerTable = "//div[@id='ig_line_buy_ig_grid_vc']/div[2]/div[3]/table/thead/tr/th[3]";
 	/** @locatorType XPATH */
-	public static final String EffToIdTable = "//div[@id='ig_line_buy_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[2]/td[5]";
+	public static final String EffToIdTable = "//div[@id='ig_line_buy_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[5]";
 	/** @locatorType XPATH */
 	public static final String BuyerNameInput = "//input[@data-testid='BUYER_ID']";
 	/** @locatorType XPATH */

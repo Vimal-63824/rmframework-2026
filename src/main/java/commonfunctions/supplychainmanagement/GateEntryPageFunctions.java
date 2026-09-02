@@ -1419,6 +1419,7 @@ public class GateEntryPageFunctions {
 			webDB.clickAnElement(GateEntryPageLocators.ClickPendingPoButton, ElementType.Xpath);
 			logs.logging("INFO", "PendingPOButtonLov Shown");
 			webDB.switchToFrame(GateEntryPageLocators.PendingPOGIframe, ElementType.Xpath);
+			commonFunc.expandFindTable();
 			flag = webDB.waitForElement(GateEntryPageLocators.ClickPendingPoButtonLov, ElementType.Xpath);
 			if (flag) {
 				flag = webDB.clickAnElement(GateEntryPageLocators.ClickPendingPoButtonLov, ElementType.Xpath);

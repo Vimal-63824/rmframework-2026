@@ -46,6 +46,8 @@ public class PurchaseRequestLocators {
 	public static final String ItemDataLastRow = "(//table//tbody/tr[contains(@class,'a-GV-row')]/td[3])[1]";
 	/** @locatorType Xpath */
 	public static final String PRTable = "(//table[@data-testid='HD_Result_Data'])[2]";
+	/** @locatorType Xpath */
+	public static final String PRATable = "(//div[@id='LINE_ig_grid_vc']//table)[2]";
 
 	/** @locatorType Xpath */
 	public static final String ItemDataLastRow() {
@@ -66,6 +68,10 @@ public class PurchaseRequestLocators {
 	/** @locatorType Xpath */
 	public static final String UnitCostDataLastRow() {
 		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(PRTable, "UnitCost");
+	}
+	/** @locatorType Xpath */
+	public static final String PRAUnitCostDataLastRow() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(PRATable, "UnitCost");
 	}
 
 	/** @locatorType Xpath */
@@ -134,7 +140,7 @@ public class PurchaseRequestLocators {
 	/** @locatorType Xpath */
 	public static final String PRCloseShort_Reference = "//input[@id='P1615131122011_PCH_REF']";
 	/** @locatorType Xpath */
-	public static final String PRCloseShort_TickIcon = "//button[@data-testid='Create' and @id='B1919072352673373788']";
+	public static final String PRCloseShort_TickIcon = "//button[@data-testid='Create' and @id='B2046300750296723160']";
 	/** @locatorType Xpath */
 	public static final String PRCloseShort_DocNoText = "//input[contains(@id,'PCH_DOC_NO')]";
 	/** @locatorType Xpath */
@@ -289,7 +295,7 @@ public class PurchaseRequestLocators {
 	/** @Locator XPATH */
 	public static final String CreatePRButton = "//span[text()='Create PR Amd.']/..";
 	/** @Locator XPATH */
-	public static final String PRAmendFrame = "//iframe[@title='PR /SSR CS/Amendment']";
+	public static final String PRAmendFrame = "//iframe[contains(@title,'Create')]";
 
 	/** @Locator XPATH */
 	public static String PurchaseNo(String HeaderValue) {

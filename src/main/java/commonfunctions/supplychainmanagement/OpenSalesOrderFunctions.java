@@ -307,10 +307,10 @@ public class OpenSalesOrderFunctions {
 	 * @param HSN
 	 */
 	public void fillPriceMRPAndHSNCodeforAddedLastItemInOpenSO(String price, String mrp, String HSN) {
-		commonPayrollFunc.addDetailInTableWithoutLovButton(OpenSalesOrderLocators.PriceLastLineData,
+		commonFunc.verifyAddTableSpecs(OpenSalesOrderLocators.PriceLastLineData,
 				OpenSalesOrderLocators.PriceLastLineInput, price);
 		VariableHandler.setOpenSOPriceAmount(price);
-		commonPayrollFunc.addDetailInTableWithoutLovButton(OpenSalesOrderLocators.MRPLastLineData,
+		commonFunc.verifyAddTableSpecs(OpenSalesOrderLocators.MRPLastLineData,
 				OpenSalesOrderLocators.MRPLastLineInput, mrp);
 		flag = webDB.waitForElement(OpenSalesOrderLocators.HSNCodeLastLineData, ElementType.Xpath);
 		if (flag) {
@@ -328,7 +328,7 @@ public class OpenSalesOrderFunctions {
 	 * @param Discount
 	 */
 	public void fillDiscountAndSaveLinesforAddedLastItemInOpenSO(String Discount) {
-		commonPayrollFunc.addDetailInTableWithoutLovButton(OpenSalesOrderLocators.DiscountLastLineData,
+		commonFunc.verifyAddTableSpecs(OpenSalesOrderLocators.DiscountLastLineData,
 				OpenSalesOrderLocators.DiscountLastLineInput, Discount);
 		flag = webDB.waitForElement(OpenSalesOrderLocators.OpenSOLinesSaveBtn, ElementType.Xpath);
 		if (flag) {
@@ -361,7 +361,7 @@ public class OpenSalesOrderFunctions {
 				flag = webDB.sendTextToAnElement(OpenSalesOrderLocators.OpenSOEffDateTo, EffcToDate, ElementType.Xpath);
 				if (flag) {
 					logs.logging("INFO", "Effective To Date: " + EffcToDate);
-					commonPayrollFunc.addDetailInTableWithoutLovButton(OpenSalesOrderLocators.OpenSO_PODateInput,
+					commonFunc.verifyAddTableSpecs(OpenSalesOrderLocators.OpenSO_PODateInput,
 							OpenSalesOrderLocators.OpenSO_PODateInput, PODate);
 					logs.logging("INFO", "Entered PO Date in Open SO: " + PODate);
 				}
@@ -408,7 +408,7 @@ public class OpenSalesOrderFunctions {
 	 * @return
 	 */
 	public boolean findStatusOfOpenSOWithItemAndCustomer(String Item, String Customer, String Date, String Status) {
-		commonPayrollFunc.addDetailInTableWithoutLovButton(OpenSalesOrderLocators.FindOpenSODocDateInput,
+		commonFunc.verifyAddTableSpecs(OpenSalesOrderLocators.FindOpenSODocDateInput,
 				OpenSalesOrderLocators.FindOpenSODocDateInput, Date);
 		commonFunc.searchAndSelectValueInFilters(OpenSalesOrderLocators.FindOpenSOItemLovBtn, Item);
 		commonFunc.searchAndSelectValueInFilters(OpenSalesOrderLocators.FindOpenSOCustomerLovBtn, Customer);

@@ -811,7 +811,7 @@ public class SalesPriceListFunctions {
 
 		flag = webDB.waitForElement(SalesPriceListLocators.CloseDataAmdend, ElementType.Xpath);
 		if (flag) {
-			commonPayrollFunc.addDetailInTableWithoutLovButton(SalesPriceListLocators.CloseDataAmdend,
+			commonFunc.verifyAddTableSpecs(SalesPriceListLocators.CloseDataAmdend,
 					SalesPriceListLocators.CloseDataAmdend, Today);
 			logs.logging("INFO", "Close Date Successfully Inserted " + Today);
 			flag = webDB.waitForElement(SalesPriceListLocators.okButton, ElementType.Xpath);
