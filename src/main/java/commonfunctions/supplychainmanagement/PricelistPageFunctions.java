@@ -998,13 +998,13 @@ public class PricelistPageFunctions {
 				flag = webDB.waitForElement(PricelistPageLocators.CancelOk, ElementType.Xpath);
 				if (flag) {
 					webDB.clickAnElement(PricelistPageLocators.CancelOk, ElementType.Xpath);
-				logs.logging("INFO", "Ok Button Is Clicked");
-				flag = webDB.waitForElement(PricelistPageLocators.CancelSearch, ElementType.Xpath);
-				if (flag) {
-					logs.logging("INFO", "Search Button is Clicked");
+					logs.logging("INFO", "Ok Button Is Clicked");
+					flag = webDB.waitForElement(PricelistPageLocators.CancelSearch, ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Search Button is Clicked");
+					}
 				}
 			}
-		}
 		}
 		assertTrue(flag);
 	}
@@ -1021,38 +1021,38 @@ public class PricelistPageFunctions {
 		if (flag) {
 			webDB.clickAnElement(PricelistPageLocators.CancelSearch, ElementType.Xpath);
 			logs.logging("INFO", "Cancel Search Button is clicked");
-		flag = webDB.waitForElement(PricelistPageLocators.PricelistNumField, ElementType.Xpath);
-		if (flag) {
-			commonFunc.searchAndSelectValueInFilters(PricelistPageLocators.PricelistNumField, Number);
-//			webDB.sendTextToAnElement(PricelistPageLocators.PricelistNumField, Number, ElementType.Xpath);
-			logs.logging("INFO", "Entered Document Number Is: " + Number);
-			flag = webDB.waitForElement(PricelistPageLocators.FindSearchButton, ElementType.Xpath);
+			flag = webDB.waitForElement(PricelistPageLocators.PricelistNumField, ElementType.Xpath);
 			if (flag) {
-				webDB.clickAnElement(PricelistPageLocators.FindSearchButton, ElementType.Xpath);
-				logs.logging("INFO", "Search Button is clicked");
-				commonFunc.hardWait(2000);
-				String canclsts = webDB.getTextFromElement(PricelistPageLocators.CancellStatus, ElementType.Xpath);
+				commonFunc.searchAndSelectValueInFilters(PricelistPageLocators.PricelistNumField, Number);
+//			webDB.sendTextToAnElement(PricelistPageLocators.PricelistNumField, Number, ElementType.Xpath);
+				logs.logging("INFO", "Entered Document Number Is: " + Number);
+				flag = webDB.waitForElement(PricelistPageLocators.FindSearchButton, ElementType.Xpath);
 				if (flag) {
-					logs.logging("INFO", "Expected Text: " + "Cancelled" + " Displayed: " + canclsts);
-					flag = canclsts.equalsIgnoreCase("Cancelled");
+					webDB.clickAnElement(PricelistPageLocators.FindSearchButton, ElementType.Xpath);
+					logs.logging("INFO", "Search Button is clicked");
+					commonFunc.hardWait(2000);
+					String canclsts = webDB.getTextFromElement(PricelistPageLocators.CancellStatus, ElementType.Xpath);
 					if (flag) {
-						logs.logging("INFO", "verified Displayed Status is: " + canclsts);
-					} else {
-						logs.logging("INFO", "Verification failed in Status");
 						logs.logging("INFO", "Expected Text: " + "Cancelled" + " Displayed: " + canclsts);
-						flag = webDB.waitForElement(PricelistPageLocators.find, ElementType.Xpath);
+						flag = canclsts.equalsIgnoreCase("Cancelled");
 						if (flag) {
-							webDB.clickAnElement(PricelistPageLocators.find, ElementType.Xpath);
-							logs.logging("INFO", "Find Button is clicked");
-							flag = webDB.waitForElement(PricelistPageLocators.FindSearchButton, ElementType.Xpath);
+							logs.logging("INFO", "verified Displayed Status is: " + canclsts);
+						} else {
+							logs.logging("INFO", "Verification failed in Status");
+							logs.logging("INFO", "Expected Text: " + "Cancelled" + " Displayed: " + canclsts);
+							flag = webDB.waitForElement(PricelistPageLocators.find, ElementType.Xpath);
 							if (flag) {
-								logs.logging("INFO", "Search Button is clicked");
+								webDB.clickAnElement(PricelistPageLocators.find, ElementType.Xpath);
+								logs.logging("INFO", "Find Button is clicked");
+								flag = webDB.waitForElement(PricelistPageLocators.FindSearchButton, ElementType.Xpath);
+								if (flag) {
+									logs.logging("INFO", "Search Button is clicked");
+								}
 							}
 						}
 					}
 				}
 			}
-		}
 		}
 		assertTrue(flag);
 	}
@@ -1553,22 +1553,18 @@ public class PricelistPageFunctions {
 			ItemSeqNo = "10";
 		}
 		String SimItemId = Itm + ItemSeqNo;
-
 		flag = webDB.waitForElement(PricelistPageLocators.ItemIdInputCopy, ElementType.Xpath);
 		if (flag) {
 			webDB.sendTextToAnElement(PricelistPageLocators.ItemIdInputCopy, SimItemId, ElementType.Xpath);
 			logs.logging("INFO", "Item ID is Entered");
-
 			flag = webDB.waitForElement(PricelistPageLocators.ItemDescInputCopy, ElementType.Xpath);
 			if (flag) {
 				webDB.sendTextToAnElement(PricelistPageLocators.ItemDescInputCopy, SimItemId, ElementType.Xpath);
 				logs.logging("INFO", "Item Desc is Entered");
-
 				flag = webDB.waitForElement(PricelistPageLocators.ItemOkCopy, ElementType.Xpath);
 				if (flag) {
 					webDB.clickAnElement(PricelistPageLocators.ItemOkCopy, ElementType.Xpath);
 					logs.logging("INFO", "Ok Button is clicked ");
-
 					flag = webDB.waitForElement(PricelistPageLocators.ItemGetText, ElementType.Xpath);
 					if (flag) {
 						String SimItemName = webDB.getDomPropertyFromElement(PricelistPageLocators.ItemGetText,
@@ -1718,8 +1714,9 @@ public class PricelistPageFunctions {
 	public void clickPostInItemAndCheckAutoApproveflag() {
 		flag = webDB.waitForElement(PricelistPageLocators.ItemPost, ElementType.Xpath);
 		if (flag) {
+			commonFunc.checkRefreshCellsDisappear();
+			commonFunc.checkSuccessToastMessageDisappear();
 			webDB.clickAnElement(PricelistPageLocators.ItemPost, ElementType.Xpath);
-			commonFunc.hardWait(3000);
 			flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
 			if (flag) {
 				logs.logging("INFO", "Post Button Clicked in item creation");
@@ -1840,7 +1837,6 @@ public class PricelistPageFunctions {
 	 * @param CopyItemName
 	 */
 	public void searchItemAndCopyWithName(String Item, String CopyItemName) {
-		commonFunc.hardWait(2000);
 		flag = webDB.waitForElement(PricelistPageLocators.FindScreenItemField, ElementType.Xpath);
 		if (flag) {
 			webDB.sendTextToAnElement(PricelistPageLocators.FindScreenItemField, Item, ElementType.Xpath);

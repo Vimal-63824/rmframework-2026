@@ -83,12 +83,10 @@ public class MRPFunctions {
 	public void fillDetailsInMRPCreationAndClickTickIcon(String MRPDate, String MRPName, String SafetyStkDate,
 			String MRPType) {
 		switchToCreateMRPIframe();
-		commonFunc.verifyAddTableSpecs(MRPLocators.MRP_AddMRPDateInput,
-				MRPLocators.MRP_AddMRPDateInput, MRPDate);
-		commonFunc.verifyAddTableSpecs(MRPLocators.MRP_AddMRPNameInput,
-				MRPLocators.MRP_AddMRPNameInput, MRPName);
-		commonFunc.verifyAddTableSpecs(MRPLocators.MRP_AddSafetyStkDateInput,
-				MRPLocators.MRP_AddSafetyStkDateInput, SafetyStkDate);
+		commonFunc.verifyAddTableSpecs(MRPLocators.MRP_AddMRPDateInput, MRPLocators.MRP_AddMRPDateInput, MRPDate);
+		commonFunc.verifyAddTableSpecs(MRPLocators.MRP_AddMRPNameInput, MRPLocators.MRP_AddMRPNameInput, MRPName);
+		commonFunc.verifyAddTableSpecs(MRPLocators.MRP_AddSafetyStkDateInput, MRPLocators.MRP_AddSafetyStkDateInput,
+				SafetyStkDate);
 		flag = webDB.selectDropDownByText(MRPLocators.MRP_AddSupplyExceptionSelect, MRPType, ElementType.Xpath);
 		if (flag) {
 			webDB.moveToElement(MRPLocators.MRP_TickIcon, ElementType.Xpath);
@@ -248,8 +246,7 @@ public class MRPFunctions {
 	 */
 	public void searchSONumberInDemandAndSelectSOItems(String SONum) {
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.verifyAddTableSpecs(MRPLocators.MRP_DemandSearchBar,
-				MRPLocators.MRP_DemandSearchBar, SONum);
+		commonFunc.verifyAddTableSpecs(MRPLocators.MRP_DemandSearchBar, MRPLocators.MRP_DemandSearchBar, SONum);
 		webDB.waitForClickElement(MRPLocators.MRP_DemandSearchGoBtn, ElementType.Xpath);
 		webDB.clickAnElement(MRPLocators.MRP_DemandSearchGoBtn, ElementType.Xpath);
 		commonFunc.checkRefreshCellsDisappear();
@@ -277,6 +274,7 @@ public class MRPFunctions {
 					webDB.moveToElement(MRPLocators.MRP_Demand_CheckBoxWithSONo(SONum), ElementType.Xpath);
 					webDB.clickAnElement(MRPLocators.MRP_Demand_CheckBoxWithSONo(SONum), ElementType.Xpath);
 					commonFunc.checkRefreshCellsDisappear();
+					commonFunc.checkRefreshCellsDisappear();
 					flag = webDB.isElementSelected(MRPLocators.MRP_Demand_CheckBoxWithSONo(SONum), ElementType.Xpath);
 					if (flag) {
 						logs.logging("INFO", "Select All CheckBox Clicked and Verfied");
@@ -301,10 +299,10 @@ public class MRPFunctions {
 			webDB.moveToElement(MRPLocators.MRP_CheckExceptionLabel, ElementType.Xpath);
 			webDB.clickAnElement(MRPLocators.MRP_CheckExceptionLabel, ElementType.Xpath);
 			commonFunc.checkRefreshCellsDisappear();
-			commonFunc.hardWait(2000);
 			flag = webDB.waitForElement(MRPLocators.MRP_HeaderSaveBtn, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Check Exception Button Clicked");
+				webDB.moveToElement(MRPLocators.MRP_HeaderSaveBtn, ElementType.Xpath);
 				webDB.clickAnElement(MRPLocators.MRP_HeaderSaveBtn, ElementType.Xpath);
 				flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
 				if (flag) {
@@ -403,7 +401,6 @@ public class MRPFunctions {
 				if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
 					webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
 				}
-				commonFunc.hardWait(2000);
 				flag = webDB.waitForClickElement(MRPLocators.MRP_StatusDisplayInput, ElementType.Xpath);
 				if (flag) {
 					String Status = webDB.getTextFromElement(MRPLocators.MRP_StatusDisplayInput, ElementType.Xpath);

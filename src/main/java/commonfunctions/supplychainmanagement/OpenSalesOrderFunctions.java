@@ -61,8 +61,7 @@ public class OpenSalesOrderFunctions {
 				webDB.clickAnElement(OpenSalesOrderLocators.OpenSORadioBtn, ElementType.Xpath);
 //				flag = webDB.waitForElement(OpenSalesOrderLocators.GetTitle, ElementType.Xpath);
 //				if (flag) {
-//					String headerText = webDB.getTextFromElement(OpenSalesOrderLocators.GetTitle,
-//							ElementType.Xpath);
+//					String headerText = webDB.getTextFromElement(OpenSalesOrderLocators.GetTitle, ElementType.Xpath);
 				logs.logging("INFO", "Page navigate to " + SOtype);
 //				}
 			}
@@ -123,7 +122,8 @@ public class OpenSalesOrderFunctions {
 			flag = webDB.waitForElement(OpenSalesOrderLocators.OpenSO_PONumberInput, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Selected SO Type in Open SO: " + SOType);
-				webDB.sendTextToAnElement(OpenSalesOrderLocators.OpenSO_PONumberInput, PoNumber, ElementType.Xpath);
+				flag = webDB.sendTextToAnElement(OpenSalesOrderLocators.OpenSO_PONumberInput, PoNumber,
+						ElementType.Xpath);
 				if (flag) {
 					logs.logging("INFO", "Entered PO Number in Open SO: " + PoNumber);
 				}
@@ -174,6 +174,10 @@ public class OpenSalesOrderFunctions {
 			if (flag) {
 				logs.logging("INFO", "Fetch Customer Item Button Clicked");
 				webDB.switchToFrame(OpenSalesOrderLocators.FetchCustomerIframe, ElementType.Xpath);
+				commonFunc.verifyAddTableSpecs(CommonUiLocators.ReportSearchInput, CommonUiLocators.ReportSearchInput,
+						Item);
+				webDB.pressEnterKey();
+				commonFunc.checkRefreshCellsDisappear();
 				flag = webDB.waitForElement(OpenSalesOrderLocators.fetchCustomerItemCheckedBox(Item),
 						ElementType.Xpath);
 				if (flag) {
@@ -182,21 +186,14 @@ public class OpenSalesOrderFunctions {
 					webDB.moveToElement(OpenSalesOrderLocators.fetchCustomerItemCheckedBox(Item), ElementType.Xpath);
 					webDB.javaScriptClickAnElement(OpenSalesOrderLocators.fetchCustomerItemCheckedBox(Item),
 							ElementType.Xpath);
-					commonFunc.hardWait(2000);
-					flag = webDB.waitForElement(OpenSalesOrderLocators.SelecCheckBox, ElementType.Xpath);
+					logs.logging("INFO", "Item Check Box Is Checked");
+					commonFunc.checkRefreshCellsDisappear();
+					flag = webDB.waitForElement(OpenSalesOrderLocators.FetchCustomerOkBtn, ElementType.Xpath);
 					if (flag) {
-						webDB.clickAnElement(OpenSalesOrderLocators.SelecCheckBox, ElementType.Xpath);
-						logs.logging("INFO", "Item Check Box Is Checked");
-						commonFunc.hardWait(2000);
 						commonFunc.checkRefreshCellsDisappear();
-						flag = webDB.waitForElement(OpenSalesOrderLocators.FetchCustomerOkBtn, ElementType.Xpath);
-						if (flag) {
-							commonFunc.checkRefreshCellsDisappear();
-							webDB.moveToElement(OpenSalesOrderLocators.FetchCustomerOkBtn, ElementType.Xpath);
-							flag = webDB.clickAnElement(OpenSalesOrderLocators.FetchCustomerOkBtn, ElementType.Xpath);
-							commonFunc.checkRefreshCellsDisappear();
-
-						}
+						webDB.moveToElement(OpenSalesOrderLocators.FetchCustomerOkBtn, ElementType.Xpath);
+						flag = webDB.clickAnElement(OpenSalesOrderLocators.FetchCustomerOkBtn, ElementType.Xpath);
+						commonFunc.checkRefreshCellsDisappear();
 					}
 				}
 			}
@@ -310,8 +307,10 @@ public class OpenSalesOrderFunctions {
 		commonFunc.verifyAddTableSpecs(OpenSalesOrderLocators.PriceLastLineData,
 				OpenSalesOrderLocators.PriceLastLineInput, price);
 		VariableHandler.setOpenSOPriceAmount(price);
-		commonFunc.verifyAddTableSpecs(OpenSalesOrderLocators.MRPLastLineData,
-				OpenSalesOrderLocators.MRPLastLineInput, mrp);
+		webDB.pressTabKey();
+		webDB.pressTabKey();
+		commonFunc.verifyAddTableSpecs(OpenSalesOrderLocators.MRPLastLineData, OpenSalesOrderLocators.MRPLastLineInput,
+				mrp);
 		flag = webDB.waitForElement(OpenSalesOrderLocators.HSNCodeLastLineData, ElementType.Xpath);
 		if (flag) {
 			webDB.moveToElement(OpenSalesOrderLocators.HSNCodeLastLineData, ElementType.Xpath);

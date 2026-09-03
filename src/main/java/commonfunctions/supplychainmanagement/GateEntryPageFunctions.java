@@ -1102,8 +1102,8 @@ public class GateEntryPageFunctions {
 		verifyAmendFilterSearchSOB(GateEntryPageLocators.LocId, commonFunc.getDataFromTestDataSheet("L49ID"), "Loc.ID",
 				commonFunc.getDataFromTestDataSheet("HeaderSearchType"),
 				commonFunc.getDataFromTestDataSheet("LovButton"));
-		verifyAmendFilterSearchSOB(GateEntryPageLocators.GENNo, commonFunc.getDataFromTestDataSheet("GENNumber"), "GEN No.",
-				commonFunc.getDataFromTestDataSheet("LineSearchType"),
+		verifyAmendFilterSearchSOB(GateEntryPageLocators.GENNo, commonFunc.getDataFromTestDataSheet("GENNumber"),
+				"GEN No.", commonFunc.getDataFromTestDataSheet("LineSearchType"),
 				commonFunc.getDataFromTestDataSheet("LovButton"));
 //		verifyAmendFilterSearchSOB(GateEntryPageLocators.SupplierNameLovButton,
 //				commonFunc.getDataFromTestDataSheet("ARUN PACKS (P) LTD"), "Party ID",
@@ -1113,11 +1113,11 @@ public class GateEntryPageFunctions {
 				commonFunc.getDataFromTestDataSheet("GateKeeperName"), "Gate Keeper Name",
 				commonFunc.getDataFromTestDataSheet("LineSearchType"),
 				commonFunc.getDataFromTestDataSheet("LovButton"));
-		verifyAmendFilterSearchSOB(GateEntryPageLocators.ItemId, commonFunc.getDataFromTestDataSheet("GENItem"), "Item ID",
-				commonFunc.getDataFromTestDataSheet("LineSearchType"),
+		verifyAmendFilterSearchSOB(GateEntryPageLocators.ItemId, commonFunc.getDataFromTestDataSheet("GENItem"),
+				"Item ID", commonFunc.getDataFromTestDataSheet("LineSearchType"),
 				commonFunc.getDataFromTestDataSheet("LovButton"));
-		verifyAmendFilterSearchSOB(GateEntryPageLocators.ItemDesc, commonFunc.getDataFromTestDataSheet("GENItem"), "Item Desc.",
-				commonFunc.getDataFromTestDataSheet("LineSearchType"),
+		verifyAmendFilterSearchSOB(GateEntryPageLocators.ItemDesc, commonFunc.getDataFromTestDataSheet("GENItem"),
+				"Item Desc.", commonFunc.getDataFromTestDataSheet("LineSearchType"),
 				commonFunc.getDataFromTestDataSheet("SendTextInput"));
 		verifyAmendFilterSearchSOB(GateEntryPageLocators.GRN_Status, commonFunc.getDataFromTestDataSheet("GENStatus"),
 				"Status", commonFunc.getDataFromTestDataSheet("HeaderSearchType"),
@@ -1245,7 +1245,8 @@ public class GateEntryPageFunctions {
 	 * @param Value
 	 */
 	public void verifyAmendTableValue(String i, String Value) {
-		List<WebElement> elements = webDB.getDriver().findElements(By.xpath(GateEntryPageLocators.GateAmendFindTableData(i)));
+		List<WebElement> elements = webDB.getDriver()
+				.findElements(By.xpath(GateEntryPageLocators.GateAmendFindTableData(i)));
 		for (WebElement element : elements) {
 			if (element.isDisplayed()) {
 				flag = element.getText().contains(Value);
@@ -1421,34 +1422,27 @@ public class GateEntryPageFunctions {
 			webDB.clickAnElement(GateEntryPageLocators.ClickPendingPoButton, ElementType.Xpath);
 			logs.logging("INFO", "PendingPOButtonLov Shown");
 			webDB.switchToFrame(GateEntryPageLocators.PendingPOGIframe, ElementType.Xpath);
-			flag = webDB.waitForElement(GateEntryPageLocators.ClickPendingPoButtonLov, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
+			commonFunc.expandFindTable();
+			commonFunc.searchAndSelectValueInFilters(GateEntryPageLocators.ClickPendingPoButtonLov,
+					VariableHandler.getPONumber());
+			commonFunc.checkRefreshCellsDisappear();
+			webDB.switchToFrame(GateEntryPageLocators.PendingPOGIframe, ElementType.Xpath);
+			logs.logging("INFO", "PO Number Shown");
+			webDB.waitForElement(GateEntryPageLocators.GateEntryPoSearchButton, ElementType.Xpath);
 			if (flag) {
-				flag = webDB.clickAnElement(GateEntryPageLocators.ClickPendingPoButtonLov, ElementType.Xpath);
-				logs.logging("INFO", "PendingPOButtonLov Clicked");
-				webDB.switchToDefaultContent();
-				flag = webDB.waitForElement(GateEntryPageLocators.SearchAndSelectValue, ElementType.Xpath);
+				flag = webDB.clickAnElement(GateEntryPageLocators.GateEntryPoSearchButton, ElementType.Xpath);
+				webDB.waitUntilElementToNotBeStale(GateEntryPageLocators.GateEntryPendingPoSelectAll,
+						ElementType.Xpath);
+				logs.logging("INFO", "Document Search And Selected Successfully");
+				verifyClickSelectAllButton();
+				commonFunc.checkRefreshCellsDisappear();
+				logs.logging("INFO", "Create Gate Entry Button shown");
+				webDB.waitForElement(GateEntryPageLocators.CreateGeFromPO, ElementType.Xpath);
 				if (flag) {
-					commonFunc.searchAndSelectValueInFilters(GateEntryPageLocators.SearchAndSelectValue,
-							VariableHandler.getPONumber());
 					commonFunc.checkRefreshCellsDisappear();
-					webDB.switchToFrame(GateEntryPageLocators.PendingPOGIframe, ElementType.Xpath);
-					logs.logging("INFO", "PO Number Shown");
-					webDB.waitForElement(GateEntryPageLocators.GateEntryPoSearchButton, ElementType.Xpath);
-					if (flag) {
-						flag = webDB.clickAnElement(GateEntryPageLocators.GateEntryPoSearchButton, ElementType.Xpath);
-						webDB.waitUntilElementToNotBeStale(GateEntryPageLocators.GateEntryPendingPoSelectAll,
-								ElementType.Xpath);
-						logs.logging("INFO", "Document Search And Selected Successfully");
-						verifyClickSelectAllButton();
-						commonFunc.checkRefreshCellsDisappear();
-						logs.logging("INFO", "Create Gate Entry Button shown");
-						webDB.waitForElement(GateEntryPageLocators.CreateGeFromPO, ElementType.Xpath);
-						if (flag) {
-							commonFunc.checkRefreshCellsDisappear();
-							webDB.moveToElement(GateEntryPageLocators.CreateGeFromPO, ElementType.Xpath);
-							flag = webDB.clickAnElement(GateEntryPageLocators.CreateGeFromPO, ElementType.Xpath);
-						}
-					}
+					webDB.moveToElement(GateEntryPageLocators.CreateGeFromPO, ElementType.Xpath);
+					flag = webDB.clickAnElement(GateEntryPageLocators.CreateGeFromPO, ElementType.Xpath);
 				}
 			}
 		}

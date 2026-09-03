@@ -35,7 +35,7 @@ public class OpenSalesOrderLocators {
 
 	/** @locatorType Xpath */
 	public static final String fetchCustomerItemCheckedBox(String item) {
-		return "//td[text()='" + item + "']/ancestor::tr/td[9]";
+		return "//td[text()='" + item + "']/ancestor::tr/td[9]//input";
 	}
 
 	/** @locatorType Xpath */
