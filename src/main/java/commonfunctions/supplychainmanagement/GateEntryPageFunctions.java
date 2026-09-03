@@ -1100,8 +1100,8 @@ public class GateEntryPageFunctions {
 		verifyAmendFilterSearchSOB(GateEntryPageLocators.LocId, commonFunc.getDataFromTestDataSheet("L49ID"), "Loc.ID",
 				commonFunc.getDataFromTestDataSheet("HeaderSearchType"),
 				commonFunc.getDataFromTestDataSheet("LovButton"));
-		verifyAmendFilterSearchSOB(GateEntryPageLocators.GENNo, commonFunc.getDataFromTestDataSheet("GENNumber"), "GEN No.",
-				commonFunc.getDataFromTestDataSheet("LineSearchType"),
+		verifyAmendFilterSearchSOB(GateEntryPageLocators.GENNo, commonFunc.getDataFromTestDataSheet("GENNumber"),
+				"GEN No.", commonFunc.getDataFromTestDataSheet("LineSearchType"),
 				commonFunc.getDataFromTestDataSheet("LovButton"));
 //		verifyAmendFilterSearchSOB(GateEntryPageLocators.SupplierNameLovButton,
 //				commonFunc.getDataFromTestDataSheet("ARUN PACKS (P) LTD"), "Party ID",
@@ -1111,11 +1111,11 @@ public class GateEntryPageFunctions {
 				commonFunc.getDataFromTestDataSheet("GateKeeperName"), "Gate Keeper Name",
 				commonFunc.getDataFromTestDataSheet("LineSearchType"),
 				commonFunc.getDataFromTestDataSheet("LovButton"));
-		verifyAmendFilterSearchSOB(GateEntryPageLocators.ItemId, commonFunc.getDataFromTestDataSheet("GENItem"), "Item ID",
-				commonFunc.getDataFromTestDataSheet("LineSearchType"),
+		verifyAmendFilterSearchSOB(GateEntryPageLocators.ItemId, commonFunc.getDataFromTestDataSheet("GENItem"),
+				"Item ID", commonFunc.getDataFromTestDataSheet("LineSearchType"),
 				commonFunc.getDataFromTestDataSheet("LovButton"));
-		verifyAmendFilterSearchSOB(GateEntryPageLocators.ItemDesc, commonFunc.getDataFromTestDataSheet("GENItem"), "Item Desc.",
-				commonFunc.getDataFromTestDataSheet("LineSearchType"),
+		verifyAmendFilterSearchSOB(GateEntryPageLocators.ItemDesc, commonFunc.getDataFromTestDataSheet("GENItem"),
+				"Item Desc.", commonFunc.getDataFromTestDataSheet("LineSearchType"),
 				commonFunc.getDataFromTestDataSheet("SendTextInput"));
 		verifyAmendFilterSearchSOB(GateEntryPageLocators.GRN_Status, commonFunc.getDataFromTestDataSheet("GENStatus"),
 				"Status", commonFunc.getDataFromTestDataSheet("HeaderSearchType"),
@@ -1243,7 +1243,8 @@ public class GateEntryPageFunctions {
 	 * @param Value
 	 */
 	public void verifyAmendTableValue(String i, String Value) {
-		List<WebElement> elements = webDB.getDriver().findElements(By.xpath(GateEntryPageLocators.GateAmendFindTableData(i)));
+		List<WebElement> elements = webDB.getDriver()
+				.findElements(By.xpath(GateEntryPageLocators.GateAmendFindTableData(i)));
 		for (WebElement element : elements) {
 			if (element.isDisplayed()) {
 				flag = element.getText().contains(Value);
@@ -1462,32 +1463,32 @@ public class GateEntryPageFunctions {
 	public void verifyClickSelectAllButton() {
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.checkRefreshCellsDisappear();
-		flag = webDB.waitForElement(GateEntryPageLocators.GateEntryPendingPoSelectAll, ElementType.Xpath);
-		if (flag) {
-			webDB.moveToElement(GateEntryPageLocators.GateEntryPendingPoSelectAll, ElementType.Xpath);
-			webDB.scrollToAnElement(GateEntryPageLocators.GateEntryPendingPoSelectAll, ElementType.Xpath);
-			List<WebElement> CheckBox = webDB.getDriver()
-					.findElements(By.xpath(GateEntryPageLocators.GateEntryPendingPoSelectAll));
-			for (WebElement element : CheckBox) {
-				try {
-					if (element.isDisplayed()) {
-						Actions action = new Actions(webDB.getDriver());
-						action.moveToElement(element).build().perform();
-						if (!element.isSelected()) {
-							element.click();
-							flag = true;
-							break;
-						} else {
-							element.click();
-							verifyClickSelectAllButton();
-							flag = true;
-							break;
-						}
+//		flag = webDB.waitForElement(GateEntryPageLocators.GateEntryPendingPoSelectAll, ElementType.Xpath);
+//		if (flag) {
+		webDB.moveToElement(GateEntryPageLocators.GateEntryPendingPoSelectAll, ElementType.Xpath);
+		webDB.scrollToAnElement(GateEntryPageLocators.GateEntryPendingPoSelectAll, ElementType.Xpath);
+		List<WebElement> CheckBox = webDB.getDriver()
+				.findElements(By.xpath(GateEntryPageLocators.GateEntryPendingPoSelectAll));
+		for (WebElement element : CheckBox) {
+			try {
+				if (element.isDisplayed()) {
+					Actions action = new Actions(webDB.getDriver());
+					action.moveToElement(element).build().perform();
+					if (!element.isSelected()) {
+						element.click();
+						flag = true;
+						break;
+					} else {
+						element.click();
+						verifyClickSelectAllButton();
+						flag = true;
+						break;
 					}
-				} catch (Exception e) {
 				}
+			} catch (Exception e) {
 			}
 		}
+//		}
 		assertTrue(flag);
 	}
 

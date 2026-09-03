@@ -333,12 +333,10 @@ public class PreparePayrollFunctions {
 		webDB.waitForElement(PreparePayrollLocators.AttendanceContentContainer, ElementType.Xpath);
 		flag = webDB.waitForElement(PreparePayrollLocators.AttendancePaidLeaveData(EmpName), ElementType.Xpath);
 		if (flag) {
-			commonFunc.verifyAddTableSpecs(
-					PreparePayrollLocators.AttendancePaidLeaveData(EmpName),
+			commonFunc.verifyAddTableSpecs(PreparePayrollLocators.AttendancePaidLeaveData(EmpName),
 					PreparePayrollLocators.AttendancePaidLeaveInput(EmpName), PL);
 			logs.logging("INFO", "Paid Leave Updated - '" + PL + "' for EmpName: " + EmpName);
-			commonFunc.verifyAddTableSpecs(
-					PreparePayrollLocators.AttendanceUnpaidLeaveData(EmpName),
+			commonFunc.verifyAddTableSpecs(PreparePayrollLocators.AttendanceUnpaidLeaveData(EmpName),
 					PreparePayrollLocators.AttendanceUnpaidLeaveInput(EmpName), UL);
 			logs.logging("INFO", "Unpaid Leave Updated - '" + UL + "' for EmpName: " + EmpName);
 			flag = webDB.waitForElement(PreparePayrollLocators.AttendanceSaveIcon, ElementType.Xpath);
@@ -671,8 +669,6 @@ public class PreparePayrollFunctions {
 		DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 		String JoinedDate = date.format(formatter1);
 		try {
-//			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-//					"AdminUsername");
 			commonFunc.navigateEmployeeMasterScreenInPayroll();
 			empMasterFunc.clickAddIconAddEmployee();
 			empMasterFunc.clickEmployeeMasterSideNavBar();
@@ -735,7 +731,6 @@ public class PreparePayrollFunctions {
 			webDB.navigateToBack();
 			clickReviewCompletedInPreparePayroll();
 			clickProcessPayrollButtonInPreparePayroll();
-//			flag = commonFunc.logoutUser();
 			return flag;
 		} catch (Exception e) {
 			logs.logging("INFO",
@@ -753,23 +748,24 @@ public class PreparePayrollFunctions {
 	 */
 	public boolean verifyPreparePayrollFindWithLineWiseRecord() {
 		try {
-//			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-//					"AdminUsername");
 			commonFunc.navigateToPrepareProcessPayrollTab();
 			clickLinesRadioButtonInFind();
 			findWithUnitInLineWise(commonFunc.getDataFromTestDataSheet("Unit1"));
 			webDB.navigateToRefresh();
+			clickLinesRadioButtonInFind();
 			findWithYearInLineWise(commonFunc.getDataFromTestDataSheet("Year202526"));
 			webDB.navigateToRefresh();
+			clickLinesRadioButtonInFind();
 			findWithDesignationInLineWise(commonFunc.getDataFromTestDataSheet("Emp_SalaryDesignation"));
 			webDB.navigateToRefresh();
+			clickLinesRadioButtonInFind();
 			findWithDepartmentInLineWise(commonFunc.getDataFromTestDataSheet("QualityText"));
 			webDB.navigateToRefresh();
+			clickLinesRadioButtonInFind();
 			commonFunc.searchAndSelectValueInFilters(PreparePayrollLocators.FindYearLovBtn,
 					commonFunc.getDataFromTestDataSheet("Year202526"));
 			findWithPeriodInLineWise(commonFunc.getDataFromTestDataSheet("DecemberMonth"));
 			webDB.navigateToRefresh();
-//			flag = commonFunc.logoutUser();
 			return flag;
 		} catch (Exception e) {
 			logs.logging("INFO", "Exception occur while executing 'verifyPreparePayrollFindWithLineWiseRecord': " + e);
@@ -920,16 +916,9 @@ public class PreparePayrollFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyPreparePayrollFindWithHeaderWiseRecord() {
-//		LocalDate date = LocalDate.now();
-//		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM");
-//		DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("MMM");
-//		String SearchMonth = date.format(formatter);
-//		String verifyMonth = date.format(formatter1);
 		String SearchMonth = "December";
 		String verifyMonth = "DEC";
 		try {
-//			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-//					"AdminUsername");
 			commonFunc.navigateToPrepareProcessPayrollTab();
 			clickHeaderRadioButtonInFind();
 			findWithYearInHeaderWise(commonFunc.getDataFromTestDataSheet("Year202526"));
@@ -942,7 +931,6 @@ public class PreparePayrollFunctions {
 			clickHeaderRadioButtonInFind();
 			findWithCalenderInHeaderWise(commonFunc.getDataFromTestDataSheet("Emp_1to31Calendar"));
 			webDB.navigateToRefresh();
-//			flag = commonFunc.logoutUser();
 			return flag;
 		} catch (Exception e) {
 			logs.logging("INFO",
