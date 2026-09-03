@@ -107,41 +107,41 @@ public class GateEntryPageLocators {
 	/** @locatorType Xpath */
 	public static final String DirectDriverNameGate = "//input[@data-testid='P75131020_GEHD_DRIVER_NAME']";
 	/** @locatorType Xpath */
-	public static final String DirectGateCreate = "//button[@id='B1569463386726405156']";
+	public static final String DirectGateCreate = "//button[@id='B1072391168872991320']";
 	/** @locatorType Xpath */
-	public static final String DirectGateAddLine = "//*[@id=\"B4689423975622198221\"]/span";
+	public static final String DirectGateAddLine = "//button[@data-testid='Add_Line']";
 	/** @locatorType Xpath */
 	public static final String DirectGatePartyField = "//table[@class=\"a-GV-table\"]/tbody/tr/td[4]";
 	/** @locatorType Xpath */
-	public static final String DirectGatePartyLov = "//input[@data-testid=\"GELN_SUPLR_ID\"]/following-sibling::button";
+	public static final String DirectGatePartyLov = "//input[@data-testid='GELN_SUPLR_ID']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String DirectGateLineSave = "//button[@data-testid=\"Save_Line\"]";
+	public static final String DirectGateLineSave = "//button[@data-testid='Save_Line']";
 	/** @locatorType Xpath */
-	public static final String DirectGateItemLineAdd = "//button[@data-testid=\"Add_Detail\"]";
+	public static final String DirectGateItemLineAdd = "//button[@data-testid='Add_Detail']";
 	/** @locatorType Xpath */
 	public static final String DirectGateItemLineField = "//*[@id=\"ge_dtl_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[3]";
 	/** @locatorType Xpath */
 	public static final String DirectGateItemLineLov = "//input[@data-testid=\"GEDL_PROD_ID_REV\"]/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String DirectGateQtyInput = "//input[@data-testid=\"GEDL_QTY\"]";
+	public static final String DirectGateQtyInput = "//input[@data-testid='GEDL_QTY']";
 	/** @locatorType Xpath */
 	public static final String DirectGateQtyField = "//*[@id=\"ge_dtl_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[10]";
 	/** @locatorType Xpath */
 	public static final String DirectGateCostField = "//*[@id=\"ge_dtl_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[12]";
 	/** @locatorType Xpath */
-	public static final String DirectGateCostInput = "//input[@data-testid=\"GEDL_UNIT_COST\"]";
+	public static final String DirectGateCostInput = "//input[@data-testid='GEDL_UNIT_COST']";
 	/** @locatorType Xpath */
-	public static final String DirectGateItemLineSave = "//button[@data-testid=\"Save_Detail\"]";
+	public static final String DirectGateItemLineSave = "//button[@data-testid='Save_Detail']";
 	/** @locatorType Xpath */
-	public static final String DirectGateOverallSave = "//button[@data-testid=\"SAVE\"]";
+	public static final String DirectGateOverallSave = "//button[@data-testid='SAVE']";
 	/** @locatorType Xpath */
-	public static final String DirectGatePost = "//button[@data-testid=\"Post\"]";
+	public static final String DirectGatePost = "//button[@data-testid='Post']";
 	/** @locatorType Xpath */
-	public static final String DirectGateUnloadBtn = "//*[@id=\"P751310201_GEHD_ACT\"]/div/div/div[2]/label";
+	public static final String DirectGateUnloadBtn = "//label[contains(text(),'Unloading')]";
 	/** @locatorType Xpath */
-	public static final String DirectGateEWayNo = "//input[@id='P751310201_GEHD_EWB_BILL_NO']";
+	public static final String DirectGateEWayNo = "//input[@data-testid='P751310201_GEHD_EWB_BILL_NO']";
 	/** @locatorType Xpath */
-	public static final String GateEntryDocNum = "//*[@id=\"P751310201_GEHD_DOC_NO_DISPLAY\"]";
+	public static final String GateEntryDocNum = "//*[@id='P751310201_GEHD_DOC_NO_DISPLAY']";
 
 	/** @locatorType Xpath */
 	public static final String ItemName(int i) {
@@ -212,7 +212,7 @@ public class GateEntryPageLocators {
 	/** @locatorType Xpath */
 	public static final String OpoAddFrame = "//iframe[@title='Open PO/RC ']";
 	/** @locatorType Xpath */
-	public static final String GateDirectFrame = "//iframe[@title='Gate Entry ']";
+	public static final String GateDirectFrame = "//iframe[@title='Create Gate Entry ']";
 	/** @locatorType Xpath */
 	public static final String PendingStockTransfer = "//button[@data-testid='Pending_ST']";
 	/** @locatorType Xpath */
@@ -281,5 +281,13 @@ public class GateEntryPageLocators {
 	/** @locatorType Xpath */
 	public static final String GateAmendLineFindTableData(String i) {
 		return CommonFunctions.checkAndReturnLocatorForFindPageTable(GateLineFindTable, i);
+	}
+	
+	/** @locatorType Xpath */
+	public static final String AddTableGateScreen = "(//table[@data-testid=\"ge_line_Result_Data\"])[2]";
+
+	/** @locatorType Xpath */
+	public static final String GatePagePartyTable() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(AddTableGateScreen, "Party ID");
 	}
 }

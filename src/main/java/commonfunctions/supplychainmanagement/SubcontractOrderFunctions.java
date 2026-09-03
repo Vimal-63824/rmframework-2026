@@ -146,6 +146,8 @@ public class SubcontractOrderFunctions {
 				logs.logging("INFO", "Pending Frame Is Displayed");
 				webDB.switchToFrame(SubcontractOrderLocators.FrameProdPoc, ElementType.Xpath);
 				commonFunc.hardWait(3000);
+				commonFunc.expandFindTable();
+				commonFunc.hardWait(1000);
 //				flag = webDB.waitForElement(SubcontractOrderLocators.ProdOrderNo, ElementType.Xpath);
 //				if (flag) {
 //					logs.logging("INFO", "Switched To Pending Frame");
@@ -899,9 +901,9 @@ public class SubcontractOrderFunctions {
 					commonFunc.hardWait(1000);
 					webDB.pressTabKey();
 					commonFunc.hardWait(1000);
-					flag = webDB.waitForElement(SubcontractOrderLocators.SCOPageGLAcctTable(), ElementType.Xpath);
+					flag = webDB.waitForElement(SubcontractOrderLocators.GLacctField, ElementType.Xpath);
 					if (flag) {
-						webDB.clickAnElement(SubcontractOrderLocators.SCOPageGLAcctTable(), ElementType.Xpath);
+						webDB.clickAnElement(SubcontractOrderLocators.GLacctField, ElementType.Xpath);
 						commonFunc.searchAndSelectValueInFilters(SubcontractOrderLocators.ProcessGLacct_lov,
 								ProcessGLacct);
 						flag = webDB.waitForElement(SubcontractOrderLocators.SubcontractProcessSaveIcon,
@@ -915,7 +917,7 @@ public class SubcontractOrderFunctions {
 									ElementType.Xpath)) {
 								webDB.clickAnElementWithoutException(SubcontractOrderLocators.OpenSCO_NoteAlert_Close,
 										ElementType.Xpath);
-								commonFunc.hardWait(1000);
+								commonFunc.hardWait(5000);
 								storeBatchQtyAndBtachCost();
 								flag = webDB.waitForElement(SubcontractOrderLocators.SubcontractGenMRPBtn,
 										ElementType.Xpath);
@@ -4509,6 +4511,9 @@ public class SubcontractOrderFunctions {
 			if (flag) {
 				logs.logging("INFO", "Pending Frame Is Displayed");
 				webDB.switchToFrame(SubcontractOrderLocators.Pend_Serial_Iframe, ElementType.Xpath);
+				commonFunc.hardWait(1000);
+				commonFunc.expandFindTable();
+				commonFunc.hardWait(1000);
 				commonFunc.hardWait(3000);
 //				flag = webDB.waitForElement(SubcontractOrderLocators.ProdOrderNo, ElementType.Xpath);
 //				if (flag) {
@@ -5440,6 +5445,7 @@ public class SubcontractOrderFunctions {
 		String SCOProcUOM = webDB.getTextFromElement(SubcontractOrderLocators.SCO_ProcessUOM_Field, ElementType.Xpath);
 		logs.logging("INFO", "Get SCO ProcUOM Is: " + SCOProcUOM);
 		VariableHandler.setSCOProcUOM(SCOProcUOM);
+		commonFunc.hardWait(2000);
 	}
 
 	/**

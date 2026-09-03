@@ -1323,7 +1323,7 @@ public class MaterialReceiptVoucherFunctions {
 
 				commonFunc.hardWait(1000);
 				commonFunc.checkRefreshCellsDisappear();
-				flag = webDB.waitForElement(MaterialReceiptVoucherLocators.AmendFindTable, ElementType.Xpath);
+				flag = webDB.waitForElement(MaterialReceiptVoucherLocators.MrvFindTable, ElementType.Xpath);
 			}
 		}
 		assertTrue(flag);
@@ -1367,7 +1367,7 @@ public class MaterialReceiptVoucherFunctions {
 
 				commonFunc.hardWait(1000);
 				commonFunc.checkRefreshCellsDisappear();
-				flag = webDB.waitForElement(MaterialReceiptVoucherLocators.AmendLineFindTable, ElementType.Xpath);
+				flag = webDB.waitForElement(MaterialReceiptVoucherLocators.MrvLineFindTable, ElementType.Xpath);
 			}
 		}
 		assertTrue(flag);

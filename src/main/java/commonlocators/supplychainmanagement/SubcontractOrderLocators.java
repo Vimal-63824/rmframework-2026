@@ -178,7 +178,7 @@ public class SubcontractOrderLocators {
 	/** @locatorType XPATH */
 	public static final String SubcontractFindAddIcon = "//button[@data-testid='Add']";
 	/** @locatorType XPATH */
-	public static final String SubcontractFindIframe = "//iframe[@title='Subcontract Order']";
+	public static final String SubcontractFindIframe = "//iframe[@title='Create Subcontract Order']";
 	/** @locatorType XPATH */
 	public static final String SubcontractLocId = "//input[@data-testid='P16171310651_POH_PLNT_LOC_ID']/following-sibling::button";
 	/** @locatorType XPATH */
@@ -515,7 +515,7 @@ public class SubcontractOrderLocators {
 	/** @Locator XPATH */
 	public static final String SCO_Pend_SelectALl = "(//input[@id='check_all'])[1]";
 	/** @Locator XPATH */
-	public static final String SCO_LineTable = "(//table[@data-testid='R6676110280644805169_Result_Data'])[2]";
+	public static final String SCO_LineTable = "(//table[@data-testid='R10634342591344209160_Result_Data'])[2]";
 	/** @locatorType Xpath */
 	public static final String SCOPageItemTable() {
 		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(SCO_LineTable, "Item");
@@ -524,8 +524,22 @@ public class SubcontractOrderLocators {
 	public static final String SCOPageOrdQtyTable() {
 		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(SCO_LineTable, "Ordered Qty.");
 	}
+	/** @Locator XPATH */
+	public static final String SCO_Proc_LineTable = "(//table[@data-testid='R10634342591344209160_Result_Data'])[4]";
 	/** @locatorType Xpath */
 	public static final String SCOPageGLAcctTable() {
-		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(SCO_LineTable, "GL Acct.");
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(SCO_Proc_LineTable, "GL Acct.");
+	}
+	public static final String SCOPageBatchQtyTable() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(SCO_Proc_LineTable, "Batch Qty.");
+	}
+	public static final String SCOPageBatchCostTable() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(SCO_Proc_LineTable, "Batch Cost");
+	}
+	public static final String SCOPageConvTable() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(SCO_Proc_LineTable, "Conv. Factor");
+	}
+	public static final String SCOPageProcUOMTable() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(SCO_Proc_LineTable, "UOM");
 	}
 }
