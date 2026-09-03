@@ -2671,11 +2671,13 @@ public class PurchaseBillsFunctions {
 				flag = webDB.waitForElement(PurchaseBillsLocators.BillDocField, ElementType.Xpath);
 				if (flag) {
 					webDB.pressTabKey();
+					commonFunc.hardWait(1500);
 					SalesordFunc.verifyClickAndEnterValueInTableFields(PurchaseBillsLocators.BillDocField,
 							PurchaseBillsLocators.BillDocNo, BillsBank1);
 					logs.logging("INFO", "Successfully Inserted a Bills Number Against To The Banks" + BillsBank1);
 					flag = webDB.waitForElement(PurchaseBillsLocators.PayamountField, ElementType.Xpath);
 					if (flag) {
+						commonFunc.hardWait(1500);
 						SalesordFunc.verifyClickAndEnterValueInTableFields(PurchaseBillsLocators.PayamountField,
 								PurchaseBillsLocators.PayAmt, Payamount);
 						logs.logging("INFO", "Successfully Inserted a Adjustment Amount");

@@ -42,6 +42,8 @@ public class GrnScoPageFunctions {
 				flag = webDB.waitForClickElement(GrnScoLocators.PendingScoFrame, ElementType.Xpath);
 				if (flag) {
 					webDB.switchToFrame(GrnScoLocators.PendingScoFrame, ElementType.Xpath);
+					commonFunc.expandFindTable();
+					commonFunc.hardWait(1000);
 					commonFunc.searchAndSelectValueInFilters(GrnScoLocators.SCONoLovButton, DocNo);
 					flag = webDB.waitForClickElement(GrnScoLocators.PendingScoFrame, ElementType.Xpath);
 					if (flag) {
