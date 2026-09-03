@@ -18,6 +18,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -244,6 +245,7 @@ public class CommonFunctions {
 		}
 		flag = webDB.waitForElement(CommonUiLocators.PurchaseAddIcon, ElementType.Xpath);
 		Assert.assertTrue(flag);
+
 	}
 
 	/**
@@ -326,10 +328,10 @@ public class CommonFunctions {
 			checkRefreshCellsDisappear();
 			webDB.pressEnterKey();
 			checkRefreshCellsDisappear();
-			List<WebElement> Elements = WebDriverBase.getDriver()
-					.findElements(By.xpath(CommonUiLocators.convertListOfXPath(Value)));
-			for (WebElement webElement : Elements) {
-				try {
+			try {
+				List<WebElement> Elements = WebDriverBase.getDriver()
+						.findElements(By.xpath(CommonUiLocators.convertListOfXPath(Value)));
+				for (WebElement webElement : Elements) {
 					if (webElement.isDisplayed() && webElement.getText().trim().equalsIgnoreCase(Value.trim())) {
 						((JavascriptExecutor) WebDriverBase.getDriver())
 								.executeScript("arguments[0].scrollIntoView(true);", webElement);
@@ -342,9 +344,8 @@ public class CommonFunctions {
 						flag = true;
 					} else {
 					}
-				} catch (Exception e) {
-					flag = false;
 				}
+			} catch (Exception e) {
 			}
 		}
 		List<WebElement> searchBar = WebDriverBase.getDriver().findElements(By.xpath(CommonUiLocators.searchBar));
