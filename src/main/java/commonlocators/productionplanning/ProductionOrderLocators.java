@@ -15,12 +15,12 @@ public class ProductionOrderLocators {
 
 	/** @locatorType XPATH */
 	public static final String Find_TableData_ProdNoWithMRPNo(String MRPNo) {
-		return "//*[contains(text(),'" + MRPNo + "')]/../td[5]/a";
+		return "//*[contains(text(),'" + MRPNo + "')]/../td/a[contains(@href,'prod')]";
 	}
 
 	/** @locatorType XPATH */
 	public static final String Find_TableData_ProdNo(String ProdNo) {
-		return "//*[contains(text(),'" + ProdNo + "')]/../../td[5]/a";
+		return "//*[contains(text(),'" + ProdNo + "')]/../../td/a[contains(@href,'prod')]";
 	}
 
 	/** @locatorType XPATH */
@@ -101,7 +101,7 @@ public class ProductionOrderLocators {
 	/** @locatorType XPATH */
 	public static final String CreateProdOrderAddIcon = "//button[@data-testid='CreateProdOrderAddIcon']";
 	/** @locatorType XPATH */
-	public static final String CreateProdOrderIframe = "//iframe[@title='Production Order']";
+	public static final String CreateProdOrderIframe = "//iframe[@title='Create Production Order']";
 	/** @locatorType XPATH */
 	public static final String CreateProdOrderIframeCloseIcon = "//h1[text()='Production Order']/following-sibling::button";
 	/** @locatorType XPATH */
@@ -148,15 +148,25 @@ public class ProductionOrderLocators {
 	/** @locatorType XPATH */
 	public static final String SoDesc = "//input[@data-testid='SoDesc']/following-sibling::button";
 	/** @locatorType XPATH */
-	public static final String ShowMore = "//button[@data-testid='ShowMore']";
+	public static final String ShowMore = "//button[@title='Show More']";
 	/** @locatorType XPATH */
 	public static final String FirstOprSelect = "//select[@data-testid='FirstOprMREventSelect']";
 	/** @locatorType XPATH */
 	public static final String RestOprSelect = "//select[@data-testid='RestOprMREventSelect']";
 	/** @locatorType XPATH */
-	public static final String ShowLess = "//button[@data-testid='ShowLess']";
+	public static final String ShowLess = "//button[@title='Show Less']";
 	/** @locatorType XPATH */
-	public static final String TotalProcess = "//div[@id='ROUTING_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[4]";
+	public static final String AddedRoutingTable = "(//div[@aria-label='Routing']//table[@data-testid='ROUTING_Result_Data'])[2]";
+
+	/** @locatorType XPATH */
+	public static final String TotalProcess() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(AddedRoutingTable, "Process Desc.");
+	}
+
+	/** @locatorType XPATH */
+	public static final String ProcessTypeList() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(AddedRoutingTable, "Type");
+	}
 
 	/** @locatorType XPATH */
 	public static final String TableData_Status(String DocNo) {
@@ -177,8 +187,6 @@ public class ProductionOrderLocators {
 
 	/** @locatorType XPATH */
 	public static final String ProcessMoveType = "//select[@data-testid='ProcessMoveType']";
-	/** @locatorType XPATH */
-	public static final String ProcessTypeList = "//div[@id='ROUTING_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[5]";
 
 	/** @locatorType XPATH */
 	public static final String ProcessType(int i) {
@@ -196,7 +204,12 @@ public class ProductionOrderLocators {
 	}
 
 	/** @locatorType XPATH */
-	public static final String MaterialProcess = "//div[@id='material_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[2]";
+	public static final String AddedMaterialTable = "//div[contains(@aria-label,'Material Requirement')]//table";
+
+	/** @locatorType XPATH */
+	public static final String MaterialProcess() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(AddedMaterialTable, "Process");
+	}
 
 	/** @locatorType XPATH */
 	public static final String MaterialProcess(int i) {

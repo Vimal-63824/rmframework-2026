@@ -440,4 +440,8 @@ public class CommonUiLocators {
 	public static final String ItemLovButton = "//input[@data-testid='P93132130_ITEM']/following-sibling::button";
 	/** @locatorType Xpath */
 	public static final String PendingPoShowMore = "//button[@aria-controls='a_Collapsible1_FS_content']";
+	/** @locatorType Xpath */
+	public static final String FindShowMore = "//button[@id='M']";
+	/** @locatorType Xpath */
+	public static final String ReportSearchInput = "//input[@title='Search Report']";
 }

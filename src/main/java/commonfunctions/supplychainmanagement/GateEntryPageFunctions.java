@@ -859,7 +859,7 @@ public class GateEntryPageFunctions {
 								if (flag) {
 									webDB.clickAnElement(GateEntryPageLocators.DirectGateCreate, ElementType.Xpath);
 									logs.logging("INFO", "Document is Created");
-
+									webDB.switchToDefaultContent();
 								}
 							}
 
@@ -883,6 +883,7 @@ public class GateEntryPageFunctions {
 			ItemSeqNo = "10";
 		}
 		String EWAYNO = BillNo + ItemSeqNo;
+		commonFunc.checkRefreshCellsDisappear();
 		flag = webDB.waitForElement(GateEntryPageLocators.DirectGateEWayNo, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(GateEntryPageLocators.DirectGateEWayNo, ElementType.Xpath);
@@ -891,15 +892,16 @@ public class GateEntryPageFunctions {
 
 			flag = webDB.waitForElement(GateEntryPageLocators.DirectGateUnloadBtn, ElementType.Xpath);
 			if (flag) {
+				webDB.moveToElement(GateEntryPageLocators.DirectGateUnloadBtn, ElementType.Xpath);
 				webDB.clickAnElement(GateEntryPageLocators.DirectGateUnloadBtn, ElementType.Xpath);
 				logs.logging("INFO", "Radio Button Is Clicked");
 				flag = webDB.waitForElement(GateEntryPageLocators.DirectGateAddLine, ElementType.Xpath);
 				if (flag) {
 					webDB.clickAnElement(GateEntryPageLocators.DirectGateAddLine, ElementType.Xpath);
 					logs.logging("INFO", "Add Button is Clicked");
-					flag = webDB.waitForElement(GateEntryPageLocators.DirectGatePartyField, ElementType.Xpath);
+					flag = webDB.waitForElement(GateEntryPageLocators.GatePagePartyTable(), ElementType.Xpath);
 					if (flag) {
-						webDB.clickAnElement(GateEntryPageLocators.DirectGatePartyField, ElementType.Xpath);
+						webDB.clickAnElement(GateEntryPageLocators.GatePagePartyTable(), ElementType.Xpath);
 						logs.logging("INFO", "Party Field Is Clicked");
 						flag = webDB.waitForElement(GateEntryPageLocators.DirectGatePartyLov, ElementType.Xpath);
 						if (flag) {
@@ -1420,35 +1422,27 @@ public class GateEntryPageFunctions {
 			webDB.clickAnElement(GateEntryPageLocators.ClickPendingPoButton, ElementType.Xpath);
 			logs.logging("INFO", "PendingPOButtonLov Shown");
 			webDB.switchToFrame(GateEntryPageLocators.PendingPOGIframe, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
 			commonFunc.expandFindTable();
-			flag = webDB.waitForElement(GateEntryPageLocators.ClickPendingPoButtonLov, ElementType.Xpath);
+			commonFunc.searchAndSelectValueInFilters(GateEntryPageLocators.ClickPendingPoButtonLov,
+					VariableHandler.getPONumber());
+			commonFunc.checkRefreshCellsDisappear();
+			webDB.switchToFrame(GateEntryPageLocators.PendingPOGIframe, ElementType.Xpath);
+			logs.logging("INFO", "PO Number Shown");
+			webDB.waitForElement(GateEntryPageLocators.GateEntryPoSearchButton, ElementType.Xpath);
 			if (flag) {
-				flag = webDB.clickAnElement(GateEntryPageLocators.ClickPendingPoButtonLov, ElementType.Xpath);
-				logs.logging("INFO", "PendingPOButtonLov Clicked");
-				webDB.switchToDefaultContent();
-				flag = webDB.waitForElement(GateEntryPageLocators.SearchAndSelectValue, ElementType.Xpath);
+				flag = webDB.clickAnElement(GateEntryPageLocators.GateEntryPoSearchButton, ElementType.Xpath);
+				webDB.waitUntilElementToNotBeStale(GateEntryPageLocators.GateEntryPendingPoSelectAll,
+						ElementType.Xpath);
+				logs.logging("INFO", "Document Search And Selected Successfully");
+				verifyClickSelectAllButton();
+				commonFunc.checkRefreshCellsDisappear();
+				logs.logging("INFO", "Create Gate Entry Button shown");
+				webDB.waitForElement(GateEntryPageLocators.CreateGeFromPO, ElementType.Xpath);
 				if (flag) {
-					commonFunc.searchAndSelectValueInFilters(GateEntryPageLocators.SearchAndSelectValue,
-							VariableHandler.getPONumber());
 					commonFunc.checkRefreshCellsDisappear();
-					webDB.switchToFrame(GateEntryPageLocators.PendingPOGIframe, ElementType.Xpath);
-					logs.logging("INFO", "PO Number Shown");
-					webDB.waitForElement(GateEntryPageLocators.GateEntryPoSearchButton, ElementType.Xpath);
-					if (flag) {
-						flag = webDB.clickAnElement(GateEntryPageLocators.GateEntryPoSearchButton, ElementType.Xpath);
-						webDB.waitUntilElementToNotBeStale(GateEntryPageLocators.GateEntryPendingPoSelectAll,
-								ElementType.Xpath);
-						logs.logging("INFO", "Document Search And Selected Successfully");
-						verifyClickSelectAllButton();
-						commonFunc.checkRefreshCellsDisappear();
-						logs.logging("INFO", "Create Gate Entry Button shown");
-						webDB.waitForElement(GateEntryPageLocators.CreateGeFromPO, ElementType.Xpath);
-						if (flag) {
-							commonFunc.checkRefreshCellsDisappear();
-							webDB.moveToElement(GateEntryPageLocators.CreateGeFromPO, ElementType.Xpath);
-							flag = webDB.clickAnElement(GateEntryPageLocators.CreateGeFromPO, ElementType.Xpath);
-						}
-					}
+					webDB.moveToElement(GateEntryPageLocators.CreateGeFromPO, ElementType.Xpath);
+					flag = webDB.clickAnElement(GateEntryPageLocators.CreateGeFromPO, ElementType.Xpath);
 				}
 			}
 		}
@@ -1463,32 +1457,32 @@ public class GateEntryPageFunctions {
 	public void verifyClickSelectAllButton() {
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.checkRefreshCellsDisappear();
-//		flag = webDB.waitForElement(GateEntryPageLocators.GateEntryPendingPoSelectAll, ElementType.Xpath);
-//		if (flag) {
-		webDB.moveToElement(GateEntryPageLocators.GateEntryPendingPoSelectAll, ElementType.Xpath);
-		webDB.scrollToAnElement(GateEntryPageLocators.GateEntryPendingPoSelectAll, ElementType.Xpath);
-		List<WebElement> CheckBox = webDB.getDriver()
-				.findElements(By.xpath(GateEntryPageLocators.GateEntryPendingPoSelectAll));
-		for (WebElement element : CheckBox) {
-			try {
-				if (element.isDisplayed()) {
-					Actions action = new Actions(webDB.getDriver());
-					action.moveToElement(element).build().perform();
-					if (!element.isSelected()) {
-						element.click();
-						flag = true;
-						break;
-					} else {
-						element.click();
-						verifyClickSelectAllButton();
-						flag = true;
-						break;
+		flag = webDB.waitForElement(GateEntryPageLocators.GateEntryPendingPoSelectAll, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(GateEntryPageLocators.GateEntryPendingPoSelectAll, ElementType.Xpath);
+			webDB.scrollToAnElement(GateEntryPageLocators.GateEntryPendingPoSelectAll, ElementType.Xpath);
+			List<WebElement> CheckBox = webDB.getDriver()
+					.findElements(By.xpath(GateEntryPageLocators.GateEntryPendingPoSelectAll));
+			for (WebElement element : CheckBox) {
+				try {
+					if (element.isDisplayed()) {
+						Actions action = new Actions(webDB.getDriver());
+						action.moveToElement(element).build().perform();
+						if (!element.isSelected()) {
+							element.click();
+							flag = true;
+							break;
+						} else {
+							element.click();
+							verifyClickSelectAllButton();
+							flag = true;
+							break;
+						}
 					}
+				} catch (Exception e) {
 				}
-			} catch (Exception e) {
 			}
 		}
-//		}
 		assertTrue(flag);
 	}
 

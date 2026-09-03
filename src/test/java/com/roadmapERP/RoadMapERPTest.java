@@ -27,22 +27,17 @@ public class RoadMapERPTest {
 	 */
 	@BeforeClass(alwaysRun = true)
 	public void BrowserSetup() {
-		WebDriverBase.chromeOptions.addArguments("--disable-gpu");
-		WebDriverBase.chromeOptions.addArguments("--no-sandbox");
-		WebDriverBase.chromeOptions.addArguments("--disable-dev-shm-usage");
-		WebDriverBase.chromeOptions.addArguments("--disable-extensions");
-		WebDriverBase.chromeOptions.addArguments("--disable-software-rasterizer");
-		WebDriverBase.chromeOptions.addArguments("--use-fake-device-for-media-stream");
-		WebDriverBase.chromeOptions.addArguments("--use-fake-ui-for-media-stream");
-		WebDriverBase.chromeOptions.addArguments("--gcm-registration-url=http://localhost:1/");
-		WebDriverBase.chromeOptions.addArguments("--disable-background-networking");
-		WebDriverBase.chromeOptions.addArguments("--disable-device-discovery-notifications");
-		WebDriverBase.chromeOptions.addArguments("--disable-features=GCM");
-		WebDriverBase.chromeOptions.addArguments("--disable-blink-features=AutomationControlled");
-		WebDriverBase.chromeOptions.setAcceptInsecureCerts(true);
+		WebDriverBase.chromeOptions.get().addArguments("--disable-extensions");
+		WebDriverBase.chromeOptions.get().addArguments("--disable-software-rasterizer");
+		WebDriverBase.chromeOptions.get().addArguments("--use-fake-device-for-media-stream");
+		WebDriverBase.chromeOptions.get().addArguments("--use-fake-ui-for-media-stream");
+		WebDriverBase.chromeOptions.get().addArguments("--gcm-registration-url=http://localhost:1/");
+		WebDriverBase.chromeOptions.get().addArguments("--disable-background-networking");
+		WebDriverBase.chromeOptions.get().addArguments("--disable-device-discovery-notifications");
+		WebDriverBase.chromeOptions.get().addArguments("--disable-features=GCM");
+		WebDriverBase.chromeOptions.get().setAcceptInsecureCerts(true);
 		commonFunc.browserOpen();
 		WebDriverBase.getDriver().manage().timeouts().pageLoadTimeout(Duration.ofSeconds(90));
-//		WebDriverBase.getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(90));
 	}
 
 	/**

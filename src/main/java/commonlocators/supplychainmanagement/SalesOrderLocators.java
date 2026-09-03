@@ -1,5 +1,7 @@
 package commonlocators.supplychainmanagement;
 
+import commonfunctions.CommonFunctions;
+
 /**
  * @author Deepan-GWL, Sakthi
  * @company Galaxy Weblinks Feburary 12, 2025
@@ -45,27 +47,71 @@ public class SalesOrderLocators {
 	/** @Locator Xpath */
 	public static final String LineWiseAddIcon = "//BUTTON[@data-testid='SO_LineWise_AddButton']";
 	/** @Locator Xpath */
-	public static final String ItemField = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[2]";
+	public static final String SalesOrderLinesTable = "(//table[@data-testid='R9162071644108609557_Result_Data'])[2]";
+
 	/** @Locator Xpath */
-	public static final String ItemLov = "//input[@data-testid='SO_LN_PROD_ID']/following-sibling::button";
+	public static final String ItemField() {
+		return "(" + CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(SalesOrderLinesTable, "Item ID")
+				+ ")[1]";
+	}
+
+	/** @Locator Xpath */
+	public static final String ItemLov() {
+		return "(" + CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(SalesOrderLinesTable, "Item ID")
+				+ ")[1]//button";
+	}
+
 	/** @Locator Xpath */
 	public static final String ItemLovSearchField = "//input[contains(@class,'a-PopupLOV-search')]";
+
 	/** @Locator Xpath */
-	public static final String ItemInputField = "//input[@data-testid='SO_LN_PROD_ID']";
+	public static final String ItemInputField() {
+		return "(" + CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(SalesOrderLinesTable, "Item ID")
+				+ ")[1]//input";
+	}
+
 	/** @Locator Xpath */
-	public static final String QtyField = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[7]";
+	public static final String QtyField() {
+		return "(" + CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(SalesOrderLinesTable, "Ord. Qty.")
+				+ ")[1]";
+	}
+
 	/** @Locator Xpath */
-	public static final String UnitCostField = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[9]";
+	public static final String UnitCostField() {
+		return "(" + CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(SalesOrderLinesTable, "Unit Price")
+				+ ")[1]";
+	}
+
 	/** @Locator Xpath */
-	public static final String QtyInputField = "//input[@data-testid='SOQ_QTY_ORDERED']";
+	public static final String QtyInputField() {
+		return "(" + CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(SalesOrderLinesTable, "Ord. Qty.")
+				+ ")[1]//input";
+	}
+
 	/** @Locator Xpath */
-	public static final String UnitCostInputField = "//input[@data-testid='SOQ_PRICE1']";
+	public static final String UnitCostInputField() {
+		return "(" + CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(SalesOrderLinesTable, "Unit Price")
+				+ ")[1]//input";
+	}
+
 	/** @Locator Xpath */
-	public static final String HSNCodeField = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[11]";
+	public static final String HSNCodeField() {
+		return "(" + CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(SalesOrderLinesTable, "HSN/SAC Code")
+				+ ")[1]";
+	}
+
 	/** @Locator Xpath */
-	public static final String HSNCodeLOV = "//input[@data-testid='HSNCodeLOV']/following-sibling::button";
+	public static final String HSNCodeLOV() {
+		return "(" + CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(SalesOrderLinesTable, "HSN/SAC Code")
+				+ ")[1]//button";
+	}
+
 	/** @Locator Xpath */
-	public static final String HSNCodeInputField = "//input[@data-testid='HSNCodeLOV']";
+	public static final String HSNCodeInputField() {
+		return "(" + CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(SalesOrderLinesTable, "HSN/SAC Code")
+				+ ")[1]//input";
+	}
+
 	/** @Locator Xpath */
 	public static final String LineWiseSaveIcon = "//BUTTON[@data-testid='SO_LineWise_SaveButton']";
 	/** @Locator Xpath */
@@ -86,10 +132,18 @@ public class SalesOrderLocators {
 	public static final String SOTotalAmountFieldTrans = "//input[@data-testid='SOTotalAmountFieldQuery']";
 	/** @Locator Xpath */
 	public static final String SOTotalAmountFieldQuery = "//span[@id='P191513134001_SOH_TOT_AMT_DISPLAY']";
+
 	/** Locator @CssSelector */
-	public static final String SOLineWiseDetailsButton = "#ig_line_ig_grid_vc > div.a-GV-bdy > div.a-GV-w-scroll > table > tbody > tr > td:nth-child(22) > a";
+	public static final String SOLineWiseDetailsButton() {
+		return "(" + CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(SalesOrderLinesTable, "Details")
+				+ ")[1]//a";
+	}
+
 	/** Locator @CssSelector */
-	public static final String SOTotalDiscountData = "#ig_line_ig_grid_vc > div.a-GV-bdy > div.a-GV-w-scroll > table > tbody > tr > td:nth-child(10) > a";
+	public static final String SOTotalDiscountData() {
+		return "(" + CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(SalesOrderLinesTable, "Tot. Disc. Amt.")
+		+ ")[1]//a";
+}
 	/** @Locator Xpath */
 	public static final String LinewisedetailsHeader = "(//h1[@class='ui-dialog-title'])[7]";
 	/** @Locator Xpath */
@@ -573,7 +627,7 @@ public class SalesOrderLocators {
 	/** @locatorType Xpath */
 	public static final String UpdCLEffFromDateInputField = "//input[@id='P3670058_UCCL_EFF_FRM_input']";
 	/** @locatorType Xpath */
-	public static final String SOFrame = "//IFRAME[@title='Sales Order']";
+	public static final String SOFrame = "//iframe[contains(@title,'Create')]";
 	/** @locatorType Xpath */
 	public static final String SOSearchButton = "//button[@data-testid='SO_Srch_Button']";
 	/** @locatorType Xpath */

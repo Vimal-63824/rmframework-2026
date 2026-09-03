@@ -206,4 +206,8 @@ public class MaterialReceiptVoucherLocators {
 	public static final String MRVLineFindTableData(String i) {
 		return CommonFunctions.checkAndReturnLocatorForFindPageTable(MRVLineFindTable, i);
 	}
+	/** @locatorType Xpath */
+	public static final String MrvLineFindTable = "//table[@data-testid='L_Result_Data']/tbody/tr[2]/td[2]";
+	/** @locatorType Xpath */
+	public static final String MrvFindTable = "//table[@data-testid='H_Result_Data']/tbody/tr[2]/td[2]";
 }

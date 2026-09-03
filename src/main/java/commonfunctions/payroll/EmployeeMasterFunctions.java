@@ -1197,14 +1197,19 @@ public class EmployeeMasterFunctions {
 	public boolean verifyEmployeeCreationFindWithLineWiseRecord() {
 		try {
 			commonFunc.navigateEmployeeMasterScreenInPayroll();
+			commonFunc.clickShowMoreFindTable();
 			findWithZone(commonFunc.getDataFromTestDataSheet("Emp_GeneralZone"));
 			webDB.navigateToRefresh();
+			commonFunc.clickShowMoreFindTable();
 			findWithCategory(commonFunc.getDataFromTestDataSheet("Emp_SalesCompanyCategory"));
 			webDB.navigateToRefresh();
+			commonFunc.clickShowMoreFindTable();
 			findWithDesignation(commonFunc.getDataFromTestDataSheet("Emp_SalaryDesignation"));
 			webDB.navigateToRefresh();
+			commonFunc.clickShowMoreFindTable();
 			findWithDepartment(commonFunc.getDataFromTestDataSheet("Emp_SalaryDepartment"));
 			webDB.navigateToRefresh();
+			commonFunc.clickShowMoreFindTable();
 			findWithUnit(commonFunc.getDataFromTestDataSheet("Unit1"));
 			webDB.navigateToRefresh();
 			return flag;

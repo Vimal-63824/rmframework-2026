@@ -51,61 +51,61 @@ public class BillOfMaterialsLocators {
 	/** @locatorType Xpath */
 	public static final String RoutingSaveLineBtn = "//button[@data-testid='RoutingSaveLineBtn']";
 	/** @locatorType Xpath */
-	public static final String RoutingTable = "//div[@id='ROUTING_ig_grid_vc']//table/thead/tr[2]/th";
+	public static final String RoutingTable = "(//div[@id='ROUTING_ig_grid_vc']//table)[2]";
 
 	/** @locatorType Xpath */
 	public static String RoutingProcSeqNoData() {
-		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(RoutingTable, "Proc. Seq. No");
+		return checkAndReturnIndexForRoutingLocatorWithHeaderValue(RoutingTable, "Proc. Seq. No");
 	}
 
 	/** @locatorType Xpath */
 	public static String RoutingProcSeqNoInput() {
-		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(RoutingTable, "Proc. Seq. No") + "//input";
+		return checkAndReturnIndexForRoutingLocatorWithHeaderValue(RoutingTable, "Proc. Seq. No") + "//input";
 	}
 
 	/** @locatorType Xpath */
 	public static String RoutingOprnNoData() {
-		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(RoutingTable, "Oprn. No.");
+		return checkAndReturnIndexForRoutingLocatorWithHeaderValue(RoutingTable, "Oprn. No.");
 	}
 
 	/** @locatorType Xpath */
 	public static String RoutingOprnNoInput() {
-		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(RoutingTable, "Oprn. No.") + "//input";
+		return checkAndReturnIndexForRoutingLocatorWithHeaderValue(RoutingTable, "Oprn. No.") + "//input";
 	}
 
 	/** @locatorType Xpath */
 	public static String RoutingProcessIdData() {
-		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(RoutingTable, "Process. ID");
+		return checkAndReturnIndexForRoutingLocatorWithHeaderValue(RoutingTable, "Process. ID");
 	}
 
 	/** @locatorType Xpath */
 	public static String RoutingProcessIdLovBtn() {
-		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(RoutingTable, "Process. ID") + "//button";
+		return checkAndReturnIndexForRoutingLocatorWithHeaderValue(RoutingTable, "Process. ID") + "//button";
 	}
 
 	/** @locatorType Xpath */
 	public static String RoutingWorkCenterData() {
-		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(RoutingTable, "Work Center");
+		return checkAndReturnIndexForRoutingLocatorWithHeaderValue(RoutingTable, "Work Center");
 	}
 
 	/** @locatorType Xpath */
 	public static String RoutingWorkCenterLovBtn() {
-		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(RoutingTable, "Work Center") + "//button";
+		return checkAndReturnIndexForRoutingLocatorWithHeaderValue(RoutingTable, "Work Center") + "//button";
 	}
 
 	/** @locatorType Xpath */
 	public static String RoutingTypeData() {
-		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(RoutingTable, "Type");
+		return checkAndReturnIndexForRoutingLocatorWithHeaderValue(RoutingTable, "Type");
 	}
 
 	/** @locatorType Xpath */
 	public static String RoutingTypeSelect() {
-		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(RoutingTable, "Type") + "//select";
+		return checkAndReturnIndexForRoutingLocatorWithHeaderValue(RoutingTable, "Type") + "//select";
 	}
 
 	/** @locatorType Xpath */
 	public static String RoutingIRFlagData() {
-		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(RoutingTable, "IR");
+		return checkAndReturnIndexForRoutingLocatorWithHeaderValue(RoutingTable, "IR");
 	}
 
 	/** @locatorType Xpath */
@@ -140,7 +140,7 @@ public class BillOfMaterialsLocators {
 	/** @locatorType Xpath */
 	public static final String MaterialSaveLineBtn = "//button[@data-testid='MaterialSaveLineBtn']";
 	/** @locatorType Xpath */
-	public static final String MaterialTable = "//div[@id='BOM_LN_STATIC_ig_grid_vc']//table/thead/tr[1]/th";
+	public static final String MaterialTable = "(//div[@id='BOM_LN_STATIC_ig_grid_vc']//table)[2]";
 
 	/** @locatorType Xpath */
 	public static String MaterialProcessDescData() {
@@ -220,7 +220,7 @@ public class BillOfMaterialsLocators {
 	/** @locatorType Xpath */
 	public static final String BORSaveLineBtn = "//button[@data-testid='BORSaveLineBtn']";
 	/** @locatorType Xpath */
-	public static final String BORTable = "//div[@id='BOR_ig_grid_vc']//table/thead/tr[1]/th";
+	public static final String BORTable = "(//div[@id='BOR_ig_grid_vc']//table)[2]";
 
 	/** @locatorType Xpath */
 	public static String BORLineSnoData() {
@@ -496,4 +496,10 @@ public class BillOfMaterialsLocators {
 	public static final String CopyBOMNameInput = "//input[@data-testid='CopyBOMNameInput']";
 	/** @locatorType Xpath */
 	public static final String CopyBOMTickIcon = "//button[@data-testid='CopyBOMTickIcon']";
+
+	public static String checkAndReturnIndexForRoutingLocatorWithHeaderValue(String Locator, String HeaderValue) {
+		Locator = Locator + "/tbody/tr/*[count(" + Locator + "/thead/tr[2]/th[normalize-space()='" + HeaderValue
+				+ "']/preceding-sibling::th) + 1]";
+		return Locator;
+	}
 }
