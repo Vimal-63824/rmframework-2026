@@ -101,7 +101,7 @@ public class ProductionOrderLocators {
 	/** @locatorType XPATH */
 	public static final String CreateProdOrderAddIcon = "//button[@data-testid='CreateProdOrderAddIcon']";
 	/** @locatorType XPATH */
-	public static final String CreateProdOrderIframe = "//iframe[@title='Production Order']";
+	public static final String CreateProdOrderIframe = "//iframe[@title='Create Production Order']";
 	/** @locatorType XPATH */
 	public static final String CreateProdOrderIframeCloseIcon = "//h1[text()='Production Order']/following-sibling::button";
 	/** @locatorType XPATH */
