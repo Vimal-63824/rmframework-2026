@@ -379,5 +379,12 @@ public class GrnLocators {
 	public static final String AcceptQuantity = "//div[@id='grn_lot_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[9]";
 	/** @locatorType Xpath */
 	public static String GrnDocumentStatus = "//table[@data-testid='L_Result_Data']/tbody/tr/td[18]";
-
+	/** @locatorType Xpath */
+	public static String CancelAlertForLineWise = "//button[contains(text(),'OK')]";
+	/** @locatorType Xpath */
+	public static String LineWiseRadioBtn = "(//input[@value=\"L\"])[7]";
+	/** @locatorType Xpath */
+	public static final String GRNStatusTableText(String GRNNo) {
+		return "//a[text()='" + GRNNo + "']/../../td/div[contains(@style,'color:brown')]";
+	}
 }

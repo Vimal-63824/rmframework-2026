@@ -3269,7 +3269,7 @@ public class PurchaseBillsFunctionsGrn {
 			commonFunc.searchAndSelectValueInFilters(PurchaseBillsGrnLocators.ExpenseHsnLovBtn, HSN);
 			logs.logging("INFO", "HSN code IS Enterd:" + HSN);
 			webDB.pressTabKey();
-			commonFunc.hardWait(1000);
+			commonFunc.hardWait(2000);
 		}
 	}
 

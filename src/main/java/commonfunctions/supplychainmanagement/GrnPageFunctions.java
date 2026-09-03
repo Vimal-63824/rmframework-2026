@@ -3851,8 +3851,9 @@ public class GrnPageFunctions {
 		supplierBillNumberAndDcNumber();
 		grnDocumentNumber();
 		verifyToClickLinewiseCancelled();
-		verifyToCheckLinewiseStatus();
-		validateGrnLinewiseStatus(commonFunc.getDataFromTestDataSheet("LineWiseStatus"));
+		verifyToCheckLinewiseStatus(VariableHandler.getGrnDocNumber());
+		validateGrnLinewiseStatus(VariableHandler.getGrnDocNumber(),
+				commonFunc.getDataFromTestDataSheet("LineWiseStatus"));
 
 	}
 
@@ -3877,8 +3878,14 @@ public class GrnPageFunctions {
 		flag = webDB.waitForElement(GrnLocators.GrnLineWiseDeleteButton, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(GrnLocators.GrnLineWiseDeleteButton, ElementType.Xpath);
-			logs.logging("INFO", "Successfully LineWise Cancelled");
+			logs.logging("INFO", "Cancelled Alerts are shown ");
 			commonFunc.hardWait(3000);
+			flag = webDB.waitForElement(GrnLocators.CancelAlertForLineWise, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(GrnLocators.CancelAlertForLineWise, ElementType.Xpath);
+				logs.logging("INFO", "Successfully LineWise Cancelled");
+				commonFunc.hardWait(3000);
+			}
 		}
 		assertTrue(flag);
 	}
@@ -3888,7 +3895,7 @@ public class GrnPageFunctions {
 	 * 
 	 * @author PremKumar.K-RMITS
 	 */
-	private void verifyToCheckLinewiseStatus() {
+	private void verifyToCheckLinewiseStatus(String GRNNo) {
 		if (flag) {
 			webDB.clickAnElement(GrnLocators.GrnSearchButton, ElementType.Xpath);
 			flag = webDB.waitForElement(GrnLocators.FindPageGrnNoLov, ElementType.Xpath);
@@ -3899,13 +3906,18 @@ public class GrnPageFunctions {
 					commonFunc.searchAndSelectValueInFilters(GrnLocators.GrnNumberInput,
 							VariableHandler.getGrnDocNumber());
 					logs.logging("INFO", "Document Number Search And Selected Successfully");
+					commonFunc.checkRefreshCellsDisappear();
+					flag = webDB.waitForElement(GrnLocators.LineWiseRadioBtn, ElementType.Xpath);
+					webDB.clickAnElement(GrnLocators.LineWiseRadioBtn, ElementType.Xpath);
+					logs.logging("INFO", "LineWise Clicked Successfully");
 					flag = webDB.waitForElement(GrnLocators.GrnSearchButton, ElementType.Xpath);
 					webDB.clickAnElement(GrnLocators.GrnSearchButton, ElementType.Xpath);
 					logs.logging("INFO", "Document Searched SuccessFully");
 
-					flag = webDB.waitForElement(GrnLocators.GrnLineWiseStatus, ElementType.Xpath);
+					flag = webDB.waitForElement(GrnLocators.GRNStatusTableText(GRNNo), ElementType.Xpath);
 					if (flag) {
-						String GRNSTATUS = webDB.getTextFromElement(GrnLocators.GrnLineWiseStatus, ElementType.Xpath);
+						String GRNSTATUS = webDB.getTextFromElement(GrnLocators.GRNStatusTableText(GRNNo),
+								ElementType.Xpath);
 						VariableHandler.setGrnStatus(GRNSTATUS);
 						logs.logging("INFO", "GRN LineWise STATUS:" + VariableHandler.getGrnStatus());
 					}
@@ -3921,10 +3933,10 @@ public class GrnPageFunctions {
 	 * 
 	 * @author PremKumar.K-RMITS
 	 */
-	public void validateGrnLinewiseStatus(String LineWiseStatus) {
-		flag = webDB.waitForElement(GrnLocators.GrnLineWiseStatus, ElementType.Xpath);
+	public void validateGrnLinewiseStatus(String GRNNo, String LineWiseStatus) {
+		flag = webDB.waitForElement(GrnLocators.GRNStatusTableText(GRNNo), ElementType.Xpath);
 		if (flag) {
-			String DisplayText = webDB.getTextFromElement(GrnLocators.GrnLineWiseStatus, ElementType.Xpath);
+			String DisplayText = webDB.getTextFromElement(GrnLocators.GRNStatusTableText(GRNNo), ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Expected Text: " + LineWiseStatus + " Displayed: " + DisplayText);
 			}
@@ -3957,8 +3969,9 @@ public class GrnPageFunctions {
 		supplierBillNumberAndDcNumber();
 		grnDocumentNumber();
 		verifyToClickDocumentwiseCancelled();
-		verifyToCheckDocumentwiseStatus();
-		validateGrnDocumentwiseStatus(commonFunc.getDataFromTestDataSheet("DocumentWiseStatus"));
+		verifyToCheckDocumentwiseStatus(VariableHandler.getGrnDocNumber());
+		validateGrnDocumentwiseStatus(VariableHandler.getGrnDocNumber(),
+				commonFunc.getDataFromTestDataSheet("DocumentWiseStatus"));
 	}
 
 	/**
@@ -3994,7 +4007,7 @@ public class GrnPageFunctions {
 	 * 
 	 * @author PremKumar.K-RMITS
 	 */
-	public void verifyToCheckDocumentwiseStatus() {
+	public void verifyToCheckDocumentwiseStatus(String GRNNo) {
 		if (flag) {
 			flag = webDB.waitForElement(GrnLocators.FindPageGrnNoLov, ElementType.Xpath);
 			if (flag) {
@@ -4004,26 +4017,25 @@ public class GrnPageFunctions {
 					commonFunc.searchAndSelectValueInFilters(GrnLocators.GrnNumberInput,
 							VariableHandler.getGrnDocNumber());
 					logs.logging("INFO", "Document Number Search And Selected Successfully");
-					flag = webDB.waitForElement(GrnLocators.GrnHeaderRadioBtn, ElementType.Xpath);
+//					flag = webDB.waitForElement(GrnLocators.GrnHeaderRadioBtn, ElementType.Xpath);
+//					if (flag) {
+//						webDB.clickAnElement(GrnLocators.GrnHeaderRadioBtn, ElementType.Xpath);
+//						logs.logging("INFO", "Header Button Clicked");
+					flag = webDB.waitForElement(GrnLocators.GrnSearchButton, ElementType.Xpath);
+					flag = webDB.clickAnElement(GrnLocators.GrnSearchButton, ElementType.Xpath);
+					logs.logging("INFO", "Document Searched SuccessFully");
+					flag = webDB.waitForElement(GrnLocators.GRNStatusTableText(GRNNo), ElementType.Xpath);
 					if (flag) {
-						webDB.clickAnElement(GrnLocators.GrnHeaderRadioBtn, ElementType.Xpath);
-						logs.logging("INFO", "Header Button Clicked");
-						flag = webDB.waitForElement(GrnLocators.GrnSearchButton, ElementType.Xpath);
-						flag = webDB.clickAnElement(GrnLocators.GrnSearchButton, ElementType.Xpath);
-						logs.logging("INFO", "Document Searched SuccessFully");
-						flag = webDB.waitForElement(GrnLocators.GrnDocumentStatus, ElementType.Xpath);
-						if (flag) {
-							String GRNSTATUS = webDB.getTextFromElement(GrnLocators.GrnDocumentStatus,
-									ElementType.Xpath);
-							VariableHandler.setGrnStatus(GRNSTATUS);
-							logs.logging("INFO", "GRN ProcesWise STATUS:" + VariableHandler.getGrnStatus());
-						}
+						String GRNSTATUS = webDB.getTextFromElement(GrnLocators.GRNStatusTableText(GRNNo),
+								ElementType.Xpath);
+						VariableHandler.setGrnStatus(GRNSTATUS);
+						logs.logging("INFO", "GRN ProcesWise STATUS:" + VariableHandler.getGrnStatus());
 					}
 				}
 			}
-			assertTrue(flag);
-		}
 
+		}
+		assertTrue(flag);
 	}
 
 	/**
@@ -4032,10 +4044,10 @@ public class GrnPageFunctions {
 	 * 
 	 * @author PremKumar.K-RMITS
 	 */
-	public void validateGrnDocumentwiseStatus(String DocumentWiseStatus) {
-		flag = webDB.waitForElement(GrnLocators.GrnDocumentStatus, ElementType.Xpath);
+	public void validateGrnDocumentwiseStatus(String GRNNo, String DocumentWiseStatus) {
+		flag = webDB.waitForElement(GrnLocators.GRNStatusTableText(GRNNo), ElementType.Xpath);
 		if (flag) {
-			String DisplayText = webDB.getTextFromElement(GrnLocators.GrnDocumentStatus, ElementType.Xpath);
+			String DisplayText = webDB.getTextFromElement(GrnLocators.GRNStatusTableText(GRNNo), ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Expected Text: " + DocumentWiseStatus + " Displayed: " + DisplayText);
 			}
@@ -10717,8 +10729,9 @@ public class GrnPageFunctions {
 		commonFunc.naviagteGrnPage();
 		verifyOpenGrnDocuments();
 		verifyToClickDocumentwiseCancelled();
-		verifyToCheckDocumentwiseStatus();
-		validateGrnDocumentwiseStatus(commonFunc.getDataFromTestDataSheet("DocumentWiseStatus"));
+		verifyToCheckDocumentwiseStatus(VariableHandler.getGrnDocNumber());
+		validateGrnDocumentwiseStatus(VariableHandler.getGrnDocNumber(),
+				commonFunc.getDataFromTestDataSheet("DocumentWiseStatus"));
 		commonFunc.navigateToGateEntryDocument();
 		gateEntryPageFunc.openGateEntryDocNo(VariableHandler.getGateEntryNumber());
 		gateEntryPageFunc.verifyCorrectionGateEntryDoc(commonFunc.getDataFromTestDataSheet("GEReason"));
@@ -10813,8 +10826,9 @@ public class GrnPageFunctions {
 		commonFunc.naviagteGrnPage();
 		verifyOpenGrnDocuments();
 		verifyToClickDocumentwiseCancelled();
-		verifyToCheckDocumentwiseStatus();
-		validateGrnDocumentwiseStatus(commonFunc.getDataFromTestDataSheet("DocumentWiseStatus"));
+		verifyToCheckDocumentwiseStatus(VariableHandler.getGrnDocNumber());
+		validateGrnDocumentwiseStatus(VariableHandler.getGrnDocNumber(),
+				commonFunc.getDataFromTestDataSheet("DocumentWiseStatus"));
 		commonFunc.navigateToGateEntryDocument();
 		gateEntryPageFunc.openGateEntryDocNo(VariableHandler.getGateEntryNumber());
 		gateEntryPageFunc.verifyCorrectionGateEntryDoc(commonFunc.getDataFromTestDataSheet("GEReason"));
@@ -11018,8 +11032,9 @@ public class GrnPageFunctions {
 		commonFunc.naviagteGrnPage();
 		verifyOpenGrnDocuments();
 		verifyToClickDocumentwiseCancelled();
-		verifyToCheckDocumentwiseStatus();
-		validateGrnDocumentwiseStatus(commonFunc.getDataFromTestDataSheet("DocumentWiseStatus"));
+		verifyToCheckDocumentwiseStatus(VariableHandler.getGrnDocNumber());
+		validateGrnDocumentwiseStatus(VariableHandler.getGrnDocNumber(),
+				commonFunc.getDataFromTestDataSheet("DocumentWiseStatus"));
 		commonFunc.navigatePoAmendmentPage();
 		poAmendmentFunc.createPendingPOAmendment();
 		poAmendmentFunc.verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -11094,8 +11109,9 @@ public class GrnPageFunctions {
 		commonFunc.naviagteGrnPage();
 		verifyOpenGrnDocuments();
 		verifyToClickDocumentwiseCancelled();
-		verifyToCheckDocumentwiseStatus();
-		validateGrnDocumentwiseStatus(commonFunc.getDataFromTestDataSheet("DocumentWiseStatus"));
+		verifyToCheckDocumentwiseStatus(VariableHandler.getGrnDocNumber());
+		validateGrnDocumentwiseStatus(VariableHandler.getGrnDocNumber(),
+				commonFunc.getDataFromTestDataSheet("DocumentWiseStatus"));
 		commonFunc.navigatePoAmendmentPage();
 		poAmendmentFunc.createPendingPOAmendment();
 		poAmendmentFunc.verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -11466,8 +11482,9 @@ public class GrnPageFunctions {
 		commonFunc.naviagteGrnPage();
 		verifyOpenGrnDocuments();
 		verifyToClickDocumentwiseCancelled();
-		verifyToCheckDocumentwiseStatus();
-		validateGrnDocumentwiseStatus(commonFunc.getDataFromTestDataSheet("DocumentWiseStatus"));
+		verifyToCheckDocumentwiseStatus(VariableHandler.getGrnDocNumber());
+		validateGrnDocumentwiseStatus(VariableHandler.getGrnDocNumber(),
+				commonFunc.getDataFromTestDataSheet("DocumentWiseStatus"));
 		commonFunc.logoutUser();
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigateToGateEntryDocument();
@@ -11579,8 +11596,9 @@ public class GrnPageFunctions {
 		commonFunc.naviagteGrnPage();
 		verifyOpenGrnDocuments();
 		verifyToClickDocumentwiseCancelled();
-		verifyToCheckDocumentwiseStatus();
-		validateGrnDocumentwiseStatus(commonFunc.getDataFromTestDataSheet("DocumentWiseStatus"));
+		verifyToCheckDocumentwiseStatus(VariableHandler.getGrnDocNumber());
+		validateGrnDocumentwiseStatus(VariableHandler.getGrnDocNumber(),
+				commonFunc.getDataFromTestDataSheet("DocumentWiseStatus"));
 		commonFunc.logoutUser();
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigateToGateEntryDocument();
@@ -11680,8 +11698,9 @@ public class GrnPageFunctions {
 		commonFunc.naviagteGrnPage();
 		verifyOpenGrnDocuments();
 		verifyToClickDocumentwiseCancelled();
-		verifyToCheckDocumentwiseStatus();
-		validateGrnDocumentwiseStatus(commonFunc.getDataFromTestDataSheet("DocumentWiseStatus"));
+		verifyToCheckDocumentwiseStatus(VariableHandler.getGrnDocNumber());
+		validateGrnDocumentwiseStatus(VariableHandler.getGrnDocNumber(),
+				commonFunc.getDataFromTestDataSheet("DocumentWiseStatus"));
 		commonFunc.logoutUser();
 		poAmendmentFunc.poDocumentCloseshort(commonFunc.getDataFromTestDataSheet("L0001"),
 				webDB.getDataFromProperties("PoToMRVWithReverseGRNPRAmdWoGSheet"),
@@ -11760,8 +11779,9 @@ public class GrnPageFunctions {
 		commonFunc.naviagteGrnPage();
 		verifyOpenGrnDocuments();
 		verifyToClickDocumentwiseCancelled();
-		verifyToCheckDocumentwiseStatus();
-		validateGrnDocumentwiseStatus(commonFunc.getDataFromTestDataSheet("DocumentWiseStatus"));
+		verifyToCheckDocumentwiseStatus(VariableHandler.getGrnDocNumber());
+		validateGrnDocumentwiseStatus(VariableHandler.getGrnDocNumber(),
+				commonFunc.getDataFromTestDataSheet("DocumentWiseStatus"));
 		commonFunc.logoutUser();
 		poAmendmentFunc.poDocumentCloseshort(commonFunc.getDataFromTestDataSheet("L0001"),
 				webDB.getDataFromProperties("PoToMRVWithReverseGRNPRAmdWoQWLSheet"),
@@ -11937,8 +11957,9 @@ public class GrnPageFunctions {
 		commonFunc.naviagteGrnPage();
 		verifyOpenGrnDocuments();
 		verifyToClickDocumentwiseCancelled();
-		verifyToCheckDocumentwiseStatus();
-		validateGrnDocumentwiseStatus(commonFunc.getDataFromTestDataSheet("DocumentWiseStatus"));
+		verifyToCheckDocumentwiseStatus(VariableHandler.getGrnDocNumber());
+		validateGrnDocumentwiseStatus(VariableHandler.getGrnDocNumber(),
+				commonFunc.getDataFromTestDataSheet("DocumentWiseStatus"));
 		commonFunc.navigateToGateEntryDocument();
 		gateEntryPageFunc.openGateEntryDocNo(VariableHandler.getGateEntryNumber());
 		gateEntryPageFunc.verifyCorrectionGateEntryDoc(commonFunc.getDataFromTestDataSheet("GEReason"));
@@ -12090,8 +12111,9 @@ public class GrnPageFunctions {
 		commonFunc.naviagteGrnPage();
 		verifyOpenGrnDocuments();
 		verifyToClickDocumentwiseCancelled();
-		verifyToCheckDocumentwiseStatus();
-		validateGrnDocumentwiseStatus(commonFunc.getDataFromTestDataSheet("DocumentWiseStatus"));
+		verifyToCheckDocumentwiseStatus(VariableHandler.getGrnDocNumber());
+		validateGrnDocumentwiseStatus(VariableHandler.getGrnDocNumber(),
+				commonFunc.getDataFromTestDataSheet("DocumentWiseStatus"));
 		commonFunc.logoutUser();
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigateToGateEntryDocument();
