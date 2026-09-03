@@ -33,12 +33,9 @@ public class CustomerItemsFunctions {
 	 * @param Customer
 	 */
 	public void insertCustomerFromLovField(String Customer) {
-		flag = webDB.waitForClickElement(CustomerItemsLocators.CustomerLovButton, ElementType.Xpath);
-		if (flag) {
-			commonFunc.searchAndSelectValueInFilters(CustomerItemsLocators.CustomerLovButton, Customer);
-			logs.logging("Info", "Customer Name Passed");
-			flag = webDB.waitForClickElement(CustomerItemsLocators.ItemFieldClick, ElementType.Xpath);
-		}
+		commonFunc.searchAndSelectValueInFilters(CustomerItemsLocators.CustomerLovButton, Customer);
+		logs.logging("Info", "Customer Name Passed");
+		flag = webDB.waitForClickElement(CustomerItemsLocators.ItemFieldClick, ElementType.Xpath);
 		assertTrue(flag);
 	}
 
@@ -52,11 +49,8 @@ public class CustomerItemsFunctions {
 		flag = webDB.waitForClickElement(CustomerItemsLocators.ItemFieldClick, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(CustomerItemsLocators.ItemFieldClick, ElementType.Xpath);
-			flag = webDB.waitForClickElement(CustomerItemsLocators.ItemLovButton, ElementType.Xpath);
-			if (flag) {
-				commonFunc.searchAndSelectValueInFilters(CustomerItemsLocators.ItemLovButton,
-						VariableHandler.getItemName());
-			}
+			commonFunc.searchAndSelectValueInFilters(CustomerItemsLocators.ItemLovButton,
+					VariableHandler.getItemName());
 		}
 		assertTrue(flag);
 	}
@@ -111,11 +105,13 @@ public class CustomerItemsFunctions {
 		flag = webDB.waitForElement(CustomerItemsLocators.Pricecls, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(CustomerItemsLocators.Pricecls, ElementType.Xpath);
-			webDB.selectDropDownByText(CustomerItemsLocators.PriceClassSelectDropdown, priceClassName,
+			flag = webDB.selectDropDownByText(CustomerItemsLocators.PriceClassSelectDropdown, priceClassName,
 					ElementType.Xpath);
-			flag = webDB.waitForElement(CustomerItemsLocators.SaveButtonCustomer, ElementType.Xpath);
 			if (flag) {
-				logs.logging("Info", "Price Basis Changes Done Successfully" + priceClassName);
+				flag = webDB.waitForElement(CustomerItemsLocators.SaveButtonCustomer, ElementType.Xpath);
+				if (flag) {
+					logs.logging("Info", "Price Basis Changes Done Successfully" + priceClassName);
+				}
 			}
 		}
 		assertTrue(flag);
@@ -133,7 +129,6 @@ public class CustomerItemsFunctions {
 			webDB.clickAnElement(CommonUiLocators.QualityTab, ElementType.Xpath);
 			flag = webDB.waitForElement(CommonUiLocators.TypeDropDown, ElementType.Xpath);
 			if (flag) {
-//				webDB.clickAnElement(CommonUiLocators.TypeDropDown, ElementType.Xpath);
 				flag = webDB.selectDropDownByText(CommonUiLocators.TypeDropDown, QcFlag, ElementType.Xpath);
 				if (flag) {
 					logs.logging("INFO", "Successfully Changed a Type" + QcFlag);
@@ -152,7 +147,7 @@ public class CustomerItemsFunctions {
 		flag = webDB.waitForElement(CustomerItemsLocators.DefaultFlagField, ElementType.Xpath);
 		if (flag) {
 			webDB.moveToElement(CustomerItemsLocators.DefaultFlagField, ElementType.Xpath);
-			webDB.javaScriptClickAnElement(CustomerItemsLocators.DefaultFlagField, ElementType.Xpath);
+			flag = webDB.javaScriptClickAnElement(CustomerItemsLocators.DefaultFlagField, ElementType.Xpath);
 			commonFunc.checkRefreshCellsDisappear();
 			if (flag) {
 				logs.logging("INFO", "Default Flag Is Checked ");
@@ -238,11 +233,13 @@ public class CustomerItemsFunctions {
 		flag = webDB.waitForElement(CustomerItemsLocators.PriceBasisCL, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(CustomerItemsLocators.PriceBasisCL, ElementType.Xpath);
-			webDB.selectDropDownByText(CustomerItemsLocators.PriceBasisSelectDropdown, priceBasisValue,
+			flag = webDB.selectDropDownByText(CustomerItemsLocators.PriceBasisSelectDropdown, priceBasisValue,
 					ElementType.Xpath);
-			flag = webDB.waitForElement(CustomerItemsLocators.SaveButtonCustomer, ElementType.Xpath);
 			if (flag) {
-				logs.logging("Info", "Price Basis Changes Done Successfully" + priceBasisValue);
+				flag = webDB.waitForElement(CustomerItemsLocators.SaveButtonCustomer, ElementType.Xpath);
+				if (flag) {
+					logs.logging("Info", "Price Basis Changes Done Successfully" + priceBasisValue);
+				}
 			}
 		}
 		assertTrue(flag);
@@ -276,7 +273,6 @@ public class CustomerItemsFunctions {
 			webDB.clickAnElement(CustomerItemsLocators.SaveButtonCustomer, ElementType.Xpath);
 			logs.logging("Info", "Save Button Clicked Successfully");
 			flag = webDB.waitForElement(CustomerItemsLocators.ToastAlertMessageCustomerItems, ElementType.Xpath);
-//			commonFunc.hardWait(1000);
 		}
 		assertTrue(flag);
 	}
@@ -374,12 +370,8 @@ public class CustomerItemsFunctions {
 	 * @param Unit_100
 	 */
 	public void searchItemInUnitField(String Unit_100) {
-		flag = webDB.waitForElement(CommonUiLocators.unitLov, ElementType.Xpath);
-		if (flag) {
-			commonFunc.searchAndSelectValueInFilters(CommonUiLocators.unitLov, Unit_100);
-			logs.logging("INFO", "Successfully Searched a unit" + Unit_100);
-		}
-		assertTrue(flag);
+		commonFunc.searchAndSelectValueInFilters(CommonUiLocators.unitLov, Unit_100);
+		logs.logging("INFO", "Successfully Searched a unit" + Unit_100);
 	}
 
 	/**
@@ -388,12 +380,9 @@ public class CustomerItemsFunctions {
 	 * @author Kowshik-RMITS
 	 */
 	public void searchItemInFindPage() {
-		flag = webDB.waitForElement(CommonUiLocators.ItemLovA, ElementType.Xpath);
-		if (flag) {
-			commonFunc.searchAndSelectValueInFilters(CommonUiLocators.ItemLovA, VariableHandler.getItemName());
-			logs.logging("INFO", "Item Inserted Sucessfully ");
-			flag = webDB.waitForElement(CommonUiLocators.SearchButton, ElementType.Xpath);
-		}
+		commonFunc.searchAndSelectValueInFilters(CommonUiLocators.ItemLovA, VariableHandler.getItemName());
+		logs.logging("INFO", "Item Inserted Sucessfully ");
+		flag = webDB.waitForElement(CommonUiLocators.SearchButton, ElementType.Xpath);
 		assertTrue(flag);
 	}
 
@@ -415,7 +404,9 @@ public class CustomerItemsFunctions {
 	public void clickSearchButton() {
 		flag = webDB.waitForElement(CommonUiLocators.SearchButton, ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(CommonUiLocators.SearchButton, ElementType.Xpath);
+			webDB.moveToElement(CommonUiLocators.SearchButton, ElementType.Xpath);
+			flag = webDB.clickAnElement(CommonUiLocators.SearchButton, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
 			logs.logging("INFO", "Successfully Fillter a Item In Find Page");
 		}
 		assertTrue(flag);
@@ -453,7 +444,7 @@ public class CustomerItemsFunctions {
 				logs.logging("INFO", "Successfully Moved a Sales Tap ");
 				flag = webDB.waitForElement(CommonUiLocators.CustomerAssoFlag, ElementType.Xpath);
 				if (flag) {
-					webDB.clickAnElement(CommonUiLocators.CustomerAssoFlag, ElementType.Xpath);
+					flag = webDB.clickAnElement(CommonUiLocators.CustomerAssoFlag, ElementType.Xpath);
 					if (flag) {
 						logs.logging("INFO", "Successfully Checked a Customer Assioate Flag");
 					}
@@ -486,7 +477,7 @@ public class CustomerItemsFunctions {
 	public void clickSaveButton() {
 		flag = webDB.waitForElement(CommonUiLocators.SaveButton, ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(CommonUiLocators.SaveButton, ElementType.Xpath);
+			flag = webDB.clickAnElement(CommonUiLocators.SaveButton, ElementType.Xpath);
 			logs.logging("INFO", "Save Button is Clicked");
 		}
 		assertTrue(flag);

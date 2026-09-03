@@ -610,6 +610,7 @@ public class CoreProcessPageFunctions {
 				completionProductionOrderFunc.clickAllocateDeallocateButtonInHeader();
 				completionProductionOrderFunc
 						.selectShiftAndSaveHeaderInCompletion(commonFunc.getDataFromTestDataSheet("Shift_100"));
+				completionProductionOrderFunc.clickPostButtonInCompletionProcess();
 				commonFunc.navigateToCompletionProductionOrderInProdPlanning();
 				completionProductionOrderFunc.verifyCompletionProductionOrdeNumberWithDesiredStatus(
 						VariableHandler.getProductionCompletionOrderNo(),
@@ -618,7 +619,12 @@ public class CoreProcessPageFunctions {
 				flag = materialReceiptFunctions.autoPostMRVCheckboxIsSelected();
 				if (!VariableHandler.getAutoPostMRVFlag()) {
 					commonFunc.navigateToMaterialReceiptVoucher();
-					materialReceiptFunctions.verifyPendingMRV(VariableHandler.getProductionCompletionOrderNo());
+					if (flag) {
+						materialReceiptFunctions.verifyOpenAlreadyCreatedMRVDocumentsWithProdNo(
+								VariableHandler.getProductionOrderNumber());
+					} else {
+						materialReceiptFunctions.verifyPendingMRVUsingMIV(VariableHandler.getMIVNumber());
+					}
 					materialReceiptFunctions.verifyReceiptLocatorsAndPutAway();
 					materialReceiptFunctions.clickTickAndPostIcon();
 					commonFunc.navigateToMaterialReceiptVoucher();
@@ -1217,6 +1223,7 @@ public class CoreProcessPageFunctions {
 				completionProductionOrderFunc.clickAllocateDeallocateButtonInHeader();
 				completionProductionOrderFunc
 						.selectShiftAndSaveHeaderInCompletion(commonFunc.getDataFromTestDataSheet("Shift_100"));
+				completionProductionOrderFunc.clickPostButtonInCompletionProcess();
 				commonFunc.navigateToCompletionProductionOrderInProdPlanning();
 				completionProductionOrderFunc.verifyCompletionProductionOrdeNumberWithDesiredStatus(
 						VariableHandler.getProductionCompletionOrderNo(),
@@ -1225,7 +1232,12 @@ public class CoreProcessPageFunctions {
 				flag = materialReceiptFunctions.autoPostMRVCheckboxIsSelected();
 				if (!VariableHandler.getAutoPostMRVFlag()) {
 					commonFunc.navigateToMaterialReceiptVoucher();
-					materialReceiptFunctions.verifyPendingMRV(VariableHandler.getProductionCompletionOrderNo());
+					if (flag) {
+						materialReceiptFunctions.verifyOpenAlreadyCreatedMRVDocumentsWithProdNo(
+								VariableHandler.getProductionOrderNumber());
+					} else {
+						materialReceiptFunctions.verifyPendingMRVUsingMIV(VariableHandler.getMIVNumber());
+					}
 					materialReceiptFunctions.verifyReceiptLocatorsAndPutAway();
 					materialReceiptFunctions.clickTickAndPostIcon();
 					commonFunc.navigateToMaterialReceiptVoucher();
@@ -1237,7 +1249,7 @@ public class CoreProcessPageFunctions {
 			productionOrderFunc.searchAndVerifyStatusOfPONo(VariableHandler.getProductionOrderNumber(),
 					commonFunc.getDataFromTestDataSheet("CompletedStatus"));
 			flag = commonFunc.logoutUser();
-			return true;
+			return flag;
 		} catch (Exception e) {
 			logs.logging("INFO", "Exception occurs while executing 'creationOfBillOfMaterials': " + e);
 			return false;

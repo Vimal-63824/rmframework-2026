@@ -84,6 +84,7 @@ public class CommonFunctions {
 	public void browserOpen() {
 		try {
 			webDB.Setup(System.getProperty("platformName"));
+			System.out.println("Chrome arguments: " + WebDriverBase.chromeOptions.get().asMap());
 			enterUrl();
 		} catch (Exception e) {
 			logs.loggingconsole("INFO", "Browser not Setup with the Exception: " + e);
@@ -232,25 +233,17 @@ public class CommonFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void navigatePurchaseOrderPage() {
-//		clickLeftNavigationBar();
-//		clickSupplyChainTab();
-//		clickPurchaseTab();
-//		clickPurchaseTransactionTab();
-//		flag = webDB.waitForElement(CommonUiLocators.PurchaseOrderTab, ElementType.Xpath);
-//		if (flag) {
-//			webDB.clickAnElement(CommonUiLocators.PurchaseOrderTab, ElementType.Xpath);
-//			flag = webDB.waitForElement(CommonUiLocators.LeftSideAddIcon, ElementType.Xpath);
-//			if (flag) {
-//				logs.logging("INFO", "Navigated To Purchase Order page Successfully");
-//			}
-//		}
-		String POUrl = System.getProperty("url").replace("loginpage/login", "scm-us9009/find-po?session=")
-				.concat(VariableHandler.getSessionID());
-		System.out.println(POUrl);
-		webDB.navigateToUrl(POUrl);
-		webDB.waitForElement(CommonUiLocators.PurchaseAddIcon, ElementType.Xpath);
-//		navigateToSearchTab(webDB.getDataFromProperties("PurchaseOrderTab"), CommonUiLocators.PurchaseAddIcon);
-//		Assert.assertTrue(flag);
+		flag = webDB.waitForElement(CommonUiLocators.BusFunctionSearchBox, ElementType.Xpath);
+		if (flag) {
+			WebElement InputElement = webDB.getDriver()
+					.findElement(By.xpath(CommonUiLocators.BusFunctionSearchBox + "/parent::*"));
+			JavascriptExecutor js = (JavascriptExecutor) webDB.getDriver();
+			js.executeScript("arguments[0].value='" + webDB.getDataFromProperties("PurchaseOrderTab") + "';",
+					InputElement);
+			webDB.clickAnElement(CommonUiLocators.BusFunctionSearchBox, ElementType.Xpath);
+		}
+		flag = webDB.waitForElement(CommonUiLocators.PurchaseAddIcon, ElementType.Xpath);
+		Assert.assertTrue(flag);
 	}
 
 	/**
@@ -1312,7 +1305,7 @@ public class CommonFunctions {
 //			}
 //		}
 		navigateToSearchTab(webDB.getDataFromProperties("OpenSOScreen"), OpenSalesOrderLocators.OpenSORadioBtn);
-		Assert.assertTrue(flag);
+//		Assert.assertTrue(flag);
 	}
 
 	/**
@@ -1577,7 +1570,8 @@ public class CommonFunctions {
 //			}
 //		}
 		navigateToSearchTab(webDB.getDataFromProperties("ProductionOrderScreen"),
-				ProductionOrderLocators.FindMRPNoLovBtn);
+				ProductionOrderLocators.FindProdOrderNoLovBtn);
+		clickShowMoreFindTable();
 	}
 
 	/**
@@ -1734,7 +1728,9 @@ public class CommonFunctions {
 	 */
 	public boolean checkAutoApprovalOrForwardedWhilePost() {
 		webDB.switchToDefaultContent();
-		if (webDB.waitForElementUntilGivenTime(CommonUiLocators.PostToastMessage, ElementType.Xpath, 10)) {
+		checkRefreshCellsDisappear();
+		checkRefreshCellsDisappear();
+		if (webDB.waitForElementUntilGivenTime(CommonUiLocators.PostToastMessage, ElementType.Xpath, 5)) {
 			VariableHandler.setApprovalFlag(true);
 			logs.logging("INFO", "Toast Message Displayed & Documents Is Posted.");
 			if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {

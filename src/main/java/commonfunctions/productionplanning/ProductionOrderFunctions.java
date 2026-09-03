@@ -133,7 +133,7 @@ public class ProductionOrderFunctions {
 			if (flag) {
 				logs.logging("INFO", "Search Button Clicked in Production Order Find Page");
 				webDB.clickAnElement(ProductionOrderLocators.Find_TableData_ProdNo(ProdOrderNo), ElementType.Xpath);
-				flag = webDB.waitForElement(ProductionOrderLocators.ProdOrderReferenceDisplay, ElementType.Xpath);
+				flag = webDB.waitForElement(ProductionOrderLocators.DisplayProdOrderNo, ElementType.Xpath);
 			}
 		}
 		assertTrue(flag);
@@ -733,7 +733,7 @@ public class ProductionOrderFunctions {
 	public void verifySelectOrderedReleasesInPO() {
 		ArrayList<String> TotalProcess = new ArrayList<>();
 		List<WebElement> TotalElement = WebDriverBase.getDriver()
-				.findElements(By.xpath(ProductionOrderLocators.TotalProcess));
+				.findElements(By.xpath(ProductionOrderLocators.TotalProcess()));
 		for (WebElement element : TotalElement) {
 			TotalProcess.add(element.getText());
 		}
@@ -742,19 +742,11 @@ public class ProductionOrderFunctions {
 		if (flag) {
 			logs.logging("INFO", "Show More Button Is Displayed");
 			webDB.clickAnElement(ProductionOrderLocators.ShowMore, ElementType.Xpath);
-//			flag = webDB.waitForElement(ProductionOrderLocators.FirstOprSelect, ElementType.Xpath);
-//			if (flag) {
-//				logs.logging("INFO", "First Opr Select DropDown Is Displayed");
-//				webDB.selectDropDownByText(ProductionOrderLocators.FirstOprSelect,
-//						commonFunc.getDataFromTestDataSheet("ComQty"), ElementType.Xpath);
-//				webDB.selectDropDownByText(ProductionOrderLocators.RestOprSelect,
-//						commonFunc.getDataFromTestDataSheet("ComQty"), ElementType.Xpath);
 			flag = webDB.waitForElement(ProductionOrderLocators.ShowLess, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Show Less Button Is Displayed");
 				webDB.clickAnElement(ProductionOrderLocators.ShowLess, ElementType.Xpath);
 			}
-//			}
 		}
 		assertTrue(flag);
 	}
@@ -872,7 +864,7 @@ public class ProductionOrderFunctions {
 	public void verifyStoreProcessAndRawMaterial() {
 		Map<String, String> ProcessTypeMap = new HashMap<String, String>();
 		List<WebElement> elements = WebDriverBase.getDriver()
-				.findElements(By.xpath(ProductionOrderLocators.ProcessTypeList));
+				.findElements(By.xpath(ProductionOrderLocators.ProcessTypeList()));
 		for (int i = 1; i <= elements.size(); i++) {
 			flag = webDB.waitForElement(ProductionOrderLocators.ProcessName(i), ElementType.Xpath);
 			if (flag) {
@@ -886,11 +878,11 @@ public class ProductionOrderFunctions {
 		flag = webDB.waitForElement(ProductionOrderLocators.MaterialRequestTab, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(ProductionOrderLocators.MaterialRequestTab, ElementType.Xpath);
-			flag = webDB.waitForElement(ProductionOrderLocators.MaterialProcess, ElementType.Xpath);
+			flag = webDB.waitForElement(ProductionOrderLocators.MaterialProcess(), ElementType.Xpath);
 			if (flag) {
 				Map<String, String> ProcessItemMap = new HashMap<String, String>();
 				List<WebElement> MaterialProcess = WebDriverBase.getDriver()
-						.findElements(By.xpath(ProductionOrderLocators.MaterialProcess));
+						.findElements(By.xpath(ProductionOrderLocators.MaterialProcess()));
 				for (int i = 1; i <= MaterialProcess.size(); i++) {
 					flag = webDB.waitForElement(ProductionOrderLocators.ItemName(i), ElementType.Xpath);
 					if (flag) {
@@ -1022,18 +1014,9 @@ public class ProductionOrderFunctions {
 			webDB.clickAnElement(ProductionOrderLocators.ShowMore, ElementType.Xpath);
 			flag = webDB.waitForElement(ProductionOrderLocators.ProcessMoveType, ElementType.Xpath);
 			if (flag) {
-//				logs.logging("INFO", "First Opr Select DropDown Is Displayed");
 				flag = webDB.selectDropDownByText(ProductionOrderLocators.ProcessMoveType, MoveType, ElementType.Xpath);
 				if (flag) {
 					logs.logging("INFO", "Move Type Is Selected: " + MoveType);
-//					flag = webDB.selectDropDownByText(ProductionOrderLocators.FirstOprSelect, FirstOpr,
-//							ElementType.Xpath);
-//					if (flag) {
-//						logs.logging("INFO", "First Opr Select Is: " + FirstOpr);
-//						flag = webDB.selectDropDownByText(ProductionOrderLocators.RestOprSelect, RestOpr,
-//								ElementType.Xpath);
-//						if (flag) {
-//							logs.logging("INFO", "Rest Opr Select Is: " + RestOpr);
 					flag = webDB.waitForElement(ProductionOrderLocators.ShowLess, ElementType.Xpath);
 					if (flag) {
 						logs.logging("INFO", "Show Less Button Is Displayed");
@@ -1042,8 +1025,6 @@ public class ProductionOrderFunctions {
 						flag = webDB.waitForElement(ProductionOrderLocators.ShowMore, ElementType.Xpath);
 					}
 				}
-//					}
-//				}
 			}
 		}
 		assertTrue(flag);
@@ -1059,7 +1040,7 @@ public class ProductionOrderFunctions {
 	public void verifyProcessType(String FirstProcessType, String OtherProcessType) {
 		ArrayList<String> Process = new ArrayList<>();
 		List<WebElement> elements = WebDriverBase.getDriver()
-				.findElements(By.xpath(ProductionOrderLocators.ProcessTypeList));
+				.findElements(By.xpath(ProductionOrderLocators.ProcessTypeList()));
 		for (int i = 1; i <= elements.size(); i++) {
 			flag = webDB.waitForElement(ProductionOrderLocators.ProcessType(i), ElementType.Xpath);
 			if (flag) {
