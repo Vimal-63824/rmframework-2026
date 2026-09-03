@@ -151,7 +151,7 @@ public class MaterialRequestLocators {
 	/** @locatorType Xpath */
 	public static final String FindBrushIcon = "//button[@id='Clear1']";
 	/** @locatorType Xpath */
-	public static final String MRFrame = "//iframe[@title='Material Request']";
+	public static final String MRFrame = "//iframe[contains(@title,'Create')]";
 	/** @locatorType Xpath */
 	public static final String ShiftLovButton = "//button[@id='P93131011_IMRHD_SHIFT_ID_lov_btn']";
 	/** @locatorType Xpath */
