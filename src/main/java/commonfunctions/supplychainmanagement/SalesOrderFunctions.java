@@ -1069,7 +1069,7 @@ public class SalesOrderFunctions {
 	 */
 	public void addLineItemQty(String Qty) {
 		commonFunc.checkRefreshCellsDisappear();
-		verifyClickAndEnterValueInTableFields(SalesOrderLocators.QtyField(), SalesOrderLocators.QtyInputField(), Qty);
+		commonFunc.verifyAddTableSpecs(SalesOrderLocators.QtyField(), SalesOrderLocators.QtyInputField(), Qty);
 		webDB.pressTabKey();
 		commonFunc.checkRefreshCellsDisappear();
 	}
@@ -4056,12 +4056,12 @@ public class SalesOrderFunctions {
 	public void addChargeItemPercentage(String Percentage, String Amount) {
 		String ChargeBasis = getTextChargeItemBais();
 		if (ChargeBasis.equals("%")) {
-			verifyClickAndEnterValueInTableFields(SalesOrderLocators.Chargepercentagefield,
+			commonFunc.verifyAddTableSpecs(SalesOrderLocators.Chargepercentagefield,
 					SalesOrderLocators.ChargePercentageInputField, Percentage);
 			webDB.pressTabKey();
 			commonFunc.checkRefreshCellsDisappear();
 		} else {
-			verifyClickAndEnterValueInTableFields(SalesOrderLocators.ChargeValueField,
+			commonFunc.verifyAddTableSpecs(SalesOrderLocators.ChargeValueField,
 					SalesOrderLocators.ChargeValueInputField, Amount);
 			webDB.pressTabKey();
 			commonFunc.checkRefreshCellsDisappear();
@@ -4526,7 +4526,7 @@ public class SalesOrderFunctions {
 	 */
 	public void changeunitPrice(String NewUnitPrice, int j, String Item) {
 		commonFunc.checkRefreshCellsDisappear();
-		verifyClickAndEnterValueInTableFields(SalesOrderLocators.SoAmdUnitCostField(j - 3),
+		commonFunc.verifyAddTableSpecs(SalesOrderLocators.SoAmdUnitCostField(j - 3),
 				SalesOrderLocators.SoAmdNewUnitPriceInputField, NewUnitPrice);
 		webDB.pressTabKey();
 		commonFunc.hardWait(1000);
@@ -4544,7 +4544,7 @@ public class SalesOrderFunctions {
 	 */
 	public void changeQty(String NewQty, int j, String Item) {
 		commonFunc.checkRefreshCellsDisappear();
-		verifyClickAndEnterValueInTableFields(SalesOrderLocators.SoAmdQtyField(j - 3),
+		commonFunc.verifyAddTableSpecs(SalesOrderLocators.SoAmdQtyField(j - 3),
 				SalesOrderLocators.SoAmdNewQtyInputField, NewQty);
 		logs.logging("INFO", "New UnitQty Is Changed For This Item " + Item
 				+ "Against This Sales Order Amendment Document " + VariableHandler.getSOAmdNumber());
@@ -4564,7 +4564,7 @@ public class SalesOrderFunctions {
 	 */
 	public void additionOfUnitPrice(String NewUnitPrice, int j, String Item) {
 		commonFunc.checkRefreshCellsDisappear();
-		verifyClickAndEnterValueInTableFields(SalesOrderLocators.SoAmdUnitCostField(j / j),
+		commonFunc.verifyAddTableSpecs(SalesOrderLocators.SoAmdUnitCostField(j / j),
 				SalesOrderLocators.SoAmdNewUnitPriceInputField, NewUnitPrice);
 		webDB.pressTabKey();
 		logs.logging("INFO", "New UnitPrice Is Changed For This Item " + Item
@@ -4582,7 +4582,7 @@ public class SalesOrderFunctions {
 	 */
 	public void additionOfQty(String NewQty, int j, String Item) {
 		commonFunc.checkRefreshCellsDisappear();
-		verifyClickAndEnterValueInTableFields(SalesOrderLocators.SoAmdQtyField(j / j),
+		commonFunc.verifyAddTableSpecs(SalesOrderLocators.SoAmdQtyField(j / j),
 				SalesOrderLocators.SoAmdNewQtyInputField, NewQty);
 		webDB.pressTabKey();
 		logs.logging("INFO", "New UnitQty Is Changed For This Item " + Item
@@ -5142,7 +5142,7 @@ public class SalesOrderFunctions {
 				}
 				if (ChargeAmdType.equals("Modify")) {
 					System.out.println(3);
-					verifyClickAndEnterValueInTableFields(SalesOrderLocators.SoAmdChargeUnitPriceField(j - 9),
+					commonFunc.verifyAddTableSpecs(SalesOrderLocators.SoAmdChargeUnitPriceField(j - 9),
 							SalesOrderLocators.SoAmdChargesAmountInputField, CHARGE_VALUE);
 					webDB.pressTabKey();
 					commonFunc.checkRefreshCellsDisappear();
@@ -5509,7 +5509,7 @@ public class SalesOrderFunctions {
 				webDB.clickAnElement(SalesOrderLocators.SoAmdChargeItemField, ElementType.Xpath);
 				commonFunc.searchAndSelectValueInFilters(SalesOrderLocators.SoAmdChargeItemLov, ChargeItem);
 				webDB.pressTabKey();
-				verifyClickAndEnterValueInTableFields(SalesOrderLocators.SoAmdChargesAmountField,
+				commonFunc.verifyAddTableSpecs(SalesOrderLocators.SoAmdChargesAmountField,
 						SalesOrderLocators.SoAmdChargesAmountInputField, ChargeAmount);
 				webDB.pressTabKey();
 				flag = webDB.waitForElement(SalesOrderLocators.SoAmdChargeSaveButton, ElementType.Xpath);

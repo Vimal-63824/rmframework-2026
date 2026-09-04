@@ -21,7 +21,7 @@ public class GateEntryPageLocators {
 	/** @locatorType Xpath */
 	public static final String GateEntryPoSearchButton = "//button[@data-testid='Find']";
 	/** @locatorType Xpath */
-	public static final String GateEntryPendingPoSelectAll = "//input[@id='check_all']";
+	public static final String GateEntryPendingPoSelectAll = "//input[contains(@id,'check_all')]";
 	/** @locatorType Xpath */
 	public static final String CreateGeFromPO = "//button[@data-testid='Create_GE']";
 	/** @locatorType Xpath */

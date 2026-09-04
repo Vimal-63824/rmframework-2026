@@ -1821,7 +1821,7 @@ public class PurchaseOrderFunctions {
 		}
 		BigDecimal TaxcalAmount = new BigDecimal("0");
 		for (int i = 1; i <= LineAmountWE.size(); i++) {
-			for (int j = 14; j <= 17; j++) {
+			for (int j = 12; j <= 15; j++) {
 				String TaxAmount = webDB.getTextFromElement(PurchaseOrderPageLocators.TaxAmount(i, j),
 						ElementType.Xpath);
 				logs.logging("INFO", "Get Text Tax Amount Is: " + TaxAmount);
