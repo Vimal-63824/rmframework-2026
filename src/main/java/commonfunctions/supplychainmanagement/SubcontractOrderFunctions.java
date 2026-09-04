@@ -912,18 +912,17 @@ public class SubcontractOrderFunctions {
 							webDB.clickAnElement(SubcontractOrderLocators.SubcontractProcessSaveIcon,
 									ElementType.Xpath);
 							commonFunc.checkRefreshCellsDisappear();
-							commonFunc.hardWait(1000);
-							if (webDB.verifyIsElementDisplayed(SubcontractOrderLocators.OpenSCO_NoteAlert_Close,
-									ElementType.Xpath)) {
-								webDB.clickAnElementWithoutException(SubcontractOrderLocators.OpenSCO_NoteAlert_Close,
-										ElementType.Xpath);
-								commonFunc.hardWait(5000);
-								storeBatchQtyAndBtachCost();
-								flag = webDB.waitForElement(SubcontractOrderLocators.SubcontractGenMRPBtn,
-										ElementType.Xpath);
-								if (flag) {
-									logs.logging("INFO", "Process Added Successfuly");
-								}
+							commonFunc.hardWait(3000);
+//							if (webDB.verifyIsElementDisplayed(SubcontractOrderLocators.OpenSCO_NoteAlert_Close,
+//									ElementType.Xpath)) {
+//								webDB.clickAnElementWithoutException(SubcontractOrderLocators.OpenSCO_NoteAlert_Close,
+//										ElementType.Xpath);
+//								commonFunc.hardWait(8000);
+							storeBatchQtyAndBtachCost();
+							flag = webDB.waitForElement(SubcontractOrderLocators.SubcontractGenMRPBtn,
+									ElementType.Xpath);
+							if (flag) {
+								logs.logging("INFO", "Process Added Successfuly");
 							}
 						}
 					}
@@ -5559,10 +5558,8 @@ public class SubcontractOrderFunctions {
 				excelUtils.writeDataInExcel(Filepath, Sheetname, i, 7, VariableHandler.getSCOConvFact());
 				logs.logging("INFO", "Before ProcUOM  " + ProcUOM + "Is : " + VariableHandler.getSCOProcUOM());
 				excelUtils.writeDataInExcel(Filepath, Sheetname, i, 11, VariableHandler.getSCOProcUOM());
-
 			}
 		}
-
 	}
 
 	/**
