@@ -104,6 +104,7 @@ public class CommonFunctions {
 		try {
 			webDB.enterURL(System.getProperty("url"));
 			flag = webDB.waitForElementUntilGivenTime(CommonUiLocators.LoginForm, ElementType.Xpath, 45);
+			VariableHandler.setSiteWorked(flag);
 		} catch (Exception e) {
 			logs.loggingconsole("INFO", "Enter URL Failed with the Exception: " + e);
 			logs.loggingconsole("INFO", "Retrying Navigate To URL");
