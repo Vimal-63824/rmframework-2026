@@ -270,6 +270,7 @@ public class VariableHandler {
 	private static ThreadLocal<String> SessionID = ThreadLocal.withInitial(() -> null);
 	private static ThreadLocal<String> SignInUserName = ThreadLocal.withInitial(() -> null);
 	private static ThreadLocal<String> EmployeeFullName = ThreadLocal.withInitial(() -> null);
+	private static ThreadLocal<Boolean> SiteWorked = ThreadLocal.withInitial(() -> true);
 
 	public static Boolean getSessionOpened() {
 		return SessionOpened.get();
@@ -2331,5 +2332,13 @@ public class VariableHandler {
 
 	public static void setEmployeeFullName(String Data) {
 		EmployeeFullName.set(Data);
+	}
+
+	public static boolean getSiteWorked() {
+		return SiteWorked.get();
+	}
+
+	public static void setSiteWorked(boolean Data) {
+		SiteWorked.set(Data);
 	}
 }
