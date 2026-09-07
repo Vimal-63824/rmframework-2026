@@ -5069,7 +5069,6 @@ public class GrnPageFunctions {
 			if (flag) {
 				webDB.scrollToAnElement(GateEntryPageLocators.GateEntryPendingPoSelectAll, ElementType.Xpath);
 				webDB.moveToElement(GateEntryPageLocators.GateEntryPendingPoSelectAll, ElementType.Xpath);
-				webDB.clickAnElement(GateEntryPageLocators.GateEntryPendingPoSelectAll, ElementType.Xpath);
 				List<WebElement> CheckBox = webDB.getDriver()
 						.findElements(By.xpath(PurchaseOrderPageLocators.PendingGE_SelectAllCheckBox));
 				for (WebElement element : CheckBox) {

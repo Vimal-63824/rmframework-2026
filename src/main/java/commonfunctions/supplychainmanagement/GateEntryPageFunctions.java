@@ -1432,8 +1432,6 @@ public class GateEntryPageFunctions {
 			webDB.waitForElement(GateEntryPageLocators.GateEntryPoSearchButton, ElementType.Xpath);
 			if (flag) {
 				flag = webDB.clickAnElement(GateEntryPageLocators.GateEntryPoSearchButton, ElementType.Xpath);
-				webDB.waitUntilElementToNotBeStale(GateEntryPageLocators.GateEntryPendingPoSelectAll,
-						ElementType.Xpath);
 				logs.logging("INFO", "Document Search And Selected Successfully");
 				verifyClickSelectAllButton();
 				commonFunc.checkRefreshCellsDisappear();
@@ -1457,30 +1455,27 @@ public class GateEntryPageFunctions {
 	public void verifyClickSelectAllButton() {
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.checkRefreshCellsDisappear();
-		flag = webDB.waitForElement(GateEntryPageLocators.GateEntryPendingPoSelectAll, ElementType.Xpath);
-		if (flag) {
-			webDB.moveToElement(GateEntryPageLocators.GateEntryPendingPoSelectAll, ElementType.Xpath);
-			webDB.scrollToAnElement(GateEntryPageLocators.GateEntryPendingPoSelectAll, ElementType.Xpath);
-			List<WebElement> CheckBox = webDB.getDriver()
-					.findElements(By.xpath(GateEntryPageLocators.GateEntryPendingPoSelectAll));
-			for (WebElement element : CheckBox) {
-				try {
-					if (element.isDisplayed()) {
-						Actions action = new Actions(webDB.getDriver());
-						action.moveToElement(element).build().perform();
-						if (!element.isSelected()) {
-							element.click();
-							flag = true;
-							break;
-						} else {
-							element.click();
-							verifyClickSelectAllButton();
-							flag = true;
-							break;
-						}
+		webDB.moveToElement(GateEntryPageLocators.GateEntryPendingPoSelectAll, ElementType.Xpath);
+		webDB.scrollToAnElement(GateEntryPageLocators.GateEntryPendingPoSelectAll, ElementType.Xpath);
+		List<WebElement> CheckBox = webDB.getDriver()
+				.findElements(By.xpath(GateEntryPageLocators.GateEntryPendingPoSelectAll));
+		for (WebElement element : CheckBox) {
+			try {
+				if (element.isDisplayed()) {
+					Actions action = new Actions(webDB.getDriver());
+					action.moveToElement(element).build().perform();
+					if (!element.isSelected()) {
+						element.click();
+						flag = true;
+						break;
+					} else {
+						element.click();
+						verifyClickSelectAllButton();
+						flag = true;
+						break;
 					}
-				} catch (Exception e) {
 				}
+			} catch (Exception e) {
 			}
 		}
 		assertTrue(flag);
