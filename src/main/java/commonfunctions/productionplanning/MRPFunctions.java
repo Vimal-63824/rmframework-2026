@@ -278,6 +278,19 @@ public class MRPFunctions {
 					flag = webDB.isElementSelected(MRPLocators.MRP_Demand_CheckBoxWithSONo(SONum), ElementType.Xpath);
 					if (flag) {
 						logs.logging("INFO", "Select All CheckBox Clicked and Verfied");
+						flag = webDB.waitForElement(MRPLocators.MRP_HeaderSaveBtn, ElementType.Xpath);
+						if (flag) {
+							logs.logging("INFO", "Check Exception Button Clicked");
+							webDB.moveToElement(MRPLocators.MRP_HeaderSaveBtn, ElementType.Xpath);
+							webDB.clickAnElement(MRPLocators.MRP_HeaderSaveBtn, ElementType.Xpath);
+							flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+							if (flag) {
+								commonFunc.checkRefreshCellsDisappear();
+								if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+									webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+								}
+							}
+						}
 					}
 				}
 			}
@@ -298,6 +311,7 @@ public class MRPFunctions {
 		if (flag) {
 			webDB.moveToElement(MRPLocators.MRP_CheckExceptionLabel, ElementType.Xpath);
 			webDB.clickAnElement(MRPLocators.MRP_CheckExceptionLabel, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
 			commonFunc.checkRefreshCellsDisappear();
 			flag = webDB.waitForElement(MRPLocators.MRP_HeaderSaveBtn, ElementType.Xpath);
 			if (flag) {
