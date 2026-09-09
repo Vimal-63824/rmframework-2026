@@ -338,6 +338,56 @@ public class CompletionProductionOrderLocators {
 	public static final String PendingSearchGoButton = "//button[@id='PEND_search_button']";
 	/** @locatorType XPATH */
 	public static final String AllowExceptionPostButton = "//span[text()='Post']/parent::button";
+	/** @locatorType XPATH */
+	public static final String ActualConsTableDataInLines = "//div[@id='consumption_ig_grid_vc']//table/tbody/tr/td[11]";
+	/** @locatorType XPATH */
+	public static final String ActualConsTableNextIconPagination = "//div[@aria-label='Pagination']//button[@title='Next']";
+	/** @locatorType XPATH */
+	public static final String ProdCompRejectionProcessInput = "//input[contains(@id,'PT_PRE_PROCESS_REJ')]";
+	/** @locatorType XPATH */
+	public static final String ProdCompAcceptQtyInput = "//input[contains(@id,'PT_ACCEPT_QTY')]";
+	/** @locatorType XPATH */
+	public static final String ProdCompRejectPrimaryQtyInput = "//input[contains(@id,'PT_PRIM_REJ_QTY')]";
+	/** @locatorType XPATH */
+	public static final String ProdCompRejectSecondaryQtyInput = "//input[contains(@id,'PT_SECON_REJ_QTY')]";
+	/** @locatorType XPATH */
+	public static final String ProdCompAddDefectButton = "//button[@title='Add Defect']";
+	/** @locatorType XPATH */
+	public static final String ProdCompAddScrapButton = "//button[@title='Scrap Add']";
+	/** @locatorType XPATH */
+	public static final String ProdCompSaveDefectButton = "//button[@title='Save Defect']";
+	/** @locatorType XPATH */
+	public static final String ProdCompSaveScrapButton = "//button[@title='Scrap Save']";
+	/** @locatorType XPATH */
+	public static final String ProdCompDefectTypeTableData = "(//div[@id='defect_ig_grid_vc']//table//tbody/tr/td[2])[1]";
+	/** @locatorType XPATH */
+	public static final String ProdCompDefectTypeTableLovBtn = "(//div[@id='defect_ig_grid_vc']//table//tbody/tr/td[2])[1]//button";
+	/** @locatorType XPATH */
+	public static final String ProdCompDefectQtyTableData = "(//div[@id='defect_ig_grid_vc']//table//tbody/tr/td[3])[1]";
+	/** @locatorType XPATH */
+	public static final String ProdCompDefectQtyTableInput = "(//div[@id='defect_ig_grid_vc']//table//tbody/tr/td[3])[1]//input";
+	/** @locatorType XPATH */
+	public static final String ProdCompRepairQtyTableData = "(//div[@id='defect_ig_grid_vc']//table//tbody/tr/td[4])[1]";
+	/** @locatorType XPATH */
+	public static final String ProdCompRepairQtyTableInput = "(//div[@id='defect_ig_grid_vc']//table//tbody/tr/td[4])[1]//input";
+	/** @locatorType XPATH */
+	public static final String ProdCompScrapQtyTableData = "(//div[@id='defect_ig_grid_vc']//table//tbody/tr/td[5])[1]";
+	/** @locatorType XPATH */
+	public static final String ProdCompScrapQtyTableInput = "(//div[@id='defect_ig_grid_vc']//table//tbody/tr/td[5])[1]//input";
+	/** @locatorType XPATH */
+	public static final String ProdCompScrapByProductItemTableData = "(//div[@id='SCRAP_ig_grid_vc']//table//tbody/tr/td[2])[1]";
+	/** @locatorType XPATH */
+	public static final String ProdCompScrapByProductItemTableLovBtn = "(//div[@id='SCRAP_ig_grid_vc']//table//tbody/tr/td[2])[1]//button";
+	/** @locatorType XPATH */
+	public static final String ProdCompScrapByProductWHTableData = "(//div[@id='SCRAP_ig_grid_vc']//table//tbody/tr/td[5])[1]";
+	/** @locatorType XPATH */
+	public static final String ProdCompScrapByProductWHTableLovBtn = "(//div[@id='SCRAP_ig_grid_vc']//table//tbody/tr/td[5])[1]//button";
+	/** @locatorType XPATH */
+	public static final String ProdCompScrapByProductQtyTableData = "(//div[@id='SCRAP_ig_grid_vc']//table//tbody/tr/td[8])[1]";
+	/** @locatorType XPATH */
+	public static final String ProdCompScrapByProductQtyTableInput = "(//div[@id='SCRAP_ig_grid_vc']//table//tbody/tr/td[8])[1]//input";
+	/** @locatorType XPATH */
+	public static final String ProdCompScrapByProductAddConsCheckBox = "(//div[@id='SCRAP_ig_grid_vc']//table//tbody/tr/td[9])[1]//input[@type='checkbox']";
 
 	/** @locatorType XPATH */
 	public static final String AllowExceptionSelectCheckBox(String ProdOrder) {
@@ -346,10 +396,6 @@ public class CompletionProductionOrderLocators {
 	}
 
 	public static final String ProdCompLineActualConsumptionQtyData = "(//div[@id='consumption_ig_grid_vc']//table//tbody/tr/td[11])[1]";
-	/** @locatorType XPATH */
-	public static final String ActualConsTableDataInLines = "//div[@id='consumption_ig_grid_vc']//table/tbody/tr/td[11]";
-	/** @locatorType XPATH */
-	public static final String ActualConsTableNextIconPagination = "//div[@aria-label='Pagination']//button[@title='Next']";
 	/** @locatorType XPATH */
 	public static final String ProdCompLineActualConsumptionQtyInput = "(//div[@id='consumption_ig_grid_vc']//table//tbody/tr/td[11]//input)[1]";
 	/** @locatorType XPATH */
