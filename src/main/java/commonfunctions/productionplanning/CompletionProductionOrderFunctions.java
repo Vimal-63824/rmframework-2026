@@ -14,6 +14,7 @@ import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.testng.Assert;
 
 import commonfunctions.CommonFunctions;
 import commonfunctions.DBCommonFunctions;
@@ -90,6 +91,23 @@ public class CompletionProductionOrderFunctions {
 	}
 
 	/**
+	 * This Method used to click Allow Exception button in Production Completion
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void clickAllowExceptionIconInProdCompletion() {
+		flag = webDB.waitForElement(CompletionProductionOrderLocators.AllowExceptionButton, ElementType.Xpath);
+		if (flag) {
+			webDB.switchToFrame(CompletionProductionOrderLocators.AllowExceptionButton, ElementType.Xpath);
+			flag = webDB.waitForElement(CompletionProductionOrderLocators.AllowExceptionIframe, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Allow Exception Button Clicked");
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
 	 * This method used to search Production Order Number in Pending Allow Exception
 	 * and Click CheckBox
 	 * 
@@ -97,6 +115,7 @@ public class CompletionProductionOrderFunctions {
 	 * @param ProdOrderNo
 	 */
 	public void searchProdOrderNoAndSelectCheckBoxInAllowException(String ProdOrderNo) {
+		switchToAllowExceptionIframe();
 		commonFunc.verifyAddTableSpecs(CompletionProductionOrderLocators.PendingSearchInput,
 				CompletionProductionOrderLocators.PendingSearchInput, ProdOrderNo);
 		logs.logging("INFO", "Pending Search Input Entered for Allow Exception: " + ProdOrderNo);
@@ -113,6 +132,163 @@ public class CompletionProductionOrderFunctions {
 						ElementType.Xpath);
 				if (flag) {
 					logs.logging("INFO", "Production Order CheckBox Clicked in Allow Exception: " + ProdOrderNo);
+				}
+			}
+		}
+		webDB.switchToDefaultContent();
+		assertTrue(flag);
+	}
+
+	/**
+	 * This method used to fill Rejection Quantity as per rejection types in
+	 * completion header
+	 * 
+	 * @author Sakthi-GWL
+	 * @param RejectionType
+	 * @param count
+	 */
+	public void fillProcessRejectInHeader(String RejectionType, String AcceptQuantity, String RejQty) {
+		if (!RejectionType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("ProcessRejection"))) {
+			commonFunc.verifyAddTableSpecs(CompletionProductionOrderLocators.ProdCompAcceptQtyInput,
+					CompletionProductionOrderLocators.ProdCompAcceptQtyInput, AcceptQuantity);
+			logs.logging("INFO", "Quantity: '" + AcceptQuantity + "' Entered in Accept Quantity");
+		}
+		if (RejectionType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("PrimaryRejection"))) {
+			commonFunc.verifyAddTableSpecs(CompletionProductionOrderLocators.ProdCompRejectPrimaryQtyInput,
+					CompletionProductionOrderLocators.ProdCompRejectPrimaryQtyInput, RejQty);
+			logs.logging("INFO", "RejQty: '" + RejQty + "' Entered in Primary Rejection");
+		} else if (RejectionType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("SecondaryRejection"))) {
+			commonFunc.verifyAddTableSpecs(CompletionProductionOrderLocators.ProdCompRejectPrimaryQtyInput,
+					CompletionProductionOrderLocators.ProdCompRejectPrimaryQtyInput, "0");
+			commonFunc.verifyAddTableSpecs(CompletionProductionOrderLocators.ProdCompRejectSecondaryQtyInput,
+					CompletionProductionOrderLocators.ProdCompRejectSecondaryQtyInput, RejQty);
+			logs.logging("INFO", "RejQty: '" + RejQty + "' Entered in Secondary Rejection");
+		} else if (RejectionType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("ProcessRejection"))) {
+			commonFunc.verifyAddTableSpecs(CompletionProductionOrderLocators.ProdCompRejectionProcessInput,
+					CompletionProductionOrderLocators.ProdCompRejectionProcessInput, RejQty);
+			logs.logging("INFO", "RejQty: '" + RejQty + "' Entered in Process Rejection");
+		} else {
+			logs.logging("INFO", "Invalid Process Rejection Type... Please Enter Valid Rejection Type");
+			Assert.fail("Invalid Process Rejection Type in Completion Header... Please Enter Valid Rejection Type");
+		}
+	}
+
+	/**
+	 * This method used to click add icon and fill rejection defects in completion
+	 * production
+	 * 
+	 * @author Sakthi-GWL
+	 * @param DefectType
+	 * @param DefectQty
+	 * @param RepairQty
+	 * @param ScrapQty
+	 */
+	public void clickAddIconAndFillRejectionDefectsInCompletion(String DefectType, String DefectQty, String RepairQty,
+			String ScrapQty) {
+		flag = webDB.waitForElement(CompletionProductionOrderLocators.ProdCompAddDefectButton, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(CompletionProductionOrderLocators.ProdCompAddDefectButton, ElementType.Xpath);
+			webDB.clickAnElement(CompletionProductionOrderLocators.ProdCompAddDefectButton, ElementType.Xpath);
+			commonFunc.verifyAddTableLovValue(CompletionProductionOrderLocators.ProdCompDefectTypeTableData,
+					CompletionProductionOrderLocators.ProdCompDefectTypeTableLovBtn, DefectType);
+			logs.logging("INFO", "Completion Defects Add Icon Clicked");
+			logs.logging("INFO", "Defect Type Selected in Rejection Defects: " + DefectType);
+			commonFunc.verifyAddTableSpecs(CompletionProductionOrderLocators.ProdCompDefectQtyTableData,
+					CompletionProductionOrderLocators.ProdCompDefectQtyTableInput, DefectQty);
+			logs.logging("INFO", "Defect Quantity Entered in Rejection Defects: " + DefectQty);
+			commonFunc.verifyAddTableSpecs(CompletionProductionOrderLocators.ProdCompRepairQtyTableData,
+					CompletionProductionOrderLocators.ProdCompRepairQtyTableInput, RepairQty);
+			logs.logging("INFO", "Repair Quantity Entered in Rejection Defects: " + RepairQty);
+			commonFunc.verifyAddTableSpecs(CompletionProductionOrderLocators.ProdCompScrapQtyTableData,
+					CompletionProductionOrderLocators.ProdCompScrapQtyTableInput, ScrapQty);
+			logs.logging("INFO", "Scrap Quantity Entered in Rejection Defects: " + ScrapQty);
+			flag = webDB.waitForElement(CompletionProductionOrderLocators.ProdCompSaveDefectButton, ElementType.Xpath);
+			if (flag) {
+				webDB.moveToElement(CompletionProductionOrderLocators.ProdCompSaveDefectButton, ElementType.Xpath);
+				webDB.clickAnElement(CompletionProductionOrderLocators.ProdCompSaveDefectButton, ElementType.Xpath);
+				flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Defects Added and Saved Successfully");
+					if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+						webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+					}
+					commonFunc.checkSuccessToastMessageDisappear();
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This method used to click add and fill scrap products in completion
+	 * production
+	 * 
+	 * @author Sakthi-GWL
+	 * @param ItemName
+	 * @param ScrapWH
+	 * @param ScrapQty
+	 */
+	public void clickAddInScrapProductInCompletion(String ItemName, String ScrapWH, String ScrapQty) {
+		flag = webDB.waitForElement(CompletionProductionOrderLocators.ProdCompAddScrapButton, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(CompletionProductionOrderLocators.ProdCompAddScrapButton, ElementType.Xpath);
+			webDB.clickAnElement(CompletionProductionOrderLocators.ProdCompAddScrapButton, ElementType.Xpath);
+			commonFunc.verifyAddTableLovValue(CompletionProductionOrderLocators.ProdCompScrapByProductItemTableData,
+					CompletionProductionOrderLocators.ProdCompScrapByProductItemTableLovBtn, ItemName);
+			logs.logging("INFO", "Completion Scrap Products Add Icon Clicked");
+			logs.logging("INFO", "Scrap Item Selected in Scrap Products: " + ItemName);
+			commonFunc.verifyAddTableLovValue(CompletionProductionOrderLocators.ProdCompScrapByProductWHTableData,
+					CompletionProductionOrderLocators.ProdCompScrapByProductWHTableLovBtn, ScrapWH);
+			logs.logging("INFO", "Scrap Warehouse Selected in Scrap Products: " + ScrapWH);
+			commonFunc.verifyAddTableSpecs(CompletionProductionOrderLocators.ProdCompScrapByProductQtyTableData,
+					CompletionProductionOrderLocators.ProdCompScrapByProductQtyTableInput, ScrapQty);
+			logs.logging("INFO", "Scrap Quantity Entered in Scrap Products: " + ScrapQty);
+			flag = webDB.waitForElement(CompletionProductionOrderLocators.ProdCompSaveScrapButton, ElementType.Xpath);
+			if (flag) {
+				webDB.moveToElement(CompletionProductionOrderLocators.ProdCompSaveScrapButton, ElementType.Xpath);
+				webDB.clickAnElement(CompletionProductionOrderLocators.ProdCompSaveScrapButton, ElementType.Xpath);
+				flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Scrap Product Added and Saved Successfully");
+					if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+						webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+					}
+					commonFunc.checkSuccessToastMessageDisappear();
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This method used to click Add In Consumption In Scrap Product and Save
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void clickAddInConsumptionInScrapProduct() {
+		flag = webDB.waitForElement(CompletionProductionOrderLocators.ProdCompScrapByProductAddConsCheckBox,
+				ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(CompletionProductionOrderLocators.ProdCompScrapByProductAddConsCheckBox,
+					ElementType.Xpath);
+			webDB.clickAnElement(CompletionProductionOrderLocators.ProdCompScrapByProductAddConsCheckBox,
+					ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
+			commonFunc.checkRefreshCellsDisappear();
+			flag = webDB.isElementSelected(CompletionProductionOrderLocators.ProdCompScrapByProductAddConsCheckBox,
+					ElementType.Xpath);
+			webDB.waitForElement(CompletionProductionOrderLocators.ProdCompSaveScrapButton, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Add In Consumption checkbox clicked in Scrap Product");
+				webDB.moveToElement(CompletionProductionOrderLocators.ProdCompSaveScrapButton, ElementType.Xpath);
+				webDB.clickAnElement(CompletionProductionOrderLocators.ProdCompSaveScrapButton, ElementType.Xpath);
+				flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Scrap Product Saved Successfully");
+					if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+						webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+					}
+					commonFunc.checkSuccessToastMessageDisappear();
 				}
 			}
 		}
@@ -273,6 +449,29 @@ public class CompletionProductionOrderFunctions {
 						ElementType.Xpath);
 				VariableHandler.setProductionCompletionOrderNo(ProdComplNo);
 				logs.logging("INFO", "Production Completion Order Number Is: " + ProdComplNo);
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method used to select shift and save header in completion production
+	 * order
+	 * 
+	 * @author Sakthi-GWL
+	 * @param shift
+	 */
+	public void clickSaveHeaderInCompletion() {
+		flag = webDB.waitForElement(CompletionProductionOrderLocators.ComplProdHeaderSaveIcon, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(CompletionProductionOrderLocators.ComplProdHeaderSaveIcon, ElementType.Xpath);
+			webDB.clickAnElement(CompletionProductionOrderLocators.ComplProdHeaderSaveIcon, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Header Saved Succesfully");
+				if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+					webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+				}
 			}
 		}
 		assertTrue(flag);
@@ -1742,7 +1941,7 @@ public class CompletionProductionOrderFunctions {
 //		commonFunc.verifyAddTableSpecs(CompletionProductionOrderLocators.ProdCompLineRequiredQtyData,
 //				CompletionProductionOrderLocators.ProdCompLineRequiredQtyInput, ReqrdQty);
 //		logs.logging("INFO", "Required Quantity Entered in Consumption: " + ReqrdQty);
-		commonFunc.verifyAddTableSpecsClearField(CompletionProductionOrderLocators.ProdCompLineActualConsumptionQtyData,
+		commonFunc.verifyAddTableSpecs(CompletionProductionOrderLocators.ProdCompLineActualConsumptionQtyData,
 				CompletionProductionOrderLocators.ProdCompLineActualConsumptionQtyData, ActualConsQty);
 		logs.logging("INFO", "Actual ConsumpFtion Quantity Entered in Consumption: " + ActualConsQty);
 	}
