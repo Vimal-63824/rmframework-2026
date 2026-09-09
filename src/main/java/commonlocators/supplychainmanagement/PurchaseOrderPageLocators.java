@@ -130,22 +130,22 @@ public class PurchaseOrderPageLocators {
 
 	/** @locatorType Xpath */
 	public static final String LineAmount(String text) {
-		return "//td[text()='" + text + "']/../td[11]";
+		return "//td[text()='" + text + "']/../td[9]";
 	}
 
 	/** @locatorType Xpath */
 	public static final String TaxPercentage(String text) {
-		return "//td[text()='" + text + "']/../td[13]";
+		return "//td[text()='" + text + "']/../td[11]";
 	}
 
 	/** @locatorType Xpath */
 	public static final String TaxCGST(String text) {
-		return "//td[text()='" + text + "']/../td[15]";
+		return "//td[text()='" + text + "']/../td[13]";
 	}
 
 	/** @locatorType Xpath */
 	public static final String TaxSGST(String text) {
-		return "//td[text()='" + text + "']/../td[16]";
+		return "//td[text()='" + text + "']/../td[14]";
 	}
 
 	/** @locatorType Xpath */
@@ -202,7 +202,7 @@ public class PurchaseOrderPageLocators {
 
 	/** @locatorType Xpath */
 	public static final String LineAmount(int i) {
-		return "(//table[@data-testid='Reset_Region_Result_Data'])[2]/tbody/tr[" + i + "]/td[11]";
+		return "(//table[@data-testid='Reset_Region_Result_Data'])[2]/tbody/tr[" + i + "]/td[9]";
 	}
 
 	/** @locatorType Xpath */
@@ -560,7 +560,7 @@ public class PurchaseOrderPageLocators {
 	public static final String CancelText = "//button[text()='Cancel']";
 	/** @locatorType Xpath */
 	public static final String ServiceSelect = "//select[@data-testid='P161513106045_POL_SERV_IO_TYPE']";
-	
+
 	/** @locatorType Xpath */
 	public static final String HsnField() {
 		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(AddTablePOScreen, "HSN /SAC Code");

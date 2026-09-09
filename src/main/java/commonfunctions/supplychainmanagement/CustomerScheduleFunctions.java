@@ -151,9 +151,9 @@ public class CustomerScheduleFunctions {
 	 * @param Item
 	 */
 	public void addItemsInCS(String Item) {
-		flag = webDB.waitForElement(CustomerScheduleLocators.CSLineWiseItemField, ElementType.Xpath);
+		flag = webDB.waitForElement(CustomerScheduleLocators.AddItemField(), ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(CustomerScheduleLocators.CSLineWiseItemField, ElementType.Xpath);
+			webDB.clickAnElement(CustomerScheduleLocators.AddItemField(), ElementType.Xpath);
 			commonFunc.searchAndSelectValueInFilters(CustomerScheduleLocators.CSLineWiseItemLov, Item);
 			webDB.pressTabKey();
 			commonFunc.checkRefreshCellsDisappear();
@@ -173,19 +173,19 @@ public class CustomerScheduleFunctions {
 	public void addQtyUnitAndMrpCost(String FirmQty, String UnitCost, String MrpPrice, String Discount, String EndDate,
 			String BucketType) {
 		commonFunc.checkRefreshCellsDisappear();
-		salesOrderFunctions.verifyClickAndEnterValueInTableFields(CustomerScheduleLocators.CSLineWiseFirmQtyField,
+		salesOrderFunctions.verifyClickAndEnterValueInTableFields(CustomerScheduleLocators.FirmQtyLines(),
 				CustomerScheduleLocators.CSLineWiseFirmQtyInputField, FirmQty);
 		webDB.pressTabKey();
 		commonFunc.checkRefreshCellsDisappear();
-		salesOrderFunctions.verifyClickAndEnterValueInTableFields(CustomerScheduleLocators.CSLineWiseUnitPriceField,
+		salesOrderFunctions.verifyClickAndEnterValueInTableFields(CustomerScheduleLocators.UnitPriceLines(),
 				CustomerScheduleLocators.CSLineWiseUnitPriceInputField, UnitCost);
 		webDB.pressTabKey();
 		commonFunc.checkRefreshCellsDisappear();
-		salesOrderFunctions.verifyClickAndEnterValueInTableFields(CustomerScheduleLocators.CSLineWiseMRPField,
+		salesOrderFunctions.verifyClickAndEnterValueInTableFields(CustomerScheduleLocators.MrpPriceLines(),
 				CustomerScheduleLocators.CSLineWiseMRPInputField, MrpPrice);
 		webDB.pressTabKey();
 		commonFunc.checkRefreshCellsDisappear();
-		salesOrderFunctions.verifyClickAndEnterValueInTableFields(CustomerScheduleLocators.CSLineWiseDiscField,
+		salesOrderFunctions.verifyClickAndEnterValueInTableFields(CustomerScheduleLocators.DiscFieldLines(),
 				CustomerScheduleLocators.CSLineWiseDiscInputField, Discount);
 		webDB.pressTabKey();
 		commonFunc.checkRefreshCellsDisappear();
@@ -580,11 +580,11 @@ public class CustomerScheduleFunctions {
 	 * @param HSNCode
 	 */
 	public void chooseHSNCodeInCS(String HSNCode) {
-		String text = webDB.getTextFromElement(CustomerScheduleLocators.CSHsnCodeField, ElementType.Xpath);
+		String text = webDB.getTextFromElement(CustomerScheduleLocators.HsnCode(), ElementType.Xpath);
 		if (text == null || text.trim().isEmpty() || !text.equals(HSNCode)) {
-			flag = webDB.waitForElement(CustomerScheduleLocators.CSHsnCodeField, ElementType.Xpath);
+			flag = webDB.waitForElement(CustomerScheduleLocators.HsnCode(), ElementType.Xpath);
 			if (flag) {
-				webDB.clickAnElement(CustomerScheduleLocators.CSHsnCodeField, ElementType.Xpath);
+				webDB.clickAnElement(CustomerScheduleLocators.HsnCode(), ElementType.Xpath);
 				commonFunc.searchAndSelectValueInFilters(CustomerScheduleLocators.CSHsnCodeLov, HSNCode);
 				webDB.pressTabKey();
 				commonFunc.hardWait(500);
@@ -601,9 +601,9 @@ public class CustomerScheduleFunctions {
 	 * @param SchType
 	 */
 	public void chooseScheduleType(String SchType) {
-		flag = webDB.waitForElement(CustomerScheduleLocators.CSScheduleTypeField, ElementType.Xpath);
+		flag = webDB.waitForElement(CustomerScheduleLocators.CustomerScdhlType(), ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(CustomerScheduleLocators.CSScheduleTypeField, ElementType.Xpath);
+			webDB.clickAnElement(CustomerScheduleLocators.CustomerScdhlType(), ElementType.Xpath);
 			webDB.selectDropDownByValue(CustomerScheduleLocators.CSScheduleDropDown, SchType, ElementType.Xpath);
 			logs.logging("INFO", "Schedule Type Is Choosen Sucessfully");
 		}

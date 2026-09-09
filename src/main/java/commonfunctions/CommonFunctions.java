@@ -18,6 +18,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -103,6 +104,7 @@ public class CommonFunctions {
 		try {
 			webDB.enterURL(System.getProperty("url"));
 			flag = webDB.waitForElementUntilGivenTime(CommonUiLocators.LoginForm, ElementType.Xpath, 45);
+			VariableHandler.setSiteWorked(flag);
 		} catch (Exception e) {
 			logs.loggingconsole("INFO", "Enter URL Failed with the Exception: " + e);
 			logs.loggingconsole("INFO", "Retrying Navigate To URL");
@@ -244,6 +246,7 @@ public class CommonFunctions {
 		}
 		flag = webDB.waitForElement(CommonUiLocators.PurchaseAddIcon, ElementType.Xpath);
 		Assert.assertTrue(flag);
+
 	}
 
 	/**
@@ -326,10 +329,10 @@ public class CommonFunctions {
 			checkRefreshCellsDisappear();
 			webDB.pressEnterKey();
 			checkRefreshCellsDisappear();
-			List<WebElement> Elements = WebDriverBase.getDriver()
-					.findElements(By.xpath(CommonUiLocators.convertListOfXPath(Value)));
-			for (WebElement webElement : Elements) {
-				try {
+			try {
+				List<WebElement> Elements = WebDriverBase.getDriver()
+						.findElements(By.xpath(CommonUiLocators.convertListOfXPath(Value)));
+				for (WebElement webElement : Elements) {
 					if (webElement.isDisplayed() && webElement.getText().trim().equalsIgnoreCase(Value.trim())) {
 						((JavascriptExecutor) WebDriverBase.getDriver())
 								.executeScript("arguments[0].scrollIntoView(true);", webElement);
@@ -342,9 +345,8 @@ public class CommonFunctions {
 						flag = true;
 					} else {
 					}
-				} catch (Exception e) {
-					flag = false;
 				}
+			} catch (Exception e) {
 			}
 		}
 		List<WebElement> searchBar = WebDriverBase.getDriver().findElements(By.xpath(CommonUiLocators.searchBar));
@@ -2452,34 +2454,39 @@ public class CommonFunctions {
 	 * @param PageLocators
 	 */
 	public void navigateToSearchTab(String TabName, String PageLocators) {
-		// TODO will comment the hard script lines once loading issue resolved
-		webDB.waitForElement("//a[@class='t-Header-logo-link']", ElementType.Xpath);
-		webDB.clickAnElement("//a[@class='t-Header-logo-link']", ElementType.Xpath);
-		checkRefreshCellsDisappear();
-		webDB.waitForElement("//button[@id='INFO']", ElementType.Xpath);
-		webDB.waitForPageReady(20);
-		flag = webDB.waitForElement(CommonUiLocators.BusFunctionSearchBox, ElementType.Xpath);
-		if (flag) {
-			webDB.waitUntilElementToBeClickable(CommonUiLocators.BusFunctionSearchBox, ElementType.Xpath);
-			webDB.waitUntilElementToNotBeStale(CommonUiLocators.BusFunctionSearchBox, ElementType.Xpath);
-			webDB.clearTextField(CommonUiLocators.BusFunctionSearchBox, ElementType.Xpath);
-			webDB.sendTextToAnElement(CommonUiLocators.BusFunctionSearchBox, TabName.toUpperCase(), ElementType.Xpath);
+		if (VariableHandler.getSiteWorked()) {
+			// TODO will comment the hard script lines once loading issue resolved
+			webDB.waitForElement("//a[@class='t-Header-logo-link']", ElementType.Xpath);
+			webDB.clickAnElement("//a[@class='t-Header-logo-link']", ElementType.Xpath);
 			checkRefreshCellsDisappear();
-			webDB.waitForPageReady(30);
-			webDB.verifyIsElementDisplayed(PageLocators, ElementType.Xpath);
-			checkRefreshCellsDisappear();
-			flag = webDB.waitForElementUntilGivenTime(PageLocators, ElementType.Xpath, 15);
+			webDB.waitForElement("//button[@id='INFO']", ElementType.Xpath);
+			webDB.waitForPageReady(20);
+			flag = webDB.waitForElement(CommonUiLocators.BusFunctionSearchBox, ElementType.Xpath);
 			if (flag) {
-				logs.logging("INFO", "Navigated To " + TabName);
-			} else {
-				webDB.pressDownArrowKey();
-				webDB.pressEnterKey();
+				webDB.waitUntilElementToBeClickable(CommonUiLocators.BusFunctionSearchBox, ElementType.Xpath);
+				webDB.waitUntilElementToNotBeStale(CommonUiLocators.BusFunctionSearchBox, ElementType.Xpath);
+				webDB.clearTextField(CommonUiLocators.BusFunctionSearchBox, ElementType.Xpath);
+				webDB.sendTextToAnElement(CommonUiLocators.BusFunctionSearchBox, TabName.toUpperCase(),
+						ElementType.Xpath);
+				checkRefreshCellsDisappear();
 				webDB.waitForPageReady(30);
-				flag = webDB.waitForElement(PageLocators, ElementType.Xpath);
+				webDB.verifyIsElementDisplayed(PageLocators, ElementType.Xpath);
+				checkRefreshCellsDisappear();
+				flag = webDB.waitForElementUntilGivenTime(PageLocators, ElementType.Xpath, 15);
 				if (flag) {
 					logs.logging("INFO", "Navigated To " + TabName);
+				} else {
+					webDB.pressDownArrowKey();
+					webDB.pressEnterKey();
+					webDB.waitForPageReady(30);
+					flag = webDB.waitForElement(PageLocators, ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Navigated To " + TabName);
+					}
 				}
 			}
+		} else {
+			flag = false;
 		}
 		assertTrue(flag);
 	}

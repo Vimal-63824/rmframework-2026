@@ -47,7 +47,7 @@ public class SalesOrderLocators {
 	/** @Locator Xpath */
 	public static final String LineWiseAddIcon = "//BUTTON[@data-testid='SO_LineWise_AddButton']";
 	/** @Locator Xpath */
-	public static final String SalesOrderLinesTable = "(//table[@data-testid='R9162071644108609557_Result_Data'])[2]";
+	public static final String SalesOrderLinesTable = "(//table[contains(@data-testid,'Result_Data')])[2]";
 
 	/** @Locator Xpath */
 	public static final String ItemField() {

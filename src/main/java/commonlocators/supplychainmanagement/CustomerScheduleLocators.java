@@ -195,4 +195,59 @@ public class CustomerScheduleLocators {
 	public static final String CSLineDocNumberfield(int i) {
 		return "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[" + i + "]/td[33]";
 	}
+	
+	/** @locatorType Xpath */
+	public static final String CustomerScdhlLineDetailsTable = "(//table[@data-testid='ig_line_Result_Data'])[2]";
+	
+	/** @locatorType Xpath */
+	public static final String CustomerField() {
+		return checkAndReturnIndexForCSLinesLocatorWithHeaderValue(CustomerScdhlLineDetailsTable, "Customer ID");
+	}
+	
+	/** @locatorType Xpath */
+	public static final String AddItemField() {
+		return checkAndReturnIndexForCSLinesLocatorWithHeaderValue(CustomerScdhlLineDetailsTable, "Item ID");
+	}
+	
+	/** @locatorType Xpath */
+	public static final String CustomerScdhlType() {
+		return checkAndReturnIndexForCSLinesLocatorWithHeaderValue(CustomerScdhlLineDetailsTable, "Schd. Type");
+	}
+	
+	public static String checkAndReturnIndexForCSLinesLocatorWithHeaderValue(String Locator, String HeaderValue) {
+		Locator = Locator + "/tbody/tr/*[count(" + Locator + "/thead/tr[2]/th[normalize-space()='" + HeaderValue
+				+ "']/preceding-sibling::th) + 1]";
+		return Locator;
+	}
+	
+	/** @locatorType Xpath */
+	public static final String FirmQtyLines() {
+		return checkAndReturnIndexForCSLinesLocatorWithHeaderValue(CustomerScdhlLineDetailsTable, "Firm Qty.");
+	}
+	
+	/** @locatorType Xpath */
+	public static final String UnitPriceLines() {
+		return checkAndReturnIndexForCSLinesLocatorWithHeaderValue(CustomerScdhlLineDetailsTable, "Price");
+	}
+	
+	/** @locatorType Xpath */
+	public static final String MrpPriceLines() {
+		return checkAndReturnIndexForCSLinesLocatorWithHeaderValue(CustomerScdhlLineDetailsTable, "MRP Price");
+	}
+	
+	/** @locatorType Xpath */
+	public static final String DiscFieldLines() {
+		return checkAndReturnIndexForCSLinesLocatorWithHeaderValue(CustomerScdhlLineDetailsTable, "Disc. %");
+	}
+	
+	/** @locatorType Xpath */
+	public static final String CsEndDate() {
+		return checkAndReturnIndexForCSLinesLocatorWithHeaderValue(CustomerScdhlLineDetailsTable, "End Date");
+	}
+	
+	/** @locatorType Xpath */
+	public static final String HsnCode() {
+		return checkAndReturnIndexForCSLinesLocatorWithHeaderValue(CustomerScdhlLineDetailsTable, "HSN Code");
+	}
+
 }
