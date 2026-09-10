@@ -1,5 +1,7 @@
 package commonlocators.supplychainmanagement;
 
+import commonfunctions.CommonFunctions;
+
 /**
  * @author Durai
  * @company Roadmap May 02, 2025
@@ -135,7 +137,13 @@ public class PricelistPageLocators {
 	/** @locatorType Xpath */
 	public static final String ItemSearchBtn = "//button[@data-testid='Search1']";
 	/** @locatorType Xpath */
-	public static final String ItemDrillDownBtn = "//table[contains(@aria-label,'Report')]/tbody/tr[2]/td[2]";
+	public static final String ItemFindResultTable = "//table[@data-testid='RIE_Result_Data']//tr/th";
+
+	/** @locatorType Xpath */
+	public static final String ItemDrillDownBtn() {
+		return "(" + CommonFunctions.checkAndReturnLocatorForFindPageTable(ItemFindResultTable, "Item") + ")[1]//a";
+	}
+
 	/** @locatorType Xpath */
 	public static final String ItemGeneral = "//label[text()='General']";
 	/** @locatorType Xpath */
@@ -207,8 +215,5 @@ public class PricelistPageLocators {
 	public static final String CancelOk = "//button[contains(text(),'OK')]";
 	/** @locatorType Xpath */
 	public static final String CancelSearch = "//button[@data-testid='Search']";
-	
-	
-	
-	
+
 }

@@ -317,8 +317,6 @@ public class CommonFunctions {
 									.executeScript("arguments[0].scrollIntoView(true);", element);
 							element.click();
 							break a;
-						} else {
-							flag = false;
 						}
 					}
 				}
@@ -1332,7 +1330,8 @@ public class CommonFunctions {
 			if (flag) {
 				webDB.doubleClickAnElement(PerctLocator, ElementType.Xpath);
 				webDB.sendTextToAnElement(PerctLocator, Discount, ElementType.Xpath);
-				webDB.pressEnterKey();
+				webDB.pressTabKey();
+				checkRefreshCellsDisappear();
 				checkRefreshCellsDisappear();
 				BigDecimal percentage = purchaseOrderFunc
 						.verifyRoundOffBigDecimalValueWithReturnBigDecimal(new BigDecimal(Discount));
@@ -3154,7 +3153,6 @@ public class CommonFunctions {
 		flag = webDB.waitForElement(CommonUiLocators.PrCreateButton, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(CommonUiLocators.PrCreateButton, ElementType.Xpath);
-//			hardWait(4000);
 			checkRefreshCellsDisappear();
 			checkRefreshCellsDisappear();
 			flag = webDB.waitForElement(CommonUiLocators.CreatePrButton, ElementType.Xpath);
@@ -3530,5 +3528,43 @@ public class CommonFunctions {
 			webDB.clickAnElementWithoutException(CommonUiLocators.FindShowMore, ElementType.Xpath);
 		}
 		checkRefreshCellsDisappear();
+	}
+
+	/**
+	 * This method used to unselect all through show my record in pending screens
+	 * 
+	 * @author Sakthi-GWL
+	 * @param ShowBtn
+	 * @param HideBtn
+	 * @param SelectAllBtn
+	 */
+	public void checkShowMyRecordAndUnselectAll(String ShowBtn, String HideBtn, String SelectAllBtn) {
+		flag = webDB.waitForElement(ShowBtn, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(ShowBtn, ElementType.Xpath);
+			webDB.clickAnElement(ShowBtn, ElementType.Xpath);
+			checkRefreshCellsDisappear();
+			checkRefreshCellsDisappear();
+			flag = webDB.verifyIsElementDisplayed(CompletionProductionOrderLocators.Pending_TableNoDataSelected,
+					ElementType.Xpath);
+			if (!flag) {
+				logs.logging("INFO", "No Data Selected Container not displayed");
+				webDB.waitForElementUntilGivenTime(SelectAllBtn, ElementType.Xpath, 5);
+				if (webDB.isElementSelected(SelectAllBtn, ElementType.Xpath)) {
+					logs.logging("INFO", "Check all selected");
+					webDB.moveToElement(SelectAllBtn, ElementType.Xpath);
+					webDB.clickAnElement(SelectAllBtn, ElementType.Xpath);
+				}
+				checkRefreshCellsDisappear();
+				checkRefreshCellsDisappear();
+				flag = webDB.verifyIsElementDisplayed(CompletionProductionOrderLocators.Pending_TableNoDataSelected,
+						ElementType.Xpath);
+			}
+			if (flag) {
+				logs.logging("INFO", "No Data Selected Container displayed");
+				webDB.moveToElement(HideBtn, ElementType.Xpath);
+				webDB.clickAnElement(HideBtn, ElementType.Xpath);
+			}
+		}
 	}
 }

@@ -59,11 +59,7 @@ public class OpenSalesOrderFunctions {
 			if (flag) {
 				webDB.moveToElement(OpenSalesOrderLocators.OpenSORadioBtn, ElementType.Xpath);
 				webDB.clickAnElement(OpenSalesOrderLocators.OpenSORadioBtn, ElementType.Xpath);
-//				flag = webDB.waitForElement(OpenSalesOrderLocators.GetTitle, ElementType.Xpath);
-//				if (flag) {
-//					String headerText = webDB.getTextFromElement(OpenSalesOrderLocators.GetTitle, ElementType.Xpath);
 				logs.logging("INFO", "Page navigate to " + SOtype);
-//				}
 			}
 		}
 		assertTrue(flag);
@@ -166,6 +162,7 @@ public class OpenSalesOrderFunctions {
 	 * @param Item
 	 */
 	public void clickFetchCustomerAndSelectItemInOpenSO(String Item) {
+		commonFunc.checkRefreshCellsDisappear();
 		flag = webDB.waitForElement(OpenSalesOrderLocators.FetchCustomerItemBtn, ElementType.Xpath);
 		if (flag) {
 			webDB.moveToElement(OpenSalesOrderLocators.FetchCustomerItemBtn, ElementType.Xpath);
@@ -184,13 +181,13 @@ public class OpenSalesOrderFunctions {
 					logs.logging("INFO", "Iframe Displayed and switched successfully");
 					commonFunc.checkRefreshCellsDisappear();
 					webDB.moveToElement(OpenSalesOrderLocators.fetchCustomerItemCheckedBox(Item), ElementType.Xpath);
-					webDB.javaScriptClickAnElement(OpenSalesOrderLocators.fetchCustomerItemCheckedBox(Item),
-							ElementType.Xpath);
+					webDB.clickAnElement(OpenSalesOrderLocators.fetchCustomerItemCheckedBox(Item), ElementType.Xpath);
 					logs.logging("INFO", "Item Check Box Is Checked");
+					webDB.waitForElement(OpenSalesOrderLocators.FetchCustomerOkBtn, ElementType.Xpath);
 					commonFunc.checkRefreshCellsDisappear();
-					flag = webDB.waitForElement(OpenSalesOrderLocators.FetchCustomerOkBtn, ElementType.Xpath);
+					commonFunc.checkRefreshCellsDisappear();
+					flag = webDB.isElementEnabled(OpenSalesOrderLocators.FetchCustomerOkBtn, ElementType.Xpath);
 					if (flag) {
-						commonFunc.checkRefreshCellsDisappear();
 						webDB.moveToElement(OpenSalesOrderLocators.FetchCustomerOkBtn, ElementType.Xpath);
 						flag = webDB.clickAnElement(OpenSalesOrderLocators.FetchCustomerOkBtn, ElementType.Xpath);
 						commonFunc.checkRefreshCellsDisappear();
@@ -304,18 +301,18 @@ public class OpenSalesOrderFunctions {
 	 * @param HSN
 	 */
 	public void fillPriceMRPAndHSNCodeforAddedLastItemInOpenSO(String price, String mrp, String HSN) {
-		commonFunc.verifyAddTableSpecs(OpenSalesOrderLocators.PriceLastLineData,
-				OpenSalesOrderLocators.PriceLastLineInput, price);
+		commonFunc.verifyAddTableSpecs(OpenSalesOrderLocators.PriceLastLineData(),
+				OpenSalesOrderLocators.PriceLastLineInput(), price);
 		VariableHandler.setOpenSOPriceAmount(price);
 		webDB.pressTabKey();
 		webDB.pressTabKey();
-		commonFunc.verifyAddTableSpecs(OpenSalesOrderLocators.MRPLastLineData, OpenSalesOrderLocators.MRPLastLineInput,
-				mrp);
-		flag = webDB.waitForElement(OpenSalesOrderLocators.HSNCodeLastLineData, ElementType.Xpath);
+		commonFunc.verifyAddTableSpecs(OpenSalesOrderLocators.MRPLastLineData(),
+				OpenSalesOrderLocators.MRPLastLineInput(), mrp);
+		flag = webDB.waitForElement(OpenSalesOrderLocators.HSNCodeLastLineData(), ElementType.Xpath);
 		if (flag) {
-			webDB.moveToElement(OpenSalesOrderLocators.HSNCodeLastLineData, ElementType.Xpath);
-			webDB.clickAnElement(OpenSalesOrderLocators.HSNCodeLastLineData, ElementType.Xpath);
-			commonFunc.searchAndSelectValueInFilters(OpenSalesOrderLocators.HSNCodeLastLineLovBtn, HSN);
+			webDB.moveToElement(OpenSalesOrderLocators.HSNCodeLastLineData(), ElementType.Xpath);
+			webDB.clickAnElement(OpenSalesOrderLocators.HSNCodeLastLineData(), ElementType.Xpath);
+			commonFunc.searchAndSelectValueInFilters(OpenSalesOrderLocators.HSNCodeLastLineLovBtn(), HSN);
 		}
 		assertTrue(flag);
 	}
@@ -327,8 +324,8 @@ public class OpenSalesOrderFunctions {
 	 * @param Discount
 	 */
 	public void fillDiscountAndSaveLinesforAddedLastItemInOpenSO(String Discount) {
-		commonFunc.verifyAddTableSpecs(OpenSalesOrderLocators.DiscountLastLineData,
-				OpenSalesOrderLocators.DiscountLastLineInput, Discount);
+		commonFunc.verifyAddTableSpecs(OpenSalesOrderLocators.DiscountLastLineData(),
+				OpenSalesOrderLocators.DiscountLastLineInput(), Discount);
 		flag = webDB.waitForElement(OpenSalesOrderLocators.OpenSOLinesSaveBtn, ElementType.Xpath);
 		if (flag) {
 			webDB.moveToElement(OpenSalesOrderLocators.OpenSOLinesSaveBtn, ElementType.Xpath);

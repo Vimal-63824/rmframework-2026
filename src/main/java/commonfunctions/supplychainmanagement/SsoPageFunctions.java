@@ -751,33 +751,33 @@ public class SsoPageFunctions {
 				if (flag) {
 					webDB.clickAnElement(SsoPageLocators.SsoCancelFindSearch, ElementType.Xpath);
 					logs.logging("INFO", "Search Button is Clicked");
-			flag = webDB.waitForElement(SsoPageLocators.SsoDocNoLovFindPage, ElementType.Xpath);
-			if (flag) {
-//				webDB.clickAnElement(SsoPageLocators.SsoDocNoLovFindPage, ElementType.Xpath);
-				commonFunc.searchAndSelectValueInFilters(SsoPageLocators.SsoDocNoLovFindPage,
-						VariableHandler.getSsoDocNum());
-				logs.logging("INFO", "Document No Is Entered");
-			}
-			flag = webDB.waitForElement(SsoPageLocators.SsoFindSearchBtn, ElementType.Xpath);
-			if (flag) {
-				webDB.clickAnElement(SsoPageLocators.SsoFindSearchBtn, ElementType.Xpath);
-				logs.logging("INFO", "Search Button Is Clicked");
-				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.hardWait(1000);
-				String canclsts = webDB.getTextFromElement(SsoPageLocators.SsoCanclStatus, ElementType.Xpath);
-				if (flag) {
-					logs.logging("INFO", "Expected Text: " + "Cancelled" + " Displayed: " + canclsts);
-					flag = canclsts.equalsIgnoreCase("Cancelled");
+					flag = webDB.waitForElement(SsoPageLocators.SsoDocNoLovFindPage, ElementType.Xpath);
 					if (flag) {
-						logs.logging("INFO", "verified Displayed Status is: " + canclsts);
-					} else {
-						logs.logging("INFO", "Verification failed in Status");
-						logs.logging("INFO", "Expected Text: " + "Cancelled" + " Displayed: " + canclsts);
+//				webDB.clickAnElement(SsoPageLocators.SsoDocNoLovFindPage, ElementType.Xpath);
+						commonFunc.searchAndSelectValueInFilters(SsoPageLocators.SsoDocNoLovFindPage,
+								VariableHandler.getSsoDocNum());
+						logs.logging("INFO", "Document No Is Entered");
+					}
+					flag = webDB.waitForElement(SsoPageLocators.SsoFindSearchBtn, ElementType.Xpath);
+					if (flag) {
+						webDB.clickAnElement(SsoPageLocators.SsoFindSearchBtn, ElementType.Xpath);
+						logs.logging("INFO", "Search Button Is Clicked");
+						commonFunc.checkRefreshCellsDisappear();
+						commonFunc.hardWait(1000);
+						String canclsts = webDB.getTextFromElement(SsoPageLocators.SsoCanclStatus, ElementType.Xpath);
+						if (flag) {
+							logs.logging("INFO", "Expected Text: " + "Cancelled" + " Displayed: " + canclsts);
+							flag = canclsts.equalsIgnoreCase("Cancelled");
+							if (flag) {
+								logs.logging("INFO", "verified Displayed Status is: " + canclsts);
+							} else {
+								logs.logging("INFO", "Verification failed in Status");
+								logs.logging("INFO", "Expected Text: " + "Cancelled" + " Displayed: " + canclsts);
+							}
+						}
 					}
 				}
 			}
-			}
-		}
 		}
 		assertTrue(flag);
 	}
@@ -945,9 +945,9 @@ public class SsoPageFunctions {
 		if (flag) {
 			webDB.clickAnElement(PricelistPageLocators.ItemSearchBtn, ElementType.Xpath);
 			logs.logging("INFO", "Search Button is clicked");
-			flag = webDB.waitForElement(PricelistPageLocators.ItemDrillDownBtn, ElementType.Xpath);
+			flag = webDB.waitForElement(PricelistPageLocators.ItemDrillDownBtn(), ElementType.Xpath);
 			if (flag) {
-				webDB.clickAnElement(PricelistPageLocators.ItemDrillDownBtn, ElementType.Xpath);
+				webDB.clickAnElement(PricelistPageLocators.ItemDrillDownBtn(), ElementType.Xpath);
 				logs.logging("INFO", "Drill Down item");
 			}
 		}

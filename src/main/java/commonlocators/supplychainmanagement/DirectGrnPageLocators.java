@@ -28,20 +28,10 @@ public class DirectGrnPageLocators {
 	/** @locatorType Xpath */
 	public static final String GrnLineItemLov = "//input[@data-testid='PORL_PROD_ID_REV']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String GrnLineItemField = "//table[@class='a-GV-table']/tbody/tr/td[3]";
-	/** @locatorType Xpath */
-	public static final String GrnLineHsnField = "//table[@class='a-GV-table']/tbody/tr/td[7]";
-	/** @locatorType Xpath */
 	public static final String GrnLineHsnLov = "//input[@data-testid='PORL_HSN_CODE']/following-sibling::button";
-	/** @locatorType Xpath */
-	public static final String GrnLineSupQtyInput = "//table[@class='a-GV-table']/tbody/tr/td[8]//input";
-	/** @locatorType Xpath */
-	public static final String GrnLineSupQtyInputHK = "//table[@class='a-GV-table']/tbody/tr/td[8]//input";
-	/** @locatorType Xpath */
-	public static final String GrnLineSupQty = "//table[@class='a-GV-table']/tbody/tr/td[8]";
 
 	/** @locatorType Xpath */
-	public static final String AddTableGRNScreen = "(//table[@data-testid=\"add_line_Result_Data\"])[2]";
+	public static final String AddTableGRNScreen = "(//table[@data-testid='add_line_Result_Data'])[2]";
 
 	/** @locatorType Xpath */
 	public static final String GRNPageItemTable() {
@@ -59,8 +49,20 @@ public class DirectGrnPageLocators {
 	}
 
 	/** @locatorType Xpath */
+	public static final String GrnPageSupQtyInput() {
+		return "(" + CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(AddTableGRNScreen, "Suplr. Bill Qty.")
+				+ ")[1]//input";
+	}
+
+	/** @locatorType Xpath */
 	public static final String GRNPageRcptQtyTable() {
 		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(AddTableGRNScreen, "Rcpt. Qty.");
+	}
+
+	/** @locatorType Xpath */
+	public static final String GRNPageRcptQtyInput() {
+		return "(" + CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(AddTableGRNScreen, "Rcpt. Qty.")
+				+ ")[1]//input";
 	}
 
 	/** @locatorType Xpath */
@@ -69,17 +71,11 @@ public class DirectGrnPageLocators {
 	}
 
 	/** @locatorType Xpath */
-	public static final String GrnLineRcpQty = "//table[@class='a-GV-table']/tbody/tr/td[9]";
-	/** @locatorType Xpath */
-	public static final String GrnLineRcpQtyInput = "//table[@class='a-GV-table']/tbody/tr/td[9]//input";
-	/** @locatorType Xpath */
-	public static final String GrnLineRcpQtyInputHK = "//table[@class='a-GV-table']/tbody/tr/td[9]//input";
-	/** @locatorType Xpath */
-	public static final String GrnLineCost = "//table[@class='a-GV-table']/tbody/tr/td[13]";
-	/** @locatorType Xpath */
-	public static final String GrnLineCostInput = "//input[@data-testid='PORL_SC_UNIT_COST']";
-	/** @locatorType Xpath */
-	public static final String GrnLineCostInputHK = "//input[@data-testid='PORL_SC_UNIT_COST']";
+	public static final String GRNPageUnitCostInput() {
+		return "(" + CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(AddTableGRNScreen, "Unit Cost")
+				+ ")[1]//input";
+	}
+
 	/** @locatorType Xpath */
 	public static final String GrnLineSave = "//button[@data-testid='Save_Line']";
 	/** @locatorType Xpath */

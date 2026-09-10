@@ -1,5 +1,7 @@
 package commonlocators.supplychainmanagement;
 
+import commonfunctions.CommonFunctions;
+
 /**
  * @author Deepan-GWL, Sakthi-GWL
  * @company Galaxy Weblinks May 20, 2025
@@ -15,17 +17,31 @@ public class CustomerItemsLocators {
 	/** Locator Xpath */
 	public static final String AddButton = "//button[contains(@id,'B6072453502774090220')]";
 	/** Locator Xpath */
-	public static final String ItemFieldClick = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[2]";
+	public static final String CustomerItemLinesTable = "(//div[@id='ig_line_ig_grid_vc']//table)[2]";
+
+	/** Locator Xpath */
+	public static final String ItemFieldClick() {
+		return "(" + CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(CustomerItemLinesTable, "Item")
+				+ ")[1]";
+	}
+
 	/** Locator Xpath */
 	public static final String ItemLovButton = "//input[@data-testid='ITEM_ID_REV']/following-sibling::button";
+
 	/** Locator Xpath */
-	public static final String Pricecls = "//*[@id=\"ig_line_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr[1]/td[11]";
+	public static final String Pricecls() {
+		return "(" + CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(CustomerItemLinesTable, "Price Class")
+				+ ")[1]";
+	}
 
 	/** Locator Xpath */
 	public static final String PriceClassSelectDropdown = "//select[@data-testid='CUSTP_CLASS_ID']";
 
 	/** Locator Xpath */
-	public static final String PriceBasisCL = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[12]";
+	public static final String PriceBasisCL() {
+		return "(" + CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(CustomerItemLinesTable, "Price Basis")
+				+ ")[1]";
+	}
 
 	/** Locator Xpath */
 	public static final String PricebasisSelect(int i) {
@@ -55,8 +71,12 @@ public class CustomerItemsLocators {
 
 	/** Locator Xpath */
 	public static final String DefaultFlag = "//input[@aria-labelledby='C6072442655543065813_HDR']";
+
 	/** Locator Xpath */
-	public static final String DefaultFlagField = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[16]/div";
+	public static final String DefaultFlagField() {
+		return "(" + CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(CustomerItemLinesTable, "Default")
+				+ ")[1]//div";
+	}
 
 	/** Locator Xpath */
 	public static final String CustomerItemsSearchBox = "//input[@id='ig_line_ig_toolbar_search_field']";

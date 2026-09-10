@@ -1,24 +1,21 @@
 package commonfunctions.supplychainmanagement;
 
 import static org.testng.Assert.assertTrue;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.math.BigDecimal;
-import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+
 import org.apache.commons.lang3.RandomStringUtils;
-import org.codehaus.groovy.ast.Variable;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+
 import commonfunctions.CommonFunctions;
 import commonfunctions.DBCommonFunctions;
 import commonfunctions.ItemDetailsHandler;
@@ -28,7 +25,6 @@ import commonlocators.supplychainmanagement.CustomerItemsLocators;
 import commonlocators.supplychainmanagement.CustomerScheduleLocators;
 import commonlocators.supplychainmanagement.OpenSalesOrderLocators;
 import commonlocators.supplychainmanagement.PricelistPageLocators;
-import commonlocators.supplychainmanagement.PurchaseRequestLocators;
 import commonlocators.supplychainmanagement.SalesCatalogueLocators;
 import commonlocators.supplychainmanagement.SalesOrderLocators;
 import commonlocators.supplychainmanagement.SalesPriceListLocators;
@@ -44,12 +40,9 @@ public class CustomerScheduleFunctions {
 	private static ReportLoger logs = new ReportLoger();
 	public CommonFunctions commonFunc = new CommonFunctions();
 	public ApprovalPageFunctions apprpagefunc = new ApprovalPageFunctions();
-	private static ItemDetailsHandler itemDetailHandler = new ItemDetailsHandler();
 	private static DBCommonFunctions dbCommonFunctions = new DBCommonFunctions();
 	private static ExcelUtils excelUtils = new ExcelUtils();
 	private static SalesOrderFunctions salesOrderFunctions = new SalesOrderFunctions();
-	private static PricelistPageFunctions PriceListFunc = new PricelistPageFunctions();
-	private static CustomerItemsLocators CustomerItemsLocators = new CustomerItemsLocators();
 	private static OpenSalesOrderFunctions openSOFunc = new OpenSalesOrderFunctions();
 	private static MaterialRequestFunctions MatReqFunc = new MaterialRequestFunctions();
 	public ApprovalPageFunctions approvalFunc = new ApprovalPageFunctions();
@@ -833,7 +826,7 @@ public class CustomerScheduleFunctions {
 		flag = webDB.waitForElement(CustomerItemsLocators.AddPlusButtonItems, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(CustomerItemsLocators.AddPlusButtonItems, ElementType.Xpath);
-			flag = webDB.waitForElement(CustomerItemsLocators.ItemFieldClick, ElementType.Xpath);
+			flag = webDB.waitForElement(CustomerItemsLocators.ItemFieldClick(), ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Customer Items Add Button is Clicked");
 				commonFunc.checkRefreshCellsDisappear();
@@ -849,9 +842,9 @@ public class CustomerScheduleFunctions {
 	 * @param Items
 	 */
 	public void insertIteminCustomerItemsAfterCustomerAssoFlag(String Items) {
-		flag = webDB.waitForClickElement(CustomerItemsLocators.ItemFieldClick, ElementType.Xpath);
+		flag = webDB.waitForClickElement(CustomerItemsLocators.ItemFieldClick(), ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(CustomerItemsLocators.ItemFieldClick, ElementType.Xpath);
+			webDB.clickAnElement(CustomerItemsLocators.ItemFieldClick(), ElementType.Xpath);
 			commonFunc.searchAndSelectValueInFilters(CustomerItemsLocators.ItemLovButton, Items);
 			commonFunc.checkRefreshCellsDisappear();
 		}
@@ -867,12 +860,12 @@ public class CustomerScheduleFunctions {
 	 */
 	public void priceClassSelectStdFormat(String priceClassName) {
 
-		flag = webDB.waitForElement(CustomerItemsLocators.Pricecls, ElementType.Xpath);
+		flag = webDB.waitForElement(CustomerItemsLocators.Pricecls(), ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(CustomerItemsLocators.Pricecls, ElementType.Xpath);
+			webDB.clickAnElement(CustomerItemsLocators.Pricecls(), ElementType.Xpath);
 			webDB.selectDropDownByText(CustomerItemsLocators.PriceClassSelectDropdown, priceClassName,
 					ElementType.Xpath);
-			webDB.waitForElement(CustomerItemsLocators.SaveButtonCustomer, ElementType.Xpath);
+//			webDB.waitForElement(CustomerItemsLocators.SaveButtonCustomer, ElementType.Xpath);
 			if (flag) {
 				logs.logging("Info", "Price Class " + priceClassName + " Is Choosen Sucessfully ");
 				commonFunc.checkRefreshCellsDisappear();
@@ -888,9 +881,9 @@ public class CustomerScheduleFunctions {
 	 * @param priceBasisValue
 	 */
 	public void priceBasisSelectInCustomerItems(String priceBasisValue) {
-		flag = webDB.waitForElement(CustomerItemsLocators.PriceBasisCL, ElementType.Xpath);
+		flag = webDB.waitForElement(CustomerItemsLocators.PriceBasisCL(), ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(CustomerItemsLocators.PriceBasisCL, ElementType.Xpath);
+			webDB.clickAnElement(CustomerItemsLocators.PriceBasisCL(), ElementType.Xpath);
 			webDB.selectDropDownByText(CustomerItemsLocators.PriceBasisSelectDropdown, priceBasisValue,
 					ElementType.Xpath);
 			flag = webDB.waitForElement(CustomerItemsLocators.SaveButtonCustomer, ElementType.Xpath);
@@ -952,9 +945,9 @@ public class CustomerScheduleFunctions {
 	 * @author Harikrishna - RMITS
 	 */
 	public void clickDefaltFlag() {
-		flag = webDB.waitForElement(CustomerItemsLocators.DefaultFlagField, ElementType.Xpath);
+		flag = webDB.waitForElement(CustomerItemsLocators.DefaultFlagField(), ElementType.Xpath);
 		if (flag) {
-			webDB.javaScriptClickAnElement(CustomerItemsLocators.DefaultFlagField, ElementType.Xpath);
+			webDB.javaScriptClickAnElement(CustomerItemsLocators.DefaultFlagField(), ElementType.Xpath);
 			commonFunc.checkRefreshCellsDisappear();
 		}
 		assertTrue(flag);
