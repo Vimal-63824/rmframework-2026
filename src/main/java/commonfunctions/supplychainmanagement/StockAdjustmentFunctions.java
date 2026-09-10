@@ -55,9 +55,9 @@ public class StockAdjustmentFunctions {
 		commonFunc.checkRefreshCellsDisappear();
 		clickLineWiseAddButton();
 		addLineDetails(Prefix, ItemId, Quantity, UnitCost);
-		flag = webDB.waitForElement(StockAdjustmentLocators.LineItemField, ElementType.Xpath);
+		flag = webDB.waitForElement(StockAdjustmentLocators.LineItemField(), ElementType.Xpath);
 		if (flag) {
-			webDB.doubleClickAnElement(StockAdjustmentLocators.LineItemField, ElementType.Xpath);
+			webDB.doubleClickAnElement(StockAdjustmentLocators.LineItemField(), ElementType.Xpath);
 			addLotDetailWithoutExpireDate((ItemId + "(LOT1)"), Quantity);
 			commonFunc.checkRefreshCellsDisappear();
 			flag = webDB.waitForElement(StockAdjustmentLocators.PostButton, ElementType.Xpath);
@@ -267,19 +267,19 @@ public class StockAdjustmentFunctions {
 	 * @author Harikrishna - RMITS
 	 */
 	public void addLineDetails(String Prefix, String Item, String Qty, String UnitCost) {
-		flag = webDB.waitForElement(StockAdjustmentLocators.LinePrefixField, ElementType.Xpath);
+		flag = webDB.waitForElement(StockAdjustmentLocators.LinePrefixField(), ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(StockAdjustmentLocators.LinePrefixField, ElementType.Xpath);
+			webDB.clickAnElement(StockAdjustmentLocators.LinePrefixField(), ElementType.Xpath);
 			logs.logging("INFO", "Line Wise Prefix field is clicked Successfully");
-			commonFunc.searchAndSelectValueInFilters(StockAdjustmentLocators.LinePrefixLovButton, Prefix);
+			commonFunc.searchAndSelectValueInFilters(StockAdjustmentLocators.LinePrefixLovButton(), Prefix);
 			webDB.pressTabKey();
-			commonFunc.searchAndSelectValueInFilters(StockAdjustmentLocators.LineItemLovButton, Item);
+			commonFunc.searchAndSelectValueInFilters(StockAdjustmentLocators.LineItemLovButton(), Item);
 			webDB.pressTabKey();
-			SalesOrdFunc.verifyClickAndEnterValueInTableFields(StockAdjustmentLocators.LineQtyField,
-					StockAdjustmentLocators.LineQtyInputField, Qty);
+			SalesOrdFunc.verifyClickAndEnterValueInTableFields(StockAdjustmentLocators.LineQtyField(),
+					StockAdjustmentLocators.LineQtyInputField(), Qty);
 			commonFunc.checkRefreshCellsDisappear();
-			SalesOrdFunc.verifyClickAndEnterValueInTableFields(StockAdjustmentLocators.LineUnitCostField,
-					StockAdjustmentLocators.LineUnitCostInputField, UnitCost);
+			SalesOrdFunc.verifyClickAndEnterValueInTableFields(StockAdjustmentLocators.LineUnitCostField(),
+					StockAdjustmentLocators.LineUnitCostInputField(), UnitCost);
 			webDB.pressTabKey();
 			commonFunc.checkRefreshCellsDisappear();
 			flag = webDB.waitForElement(StockAdjustmentLocators.LineWiseSaveButton, ElementType.Xpath);
@@ -304,7 +304,7 @@ public class StockAdjustmentFunctions {
 		flag = webDB.waitForElement(StockAdjustmentLocators.LineWiseAddButton, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(StockAdjustmentLocators.LineWiseAddButton, ElementType.Xpath);
-			flag = webDB.waitForElement(StockAdjustmentLocators.LinePrefixLovButton, ElementType.Xpath);
+			flag = webDB.waitForElement(StockAdjustmentLocators.LinePrefixLovButton(), ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Line Wise Add Button Is Clicked Successfully");
 			}
@@ -324,14 +324,14 @@ public class StockAdjustmentFunctions {
 		if (flag) {
 			webDB.moveToElement(StockAdjustmentLocators.LotSerialAddButton, ElementType.Xpath);
 			webDB.clickAnElement(StockAdjustmentLocators.LotSerialAddButton, ElementType.Xpath);
-			flag = webDB.waitForElement(StockAdjustmentLocators.LotNumberField, ElementType.Xpath);
+			flag = webDB.waitForElement(StockAdjustmentLocators.LotNumberField(), ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Lot Wise Add Button Is Clicked Successfully");
-				commonFunc.verifyAddTableSpecs(StockAdjustmentLocators.LotNumberField,
-						StockAdjustmentLocators.LotNumberInputField, LotNumber);
+				commonFunc.verifyAddTableSpecs(StockAdjustmentLocators.LotNumberField(),
+						StockAdjustmentLocators.LotNumberInputField(), LotNumber);
 				webDB.pressTabKey();
-				SalesOrdFunc.verifyClickAndEnterValueInTableFields(StockAdjustmentLocators.LotQtyField,
-						StockAdjustmentLocators.LotQtyInputField, LotQty);
+				SalesOrdFunc.verifyClickAndEnterValueInTableFields(StockAdjustmentLocators.LotQtyField(),
+						StockAdjustmentLocators.LotQtyInputField(), LotQty);
 				webDB.pressTabKey();
 				flag = webDB.waitForElement(StockAdjustmentLocators.LotWiseSaveButton, ElementType.Xpath);
 				if (flag) {
@@ -357,18 +357,18 @@ public class StockAdjustmentFunctions {
 		flag = webDB.waitForElement(StockAdjustmentLocators.LotSerialAddButton, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(StockAdjustmentLocators.LotSerialAddButton, ElementType.Xpath);
-			flag = webDB.waitForElement(StockAdjustmentLocators.LotNumberField, ElementType.Xpath);
+			flag = webDB.waitForElement(StockAdjustmentLocators.LotNumberField(), ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Lot Wise Add Button Is Clicked Successfully");
-				SalesOrdFunc.verifyClickAndEnterValueInTableFields(StockAdjustmentLocators.LotNumberField,
-						StockAdjustmentLocators.LotNumberInputField, LotNumber);
+				SalesOrdFunc.verifyClickAndEnterValueInTableFields(StockAdjustmentLocators.LotNumberField(),
+						StockAdjustmentLocators.LotNumberInputField(), LotNumber);
 				webDB.pressTabKey();
-				SalesOrdFunc.verifyClickAndEnterValueInTableFields(StockAdjustmentLocators.LotQtyField,
-						StockAdjustmentLocators.LotQtyInputField, LotQty);
+				SalesOrdFunc.verifyClickAndEnterValueInTableFields(StockAdjustmentLocators.LotQtyField(),
+						StockAdjustmentLocators.LotQtyInputField(), LotQty);
 				webDB.pressTabKey();
 				if (LotExp.equals("Y")) {
-					SalesOrdFunc.verifyClickAndEnterValueInTableFields(StockAdjustmentLocators.LotExpiryField,
-							StockAdjustmentLocators.LotExpiryInputField, ExpiryDate);
+					SalesOrdFunc.verifyClickAndEnterValueInTableFields(StockAdjustmentLocators.LotExpiryField(),
+							StockAdjustmentLocators.LotExpiryInputField(), ExpiryDate);
 				}
 				flag = webDB.waitForElement(StockAdjustmentLocators.LotWiseSaveButton, ElementType.Xpath);
 				if (flag) {

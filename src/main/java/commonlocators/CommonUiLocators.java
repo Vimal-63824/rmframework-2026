@@ -1,5 +1,7 @@
 package commonlocators;
 
+import commonfunctions.CommonFunctions;
+
 /**
  * @author Deepan-GWL, Sakthi-GWL
  * @company Galaxy Weblinks January 15, 2025
@@ -323,7 +325,13 @@ public class CommonUiLocators {
 	/** @locatorType Xpath */
 	public static final String SearchButton = "//button[@data-testid='Find']";
 	/** @locatorType Xpath */
-	public static final String SearchedItemDrillDown = "//table[@data-testid='RIA_Result_Data']/tbody/tr[2]/td[2]";
+	public static final String ItemAssoFindTable = "//table[@data-testid='RIA_Result_Data']//tr//th";
+
+	/** @locatorType Xpath */
+	public static final String SearchedItemDrillDown() {
+		return "(" + CommonFunctions.checkAndReturnLocatorForFindPageTable(ItemAssoFindTable, "Item") + ")[1]//a";
+	}
+
 	/** @locatorType Xpath */
 	public static final String SalesTab = "//*[@id='P36719401_TYPE_ASSO']/div/div/div[4]/label";
 	/** @locatorType Xpath */

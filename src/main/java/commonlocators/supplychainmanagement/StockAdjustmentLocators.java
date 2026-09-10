@@ -1,5 +1,7 @@
 package commonlocators.supplychainmanagement;
 
+import commonfunctions.CommonFunctions;
+
 /**
  * @author Harikrishna - RMITS
  * @Company RoadMap It Solutions October 08, 2025
@@ -19,7 +21,7 @@ public class StockAdjustmentLocators {
 	/** @Locator Xpath */
 	public static final String SaveButton = "//button[@title='Save']";
 	/** @Locator Xpath */
-	public static final String StockAdjFrame = "//iframe[@title='Stock Adjustment']";
+	public static final String StockAdjFrame = "//iframe[contains(@title,'Create')]";
 	/** @Locator Xpath */
 	public static final String PostButton = "//span[text()='Post']/parent::button";
 	/** @Locator Xpath */
@@ -41,39 +43,100 @@ public class StockAdjustmentLocators {
 	/** @Locator Xpath */
 	public static final String LineWiseAddButton = "//div[@id='line_ig']//button[@title='Add']";
 	/** @Locator Xpath */
-	public static final String LinePrefixField = "//*[@id='line_ig_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[2]";
+	public static final String StkAdLinesTable = "(//div[@id='line_ig_ig_grid_vc']//table)[2]";
+
 	/** @Locator Xpath */
-	public static final String LinePrefixLovButton = "//*[@id='line_ig_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[2]//button";
+	public static final String LinePrefixField() {
+		return "(" + CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(StkAdLinesTable, "Pfx.") + ")[1]";
+	}
+
 	/** @Locator Xpath */
-	public static final String LineItemField = "//*[@id='line_ig_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[3]";
+	public static final String LinePrefixLovButton() {
+		return "(" + CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(StkAdLinesTable, "Pfx.")
+				+ ")[1]//button";
+	}
+
 	/** @Locator Xpath */
-	public static final String LineItemLovButton = "//*[@id='line_ig_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[3]//button";
+	public static final String LineItemField() {
+		return "(" + CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(StkAdLinesTable, "Item") + ")[1]";
+	}
+
 	/** @Locator Xpath */
-	public static final String LineQtyField = "//*[@id='line_ig_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[10]";
+	public static final String LineItemLovButton() {
+		return "(" + CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(StkAdLinesTable, "Item")
+				+ ")[1]//button";
+	}
+
 	/** @Locator Xpath */
-	public static final String LineQtyInputField = "//*[@id='line_ig_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[10]//input";
+	public static final String LineQtyField() {
+		return "(" + CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(StkAdLinesTable, "Quantity") + ")[1]";
+	}
+
 	/** @Locator Xpath */
-	public static final String LineUnitCostField = "//*[@id='line_ig_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[11]";
+	public static final String LineQtyInputField() {
+		return "(" + CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(StkAdLinesTable, "Quantity")
+				+ ")[1]//input";
+	}
+
 	/** @Locator Xpath */
-	public static final String LineUnitCostInputField = "//*[@id='line_ig_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[11]//input";
+	public static final String LineUnitCostField() {
+		return "(" + CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(StkAdLinesTable, "Unit Cost")
+				+ ")[1]";
+	}
+
+	/** @Locator Xpath */
+	public static final String LineUnitCostInputField() {
+		return "(" + CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(StkAdLinesTable, "Unit Cost")
+				+ ")[1]//input";
+	}
+
 	/** @Locator Xpath */
 	public static final String LineWiseSaveButton = "//div[@id='line_ig']//button[@title='Save']";
 	/** @Locator Xpath */
 	public static final String LotSerialAddButton = "//div[@id='LS']//button[@title='Add']";
 	/** @Locator Xpath */
-	public static final String LotNumberField = "//*[@id='LS_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[3]";
+	public static final String StkAdLotSerialTable = "(//div[@id='LS_ig_grid_vc']//table)[2]";
+
 	/** @Locator Xpath */
-	public static final String LotQtyField = "//*[@id='LS_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[7]";
+	public static final String LotNumberField() {
+		return "(" + CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(StkAdLotSerialTable, "Lot No.")
+				+ ")[1]";
+	}
+
 	/** @Locator Xpath */
-	public static final String LotNumberInputField = "//*[@id='LS_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[1]/td[3]//input";
+	public static final String LotQtyField() {
+		return "("
+				+ CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(StkAdLotSerialTable, "Lot/Serial Qty.")
+				+ ")[1]";
+	}
+
 	/** @Locator Xpath */
-	public static final String LotQtyInputField = "//*[@id='LS_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[1]/td[7]//input";
+	public static final String LotNumberInputField() {
+		return "(" + CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(StkAdLotSerialTable, "Lot No.")
+				+ ")[1]//input";
+	}
+
+	/** @Locator Xpath */
+	public static final String LotQtyInputField() {
+		return "("
+				+ CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(StkAdLotSerialTable, "Lot/Serial Qty.")
+				+ ")[1]//input";
+	}
+
 	/** @Locator Xpath */
 	public static final String LotWiseSaveButton = "//div[@id='LS']//button[@title='Save']";
+
 	/** @Locator Xpath */
-	public static final String LotExpiryField = "//*[@id='LS_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[1]/td[12]";
+	public static final String LotExpiryField() {
+		return "(" + CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(StkAdLotSerialTable, "Expiry Date") + ")[1]";
+	}
+
 	/** @Locator Xpath */
-	public static final String LotExpiryInputField = "//*[@id='LS_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[1]/td[12]//input";
+	public static final String LotExpiryInputField() {
+		return "(" + CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(StkAdLotSerialTable, "Expiry Date")
+				+ ")[1]//input";
+	}
+
 	/** @Locator Xpath */
 	public static final String GenerateSerialButton = "//button[@id='B1125821607361253974']";
 	/** @Locator Xpath */

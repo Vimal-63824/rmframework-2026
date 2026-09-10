@@ -1332,7 +1332,8 @@ public class CommonFunctions {
 			if (flag) {
 				webDB.doubleClickAnElement(PerctLocator, ElementType.Xpath);
 				webDB.sendTextToAnElement(PerctLocator, Discount, ElementType.Xpath);
-				webDB.pressEnterKey();
+				webDB.pressTabKey();
+				checkRefreshCellsDisappear();
 				checkRefreshCellsDisappear();
 				BigDecimal percentage = purchaseOrderFunc
 						.verifyRoundOffBigDecimalValueWithReturnBigDecimal(new BigDecimal(Discount));
