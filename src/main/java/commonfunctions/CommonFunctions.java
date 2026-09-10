@@ -317,8 +317,6 @@ public class CommonFunctions {
 									.executeScript("arguments[0].scrollIntoView(true);", element);
 							element.click();
 							break a;
-						} else {
-							flag = false;
 						}
 					}
 				}
