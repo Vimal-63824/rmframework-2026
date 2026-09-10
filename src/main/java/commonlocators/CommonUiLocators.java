@@ -437,9 +437,11 @@ public class CommonUiLocators {
 	/** @locatorType Xpath */
 	public static final String OkayButton = "//button[text()='OK']";
 	/** @locatorType Xpath */
+	public static final String CancelBtn = "//*[text()='Cancel']/parent::button";
+	/** @locatorType Xpath */
 	public static final String ItemLovButton = "//input[@data-testid='P93132130_ITEM']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String PendingPoShowMore = "//button[@aria-controls='a_Collapsible1_FS_content']";
+	public static final String PendingPoShowMore = "//span[@class='a-Icon a-Collapsible-icon']/parent::button[contains(@aria-controls,'a_Collapsible1')]";
 	/** @locatorType Xpath */
 	public static final String FindShowMore = "//button[@id='M']";
 	/** @locatorType Xpath */

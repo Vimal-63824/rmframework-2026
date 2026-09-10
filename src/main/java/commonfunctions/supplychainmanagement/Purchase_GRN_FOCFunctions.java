@@ -44,14 +44,13 @@ public class Purchase_GRN_FOCFunctions {
 	 * @return booelan flag
 	 */
 	public boolean verifyFOCForDirectPODomesticSuplrGeneralItemSimilarUOM() {
-//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-//				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		POfunc.verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("L49"),
 				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
 				commonFunc.getDataFromTestDataSheet("GeneralValue"));
-		POfunc.verifyCreateDirectPO();
+		POfunc.verifyTickIconcreatePO();
+		commonFunc.checkRefreshCellsDisappear();
 		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 		ExcelUtils excelUtils = new ExcelUtils();
 		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
@@ -81,15 +80,23 @@ public class Purchase_GRN_FOCFunctions {
 				String CessPercent = itemmultiple[i][25];
 				String Cess = itemmultiple[i][26];
 				String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
-				POfunc.verifyCreateItemInPo(item);
-				webDB.pressEscapeKey();
-				POfunc.verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
-				webDB.pressEscapeKey();
-				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode(),
-						PurchaseOrderPageLocators.HsnCodeLovButton, HsnCode, PurchaseOrderPageLocators.HsnCodeInput);
+				commonFunc.checkRefreshCellsDisappear();
+				POfunc.verifyDirectPoItemAddIconClicked();
+				POfunc.verifyDirectPoItemSelectedFromLov(item);
 				webDB.pressEscapeKey();
 				commonFunc.checkRefreshCellsDisappear();
-				POfunc.verifyTickIconcreateItem();
+				commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.OrderedQuantity(),
+						PurchaseOrderPageLocators.OrderedQuantityInput, Quantity);
+				webDB.pressEscapeKey();
+				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.UnitCost(),
+						PurchaseOrderPageLocators.UnitCostInput, UnitCost);
+				webDB.pressEscapeKey();
+				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.verifyAddTableLovValue(PurchaseOrderPageLocators.HsnCode(),
+						PurchaseOrderPageLocators.HsnCodeLovButton, HsnCode);
+				webDB.pressEscapeKey();
+				POfunc.verifyDirectPoLineWiseSaved();
 				commonFunc.checkRefreshCellsDisappear();
 				POfunc.verifyLineAmountValidationAndPom(item, LineAmount);
 				POfunc.navigateToLineDetailPage(item);
@@ -121,7 +128,6 @@ public class Purchase_GRN_FOCFunctions {
 		}
 		POfunc.verifyValidatePoStatus(VariableHandler.getPONumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-//		flag = commonFunc.logoutUser();
 		return true;
 	}
 
@@ -133,14 +139,13 @@ public class Purchase_GRN_FOCFunctions {
 	 * @return booelan flag
 	 */
 	public boolean verifyFOCForDirectPODomesticSuplrMaterialItemSimilarUOM() {
-//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-//				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		POfunc.verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("L49"),
 				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
 				commonFunc.getDataFromTestDataSheet("MaterialValue"));
-		POfunc.verifyCreateDirectPO();
+		POfunc.verifyTickIconcreatePO();
+		commonFunc.checkRefreshCellsDisappear();
 		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 		ExcelUtils excelUtils = new ExcelUtils();
 		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
@@ -170,11 +175,23 @@ public class Purchase_GRN_FOCFunctions {
 				String CessPercent = itemmultiple[i][25];
 				String Cess = itemmultiple[i][26];
 				String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
-				POfunc.verifyCreateItemInPo(item);
-				POfunc.verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
-				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode(),
-						PurchaseOrderPageLocators.HsnCodeLovButton, HsnCode, PurchaseOrderPageLocators.HsnCodeInput);
-				POfunc.verifyTickIconcreateItem();
+				commonFunc.checkRefreshCellsDisappear();
+				POfunc.verifyDirectPoItemAddIconClicked();
+				POfunc.verifyDirectPoItemSelectedFromLov(item);
+				webDB.pressEscapeKey();
+				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.OrderedQuantity(),
+						PurchaseOrderPageLocators.OrderedQuantityInput, Quantity);
+				webDB.pressEscapeKey();
+				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.UnitCost(),
+						PurchaseOrderPageLocators.UnitCostInput, UnitCost);
+				webDB.pressEscapeKey();
+				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.verifyAddTableLovValue(PurchaseOrderPageLocators.HsnCode(),
+						PurchaseOrderPageLocators.HsnCodeLovButton, HsnCode);
+				webDB.pressEscapeKey();
+				POfunc.verifyDirectPoLineWiseSaved();
 				commonFunc.checkRefreshCellsDisappear();
 				POfunc.verifyLineAmountValidationAndPom(item, LineAmount);
 				POfunc.navigateToLineDetailPage(item);
@@ -205,7 +222,6 @@ public class Purchase_GRN_FOCFunctions {
 		}
 		POfunc.verifyValidatePoStatus(VariableHandler.getPONumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-//		flag = commonFunc.logoutUser();
 		return true;
 	}
 
@@ -217,14 +233,13 @@ public class Purchase_GRN_FOCFunctions {
 	 * @return booelan flag
 	 */
 	public boolean verifyFOCForDirectPODomesticSuplrServiceItemSimilarUOM() {
-//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-//				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		POfunc.verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("L49"),
 				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
 				commonFunc.getDataFromTestDataSheet("ServiceValue"));
-		POfunc.verifyCreateDirectPO();
+		POfunc.verifyTickIconcreatePO();
+		commonFunc.checkRefreshCellsDisappear();
 		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 		ExcelUtils excelUtils = new ExcelUtils();
 		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
@@ -254,11 +269,24 @@ public class Purchase_GRN_FOCFunctions {
 				String CessPercent = itemmultiple[i][25];
 				String Cess = itemmultiple[i][26];
 				String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
-				POfunc.verifyCreateItemInPo(item);
-				POfunc.verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
-				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode(),
-						PurchaseOrderPageLocators.HsnCodeLovButton, HsnCode, PurchaseOrderPageLocators.HsnCodeInput);
-				POfunc.verifyTickIconcreateItem();
+				commonFunc.checkRefreshCellsDisappear();
+				POfunc.verifyDirectPoItemAddIconClicked();
+				POfunc.verifyDirectPoItemSelectedFromLov(item);
+				webDB.pressEscapeKey();
+				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.OrderedQuantity(),
+						PurchaseOrderPageLocators.OrderedQuantityInput, Quantity);
+				webDB.pressEscapeKey();
+				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.UnitCost(),
+						PurchaseOrderPageLocators.UnitCostInput, UnitCost);
+				webDB.pressEscapeKey();
+				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.verifyAddTableLovValue(PurchaseOrderPageLocators.HsnCode(),
+						PurchaseOrderPageLocators.HsnCodeLovButton, HsnCode);
+				webDB.pressEscapeKey();
+				POfunc.verifyDirectPoLineWiseSaved();
+				commonFunc.checkRefreshCellsDisappear();
 				POfunc.verifyLineAmountValidationAndPom(item, LineAmount);
 				POfunc.navigateToLineDetailPage(item);
 				POfunc.verifyEnterAmountForDiscountCalculation(TradePercentage, SplDiscPercentage, CashDiscPercentage);
@@ -288,7 +316,6 @@ public class Purchase_GRN_FOCFunctions {
 		}
 		POfunc.verifyValidatePoStatus(VariableHandler.getPONumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-//		flag = commonFunc.logoutUser();
 		return true;
 	}
 
@@ -300,14 +327,13 @@ public class Purchase_GRN_FOCFunctions {
 	 * @return booelan flag
 	 */
 	public boolean verifyFOCForDirectPOImportSuplrGeneralItemSimilarUOM() {
-//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-//				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		POfunc.verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("L49"),
 				commonFunc.getDataFromTestDataSheet("WalmartSupId"),
 				commonFunc.getDataFromTestDataSheet("GeneralValue"));
-		POfunc.verifyCreateDirectPO();
+		POfunc.verifyTickIconcreatePO();
+		commonFunc.checkRefreshCellsDisappear();
 		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 		ExcelUtils excelUtils = new ExcelUtils();
 		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
@@ -337,11 +363,24 @@ public class Purchase_GRN_FOCFunctions {
 				String CessPercent = itemmultiple[i][25];
 				String Cess = itemmultiple[i][26];
 				String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
-				POfunc.verifyCreateItemInPo(item);
-				POfunc.verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
-				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode(),
-						PurchaseOrderPageLocators.HsnCodeLovButton, HsnCode, PurchaseOrderPageLocators.HsnCodeInput);
-				POfunc.verifyTickIconcreateItem();
+				commonFunc.checkRefreshCellsDisappear();
+				POfunc.verifyDirectPoItemAddIconClicked();
+				POfunc.verifyDirectPoItemSelectedFromLov(item);
+				webDB.pressEscapeKey();
+				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.OrderedQuantity(),
+						PurchaseOrderPageLocators.OrderedQuantityInput, Quantity);
+				webDB.pressEscapeKey();
+				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.UnitCost(),
+						PurchaseOrderPageLocators.UnitCostInput, UnitCost);
+				webDB.pressEscapeKey();
+				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.verifyAddTableLovValue(PurchaseOrderPageLocators.HsnCode(),
+						PurchaseOrderPageLocators.HsnCodeLovButton, HsnCode);
+				webDB.pressEscapeKey();
+				POfunc.verifyDirectPoLineWiseSaved();
+				commonFunc.checkRefreshCellsDisappear();
 				POfunc.verifyLineAmountValidationAndPom(item, LineAmount);
 				POfunc.navigateToLineDetailPage(item);
 				POfunc.verifyEnterAmountForDiscountCalculation(TradePercentage, SplDiscPercentage, CashDiscPercentage);
@@ -371,7 +410,6 @@ public class Purchase_GRN_FOCFunctions {
 		}
 		POfunc.verifyValidatePoStatus(VariableHandler.getPONumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-//		flag = commonFunc.logoutUser();
 		return true;
 	}
 
@@ -383,14 +421,13 @@ public class Purchase_GRN_FOCFunctions {
 	 * @return booelan flag
 	 */
 	public boolean verifyFOCForDirectPOImportSuplrMaterialItemSimilarUOM() {
-//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-//				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		POfunc.verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("L49"),
 				commonFunc.getDataFromTestDataSheet("WalmartSupId"),
 				commonFunc.getDataFromTestDataSheet("MaterialValue"));
-		POfunc.verifyCreateDirectPO();
+		POfunc.verifyTickIconcreatePO();
+		commonFunc.checkRefreshCellsDisappear();
 		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 		ExcelUtils excelUtils = new ExcelUtils();
 		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
@@ -420,11 +457,24 @@ public class Purchase_GRN_FOCFunctions {
 				String CessPercent = itemmultiple[i][25];
 				String Cess = itemmultiple[i][26];
 				String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
-				POfunc.verifyCreateItemInPo(item);
-				POfunc.verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
-				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode(),
-						PurchaseOrderPageLocators.HsnCodeLovButton, HsnCode, PurchaseOrderPageLocators.HsnCodeInput);
-				POfunc.verifyTickIconcreateItem();
+				commonFunc.checkRefreshCellsDisappear();
+				POfunc.verifyDirectPoItemAddIconClicked();
+				POfunc.verifyDirectPoItemSelectedFromLov(item);
+				webDB.pressEscapeKey();
+				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.OrderedQuantity(),
+						PurchaseOrderPageLocators.OrderedQuantityInput, Quantity);
+				webDB.pressEscapeKey();
+				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.UnitCost(),
+						PurchaseOrderPageLocators.UnitCostInput, UnitCost);
+				webDB.pressEscapeKey();
+				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.verifyAddTableLovValue(PurchaseOrderPageLocators.HsnCode(),
+						PurchaseOrderPageLocators.HsnCodeLovButton, HsnCode);
+				webDB.pressEscapeKey();
+				POfunc.verifyDirectPoLineWiseSaved();
+				commonFunc.checkRefreshCellsDisappear();
 				POfunc.verifyLineAmountValidationAndPom(item, LineAmount);
 				POfunc.navigateToLineDetailPage(item);
 				POfunc.verifyEnterAmountForDiscountCalculation(TradePercentage, SplDiscPercentage, CashDiscPercentage);
@@ -454,7 +504,6 @@ public class Purchase_GRN_FOCFunctions {
 		}
 		POfunc.verifyValidatePoStatus(VariableHandler.getPONumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-//		flag = commonFunc.logoutUser();
 		return true;
 	}
 
@@ -466,14 +515,13 @@ public class Purchase_GRN_FOCFunctions {
 	 * @return booelan flag
 	 */
 	public boolean verifyFOCForDirectPOImportSuplrServiceItemSimilarUOM() {
-//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-//				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		POfunc.verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("L49"),
 				commonFunc.getDataFromTestDataSheet("WalmartSupId"),
 				commonFunc.getDataFromTestDataSheet("ServiceValue"));
-		POfunc.verifyCreateDirectPO();
+		POfunc.verifyTickIconcreatePO();
+		commonFunc.checkRefreshCellsDisappear();
 		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 		ExcelUtils excelUtils = new ExcelUtils();
 		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
@@ -503,11 +551,24 @@ public class Purchase_GRN_FOCFunctions {
 				String CessPercent = itemmultiple[i][25];
 				String Cess = itemmultiple[i][26];
 				String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
-				POfunc.verifyCreateItemInPo(item);
-				POfunc.verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
-				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode(),
-						PurchaseOrderPageLocators.HsnCodeLovButton, HsnCode, PurchaseOrderPageLocators.HsnCodeInput);
-				POfunc.verifyTickIconcreateItem();
+				commonFunc.checkRefreshCellsDisappear();
+				POfunc.verifyDirectPoItemAddIconClicked();
+				POfunc.verifyDirectPoItemSelectedFromLov(item);
+				webDB.pressEscapeKey();
+				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.OrderedQuantity(),
+						PurchaseOrderPageLocators.OrderedQuantityInput, Quantity);
+				webDB.pressEscapeKey();
+				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.UnitCost(),
+						PurchaseOrderPageLocators.UnitCostInput, UnitCost);
+				webDB.pressEscapeKey();
+				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.verifyAddTableLovValue(PurchaseOrderPageLocators.HsnCode(),
+						PurchaseOrderPageLocators.HsnCodeLovButton, HsnCode);
+				webDB.pressEscapeKey();
+				POfunc.verifyDirectPoLineWiseSaved();
+				commonFunc.checkRefreshCellsDisappear();
 				POfunc.verifyLineAmountValidationAndPom(item, LineAmount);
 				POfunc.navigateToLineDetailPage(item);
 				POfunc.verifyEnterAmountForDiscountCalculation(TradePercentage, SplDiscPercentage, CashDiscPercentage);
@@ -537,7 +598,6 @@ public class Purchase_GRN_FOCFunctions {
 		commonFunc.navigatePurchaseOrderPage();
 		POfunc.verifyValidatePoStatus(VariableHandler.getPONumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-//		flag = commonFunc.logoutUser();
 		return true;
 	}
 
@@ -549,14 +609,13 @@ public class Purchase_GRN_FOCFunctions {
 	 * @return booelan flag
 	 */
 	public boolean verifyFOCForDirectPODomesticSuplrGeneralItemDissimilarUOM() {
-//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-//				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		POfunc.verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("L0001"),
 				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
 				commonFunc.getDataFromTestDataSheet("GeneralValue"));
-		POfunc.verifyCreateDirectPO();
+		POfunc.verifyTickIconcreatePO();
+		commonFunc.checkRefreshCellsDisappear();
 		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 		ExcelUtils excelUtils = new ExcelUtils();
 		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
@@ -586,11 +645,24 @@ public class Purchase_GRN_FOCFunctions {
 				String CessPercent = itemmultiple[i][25];
 				String Cess = itemmultiple[i][26];
 				String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
-				POfunc.verifyCreateItemInPo(item);
-				POfunc.verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
-				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode(),
-						PurchaseOrderPageLocators.HsnCodeLovButton, HsnCode, PurchaseOrderPageLocators.HsnCodeInput);
-				POfunc.verifyTickIconcreateItem();
+				commonFunc.checkRefreshCellsDisappear();
+				POfunc.verifyDirectPoItemAddIconClicked();
+				POfunc.verifyDirectPoItemSelectedFromLov(item);
+				webDB.pressEscapeKey();
+				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.OrderedQuantity(),
+						PurchaseOrderPageLocators.OrderedQuantityInput, Quantity);
+				webDB.pressEscapeKey();
+				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.UnitCost(),
+						PurchaseOrderPageLocators.UnitCostInput, UnitCost);
+				webDB.pressEscapeKey();
+				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.verifyAddTableLovValue(PurchaseOrderPageLocators.HsnCode(),
+						PurchaseOrderPageLocators.HsnCodeLovButton, HsnCode);
+				webDB.pressEscapeKey();
+				POfunc.verifyDirectPoLineWiseSaved();
+				commonFunc.checkRefreshCellsDisappear();
 				POfunc.verifyLineAmountValidationAndPom(item, LineAmount);
 				POfunc.navigateToLineDetailPage(item);
 				POfunc.verifyEnterAmountForDiscountCalculation(TradePercentage, SplDiscPercentage, CashDiscPercentage);
@@ -620,7 +692,6 @@ public class Purchase_GRN_FOCFunctions {
 		}
 		POfunc.verifyValidatePoStatus(VariableHandler.getPONumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-//		flag = commonFunc.logoutUser();
 		return true;
 	}
 
@@ -632,14 +703,13 @@ public class Purchase_GRN_FOCFunctions {
 	 * @return booelan flag
 	 */
 	public boolean verifyFOCForDirectPODomesticSuplrMaterialItemDissimilarUOM() {
-//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-//				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		POfunc.verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("L0001"),
 				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
 				commonFunc.getDataFromTestDataSheet("MaterialValue"));
-		POfunc.verifyCreateDirectPO();
+		POfunc.verifyTickIconcreatePO();
+		commonFunc.checkRefreshCellsDisappear();
 		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 		ExcelUtils excelUtils = new ExcelUtils();
 		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
@@ -669,11 +739,24 @@ public class Purchase_GRN_FOCFunctions {
 				String CessPercent = itemmultiple[i][25];
 				String Cess = itemmultiple[i][26];
 				String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
-				POfunc.verifyCreateItemInPo(item);
-				POfunc.verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
-				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode(),
-						PurchaseOrderPageLocators.HsnCodeLovButton, HsnCode, PurchaseOrderPageLocators.HsnCodeInput);
-				POfunc.verifyTickIconcreateItem();
+				commonFunc.checkRefreshCellsDisappear();
+				POfunc.verifyDirectPoItemAddIconClicked();
+				POfunc.verifyDirectPoItemSelectedFromLov(item);
+				webDB.pressEscapeKey();
+				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.OrderedQuantity(),
+						PurchaseOrderPageLocators.OrderedQuantityInput, Quantity);
+				webDB.pressEscapeKey();
+				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.UnitCost(),
+						PurchaseOrderPageLocators.UnitCostInput, UnitCost);
+				webDB.pressEscapeKey();
+				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.verifyAddTableLovValue(PurchaseOrderPageLocators.HsnCode(),
+						PurchaseOrderPageLocators.HsnCodeLovButton, HsnCode);
+				webDB.pressEscapeKey();
+				POfunc.verifyDirectPoLineWiseSaved();
+				commonFunc.checkRefreshCellsDisappear();
 				POfunc.verifyLineAmountValidationAndPom(item, LineAmount);
 				POfunc.navigateToLineDetailPage(item);
 				POfunc.verifyEnterAmountForDiscountCalculation(TradePercentage, SplDiscPercentage, CashDiscPercentage);
@@ -703,7 +786,6 @@ public class Purchase_GRN_FOCFunctions {
 		}
 		POfunc.verifyValidatePoStatus(VariableHandler.getPONumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-//		flag = commonFunc.logoutUser();
 		return true;
 	}
 
@@ -715,14 +797,13 @@ public class Purchase_GRN_FOCFunctions {
 	 * @return booelan flag
 	 */
 	public boolean verifyFOCForDirectPOImportSuplrGeneralItemDissimilarUOM() {
-//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-//				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		POfunc.verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("L0001"),
 				commonFunc.getDataFromTestDataSheet("WalmartSupId"),
 				commonFunc.getDataFromTestDataSheet("GeneralValue"));
-		POfunc.verifyCreateDirectPO();
+		POfunc.verifyTickIconcreatePO();
+		commonFunc.checkRefreshCellsDisappear();
 		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 		ExcelUtils excelUtils = new ExcelUtils();
 		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
@@ -752,11 +833,24 @@ public class Purchase_GRN_FOCFunctions {
 				String CessPercent = itemmultiple[i][25];
 				String Cess = itemmultiple[i][26];
 				String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
-				POfunc.verifyCreateItemInPo(item);
-				POfunc.verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
-				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode(),
-						PurchaseOrderPageLocators.HsnCodeLovButton, HsnCode, PurchaseOrderPageLocators.HsnCodeInput);
-				POfunc.verifyTickIconcreateItem();
+				commonFunc.checkRefreshCellsDisappear();
+				POfunc.verifyDirectPoItemAddIconClicked();
+				POfunc.verifyDirectPoItemSelectedFromLov(item);
+				webDB.pressEscapeKey();
+				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.OrderedQuantity(),
+						PurchaseOrderPageLocators.OrderedQuantityInput, Quantity);
+				webDB.pressEscapeKey();
+				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.UnitCost(),
+						PurchaseOrderPageLocators.UnitCostInput, UnitCost);
+				webDB.pressEscapeKey();
+				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.verifyAddTableLovValue(PurchaseOrderPageLocators.HsnCode(),
+						PurchaseOrderPageLocators.HsnCodeLovButton, HsnCode);
+				webDB.pressEscapeKey();
+				POfunc.verifyDirectPoLineWiseSaved();
+				commonFunc.checkRefreshCellsDisappear();
 				POfunc.verifyLineAmountValidationAndPom(item, LineAmount);
 				POfunc.navigateToLineDetailPage(item);
 				POfunc.verifyEnterAmountForDiscountCalculation(TradePercentage, SplDiscPercentage, CashDiscPercentage);
@@ -786,7 +880,6 @@ public class Purchase_GRN_FOCFunctions {
 		}
 		POfunc.verifyValidatePoStatus(VariableHandler.getPONumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-//		flag = commonFunc.logoutUser();
 		return true;
 	}
 
@@ -798,8 +891,6 @@ public class Purchase_GRN_FOCFunctions {
 	 * @return booelan flag
 	 */
 	public boolean verifyFOCForDirectPOImportSuplrMaterialItemDissimilarUOM() {
-//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-//				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		POfunc.verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("L0001"),
@@ -835,11 +926,24 @@ public class Purchase_GRN_FOCFunctions {
 				String CessPercent = itemmultiple[i][25];
 				String Cess = itemmultiple[i][26];
 				String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
-				POfunc.verifyCreateItemInPo(item);
-				POfunc.verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
-				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode(),
-						PurchaseOrderPageLocators.HsnCodeLovButton, HsnCode, PurchaseOrderPageLocators.HsnCodeInput);
-				POfunc.verifyTickIconcreateItem();
+				commonFunc.checkRefreshCellsDisappear();
+				POfunc.verifyDirectPoItemAddIconClicked();
+				POfunc.verifyDirectPoItemSelectedFromLov(item);
+				webDB.pressEscapeKey();
+				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.OrderedQuantity(),
+						PurchaseOrderPageLocators.OrderedQuantityInput, Quantity);
+				webDB.pressEscapeKey();
+				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.UnitCost(),
+						PurchaseOrderPageLocators.UnitCostInput, UnitCost);
+				webDB.pressEscapeKey();
+				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.verifyAddTableLovValue(PurchaseOrderPageLocators.HsnCode(),
+						PurchaseOrderPageLocators.HsnCodeLovButton, HsnCode);
+				webDB.pressEscapeKey();
+				POfunc.verifyDirectPoLineWiseSaved();
+				commonFunc.checkRefreshCellsDisappear();
 				POfunc.verifyLineAmountValidationAndPom(item, LineAmount);
 				POfunc.navigateToLineDetailPage(item);
 				POfunc.verifyEnterAmountForDiscountCalculation(TradePercentage, SplDiscPercentage, CashDiscPercentage);
@@ -869,7 +973,6 @@ public class Purchase_GRN_FOCFunctions {
 		}
 		POfunc.verifyValidatePoStatus(VariableHandler.getPONumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-//		flag = commonFunc.logoutUser();
 		return true;
 	}
 
@@ -1080,7 +1183,8 @@ public class Purchase_GRN_FOCFunctions {
 		DirectGRNFunc.closeToastIfDisplayed();
 		webDB.navigateToRefresh();
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.verifyAddTableSpecs(DirectGrnPageLocators.GrnLineCost, DirectGrnPageLocators.GrnLineCostInput, "0");
+		commonFunc.verifyAddTableSpecs(DirectGrnPageLocators.GRNPageUnitCostTable(),
+				DirectGrnPageLocators.GRNPageUnitCostTable(), "0");
 		logs.logging("INFO", "For Free Of Cost, Entered Unit Cost Is:" + "0");
 		DirectGRNFunc.verifyClickingSaveLine();
 		GRN2Func.overAllSaveAndPostForExcess();
@@ -1134,7 +1238,8 @@ public class Purchase_GRN_FOCFunctions {
 		DirectGRNFunc.closeToastIfDisplayed();
 		webDB.navigateToRefresh();
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.verifyAddTableSpecs(DirectGrnPageLocators.GrnLineCost, DirectGrnPageLocators.GrnLineCostInput, "0");
+		commonFunc.verifyAddTableSpecs(DirectGrnPageLocators.GRNPageUnitCostTable(),
+				DirectGrnPageLocators.GRNPageUnitCostTable(), "0");
 		logs.logging("INFO", "For Free Of Cost, Entered Unit Cost Is:" + "0");
 		DirectGRNFunc.verifyClickingSaveLine();
 		GRN2Func.overAllSaveAndPostForExcess();
@@ -1184,7 +1289,8 @@ public class Purchase_GRN_FOCFunctions {
 		DirectGRNFunc.closeToastIfDisplayed();
 		webDB.navigateToRefresh();
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.verifyAddTableSpecs(DirectGrnPageLocators.GrnLineCost, DirectGrnPageLocators.GrnLineCostInput, "0");
+		commonFunc.verifyAddTableSpecs(DirectGrnPageLocators.GRNPageUnitCostTable(),
+				DirectGrnPageLocators.GRNPageUnitCostTable(), "0");
 		logs.logging("INFO", "For Free Of Cost, Entered Unit Cost Is:" + "0");
 		DirectGRNFunc.verifyClickingSaveLine();
 		GRN2Func.overAllSaveAndPostForExcess();
@@ -1232,7 +1338,8 @@ public class Purchase_GRN_FOCFunctions {
 		DirectGRNFunc.closeToastIfDisplayed();
 		webDB.navigateToRefresh();
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.verifyAddTableSpecs(DirectGrnPageLocators.GrnLineCost, DirectGrnPageLocators.GrnLineCostInput, "0");
+		commonFunc.verifyAddTableSpecs(DirectGrnPageLocators.GRNPageUnitCostTable(),
+				DirectGrnPageLocators.GRNPageUnitCostTable(), "0");
 		logs.logging("INFO", "For Free Of Cost, Entered Unit Cost Is:" + "0");
 		DirectGRNFunc.verifyClickingSaveLine();
 		GRN2Func.overAllSaveAndPostForExcess();
@@ -1286,7 +1393,8 @@ public class Purchase_GRN_FOCFunctions {
 		DirectGRNFunc.closeToastIfDisplayed();
 		webDB.navigateToRefresh();
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.verifyAddTableSpecs(DirectGrnPageLocators.GrnLineCost, DirectGrnPageLocators.GrnLineCostInput, "0");
+		commonFunc.verifyAddTableSpecs(DirectGrnPageLocators.GRNPageUnitCostTable(),
+				DirectGrnPageLocators.GRNPageUnitCostTable(), "0");
 		logs.logging("INFO", "For Free Of Cost, Entered Unit Cost Is:" + "0");
 		DirectGRNFunc.verifyClickingSaveLine();
 		GRN2Func.overAllSaveAndPostForExcess();

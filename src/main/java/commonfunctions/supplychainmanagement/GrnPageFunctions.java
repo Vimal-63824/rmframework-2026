@@ -4205,42 +4205,34 @@ public class GrnPageFunctions {
 		String Today = date.format(formatter);
 		String DCNO = BillNo + SupBillNo;
 		VerifyToClickGrnFrame();
-		flag = webDB.waitForElement(DirectGrnPageLocators.GrnLocLov, ElementType.Xpath);
+		commonFunc.searchAndSelectValueInFilters(DirectGrnPageLocators.GrnLocLov, Location);
+		logs.logging("INFO", "Location Is Entered:" + Location);
+		commonFunc.checkRefreshCellsDisappear();
+		VerifyToClickGrnFrame();
+		flag = webDB.waitForElement(DirectGrnPageLocators.GrnType, ElementType.Xpath);
 		if (flag) {
-			commonFunc.searchAndSelectValueInFilters(DirectGrnPageLocators.GrnLocLov, Location);
-			logs.logging("INFO", "Location Is Entered:" + Location);
+			webDB.selectDropDownByValue(DirectGrnPageLocators.GrnType, Type, ElementType.Xpath);
+			logs.logging("INFO", "Type Is Entered:" + Type);
+			commonFunc.checkRefreshCellsDisappear();
+			commonFunc.searchAndSelectValueInFilters(DirectGrnPageLocators.GrnSupplierLov, Supplier);
+			logs.logging("INFO", "Supplier Is Entered:" + Supplier);
+			commonFunc.checkRefreshCellsDisappear();
 			VerifyToClickGrnFrame();
-			flag = webDB.waitForElement(DirectGrnPageLocators.GrnType, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
+			commonFunc.verifyAddTableSpecs(DirectGrnPageLocators.GrnSupplierBillNo,
+					DirectGrnPageLocators.GrnSupplierBillNo, DCNO);
+			logs.logging("INFO", "Supplier Bill NO Is Entered");
+			commonFunc.verifyAddTableSpecs(DirectGrnPageLocators.GrnDcNo, DirectGrnPageLocators.GrnDcNo, DCNO);
+			logs.logging("INFO", "DC NO Is Entered");
+			commonFunc.verifyAddTableSpecs(DirectGrnPageLocators.DCDateInput, DirectGrnPageLocators.DCDateInput, Today);
+			commonFunc.checkRefreshCellsDisappear();
+			flag = webDB.waitForElement(DirectGrnPageLocators.GrnCreate, ElementType.Xpath);
 			if (flag) {
-				webDB.selectDropDownByValue(DirectGrnPageLocators.GrnType, Type, ElementType.Xpath);
-				logs.logging("INFO", "Type Is Entered:" + Type);
-				commonFunc.checkRefreshCellsDisappear();
-				flag = webDB.waitForElement(DirectGrnPageLocators.GrnSupplierLov, ElementType.Xpath);
-				if (flag) {
-					commonFunc.searchAndSelectValueInFilters(DirectGrnPageLocators.GrnSupplierLov, Supplier);
-					logs.logging("INFO", "Supplier Is Entered:" + Supplier);
-					VerifyToClickGrnFrame();
-					flag = webDB.waitForElement(DirectGrnPageLocators.GrnSupplierBillNo, ElementType.Xpath);
-					if (flag) {
-						webDB.sendTextToAnElement(DirectGrnPageLocators.GrnSupplierBillNo, DCNO, ElementType.Xpath);
-						logs.logging("INFO", "Supplier Bill NO Is Entered");
-						flag = webDB.waitForElement(DirectGrnPageLocators.GrnDcNo, ElementType.Xpath);
-						if (flag) {
-							webDB.sendTextToAnElement(DirectGrnPageLocators.GrnDcNo, DCNO, ElementType.Xpath);
-							logs.logging("INFO", "DC NO Is Entered");
-							commonFunc.verifyAddTableSpecsClearField(DirectGrnPageLocators.DCDateInput,
-									DirectGrnPageLocators.DCDateInput, Today);
-							flag = webDB.waitForElement(DirectGrnPageLocators.GrnCreate, ElementType.Xpath);
-							if (flag) {
-								webDB.moveToElement(DirectGrnPageLocators.GrnCreate, ElementType.Xpath);
-								webDB.clickAnElement(DirectGrnPageLocators.GrnCreate, ElementType.Xpath);
-								logs.logging("INFO", "GRN Is Created");
-								webDB.switchToDefaultContent();
-								flag = webDB.waitForElement(GrnLocators.GrnDocNumber, ElementType.Xpath);
-							}
-						}
-					}
-				}
+				webDB.moveToElement(DirectGrnPageLocators.GrnCreate, ElementType.Xpath);
+				webDB.clickAnElement(DirectGrnPageLocators.GrnCreate, ElementType.Xpath);
+				logs.logging("INFO", "GRN Is Created");
+				webDB.switchToDefaultContent();
+				flag = webDB.waitForElement(GrnLocators.GrnDocNumber, ElementType.Xpath);
 			}
 		}
 		assertTrue(flag);
@@ -4792,7 +4784,11 @@ public class GrnPageFunctions {
 				flag = webDB.waitForElement(GrnLocators.PendingPOIframe, ElementType.Xpath);
 				if (flag) {
 					webDB.switchToFrame(GrnLocators.PendingPOIframe, ElementType.Xpath);
+					commonFunc.checkShowMyRecordAndUnselectAll(GrnLocators.PendingGEShowMyRecordBtn,
+							GrnLocators.PendingGEShowMyRecordHideBtn,
+							GateEntryPageLocators.GateEntryPendingPoSelectAll);
 					commonFunc.expandFindTable();
+					commonFunc.clearFiltersInFindPage();
 					commonFunc.searchAndSelectValueInFilters(GrnLocators.FindGELovButton,
 							VariableHandler.getGateEntryNumber());
 					logs.logging("INFO", "PO Number Succesfully search and Selected");

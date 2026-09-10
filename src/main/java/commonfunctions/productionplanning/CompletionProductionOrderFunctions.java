@@ -487,8 +487,9 @@ public class CompletionProductionOrderFunctions {
 		if (flag) {
 			commonFunc.checkSuccessToastMessageDisappear();
 			webDB.moveToElement(CompletionProductionOrderLocators.ComplProdPostBtn, ElementType.Xpath);
-			flag = webDB.clickAnElement(CompletionProductionOrderLocators.ComplProdPostBtn, ElementType.Xpath);
-			webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+			webDB.clickAnElement(CompletionProductionOrderLocators.ComplProdPostBtn, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
+			flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
 			if (flag) {
 				logs.logging("INFO", "Post Button Clicked Succesfully");
 				if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {

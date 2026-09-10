@@ -560,6 +560,10 @@ public class PurchaseOrderPageLocators {
 	public static final String CancelText = "//button[text()='Cancel']";
 	/** @locatorType Xpath */
 	public static final String ServiceSelect = "//select[@data-testid='P161513106045_POL_SERV_IO_TYPE']";
+	/** @locatorType Xpath */
+	public static final String PendingPRShowMyRecordBtn = "//button[@data-testid='Show']";
+	/** @locatorType Xpath */
+	public static final String PendingPRShowMyRecordHideBtn = "//button[@data-testid='Hide']";
 
 	/** @locatorType Xpath */
 	public static final String HsnField() {

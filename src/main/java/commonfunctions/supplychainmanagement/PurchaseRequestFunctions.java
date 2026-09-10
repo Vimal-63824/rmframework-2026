@@ -311,7 +311,7 @@ public class PurchaseRequestFunctions {
 				webDB.clickAnElement(PurchaseRequestLocators.PostBtn, ElementType.Xpath);
 				flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
 				if (!VariableHandler.getApprovalFlag()) {
-					approvalPageFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+					approvalPageFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
 					commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPRNumber(),
 							webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 							System.getProperty("HariUsername"));
