@@ -45,7 +45,7 @@ public class CommonUiLocators {
 	/** @locatorType Xpath */
 	public static final String ToastCloseIcon = "//button[@title='Close']";
 	/** @locatorType Xpath */
-	public static final String EntryTableRefreshCellImage = "//span[contains(@class,'u-Processing-spinner')]";
+	public static final String EntryTableRefreshCellImage = "//*[contains(@class,'u-Processing-spinner')]";
 	/** @locatorType Xpath */
 	public static final String LeftNavigationBar = "//button[@id='t_Button_navControl']";
 	/** @locatorType Xpath */
@@ -453,5 +453,5 @@ public class CommonUiLocators {
 	/** @locatorType Xpath */
 	public static final String FindShowMore = "//button[@id='M']";
 	/** @locatorType Xpath */
-	public static final String ReportSearchInput = "//input[@title='Search Report']";
+	public static final String ReportSearchInput = "//input[@class='a-IRR-search-field']";
 }

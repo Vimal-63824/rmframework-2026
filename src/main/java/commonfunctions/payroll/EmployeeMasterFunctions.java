@@ -2266,7 +2266,6 @@ public class EmployeeMasterFunctions {
 			commonFunc.checkSuccessToastMessageDisappear();
 			webDB.moveToElement(EmployeeMasterLocators.AddEmployeePostButton, ElementType.Xpath);
 			webDB.clickAnElement(EmployeeMasterLocators.AddEmployeePostButton, ElementType.Xpath);
-			commonFunc.checkRefreshCellsDisappear();
 			flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
 			if (flag) {
 				logs.logging("INFO", "Employee Post Icon Clicked");
@@ -4019,6 +4018,7 @@ public class EmployeeMasterFunctions {
 				if (flag) {
 					webDB.clickAnElement(EmployeeMasterLocators.EmpMigrationLabel, ElementType.Xpath);
 					webDB.switchToDefaultContent();
+					webDB.waitUntilElementToNotBeStale(EmployeeMasterLocators.EmpMigrationAddButton, ElementType.Xpath);
 					flag = webDB.waitForElement(EmployeeMasterLocators.EmpMigrationAddButton, ElementType.Xpath);
 					if (flag) {
 						logs.logging("INFO", "Employee Migration Radio Button Clicked");
@@ -4040,6 +4040,7 @@ public class EmployeeMasterFunctions {
 	 */
 	public void clickAddAndFillDetailsInEmployeeMigration(String Calendar, String Payment, String PaymentType,
 			String Ref) {
+		webDB.waitUntilElementToNotBeStale(EmployeeMasterLocators.EmpMigrationAddButton, ElementType.Xpath);
 		flag = webDB.waitForElement(EmployeeMasterLocators.EmpMigrationAddButton, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(EmployeeMasterLocators.EmpMigrationAddButton, ElementType.Xpath);
@@ -4173,6 +4174,8 @@ public class EmployeeMasterFunctions {
 				if (flag) {
 					webDB.clickAnElement(EmployeeMasterLocators.EmpDetailsMigrationLabel, ElementType.Xpath);
 					webDB.switchToDefaultContent();
+					webDB.waitUntilElementToNotBeStale(EmployeeMasterLocators.EmpDetailsMigrationCreateAddIcon,
+							ElementType.Xpath);
 					flag = webDB.waitForElement(EmployeeMasterLocators.EmpDetailsMigrationCreateAddIcon,
 							ElementType.Xpath);
 					if (flag) {
@@ -4191,6 +4194,7 @@ public class EmployeeMasterFunctions {
 	 * @param Ref
 	 */
 	public void createAndFillDetailsInEmpDetailsMigration(String Ref) {
+		webDB.waitUntilElementToNotBeStale(EmployeeMasterLocators.EmpDetailsMigrationCreateAddIcon, ElementType.Xpath);
 		flag = webDB.waitForElement(EmployeeMasterLocators.EmpDetailsMigrationCreateAddIcon, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(EmployeeMasterLocators.EmpDetailsMigrationCreateAddIcon, ElementType.Xpath);

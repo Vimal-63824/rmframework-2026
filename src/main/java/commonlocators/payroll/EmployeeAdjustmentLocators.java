@@ -189,11 +189,11 @@ public class EmployeeAdjustmentLocators {
 	}
 
 	/** @locatorType Xpath */
-	public static final String EmpAdjMigrationIframe = "//iframe[@title='Migration Type']";
+	public static final String EmpAdjMigrationIframe = "//iframe[contains(@title,'Migration Type')]";
 	/** @locatorType Xpath */
 	public static final String EmpAdjustmentMigrationRadioBtn = "//input[contains(@aria-label,'Adjustment')]/following-sibling::label";
 	/** @locatorType Xpath */
-	public static final String EmpAdjMigrationAddNewBtn = "//div[contains(@aria-label,'Employee Adjustment Migration')]/button[@title='Add']";
+	public static final String EmpAdjMigrationAddNewBtn = "//div[contains(@aria-label,'Employee Adjustment Migration')]//button[@title='Add']";
 	/** @locatorType Xpath */
 	public static final String EmpAdjMigrationRefInput = "//input[@data-testid='EAJMHD_REF_Input']";
 	/** @locatorType Xpath */
@@ -215,7 +215,7 @@ public class EmployeeAdjustmentLocators {
 	/** @locatorType Xpath */
 	public static final String EmpAllowanceMigrationRadioBtn = "//input[contains(@aria-label,'Allowance')]/following-sibling::label";
 	/** @locatorType Xpath */
-	public static final String EmpAllowanceMigrationAddNewBtn = "//div[contains(@aria-label,'Employee Allowances Migration')]/button[@title='Add']";
+	public static final String EmpAllowanceMigrationAddNewBtn = "//div[contains(@aria-label,'Employee Allowances Migration')]//button[@title='Add']";
 	/** @locatorType Xpath */
 	public static final String EmpAllowanceMigrationDateFrom = "//input[contains(@id,'EAMHD_EFF_FROM_input')]";
 	/** @locatorType Xpath */

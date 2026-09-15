@@ -160,6 +160,15 @@ public class DirectGrnPageLocators {
 	}
 
 	/** @locatorType Xpath */
+	public static final String GrnLinesCustomMenuBtnThreeDots(int rowNumber) {
+		return "(//table[@data-testid='add_line_Result_Data']//tr/td[1]//span)[" + rowNumber + "]";
+	}
+
+	/** @locatorType Xpath */
+	public static final String DetailsMenuThreeDots = "//ul[@class='custom-row-menu']//*[text()='Details']";
+	/** @locatorType Xpath */
+	public static final String LnDts_DiscountExpandButton = "//div[@aria-label='Discount']//button";
+	/** @locatorType Xpath */
 	public static final String LocId = "//input[@data-testid=\"P1615131103_UNIT_LOCATION\"]/following-sibling::button";
 	/** @locatorType Xpath */
 	public static final String Unit = "//button[@id='P1615131103_UNIT_lov_btn']";
