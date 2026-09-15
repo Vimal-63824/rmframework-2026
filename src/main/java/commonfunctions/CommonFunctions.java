@@ -244,6 +244,7 @@ public class CommonFunctions {
 					InputElement);
 			webDB.clickAnElement(CommonUiLocators.BusFunctionSearchBox, ElementType.Xpath);
 		}
+		webDB.waitUntilElementToNotBeStale(CommonUiLocators.PurchaseAddIcon, ElementType.Xpath);
 		flag = webDB.waitForElement(CommonUiLocators.PurchaseAddIcon, ElementType.Xpath);
 		Assert.assertTrue(flag);
 
