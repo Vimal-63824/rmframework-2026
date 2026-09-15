@@ -2078,5 +2078,12 @@
 	"PriceListMulti": "Price List Multi",
 	"GalaxyCustomerId": "CUS0087",
 	"GalaxyCustomerName": "GALAXY WEB AUTOMATION",
-	"Breakfast-G-Expense": "BreakFast G"
+	"Breakfast-G-Expense": "BreakFast G",
+	"DamageDefect": "DAMAGE",
+	"ProcessRejection": "ProcessRejection",
+	"PrimaryRejection": "PrimaryRejection",
+	"SecondaryRejection": "SecondaryRejection",
+	"ScrapWH-L49": "SCRAP WAREHOUSE L49",
+	"Shift_100-L49": "SHIFT100-L49",
+	"ScrapItem-HKTVS1001": "HK-TVS-SCRAP-10001"
 }

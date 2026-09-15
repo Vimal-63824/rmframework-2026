@@ -117,7 +117,7 @@ public class PurchaseBillsLocators {
 	/** @locatorType Xpath */
 	public static final String WfOkButtton = "//button[@data-testid='OK']";
 	/** @locatorType Xpath */
-	public static final String gstClafField = "//*[@id='report_2579044485620771825_catch']/dl/dd[12]";
+	public static final String gstClafField = "//*[@id='report_6360571096274207940_catch']/dl/dd[12]";
 	/** @locatorType Xpath */
 	public static final String SideScroll = "//button[@id='t_Button_rightControlButton']";
 	/** @locatorType Xpath */
@@ -285,13 +285,13 @@ public class PurchaseBillsLocators {
 	/** @locatorType Xpath */
 	public static final String ViewButtonFrame = "//*[@id='apex_dialog_1']/iframe";
 	/** @locatorType Xpath */
-	public static final String AddButtonViewTap = "//button[@id='B1241527772779829127']";
+	public static final String AddButtonViewTap = "//button[@title='Add']";
 	/** @locatorType Xpath */
-	public static final String BillDocNo = "//input[@id='C1228725928131365382']";
+	public static final String BillDocNo = "//input[@id='C5010252538784801497']";
 	/** @locatorType Xpath */
-	public static final String PayAmt = "//input[@id='C1228719955013365375']";
+	public static final String PayAmt = "//input[@id='C5010246565666801490']";
 	/** @locatorType Xpath */
-	public static final String SaveButtonView = "//button[@id='B1241527633841829126']";
+	public static final String SaveButtonView = "//button[@id='B5023054244495265241']";
 	/** @locatorType Xpath */
 	public static final String CloseButton = "//*[@id='t_PageBody']/div[10]/div[1]/button";
 	/** @locatorType Xpath */
@@ -303,7 +303,7 @@ public class PurchaseBillsLocators {
 	/** @locatorType Xpath */
 	public static final String LoadButton = "//button[@id='loadadj']";
 	/** @locatorType Xpath */
-	public static final String CheckBoxAdjTap = "//*[@id='2156686508435819293_orig']/tbody/tr[2]/td[11]";
+	public static final String CheckBoxAdjTap = "//*[@id='5938213119089255408_orig']/tbody/tr[2]/td[11]";
 	/** @locatorType Xpath */
 	public static final String FrameAdjTap = "//iframe[@title='Advance Adjustment ']";
 	/** @locatorType Xpath */
@@ -377,7 +377,7 @@ public class PurchaseBillsLocators {
 	public static final String Pending_Prefix_Lov_button = "//input[contains(@data-testid,'INV_PFX')]/following-sibling::button";
 	
 	/** @locatorType Xpath */
-	public static final String GlAccDescField1  = "//input[contains(@data-testid,'INV_PFX')]/following-sibling::button";
+	public static final String GlAccDescField1  = "(//TABLE[@data-testid='IN_Result_Data'])[2]";
 	/** @locatorType Xpath */
 	public static final String PurchaseBillsTransLoc() {
 		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(GlAccDescField1, "GL Acct. Desc.");

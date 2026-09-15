@@ -42,7 +42,7 @@ public class PurchaseBillsLocatorsGetDocument {
 
 	/** @locatorType Xpath */
 	public static final String ApprovedStatus(String PbNo) {
-		return "//a[text()='" + PbNo + "']/../../td[14]";
+		return "//a[text()='" + PbNo + "']/../../td/div[contains(@style,'color:green')]";
 	}
 
 	/** @locatorType Xpath */
@@ -59,7 +59,7 @@ public class PurchaseBillsLocatorsGetDocument {
 	/** @locatorType Xpath */
 	public static final String SubVouType = "//input[@data-testid='P11613101017_SUPHD_GRN_REFER']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String PurchaseBillsframe = "//iframe[@title='Purchase Bills']";
+	public static final String PurchaseBillsframe = "//iframe[@title='Create Purchase Bills']";
 	/** @locatorType Xpath */
 	public static final String PurchaseBillTickIcon = "//button[@data-testid='Save']";
 	/** @locatorType Xpath */

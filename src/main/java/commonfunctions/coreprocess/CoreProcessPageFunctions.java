@@ -208,7 +208,7 @@ public class CoreProcessPageFunctions {
 			commonFunc.checkRefreshCellsDisappear();
 			commonFunc.navigateCustomerItemScreen();
 			customerItemFunc.addPLusButton();
-			customerItemFunc.insertCustomerFromLovField(commonFunc.getDataFromTestDataSheet("GalaxyCustomerName"));
+			customerItemFunc.insertCustomerFromLovField(CustomerID);
 			customerItemFunc.addPlusInCustomerItem();
 			customerItemFunc.insertIteminCustomerItemsAfterCustomerAssoFlag();
 			customerItemFunc.priceClassSelectStdFormat(commonFunc.getDataFromTestDataSheet("priceClassName"));

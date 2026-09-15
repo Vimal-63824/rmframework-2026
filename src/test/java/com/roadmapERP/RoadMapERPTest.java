@@ -27,14 +27,14 @@ public class RoadMapERPTest {
 	 */
 	@BeforeClass(alwaysRun = true)
 	public void BrowserSetup() {
-		WebDriverBase.chromeOptions.get().addArguments("--disable-extensions");
-		WebDriverBase.chromeOptions.get().addArguments("--disable-software-rasterizer");
-		WebDriverBase.chromeOptions.get().addArguments("--use-fake-device-for-media-stream");
-		WebDriverBase.chromeOptions.get().addArguments("--use-fake-ui-for-media-stream");
-		WebDriverBase.chromeOptions.get().addArguments("--gcm-registration-url=http://localhost:1/");
-		WebDriverBase.chromeOptions.get().addArguments("--disable-background-networking");
-		WebDriverBase.chromeOptions.get().addArguments("--disable-device-discovery-notifications");
-		WebDriverBase.chromeOptions.get().addArguments("--disable-features=GCM");
+//		WebDriverBase.chromeOptions.get().addArguments("--disable-extensions");
+//		WebDriverBase.chromeOptions.get().addArguments("--disable-software-rasterizer");
+//		WebDriverBase.chromeOptions.get().addArguments("--use-fake-device-for-media-stream");
+//		WebDriverBase.chromeOptions.get().addArguments("--use-fake-ui-for-media-stream");
+//		WebDriverBase.chromeOptions.get().addArguments("--gcm-registration-url=http://localhost:1/");
+//		WebDriverBase.chromeOptions.get().addArguments("--disable-background-networking");
+//		WebDriverBase.chromeOptions.get().addArguments("--disable-device-discovery-notifications");
+//		WebDriverBase.chromeOptions.get().addArguments("--disable-features=GCM");
 		WebDriverBase.chromeOptions.get().setAcceptInsecureCerts(true);
 		commonFunc.browserOpen();
 		WebDriverBase.getDriver().manage().timeouts().pageLoadTimeout(Duration.ofSeconds(90));

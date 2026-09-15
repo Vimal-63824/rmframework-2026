@@ -356,7 +356,6 @@ public class GateEntryPageFunctions {
 									logs.logging("INFO", "Gate Entry Document Created Successfully");
 									webDB.switchToDefaultContent();
 									flag = webDB.waitForElement(GateEntryPageLocators.DocNumber, ElementType.Xpath);
-
 								}
 							}
 						}
@@ -502,41 +501,44 @@ public class GateEntryPageFunctions {
 	 * @author Durai-RMITS
 	 */
 	public void verifyToOverAllSaveAndPostTheGateEntryDocument() {
-		webDB.waitForElement(GateEntryPageLocators.DocNumber, ElementType.Xpath);
-		commonFunc.checkRefreshCellsDisappear();
-		String GateEntryNumber = webDB.getTextFromElement(GateEntryPageLocators.DocNumber, ElementType.Xpath);
-		VariableHandler.setGateEntryNumber(GateEntryNumber);
-		logs.logging("INFO", "Gate EntryNumber Is :" + VariableHandler.getGateEntryNumber());
-		commonFunc.searchAndSelectValueInFilters(GateEntryPageLocators.GateKeeperSso, "VIMAL");
-		webDB.sendTextToAnElement(GateEntryPageLocators.DriverNameInput, "Vimal", ElementType.Xpath);
-		flag = webDB.waitForElement(GateEntryPageLocators.EwayBillNumber, ElementType.Xpath);
+		flag = webDB.waitForElement(GateEntryPageLocators.DocNumber, ElementType.Xpath);
 		if (flag) {
-			webDB.sendTextToAnElement(GateEntryPageLocators.EwayBillNumber,
-					commonFunc.getDataFromTestDataSheet("EwayBillNumber"), ElementType.Xpath);
-			logs.logging("INFO", "E-wayBill NUMBER Entered Successfully");
-			flag = webDB.waitForElement(GateEntryPageLocators.OverAllSaveButton, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
+			String GateEntryNumber = webDB.getTextFromElement(GateEntryPageLocators.DocNumber, ElementType.Xpath);
+			VariableHandler.setGateEntryNumber(GateEntryNumber);
+			logs.logging("INFO", "Gate EntryNumber Is :" + VariableHandler.getGateEntryNumber());
+			commonFunc.searchAndSelectValueInFilters(GateEntryPageLocators.GateKeeperSso, "VIMAL");
+			webDB.sendTextToAnElement(GateEntryPageLocators.DriverNameInput, "Vimal", ElementType.Xpath);
+			flag = webDB.waitForElement(GateEntryPageLocators.EwayBillNumber, ElementType.Xpath);
 			if (flag) {
-				webDB.moveToElement(GateEntryPageLocators.OverAllSaveButton, ElementType.Xpath);
-				webDB.clickAnElement(GateEntryPageLocators.OverAllSaveButton, ElementType.Xpath);
-				commonFunc.checkRefreshCellsDisappear();
-				webDB.waitForElementUntilGivenTime(CommonUiLocators.PostToastMessage, ElementType.Xpath, 5);
-				if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
-					webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
-				}
-				flag = webDB.waitForElement(GateEntryPageLocators.PostButton, ElementType.Xpath);
+				webDB.sendTextToAnElement(GateEntryPageLocators.EwayBillNumber,
+						commonFunc.getDataFromTestDataSheet("EwayBillNumber"), ElementType.Xpath);
+				logs.logging("INFO", "E-wayBill NUMBER Entered Successfully");
+				flag = webDB.waitForElement(GateEntryPageLocators.OverAllSaveButton, ElementType.Xpath);
 				if (flag) {
-					webDB.moveToElement(GateEntryPageLocators.PostButton, ElementType.Xpath);
-					webDB.clickAnElement(GateEntryPageLocators.PostButton, ElementType.Xpath);
-					flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
-					if (!VariableHandler.getApprovalFlag()) {
-						approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
-						commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
-								VariableHandler.getGateEntryNumber(), webDB.getDataFromProperties("HodEmpId"),
-								commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
-					}
-					logs.logging("INFO", "Gate Entry Document Posted Successfully");
+					webDB.moveToElement(GateEntryPageLocators.OverAllSaveButton, ElementType.Xpath);
+					webDB.clickAnElement(GateEntryPageLocators.OverAllSaveButton, ElementType.Xpath);
 					commonFunc.checkRefreshCellsDisappear();
-//					commonFunc.logoutUser();
+					webDB.waitForElementUntilGivenTime(CommonUiLocators.PostToastMessage, ElementType.Xpath, 5);
+					if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+						webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+					}
+					commonFunc.checkSuccessToastMessageDisappear();
+					flag = webDB.waitForElement(GateEntryPageLocators.PostButton, ElementType.Xpath);
+					if (flag) {
+						webDB.moveToElement(GateEntryPageLocators.PostButton, ElementType.Xpath);
+						webDB.clickAnElement(GateEntryPageLocators.PostButton, ElementType.Xpath);
+						flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
+						if (!VariableHandler.getApprovalFlag()) {
+							approvalFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
+							commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+									VariableHandler.getGateEntryNumber(), webDB.getDataFromProperties("HodEmpId"),
+									commonFunc.getDataFromTestDataSheet("Unit_100"),
+									System.getProperty("HariUsername"));
+						}
+						logs.logging("INFO", "Gate Entry Document Posted Successfully");
+						commonFunc.checkRefreshCellsDisappear();
+					}
 				}
 			}
 		}
@@ -1422,11 +1424,15 @@ public class GateEntryPageFunctions {
 			webDB.clickAnElement(GateEntryPageLocators.ClickPendingPoButton, ElementType.Xpath);
 			logs.logging("INFO", "PendingPOButtonLov Shown");
 			webDB.switchToFrame(GateEntryPageLocators.PendingPOGIframe, ElementType.Xpath);
+			commonFunc.checkShowMyRecordAndUnselectAll(GateEntryPageLocators.PendingPOShowMyRecordBtn,
+					GateEntryPageLocators.PendingPOShowMyRecordHideBtn,
+					GateEntryPageLocators.GateEntryPendingPoSelectAll);
 			commonFunc.checkRefreshCellsDisappear();
 			commonFunc.expandFindTable();
 			commonFunc.searchAndSelectValueInFilters(GateEntryPageLocators.ClickPendingPoButtonLov,
 					VariableHandler.getPONumber());
 			commonFunc.checkRefreshCellsDisappear();
+			webDB.waitForElement(GateEntryPageLocators.PendingPOGIframe, ElementType.Xpath);
 			webDB.switchToFrame(GateEntryPageLocators.PendingPOGIframe, ElementType.Xpath);
 			logs.logging("INFO", "PO Number Shown");
 			webDB.waitForElement(GateEntryPageLocators.GateEntryPoSearchButton, ElementType.Xpath);
@@ -1440,7 +1446,13 @@ public class GateEntryPageFunctions {
 				if (flag) {
 					commonFunc.checkRefreshCellsDisappear();
 					webDB.moveToElement(GateEntryPageLocators.CreateGeFromPO, ElementType.Xpath);
-					flag = webDB.clickAnElement(GateEntryPageLocators.CreateGeFromPO, ElementType.Xpath);
+					webDB.clickAnElement(GateEntryPageLocators.CreateGeFromPO, ElementType.Xpath);
+					commonFunc.checkRefreshCellsDisappear();
+					commonFunc.checkRefreshCellsDisappear();
+					if (webDB.verifyIsElementDisplayed(CommonUiLocators.CancelBtn, ElementType.Xpath)) {
+						webDB.clickAnElementWithoutException(CommonUiLocators.OkayButton, ElementType.Xpath);
+					}
+					flag = webDB.waitForElement(GateEntryPageLocators.SelectGateKeeper, ElementType.Xpath);
 				}
 			}
 		}
