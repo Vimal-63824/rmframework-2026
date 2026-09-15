@@ -16,7 +16,6 @@ import org.apache.commons.lang3.RandomStringUtils;
 import commonfunctions.CommonFunctions;
 import commonfunctions.DBCommonFunctions;
 import commonfunctions.VariableHandler;
-import commonfunctions.payroll.CommonPayrollFunctions;
 import commonlocators.CommonUiLocators;
 import commonlocators.supplychainmanagement.DirectGrnPageLocators;
 import commonlocators.supplychainmanagement.GrnLocators;
@@ -33,7 +32,6 @@ public class GrnPageFunctions2 {
 	private static ReportLoger logs = new ReportLoger();
 	private static GrnPageFunctions GRNFunc = new GrnPageFunctions();
 	private boolean flag = false;
-	private static CommonPayrollFunctions commonPayrollFunc = new CommonPayrollFunctions();
 	private static PurchaseOrderFunctions POfunc = new PurchaseOrderFunctions();
 	private static GateEntryPageFunctions gateEntryPageFunc = new GateEntryPageFunctions();
 	private static DBCommonFunctions dbCommonFunc = new DBCommonFunctions();
@@ -305,38 +303,57 @@ public class GrnPageFunctions2 {
 			if (!ITEM_NAME.equals("")) {
 				commonFunc.checkRefreshCellsDisappear();
 				commonFunc.checkRefreshCellsDisappear();
-				flag = webDB.waitForElement(DirectGrnPageLocators.GrnDetailsBtn(i - 21), ElementType.Xpath);
+				flag = webDB.waitForElement(DirectGrnPageLocators.GrnLinesCustomMenuBtnThreeDots(1), ElementType.Xpath);
 				if (flag) {
-					webDB.scrollToAnElement(DirectGrnPageLocators.GrnDetailsBtn(i - 21), ElementType.Xpath);
-					webDB.moveToElement(DirectGrnPageLocators.GrnDetailsBtn(i - 21), ElementType.Xpath);
-					webDB.clickAnElement(DirectGrnPageLocators.GrnDetailsBtn(i - 21), ElementType.Xpath);
-					logs.logging("INFO", "Details Button Is Clicked");
-					flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineDetailsFrame, ElementType.Xpath);
+					webDB.clickAnElement(DirectGrnPageLocators.GrnLinesCustomMenuBtnThreeDots(1), ElementType.Xpath);
+					logs.logging("INFO", "Custom Menu Button(Three Dots) Is Clicked");
+					flag = webDB.waitForElement(DirectGrnPageLocators.DetailsMenuThreeDots, ElementType.Xpath);
 					if (flag) {
-						webDB.switchToFrame(DirectGrnPageLocators.GrnLineDetailsFrame, ElementType.Xpath);
-						logs.logging("INFO", "Switched To Frame");
-						commonFunc.checkRefreshCellsDisappear();
-						if (webDB.verifyIsElementDisplayed(DirectGrnPageLocators.GrnLineTrdDisc, ElementType.Xpath)) {
-							commonFunc.verifyAddTableSpecs(DirectGrnPageLocators.GrnLineTrdDisc,
-									DirectGrnPageLocators.GrnLineTrdDisc, TradeDiscount);
-							logs.logging("INFO", "Entered Trade Discount Is:" + TradeDiscount);
-						}
-						commonFunc.verifyAddTableSpecs(DirectGrnPageLocators.GrnLineSpclDisc,
-								DirectGrnPageLocators.GrnLineSpclDisc, SpecialDiscount);
-						logs.logging("INFO", "Entered Special Discount Is:" + SpecialDiscount);
-						commonFunc.verifyAddTableSpecs(DirectGrnPageLocators.GrnLineCashDisc,
-								DirectGrnPageLocators.GrnLineCashDisc, CashDiscount);
-						logs.logging("INFO", "Entered Cash Discount Is:" + CashDiscount);
-						flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineDetailsSave, ElementType.Xpath);
+						webDB.clickAnElement(DirectGrnPageLocators.DetailsMenuThreeDots, ElementType.Xpath);
+						flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineDetailsFrame, ElementType.Xpath);
 						if (flag) {
-							webDB.moveToElement(DirectGrnPageLocators.GrnLineDetailsSave, ElementType.Xpath);
-							webDB.clickAnElement(DirectGrnPageLocators.GrnLineDetailsSave, ElementType.Xpath);
-							logs.logging("INFO", "Details Is Saved");
-							commonFunc.checkSuccessToastMessageDisappear();
+							logs.logging("INFO", "Details Button Clicked and Iframe Displayed");
+							webDB.switchToFrame(DirectGrnPageLocators.GrnLineDetailsFrame, ElementType.Xpath);
 							commonFunc.checkRefreshCellsDisappear();
-							webDB.pressEscapeKey();
-							webDB.switchToDefaultContent();
-							verifyDiscountAmountForGrn(i1, FileName, SheetName);
+							flag = webDB.waitForElement(DirectGrnPageLocators.LnDts_DiscountExpandButton,
+									ElementType.Xpath);
+							if (flag) {
+								String value = webDB.getDomAttributeFromElement(
+										DirectGrnPageLocators.LnDts_DiscountExpandButton, ElementType.Xpath,
+										"aria-expanded");
+								if (value.equalsIgnoreCase("false")) {
+									webDB.moveToElement(DirectGrnPageLocators.LnDts_DiscountExpandButton,
+											ElementType.Xpath);
+									webDB.javaScriptClickAnElement(DirectGrnPageLocators.LnDts_DiscountExpandButton,
+											ElementType.Xpath);
+									logs.logging("INFO", "Discount sub tab clicked and expanded");
+								} else {
+									logs.logging("INFO", "Discount sub tab already expanded");
+								}
+							}
+							if (webDB.verifyIsElementDisplayed(DirectGrnPageLocators.GrnLineTrdDisc,
+									ElementType.Xpath)) {
+								commonFunc.verifyAddTableSpecs(DirectGrnPageLocators.GrnLineTrdDisc,
+										DirectGrnPageLocators.GrnLineTrdDisc, TradeDiscount);
+								logs.logging("INFO", "Entered Trade Discount Is:" + TradeDiscount);
+							}
+							commonFunc.verifyAddTableSpecs(DirectGrnPageLocators.GrnLineSpclDisc,
+									DirectGrnPageLocators.GrnLineSpclDisc, SpecialDiscount);
+							logs.logging("INFO", "Entered Special Discount Is:" + SpecialDiscount);
+							commonFunc.verifyAddTableSpecs(DirectGrnPageLocators.GrnLineCashDisc,
+									DirectGrnPageLocators.GrnLineCashDisc, CashDiscount);
+							logs.logging("INFO", "Entered Cash Discount Is:" + CashDiscount);
+							flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineDetailsSave, ElementType.Xpath);
+							if (flag) {
+								webDB.moveToElement(DirectGrnPageLocators.GrnLineDetailsSave, ElementType.Xpath);
+								webDB.clickAnElement(DirectGrnPageLocators.GrnLineDetailsSave, ElementType.Xpath);
+								logs.logging("INFO", "Details Is Saved");
+								commonFunc.checkSuccessToastMessageDisappear();
+								commonFunc.checkRefreshCellsDisappear();
+								webDB.pressEscapeKey();
+								webDB.switchToDefaultContent();
+								verifyDiscountAmountForGrn(i1, FileName, SheetName);
+							}
 						}
 					}
 				}

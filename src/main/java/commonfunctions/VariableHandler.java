@@ -268,6 +268,7 @@ public class VariableHandler {
 	private static ThreadLocal<ArrayList<String>> MultipleBankDocs = ThreadLocal.withInitial(() -> null);
 	private static ThreadLocal<Boolean> SessionOpened = ThreadLocal.withInitial(() -> false);
 	private static ThreadLocal<String> SessionID = ThreadLocal.withInitial(() -> null);
+	private static ThreadLocal<String> HomePageURL = ThreadLocal.withInitial(() -> null);
 	private static ThreadLocal<String> SignInUserName = ThreadLocal.withInitial(() -> null);
 	private static ThreadLocal<String> EmployeeFullName = ThreadLocal.withInitial(() -> null);
 	private static ThreadLocal<Boolean> SiteWorked = ThreadLocal.withInitial(() -> true);
@@ -2332,6 +2333,14 @@ public class VariableHandler {
 
 	public static void setEmployeeFullName(String Data) {
 		EmployeeFullName.set(Data);
+	}
+
+	public static String getHomePageURL() {
+		return HomePageURL.get();
+	}
+
+	public static void setHomePageURL(String Data) {
+		HomePageURL.set(Data);
 	}
 
 	public static boolean getSiteWorked() {
