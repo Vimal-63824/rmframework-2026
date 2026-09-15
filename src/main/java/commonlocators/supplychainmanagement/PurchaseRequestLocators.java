@@ -69,6 +69,7 @@ public class PurchaseRequestLocators {
 	public static final String UnitCostDataLastRow() {
 		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(PRTable, "UnitCost");
 	}
+
 	/** @locatorType Xpath */
 	public static final String PRAUnitCostDataLastRow() {
 		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(PRATable, "UnitCost");
@@ -183,7 +184,7 @@ public class PurchaseRequestLocators {
 
 	/** @locatorType Xpath */
 	public static final String PR_LastItemDetailIcon(String Value) {
-		return "//td[text()='" + Value + "']/../td//span[@style='color:blue']";
+		return "//td[text()='" + Value + "']/../td[1]";
 
 	}
 
@@ -296,6 +297,8 @@ public class PurchaseRequestLocators {
 	public static final String CreatePRButton = "//span[text()='Create PR Amd.']/..";
 	/** @Locator XPATH */
 	public static final String PRAmendFrame = "//iframe[contains(@title,'Create')]";
+	/** @Locator XPATH */
+	public static final String ItemDetailsButton = "//div[@data-testid='R1557118174237374119_Result_Data']//button";
 
 	/** @Locator XPATH */
 	public static String PurchaseNo(String HeaderValue) {

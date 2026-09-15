@@ -13,6 +13,7 @@ import org.openqa.selenium.WebElement;
 import commonfunctions.CommonFunctions;
 import commonfunctions.VariableHandler;
 import commonlocators.supplychainmanagement.DeliveryChallanLocators;
+import commonlocators.supplychainmanagement.OpenPoRcLocators;
 import utils.ExcelUtils;
 import utils.ReportLoger;
 import utils.WebDriverBase;
@@ -33,18 +34,23 @@ public class DeliveryChallanFunctions {
 	public void verifyStatusOfDeliveryChallan(String DocNo, String ExpectedStatus) {
 		commonFunc.clearFiltersInFindPage();
 		commonFunc.searchAndSelectValueInFilters(DeliveryChallanLocators.DCNumberLovButton, DocNo);
-		flag = webDB.waitForElement(DeliveryChallanLocators.SearchButton, ElementType.Xpath);
+		flag = webDB.waitForElement(OpenPoRcLocators.LineCheckBox, ElementType.Xpath);
 		if (flag) {
-			logs.logging("INFO", "MIV Search Button IS Displayed");
-			webDB.clickAnElement(DeliveryChallanLocators.SearchButton, ElementType.Xpath);
-			commonFunc.checkRefreshCellsDisappear();
-			flag = webDB.waitForElement(DeliveryChallanLocators.StatusDcNumber(DocNo), ElementType.Xpath);
+			logs.logging("INFO", "Line CheckBox Is Displayed");
+			webDB.clickAnElement(OpenPoRcLocators.LineCheckBox, ElementType.Xpath);
+			flag = webDB.waitForElement(DeliveryChallanLocators.SearchButton, ElementType.Xpath);
 			if (flag) {
-				logs.logging("INFO", "Search Button clicked and DC No: " + DocNo + " Displayed");
-				String Status = webDB.getTextFromElement(DeliveryChallanLocators.StatusDcNumber(DocNo),
-						ElementType.Xpath);
-				logs.logging("INFO", "DC Number: '" + DocNo + "' searched and displaying status: " + Status);
-				flag = Status.equalsIgnoreCase(ExpectedStatus);
+				logs.logging("INFO", "MIV Search Button IS Displayed");
+				webDB.clickAnElement(DeliveryChallanLocators.SearchButton, ElementType.Xpath);
+				commonFunc.checkRefreshCellsDisappear();
+				flag = webDB.waitForElement(DeliveryChallanLocators.StatusDcNumber(DocNo), ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Search Button clicked and DC No: " + DocNo + " Displayed");
+					String Status = webDB.getTextFromElement(DeliveryChallanLocators.StatusDcNumber(DocNo),
+							ElementType.Xpath);
+					logs.logging("INFO", "DC Number: '" + DocNo + "' searched and displaying status: " + Status);
+					flag = Status.equalsIgnoreCase(ExpectedStatus);
+				}
 			}
 		}
 		assertTrue(flag);
@@ -73,48 +79,53 @@ public class DeliveryChallanFunctions {
 	public void verifyTableData(String Sheet) {
 		commonFunc.searchAndSelectValueInFilters(DeliveryChallanLocators.DCNumberLovButton,
 				VariableHandler.getDCNumber());
-		flag = webDB.waitForElement(DeliveryChallanLocators.SearchButton, ElementType.Xpath);
+		flag = webDB.waitForElement(OpenPoRcLocators.LineCheckBox, ElementType.Xpath);
 		if (flag) {
-			logs.logging("INFO", "MIV Search Button IS Displayed");
-			webDB.clickAnElement(DeliveryChallanLocators.SearchButton, ElementType.Xpath);
-			commonFunc.checkRefreshCellsDisappear();
-			flag = webDB.waitForElement(DeliveryChallanLocators.DCNumber(VariableHandler.getDCNumber()),
-					ElementType.Xpath);
+			logs.logging("INFO", "Line CheckBox Is Displayed");
+			webDB.clickAnElement(OpenPoRcLocators.LineCheckBox, ElementType.Xpath);
+			flag = webDB.waitForElement(DeliveryChallanLocators.SearchButton, ElementType.Xpath);
 			if (flag) {
-				webDB.clickAnElement(DeliveryChallanLocators.DCNumber(VariableHandler.getDCNumber()),
+				logs.logging("INFO", "MIV Search Button IS Displayed");
+				webDB.clickAnElement(DeliveryChallanLocators.SearchButton, ElementType.Xpath);
+				commonFunc.checkRefreshCellsDisappear();
+				flag = webDB.waitForElement(DeliveryChallanLocators.DCNumber(VariableHandler.getDCNumber()),
 						ElementType.Xpath);
-				BigDecimal IndividualTotal;
-				BigDecimal FinalTotal = new BigDecimal("0");
-				ExcelUtils excelUtils = new ExcelUtils();
-				String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
-				String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
-						+ "ItemDetails.xlsx";
-				itemmultiple = excelUtils.readAllDataInExcel(Filepath, Sheet);
-				for (int i = 1; i < itemmultiple.length; i++) {
-					List<WebElement> TableList = webDB.getDriver()
-							.findElements(By.xpath(DeliveryChallanLocators.ListItem));
-					if (flag) {
-						for (int j = 1; j <= TableList.size(); j++) {
-							String ItemText = webDB.getTextFromElement(DeliveryChallanLocators.ItemTable(j),
-									ElementType.Xpath);
-							String ItemCost = webDB.getTextFromElement(DeliveryChallanLocators.ItemCostTable(j),
-									ElementType.Xpath);
-							if (ItemText.equals(itemmultiple[i][0])) {
-								if (ItemCost.equals(VariableHandler.getStockCost().get(itemmultiple[i][0]))) {
-									logs.logging("INFO", "Verified Item " + ItemText + "  With Item Cost " + ItemCost
-											+ " With Table Data");
-									IndividualTotal = new BigDecimal(ItemCost).multiply(new BigDecimal("2"));
-									FinalTotal = FinalTotal.add(IndividualTotal);
-									flag = true;
-									break;
+				if (flag) {
+					webDB.clickAnElement(DeliveryChallanLocators.DCNumber(VariableHandler.getDCNumber()),
+							ElementType.Xpath);
+					BigDecimal IndividualTotal;
+					BigDecimal FinalTotal = new BigDecimal("0");
+					ExcelUtils excelUtils = new ExcelUtils();
+					String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+					String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+							+ "ItemDetails.xlsx";
+					itemmultiple = excelUtils.readAllDataInExcel(Filepath, Sheet);
+					for (int i = 1; i < itemmultiple.length; i++) {
+						List<WebElement> TableList = webDB.getDriver()
+								.findElements(By.xpath(DeliveryChallanLocators.ListItem));
+						if (flag) {
+							for (int j = 1; j <= TableList.size(); j++) {
+								String ItemText = webDB.getTextFromElement(DeliveryChallanLocators.ItemTable(j),
+										ElementType.Xpath);
+								String ItemCost = webDB.getTextFromElement(DeliveryChallanLocators.ItemCostTable(j),
+										ElementType.Xpath);
+								if (ItemText.equals(itemmultiple[i][0])) {
+									if (ItemCost.equals(VariableHandler.getStockCost().get(itemmultiple[i][0]))) {
+										logs.logging("INFO", "Verified Item " + ItemText + "  With Item Cost "
+												+ ItemCost + " With Table Data");
+										IndividualTotal = new BigDecimal(ItemCost).multiply(new BigDecimal("2"));
+										FinalTotal = FinalTotal.add(IndividualTotal);
+										flag = true;
+										break;
+									} else {
+										flag = false;
+									}
 								} else {
 									flag = false;
 								}
-							} else {
-								flag = false;
 							}
-						}
 
+						}
 					}
 				}
 //				if (flag) {

@@ -183,7 +183,7 @@ public class PurchaseOrderPageLocators {
 
 	/** @locatorType Xpath */
 	public static final String ItemName(int i) {
-		return "(//table[@data-testid='Reset_Region_Result_Data'])[2]/tbody/tr[" + i + "]/td[2]";
+		return "(//table[@data-testid='Reset_Region_Result_Data'])[2]/tbody/tr[" + i + "]/td[3]";
 	}
 
 	/** @locatorType Xpath */
@@ -247,8 +247,7 @@ public class PurchaseOrderPageLocators {
 
 	/** @locatorType Xpath */
 	public static final String LineDetailButton(int i) {
-		return "(//table[@data-testid='Reset_Region_Result_Data'])[2]/tbody/tr[" + i
-				+ "]/td/a/span[contains(@style,'004153')]";
+		return "(//table[@data-testid='Reset_Region_Result_Data'])[2]/tbody/tr[" + i + "]/td[1]";
 	}
 
 	/** @locatorType Xpath */
@@ -353,8 +352,7 @@ public class PurchaseOrderPageLocators {
 
 	/** @locatorType Xpath */
 	public static final String ServiceLineDetailButton(int i) {
-		return "(//table[@data-testid='Reset_Region_Result_Data'])[2]/tbody/tr[" + i
-				+ "]/td/a/span[contains(@style,'Orange')]";
+		return "(//table[@data-testid='Reset_Region_Result_Data'])[2]/tbody/tr[" + i + "]/td[1]";
 	}
 
 	/** @locatorType Xpath */
@@ -564,6 +562,12 @@ public class PurchaseOrderPageLocators {
 	public static final String PendingPRShowMyRecordBtn = "//button[@data-testid='Show']";
 	/** @locatorType Xpath */
 	public static final String PendingPRShowMyRecordHideBtn = "//button[@data-testid='Hide']";
+	/** @locatorType Xpath */
+	public static final String DetailsButton = "//a[@data-action='LN_DTLS']";
+	/** @locatorType Xpath */
+	public static final String DiscountButton = "//div[@data-testid='Discount Details']//button";
+	/** @locatorType Xpath */
+	public static final String ContractExpandButton = "//div[@data-testid='R1535540252290798082_Result_Data']//button";
 
 	/** @locatorType Xpath */
 	public static final String HsnField() {
