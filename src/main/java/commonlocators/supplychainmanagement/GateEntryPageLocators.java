@@ -285,6 +285,10 @@ public class GateEntryPageLocators {
 	
 	/** @locatorType Xpath */
 	public static final String AddTableGateScreen = "(//table[@data-testid=\"ge_line_Result_Data\"])[2]";
+	/** @locatorType Xpath */
+	public static final String PendingPOShowMyRecordBtn = "//button[@data-testid='Show_My_Record_Show']";
+	/** @locatorType Xpath */
+	public static final String PendingPOShowMyRecordHideBtn = "//button[@data-testid='Show_My_Record_Hide']";
 
 	/** @locatorType Xpath */
 	public static final String GatePagePartyTable() {

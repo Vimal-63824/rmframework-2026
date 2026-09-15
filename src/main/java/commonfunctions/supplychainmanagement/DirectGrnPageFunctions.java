@@ -344,7 +344,6 @@ public class DirectGrnPageFunctions {
 		flag = webDB.waitForElement(GrnLocators.LotSerailButton, ElementType.Xpath);
 		if (flag) {
 			logs.logging("INFO", "Successfully Created GRN and Entered GRN Transaction Screen");
-			commonFunc.hardWait(3000);
 			webDB.clickAnElement(GrnLocators.LotSerailButton, ElementType.Xpath);
 			commonFunc.checkRefreshCellsDisappear();
 			logs.logging("INFO", "LOT/SERIAL Button Clicked");
@@ -521,7 +520,7 @@ public class DirectGrnPageFunctions {
 		if (flag) {
 			webDB.clickAnElement(DirectGrnPageLocators.GrnLineAdd, ElementType.Xpath);
 			logs.logging("INFO", "GRN Line Is Added");
-			flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineItemField, ElementType.Xpath);
+			flag = webDB.waitForElement(DirectGrnPageLocators.GRNPageItemTable(), ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Grn Item Field Is Checked");
 			}
@@ -576,15 +575,10 @@ public class DirectGrnPageFunctions {
 	 * @author Durai-RMITS
 	 */
 	public void verifyClickingSuppQuantity(String QTY) {
-		flag = webDB.waitForElement(DirectGrnPageLocators.GRNPageSupQtyTable(), ElementType.Xpath);
-		if (flag) {
-			commonFunc.verifyAddTableSpecs(DirectGrnPageLocators.GRNPageSupQtyTable(),
-					DirectGrnPageLocators.GrnLineSupQtyInput, QTY);
-			logs.logging("INFO", "Entered Supply Quantity Is:" + QTY);
-			commonFunc.checkRefreshCellsDisappear();
-			logs.logging("INFO", "Entered Quantity Is:" + QTY);
-		}
-		assertTrue(flag);
+		commonFunc.verifyAddTableSpecs(DirectGrnPageLocators.GRNPageSupQtyTable(),
+				DirectGrnPageLocators.GrnPageSupQtyInput(), QTY);
+		logs.logging("INFO", "Entered Supply Quantity Is:" + QTY);
+		commonFunc.checkRefreshCellsDisappear();
 	}
 
 	/**
@@ -595,12 +589,10 @@ public class DirectGrnPageFunctions {
 	public void verifyClickingSuppQuantityHK(String QTY) {
 		flag = webDB.waitForElement(DirectGrnPageLocators.GRNPageSupQtyTable(), ElementType.Xpath);
 		if (flag) {
-			salesOrderFunctions.verifyClickAndEnterValueInTableFields(DirectGrnPageLocators.GRNPageSupQtyTable(),
-					DirectGrnPageLocators.GrnLineSupQtyInputHK, QTY);
+			commonFunc.verifyAddTableSpecs(DirectGrnPageLocators.GRNPageSupQtyTable(),
+					DirectGrnPageLocators.GrnPageSupQtyInput(), QTY);
 			webDB.pressTabKey();
 //			logs.logging("INFO", "Entered Supply Quantity Is:" + QTY);
-//			commonFunc.checkRefreshCellsDisappear();
-//			logs.logging("INFO", "Entered Quantity Is:" + QTY);
 		}
 		assertTrue(flag);
 	}
@@ -613,12 +605,10 @@ public class DirectGrnPageFunctions {
 	public void verifyClickingReceiptQuantityHK(String QTY) {
 		flag = webDB.waitForElement(DirectGrnPageLocators.GRNPageRcptQtyTable(), ElementType.Xpath);
 		if (flag) {
-			salesOrderFunctions.verifyClickAndEnterValueInTableFields(DirectGrnPageLocators.GRNPageRcptQtyTable(),
-					DirectGrnPageLocators.GrnLineRcpQtyInputHK, QTY);
+			commonFunc.verifyAddTableSpecs(DirectGrnPageLocators.GRNPageRcptQtyTable(),
+					DirectGrnPageLocators.GRNPageRcptQtyInput(), QTY);
 			webDB.pressTabKey();
-//			logs.logging("INFO", "Entered Supply Quantity Is:" + QTY);
-//			commonFunc.checkRefreshCellsDisappear();
-//			logs.logging("INFO", "Entered Quantity Is:" + QTY);
+			logs.logging("INFO", "Entered Supply Quantity Is:" + QTY);
 		}
 	}
 
@@ -631,10 +621,9 @@ public class DirectGrnPageFunctions {
 		flag = webDB.waitForElement(DirectGrnPageLocators.GRNPageRcptQtyTable(), ElementType.Xpath);
 		if (flag) {
 			commonFunc.verifyAddTableSpecs(DirectGrnPageLocators.GRNPageRcptQtyTable(),
-					DirectGrnPageLocators.GrnLineRcpQtyInput, QTY);
+					DirectGrnPageLocators.GRNPageRcptQtyInput(), QTY);
 			logs.logging("INFO", "Entered Supply Quantity Is:" + QTY);
 			commonFunc.checkRefreshCellsDisappear();
-			logs.logging("INFO", "Entered Quantity Is:" + QTY);
 		}
 	}
 
@@ -644,14 +633,9 @@ public class DirectGrnPageFunctions {
 	 * @author Durai-RMITS
 	 */
 	public void verifyClickingCost(String COST) {
-		flag = webDB.waitForElement(DirectGrnPageLocators.GRNPageUnitCostTable(), ElementType.Xpath);
-		if (flag) {
-			webDB.clickAnElement(DirectGrnPageLocators.GRNPageUnitCostTable(), ElementType.Xpath);
-			webDB.clearText(DirectGrnPageLocators.GrnLineCostInput, ElementType.Xpath);
-			webDB.sendTextToAnElement(DirectGrnPageLocators.GrnLineCostInput, COST, ElementType.Xpath);
-			logs.logging("INFO", "Entered Cost Is:" + COST);
-		}
-		assertTrue(flag);
+		commonFunc.verifyAddTableSpecs(DirectGrnPageLocators.GRNPageUnitCostTable(),
+				DirectGrnPageLocators.GRNPageUnitCostInput(), COST);
+		logs.logging("INFO", "Entered Cost Is:" + COST);
 	}
 
 	/**
@@ -662,8 +646,8 @@ public class DirectGrnPageFunctions {
 	public void verifyClickingCostHK(String COST) {
 		flag = webDB.waitForElement(DirectGrnPageLocators.GRNPageUnitCostTable(), ElementType.Xpath);
 		if (flag) {
-			salesOrderFunctions.verifyClickAndEnterValueInTableFields(DirectGrnPageLocators.GRNPageUnitCostTable(),
-					DirectGrnPageLocators.GrnLineCostInputHK, COST);
+			commonFunc.verifyAddTableSpecs(DirectGrnPageLocators.GRNPageUnitCostTable(),
+					DirectGrnPageLocators.GRNPageUnitCostInput(), COST);
 			webDB.pressTabKey();
 //			webDB.clickAnElement(DirectGrnPageLocators.GrnLineCost, ElementType.Xpath);
 //			webDB.clearText(DirectGrnPageLocators.GrnLineCostInput, ElementType.Xpath);
@@ -684,13 +668,13 @@ public class DirectGrnPageFunctions {
 		if (flag) {
 			commonFunc.checkRefreshCellsDisappear();
 			webDB.moveToElement(DirectGrnPageLocators.GrnLineSave, ElementType.Xpath);
-			flag = webDB.clickAnElement(DirectGrnPageLocators.GrnLineSave, ElementType.Xpath);
+			webDB.clickAnElement(DirectGrnPageLocators.GrnLineSave, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "GRN Line Is Saved");
 				commonFunc.checkRefreshCellsDisappear();
 				closeToastIfDisplayed();
 				closeToastIfDisplayed();
-				commonFunc.checkRefreshCellsDisappear();
 			}
 		}
 		assertTrue(flag);
@@ -4194,10 +4178,10 @@ public class DirectGrnPageFunctions {
 //					verifyClickingSuppQuantity(QTY);
 //					verifyClickingReceiptQuantity(QTY);
 //					verifyClickingCost(COST);
-					commonFunc.verifyAddTableSpecs(DirectGrnPageLocators.GrnLineSupQty,
-							DirectGrnPageLocators.GrnLineSupQtyInput, QTY);
-					commonFunc.verifyAddTableSpecs(DirectGrnPageLocators.GrnLineRcpQty,
-							DirectGrnPageLocators.GrnLineRcpQtyInput, QTY);
+					commonFunc.verifyAddTableSpecs(DirectGrnPageLocators.GRNPageSupQtyTable(),
+							DirectGrnPageLocators.GrnPageSupQtyInput(), QTY);
+					commonFunc.verifyAddTableSpecs(DirectGrnPageLocators.GRNPageRcptQtyTable(),
+							DirectGrnPageLocators.GRNPageRcptQtyInput(), QTY);
 					commonFunc.checkRefreshCellsDisappear();
 					verifyClickingSaveLine();
 					verifyUnitcostAndDiscountAmountForOpenPoItemForDirectGRN(i, SheetName,
@@ -6045,10 +6029,10 @@ public class DirectGrnPageFunctions {
 //					verifyClickingSuppQuantity(QTY);
 //					verifyClickingReceiptQuantity(QTY);
 //					verifyClickingCost(COST);
-					commonFunc.verifyAddTableSpecs(DirectGrnPageLocators.GrnLineSupQty,
-							DirectGrnPageLocators.GrnLineSupQtyInput, QTY);
-					commonFunc.verifyAddTableSpecs(DirectGrnPageLocators.GrnLineRcpQty,
-							DirectGrnPageLocators.GrnLineRcpQtyInput, QTY);
+					commonFunc.verifyAddTableSpecs(DirectGrnPageLocators.GRNPageSupQtyTable(),
+							DirectGrnPageLocators.GrnPageSupQtyInput(), QTY);
+					commonFunc.verifyAddTableSpecs(DirectGrnPageLocators.GRNPageRcptQtyTable(),
+							DirectGrnPageLocators.GRNPageRcptQtyInput(), QTY);
 					verifyClickingSaveLine();
 					verifyUnitcostAndDiscountAmountForOpenPoItemForDirectGRN(i, FileName, SheetName, Supplier, UnitId);
 					verifyRateContractItemUnitCostAndDiscPctWriteInExcelForGeneralTypeForDirectGrn(i, FileName,

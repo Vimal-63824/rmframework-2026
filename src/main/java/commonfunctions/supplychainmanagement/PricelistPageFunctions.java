@@ -1474,9 +1474,9 @@ public class PricelistPageFunctions {
 		if (flag) {
 			webDB.clickAnElement(PricelistPageLocators.ItemSearchBtn, ElementType.Xpath);
 			logs.logging("INFO", "Search Button is clicked");
-			flag = webDB.waitForElement(PricelistPageLocators.ItemDrillDownBtn, ElementType.Xpath);
+			flag = webDB.waitForElement(PricelistPageLocators.ItemDrillDownBtn(), ElementType.Xpath);
 			if (flag) {
-				webDB.clickAnElement(PricelistPageLocators.ItemDrillDownBtn, ElementType.Xpath);
+				webDB.clickAnElement(PricelistPageLocators.ItemDrillDownBtn(), ElementType.Xpath);
 				logs.logging("INFO", "Drill Down item");
 			}
 		}
@@ -1848,7 +1848,7 @@ public class PricelistPageFunctions {
 				verifyGenerateItemSim(CopyItemName);
 				clickPostInItemAndCheckAutoApproveflag();
 				if (!VariableHandler.getApprovalFlag()) {
-					approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+					approvalFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
 					commonFunc.approveItemIdDocuments(webDB.getDataFromProperties("ROAU-BU"),
 							VariableHandler.getItemName(), webDB.getDataFromProperties("HariEmpId"),
 							commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));

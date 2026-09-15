@@ -221,7 +221,7 @@ public class SalesInvoiceFunctions {
 		if (flag) {
 			logs.logging("INFO", "Linewise Add Icon Is Displayed Successfully");
 			webDB.clickAnElement(SalesInvoiceLocators.LineWise_Add_Btn, ElementType.Xpath);
-			flag = webDB.waitForElement(SalesInvoiceLocators.Item_Column, ElementType.Xpath);
+			flag = webDB.waitForElement(SalesInvoiceLocators.Item_Column(), ElementType.Xpath);
 		}
 		assertTrue(flag);
 
@@ -234,12 +234,12 @@ public class SalesInvoiceFunctions {
 	 * @param Item_ID
 	 */
 	public void verifyItemID(String Item_ID) {
-		flag = webDB.waitForElement(SalesInvoiceLocators.Item_Column, ElementType.Xpath);
+		flag = webDB.waitForElement(SalesInvoiceLocators.Item_Column(), ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(SalesInvoiceLocators.Item_Column, ElementType.Xpath);
+			webDB.clickAnElement(SalesInvoiceLocators.Item_Column(), ElementType.Xpath);
 			commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.Item_Lov_Btn, Item_ID);
 			logs.logging("INFO", "Linewise Item ID Inserted Successfully: " + Item_ID);
-			flag = webDB.waitForElement(SalesInvoiceLocators.Sales_GL_Acc_Desc_Column, ElementType.Xpath);
+			flag = webDB.waitForElement(SalesInvoiceLocators.Sales_GL_Acc_Desc_Column(), ElementType.Xpath);
 		}
 		assertTrue(flag);
 	}
@@ -251,9 +251,9 @@ public class SalesInvoiceFunctions {
 	 * @param SalesGL_Acct
 	 */
 	public void verifySalesGlAccount(String SalesGL_Acct) {
-		flag = webDB.waitForElement(SalesInvoiceLocators.Sales_GL_Acc_Desc_Column, ElementType.Xpath);
+		flag = webDB.waitForElement(SalesInvoiceLocators.Sales_GL_Acc_Desc_Column(), ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(SalesInvoiceLocators.Sales_GL_Acc_Desc_Column, ElementType.Xpath);
+			webDB.clickAnElement(SalesInvoiceLocators.Sales_GL_Acc_Desc_Column(), ElementType.Xpath);
 			commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.Sales_GL_Acc_Desc_LOV_Btn, SalesGL_Acct);
 			logs.logging("INFO", "Sales GL Acct Desc Inserted Successfully");
 		}
@@ -303,8 +303,8 @@ public class SalesInvoiceFunctions {
 	 */
 	public void verifyItemQtyUnitcost(String InvoiceQty, String UnitPrice) {
 		commonFunc.hardWait(1000);
-		verifyAddTableSpecs(SalesInvoiceLocators.Invoice_Column_Qty, SalesInvoiceLocators.Invoice_Qty, InvoiceQty);
-		verifyAddTableSpecs(SalesInvoiceLocators.UnitCost_Column, SalesInvoiceLocators.UnitCost_Input, UnitPrice);
+		verifyAddTableSpecs(SalesInvoiceLocators.Invoice_Column_Qty(), SalesInvoiceLocators.Invoice_Qty, InvoiceQty);
+		verifyAddTableSpecs(SalesInvoiceLocators.UnitCost_Column(), SalesInvoiceLocators.UnitCost_Input, UnitPrice);
 	}
 
 	/**
@@ -315,7 +315,7 @@ public class SalesInvoiceFunctions {
 	 */
 	public void verifyRateContractInvoiceQty(String InvoiceQty) {
 		commonFunc.hardWait(1000);
-		verifyAddTableSpecs(SalesInvoiceLocators.Invoice_Column_Qty, SalesInvoiceLocators.Invoice_Qty, InvoiceQty);
+		verifyAddTableSpecs(SalesInvoiceLocators.Invoice_Column_Qty(), SalesInvoiceLocators.Invoice_Qty, InvoiceQty);
 	}
 
 	/**
@@ -325,10 +325,10 @@ public class SalesInvoiceFunctions {
 	 * @param HSNcode_SI
 	 */
 	public void verifyHSNcode(String HSNcode_SI) {
-		flag = webDB.waitForElement(SalesInvoiceLocators.HSNcode_Column, ElementType.Xpath);
+		flag = webDB.waitForElement(SalesInvoiceLocators.HSNcode_Column(), ElementType.Xpath);
 		if (flag) {
 			logs.logging("INFO", "HSN Code Table Displayed Successfully");
-			webDB.clickAnElement(SalesInvoiceLocators.HSNcode_Column, ElementType.Xpath);
+			webDB.clickAnElement(SalesInvoiceLocators.HSNcode_Column(), ElementType.Xpath);
 			commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.HSN_Code_LOV_Btn, HSNcode_SI);
 			logs.logging("INFO", "HSN Code Inserted Successfully");
 			flag = webDB.waitForElement(SalesInvoiceLocators.Headerwise_TickIcon, ElementType.Xpath);
@@ -395,9 +395,9 @@ public class SalesInvoiceFunctions {
 	 * @author Sakthi-GWL
 	 */
 	public void clickTotalDiscountForLineDetails() {
-		flag = webDB.waitForElement(SalesInvoiceLocators.TotalDiscountData, ElementType.Xpath);
+		flag = webDB.waitForElement(SalesInvoiceLocators.TotalDiscountData(), ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(SalesInvoiceLocators.TotalDiscountData, ElementType.Xpath);
+			webDB.clickAnElement(SalesInvoiceLocators.TotalDiscountData(), ElementType.Xpath);
 			flag = webDB.waitForElement(SalesInvoiceLocators.Detail_Btn_Iframe, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Linewise Detail Button Clicked Successfully");
@@ -586,6 +586,7 @@ public class SalesInvoiceFunctions {
 	 */
 	public void selectAllPendingSOAndClickCreateSI(String SONum) {
 		commonFunc.checkRefreshCellsDisappear();
+		webDB.waitForElement(SalesInvoiceLocators.PendingSOIframe, ElementType.Xpath);
 		webDB.switchToFrame(SalesInvoiceLocators.PendingSOIframe, ElementType.Xpath);
 		flag = webDB.waitForElement(SalesInvoiceLocators.PendingSO_SOCheckBox(SONum), ElementType.Xpath);
 		if (flag) {
@@ -619,10 +620,10 @@ public class SalesInvoiceFunctions {
 	 * @param Item
 	 */
 	public void verifyItemFromPendingSaleOrderAndClickAllocLotSerial(String Item) {
-		flag = webDB.waitForElement(SalesInvoiceLocators.Item_Column, ElementType.Xpath);
+		flag = webDB.waitForElement(SalesInvoiceLocators.Item_Column(), ElementType.Xpath);
 		if (flag) {
-			webDB.moveToElement(SalesInvoiceLocators.Item_Column, ElementType.Xpath);
-			String DisplayedText = webDB.getTextFromElement(SalesInvoiceLocators.Item_Column, ElementType.Xpath);
+			webDB.moveToElement(SalesInvoiceLocators.Item_Column(), ElementType.Xpath);
+			String DisplayedText = webDB.getTextFromElement(SalesInvoiceLocators.Item_Column(), ElementType.Xpath);
 			flag = Item.equalsIgnoreCase(DisplayedText);
 			if (flag) {
 				logs.logging("INFO", "Verified Item Name in Pending SO: " + Item);
@@ -677,17 +678,17 @@ public class SalesInvoiceFunctions {
 		logs.logging("INFO", "Cost Passed for Calculation without tax: " + decimal_Cost);
 		BigDecimal totalCostWithoutTax = decimal_Qnty.multiply(decimal_Cost);
 		logs.logging("INFO", "Multiply value Cost and Quantity without tax: " + totalCostWithoutTax);
-		flag = webDB.waitForElement(SalesInvoiceLocators.DiscountAmountTableData, ElementType.Xpath);
+		flag = webDB.waitForElement(SalesInvoiceLocators.DiscountAmountTableData(), ElementType.Xpath);
 		if (flag) {
 			BigDecimal DiscountAmnt = new BigDecimal(
-					webDB.getTextFromElement(SalesInvoiceLocators.DiscountAmountTableData, ElementType.Xpath));
+					webDB.getTextFromElement(SalesInvoiceLocators.DiscountAmountTableData(), ElementType.Xpath));
 			DiscountAmnt = purchaseOrderFunc.verifyRoundOffBigDecimalValueWithReturnBigDecimal(DiscountAmnt);
 			logs.logging("INFO", "Discount Amount Displayed without tax: " + DiscountAmnt);
 			totalCostWithoutTax = totalCostWithoutTax.subtract(DiscountAmnt);
 			logs.logging("INFO", "After Subtract Discount in Calculation Amount without tax: " + totalCostWithoutTax);
 
 			BigDecimal PerValue = new BigDecimal(
-					webDB.getTextFromElement(SalesInvoiceLocators.TaxPercentField, ElementType.Xpath));
+					webDB.getTextFromElement(SalesInvoiceLocators.TaxPercentField(), ElementType.Xpath));
 			PerValue = purchaseOrderFunc.verifyRoundOffBigDecimalValueWithReturnBigDecimal(PerValue);
 			logs.logging("INFO", "Displayed tax Percentage: " + PerValue.intValue() + "%");
 
@@ -699,16 +700,16 @@ public class SalesInvoiceFunctions {
 			logs.logging("INFO", "Expected Tax Value After Tax calculation: " + TaxValue);
 
 			BigDecimal IGSTAmount = new BigDecimal(
-					webDB.getTextFromElement(SalesInvoiceLocators.IGSTTaxAmountField, ElementType.Xpath));
+					webDB.getTextFromElement(SalesInvoiceLocators.IGSTTaxAmountField(), ElementType.Xpath));
 			IGSTAmount = purchaseOrderFunc.verifyRoundOffBigDecimalValueWithReturnBigDecimal(IGSTAmount);
 			BigDecimal CGSTAmount = new BigDecimal(
-					webDB.getTextFromElement(SalesInvoiceLocators.CGSTTaxAmountField, ElementType.Xpath));
+					webDB.getTextFromElement(SalesInvoiceLocators.CGSTTaxAmountField(), ElementType.Xpath));
 			CGSTAmount = purchaseOrderFunc.verifyRoundOffBigDecimalValueWithReturnBigDecimal(CGSTAmount);
 			BigDecimal SGSTAmount = new BigDecimal(
-					webDB.getTextFromElement(SalesInvoiceLocators.SGSTTaxAmountField, ElementType.Xpath));
+					webDB.getTextFromElement(SalesInvoiceLocators.SGSTTaxAmountField(), ElementType.Xpath));
 			SGSTAmount = purchaseOrderFunc.verifyRoundOffBigDecimalValueWithReturnBigDecimal(SGSTAmount);
 			BigDecimal UTGSTAmount = new BigDecimal(
-					webDB.getTextFromElement(SalesInvoiceLocators.UTGSTTaxAmountField, ElementType.Xpath));
+					webDB.getTextFromElement(SalesInvoiceLocators.UTGSTTaxAmountField(), ElementType.Xpath));
 			UTGSTAmount = purchaseOrderFunc.verifyRoundOffBigDecimalValueWithReturnBigDecimal(UTGSTAmount);
 
 			BigDecimal taxAmount = IGSTAmount.add(CGSTAmount).add(SGSTAmount).add(UTGSTAmount);
@@ -858,9 +859,9 @@ public class SalesInvoiceFunctions {
 	 * @author Sakthi-GWL
 	 */
 	public void validateLineAmountOfLastAddedItem() {
-		flag = webDB.waitForElement(SalesInvoiceLocators.LineAmountTableData, ElementType.Xpath);
+		flag = webDB.waitForElement(SalesInvoiceLocators.LineAmountTableData(), ElementType.Xpath);
 		if (flag) {
-			String lineAmount = webDB.getTextFromElement(SalesInvoiceLocators.LineAmountTableData, ElementType.Xpath);
+			String lineAmount = webDB.getTextFromElement(SalesInvoiceLocators.LineAmountTableData(), ElementType.Xpath);
 			BigDecimal TotalAmount = purchaseOrderFunc
 					.verifyRoundOffBigDecimalValueWithReturnBigDecimal(new BigDecimal(lineAmount));
 			logs.logging("INFO", "Total Amount Displayed: " + TotalAmount);
@@ -879,9 +880,9 @@ public class SalesInvoiceFunctions {
 					logs.logging("INFO", "Invoice Quantity Displayed: " + InvQnty);
 					BigDecimal WithoutDicount = InvQnty.multiply(UnitPrice);
 					logs.logging("INFO", "Without Discount Amount For Multiply Unit and Cost: " + WithoutDicount);
-					flag = webDB.waitForElement(SalesInvoiceLocators.DiscountAmountTableData, ElementType.Xpath);
+					flag = webDB.waitForElement(SalesInvoiceLocators.DiscountAmountTableData(), ElementType.Xpath);
 					if (flag) {
-						String Discount = webDB.getTextFromElement(SalesInvoiceLocators.DiscountAmountTableData,
+						String Discount = webDB.getTextFromElement(SalesInvoiceLocators.DiscountAmountTableData(),
 								ElementType.Xpath);
 						BigDecimal DiscountAmnt = purchaseOrderFunc
 								.verifyRoundOffBigDecimalValueWithReturnBigDecimal(new BigDecimal(Discount));
@@ -2344,7 +2345,8 @@ public class SalesInvoiceFunctions {
 //		commonFunc.hardWait(1000);
 		verifyAddTableSpecs(SalesInvoiceLocators.PIPageQtyTable(), SalesInvoiceLocators.PI_Inv_Qty, PI_Inv_Qty);
 //		commonFunc.hardWait(1000);
-		verifyAddTableSpecs(SalesInvoiceLocators.PIPageUnitPriceTable(), SalesInvoiceLocators.PI_UnitCost, PI_Inv_UnitCost);
+		verifyAddTableSpecs(SalesInvoiceLocators.PIPageUnitPriceTable(), SalesInvoiceLocators.PI_UnitCost,
+				PI_Inv_UnitCost);
 	}
 
 	/**
@@ -2923,34 +2925,34 @@ public class SalesInvoiceFunctions {
 		logs.logging("INFO", "UnitCost Passed for Calculation: " + decimal_Cost);
 		BigDecimal totalCostWithoutTax = decimal_Qnty.multiply(decimal_Cost);
 		logs.logging("INFO", "Multiply value Cost and Quantity without tax: " + totalCostWithoutTax);
-		flag = webDB.waitForElement(SalesInvoiceLocators.DiscountAmountTableData, ElementType.Xpath);
+		flag = webDB.waitForElement(SalesInvoiceLocators.DiscountAmountTableData(), ElementType.Xpath);
 		if (flag) {
 			BigDecimal DiscountAmnt = new BigDecimal(
-					webDB.getTextFromElement(SalesInvoiceLocators.DiscountAmountTableData, ElementType.Xpath));
+					webDB.getTextFromElement(SalesInvoiceLocators.DiscountAmountTableData(), ElementType.Xpath));
 			DiscountAmnt = purchaseOrderFunc.verifyRoundOffBigDecimalValueWithReturnBigDecimal(DiscountAmnt);
 			logs.logging("INFO", "Discount Amount Displayed without tax: " + DiscountAmnt);
 			totalCostWithoutTax = totalCostWithoutTax.subtract(DiscountAmnt);
 			logs.logging("INFO", "After Subtract Discount in Calculation Amount without tax: " + totalCostWithoutTax);
 			if ((getTextCurrencyInHeader().equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("CurrencyInr")))
 					&& !VariableHandler.getCustomerSaleGSTType().contains("SEZ")) {
-				flag = webDB.waitForElement(SalesInvoiceLocators.TaxPercentField, ElementType.Xpath);
+				flag = webDB.waitForElement(SalesInvoiceLocators.TaxPercentField(), ElementType.Xpath);
 				if (flag) {
 					BigDecimal PerValue = new BigDecimal(
-							webDB.getTextFromElement(SalesInvoiceLocators.TaxPercentField, ElementType.Xpath));
+							webDB.getTextFromElement(SalesInvoiceLocators.TaxPercentField(), ElementType.Xpath));
 					PerValue = purchaseOrderFunc.verifyRoundOffBigDecimalValueWithReturnBigDecimal(PerValue);
 					logs.logging("INFO", "Displayed tax Percentage: " + PerValue.intValue() + "%");
 
 					BigDecimal IGSTAmount = new BigDecimal(
-							webDB.getTextFromElement(SalesInvoiceLocators.IGSTTaxAmountField, ElementType.Xpath));
+							webDB.getTextFromElement(SalesInvoiceLocators.IGSTTaxAmountField(), ElementType.Xpath));
 					IGSTAmount = purchaseOrderFunc.verifyRoundOffBigDecimalValueWithReturnBigDecimal(IGSTAmount);
 					BigDecimal CGSTAmount = new BigDecimal(
-							webDB.getTextFromElement(SalesInvoiceLocators.CGSTTaxAmountField, ElementType.Xpath));
+							webDB.getTextFromElement(SalesInvoiceLocators.CGSTTaxAmountField(), ElementType.Xpath));
 					CGSTAmount = purchaseOrderFunc.verifyRoundOffBigDecimalValueWithReturnBigDecimal(CGSTAmount);
 					BigDecimal SGSTAmount = new BigDecimal(
-							webDB.getTextFromElement(SalesInvoiceLocators.SGSTTaxAmountField, ElementType.Xpath));
+							webDB.getTextFromElement(SalesInvoiceLocators.SGSTTaxAmountField(), ElementType.Xpath));
 					SGSTAmount = purchaseOrderFunc.verifyRoundOffBigDecimalValueWithReturnBigDecimal(SGSTAmount);
 					BigDecimal UTGSTAmount = new BigDecimal(
-							webDB.getTextFromElement(SalesInvoiceLocators.UTGSTTaxAmountField, ElementType.Xpath));
+							webDB.getTextFromElement(SalesInvoiceLocators.UTGSTTaxAmountField(), ElementType.Xpath));
 					UTGSTAmount = purchaseOrderFunc.verifyRoundOffBigDecimalValueWithReturnBigDecimal(UTGSTAmount);
 
 					BigDecimal taxAmount = IGSTAmount.add(CGSTAmount).add(SGSTAmount).add(UTGSTAmount);
@@ -3002,16 +3004,16 @@ public class SalesInvoiceFunctions {
 	 */
 	public BigDecimal getTaxValue() {
 		BigDecimal IGSTAmount = new BigDecimal(
-				webDB.getTextFromElement(SalesInvoiceLocators.IGSTTaxAmountField, ElementType.Xpath));
+				webDB.getTextFromElement(SalesInvoiceLocators.IGSTTaxAmountField(), ElementType.Xpath));
 //		IGSTAmount = purchaseOrderFunc.verifyRoundOffBigDecimalValueWithReturnBigDecimal(IGSTAmount);
 		BigDecimal CGSTAmount = new BigDecimal(
-				webDB.getTextFromElement(SalesInvoiceLocators.CGSTTaxAmountField, ElementType.Xpath));
+				webDB.getTextFromElement(SalesInvoiceLocators.CGSTTaxAmountField(), ElementType.Xpath));
 //		CGSTAmount = purchaseOrderFunc.verifyRoundOffBigDecimalValueWithReturnBigDecimal(CGSTAmount);
 		BigDecimal SGSTAmount = new BigDecimal(
-				webDB.getTextFromElement(SalesInvoiceLocators.SGSTTaxAmountField, ElementType.Xpath));
+				webDB.getTextFromElement(SalesInvoiceLocators.SGSTTaxAmountField(), ElementType.Xpath));
 //		SGSTAmount = purchaseOrderFunc.verifyRoundOffBigDecimalValueWithReturnBigDecimal(SGSTAmount);
 		BigDecimal UTGSTAmount = new BigDecimal(
-				webDB.getTextFromElement(SalesInvoiceLocators.UTGSTTaxAmountField, ElementType.Xpath));
+				webDB.getTextFromElement(SalesInvoiceLocators.UTGSTTaxAmountField(), ElementType.Xpath));
 //		UTGSTAmount = purchaseOrderFunc.verifyRoundOffBigDecimalValueWithReturnBigDecimal(UTGSTAmount);
 
 		BigDecimal taxAmount = IGSTAmount.add(CGSTAmount).add(SGSTAmount).add(UTGSTAmount);
@@ -3352,12 +3354,12 @@ public class SalesInvoiceFunctions {
 	 * @param SI_Scrarp_Item
 	 */
 	public void verifySaleInvoiceScarpItemID(String SI_Scrarp_Item) {
-		flag = webDB.waitForElement(SalesInvoiceLocators.Item_Column, ElementType.Xpath);
+		flag = webDB.waitForElement(SalesInvoiceLocators.Item_Column(), ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(SalesInvoiceLocators.Item_Column, ElementType.Xpath);
+			webDB.clickAnElement(SalesInvoiceLocators.Item_Column(), ElementType.Xpath);
 			commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.Item_Lov_Btn, SI_Scrarp_Item);
 			logs.logging("INFO", "Linewise Item ID Inserted Successfully: " + SI_Scrarp_Item);
-			flag = webDB.waitForElement(SalesInvoiceLocators.Sales_GL_Acc_Desc_Column, ElementType.Xpath);
+			flag = webDB.waitForElement(SalesInvoiceLocators.Sales_GL_Acc_Desc_Column(), ElementType.Xpath);
 		}
 		assertTrue(flag);
 	}
@@ -4085,12 +4087,12 @@ public class SalesInvoiceFunctions {
 							verifyAddTableSpecs(SalesInvoiceLocators.SIPageUnitPriceTable(),
 									SalesInvoiceLocators.UnitCost_Input, UnitPrice);
 							commonFunc.checkRefreshCellsDisappear();
-							flag = webDB.waitForElement(SalesInvoiceLocators.HSNcode_Column, ElementType.Xpath);
+							flag = webDB.waitForElement(SalesInvoiceLocators.HSNcode_Column(), ElementType.Xpath);
 							if (flag) {
-								String GetTextHsnCode = webDB.getTextFromElement(SalesInvoiceLocators.HSNcode_Column,
+								String GetTextHsnCode = webDB.getTextFromElement(SalesInvoiceLocators.HSNcode_Column(),
 										ElementType.Xpath);
 								if (!GetTextHsnCode.equals(HSNcode_SI)) {
-									webDB.clickAnElement(SalesInvoiceLocators.HSNcode_Column, ElementType.Xpath);
+									webDB.clickAnElement(SalesInvoiceLocators.HSNcode_Column(), ElementType.Xpath);
 									commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.HSN_Code_LOV_Btn,
 											HSNcode_SI);
 									logs.logging("INFO", "HSN Code Inserted Successfully");
@@ -4259,25 +4261,25 @@ public class SalesInvoiceFunctions {
 				flag = webDB.waitForElement(SalesInvoiceLocators.LineWise_Add_Btn, ElementType.Xpath);
 				if (flag) {
 					webDB.clickAnElement(SalesInvoiceLocators.LineWise_Add_Btn, ElementType.Xpath);
-					flag = webDB.waitForElement(SalesInvoiceLocators.Item_Column, ElementType.Xpath);
+					flag = webDB.waitForElement(SalesInvoiceLocators.Item_Column(), ElementType.Xpath);
 					if (flag) {
-						webDB.clickAnElement(SalesInvoiceLocators.Item_Column, ElementType.Xpath);
+						webDB.clickAnElement(SalesInvoiceLocators.Item_Column(), ElementType.Xpath);
 						commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.Item_Lov_Btn, Item);
 						logs.logging("INFO", "Linewise Item ID Inserted Successfully: " + Item);
-						flag = webDB.waitForElement(SalesInvoiceLocators.Sales_GL_Acc_Desc_Column, ElementType.Xpath);
+						flag = webDB.waitForElement(SalesInvoiceLocators.Sales_GL_Acc_Desc_Column(), ElementType.Xpath);
 						if (flag) {
-							webDB.clickAnElement(SalesInvoiceLocators.Sales_GL_Acc_Desc_Column, ElementType.Xpath);
+							webDB.clickAnElement(SalesInvoiceLocators.Sales_GL_Acc_Desc_Column(), ElementType.Xpath);
 							commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.Sales_GL_Acc_Desc_LOV_Btn,
 									SalesGL_Acct);
 							logs.logging("INFO", "Sales GL Acct Desc Inserted Successfully");
 							commonFunc.hardWait(1000);
-							verifyAddTableSpecs(SalesInvoiceLocators.Invoice_Column_Qty,
+							verifyAddTableSpecs(SalesInvoiceLocators.Invoice_Column_Qty(),
 									SalesInvoiceLocators.Invoice_Qty, InvoiceQty);
 //							verifyAddTableSpecs(SalesInvoiceLocators.UnitCost_Column,
 //									SalesInvoiceLocators.UnitCost_Input, UnitPrice);
-							flag = webDB.waitForElement(SalesInvoiceLocators.HSNcode_Column, ElementType.Xpath);
+							flag = webDB.waitForElement(SalesInvoiceLocators.HSNcode_Column(), ElementType.Xpath);
 							if (flag) {
-								webDB.clickAnElement(SalesInvoiceLocators.HSNcode_Column, ElementType.Xpath);
+								webDB.clickAnElement(SalesInvoiceLocators.HSNcode_Column(), ElementType.Xpath);
 								commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.HSN_Code_LOV_Btn,
 										HSNcode_SI);
 								logs.logging("INFO", "HSN Code Inserted Successfully");
@@ -4606,12 +4608,12 @@ public class SalesInvoiceFunctions {
 	 * @param SI_Service_Item
 	 */
 	public void verifySaleInvoiceServiceItemID(String SI_Service_Item) {
-		flag = webDB.waitForElement(SalesInvoiceLocators.Item_Column, ElementType.Xpath);
+		flag = webDB.waitForElement(SalesInvoiceLocators.Item_Column(), ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(SalesInvoiceLocators.Item_Column, ElementType.Xpath);
+			webDB.clickAnElement(SalesInvoiceLocators.Item_Column(), ElementType.Xpath);
 			commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.Item_Lov_Btn, SI_Service_Item);
 			logs.logging("INFO", "Linewise Item ID Inserted Successfully: " + SI_Service_Item);
-			flag = webDB.waitForElement(SalesInvoiceLocators.Sales_GL_Acc_Desc_Column, ElementType.Xpath);
+			flag = webDB.waitForElement(SalesInvoiceLocators.Sales_GL_Acc_Desc_Column(), ElementType.Xpath);
 		}
 		assertTrue(flag);
 	}
@@ -4753,25 +4755,25 @@ public class SalesInvoiceFunctions {
 				flag = webDB.waitForElement(SalesInvoiceLocators.LineWise_Add_Btn, ElementType.Xpath);
 				if (flag) {
 					webDB.clickAnElement(SalesInvoiceLocators.LineWise_Add_Btn, ElementType.Xpath);
-					flag = webDB.waitForElement(SalesInvoiceLocators.Item_Column, ElementType.Xpath);
+					flag = webDB.waitForElement(SalesInvoiceLocators.Item_Column(), ElementType.Xpath);
 					if (flag) {
-						webDB.clickAnElement(SalesInvoiceLocators.Item_Column, ElementType.Xpath);
+						webDB.clickAnElement(SalesInvoiceLocators.Item_Column(), ElementType.Xpath);
 						commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.Item_Lov_Btn, Item);
 						logs.logging("INFO", "Linewise Item ID Inserted Successfully: " + Item);
-						flag = webDB.waitForElement(SalesInvoiceLocators.Sales_GL_Acc_Desc_Column, ElementType.Xpath);
+						flag = webDB.waitForElement(SalesInvoiceLocators.Sales_GL_Acc_Desc_Column(), ElementType.Xpath);
 						if (flag) {
-							webDB.clickAnElement(SalesInvoiceLocators.Sales_GL_Acc_Desc_Column, ElementType.Xpath);
+							webDB.clickAnElement(SalesInvoiceLocators.Sales_GL_Acc_Desc_Column(), ElementType.Xpath);
 							commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.Sales_GL_Acc_Desc_LOV_Btn,
 									SalesGL_Acct);
 							logs.logging("INFO", "Sales GL Acct Desc Inserted Successfully");
 							commonFunc.hardWait(1000);
-							verifyAddTableSpecs(SalesInvoiceLocators.Invoice_Column_Qty,
+							verifyAddTableSpecs(SalesInvoiceLocators.Invoice_Column_Qty(),
 									SalesInvoiceLocators.Invoice_Qty, InvoiceQty);
-							verifyAddTableSpecs(SalesInvoiceLocators.UnitCost_Column,
+							verifyAddTableSpecs(SalesInvoiceLocators.UnitCost_Column(),
 									SalesInvoiceLocators.UnitCost_Input, UnitPrice);
-							flag = webDB.waitForElement(SalesInvoiceLocators.HSNcode_Column, ElementType.Xpath);
+							flag = webDB.waitForElement(SalesInvoiceLocators.HSNcode_Column(), ElementType.Xpath);
 							if (flag) {
-								webDB.clickAnElement(SalesInvoiceLocators.HSNcode_Column, ElementType.Xpath);
+								webDB.clickAnElement(SalesInvoiceLocators.HSNcode_Column(), ElementType.Xpath);
 								commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.HSN_Code_LOV_Btn,
 										HSNcode_SI);
 								logs.logging("INFO", "HSN Code Inserted Successfully");
@@ -4864,25 +4866,25 @@ public class SalesInvoiceFunctions {
 				flag = webDB.waitForElement(SalesInvoiceLocators.LineWise_Add_Btn, ElementType.Xpath);
 				if (flag) {
 					webDB.clickAnElement(SalesInvoiceLocators.LineWise_Add_Btn, ElementType.Xpath);
-					flag = webDB.waitForElement(SalesInvoiceLocators.Item_Column, ElementType.Xpath);
+					flag = webDB.waitForElement(SalesInvoiceLocators.Item_Column(), ElementType.Xpath);
 					if (flag) {
-						webDB.clickAnElement(SalesInvoiceLocators.Item_Column, ElementType.Xpath);
+						webDB.clickAnElement(SalesInvoiceLocators.Item_Column(), ElementType.Xpath);
 						commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.Item_Lov_Btn, Item);
 						logs.logging("INFO", "Linewise Item ID Inserted Successfully: " + Item);
-						flag = webDB.waitForElement(SalesInvoiceLocators.Sales_GL_Acc_Desc_Column, ElementType.Xpath);
+						flag = webDB.waitForElement(SalesInvoiceLocators.Sales_GL_Acc_Desc_Column(), ElementType.Xpath);
 						if (flag) {
-							webDB.clickAnElement(SalesInvoiceLocators.Sales_GL_Acc_Desc_Column, ElementType.Xpath);
+							webDB.clickAnElement(SalesInvoiceLocators.Sales_GL_Acc_Desc_Column(), ElementType.Xpath);
 							commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.Sales_GL_Acc_Desc_LOV_Btn,
 									SalesGL_Acct);
 							logs.logging("INFO", "Sales GL Acct Desc Inserted Successfully");
 							commonFunc.hardWait(1000);
-							verifyAddTableSpecs(SalesInvoiceLocators.Invoice_Column_Qty,
+							verifyAddTableSpecs(SalesInvoiceLocators.Invoice_Column_Qty(),
 									SalesInvoiceLocators.Invoice_Qty, InvoiceQty);
-							verifyAddTableSpecs(SalesInvoiceLocators.UnitCost_Column,
+							verifyAddTableSpecs(SalesInvoiceLocators.UnitCost_Column(),
 									SalesInvoiceLocators.UnitCost_Input, UnitPrice);
-							flag = webDB.waitForElement(SalesInvoiceLocators.HSNcode_Column, ElementType.Xpath);
+							flag = webDB.waitForElement(SalesInvoiceLocators.HSNcode_Column(), ElementType.Xpath);
 							if (flag) {
-								webDB.clickAnElement(SalesInvoiceLocators.HSNcode_Column, ElementType.Xpath);
+								webDB.clickAnElement(SalesInvoiceLocators.HSNcode_Column(), ElementType.Xpath);
 								commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.HSN_Code_LOV_Btn,
 										HSNcode_SI);
 								logs.logging("INFO", "HSN Code Inserted Successfully");
@@ -6159,7 +6161,8 @@ public class SalesInvoiceFunctions {
 		verifyAddTableSpecs(SalesInvoiceLocators.CRPageReturnQtyTable(), SalesInvoiceLocators.CR_Return_Qty, ReturnQty);
 		webDB.pressTabKey();
 		commonFunc.hardWait(2000);
-		verifyAddTableSpecs(SalesInvoiceLocators.CRPageUnitPriceTable(), SalesInvoiceLocators.CR_UnitPrice, CR_UnitPrice);
+		verifyAddTableSpecs(SalesInvoiceLocators.CRPageUnitPriceTable(), SalesInvoiceLocators.CR_UnitPrice,
+				CR_UnitPrice);
 	}
 
 	/**
@@ -6913,27 +6916,27 @@ public class SalesInvoiceFunctions {
 				flag = webDB.waitForElement(SalesInvoiceLocators.LineWise_Add_Btn, ElementType.Xpath);
 				if (flag) {
 					webDB.clickAnElement(SalesInvoiceLocators.LineWise_Add_Btn, ElementType.Xpath);
-					flag = webDB.waitForElement(SalesInvoiceLocators.Item_Column, ElementType.Xpath);
+					flag = webDB.waitForElement(SalesInvoiceLocators.Item_Column(), ElementType.Xpath);
 					if (flag) {
-						webDB.clickAnElement(SalesInvoiceLocators.Item_Column, ElementType.Xpath);
+						webDB.clickAnElement(SalesInvoiceLocators.Item_Column(), ElementType.Xpath);
 						commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.Item_Lov_Btn, Item);
 						logs.logging("INFO", "Linewise Item ID Inserted Successfully: " + Item);
-						flag = webDB.waitForElement(SalesInvoiceLocators.Sales_GL_Acc_Desc_Column, ElementType.Xpath);
+						flag = webDB.waitForElement(SalesInvoiceLocators.Sales_GL_Acc_Desc_Column(), ElementType.Xpath);
 						if (flag) {
-							webDB.clickAnElement(SalesInvoiceLocators.Sales_GL_Acc_Desc_Column, ElementType.Xpath);
+							webDB.clickAnElement(SalesInvoiceLocators.Sales_GL_Acc_Desc_Column(), ElementType.Xpath);
 							commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.Sales_GL_Acc_Desc_LOV_Btn,
 									SalesGL_Acct);
 							logs.logging("INFO", "Sales GL Acct Desc Inserted Successfully");
 							commonFunc.hardWait(1000);
-							verifyAddTableSpecs(SalesInvoiceLocators.Invoice_Column_Qty,
+							verifyAddTableSpecs(SalesInvoiceLocators.Invoice_Column_Qty(),
 									SalesInvoiceLocators.Invoice_Qty, InvoiceQty);
 							commonFunc.checkRefreshCellsDisappear();
-							verifyAddTableSpecs(SalesInvoiceLocators.UnitCost_Column,
+							verifyAddTableSpecs(SalesInvoiceLocators.UnitCost_Column(),
 									SalesInvoiceLocators.UnitCost_Input, UnitPrice);
 							commonFunc.checkRefreshCellsDisappear();
-							flag = webDB.waitForElement(SalesInvoiceLocators.HSNcode_Column, ElementType.Xpath);
+							flag = webDB.waitForElement(SalesInvoiceLocators.HSNcode_Column(), ElementType.Xpath);
 							if (flag) {
-								webDB.clickAnElement(SalesInvoiceLocators.HSNcode_Column, ElementType.Xpath);
+								webDB.clickAnElement(SalesInvoiceLocators.HSNcode_Column(), ElementType.Xpath);
 								commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.HSN_Code_LOV_Btn,
 										HSNcode_SI);
 								logs.logging("INFO", "HSN Code Inserted Successfully");
@@ -8055,30 +8058,30 @@ public class SalesInvoiceFunctions {
 				flag = webDB.waitForElement(SalesInvoiceLocators.LineWise_Add_Btn, ElementType.Xpath);
 				if (flag) {
 					webDB.clickAnElement(SalesInvoiceLocators.LineWise_Add_Btn, ElementType.Xpath);
-					flag = webDB.waitForElement(SalesInvoiceLocators.Item_Column, ElementType.Xpath);
+					flag = webDB.waitForElement(SalesInvoiceLocators.Item_Column(), ElementType.Xpath);
 					if (flag) {
-						webDB.clickAnElement(SalesInvoiceLocators.Item_Column, ElementType.Xpath);
+						webDB.clickAnElement(SalesInvoiceLocators.Item_Column(), ElementType.Xpath);
 						commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.Item_Lov_Btn, Item);
 						logs.logging("INFO", "Linewise Item ID Inserted Successfully: " + Item);
-						flag = webDB.waitForElement(SalesInvoiceLocators.Sales_GL_Acc_Desc_Column, ElementType.Xpath);
+						flag = webDB.waitForElement(SalesInvoiceLocators.Sales_GL_Acc_Desc_Column(), ElementType.Xpath);
 						if (flag) {
-							webDB.clickAnElement(SalesInvoiceLocators.Sales_GL_Acc_Desc_Column, ElementType.Xpath);
+							webDB.clickAnElement(SalesInvoiceLocators.Sales_GL_Acc_Desc_Column(), ElementType.Xpath);
 							commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.Sales_GL_Acc_Desc_LOV_Btn,
 									SalesGL_Acct);
 							logs.logging("INFO", "Sales GL Acct Desc Inserted Successfully");
 							commonFunc.hardWait(1000);
-							verifyAddTableSpecs(SalesInvoiceLocators.Invoice_Column_Qty,
+							verifyAddTableSpecs(SalesInvoiceLocators.Invoice_Column_Qty(),
 									SalesInvoiceLocators.Invoice_Qty, InvoiceQty);
 							commonFunc.checkRefreshCellsDisappear();
-							verifyAddTableSpecs(SalesInvoiceLocators.UnitCost_Column,
+							verifyAddTableSpecs(SalesInvoiceLocators.UnitCost_Column(),
 									SalesInvoiceLocators.UnitCost_Input, UnitPrice);
 							commonFunc.checkRefreshCellsDisappear();
-							flag = webDB.waitForElement(SalesInvoiceLocators.HSNcode_Column, ElementType.Xpath);
+							flag = webDB.waitForElement(SalesInvoiceLocators.HSNcode_Column(), ElementType.Xpath);
 							if (flag) {
-								String GetTextHsnCode = webDB.getTextFromElement(SalesInvoiceLocators.HSNcode_Column,
+								String GetTextHsnCode = webDB.getTextFromElement(SalesInvoiceLocators.HSNcode_Column(),
 										ElementType.Xpath);
 								if (!GetTextHsnCode.equals(HSNcode_SI)) {
-									webDB.clickAnElement(SalesInvoiceLocators.HSNcode_Column, ElementType.Xpath);
+									webDB.clickAnElement(SalesInvoiceLocators.HSNcode_Column(), ElementType.Xpath);
 									commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.HSN_Code_LOV_Btn,
 											HSNcode_SI);
 									logs.logging("INFO", "HSN Code Inserted Successfully");

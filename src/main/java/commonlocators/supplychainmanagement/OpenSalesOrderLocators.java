@@ -1,5 +1,7 @@
 package commonlocators.supplychainmanagement;
 
+import commonfunctions.CommonFunctions;
+
 /**
  * @author Deepan-GWL, Sakthi
  * @company Galaxy Weblinks Feburary 12, 2025
@@ -45,25 +47,65 @@ public class OpenSalesOrderLocators {
 	/** @locatorType Xpath */
 	public static final String OpenSOAddLineBtn = "//button[@data-testid='Open_So_Add_Button_Tlines']";
 	/** @locatorType Xpath */
-	public static final String ItemLastLineData = "(//table//tbody/tr[contains(@class,'a-GV-row')]/td[2])[1]";
+	public static final String OpenSoLinesTable = "(//div[@id='ig_line_ig_grid_vc']//table)[2]";
+
 	/** @locatorType Xpath */
-	public static final String ItemLastLineDataLov = "(//table//tbody/tr[contains(@class,'a-GV-row')]/td[2])[1]//button";
+	public static final String ItemLastLineData() {
+		return "(" + CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(OpenSoLinesTable, "Item") + ")[1]";
+	}
+
 	/** @locatorType Xpath */
-	public static final String PriceLastLineData = "(//table//tbody/tr[contains(@class,'a-GV-row')]/td[7])[1]";
+	public static final String ItemLastLineDataLov() {
+		return "(" + CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(OpenSoLinesTable, "Item")
+				+ ")[1]//button";
+	}
+
 	/** @locatorType Xpath */
-	public static final String PriceLastLineInput = "//input[@data-testid='SRCLN_PRICE']";
+	public static final String PriceLastLineData() {
+		return "(" + CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(OpenSoLinesTable, "Price") + ")[1]";
+	}
+
 	/** @locatorType Xpath */
-	public static final String MRPLastLineData = "(//table//tbody/tr[contains(@class,'a-GV-row')]/td[8])[1]";
+	public static final String PriceLastLineInput() {
+		return "(" + CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(OpenSoLinesTable, "Price")
+				+ ")[1]//input";
+	}
+
 	/** @locatorType Xpath */
-	public static final String MRPLastLineInput = "//input[@data-testid='SRCLN_MRP_PRICE']";
+	public static final String MRPLastLineData() {
+		return "(" + CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(OpenSoLinesTable, "MRP Price")
+				+ ")[1]";
+	}
+
 	/** @locatorType Xpath */
-	public static final String DiscountLastLineData = "(//table//tbody/tr[contains(@class,'a-GV-row')]/td[9])[1]";
+	public static final String MRPLastLineInput() {
+		return "(" + CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(OpenSoLinesTable, "MRP Price")
+				+ ")[1]//input";
+	}
+
 	/** @locatorType Xpath */
-	public static final String DiscountLastLineInput = "//input[@data-testid='SRCLN_DISC_PCT']";
+	public static final String DiscountLastLineData() {
+		return "(" + CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(OpenSoLinesTable, "Disc. %") + ")[1]";
+	}
+
 	/** @locatorType Xpath */
-	public static final String HSNCodeLastLineData = "(//table//tbody/tr[contains(@class,'a-GV-row')]/td[10])[1]";
+	public static final String DiscountLastLineInput() {
+		return "(" + CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(OpenSoLinesTable, "Disc. %")
+				+ ")[1]//input";
+	}
+
 	/** @locatorType Xpath */
-	public static final String HSNCodeLastLineLovBtn = "//input[@data-testid='SRCLN_HSN_CODE']/following-sibling::button";
+	public static final String HSNCodeLastLineData() {
+		return "(" + CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(OpenSoLinesTable, "HSN Code")
+				+ ")[1]";
+	}
+
+	/** @locatorType Xpath */
+	public static final String HSNCodeLastLineLovBtn() {
+		return "(" + CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(OpenSoLinesTable, "HSN Code")
+				+ ")[1]//button";
+	}
+
 	/** @locatorType Xpath */
 	public static final String OpenSOLinesSaveBtn = "//button[@data-testid='Open_So_Save_Button_Lines']";
 	/** @locatorType Xpath */

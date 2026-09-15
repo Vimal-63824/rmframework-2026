@@ -408,26 +408,23 @@ public class ProductionOrderFunctions {
 		assertTrue(flag);
 	}
 
-	/**
-	 * This Method used to save header and post Production Order
-	 * 
-	 * @author Sakthi-GWL
-	 */
 	public void clickHeaderSaveAndPostProdOrder() {
 		flag = webDB.waitForElement(ProductionOrderLocators.HeaderSaveIcon, ElementType.Xpath);
 		if (flag) {
 			webDB.moveToElement(ProductionOrderLocators.HeaderSaveIcon, ElementType.Xpath);
 			webDB.clickAnElement(ProductionOrderLocators.HeaderSaveIcon, ElementType.Xpath);
-			commonFunc.checkSuccessToastMessageDisappear();
-			commonFunc.hardWait(5000);
+			commonFunc.checkRefreshCellsDisappear();
+//			commonFunc.hardWait(5000);
 			flag = webDB.waitForClickElement(ProductionOrderLocators.ProdOrderPostBtn, ElementType.Xpath);
 			if (flag) {
+				commonFunc.checkSuccessToastMessageDisappear();
 				if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
 					webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
 				}
 				logs.logging("INFO", "Header Saved Successfully");
-				flag = webDB.waitForClickElement(ProductionOrderLocators.ProdOrderPostBtn, ElementType.Xpath);
+				flag = webDB.waitForElement(ProductionOrderLocators.ProdOrderPostBtn, ElementType.Xpath);
 				if (flag) {
+					commonFunc.checkRefreshCellsDisappear();
 					webDB.moveToElement(ProductionOrderLocators.ProdOrderPostBtn, ElementType.Xpath);
 					webDB.clickAnElement(ProductionOrderLocators.ProdOrderPostBtn, ElementType.Xpath);
 					flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
@@ -639,11 +636,13 @@ public class ProductionOrderFunctions {
 		commonFunc.searchAndSelectValueInFilters(ProductionOrderLocators.CreateProdOrd_LocationLovbtn, Loc);
 		logs.logging("INFO", "Location Selected in Prod Order: " + Loc);
 		switchToCreateProductionOrderFrame();
+		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.searchAndSelectValueInFilters(ProductionOrderLocators.CreateProdOrd_OrderTypeLovbtn, OrdType);
 		logs.logging("INFO", "Order Type Selected in Prod Order: " + OrdType);
 		switchToCreateProductionOrderFrame();
 		commonFunc.searchAndSelectValueInFilters(ProductionOrderLocators.CreateProdOrd_PrefixLovbtn, Pfx);
 		logs.logging("INFO", "Prefix Selected in Prod Order: " + Pfx);
+		commonFunc.checkRefreshCellsDisappear();
 		switchToCreateProductionOrderFrame();
 		if (!OrdType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("ProdOrderNonStandard"))) {
 			flag = webDB.waitForElement(ProductionOrderLocators.CreateProdOrd_BOMTypeSelect, ElementType.Xpath);
@@ -656,9 +655,12 @@ public class ProductionOrderFunctions {
 		commonFunc.searchAndSelectValueInFilters(ProductionOrderLocators.CreateProdOrd_ItemLovbtn, Item);
 		logs.logging("INFO", "Item Selected in Prod Order: " + Item);
 		switchToCreateProductionOrderFrame();
+		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.verifyAddTableSpecs(ProductionOrderLocators.CreateProdOrd_OrderQntyInput,
 				ProductionOrderLocators.CreateProdOrd_OrderQntyInput, OrdQnty);
 		logs.logging("INFO", "Order Quantity Entered in Prod Order: " + OrdQnty);
+		webDB.pressTabKey();
+		commonFunc.checkRefreshCellsDisappear();
 		webDB.switchToDefaultContent();
 		assertTrue(flag);
 	}
@@ -8208,8 +8210,6 @@ public class ProductionOrderFunctions {
 	 */
 	public boolean verifyProdOrderWithoutSOAllInsideMoveTypeSingle() {
 		try {
-//			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-//					"AdminUsername");
 			commonFunc.navigateToProductionOrderInProdPlanning();
 			verifyWriteBeforeStockForFGAndRawMaterials(webDB.getDataFromProperties("PMFFileName"),
 					webDB.getDataFromProperties("AllInsideSheetName-Single"));
@@ -8262,7 +8262,6 @@ public class ProductionOrderFunctions {
 					commonFunc.getDataFromTestDataSheet("CompletedStatus"));
 			verifyValidationOfAfterStockUnitCostAndQuantityInFGItem(webDB.getDataFromProperties("PMFFileName"),
 					webDB.getDataFromProperties("AllInsideSheetName-Single"));
-//			flag = commonFunc.logoutUser();
 			return flag;
 		} catch (Exception e) {
 			logs.logging("INFO",
