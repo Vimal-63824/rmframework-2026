@@ -265,7 +265,7 @@ public class OpenPoRcLocators {
 	/** @locatorType Xpath */
 	public static final String AmendLineFindTable = "//table[@data-testid='H_Result_Data']/tbody/tr[2]/td[1]";
 	/** @locatorType Xpath */
-	public static final String LineCheckBox = "//label[text()='Line(s)']";
+	public static final String LineCheckBox = "//label[contains(text(),'Line')]";
 
 	/** @locatorType Xpath */
 	public static final String OpenPONumber(String Number) {

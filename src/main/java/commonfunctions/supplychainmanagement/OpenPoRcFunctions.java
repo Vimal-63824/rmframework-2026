@@ -256,10 +256,13 @@ public class OpenPoRcFunctions {
 					commonFunc.getDataFromTestDataSheet("Value"));
 			if (EffValue.equals(today.format(formatter))) {
 				logs.logging("INFO", "Verified Effective From Date Successfully");
+//				commonFunc.hardWait(2000);
 				webDB.clickAnElement(OpenPoRcLocators.OpenPoNo, ElementType.Xpath);
 				webDB.clearText(OpenPoRcLocators.EffTo, ElementType.Xpath);
-				commonFunc.hardWait(500);
+				commonFunc.hardWait(1500);
 				webDB.clickAnElement(OpenPoRcLocators.OpenPoNo, ElementType.Xpath);
+				commonFunc.hardWait(1000);
+				webDB.doubleClickAnElement(OpenPoRcLocators.EffTo, ElementType.Xpath);
 				webDB.sendTextToAnElement(OpenPoRcLocators.EffTo, commonFunc.getDataFromTestDataSheet("EffToDate"),
 						ElementType.Xpath);
 				logs.logging("INFO",
@@ -269,7 +272,11 @@ public class OpenPoRcFunctions {
 				if (EffToValue.equals(commonFunc.getDataFromTestDataSheet("EffToDate"))) {
 					logs.logging("INFO", "Verified Effective Date Successfully");
 					webDB.clickAnElement(OpenPoRcLocators.OpenPoNo, ElementType.Xpath);
+				} else {
+					flag = false;
 				}
+			} else {
+				flag = false;
 			}
 		}
 		assertTrue(flag);
@@ -361,7 +368,7 @@ public class OpenPoRcFunctions {
 				purchaseOrderFunc.navigateToLineDetailPage(VariableHandler.getItemName());
 				webDB.switchToFrame(PurchaseOrderPageLocators.LineDetailsIframePO, ElementType.Xpath);
 				verifyTradeDiscountPercentage(DiscValue);
-				purchaseOrderFunc.verifyNavigateLineDetailTwo();
+//				purchaseOrderFunc.verifyNavigateLineDetailTwo();
 				verifyOpenPODocumentsValidation(AmendValue);
 			}
 
@@ -376,6 +383,7 @@ public class OpenPoRcFunctions {
 	 * @param DiscountValue
 	 */
 	public void verifyTradeDiscountPercentage(String DiscountValue) {
+		verifyDiscountTabOpening();
 		flag = webDB.waitForElement(PurchaseOrderPageLocators.TradePercentageValue, ElementType.Xpath);
 		if (flag) {
 			String DiscValue = webDB.getTextFromElement(PurchaseOrderPageLocators.TradePercentageValue,
@@ -391,6 +399,7 @@ public class OpenPoRcFunctions {
 	 * @param AmendValue
 	 */
 	public void verifyOpenPODocumentsValidation(String AmendValue) {
+		verifyExpandRateContractDocument();
 		String ContractNumber = webDB.getDomPropertyFromElement(PurchaseOrderPageLocators.ContractId, ElementType.Xpath,
 				commonFunc.getDataFromTestDataSheet("Value"));
 		purchaseOrderFunc.verifyAssertionBothValues(ContractNumber, VariableHandler.getOpenPoNumber());
@@ -3623,6 +3632,38 @@ public class OpenPoRcFunctions {
 			verifyAmendTableLineValue(i, Value);
 		}
 		clearSearchFilter();
+	}
+
+	/**
+	 * Verify Discount Tab Opening
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyDiscountTabOpening() {
+		flag = webDB.waitForElement(PurchaseOrderPageLocators.DiscountButton, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(PurchaseOrderPageLocators.DiscountButton, ElementType.Xpath);
+			flag = webDB.waitForElement(PurchaseOrderPageLocators.TradePercentageValue, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Discount Expand Button Is Displyaed");
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * Verify Expand Rate Contract Document
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyExpandRateContractDocument() {
+		webDB.moveToElement(PurchaseOrderPageLocators.ContractExpandButton, ElementType.Xpath);
+		flag = webDB.waitForClickElement(PurchaseOrderPageLocators.ContractExpandButton, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(PurchaseOrderPageLocators.ContractExpandButton, ElementType.Xpath);
+			flag = webDB.waitForElement(PurchaseOrderPageLocators.ContractId, ElementType.Xpath);
+		}
+		assertTrue(flag);
 	}
 
 }
