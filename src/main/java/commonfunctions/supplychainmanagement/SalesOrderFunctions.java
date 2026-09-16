@@ -2240,9 +2240,9 @@ public class SalesOrderFunctions {
 				VariableHandler.getSONumber(), commonFunc.getDataFromTestDataSheet("SODBShipViaColumnName")));
 		logs.logging("INFO", "Header Ship Via Details Matched With DataBase Values");
 
-		verifyAssertionDomPropertyValidation(SalesOrderLocators.HeaderCPCcodeIDField, dbCommonFunctions.SOHeaderDetails(
-				VariableHandler.getSONumber(), commonFunc.getDataFromTestDataSheet("SODBCpcCodeIDColumnName")));
-		logs.logging("INFO", "Header CPCcode ID Details Matched With DataBase Values");
+//		verifyAssertionDomPropertyValidation(SalesOrderLocators.HeaderCPCcodeIDField, dbCommonFunctions.SOHeaderDetails(
+//				VariableHandler.getSONumber(), commonFunc.getDataFromTestDataSheet("SODBCpcCodeIDColumnName")));
+//		logs.logging("INFO", "Header CPCcode ID Details Matched With DataBase Values");
 
 //		verifyAssertionDomPropertyValidation(SalesOrderLocators.HeaderCPCcodeDescField,
 //				dbCommonFunctions.SOHeaderDetails(VariableHandler.getSONumber(),

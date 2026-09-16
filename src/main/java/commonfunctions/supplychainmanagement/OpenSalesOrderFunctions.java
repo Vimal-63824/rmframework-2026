@@ -260,6 +260,7 @@ public class OpenSalesOrderFunctions {
 			if (flag) {
 				logs.logging("INFO", "Fetch Customer Item Button Clicked");
 				webDB.switchToFrame(OpenSalesOrderLocators.FetchCustomerIframe, ElementType.Xpath);
+				commonFunc.removeFilterStock();
 				flag = webDB.waitForElement(OpenSalesOrderLocators.fetchButtonSearchButton, ElementType.Xpath);
 				if (flag) {
 					logs.logging("INFO", "Iframe Displayed and switched successfully");

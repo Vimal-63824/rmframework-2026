@@ -540,6 +540,7 @@ public class EmployeeMasterFunctions {
 			updateEmployeePayrollGrpAndNoticePeriod(commonFunc.getDataFromTestDataSheet("Emp_CleanerPayrollGroup"),
 					commonFunc.getDataFromTestDataSheet("Emp_NoticePeriod-30"));
 			clickSaveIconAndPostInEmployeeParticular();
+			commonFunc.hardWait(2000);
 			if (!VariableHandler.getApprovalFlag()) {
 				approvalFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
 				commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getEmpUpdateDocNo(),
@@ -608,6 +609,7 @@ public class EmployeeMasterFunctions {
 			updateEmpCityZipCodeAndTelephoneInAddressTab(commonFunc.getDataFromTestDataSheet("Emp_City"),
 					RandomStringUtils.randomNumeric(6), commonFunc.randomMobileNumberGenerator());
 			clickSaveIconAndPostInAddress();
+			commonFunc.hardWait(2000);
 			if (!VariableHandler.getApprovalFlag()) {
 				approvalFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
 				commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getEmpUpdateDocNo(),
@@ -675,6 +677,7 @@ public class EmployeeMasterFunctions {
 					commonFunc.randomEmailIdGenerator(), commonFunc.randomMobileNumberGenerator(),
 					RandomStringUtils.randomNumeric(5));
 			clickSaveAndPostInUpdateDependentDetails();
+			commonFunc.hardWait(2000);
 			if (!VariableHandler.getApprovalFlag()) {
 				approvalFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
 				commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getEmpUpdateDocNo(),
@@ -744,6 +747,7 @@ public class EmployeeMasterFunctions {
 					commonFunc.randomMobileNumberGenerator(), commonFunc.getDataFromTestDataSheet("EmpAddress"),
 					commonFunc.getDataFromTestDataSheet("Emp_City"));
 			clickSaveAndPostInUpdateContactDetails();
+			commonFunc.hardWait(2000);
 			if (!VariableHandler.getApprovalFlag()) {
 				approvalFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
 				commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getEmpUpdateDocNo(),
@@ -811,6 +815,7 @@ public class EmployeeMasterFunctions {
 					commonFunc.getDataFromTestDataSheet("Emp_YearOfPassing"), RandomStringUtils.randomAlphabetic(1),
 					RandomStringUtils.randomNumeric(2));
 			clickSaveAndPostInUpdateQualificationDetails();
+			commonFunc.hardWait(2000);
 			if (!VariableHandler.getApprovalFlag()) {
 				approvalFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
 				commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getEmpUpdateDocNo(),
@@ -876,6 +881,7 @@ public class EmployeeMasterFunctions {
 			fillDetailsInUpdateSkillDetails(commonFunc.getDataFromTestDataSheet("Emp_Skill"),
 					commonFunc.getDataFromTestDataSheet("Emp_Level"));
 			clickSaveAndPostInUpdateSkillDetails();
+			commonFunc.hardWait(2000);
 			if (!VariableHandler.getApprovalFlag()) {
 				approvalFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
 				commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getEmpUpdateDocNo(),
@@ -2266,7 +2272,6 @@ public class EmployeeMasterFunctions {
 			commonFunc.checkSuccessToastMessageDisappear();
 			webDB.moveToElement(EmployeeMasterLocators.AddEmployeePostButton, ElementType.Xpath);
 			webDB.clickAnElement(EmployeeMasterLocators.AddEmployeePostButton, ElementType.Xpath);
-			commonFunc.checkRefreshCellsDisappear();
 			flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
 			if (flag) {
 				logs.logging("INFO", "Employee Post Icon Clicked");
@@ -2946,6 +2951,7 @@ public class EmployeeMasterFunctions {
 				}
 				flag = webDB.waitForElement(EmployeeMasterLocators.UpdateEmp_EmpParticularPostBtn, ElementType.Xpath);
 				if (flag) {
+					commonFunc.checkSuccessToastMessageDisappear();
 					webDB.moveToElement(EmployeeMasterLocators.UpdateEmp_EmpParticularPostBtn, ElementType.Xpath);
 					webDB.clickAnElement(EmployeeMasterLocators.UpdateEmp_EmpParticularPostBtn, ElementType.Xpath);
 					flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
@@ -3223,6 +3229,7 @@ public class EmployeeMasterFunctions {
 				}
 				flag = webDB.waitForElement(EmployeeMasterLocators.UpdateEmp_AddressPostBtn, ElementType.Xpath);
 				if (flag) {
+					commonFunc.checkSuccessToastMessageDisappear();
 					webDB.moveToElement(EmployeeMasterLocators.UpdateEmp_AddressPostBtn, ElementType.Xpath);
 					webDB.clickAnElement(EmployeeMasterLocators.UpdateEmp_AddressPostBtn, ElementType.Xpath);
 					flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
@@ -3360,6 +3367,7 @@ public class EmployeeMasterFunctions {
 		switchToUpdateIframe();
 		flag = webDB.waitForElement(EmployeeMasterLocators.UpdateEmp_DependentAddIcon, ElementType.Xpath);
 		if (flag) {
+			commonFunc.checkRefreshCellsDisappear();
 			webDB.moveToElement(EmployeeMasterLocators.UpdateEmp_DependentAddIcon, ElementType.Xpath);
 			webDB.clickAnElement(EmployeeMasterLocators.UpdateEmp_DependentAddIcon, ElementType.Xpath);
 			flag = webDB.waitForElement(EmployeeMasterLocators.UpdateEmp_DependentNameData(), ElementType.Xpath);
@@ -3393,6 +3401,7 @@ public class EmployeeMasterFunctions {
 				}
 				flag = webDB.waitForElement(EmployeeMasterLocators.UpdateEmp_DependentPostBtn, ElementType.Xpath);
 				if (flag) {
+					commonFunc.checkSuccessToastMessageDisappear();
 					webDB.moveToElement(EmployeeMasterLocators.UpdateEmp_DependentPostBtn, ElementType.Xpath);
 					webDB.clickAnElement(EmployeeMasterLocators.UpdateEmp_DependentPostBtn, ElementType.Xpath);
 					flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
@@ -3547,6 +3556,7 @@ public class EmployeeMasterFunctions {
 				}
 				flag = webDB.waitForElement(EmployeeMasterLocators.UpdateEmp_ContactPostBtn, ElementType.Xpath);
 				if (flag) {
+					commonFunc.checkSuccessToastMessageDisappear();
 					webDB.moveToElement(EmployeeMasterLocators.UpdateEmp_ContactPostBtn, ElementType.Xpath);
 					webDB.clickAnElement(EmployeeMasterLocators.UpdateEmp_ContactPostBtn, ElementType.Xpath);
 					flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
@@ -3655,6 +3665,7 @@ public class EmployeeMasterFunctions {
 		switchToUpdateIframe();
 		flag = webDB.waitForElement(EmployeeMasterLocators.UpdateEmp_QualificationAddIcon, ElementType.Xpath);
 		if (flag) {
+			commonFunc.checkRefreshCellsDisappear();
 			webDB.moveToElement(EmployeeMasterLocators.UpdateEmp_QualificationAddIcon, ElementType.Xpath);
 			webDB.clickAnElement(EmployeeMasterLocators.UpdateEmp_QualificationAddIcon, ElementType.Xpath);
 			flag = webDB.waitForElement(EmployeeMasterLocators.UpdateEmp_QualificationTableData(), ElementType.Xpath);
@@ -3688,6 +3699,7 @@ public class EmployeeMasterFunctions {
 				}
 				flag = webDB.waitForElement(EmployeeMasterLocators.UpdateEmp_QualificationPostBtn, ElementType.Xpath);
 				if (flag) {
+					commonFunc.checkSuccessToastMessageDisappear();
 					webDB.moveToElement(EmployeeMasterLocators.UpdateEmp_QualificationPostBtn, ElementType.Xpath);
 					webDB.clickAnElement(EmployeeMasterLocators.UpdateEmp_QualificationPostBtn, ElementType.Xpath);
 					flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
@@ -3841,6 +3853,7 @@ public class EmployeeMasterFunctions {
 				}
 				flag = webDB.waitForElement(EmployeeMasterLocators.UpdateEmp_SkillPostBtn, ElementType.Xpath);
 				if (flag) {
+					commonFunc.checkSuccessToastMessageDisappear();
 					webDB.moveToElement(EmployeeMasterLocators.UpdateEmp_SkillPostBtn, ElementType.Xpath);
 					webDB.clickAnElement(EmployeeMasterLocators.UpdateEmp_SkillPostBtn, ElementType.Xpath);
 					flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
@@ -4019,6 +4032,8 @@ public class EmployeeMasterFunctions {
 				if (flag) {
 					webDB.clickAnElement(EmployeeMasterLocators.EmpMigrationLabel, ElementType.Xpath);
 					webDB.switchToDefaultContent();
+					commonFunc.checkRefreshCellsDisappear();
+					webDB.waitUntilElementToNotBeStale(EmployeeMasterLocators.EmpMigrationAddButton, ElementType.Xpath);
 					flag = webDB.waitForElement(EmployeeMasterLocators.EmpMigrationAddButton, ElementType.Xpath);
 					if (flag) {
 						logs.logging("INFO", "Employee Migration Radio Button Clicked");
@@ -4040,8 +4055,10 @@ public class EmployeeMasterFunctions {
 	 */
 	public void clickAddAndFillDetailsInEmployeeMigration(String Calendar, String Payment, String PaymentType,
 			String Ref) {
+		webDB.waitUntilElementToNotBeStale(EmployeeMasterLocators.EmpMigrationAddButton, ElementType.Xpath);
 		flag = webDB.waitForElement(EmployeeMasterLocators.EmpMigrationAddButton, ElementType.Xpath);
 		if (flag) {
+			webDB.moveToElement(EmployeeMasterLocators.EmpMigrationAddButton, ElementType.Xpath);
 			webDB.clickAnElement(EmployeeMasterLocators.EmpMigrationAddButton, ElementType.Xpath);
 			commonFunc.searchAndSelectValueInFilters(EmployeeMasterLocators.EmpMigrationCalendarLov, Calendar);
 			logs.logging("INFO", "Employee Migration Calendar Selected: " + Calendar);
@@ -4173,6 +4190,8 @@ public class EmployeeMasterFunctions {
 				if (flag) {
 					webDB.clickAnElement(EmployeeMasterLocators.EmpDetailsMigrationLabel, ElementType.Xpath);
 					webDB.switchToDefaultContent();
+					webDB.waitUntilElementToNotBeStale(EmployeeMasterLocators.EmpDetailsMigrationCreateAddIcon,
+							ElementType.Xpath);
 					flag = webDB.waitForElement(EmployeeMasterLocators.EmpDetailsMigrationCreateAddIcon,
 							ElementType.Xpath);
 					if (flag) {
@@ -4191,6 +4210,7 @@ public class EmployeeMasterFunctions {
 	 * @param Ref
 	 */
 	public void createAndFillDetailsInEmpDetailsMigration(String Ref) {
+		webDB.waitUntilElementToNotBeStale(EmployeeMasterLocators.EmpDetailsMigrationCreateAddIcon, ElementType.Xpath);
 		flag = webDB.waitForElement(EmployeeMasterLocators.EmpDetailsMigrationCreateAddIcon, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(EmployeeMasterLocators.EmpDetailsMigrationCreateAddIcon, ElementType.Xpath);

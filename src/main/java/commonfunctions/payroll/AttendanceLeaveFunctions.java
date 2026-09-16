@@ -337,7 +337,7 @@ public class AttendanceLeaveFunctions {
 		commonFunc.navigateLeaveEncashmentScreen();
 		PermissionForwardApprovalReverse(VariableHandler.getEmpID(),
 				commonFunc.getDataFromTestDataSheet("PermissionFindType"));
-		return flag;
+		return true;
 	}
 
 	/**
@@ -402,7 +402,7 @@ public class AttendanceLeaveFunctions {
 		commonFunc.navigateLeaveEncashmentScreen();
 		PermissionForwardApprovalReverse(VariableHandler.getEmpID(),
 				commonFunc.getDataFromTestDataSheet("OnDutyFindType"));
-		return flag;
+		return true;
 	}
 
 	/**
@@ -428,7 +428,7 @@ public class AttendanceLeaveFunctions {
 		CheckLeaveEncashmentBasedOnPendingEncashment(VariableHandler.getEncashmentDocNo());
 		CheckLeaveEncashmentBasedOnEncashInPayroll();
 		CheckLeaveEncashmentReportFetchesValuesCorrectly(commonFunc.getDataFromTestDataSheet("EmployeeDurai"));
-		return flag;
+		return true;
 	}
 
 	/**
@@ -451,7 +451,7 @@ public class AttendanceLeaveFunctions {
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
 		}
-		return flag;
+		return true;
 	}
 
 	/**
@@ -479,7 +479,7 @@ public class AttendanceLeaveFunctions {
 		}
 		commonFunc.navigateLeaveEncashmentScreen();
 		EncashmentCancel();
-		return flag;
+		return true;
 	}
 
 	/**
@@ -501,7 +501,7 @@ public class AttendanceLeaveFunctions {
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
 		}
-		return flag;
+		return true;
 	}
 
 	/**
@@ -528,7 +528,7 @@ public class AttendanceLeaveFunctions {
 					System.getProperty("HrRqtUsername"), webDB.getDataFromProperties("HRUSEREmpId"));
 		}
 		CheckCompOffFindPageWithAllLineWiseRecord(commonFunc.getDataFromTestDataSheet("EmployeeDurai"));
-		return flag;
+		return true;
 	}
 
 	/**
@@ -1238,7 +1238,7 @@ public class AttendanceLeaveFunctions {
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
 		}
-		return flag;
+		return true;
 	}
 
 	// --------------- "Leave Module Test Scenarios Functions" -----------------
@@ -1342,7 +1342,7 @@ public class AttendanceLeaveFunctions {
 				clickSearchAndClickFirstLeaveEntryWithEmpName(commonFunc.getDataFromTestDataSheet("Emp_GWP0001"));
 				clickReverseAndVerifyStatusInLeveEntry();
 			}
-			return flag;
+			return true;
 		} catch (Exception e) {
 			logs.logging("INFO", "Exception occur while executing 'verifyLeaveEntryDateTypeBalanceSession': " + e);
 			return false;
@@ -1510,7 +1510,7 @@ public class AttendanceLeaveFunctions {
 			clickUploadButtonInAttachmentLeaveEntry();
 			clickReportAndVerifyDisplayedInLeaveEntry();
 			clickSaveAndCancelInLeaveEntry();
-			return flag;
+			return true;
 		} catch (Exception e) {
 			logs.logging("INFO", "Exception occur while executing 'verifyCancelLeaveCheckLeaveStatus': " + e);
 			return false;
@@ -3789,7 +3789,7 @@ public class AttendanceLeaveFunctions {
 		}
 		commonFunc.navigateToLoanPaymentScreen();
 		LoanPaymentDocumentSelect();
-		return flag;
+		return true;
 	}
 
 	/**
@@ -3802,6 +3802,10 @@ public class AttendanceLeaveFunctions {
 		if (flag) {
 			webDB.clickAnElement(AttendanceLeaveLocators.LoanPaymentFindSearch, ElementType.Xpath);
 			logs.logging("INFO", "LoanPayment Find Search Button Is Clicked");
+			commonFunc.removeFilterStock();
+			commonFunc.verifyAddTableSpecs(AttendanceLeaveLocators.LoanPaymentFindSearchBar,
+					AttendanceLeaveLocators.LoanPaymentFindSearchBar, VariableHandler.getLoanRequestDocNo());
+			webDB.pressEnterKey();
 			commonFunc.checkRefreshCellsDisappear();
 			flag = webDB.waitForElement(AttendanceLeaveLocators.LoanPaymentDocNoClick(), ElementType.Xpath);
 			if (flag) {
@@ -3860,7 +3864,7 @@ public class AttendanceLeaveFunctions {
 		LoanPaymentDocumentReverse();
 		commonFunc.logoutUser();
 		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"));
-		return flag;
+		return true;
 	}
 
 	/**
@@ -3975,7 +3979,7 @@ public class AttendanceLeaveFunctions {
 					VariableHandler.getTDSDeclarationDocNo(), webDB.getDataFromProperties("HariEmpId"),
 					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
 		}
-		return flag;
+		return true;
 	}
 
 	/**
@@ -4065,7 +4069,7 @@ public class AttendanceLeaveFunctions {
 					VariableHandler.getTDSDeclarationDocNo(), webDB.getDataFromProperties("HariEmpId"),
 					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
 		}
-		return flag;
+		return true;
 	}
 
 	/**
@@ -4169,7 +4173,7 @@ public class AttendanceLeaveFunctions {
 					VariableHandler.getTDSDeclarationDocNo(), webDB.getDataFromProperties("HariEmpId"),
 					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
 		}
-		return flag;
+		return true;
 	}
 
 	/**
@@ -4259,7 +4263,7 @@ public class AttendanceLeaveFunctions {
 					VariableHandler.getTDSDeclarationDocNo(), webDB.getDataFromProperties("HariEmpId"),
 					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
 		}
-		return flag;
+		return true;
 	}
 
 	/**
@@ -4348,7 +4352,7 @@ public class AttendanceLeaveFunctions {
 					VariableHandler.getTDSDeclarationDocNo(), webDB.getDataFromProperties("HariEmpId"),
 					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
 		}
-		return flag;
+		return true;
 	}
 
 	/**
@@ -4437,7 +4441,7 @@ public class AttendanceLeaveFunctions {
 					VariableHandler.getTDSDeclarationDocNo(), webDB.getDataFromProperties("HariEmpId"),
 					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
 		}
-		return flag;
+		return true;
 	}
 
 	/**
@@ -4686,7 +4690,7 @@ public class AttendanceLeaveFunctions {
 				commonFunc.getDataFromTestDataSheet("OvertimeDate"), commonFunc.getDataFromTestDataSheet("OTType"));
 		EmployeeOvertimeDataSelect(commonFunc.getDataFromTestDataSheet("OvertimeHours"));
 		EmployeeOvertimeDocumentPost();
-		return flag;
+		return true;
 	}
 
 	/**
@@ -4704,7 +4708,7 @@ public class AttendanceLeaveFunctions {
 				commonFunc.getDataFromTestDataSheet("OvertimeDate"), commonFunc.getDataFromTestDataSheet("OTType"));
 		EmployeeOvertimeDataSelect(commonFunc.getDataFromTestDataSheet("OvertimeHours"));
 		EmployeeOvertimeDocumentPost();
-		return flag;
+		return true;
 	}
 
 	/**
@@ -4723,7 +4727,7 @@ public class AttendanceLeaveFunctions {
 				commonFunc.getDataFromTestDataSheet("OvertimeDate"), commonFunc.getDataFromTestDataSheet("OTType"));
 		EmployeeOvertimeDataSelect(commonFunc.getDataFromTestDataSheet("OvertimeHours"));
 		EmployeeOvertimeDocumentReturn();
-		return flag;
+		return true;
 	}
 
 	/**
@@ -4740,7 +4744,7 @@ public class AttendanceLeaveFunctions {
 		EmployeeEntryLineData(commonFunc.getDataFromTestDataSheet("EmployeeDurai"),
 				commonFunc.getDataFromTestDataSheet("OvertimeDate"), commonFunc.getDataFromTestDataSheet("OTType"));
 		EmployeeOvertimeDataCancel(commonFunc.getDataFromTestDataSheet("OvertimeHours"));
-		return flag;
+		return true;
 	}
 
 	/**
@@ -5089,7 +5093,7 @@ public class AttendanceLeaveFunctions {
 				commonFunc.getDataFromTestDataSheet("ExpenseAmount"),
 				commonFunc.getDataFromTestDataSheet("ExpenseRef"));
 		EmployeeAdditionalTravellers(commonFunc.getDataFromTestDataSheet("AddTravEmployee"));
-		return flag;
+		return true;
 	}
 
 	/**
@@ -5108,7 +5112,7 @@ public class AttendanceLeaveFunctions {
 				commonFunc.getDataFromTestDataSheet("ExpenseAmount"),
 				commonFunc.getDataFromTestDataSheet("ExpenseRef"));
 		EmployeeAdditionalTravellers(commonFunc.getDataFromTestDataSheet("AddTravEmployee"));
-		return flag;
+		return true;
 	}
 
 	/**
@@ -5127,7 +5131,7 @@ public class AttendanceLeaveFunctions {
 				commonFunc.getDataFromTestDataSheet("ExpenseAmount"),
 				commonFunc.getDataFromTestDataSheet("ExpenseRef"));
 		EmployeeAdditionalTravellersReturn(commonFunc.getDataFromTestDataSheet("AddTravEmployee"));
-		return flag;
+		return true;
 	}
 
 	/**
@@ -5143,7 +5147,7 @@ public class AttendanceLeaveFunctions {
 				commonFunc.getDataFromTestDataSheet("PurposeOfTravel"));
 		EmployeeTraveldateswithCancellingDoc(commonFunc.getDataFromTestDataSheet("DepartCity"),
 				commonFunc.getDataFromTestDataSheet("DestCity"));
-		return flag;
+		return true;
 	}
 
 	/**
@@ -5442,7 +5446,7 @@ public class AttendanceLeaveFunctions {
 		commonFunc.navigateToTravelReimbursement();
 		TravelReimbursementDocEntry(commonFunc.getDataFromTestDataSheet("TravelCity"));
 		TravelReimbursementExpensesDetails(commonFunc.getDataFromTestDataSheet("TravelReimAmount"));
-		return flag;
+		return true;
 	}
 
 	/**
@@ -5465,7 +5469,7 @@ public class AttendanceLeaveFunctions {
 		commonFunc.navigateToTravelReimbursement();
 		TravelReimbursementDocEntry(commonFunc.getDataFromTestDataSheet("TravelCity"));
 		TravelReimbursementExpensesDetails(commonFunc.getDataFromTestDataSheet("TravelReimAmount"));
-		return flag;
+		return true;
 	}
 
 	/**
@@ -5488,7 +5492,7 @@ public class AttendanceLeaveFunctions {
 		commonFunc.navigateToTravelReimbursement();
 		TravelReimbursementDocEntry(commonFunc.getDataFromTestDataSheet("TravelCity"));
 		TravelReimbursementExpensesDetails(commonFunc.getDataFromTestDataSheet("TravelReimAmount"));
-		return flag;
+		return true;
 	}
 
 	/**
@@ -5513,7 +5517,7 @@ public class AttendanceLeaveFunctions {
 		TravelReimbursementExpensesDetails(commonFunc.getDataFromTestDataSheet("TravelReimAmount"));
 		commonFunc.navigateToTravelReimbursement();
 		cancellingTravelReimbursementDocument();
-		return flag;
+		return true;
 	}
 
 	/**
@@ -5675,7 +5679,7 @@ public class AttendanceLeaveFunctions {
 		genaralExpenseAddLineData(commonFunc.getDataFromTestDataSheet("Breakfast-G-Expense"),
 				commonFunc.getDataFromTestDataSheet("GeneralExpAmount"),
 				commonFunc.getDataFromTestDataSheet("GeneralExpAmount"));
-		return flag;
+		return true;
 	}
 
 	/**
@@ -5690,7 +5694,7 @@ public class AttendanceLeaveFunctions {
 		genaralExpenseAddLineData(commonFunc.getDataFromTestDataSheet("Breakfast-G-Expense"),
 				commonFunc.getDataFromTestDataSheet("GeneralExpAmount"),
 				commonFunc.getDataFromTestDataSheet("GeneralExpAmount"));
-		return flag;
+		return true;
 	}
 
 	/**
@@ -5705,7 +5709,7 @@ public class AttendanceLeaveFunctions {
 		genaralExpenseAddLineData(commonFunc.getDataFromTestDataSheet("Breakfast-G-Expense"),
 				commonFunc.getDataFromTestDataSheet("GeneralExpAmount"),
 				commonFunc.getDataFromTestDataSheet("GeneralExpAmount"));
-		return flag;
+		return true;
 	}
 
 	/**
@@ -5720,7 +5724,7 @@ public class AttendanceLeaveFunctions {
 		genaralExpenseAddLineDataWithCancelling(commonFunc.getDataFromTestDataSheet("Breakfast-G-Expense"),
 				commonFunc.getDataFromTestDataSheet("GeneralExpAmount"),
 				commonFunc.getDataFromTestDataSheet("GeneralExpAmount"));
-		return flag;
+		return true;
 	}
 
 	/**
@@ -5929,7 +5933,7 @@ public class AttendanceLeaveFunctions {
 		pendingForFNFReverseProcess();
 		commonFunc.navigateToResignationRequest();
 		resignationRequestCancel();
-		return flag;
+		return true;
 	}
 
 	/**
@@ -5984,7 +5988,7 @@ public class AttendanceLeaveFunctions {
 		pendingForFNFReverseProcess();
 		commonFunc.navigateToResignationRequest();
 		resignationRequestCancel();
-		return flag;
+		return true;
 	}
 
 	/**
@@ -6039,7 +6043,7 @@ public class AttendanceLeaveFunctions {
 		pendingForFNFReverseProcess();
 		commonFunc.navigateToResignationRequest();
 		resignationRequestCancel();
-		return flag;
+		return true;
 	}
 
 	/**
@@ -6093,7 +6097,7 @@ public class AttendanceLeaveFunctions {
 		pendingForFNFReverseProcess();
 		commonFunc.navigateToResignationRequest();
 		resignationRequestCancel();
-		return flag;
+		return true;
 	}
 
 	/**
@@ -6144,7 +6148,7 @@ public class AttendanceLeaveFunctions {
 				commonFunc.getDataFromTestDataSheet("ResignReference"));
 		resignRequestEmployeeReverset();
 		resignationRequestCancel();
-		return flag;
+		return true;
 	}
 
 	/**

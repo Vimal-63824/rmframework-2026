@@ -182,6 +182,16 @@ public class PurchaseOrderPageLocators {
 	public static final String SACTableButton = "//table/tbody/tr/td[8]//input[@data-testid='CHARGE_SAC_CODE']/following-sibling::button";
 
 	/** @locatorType Xpath */
+	public static final String LinesCustomMenuBtnThreeDots(int rowNumber) {
+		return "(//table[@data-testid='Reset_Region_Result_Data']//tr/td[1]//span)[" + rowNumber + "]";
+	}
+
+	/** @locatorType Xpath */
+	public static final String DetailsMenuThreeDots = "//ul[@class='custom-row-menu']//*[text()='Details']";
+	/** @locatorType Xpath */
+	public static final String LnDts_DiscountExpandButton = "//div[@aria-label='Discount Details']//button";
+
+	/** @locatorType Xpath */
 	public static final String ItemName(int i) {
 		return "(//table[@data-testid='Reset_Region_Result_Data'])[2]/tbody/tr[" + i + "]/td[3]";
 	}
@@ -280,6 +290,8 @@ public class PurchaseOrderPageLocators {
 	public static final String LineDetailTwoButton = "//label[@for='P161513106045_TYPE_1']";
 	/** @locatorType Xpath */
 	public static final String FreeOfCostLabel = "//label[contains(@id,'POL_FOC_FLAG_LABEL')]";
+	/** @locatorType Xpath */
+	public static final String LnDts_TestCertificatesExpandButton = "//div[@aria-label='Test Certificate']//button[not(contains(@class, 'LOV'))]";
 	/** @locatorType Xpath */
 	public static final String FreeOfCostInput = "//input[contains(@id,'POL_FOC_FLAG_HIDDENVALUE')]";
 	/** @locatorType Xpath */
@@ -480,7 +492,7 @@ public class PurchaseOrderPageLocators {
 
 	/** @locatorType Xpath */
 	public static final String PurchaseOrderLineDetailForServiceItem(int i) {
-		return "//*[@id='ig_po_lineitems_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[" + i + "]/td[36]";
+		return "//*[@id='ig_po_lineitems_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[" + i + "]/td[1]";
 	}
 
 	/** @locatorType Xpath */
@@ -578,5 +590,9 @@ public class PurchaseOrderPageLocators {
 	public static final String GrnRequired() {
 		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(AddTablePOScreen, "GRN Rqrd.");
 	}
+	/** @locatorType Xpath */
+	public static final String PoDetails = "//a[@data-action='LN_DTLS']";
+	/** @locatorType Xpath */
+	public static final String ExpandDiscountField = "//button[@aria-controls='a_Collapsible2_R1534433044390492718_content']";
 
 }
