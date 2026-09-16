@@ -8,6 +8,8 @@ import commonfunctions.CommonFunctions;
  */
 public class EmployeeMasterLocators {
 	/** @locatorType XPATH */
+	public static final String EmployeeMasterLabel = "//input[@aria-label='Employee Master']/following-sibling::label";
+	/** @locatorType XPATH */
 	public static final String EmployeeMasterAddIcon = "//*[@data-testid=' EmployeeMasterAddIcon']";
 	/** @locatorType XPATH */
 	public static final String AddEmp_EmpployeeMasterSideNav = "//*[@data-testid=' AddEmp_EmpployeeMasterSideNav']";
@@ -196,13 +198,14 @@ public class EmployeeMasterLocators {
 
 	/** @locatorType XPATH */
 	public static String AddEmp_GradeClassData() {
-		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(AddEmpQualificationDetailsTable, "GradeClass");
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(AddEmpQualificationDetailsTable,
+				"GradeClass");
 	}
 
 	/** @locatorType XPATH */
 	public static String AddEmp_GradeClassDataInput() {
-		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(AddEmpQualificationDetailsTable, "GradeClass")
-				+ "//input";
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(AddEmpQualificationDetailsTable,
+				"GradeClass") + "//input";
 	}
 
 	/** @locatorType XPATH */
@@ -499,7 +502,7 @@ public class EmployeeMasterLocators {
 	/** @locatorType XPATH */
 	public static final String AddEmp_SignUploadbtn = "//*[@data-testid='BTN_Sign_Upload_empIcon']";
 	/** @locatorType XPATH */
-	public static final String AddEmp_LoadIframe = "//iframe[@title='Capture Image']";
+	public static final String AddEmp_LoadIframe = "//iframe[@title='LOAD']";
 	/** @locatorType XPATH */
 	public static final String AddEmp_SignUploadInput = "//input[@id='P6_DM_BLOB_SG_input']";
 	/** @locatorType XPATH */
@@ -1092,18 +1095,18 @@ public class EmployeeMasterLocators {
 	/** @locatorType XPATH */
 	public static final String FindSearchBtn = "//*[@data-testid='BTN_Go_Report_clcon']";
 	/** @locatorType XPATH */
-	public static final String FindSearchBar = "//input[@id='detail_search_field']";
+	public static final String FindSearchBar = "//input[@class='a-IRR-search-field']";
 	/** @locatorType XPATH */
-	public static final String FindSearchGoBtn = "//button[@id='detail_search_button']";
+	public static final String FindSearchGoBtn = "//*[text()='Go']/parent::button";
 
 	/** @locatorType XPATH */
 	public static final String FindResult_TableEmpId(String id) {
-		return "//div[@id='detail_data_panel']//table/tbody/tr/td/a[text()='" + id + "']";
+		return "//div[@aria-label='Data view']//table/tbody/tr/td/a[text()='" + id + "']";
 	}
 
 	/** @locatorType XPATH */
 	public static final String FindResult_TableStatus(String id) {
-		return "//div[@id='detail_data_panel']//table/tbody/tr/td/a[text()='" + id + "']/../../td[14]";
+		return "//div[@aria-label='Data view']//table/tbody/tr/td/a[text()='" + id + "']/../../td[14]";
 	}
 
 	/** @locatorType XPATH */
@@ -1125,7 +1128,7 @@ public class EmployeeMasterLocators {
 	/** @locatorType XPATH */
 	public static final String EmpMigrationLabel = "//label[text()='Emp.Migration']";
 	/** @locatorType XPATH */
-	public static final String EmpMigrationAddButton = "//div[contains(@aria-label,'Employee Migration')]/button[@title='Add']";
+	public static final String EmpMigrationAddButton = "//div[@data-testid='EMC_Result_Data']//button[@title='Add']";
 	/** @locatorType XPATH */
 	public static final String EmpMigrationCalendarLov = "//*[@data-testid='P367011401_EMHD_CLNDR_ID_iteminpu']/following-sibling::button";
 	/** @locatorType XPATH */
@@ -1153,7 +1156,7 @@ public class EmployeeMasterLocators {
 	/** @locatorType XPATH */
 	public static final String EmpDetailsMigrationLabel = "//label[text()='Emp.Details Migration']";
 	/** @locatorType XPATH */
-	public static final String EmpDetailsMigrationCreateAddIcon = "//div[contains(@aria-label,'Employee Details Migration')]/button[@title='Add ']";
+	public static final String EmpDetailsMigrationCreateAddIcon = "//div[@aria-label='Employee Details Migration']//button[@title='Add ']";
 	/** @locatorType XPATH */
 	public static final String EmpDetailsMigrationSelectFieldLabel = "//label[text()='Select Field']";
 	/** @locatorType XPATH */

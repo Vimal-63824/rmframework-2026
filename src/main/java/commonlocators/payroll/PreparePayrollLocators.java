@@ -9,6 +9,8 @@ import commonfunctions.CommonFunctions;
 public class PreparePayrollLocators {
 
 	/** @locatorType Xpath */
+	public static final String PreparePayrollLabel = "//input[@aria-label='Prepare / Process Payroll']/following-sibling::label";
+	/** @locatorType Xpath */
 	public static final String PayrollFindSearchBtn = "//button[@data-testid='PRE_REPORT_Button']";
 	/** @locatorType Xpath */
 	public static final String PreparePayrollAddIcon = "//button[@data-testid='PRE_ADD_Button']";
@@ -155,9 +157,9 @@ public class PreparePayrollLocators {
 	/** @locatorType Xpath */
 	public static final String PreparePayrollBtn = "//button[@data-testid='HPPH_PREPARE_Button']";
 	/** @locatorType Xpath */
-	public static final String ExceptionDataView = "//div[@aria-label='Data view of Exception']";
+	public static final String ExceptionDataView = "//div[@aria-label='Data view']/div[@class='a-IRR-noDataMsg']";
 	/** @locatorType Xpath */
-	public static final String ExceptionDataViewTable = "//div[@aria-label='Data view of Exception']//table";
+	public static final String ExceptionDataViewTable = "//div[@aria-label='Data view']//table";
 	/** @locatorType Xpath */
 	public static final String PayrollContentContainer = "//div[@id='TAB4_ig_grid_vc']";
 

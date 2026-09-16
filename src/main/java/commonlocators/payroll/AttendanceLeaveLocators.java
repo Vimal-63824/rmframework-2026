@@ -221,9 +221,9 @@ public class AttendanceLeaveLocators {
 	/** @locatorType Xpath */
 	public static final String LRMigrationAccrualPostBtn = "//*[normalize-space()='Post']/parent::button";
 	/** @locatorType Xpath */
-	public static final String LRMigrationLOPRadioBtn = "//label[text()='LOP Leave  Upload']";
+	public static final String LRMigrationLOPRadioBtn = "//label[normalize-space()='LOP Leave Upload']";
 	/** @locatorType Xpath */
-	public static final String LRMigrationLOPAddNewBtn = "//div[contains(@aria-label,'LOP Leave Entry Migration')]/button[@title='Add']";
+	public static final String LRMigrationLOPAddNewBtn = "//div[@aria-label='LOP Leave Entry Migration']//button[@title='Add']";
 	/** @locatorType Xpath */
 	public static final String LRMigrationLOPCalendarLovBtn = "//button[contains(@id,'ELHD_CLNDR_ID_lov_btn')]";
 	/** @locatorType Xpath */
@@ -343,7 +343,7 @@ public class AttendanceLeaveLocators {
 	/** @locatorType Xpath */
 	public static final String AdjustmentMigrationBtn = "//button[@data-testid='MIG_ADJ_Button']";
 	/** @locatorType Xpath */
-	public static final String AdjmntMigrationCreateAddBtn = "//div[contains(@aria-label,'Accrual Leave Balance Migration')]/button[@aria-label='Add ']";
+	public static final String AdjmntMigrationCreateAddBtn = "//button[@aria-label='Add ']";
 	/** @locatorType Xpath */
 	public static final String AdjmntMigrationCalendarLovBtn = "//button[@id='P367011501_ELHD_CLNDR_ID_lov_btn']";
 	/** @locatorType Xpath */
@@ -550,6 +550,8 @@ public class AttendanceLeaveLocators {
 	public static final String LoanPaymentReverseButton = "//button[@data-testid='ELP_REVERSE_Button']";
 
 	public static final String TDSFindSearchButton = "//button[@data-testid='TDS_FindSearch_Btn']";
+
+	public static final String TDSLabel = "//input[@aria-label='TDS Declaration']/following-sibling::label";
 	/** @locatorType Xpath */
 	public static final String TDSDeclFindEmpLOV = "//button[@data-testid='EMP_ID_lov_btn']";
 	/** @locatorType Xpath */
@@ -923,7 +925,7 @@ public class AttendanceLeaveLocators {
 	/** @locatorType Xpath */
 	public static final String ResignRequestFindSearchButton = "//button[@id='SEARCH']";
 	/** @locatorType Xpath */
-	public static final String ResignRequestFindTable = "(//table[contains(@aria-label,'Termination_Request')])[2]//tr/th";
+	public static final String ResignRequestFindTable = "//table[@data-testid='detail_Result_Title']//tr/th";
 
 	/** @locatorType Xpath */
 	public static final String ResignRequestFindDocSelect() {
@@ -938,9 +940,9 @@ public class AttendanceLeaveLocators {
 	/** @locatorType Xpath */
 	public static final String ResignRqtEmployeePay = "//*[contains(@id,'EMPREL_PAY_NOTICE_LABEL')]";
 	/** @locatorType Xpath */
-	public static final String PendingFNFTableSearchInput = "//div[@aria-label='Search bar of Pending for FNF']//input[@title='Search Report']";
+	public static final String PendingFNFTableSearchInput = "//div[@aria-label='Pending for FNF']//input[contains(@id,'search_field')]";
 	/** @locatorType Xpath */
-	public static final String PendingFNFTable = "(//div[@aria-label='Data view of Pending for FNF']//table)[2]//tr/th";
+	public static final String PendingFNFTable = "(//div[@aria-label='Pending for FNF']//table)[2]//tr/th";
 
 	/** @locatorType Xpath */
 	public static final String FFSFindPendingForFNFReverseButton() {

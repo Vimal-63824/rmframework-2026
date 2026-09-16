@@ -2066,6 +2066,7 @@ public class PurchaseOrderFunctions {
 						webDB.clickAnElement(PurchaseOrderPageLocators.LineDetailButton(i), ElementType.Xpath);
 					}
 				}
+				verifyClickNavigateToLineDetails();
 				flag = webDB.waitForElement(PurchaseOrderPageLocators.LineDetailsHeader, ElementType.Xpath);
 				if (flag) {
 					logs.logging("INFO", "Navigated To Line Details Page");
@@ -16785,6 +16786,19 @@ public class PurchaseOrderFunctions {
 			VariableHandler.setSalesOrdertDocNumber(text1.trim());
 		}
 		assertTrue(flag);
+	}
+
+	/**
+	 * Verify Click Navigate To Line Details
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyClickNavigateToLineDetails() {
+		flag = webDB.waitForElement(PurchaseOrderPageLocators.DetailsButton, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(PurchaseOrderPageLocators.DetailsButton, ElementType.Xpath);
+			flag = webDB.waitForElement(PurchaseOrderPageLocators.LineDetailsHeader, ElementType.Xpath);
+		}
 	}
 
 }

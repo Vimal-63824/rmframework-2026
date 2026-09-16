@@ -16,9 +16,9 @@ import java.util.List;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -90,7 +90,6 @@ public class CommonFunctions {
 		} catch (Exception e) {
 			logs.loggingconsole("INFO", "Browser not Setup with the Exception: " + e);
 			logs.loggingconsole("INFO", "Retrying Browser Open Again....!!!");
-//			Assert.fail(e.toString());
 		}
 	}
 
@@ -120,31 +119,31 @@ public class CommonFunctions {
 	 */
 	@SuppressWarnings("null")
 	public boolean checkRefreshCellsDisappear() {
-		hardWait(800);
-		if (webDB.verifyIsElementDisplayed("(" + CommonUiLocators.EntryTableRefreshCellImage + ")[1]",
-				ElementType.Xpath)) {
-			List<WebElement> refreshElements = WebDriverBase.getDriver()
-					.findElements(By.xpath(CommonUiLocators.EntryTableRefreshCellImage));
-			List<WebElement> AfterWaitrefreshElements = null;
-			try {
-				for (WebElement element : refreshElements) {
+		hardWait(1000);
+//		if (webDB.verifyIsElementDisplayed("(" + CommonUiLocators.EntryTableRefreshCellImage + ")[1]",
+//				ElementType.Xpath)) {
+		List<WebElement> refreshElements = WebDriverBase.getDriver()
+				.findElements(By.xpath(CommonUiLocators.EntryTableRefreshCellImage));
+		List<WebElement> AfterWaitrefreshElements = null;
+		try {
+			for (WebElement element : refreshElements) {
+				WebDriverWait wait = new WebDriverWait(WebDriverBase.getDriver(), Duration.ofSeconds(20));
+				wait.until(ExpectedConditions.invisibilityOf(element));
+				if (element.isDisplayed()) {
+					AfterWaitrefreshElements.add(element);
+				}
+			}
+			flag = AfterWaitrefreshElements.isEmpty();
+			if (!flag) {
+				for (WebElement element : AfterWaitrefreshElements) {
 					WebDriverWait wait = new WebDriverWait(WebDriverBase.getDriver(), Duration.ofSeconds(20));
 					wait.until(ExpectedConditions.invisibilityOf(element));
-					if (element.isDisplayed()) {
-						AfterWaitrefreshElements.add(element);
-					}
 				}
-				flag = AfterWaitrefreshElements.isEmpty();
-				if (!flag) {
-					for (WebElement element : AfterWaitrefreshElements) {
-						WebDriverWait wait = new WebDriverWait(WebDriverBase.getDriver(), Duration.ofSeconds(20));
-						wait.until(ExpectedConditions.invisibilityOf(element));
-					}
-				}
-			} catch (Exception e) {
-
 			}
+		} catch (Exception e) {
+
 		}
+//		}
 		return flag;
 	}
 
@@ -218,11 +217,12 @@ public class CommonFunctions {
 				logs.logging("INFO", GetTextUserName + " User Logged In Successfully");
 				VariableHandler.setSignInUserName(GetTextUserName);
 				String URL = webDB.getDriver().getCurrentUrl();
-				System.out.println(URL);
 				String SessionID = URL.split("session=")[1].toString();
-				System.out.println(SessionID);
 				VariableHandler.setSessionID(SessionID);
 				VariableHandler.setSessionOpened(true);
+				String HomePageUrl = System.getProperty("url").replace("loginpage/login", "loginpage/menu?session=")
+						.concat(VariableHandler.getSessionID());
+				VariableHandler.setHomePageURL(HomePageUrl);
 				logs.logging("INFO", "Current Username: " + VariableHandler.getSignInUserName());
 			}
 		}
@@ -244,6 +244,7 @@ public class CommonFunctions {
 					InputElement);
 			webDB.clickAnElement(CommonUiLocators.BusFunctionSearchBox, ElementType.Xpath);
 		}
+		webDB.waitUntilElementToNotBeStale(CommonUiLocators.PurchaseAddIcon, ElementType.Xpath);
 		flag = webDB.waitForElement(CommonUiLocators.PurchaseAddIcon, ElementType.Xpath);
 		Assert.assertTrue(flag);
 
@@ -813,7 +814,9 @@ public class CommonFunctions {
 //			}
 //		}
 		navigateToSearchTab(webDB.getDataFromProperties("EmployeeMasterScreen"),
-				EmployeeMasterLocators.EmployeeMasterAddIcon);
+				EmployeeMasterLocators.EmployeeMasterLabel);
+		webDB.clickAnElement(EmployeeMasterLocators.EmployeeMasterLabel, ElementType.Xpath);
+		flag = webDB.waitForElement(EmployeeMasterLocators.EmployeeMasterAddIcon, ElementType.Xpath);
 		Assert.assertTrue(flag);
 	}
 
@@ -1729,9 +1732,7 @@ public class CommonFunctions {
 	 */
 	public boolean checkAutoApprovalOrForwardedWhilePost() {
 		webDB.switchToDefaultContent();
-		checkRefreshCellsDisappear();
-		checkRefreshCellsDisappear();
-		if (webDB.waitForElementUntilGivenTime(CommonUiLocators.PostToastMessage, ElementType.Xpath, 5)) {
+		if (webDB.waitForElementUntilGivenTime(CommonUiLocators.PostToastMessage, ElementType.Xpath, 10)) {
 			VariableHandler.setApprovalFlag(true);
 			logs.logging("INFO", "Toast Message Displayed & Documents Is Posted.");
 			if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
@@ -2332,7 +2333,9 @@ public class CommonFunctions {
 //			}
 //		}
 		navigateToSearchTab(webDB.getDataFromProperties("PrepareProcessPayrollScreen"),
-				PreparePayrollLocators.PayrollFindSearchBtn);
+				PreparePayrollLocators.PreparePayrollLabel);
+		webDB.clickAnElement(PreparePayrollLocators.PreparePayrollLabel, ElementType.Xpath);
+		flag = webDB.waitForElement(PreparePayrollLocators.PayrollFindSearchBtn, ElementType.Xpath);
 		Assert.assertTrue(flag);
 	}
 
@@ -3012,7 +3015,9 @@ public class CommonFunctions {
 	 * @author Sakthi-GWL
 	 */
 	public void navigateToTDSDeclarationScreen() {
-		navigateToSearchTab(webDB.getDataFromProperties("TDSDeclaration"), AttendanceLeaveLocators.TDSFindSearchButton);
+		navigateToSearchTab(webDB.getDataFromProperties("TDSDeclaration"), AttendanceLeaveLocators.TDSLabel);
+		webDB.clickAnElement(AttendanceLeaveLocators.TDSLabel, ElementType.Xpath);
+		flag = webDB.waitForElement(AttendanceLeaveLocators.TDSFindSearchButton, ElementType.Xpath);
 	}
 
 	/**
@@ -3352,9 +3357,12 @@ public class CommonFunctions {
 	 */
 	public void navigateToHomePage() {
 		try {
-			String HomePageUrl = System.getProperty("url").replace("loginpage/login", "loginpage/menu?session=")
-					.concat(VariableHandler.getSessionID());
-			webDB.navigateToUrl(HomePageUrl);
+			webDB.navigateToUrl(VariableHandler.getHomePageURL());
+			try {
+				Alert alert = WebDriverBase.getDriver().switchTo().alert();
+				alert.accept();
+			} catch (Exception e) {
+			}
 			flag = webDB.waitForElement(CommonUiLocators.GetTextUserName, ElementType.Xpath);
 			if (!flag) {
 				VariableHandler.setSessionID(null);

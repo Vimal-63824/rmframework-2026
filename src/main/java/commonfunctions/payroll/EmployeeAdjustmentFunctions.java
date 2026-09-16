@@ -418,6 +418,8 @@ public class EmployeeAdjustmentFunctions {
 				}
 				logs.logging("INFO", "Adjustment table Save Icon Clicked Successfully");
 				commonFunc.checkSuccessToastMessageDisappear();
+				webDB.waitUntilElementToNotBeStale(EmployeeAdjustmentLocators.AdjustmentTableAdjustmentNoData(),
+						ElementType.Xpath);
 				flag = webDB.waitForElement(EmployeeAdjustmentLocators.AdjustmentTableAdjustmentNoData(),
 						ElementType.Xpath);
 				if (flag) {

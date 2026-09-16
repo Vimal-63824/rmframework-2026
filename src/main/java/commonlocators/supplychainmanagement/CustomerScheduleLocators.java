@@ -11,7 +11,7 @@ public class CustomerScheduleLocators {
 	/** @Locator Xpath */
 	public static final String CustomerScheduleNode = "//span[text()='Supply Chain']/ancestor::li/*/li[4]/*/li[2]/*/li[4]";
 	/** @Locator Xpath */
-	public static final String CSFrame = "//iframe[@title='Customer Schedule']";
+	public static final String CSFrame = "//iframe[contains(@title,'Create')]";
 	/** @Locator Xpath */
 	public static final String CSButton = "//span[text()='Customer Schedule']";
 	/** @Locator Xpath */
