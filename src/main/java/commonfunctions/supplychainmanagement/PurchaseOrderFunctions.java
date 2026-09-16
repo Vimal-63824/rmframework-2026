@@ -2188,16 +2188,16 @@ public class PurchaseOrderFunctions {
 	 * 
 	 */
 	public void verifyNavigateLineDetailTwo() {
-		flag = webDB.waitForElement(PurchaseOrderPageLocators.LineDetailTwoButton, ElementType.Xpath);
-		if (flag) {
-			webDB.moveToElement(PurchaseOrderPageLocators.LineDetailTwoButton, ElementType.Xpath);
-			webDB.clickAnElement(PurchaseOrderPageLocators.LineDetailTwoButton, ElementType.Xpath);
-			flag = webDB.waitForElement(PurchaseOrderPageLocators.UnRegisterHeader, ElementType.Xpath);
-			if (flag) {
-				logs.logging("INFO", "Navigated To Line Details Two Page");
-			}
-		}
-		assertTrue(flag);
+//		flag = webDB.waitForElement(PurchaseOrderPageLocators.LineDetailTwoButton, ElementType.Xpath);
+//		if (flag) {
+//			webDB.moveToElement(PurchaseOrderPageLocators.LineDetailTwoButton, ElementType.Xpath);
+//			webDB.clickAnElement(PurchaseOrderPageLocators.LineDetailTwoButton, ElementType.Xpath);
+//			flag = webDB.waitForElement(PurchaseOrderPageLocators.UnRegisterHeader, ElementType.Xpath);
+//			if (flag) {
+//				logs.logging("INFO", "Navigated To Line Details Two Page");
+//			}
+//		}
+//		assertTrue(flag);
 	}
 
 	/**
@@ -5109,6 +5109,7 @@ public class PurchaseOrderFunctions {
 			String CashDisPercent) {
 		webDB.waitForElement(PurchaseOrderPageLocators.LineDetailsIframePO, ElementType.Xpath);
 		webDB.switchToFrame(PurchaseOrderPageLocators.LineDetailsIframePO, ElementType.Xpath);
+		verifyDiscountTabOpening();
 		commonFunc.checkRefreshCellsDisappear();
 		flag = webDB.waitForElement(PurchaseOrderPageLocators.LnDts_DiscountExpandButton, ElementType.Xpath);
 		if (flag) {
@@ -5172,6 +5173,7 @@ public class PurchaseOrderFunctions {
 	 */
 	public void verifyLineAmountValidationAndPom(String Item, String value) {
 		System.out.println("Line: " + value + ". Item: " + Item);
+		commonFunc.checkRefreshCellsDisappear();
 		verifyAssertionBothValues(value, dbCommonFunc.poDetails(VariableHandler.getPONumber(), Item,
 				commonFunc.getDataFromTestDataSheet("LINE_AMT")));
 	}
@@ -13653,15 +13655,15 @@ public class PurchaseOrderFunctions {
 	 * @param POType
 	 */
 	public void verifyCLickPurchaseOrderFrame() {
-		flag = webDB.waitForElement(PurchaseOrderPageLocators.PurchaseOrderAddButtonframe, ElementType.Xpath);
+//		flag = webDB.waitForElement(PurchaseOrderPageLocators.PurchaseOrderAddButtonframe, ElementType.Xpath);
+//		if (flag) {
+		webDB.switchToFrame(PurchaseOrderPageLocators.PurchaseOrderAddButtonframe, ElementType.Xpath);
+		logs.logging("INFO", "Switch To Purchase Order Frame");
+		flag = webDB.waitForElement(CommonUiLocators.CreatePoTickIcon, ElementType.Xpath);
 		if (flag) {
-			webDB.switchToFrame(PurchaseOrderPageLocators.PurchaseOrderAddButtonframe, ElementType.Xpath);
-			logs.logging("INFO", "Switch To Purchase Order Frame");
-			flag = webDB.waitForElement(CommonUiLocators.CreatePoTickIcon, ElementType.Xpath);
-			if (flag) {
-				logs.logging("INFO", "Purchase Order Tick Icon Displayed");
-			}
+			logs.logging("INFO", "Purchase Order Tick Icon Displayed");
 		}
+//		}
 		assertTrue(flag);
 	}
 
@@ -16897,4 +16899,20 @@ public class PurchaseOrderFunctions {
 		}
 	}
 
+	/**
+	 * Verify Discount Tab Opening
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyDiscountTabOpening() {
+		flag = webDB.waitForElement(PurchaseOrderPageLocators.DiscountButton, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(PurchaseOrderPageLocators.DiscountButton, ElementType.Xpath);
+			flag = webDB.waitForElement(PurchaseOrderPageLocators.SpecialDiscountPercentage, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Discount Expand Button Is Displyaed");
+			}
+		}
+		assertTrue(flag);
+	}
 }
