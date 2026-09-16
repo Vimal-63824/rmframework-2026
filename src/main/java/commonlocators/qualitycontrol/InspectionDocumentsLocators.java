@@ -57,7 +57,7 @@ public class InspectionDocumentsLocators {
 	/** @locatorType Xpath */
 	public static final String InspectionPlanNumber = "//input[@data-testid='P20171310201_TQHD_INSP_PLAN_NO_1']";
 	/** @locatorType Xpath */
-	public static final String InspectiondocumentShowMore = "//button[@data-testid='Show_More']";
+	public static final String InspectiondocumentShowMore = "//button[@id='M']";
 	/** @locatorType Xpath */
 	public static final String observationTab = "//label[@for='P20171310201_TAB_4']";
 	/** @locatorType Xpath */
@@ -67,7 +67,7 @@ public class InspectionDocumentsLocators {
 	/** @locatorType Xpath */
 	public static final String ObservationValueInput = "//input[@data-testid='TQOB_VALUE']";
 	/** @locatorType Xpath */
-	public static final String InspectiondocumentShowLess = "//button[@data-testid='Show_Less']";
+	public static final String InspectiondocumentShowLess = "//button[@id='L']";
 	/** @locatorType Xpath */
 	public static final String InspectionDocumentSuccessMsg = "//*[@id='t_Alert_Success']/div/div[2]/div/h6";
 	/** @locatorType Xpath */
