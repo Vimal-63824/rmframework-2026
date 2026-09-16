@@ -5,10 +5,12 @@ import java.lang.reflect.Method;
 import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import commonfunctions.Author;
 import commonfunctions.CommonFunctions;
+import commonfunctions.VariableHandler;
 import commonfunctions.qualitycontrol.InspectionDocumentFunctions;
 import commonfunctions.qualitycontrol.InspectionPlanFunctions;
 import utils.ReportLoger;
@@ -24,6 +26,16 @@ public class QualityInspectionTest extends RoadMapERPTest {
 	private static InspectionPlanFunctions InsPlanFunc = new InspectionPlanFunctions();
 	private static InspectionDocumentFunctions InsDocFunc = new InspectionDocumentFunctions();
 	private static int previousStatus = ITestResult.SUCCESS;
+
+	@BeforeMethod(alwaysRun = true)
+	private void VerifyLogin() {
+		if (VariableHandler.getSessionID() == null) {
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+					"AdminUsername");
+		} else {
+			commonFunc.navigateToHomePage();
+		}
+	}
 
 	/**
 	 * Define Inspection Plan - InComing inspection?
@@ -79,10 +91,10 @@ public class QualityInspectionTest extends RoadMapERPTest {
 	@AfterMethod
 	public void VerifyAfterMethod(ITestResult result, Method method) {
 		previousStatus = result.getStatus();
-		commonFunc.enterAuthorNamesInExtentReport(method);
 		if (previousStatus == ITestResult.FAILURE || previousStatus == ITestResult.SKIP) {
 			commonFunc.verifyAfterMethod();
 		}
+		commonFunc.enterAuthorNamesInExtentReport(method);
 	}
 
 }
