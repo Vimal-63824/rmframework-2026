@@ -480,7 +480,7 @@ public class PurchaseOrderPageLocators {
 
 	/** @locatorType Xpath */
 	public static final String PurchaseOrderLineDetailForServiceItem(int i) {
-		return "//*[@id='ig_po_lineitems_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[" + i + "]/td[36]";
+		return "//*[@id='ig_po_lineitems_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[" + i + "]/td[1]";
 	}
 
 	/** @locatorType Xpath */
@@ -578,5 +578,9 @@ public class PurchaseOrderPageLocators {
 	public static final String GrnRequired() {
 		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(AddTablePOScreen, "GRN Rqrd.");
 	}
+	/** @locatorType Xpath */
+	public static final String PoDetails = "//a[@data-action='LN_DTLS']";
+	/** @locatorType Xpath */
+	public static final String ExpandDiscountField = "//button[@aria-controls='a_Collapsible2_R1534433044390492718_content']";
 
 }
