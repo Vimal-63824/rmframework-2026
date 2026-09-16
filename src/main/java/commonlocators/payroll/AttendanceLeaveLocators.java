@@ -530,6 +530,8 @@ public class AttendanceLeaveLocators {
 	/** @locatorType Xpath */
 	public static final String LoanPaymentFindSearch = "//button[@data-testid='ELN_SEARCH_Button']";
 	/** @locatorType Xpath */
+	public static final String LoanPaymentFindSearchBar = "(//input[contains(@aria-label,'Search')])[1]";
+	/** @locatorType Xpath */
 	public static final String LoanPaymentFindTable = "(//table[contains(@data-testid,'loan_detail_Result')])[2]//tr/th";
 
 	/** @locatorType Xpath */
@@ -925,7 +927,7 @@ public class AttendanceLeaveLocators {
 	/** @locatorType Xpath */
 	public static final String ResignRequestFindSearchButton = "//button[@id='SEARCH']";
 	/** @locatorType Xpath */
-	public static final String ResignRequestFindTable = "//table[@data-testid='detail_Result_Title']//tr/th";
+	public static final String ResignRequestFindTable = "//table[@data-testid='detail_Result_Data']//tr/th";
 
 	/** @locatorType Xpath */
 	public static final String ResignRequestFindDocSelect() {

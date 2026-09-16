@@ -99,15 +99,15 @@ public class Purchase_GRN_FOCFunctions {
 				POfunc.verifyDirectPoLineWiseSaved();
 				commonFunc.checkRefreshCellsDisappear();
 				POfunc.verifyLineAmountValidationAndPom(item, LineAmount);
-				POfunc.navigateToLineDetailPage(item);
+				POfunc.clickThreeDotsNavigateToLineDetails(i - 2);
 				POfunc.verifyEnterAmountForDiscountCalculation(TradePercentage, SplDiscPercentage, CashDiscPercentage);
-				POfunc.verifyNavigateLineDetailTwo();
+				// POfunc.verifyNavigateLineDetailTwo();
 				POfunc.verifyTaxValidation(item, TaxPercent, cgst, sgst, Igst, Utgst, CessPercent, Cess);
 				POfunc.verifyDiscountCalculationVerification(item, TradeAssblValue, TradeAmt, SDAssemblValue, SDAmt,
 						CDAssemblValue, CDAmt);
-				POfunc.navigateToLineDetailPage(item);
+				POfunc.clickThreeDotsNavigateToLineDetails(i - 2);
 				POfunc.switchToLineDetailFrame();
-				POfunc.verifyNavigateLineDetailTwo();
+				// POfunc.verifyNavigateLineDetailTwo();
 				POfunc.enableFreeOfCostCheckbox();
 				POfunc.verifyAddItemInPOWithQuantityAndUnitCost(Quantity, "0");
 				POfunc.verifyTickIconcreateItem();
@@ -120,7 +120,7 @@ public class Purchase_GRN_FOCFunctions {
 		}
 		POfunc.verifyHeaderTickAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
-			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			approveFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
 			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
@@ -194,15 +194,15 @@ public class Purchase_GRN_FOCFunctions {
 				POfunc.verifyDirectPoLineWiseSaved();
 				commonFunc.checkRefreshCellsDisappear();
 				POfunc.verifyLineAmountValidationAndPom(item, LineAmount);
-				POfunc.navigateToLineDetailPage(item);
+				POfunc.clickThreeDotsNavigateToLineDetails(i - 2);
 				POfunc.verifyEnterAmountForDiscountCalculation(TradePercentage, SplDiscPercentage, CashDiscPercentage);
-				POfunc.verifyNavigateLineDetailTwo();
+				// POfunc.verifyNavigateLineDetailTwo();
 				POfunc.verifyTaxValidation(item, TaxPercent, cgst, sgst, Igst, Utgst, CessPercent, Cess);
 				POfunc.verifyDiscountCalculationVerification(item, TradeAssblValue, TradeAmt, SDAssemblValue, SDAmt,
 						CDAssemblValue, CDAmt);
-				POfunc.navigateToLineDetailPage(item);
+				POfunc.clickThreeDotsNavigateToLineDetails(i - 2);
 				POfunc.switchToLineDetailFrame();
-				POfunc.verifyNavigateLineDetailTwo();
+				// POfunc.verifyNavigateLineDetailTwo();
 				POfunc.enableFreeOfCostCheckbox();
 				POfunc.verifyAddItemInPOWithQuantityAndUnitCost(Quantity, "0");
 				POfunc.verifyTickIconcreateItem();
@@ -214,7 +214,7 @@ public class Purchase_GRN_FOCFunctions {
 		}
 		POfunc.verifyHeaderTickAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
-			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			approveFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
 			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
@@ -288,15 +288,15 @@ public class Purchase_GRN_FOCFunctions {
 				POfunc.verifyDirectPoLineWiseSaved();
 				commonFunc.checkRefreshCellsDisappear();
 				POfunc.verifyLineAmountValidationAndPom(item, LineAmount);
-				POfunc.navigateToLineDetailPage(item);
+				POfunc.clickThreeDotsNavigateToLineDetails(i - 2);
 				POfunc.verifyEnterAmountForDiscountCalculation(TradePercentage, SplDiscPercentage, CashDiscPercentage);
-				POfunc.verifyNavigateLineDetailTwo();
+				// POfunc.verifyNavigateLineDetailTwo();
 				POfunc.verifyTaxValidation(item, TaxPercent, cgst, sgst, Igst, Utgst, CessPercent, Cess);
 				POfunc.verifyDiscountCalculationVerification(item, TradeAssblValue, TradeAmt, SDAssemblValue, SDAmt,
 						CDAssemblValue, CDAmt);
-				POfunc.navigateToLineDetailPage(item);
+				POfunc.clickThreeDotsNavigateToLineDetails(i - 2);
 				POfunc.switchToLineDetailFrame();
-				POfunc.verifyNavigateLineDetailTwo();
+				// POfunc.verifyNavigateLineDetailTwo();
 				POfunc.enableFreeOfCostCheckbox();
 				POfunc.verifyAddItemInPOWithQuantityAndUnitCost(Quantity, "0");
 				POfunc.verifyTickIconcreateItem();
@@ -308,7 +308,7 @@ public class Purchase_GRN_FOCFunctions {
 		}
 		POfunc.verifyHeaderTickAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
-			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			approveFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
 			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
@@ -382,15 +382,15 @@ public class Purchase_GRN_FOCFunctions {
 				POfunc.verifyDirectPoLineWiseSaved();
 				commonFunc.checkRefreshCellsDisappear();
 				POfunc.verifyLineAmountValidationAndPom(item, LineAmount);
-				POfunc.navigateToLineDetailPage(item);
+				POfunc.clickThreeDotsNavigateToLineDetails(i - 2);
 				POfunc.verifyEnterAmountForDiscountCalculation(TradePercentage, SplDiscPercentage, CashDiscPercentage);
-				POfunc.verifyNavigateLineDetailTwo();
+				// POfunc.verifyNavigateLineDetailTwo();
 				POfunc.verifyTaxValidation(item, TaxPercent, cgst, sgst, Igst, Utgst, CessPercent, Cess);
 				POfunc.verifyDiscountCalculationVerification(item, TradeAssblValue, TradeAmt, SDAssemblValue, SDAmt,
 						CDAssemblValue, CDAmt);
-				POfunc.navigateToLineDetailPage(item);
+				POfunc.clickThreeDotsNavigateToLineDetails(i - 2);
 				POfunc.switchToLineDetailFrame();
-				POfunc.verifyNavigateLineDetailTwo();
+				// POfunc.verifyNavigateLineDetailTwo();
 				POfunc.enableFreeOfCostCheckbox();
 				POfunc.verifyAddItemInPOWithQuantityAndUnitCost(Quantity, "0");
 				POfunc.verifyTickIconcreateItem();
@@ -402,7 +402,7 @@ public class Purchase_GRN_FOCFunctions {
 		}
 		POfunc.verifyHeaderTickAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
-			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			approveFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
 			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
@@ -476,15 +476,15 @@ public class Purchase_GRN_FOCFunctions {
 				POfunc.verifyDirectPoLineWiseSaved();
 				commonFunc.checkRefreshCellsDisappear();
 				POfunc.verifyLineAmountValidationAndPom(item, LineAmount);
-				POfunc.navigateToLineDetailPage(item);
+				POfunc.clickThreeDotsNavigateToLineDetails(i - 2);
 				POfunc.verifyEnterAmountForDiscountCalculation(TradePercentage, SplDiscPercentage, CashDiscPercentage);
-				POfunc.verifyNavigateLineDetailTwo();
+				// POfunc.verifyNavigateLineDetailTwo();
 				POfunc.verifyTaxValidation(item, TaxPercent, cgst, sgst, Igst, Utgst, CessPercent, Cess);
 				POfunc.verifyDiscountCalculationVerification(item, TradeAssblValue, TradeAmt, SDAssemblValue, SDAmt,
 						CDAssemblValue, CDAmt);
-				POfunc.navigateToLineDetailPage(item);
+				POfunc.clickThreeDotsNavigateToLineDetails(i - 2);
 				POfunc.switchToLineDetailFrame();
-				POfunc.verifyNavigateLineDetailTwo();
+				// POfunc.verifyNavigateLineDetailTwo();
 				POfunc.enableFreeOfCostCheckbox();
 				POfunc.verifyAddItemInPOWithQuantityAndUnitCost(Quantity, "0");
 				POfunc.verifyTickIconcreateItem();
@@ -496,7 +496,7 @@ public class Purchase_GRN_FOCFunctions {
 		}
 		POfunc.verifyHeaderTickAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
-			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			approveFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
 			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
@@ -570,15 +570,15 @@ public class Purchase_GRN_FOCFunctions {
 				POfunc.verifyDirectPoLineWiseSaved();
 				commonFunc.checkRefreshCellsDisappear();
 				POfunc.verifyLineAmountValidationAndPom(item, LineAmount);
-				POfunc.navigateToLineDetailPage(item);
+				POfunc.clickThreeDotsNavigateToLineDetails(i - 2);
 				POfunc.verifyEnterAmountForDiscountCalculation(TradePercentage, SplDiscPercentage, CashDiscPercentage);
-				POfunc.verifyNavigateLineDetailTwo();
+				// POfunc.verifyNavigateLineDetailTwo();
 				POfunc.verifyTaxValidation(item, TaxPercent, cgst, sgst, Igst, Utgst, CessPercent, Cess);
 				POfunc.verifyDiscountCalculationVerification(item, TradeAssblValue, TradeAmt, SDAssemblValue, SDAmt,
 						CDAssemblValue, CDAmt);
-				POfunc.navigateToLineDetailPage(item);
+				POfunc.clickThreeDotsNavigateToLineDetails(i - 2);
 				POfunc.switchToLineDetailFrame();
-				POfunc.verifyNavigateLineDetailTwo();
+				// POfunc.verifyNavigateLineDetailTwo();
 				POfunc.enableFreeOfCostCheckbox();
 				POfunc.verifyAddItemInPOWithQuantityAndUnitCost(Quantity, "0");
 				POfunc.verifyTickIconcreateItem();
@@ -590,7 +590,7 @@ public class Purchase_GRN_FOCFunctions {
 		}
 		POfunc.verifyHeaderTickAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
-			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			approveFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
 			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
@@ -664,15 +664,15 @@ public class Purchase_GRN_FOCFunctions {
 				POfunc.verifyDirectPoLineWiseSaved();
 				commonFunc.checkRefreshCellsDisappear();
 				POfunc.verifyLineAmountValidationAndPom(item, LineAmount);
-				POfunc.navigateToLineDetailPage(item);
+				POfunc.clickThreeDotsNavigateToLineDetails(i - 2);
 				POfunc.verifyEnterAmountForDiscountCalculation(TradePercentage, SplDiscPercentage, CashDiscPercentage);
-				POfunc.verifyNavigateLineDetailTwo();
+				// POfunc.verifyNavigateLineDetailTwo();
 				POfunc.verifyTaxValidation(item, TaxPercent, cgst, sgst, Igst, Utgst, CessPercent, Cess);
 				POfunc.verifyDiscountCalculationVerification(item, TradeAssblValue, TradeAmt, SDAssemblValue, SDAmt,
 						CDAssemblValue, CDAmt);
-				POfunc.navigateToLineDetailPage(item);
+				POfunc.clickThreeDotsNavigateToLineDetails(i - 2);
 				POfunc.switchToLineDetailFrame();
-				POfunc.verifyNavigateLineDetailTwo();
+				// POfunc.verifyNavigateLineDetailTwo();
 				POfunc.enableFreeOfCostCheckbox();
 				POfunc.verifyAddItemInPOWithQuantityAndUnitCost(Quantity, "0");
 				POfunc.verifyTickIconcreateItem();
@@ -684,7 +684,7 @@ public class Purchase_GRN_FOCFunctions {
 		}
 		POfunc.verifyHeaderTickAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
-			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			approveFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
 			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
@@ -758,15 +758,15 @@ public class Purchase_GRN_FOCFunctions {
 				POfunc.verifyDirectPoLineWiseSaved();
 				commonFunc.checkRefreshCellsDisappear();
 				POfunc.verifyLineAmountValidationAndPom(item, LineAmount);
-				POfunc.navigateToLineDetailPage(item);
+				POfunc.clickThreeDotsNavigateToLineDetails(i - 2);
 				POfunc.verifyEnterAmountForDiscountCalculation(TradePercentage, SplDiscPercentage, CashDiscPercentage);
-				POfunc.verifyNavigateLineDetailTwo();
+				// POfunc.verifyNavigateLineDetailTwo();
 				POfunc.verifyTaxValidation(item, TaxPercent, cgst, sgst, Igst, Utgst, CessPercent, Cess);
 				POfunc.verifyDiscountCalculationVerification(item, TradeAssblValue, TradeAmt, SDAssemblValue, SDAmt,
 						CDAssemblValue, CDAmt);
-				POfunc.navigateToLineDetailPage(item);
+				POfunc.clickThreeDotsNavigateToLineDetails(i - 2);
 				POfunc.switchToLineDetailFrame();
-				POfunc.verifyNavigateLineDetailTwo();
+				// POfunc.verifyNavigateLineDetailTwo();
 				POfunc.enableFreeOfCostCheckbox();
 				POfunc.verifyAddItemInPOWithQuantityAndUnitCost(Quantity, "0");
 				POfunc.verifyTickIconcreateItem();
@@ -778,7 +778,7 @@ public class Purchase_GRN_FOCFunctions {
 		}
 		POfunc.verifyHeaderTickAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
-			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			approveFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
 			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
@@ -852,15 +852,15 @@ public class Purchase_GRN_FOCFunctions {
 				POfunc.verifyDirectPoLineWiseSaved();
 				commonFunc.checkRefreshCellsDisappear();
 				POfunc.verifyLineAmountValidationAndPom(item, LineAmount);
-				POfunc.navigateToLineDetailPage(item);
+				POfunc.clickThreeDotsNavigateToLineDetails(i - 2);
 				POfunc.verifyEnterAmountForDiscountCalculation(TradePercentage, SplDiscPercentage, CashDiscPercentage);
-				POfunc.verifyNavigateLineDetailTwo();
+				// POfunc.verifyNavigateLineDetailTwo();
 				POfunc.verifyTaxValidation(item, TaxPercent, cgst, sgst, Igst, Utgst, CessPercent, Cess);
 				POfunc.verifyDiscountCalculationVerification(item, TradeAssblValue, TradeAmt, SDAssemblValue, SDAmt,
 						CDAssemblValue, CDAmt);
-				POfunc.navigateToLineDetailPage(item);
+				POfunc.clickThreeDotsNavigateToLineDetails(i - 2);
 				POfunc.switchToLineDetailFrame();
-				POfunc.verifyNavigateLineDetailTwo();
+				// POfunc.verifyNavigateLineDetailTwo();
 				POfunc.enableFreeOfCostCheckbox();
 				POfunc.verifyAddItemInPOWithQuantityAndUnitCost(Quantity, "0");
 				POfunc.verifyTickIconcreateItem();
@@ -872,7 +872,7 @@ public class Purchase_GRN_FOCFunctions {
 		}
 		POfunc.verifyHeaderTickAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
-			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			approveFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
 			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
@@ -945,15 +945,15 @@ public class Purchase_GRN_FOCFunctions {
 				POfunc.verifyDirectPoLineWiseSaved();
 				commonFunc.checkRefreshCellsDisappear();
 				POfunc.verifyLineAmountValidationAndPom(item, LineAmount);
-				POfunc.navigateToLineDetailPage(item);
+				POfunc.clickThreeDotsNavigateToLineDetails(i - 2);
 				POfunc.verifyEnterAmountForDiscountCalculation(TradePercentage, SplDiscPercentage, CashDiscPercentage);
-				POfunc.verifyNavigateLineDetailTwo();
+				// POfunc.verifyNavigateLineDetailTwo();
 				POfunc.verifyTaxValidation(item, TaxPercent, cgst, sgst, Igst, Utgst, CessPercent, Cess);
 				POfunc.verifyDiscountCalculationVerification(item, TradeAssblValue, TradeAmt, SDAssemblValue, SDAmt,
 						CDAssemblValue, CDAmt);
-				POfunc.navigateToLineDetailPage(item);
+				POfunc.clickThreeDotsNavigateToLineDetails(i - 2);
 				POfunc.switchToLineDetailFrame();
-				POfunc.verifyNavigateLineDetailTwo();
+				// POfunc.verifyNavigateLineDetailTwo();
 				POfunc.enableFreeOfCostCheckbox();
 				POfunc.verifyAddItemInPOWithQuantityAndUnitCost(Quantity, "0");
 				POfunc.verifyTickIconcreateItem();
@@ -965,7 +965,7 @@ public class Purchase_GRN_FOCFunctions {
 		}
 		POfunc.verifyHeaderTickAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
-			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			approveFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
 			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
@@ -1189,7 +1189,7 @@ public class Purchase_GRN_FOCFunctions {
 		DirectGRNFunc.verifyClickingSaveLine();
 		GRN2Func.overAllSaveAndPostForExcess();
 		if (!VariableHandler.getApprovalFlag()) {
-			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			approveFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
@@ -1244,7 +1244,7 @@ public class Purchase_GRN_FOCFunctions {
 		DirectGRNFunc.verifyClickingSaveLine();
 		GRN2Func.overAllSaveAndPostForExcess();
 		if (!VariableHandler.getApprovalFlag()) {
-			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			approveFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
@@ -1295,7 +1295,7 @@ public class Purchase_GRN_FOCFunctions {
 		DirectGRNFunc.verifyClickingSaveLine();
 		GRN2Func.overAllSaveAndPostForExcess();
 		if (!VariableHandler.getApprovalFlag()) {
-			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			approveFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
@@ -1344,7 +1344,7 @@ public class Purchase_GRN_FOCFunctions {
 		DirectGRNFunc.verifyClickingSaveLine();
 		GRN2Func.overAllSaveAndPostForExcess();
 		if (!VariableHandler.getApprovalFlag()) {
-			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			approveFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
@@ -1399,7 +1399,7 @@ public class Purchase_GRN_FOCFunctions {
 		DirectGRNFunc.verifyClickingSaveLine();
 		GRN2Func.overAllSaveAndPostForExcess();
 		if (!VariableHandler.getApprovalFlag()) {
-			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			approveFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
@@ -1447,7 +1447,7 @@ public class Purchase_GRN_FOCFunctions {
 		GRN2Func.verifyClickFOCAndSaveLines();
 		GRN2Func.overAllSaveAndPostForExcess();
 		if (!VariableHandler.getApprovalFlag()) {
-			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			approveFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
@@ -1495,7 +1495,7 @@ public class Purchase_GRN_FOCFunctions {
 		GRN2Func.verifyClickFOCAndSaveLines();
 		GRN2Func.overAllSaveAndPostForExcess();
 		if (!VariableHandler.getApprovalFlag()) {
-			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			approveFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
@@ -1539,7 +1539,7 @@ public class Purchase_GRN_FOCFunctions {
 		GRN2Func.verifyClickFOCAndSaveLines();
 		GRN2Func.overAllSaveAndPostForExcess();
 		if (!VariableHandler.getApprovalFlag()) {
-			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			approveFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
@@ -1581,7 +1581,7 @@ public class Purchase_GRN_FOCFunctions {
 		GRN2Func.verifyClickFOCAndSaveLines();
 		GRN2Func.overAllSaveAndPostForExcess();
 		if (!VariableHandler.getApprovalFlag()) {
-			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			approveFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
@@ -1629,7 +1629,7 @@ public class Purchase_GRN_FOCFunctions {
 		GRN2Func.verifyClickFOCAndSaveLines();
 		GRN2Func.overAllSaveAndPostForExcess();
 		if (!VariableHandler.getApprovalFlag()) {
-			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			approveFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
@@ -1677,7 +1677,7 @@ public class Purchase_GRN_FOCFunctions {
 		GRN2Func.verifyClickFOCAndSaveLines();
 		GRN2Func.overAllSaveAndPostForExcess();
 		if (!VariableHandler.getApprovalFlag()) {
-			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			approveFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
@@ -1725,7 +1725,7 @@ public class Purchase_GRN_FOCFunctions {
 		GRN2Func.verifyClickFOCAndSaveLines();
 		GRN2Func.overAllSaveAndPostForExcess();
 		if (!VariableHandler.getApprovalFlag()) {
-			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			approveFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
@@ -1769,7 +1769,7 @@ public class Purchase_GRN_FOCFunctions {
 		GRN2Func.verifyClickFOCAndSaveLines();
 		GRN2Func.overAllSaveAndPostForExcess();
 		if (!VariableHandler.getApprovalFlag()) {
-			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			approveFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
@@ -1811,7 +1811,7 @@ public class Purchase_GRN_FOCFunctions {
 		GRN2Func.verifyClickFOCAndSaveLines();
 		GRN2Func.overAllSaveAndPostForExcess();
 		if (!VariableHandler.getApprovalFlag()) {
-			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			approveFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
@@ -1859,7 +1859,7 @@ public class Purchase_GRN_FOCFunctions {
 		GRN2Func.verifyClickFOCAndSaveLines();
 		GRN2Func.overAllSaveAndPostForExcess();
 		if (!VariableHandler.getApprovalFlag()) {
-			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			approveFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
@@ -1919,7 +1919,7 @@ public class Purchase_GRN_FOCFunctions {
 		DirectGRNFunc.lotSerialQtyApportion();
 		GRN2Func.overAllSaveAndPostForExcess();
 		if (!VariableHandler.getApprovalFlag()) {
-			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			approveFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("L3"),
 					System.getProperty("HariUsername"));
@@ -1976,7 +1976,7 @@ public class Purchase_GRN_FOCFunctions {
 		DirectGRNFunc.lotSerialQtyApportion();
 		GRN2Func.overAllSaveAndPostForExcess();
 		if (!VariableHandler.getApprovalFlag()) {
-			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			approveFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("L3"),
 					System.getProperty("HariUsername"));
@@ -2033,7 +2033,7 @@ public class Purchase_GRN_FOCFunctions {
 		DirectGRNFunc.lotSerialQtyApportion();
 		GRN2Func.overAllSaveAndPostForExcess();
 		if (!VariableHandler.getApprovalFlag()) {
-			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			approveFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("L3"),
 					System.getProperty("HariUsername"));
@@ -2090,7 +2090,7 @@ public class Purchase_GRN_FOCFunctions {
 		DirectGRNFunc.lotSerialQtyApportion();
 		GRN2Func.overAllSaveAndPostForExcess();
 		if (!VariableHandler.getApprovalFlag()) {
-			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			approveFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("L3"),
 					System.getProperty("HariUsername"));
@@ -2147,7 +2147,7 @@ public class Purchase_GRN_FOCFunctions {
 		DirectGRNFunc.lotSerialQtyApportion();
 		GRN2Func.overAllSaveAndPostForExcess();
 		if (!VariableHandler.getApprovalFlag()) {
-			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			approveFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("L3"),
 					System.getProperty("HariUsername"));
@@ -2204,7 +2204,7 @@ public class Purchase_GRN_FOCFunctions {
 		DirectGRNFunc.lotSerialQtyApportion();
 		GRN2Func.overAllSaveAndPostForExcess();
 		if (!VariableHandler.getApprovalFlag()) {
-			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			approveFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("L3"),
 					System.getProperty("HariUsername"));
@@ -2261,7 +2261,7 @@ public class Purchase_GRN_FOCFunctions {
 		DirectGRNFunc.lotSerialQtyApportion();
 		GRN2Func.overAllSaveAndPostForExcess();
 		if (!VariableHandler.getApprovalFlag()) {
-			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			approveFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("L3"),
 					System.getProperty("HariUsername"));
@@ -2318,7 +2318,7 @@ public class Purchase_GRN_FOCFunctions {
 		DirectGRNFunc.lotSerialQtyApportion();
 		GRN2Func.overAllSaveAndPostForExcess();
 		if (!VariableHandler.getApprovalFlag()) {
-			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			approveFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("L3"),
 					System.getProperty("HariUsername"));
@@ -2375,7 +2375,7 @@ public class Purchase_GRN_FOCFunctions {
 		DirectGRNFunc.lotSerialQtyApportion();
 		GRN2Func.overAllSaveAndPostForExcess();
 		if (!VariableHandler.getApprovalFlag()) {
-			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			approveFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("L3"),
 					System.getProperty("HariUsername"));
@@ -2432,7 +2432,7 @@ public class Purchase_GRN_FOCFunctions {
 		DirectGRNFunc.lotSerialQtyApportion();
 		GRN2Func.overAllSaveAndPostForExcess();
 		if (!VariableHandler.getApprovalFlag()) {
-			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			approveFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("L3"),
 					System.getProperty("HariUsername"));
@@ -2489,7 +2489,7 @@ public class Purchase_GRN_FOCFunctions {
 		DirectGRNFunc.lotSerialQtyApportion();
 		GRN2Func.overAllSaveAndPostForExcess();
 		if (!VariableHandler.getApprovalFlag()) {
-			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			approveFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("L3"),
 					System.getProperty("HariUsername"));
@@ -2546,7 +2546,7 @@ public class Purchase_GRN_FOCFunctions {
 		DirectGRNFunc.lotSerialQtyApportion();
 		GRN2Func.overAllSaveAndPostForExcess();
 		if (!VariableHandler.getApprovalFlag()) {
-			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			approveFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("L3"),
 					System.getProperty("HariUsername"));
@@ -2603,7 +2603,7 @@ public class Purchase_GRN_FOCFunctions {
 		DirectGRNFunc.lotSerialQtyApportion();
 		GRN2Func.overAllSaveAndPostForExcess();
 		if (!VariableHandler.getApprovalFlag()) {
-			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			approveFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("L3"),
 					System.getProperty("HariUsername"));
@@ -2660,7 +2660,7 @@ public class Purchase_GRN_FOCFunctions {
 		DirectGRNFunc.lotSerialQtyApportion();
 		GRN2Func.overAllSaveAndPostForExcess();
 		if (!VariableHandler.getApprovalFlag()) {
-			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			approveFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("L3"),
 					System.getProperty("HariUsername"));
@@ -2717,7 +2717,7 @@ public class Purchase_GRN_FOCFunctions {
 		DirectGRNFunc.lotSerialQtyApportion();
 		GRN2Func.overAllSaveAndPostForExcess();
 		if (!VariableHandler.getApprovalFlag()) {
-			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			approveFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("L3"),
 					System.getProperty("HariUsername"));
@@ -2774,7 +2774,7 @@ public class Purchase_GRN_FOCFunctions {
 		DirectGRNFunc.lotSerialQtyApportion();
 		GRN2Func.overAllSaveAndPostForExcess();
 		if (!VariableHandler.getApprovalFlag()) {
-			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			approveFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("L3"),
 					System.getProperty("HariUsername"));
@@ -2831,7 +2831,7 @@ public class Purchase_GRN_FOCFunctions {
 		DirectGRNFunc.lotSerialQtyApportion();
 		GRN2Func.overAllSaveAndPostForExcess();
 		if (!VariableHandler.getApprovalFlag()) {
-			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			approveFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("L3"),
 					System.getProperty("HariUsername"));
@@ -2888,7 +2888,7 @@ public class Purchase_GRN_FOCFunctions {
 		DirectGRNFunc.lotSerialQtyApportion();
 		GRN2Func.overAllSaveAndPostForExcess();
 		if (!VariableHandler.getApprovalFlag()) {
-			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			approveFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("L3"),
 					System.getProperty("HariUsername"));
@@ -2945,7 +2945,7 @@ public class Purchase_GRN_FOCFunctions {
 		DirectGRNFunc.lotSerialQtyApportion();
 		GRN2Func.overAllSaveAndPostForExcess();
 		if (!VariableHandler.getApprovalFlag()) {
-			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			approveFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("L3"),
 					System.getProperty("HariUsername"));
@@ -3002,7 +3002,7 @@ public class Purchase_GRN_FOCFunctions {
 		DirectGRNFunc.lotSerialQtyApportion();
 		GRN2Func.overAllSaveAndPostForExcess();
 		if (!VariableHandler.getApprovalFlag()) {
-			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			approveFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("L3"),
 					System.getProperty("HariUsername"));
@@ -3059,7 +3059,7 @@ public class Purchase_GRN_FOCFunctions {
 		DirectGRNFunc.lotSerialQtyApportion();
 		GRN2Func.overAllSaveAndPostForExcess();
 		if (!VariableHandler.getApprovalFlag()) {
-			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			approveFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("L3"),
 					System.getProperty("HariUsername"));
@@ -3116,7 +3116,7 @@ public class Purchase_GRN_FOCFunctions {
 		DirectGRNFunc.lotSerialQtyApportion();
 		GRN2Func.overAllSaveAndPostForExcess();
 		if (!VariableHandler.getApprovalFlag()) {
-			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			approveFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("L3"),
 					System.getProperty("HariUsername"));
@@ -3173,7 +3173,7 @@ public class Purchase_GRN_FOCFunctions {
 		DirectGRNFunc.lotSerialQtyApportion();
 		GRN2Func.overAllSaveAndPostForExcess();
 		if (!VariableHandler.getApprovalFlag()) {
-			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			approveFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("L3"),
 					System.getProperty("HariUsername"));
@@ -3230,7 +3230,7 @@ public class Purchase_GRN_FOCFunctions {
 		DirectGRNFunc.lotSerialQtyApportion();
 		GRN2Func.overAllSaveAndPostForExcess();
 		if (!VariableHandler.getApprovalFlag()) {
-			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			approveFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("L3"),
 					System.getProperty("HariUsername"));
@@ -3285,7 +3285,7 @@ public class Purchase_GRN_FOCFunctions {
 //		DirectGRNFunc.lotSerialQtyApportion();
 		GRN2Func.overAllSaveAndPostForExcess();
 		if (!VariableHandler.getApprovalFlag()) {
-			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			approveFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("L3"),
 					System.getProperty("HariUsername"));
@@ -3336,7 +3336,7 @@ public class Purchase_GRN_FOCFunctions {
 //		DirectGRNFunc.lotSerialQtyApportion();
 		GRN2Func.overAllSaveAndPostForExcess();
 		if (!VariableHandler.getApprovalFlag()) {
-			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			approveFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("L3"),
 					System.getProperty("HariUsername"));
@@ -3388,7 +3388,7 @@ public class Purchase_GRN_FOCFunctions {
 //		DirectGRNFunc.lotSerialQtyApportion();
 		GRN2Func.overAllSaveAndPostForExcess();
 		if (!VariableHandler.getApprovalFlag()) {
-			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			approveFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("L3"),
 					System.getProperty("HariUsername"));
@@ -3449,15 +3449,15 @@ public class Purchase_GRN_FOCFunctions {
 						PurchaseOrderPageLocators.HsnCodeLovButton, HsnCode, PurchaseOrderPageLocators.HsnCodeInput);
 				POfunc.verifyTickIconcreateItem();
 				POfunc.verifyLineAmountValidationAndPom(item, LineAmount);
-				POfunc.navigateToLineDetailPage(item);
+				POfunc.clickThreeDotsNavigateToLineDetails(i - 2);
 				POfunc.verifyEnterAmountForDiscountCalculation(TradePercentage, SplDiscPercentage, CashDiscPercentage);
-				POfunc.verifyNavigateLineDetailTwo();
+				// POfunc.verifyNavigateLineDetailTwo();
 				POfunc.verifyTaxValidation(item, TaxPercent, cgst, sgst, Igst, Utgst, CessPercent, Cess);
 				POfunc.verifyDiscountCalculationVerification(item, TradeAssblValue, TradeAmt, SDAssemblValue, SDAmt,
 						CDAssemblValue, CDAmt);
-				POfunc.navigateToLineDetailPage(item);
+				POfunc.clickThreeDotsNavigateToLineDetails(i - 2);
 				POfunc.switchToLineDetailFrame();
-				POfunc.verifyNavigateLineDetailTwo();
+				// POfunc.verifyNavigateLineDetailTwo();
 				POfunc.enableFreeOfCostCheckbox();
 				POfunc.verifyAddItemInPOWithQuantityAndUnitCost(Quantity, "0");
 				POfunc.verifyTickIconcreateItem();
@@ -3469,7 +3469,7 @@ public class Purchase_GRN_FOCFunctions {
 		}
 		POfunc.verifyHeaderTickAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
-			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			approveFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
 			String DocumentNo = commonFunc.approveDocumentsWithDocumentNumber(webDB.getDataFromProperties("RoauBu"),
 					VariableHandler.getPONumber(), webDB.getDataFromProperties("HariEmpId"),
 					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
@@ -3537,15 +3537,15 @@ public class Purchase_GRN_FOCFunctions {
 						PurchaseOrderPageLocators.HsnCodeLovButton, HsnCode, PurchaseOrderPageLocators.HsnCodeInput);
 				POfunc.verifyTickIconcreateItem();
 				POfunc.verifyLineAmountValidationAndPom(item, LineAmount);
-				POfunc.navigateToLineDetailPage(item);
+				POfunc.clickThreeDotsNavigateToLineDetails(i - 2);
 				POfunc.verifyEnterAmountForDiscountCalculation(TradePercentage, SplDiscPercentage, CashDiscPercentage);
-				POfunc.verifyNavigateLineDetailTwo();
+				// POfunc.verifyNavigateLineDetailTwo();
 				POfunc.verifyTaxValidation(item, TaxPercent, cgst, sgst, Igst, Utgst, CessPercent, Cess);
 				POfunc.verifyDiscountCalculationVerification(item, TradeAssblValue, TradeAmt, SDAssemblValue, SDAmt,
 						CDAssemblValue, CDAmt);
-				POfunc.navigateToLineDetailPage(item);
+				POfunc.clickThreeDotsNavigateToLineDetails(i - 2);
 				POfunc.switchToLineDetailFrame();
-				POfunc.verifyNavigateLineDetailTwo();
+				// POfunc.verifyNavigateLineDetailTwo();
 				POfunc.enableFreeOfCostCheckbox();
 				POfunc.verifyAddItemInPOWithQuantityAndUnitCost(Quantity, "0");
 				POfunc.verifyTickIconcreateItem();
@@ -3557,7 +3557,7 @@ public class Purchase_GRN_FOCFunctions {
 		}
 		POfunc.verifyHeaderTickAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
-			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			approveFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
 			String DocumentNo = commonFunc.approveDocumentsWithDocumentNumber(webDB.getDataFromProperties("RoauBu"),
 					VariableHandler.getPONumber(), webDB.getDataFromProperties("HariEmpId"),
 					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
@@ -3662,15 +3662,15 @@ public class Purchase_GRN_FOCFunctions {
 						PurchaseOrderPageLocators.HsnCodeLovButton, HsnCode, PurchaseOrderPageLocators.HsnCodeInput);
 				POfunc.verifyTickIconcreateItem();
 				POfunc.verifyLineAmountValidationAndPom(item, LineAmount);
-				POfunc.navigateToLineDetailPage(item);
+				POfunc.clickThreeDotsNavigateToLineDetails(i - 2);
 				POfunc.verifyEnterAmountForDiscountCalculation(TradePercentage, SplDiscPercentage, CashDiscPercentage);
-				POfunc.verifyNavigateLineDetailTwo();
+				// POfunc.verifyNavigateLineDetailTwo();
 				POfunc.verifyTaxValidation(item, TaxPercent, cgst, sgst, Igst, Utgst, CessPercent, Cess);
 				POfunc.verifyDiscountCalculationVerification(item, TradeAssblValue, TradeAmt, SDAssemblValue, SDAmt,
 						CDAssemblValue, CDAmt);
-				POfunc.navigateToLineDetailPage(item);
+				POfunc.clickThreeDotsNavigateToLineDetails(i - 2);
 				POfunc.switchToLineDetailFrame();
-				POfunc.verifyNavigateLineDetailTwo();
+				// POfunc.verifyNavigateLineDetailTwo();
 				POfunc.enableFreeOfCostCheckbox();
 				POfunc.verifyAddItemInPOWithQuantityAndUnitCost(Quantity, "0");
 				POfunc.verifyTickIconcreateItem();
@@ -3682,7 +3682,7 @@ public class Purchase_GRN_FOCFunctions {
 		}
 		POfunc.verifyHeaderTickAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
-			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			approveFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
 			String DocumentNo = commonFunc.approveDocumentsWithDocumentNumber(webDB.getDataFromProperties("RoauBu"),
 					VariableHandler.getPONumber(), webDB.getDataFromProperties("HariEmpId"),
 					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
@@ -3787,15 +3787,15 @@ public class Purchase_GRN_FOCFunctions {
 						PurchaseOrderPageLocators.HsnCodeLovButton, HsnCode, PurchaseOrderPageLocators.HsnCodeInput);
 				POfunc.verifyTickIconcreateItem();
 				POfunc.verifyLineAmountValidationAndPom(item, LineAmount);
-				POfunc.navigateToLineDetailPage(item);
+				POfunc.clickThreeDotsNavigateToLineDetails(i - 2);
 				POfunc.verifyEnterAmountForDiscountCalculation(TradePercentage, SplDiscPercentage, CashDiscPercentage);
-				POfunc.verifyNavigateLineDetailTwo();
+				// POfunc.verifyNavigateLineDetailTwo();
 				POfunc.verifyTaxValidation(item, TaxPercent, cgst, sgst, Igst, Utgst, CessPercent, Cess);
 				POfunc.verifyDiscountCalculationVerification(item, TradeAssblValue, TradeAmt, SDAssemblValue, SDAmt,
 						CDAssemblValue, CDAmt);
-				POfunc.navigateToLineDetailPage(item);
+				POfunc.clickThreeDotsNavigateToLineDetails(i - 2);
 				POfunc.switchToLineDetailFrame();
-				POfunc.verifyNavigateLineDetailTwo();
+				// POfunc.verifyNavigateLineDetailTwo();
 				POfunc.enableFreeOfCostCheckbox();
 				POfunc.verifyAddItemInPOWithQuantityAndUnitCost(Quantity, "0");
 				POfunc.verifyTickIconcreateItem();
@@ -3807,7 +3807,7 @@ public class Purchase_GRN_FOCFunctions {
 		}
 		POfunc.verifyHeaderTickAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
-			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			approveFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
 			String DocumentNo = commonFunc.approveDocumentsWithDocumentNumber(webDB.getDataFromProperties("RoauBu"),
 					VariableHandler.getPONumber(), webDB.getDataFromProperties("HariEmpId"),
 					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
@@ -3912,15 +3912,15 @@ public class Purchase_GRN_FOCFunctions {
 						PurchaseOrderPageLocators.HsnCodeLovButton, HsnCode, PurchaseOrderPageLocators.HsnCodeInput);
 				POfunc.verifyTickIconcreateItem();
 				POfunc.verifyLineAmountValidationAndPom(item, LineAmount);
-				POfunc.navigateToLineDetailPage(item);
+				POfunc.clickThreeDotsNavigateToLineDetails(i - 2);
 				POfunc.verifyEnterAmountForDiscountCalculation(TradePercentage, SplDiscPercentage, CashDiscPercentage);
-				POfunc.verifyNavigateLineDetailTwo();
+				// POfunc.verifyNavigateLineDetailTwo();
 				POfunc.verifyTaxValidation(item, TaxPercent, cgst, sgst, Igst, Utgst, CessPercent, Cess);
 				POfunc.verifyDiscountCalculationVerification(item, TradeAssblValue, TradeAmt, SDAssemblValue, SDAmt,
 						CDAssemblValue, CDAmt);
-				POfunc.navigateToLineDetailPage(item);
+				POfunc.clickThreeDotsNavigateToLineDetails(i - 2);
 				POfunc.switchToLineDetailFrame();
-				POfunc.verifyNavigateLineDetailTwo();
+				// POfunc.verifyNavigateLineDetailTwo();
 				POfunc.enableFreeOfCostCheckbox();
 				POfunc.verifyAddItemInPOWithQuantityAndUnitCost(Quantity, "0");
 				POfunc.verifyTickIconcreateItem();
@@ -3932,7 +3932,7 @@ public class Purchase_GRN_FOCFunctions {
 		}
 		POfunc.verifyHeaderTickAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
-			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			approveFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
 			String DocumentNo = commonFunc.approveDocumentsWithDocumentNumber(webDB.getDataFromProperties("RoauBu"),
 					VariableHandler.getPONumber(), webDB.getDataFromProperties("HariEmpId"),
 					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
@@ -4038,15 +4038,15 @@ public class Purchase_GRN_FOCFunctions {
 						PurchaseOrderPageLocators.HsnCodeLovButton, HsnCode, PurchaseOrderPageLocators.HsnCodeInput);
 				POfunc.verifyTickIconcreateItem();
 				POfunc.verifyLineAmountValidationAndPom(item, LineAmount);
-				POfunc.navigateToLineDetailPage(item);
+				POfunc.clickThreeDotsNavigateToLineDetails(i - 2);
 				POfunc.verifyEnterAmountForDiscountCalculation(TradePercentage, SplDiscPercentage, CashDiscPercentage);
-				POfunc.verifyNavigateLineDetailTwo();
+				// POfunc.verifyNavigateLineDetailTwo();
 				POfunc.verifyTaxValidation(item, TaxPercent, cgst, sgst, Igst, Utgst, CessPercent, Cess);
 				POfunc.verifyDiscountCalculationVerification(item, TradeAssblValue, TradeAmt, SDAssemblValue, SDAmt,
 						CDAssemblValue, CDAmt);
-				POfunc.navigateToLineDetailPage(item);
+				POfunc.clickThreeDotsNavigateToLineDetails(i - 2);
 				POfunc.switchToLineDetailFrame();
-				POfunc.verifyNavigateLineDetailTwo();
+				// POfunc.verifyNavigateLineDetailTwo();
 				POfunc.enableFreeOfCostCheckbox();
 				POfunc.verifyAddItemInPOWithQuantityAndUnitCost(Quantity, "0");
 				POfunc.verifyTickIconcreateItem();
@@ -4058,7 +4058,7 @@ public class Purchase_GRN_FOCFunctions {
 		}
 		POfunc.verifyHeaderTickAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
-			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			approveFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
 			String DocumentNo = commonFunc.approveDocumentsWithDocumentNumber(webDB.getDataFromProperties("RoauBu"),
 					VariableHandler.getPONumber(), webDB.getDataFromProperties("HariEmpId"),
 					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
@@ -4164,15 +4164,15 @@ public class Purchase_GRN_FOCFunctions {
 						PurchaseOrderPageLocators.HsnCodeLovButton, HsnCode, PurchaseOrderPageLocators.HsnCodeInput);
 				POfunc.verifyTickIconcreateItem();
 				POfunc.verifyLineAmountValidationAndPom(item, LineAmount);
-				POfunc.navigateToLineDetailPage(item);
+				POfunc.clickThreeDotsNavigateToLineDetails(i - 2);
 				POfunc.verifyEnterAmountForDiscountCalculation(TradePercentage, SplDiscPercentage, CashDiscPercentage);
-				POfunc.verifyNavigateLineDetailTwo();
+				// POfunc.verifyNavigateLineDetailTwo();
 				POfunc.verifyTaxValidation(item, TaxPercent, cgst, sgst, Igst, Utgst, CessPercent, Cess);
 				POfunc.verifyDiscountCalculationVerification(item, TradeAssblValue, TradeAmt, SDAssemblValue, SDAmt,
 						CDAssemblValue, CDAmt);
-				POfunc.navigateToLineDetailPage(item);
+				POfunc.clickThreeDotsNavigateToLineDetails(i - 2);
 				POfunc.switchToLineDetailFrame();
-				POfunc.verifyNavigateLineDetailTwo();
+				// POfunc.verifyNavigateLineDetailTwo();
 				POfunc.enableFreeOfCostCheckbox();
 				POfunc.verifyAddItemInPOWithQuantityAndUnitCost(Quantity, "0");
 				POfunc.verifyTickIconcreateItem();
@@ -4184,7 +4184,7 @@ public class Purchase_GRN_FOCFunctions {
 		}
 		POfunc.verifyHeaderTickAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
-			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			approveFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
 			String DocumentNo = commonFunc.approveDocumentsWithDocumentNumber(webDB.getDataFromProperties("RoauBu"),
 					VariableHandler.getPONumber(), webDB.getDataFromProperties("HariEmpId"),
 					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
@@ -4290,15 +4290,15 @@ public class Purchase_GRN_FOCFunctions {
 						PurchaseOrderPageLocators.HsnCodeLovButton, HsnCode, PurchaseOrderPageLocators.HsnCodeInput);
 				POfunc.verifyTickIconcreateItem();
 				POfunc.verifyLineAmountValidationAndPom(item, LineAmount);
-				POfunc.navigateToLineDetailPage(item);
+				POfunc.clickThreeDotsNavigateToLineDetails(i - 2);
 				POfunc.verifyEnterAmountForDiscountCalculation(TradePercentage, SplDiscPercentage, CashDiscPercentage);
-				POfunc.verifyNavigateLineDetailTwo();
+				// POfunc.verifyNavigateLineDetailTwo();
 				POfunc.verifyTaxValidation(item, TaxPercent, cgst, sgst, Igst, Utgst, CessPercent, Cess);
 				POfunc.verifyDiscountCalculationVerification(item, TradeAssblValue, TradeAmt, SDAssemblValue, SDAmt,
 						CDAssemblValue, CDAmt);
-				POfunc.navigateToLineDetailPage(item);
+				POfunc.clickThreeDotsNavigateToLineDetails(i - 2);
 				POfunc.switchToLineDetailFrame();
-				POfunc.verifyNavigateLineDetailTwo();
+				// POfunc.verifyNavigateLineDetailTwo();
 				POfunc.enableFreeOfCostCheckbox();
 				POfunc.verifyAddItemInPOWithQuantityAndUnitCost(Quantity, "0");
 				POfunc.verifyTickIconcreateItem();
@@ -4310,7 +4310,7 @@ public class Purchase_GRN_FOCFunctions {
 		}
 		POfunc.verifyHeaderTickAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
-			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			approveFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
 			String DocumentNo = commonFunc.approveDocumentsWithDocumentNumber(webDB.getDataFromProperties("RoauBu"),
 					VariableHandler.getPONumber(), webDB.getDataFromProperties("HariEmpId"),
 					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
@@ -4416,15 +4416,15 @@ public class Purchase_GRN_FOCFunctions {
 						PurchaseOrderPageLocators.HsnCodeLovButton, HsnCode, PurchaseOrderPageLocators.HsnCodeInput);
 				POfunc.verifyTickIconcreateItem();
 				POfunc.verifyLineAmountValidationAndPom(item, LineAmount);
-				POfunc.navigateToLineDetailPage(item);
+				POfunc.clickThreeDotsNavigateToLineDetails(i - 2);
 				POfunc.verifyEnterAmountForDiscountCalculation(TradePercentage, SplDiscPercentage, CashDiscPercentage);
-				POfunc.verifyNavigateLineDetailTwo();
+				// POfunc.verifyNavigateLineDetailTwo();
 				POfunc.verifyTaxValidation(item, TaxPercent, cgst, sgst, Igst, Utgst, CessPercent, Cess);
 				POfunc.verifyDiscountCalculationVerification(item, TradeAssblValue, TradeAmt, SDAssemblValue, SDAmt,
 						CDAssemblValue, CDAmt);
-				POfunc.navigateToLineDetailPage(item);
+				POfunc.clickThreeDotsNavigateToLineDetails(i - 2);
 				POfunc.switchToLineDetailFrame();
-				POfunc.verifyNavigateLineDetailTwo();
+				// POfunc.verifyNavigateLineDetailTwo();
 				POfunc.enableFreeOfCostCheckbox();
 				POfunc.verifyAddItemInPOWithQuantityAndUnitCost(Quantity, "0");
 				POfunc.verifyTickIconcreateItem();
@@ -4436,7 +4436,7 @@ public class Purchase_GRN_FOCFunctions {
 		}
 		POfunc.verifyHeaderTickAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
-			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			approveFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
 			String DocumentNo = commonFunc.approveDocumentsWithDocumentNumber(webDB.getDataFromProperties("RoauBu"),
 					VariableHandler.getPONumber(), webDB.getDataFromProperties("HariEmpId"),
 					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
@@ -4541,15 +4541,15 @@ public class Purchase_GRN_FOCFunctions {
 						PurchaseOrderPageLocators.HsnCodeLovButton, HsnCode, PurchaseOrderPageLocators.HsnCodeInput);
 				POfunc.verifyTickIconcreateItem();
 				POfunc.verifyLineAmountValidationAndPom(item, LineAmount);
-				POfunc.navigateToLineDetailPage(item);
+				POfunc.clickThreeDotsNavigateToLineDetails(i - 2);
 				POfunc.verifyEnterAmountForDiscountCalculation(TradePercentage, SplDiscPercentage, CashDiscPercentage);
-				POfunc.verifyNavigateLineDetailTwo();
+				// POfunc.verifyNavigateLineDetailTwo();
 				POfunc.verifyTaxValidation(item, TaxPercent, cgst, sgst, Igst, Utgst, CessPercent, Cess);
 				POfunc.verifyDiscountCalculationVerification(item, TradeAssblValue, TradeAmt, SDAssemblValue, SDAmt,
 						CDAssemblValue, CDAmt);
-				POfunc.navigateToLineDetailPage(item);
+				POfunc.clickThreeDotsNavigateToLineDetails(i - 2);
 				POfunc.switchToLineDetailFrame();
-				POfunc.verifyNavigateLineDetailTwo();
+				// POfunc.verifyNavigateLineDetailTwo();
 				POfunc.enableFreeOfCostCheckbox();
 				POfunc.verifyAddItemInPOWithQuantityAndUnitCost(Quantity, "0");
 				POfunc.verifyTickIconcreateItem();
@@ -4561,7 +4561,7 @@ public class Purchase_GRN_FOCFunctions {
 		}
 		POfunc.verifyHeaderTickAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
-			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			approveFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
 			String DocumentNo = commonFunc.approveDocumentsWithDocumentNumber(webDB.getDataFromProperties("RoauBu"),
 					VariableHandler.getPONumber(), webDB.getDataFromProperties("HariEmpId"),
 					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
@@ -4666,15 +4666,15 @@ public class Purchase_GRN_FOCFunctions {
 						PurchaseOrderPageLocators.HsnCodeLovButton, HsnCode, PurchaseOrderPageLocators.HsnCodeInput);
 				POfunc.verifyTickIconcreateItem();
 				POfunc.verifyLineAmountValidationAndPom(item, LineAmount);
-				POfunc.navigateToLineDetailPage(item);
+				POfunc.clickThreeDotsNavigateToLineDetails(i - 2);
 				POfunc.verifyEnterAmountForDiscountCalculation(TradePercentage, SplDiscPercentage, CashDiscPercentage);
-				POfunc.verifyNavigateLineDetailTwo();
+				// POfunc.verifyNavigateLineDetailTwo();
 				POfunc.verifyTaxValidation(item, TaxPercent, cgst, sgst, Igst, Utgst, CessPercent, Cess);
 				POfunc.verifyDiscountCalculationVerification(item, TradeAssblValue, TradeAmt, SDAssemblValue, SDAmt,
 						CDAssemblValue, CDAmt);
-				POfunc.navigateToLineDetailPage(item);
+				POfunc.clickThreeDotsNavigateToLineDetails(i - 2);
 				POfunc.switchToLineDetailFrame();
-				POfunc.verifyNavigateLineDetailTwo();
+				// POfunc.verifyNavigateLineDetailTwo();
 				POfunc.enableFreeOfCostCheckbox();
 				POfunc.verifyAddItemInPOWithQuantityAndUnitCost(Quantity, "0");
 				POfunc.verifyTickIconcreateItem();
@@ -4686,7 +4686,7 @@ public class Purchase_GRN_FOCFunctions {
 		}
 		POfunc.verifyHeaderTickAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
-			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			approveFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
 			String DocumentNo = commonFunc.approveDocumentsWithDocumentNumber(webDB.getDataFromProperties("RoauBu"),
 					VariableHandler.getPONumber(), webDB.getDataFromProperties("HariEmpId"),
 					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
@@ -4791,15 +4791,15 @@ public class Purchase_GRN_FOCFunctions {
 						PurchaseOrderPageLocators.HsnCodeLovButton, HsnCode, PurchaseOrderPageLocators.HsnCodeInput);
 				POfunc.verifyTickIconcreateItem();
 				POfunc.verifyLineAmountValidationAndPom(item, LineAmount);
-				POfunc.navigateToLineDetailPage(item);
+				POfunc.clickThreeDotsNavigateToLineDetails(i - 2);
 				POfunc.verifyEnterAmountForDiscountCalculation(TradePercentage, SplDiscPercentage, CashDiscPercentage);
-				POfunc.verifyNavigateLineDetailTwo();
+				// POfunc.verifyNavigateLineDetailTwo();
 				POfunc.verifyTaxValidation(item, TaxPercent, cgst, sgst, Igst, Utgst, CessPercent, Cess);
 				POfunc.verifyDiscountCalculationVerification(item, TradeAssblValue, TradeAmt, SDAssemblValue, SDAmt,
 						CDAssemblValue, CDAmt);
-				POfunc.navigateToLineDetailPage(item);
+				POfunc.clickThreeDotsNavigateToLineDetails(i - 2);
 				POfunc.switchToLineDetailFrame();
-				POfunc.verifyNavigateLineDetailTwo();
+				// POfunc.verifyNavigateLineDetailTwo();
 				POfunc.enableFreeOfCostCheckbox();
 				POfunc.verifyAddItemInPOWithQuantityAndUnitCost(Quantity, "0");
 				POfunc.verifyTickIconcreateItem();
@@ -4811,7 +4811,7 @@ public class Purchase_GRN_FOCFunctions {
 		}
 		POfunc.verifyHeaderTickAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
-			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			approveFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
 			String DocumentNo = commonFunc.approveDocumentsWithDocumentNumber(webDB.getDataFromProperties("RoauBu"),
 					VariableHandler.getPONumber(), webDB.getDataFromProperties("HariEmpId"),
 					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
@@ -4916,15 +4916,15 @@ public class Purchase_GRN_FOCFunctions {
 						PurchaseOrderPageLocators.HsnCodeLovButton, HsnCode, PurchaseOrderPageLocators.HsnCodeInput);
 				POfunc.verifyTickIconcreateItem();
 				POfunc.verifyLineAmountValidationAndPom(item, LineAmount);
-				POfunc.navigateToLineDetailPage(item);
+				POfunc.clickThreeDotsNavigateToLineDetails(i - 2);
 				POfunc.verifyEnterAmountForDiscountCalculation(TradePercentage, SplDiscPercentage, CashDiscPercentage);
-				POfunc.verifyNavigateLineDetailTwo();
+				// POfunc.verifyNavigateLineDetailTwo();
 				POfunc.verifyTaxValidation(item, TaxPercent, cgst, sgst, Igst, Utgst, CessPercent, Cess);
 				POfunc.verifyDiscountCalculationVerification(item, TradeAssblValue, TradeAmt, SDAssemblValue, SDAmt,
 						CDAssemblValue, CDAmt);
-				POfunc.navigateToLineDetailPage(item);
+				POfunc.clickThreeDotsNavigateToLineDetails(i - 2);
 				POfunc.switchToLineDetailFrame();
-				POfunc.verifyNavigateLineDetailTwo();
+				// POfunc.verifyNavigateLineDetailTwo();
 				POfunc.enableFreeOfCostCheckbox();
 				POfunc.verifyAddItemInPOWithQuantityAndUnitCost(Quantity, "0");
 				POfunc.verifyTickIconcreateItem();
@@ -4936,7 +4936,7 @@ public class Purchase_GRN_FOCFunctions {
 		}
 		POfunc.verifyHeaderTickAndPost();
 		if (!VariableHandler.getApprovalFlag()) {
-			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			approveFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
 			String DocumentNo = commonFunc.approveDocumentsWithDocumentNumber(webDB.getDataFromProperties("RoauBu"),
 					VariableHandler.getPONumber(), webDB.getDataFromProperties("HariEmpId"),
 					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
