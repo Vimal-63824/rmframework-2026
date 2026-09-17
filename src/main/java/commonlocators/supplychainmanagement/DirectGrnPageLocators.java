@@ -259,7 +259,7 @@ public class DirectGrnPageLocators {
 	/** @locatorType Xpath */
 	public static final String GrnLineDetailsNew = "//*[@id=\"t_PageBody\"]/ul/li[1]/a";
 	/** @locatorType Xpath */
-	public static final String GrnLineDetDiscount = "//button[@aria-labelledby=\"a_Collapsible10_R277912666708252791_heading\"]";
+	public static final String GrnLineDetDiscount = "//button[@aria-labelledby=\"a_Collapsible3_R277912666708252791_heading\"]";
 	
 	
 	
