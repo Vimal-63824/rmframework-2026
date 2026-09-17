@@ -183,6 +183,7 @@ public class RfqPageFunctions {
 	 */
 
 	public void verifyClickingPndPo() {
+		for (int i = 1; i < 1; i++) {
 		flag = webDB.waitForElement(RfqLocators.PendingPo, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(RfqLocators.PendingPo, ElementType.Xpath);
@@ -195,7 +196,7 @@ public class RfqPageFunctions {
 				selectTheDocumentRfq();
 				createPOButton();
 				getDocNumPoFromRfqMulti();
-				verifyRfqNumInPoDetails();
+				verifyRfqNumInPoDetails(i);
 				verifyPoRfqPost();
 				waitingForApproval();
 				commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPONumber(),
@@ -209,6 +210,7 @@ public class RfqPageFunctions {
 					verifyPoRefind();
 				}
 			}
+		}
 		}
 		assertTrue(flag);
 	}
@@ -237,7 +239,7 @@ public class RfqPageFunctions {
 					if (flag) {
 						webDB.clickAnElement(RfqLocators.PODrillDown, ElementType.CssSelector);
 						logs.logging("INFO", "Document Is Moved ");
-						verifyRfqNumInPoDetails();
+						verifyRfqNumInPoDetails(i);
 						verifyPoRfqPost();
 						waitingForApproval();
 						forwardApprovalScreen();
@@ -280,10 +282,10 @@ public class RfqPageFunctions {
 		flag = webDB.waitForElement(RfqLocators.RfqPOPendingFrame, ElementType.Xpath);
 		if (flag) {
 			webDB.switchToFrame(RfqLocators.RfqPOPendingFrame, ElementType.Xpath);
+			webDB.clickAnElement(RfqLocators.PendingRfqShowMore, ElementType.Xpath);
 			logs.logging("INFO", "Switched To Frame");
 			flag = webDB.waitForElement(RfqLocators.RfqPendingRfqNolov, ElementType.Xpath);
 			if (flag) {
-//				webDB.sendTextToAnElement(RfqLocators.RfqPendingPrNolov, Number, ElementType.Xpath);
 				commonFunc.searchAndSelectValueInFilters(RfqLocators.RfqPendingRfqNolov, Number);
 				logs.logging("INFO", "Document Number Is :" + Number);
 			}
@@ -336,22 +338,28 @@ public class RfqPageFunctions {
 	 * 
 	 * @author Durai-RMITS
 	 */
-	public void verifyRfqNumInPoDetails() {
+	public void verifyRfqNumInPoDetails(int i) {
 		commonFunc.hardWait(2000);
 		String PONumbervalue = webDB.getDomPropertyFromElement(PurchaseOrderPageLocators.PONumber, ElementType.Xpath,
 				commonFunc.getDataFromTestDataSheet("Value"));
 		VariableHandler.setPONumber(PONumbervalue);
 		logs.logging("INFO", "Get PO Number Is: " + VariableHandler.getPONumber());
-		flag = webDB.waitForElement(RfqLocators.PoDetailsBtnCSS, ElementType.CssSelector);
+		flag = webDB.waitForElement(PurchaseOrderPageLocators.PurchaseOrderLineDetail(i), ElementType.CssSelector);
 		if (flag) {
 //			webDB.clickAnElement(RfqLocators.PoDetailsBtn, ElementType.Xpath);
-			webDB.clickAnElement(RfqLocators.PoDetailsBtnCSS, ElementType.CssSelector);
+			webDB.clickAnElement(PurchaseOrderPageLocators.PurchaseOrderLineDetail(i), ElementType.CssSelector);
 			logs.logging("INFO", "PO Details Button is Clicked");
+			
+			flag = webDB.waitForElement(PurchaseOrderPageLocators.PoDetails, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(PurchaseOrderPageLocators.PoDetails, ElementType.Xpath);
+				logs.logging("INFO", "PO Details field clicked successfully");
+				
 			webDB.switchToFrame(RfqLocators.RfqPODetailsFrame, ElementType.Xpath);
 			logs.logging("INFO", "Switched to Frame");
-			flag = webDB.waitForElement(RfqLocators.PoLineDetails2, ElementType.Xpath);
+			flag = webDB.waitForElement(RfqLocators.PoLineRfqDetails, ElementType.Xpath);
 			if (flag) {
-				webDB.clickAnElement(RfqLocators.PoLineDetails2, ElementType.Xpath);
+				webDB.clickAnElement(RfqLocators.PoLineRfqDetails, ElementType.Xpath);
 				logs.logging("INFO", "DETAILS 2 is Clicked");
 				flag = webDB.waitForElement(RfqLocators.DetailsRfqNum, ElementType.Xpath);
 				if (flag) {
@@ -376,6 +384,7 @@ public class RfqPageFunctions {
 					}
 				}
 			}
+		}
 		}
 		Assert.assertTrue(flag);
 	}

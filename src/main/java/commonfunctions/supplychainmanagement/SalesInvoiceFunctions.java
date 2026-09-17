@@ -132,9 +132,15 @@ public class SalesInvoiceFunctions {
 			webDB.clickAnElement(SalesInvoiceLocators.Invoice_column, ElementType.Xpath);
 			commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.Invoice_Pfx, InvoicePrefix);
 			logs.logging("INFO", "Invoice Prefix Is Displayed Successfully");
-			flag = webDB.waitForElement(SalesInvoiceLocators.Header_CPC_LOV_Btn, ElementType.Xpath);
+			commonFunc.hardWait(1000);
+			flag = webDB.waitForElement(SalesInvoiceLocators.SI_ShowMore, ElementType.Xpath);
 			if (flag) {
-				logs.logging("INFO", "CPC Header Lov Is Displayed Successfully");
+				webDB.clickAnElement(SalesInvoiceLocators.SI_ShowMore, ElementType.Xpath);
+				commonFunc.hardWait(1000);
+				flag = webDB.waitForElement(SalesInvoiceLocators.Header_CPC_LOV_Btn, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "CPC Header Lov Is Displayed Successfully");
+				}
 			}
 		}
 		assertTrue(flag);
@@ -166,13 +172,9 @@ public class SalesInvoiceFunctions {
 	 * @param CPC_Code
 	 */
 	public void verifyHeaderCPCCode(String CPC_Code) {
-		flag = webDB.waitForElement(SalesInvoiceLocators.CPC_Column, ElementType.Xpath);
+		flag = webDB.waitForElement(SalesInvoiceLocators.Header_CPC_LOV_Btn, ElementType.Xpath);
 		if (flag) {
-			String GetTextCPCCode = webDB.getDomPropertyFromElement(SalesInvoiceLocators.CPC_Column, ElementType.Xpath,
-					commonFunc.getDataFromTestDataSheet("Value"));
-			if (!GetTextCPCCode.equals(CPC_Code)) {
-				commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.Header_CPC_LOV_Btn, CPC_Code);
-			}
+			commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.Header_CPC_LOV_Btn, CPC_Code);
 			flag = webDB.waitForElement(SalesInvoiceLocators.SI_Header_Date_field, ElementType.Xpath);
 			if (flag) {
 				webDB.clickAnElement(SalesInvoiceLocators.SI_Header_Date_field, ElementType.Xpath);
@@ -363,10 +365,15 @@ public class SalesInvoiceFunctions {
 		flag = webDB.waitForElement(SalesInvoiceLocators.LineDetails(i - 3), ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(SalesInvoiceLocators.LineDetails(i - 3), ElementType.Xpath);
-			commonFunc.hardWait(2000);
-			flag = webDB.waitForElement(SalesInvoiceLocators.Detail_Btn_Iframe, ElementType.Xpath);
+			commonFunc.hardWait(1000);
+			flag = webDB.waitForElement(SalesInvoiceLocators.SI_detail_Button, ElementType.Xpath);
 			if (flag) {
-				logs.logging("INFO", "Linewise Detail Button Clicked Successfully");
+				webDB.clickAnElement(SalesInvoiceLocators.SI_detail_Button, ElementType.Xpath);
+				commonFunc.hardWait(2000);
+				flag = webDB.waitForElement(SalesInvoiceLocators.Detail_Btn_Iframe, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Linewise Detail Button Clicked Successfully");
+				}
 			}
 		}
 		assertTrue(flag);
@@ -749,7 +756,13 @@ public class SalesInvoiceFunctions {
 		flag = webDB.waitForElement(SalesInvoiceLocators.Detail_Btn_Iframe, ElementType.Xpath);
 		if (flag) {
 			webDB.switchToFrame(SalesInvoiceLocators.Detail_Btn_Iframe, ElementType.Xpath);
-			flag = webDB.waitForElement(SalesInvoiceLocators.Line_Det_save_Btn, ElementType.Xpath);
+			commonFunc.hardWait(1000);
+			flag = webDB.waitForElement(SalesInvoiceLocators.SI_detail_Promotional, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(SalesInvoiceLocators.SI_detail_Promotional, ElementType.Xpath);
+				commonFunc.hardWait(1000);
+				flag = webDB.waitForElement(SalesInvoiceLocators.Line_Det_save_Btn, ElementType.Xpath);
+			}
 		}
 		assertTrue(flag);
 	}
@@ -2118,14 +2131,12 @@ public class SalesInvoiceFunctions {
 	 */
 	public void verifyProformaInvoicePendingSaleOrderNo(String PI_Pend_SO_No) {
 		webDB.switchToFrame(SalesInvoiceLocators.PI_Pend_Iframe, ElementType.Xpath);
-		flag = webDB.clickAnElement(SalesInvoiceLocators.PI_Pend_SO_No_Column, ElementType.Xpath);
-		if (flag) {
-			commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.PI_Pend_SO_No, PI_Pend_SO_No);
-			webDB.switchToFrame(SalesInvoiceLocators.PI_Pend_Iframe, ElementType.Xpath);
-			logs.logging("INFO", "Proforma Invoice Pending SaleOrder No Inserted Sucessfully");
-		} else {
-			logs.logging("INFO", "Failed To Insert Sales Order Number In the pending Screen");
-		}
+		commonFunc.hardWait(2000);
+		commonFunc.expandFindTable();
+		commonFunc.hardWait(2000);
+		commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.PI_Pend_SO_No, PI_Pend_SO_No);
+		webDB.switchToFrame(SalesInvoiceLocators.PI_Pend_Iframe, ElementType.Xpath);
+		logs.logging("INFO", "Proforma Invoice Pending SaleOrder No Inserted Sucessfully");
 		webDB.switchToDefaultContent();
 		flag = webDB.waitForElement(SalesInvoiceLocators.Proforma_FindPage_Add_Btn, ElementType.Xpath);
 		assertTrue(flag);
@@ -2300,9 +2311,9 @@ public class SalesInvoiceFunctions {
 	 * @param PI_SO_Ref_Advance
 	 */
 	public void verifyProformaInvoiceAdvanceSOReference(String PI_SO_Ref_Advance) {
-		flag = webDB.waitForElement(SalesInvoiceLocators.PIPageSOrefTable(), ElementType.Xpath);
+		flag = webDB.waitForElement(SalesInvoiceLocators.PI_SO_Ref_Column, ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(SalesInvoiceLocators.PIPageSOrefTable(), ElementType.Xpath);
+			webDB.clickAnElement(SalesInvoiceLocators.PI_SO_Ref_Column, ElementType.Xpath);
 			commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.PI_SO_Ref_Btn, PI_SO_Ref_Advance);
 			flag = webDB.waitForElement(SalesInvoiceLocators.PI_Item_ID_column, ElementType.Xpath);
 			if (flag) {
@@ -2488,7 +2499,7 @@ public class SalesInvoiceFunctions {
 		verifyFindPageAddButton();
 		VerifyProformaInvoiceParameter(commonFunc.getDataFromTestDataSheet("PI_Loc_Id"),
 				commonFunc.getDataFromTestDataSheet("PI_Advance_Type"),
-				commonFunc.getDataFromTestDataSheet("PI_Domestic_Customer"));
+				commonFunc.getDataFromTestDataSheet("SI_Service_Local_Customer"));
 		commonFunc.checkRefreshCellsDisappear();
 		verifyHeaderProformaInvoicePrefix(commonFunc.getDataFromTestDataSheet("Proforma_Inv_Pfx"),
 				commonFunc.getDataFromTestDataSheet("PI_PaymentTerm"));
@@ -2518,7 +2529,7 @@ public class SalesInvoiceFunctions {
 		verifyFindPageAddButton();
 		VerifyProformaInvoiceParameter(commonFunc.getDataFromTestDataSheet("PI_Loc_Id"),
 				commonFunc.getDataFromTestDataSheet("PI_PreDispatch_Type"),
-				commonFunc.getDataFromTestDataSheet("PI_Domestic_Customer"));
+				commonFunc.getDataFromTestDataSheet("SI_Service_Local_Customer"));
 		commonFunc.checkRefreshCellsDisappear();
 		verifyHeaderProformaInvoicePrefix(commonFunc.getDataFromTestDataSheet("Proforma_Inv_Pfx"),
 				commonFunc.getDataFromTestDataSheet("PI_PaymentTerm"));
@@ -3224,9 +3235,15 @@ public class SalesInvoiceFunctions {
 			webDB.clickAnElement(SalesInvoiceLocators.Invoice_column, ElementType.Xpath);
 			commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.Invoice_Pfx, FS_Invoice_Pfx);
 			logs.logging("INFO", "Invoice Prefix Is Displayed Successfully");
-			flag = webDB.waitForElement(SalesInvoiceLocators.Header_CPC_LOV_Btn, ElementType.Xpath);
+			commonFunc.hardWait(1000);
+			flag = webDB.waitForElement(SalesInvoiceLocators.SI_ShowMore, ElementType.Xpath);
 			if (flag) {
-				logs.logging("INFO", "CPC Header Lov Is Displayed Successfully");
+				webDB.clickAnElement(SalesInvoiceLocators.SI_ShowMore, ElementType.Xpath);
+				commonFunc.hardWait(1000);
+				flag = webDB.waitForElement(SalesInvoiceLocators.Header_CPC_LOV_Btn, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "CPC Header Lov Is Displayed Successfully");
+				}
 			}
 		}
 		assertTrue(flag);
@@ -3244,9 +3261,15 @@ public class SalesInvoiceFunctions {
 			webDB.clickAnElement(SalesInvoiceLocators.Invoice_column, ElementType.Xpath);
 			commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.Invoice_Pfx, FR_Invoice_Pfx);
 			logs.logging("INFO", "Invoice Prefix Is Displayed Successfully");
-			flag = webDB.waitForElement(SalesInvoiceLocators.Header_CPC_LOV_Btn, ElementType.Xpath);
+			commonFunc.hardWait(1000);
+			flag = webDB.waitForElement(SalesInvoiceLocators.SI_ShowMore, ElementType.Xpath);
 			if (flag) {
-				logs.logging("INFO", "CPC Header Lov Is Displayed Successfully");
+				webDB.clickAnElement(SalesInvoiceLocators.SI_ShowMore, ElementType.Xpath);
+				commonFunc.hardWait(1000);
+				flag = webDB.waitForElement(SalesInvoiceLocators.Header_CPC_LOV_Btn, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "CPC Header Lov Is Displayed Successfully");
+				}
 			}
 		}
 		assertTrue(flag);
@@ -3264,9 +3287,15 @@ public class SalesInvoiceFunctions {
 			webDB.clickAnElement(SalesInvoiceLocators.Invoice_column, ElementType.Xpath);
 			commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.Invoice_Pfx, SCR_Invoice_Pfx);
 			logs.logging("INFO", "Invoice Prefix Is Displayed Successfully");
-			flag = webDB.waitForElement(SalesInvoiceLocators.Header_CPC_LOV_Btn, ElementType.Xpath);
+			commonFunc.hardWait(1000);
+			flag = webDB.waitForElement(SalesInvoiceLocators.SI_ShowMore, ElementType.Xpath);
 			if (flag) {
-				logs.logging("INFO", "CPC Header Lov Is Displayed Successfully");
+				webDB.clickAnElement(SalesInvoiceLocators.SI_ShowMore, ElementType.Xpath);
+				commonFunc.hardWait(1000);
+				flag = webDB.waitForElement(SalesInvoiceLocators.Header_CPC_LOV_Btn, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "CPC Header Lov Is Displayed Successfully");
+				}
 			}
 		}
 		assertTrue(flag);
@@ -3450,13 +3479,18 @@ public class SalesInvoiceFunctions {
 	 * @author Vimal - RMITS
 	 */
 	public void VerifySalesInvoiceLineWiseDeleteButton() {
-		flag = webDB.waitForElement(SalesInvoiceLocators.SI_Linewise_Delete_Btn, ElementType.Xpath);
+		flag = webDB.waitForElement(SalesInvoiceLocators.SI_linedetail_Button, ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(SalesInvoiceLocators.SI_Linewise_Delete_Btn, ElementType.Xpath);
-			commonFunc.hardWait(2000);
-			flag = webDB.waitForElement(SalesInvoiceLocators.LineWise_Add_Btn, ElementType.Xpath);
+			webDB.clickAnElement(SalesInvoiceLocators.SI_linedetail_Button, ElementType.Xpath);
+			commonFunc.hardWait(1000);
+			flag = webDB.waitForElement(SalesInvoiceLocators.SI_Linewise_Delete_Btn, ElementType.Xpath);
 			if (flag) {
-				logs.logging("INFO", "Linewise Delete Icon Clicked Sucessfully");
+				webDB.clickAnElement(SalesInvoiceLocators.SI_Linewise_Delete_Btn, ElementType.Xpath);
+				commonFunc.hardWait(2000);
+				flag = webDB.waitForElement(SalesInvoiceLocators.LineWise_Add_Btn, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Linewise Delete Icon Clicked Sucessfully");
+				}
 			}
 		}
 		assertTrue(flag);
@@ -4593,9 +4627,15 @@ public class SalesInvoiceFunctions {
 			webDB.clickAnElement(SalesInvoiceLocators.Invoice_column, ElementType.Xpath);
 			commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.Invoice_Pfx, Service_Invoice_Pfx);
 			logs.logging("INFO", "Invoice Prefix Is Displayed Successfully");
-			flag = webDB.waitForElement(SalesInvoiceLocators.Header_CPC_LOV_Btn, ElementType.Xpath);
+			commonFunc.hardWait(1000);
+			flag = webDB.waitForElement(SalesInvoiceLocators.SI_ShowMore, ElementType.Xpath);
 			if (flag) {
-				logs.logging("INFO", "CPC Header Lov Is Displayed Successfully");
+				webDB.clickAnElement(SalesInvoiceLocators.SI_ShowMore, ElementType.Xpath);
+				commonFunc.hardWait(1000);
+				flag = webDB.waitForElement(SalesInvoiceLocators.Header_CPC_LOV_Btn, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "CPC Header Lov Is Displayed Successfully");
+				}
 			}
 		}
 		assertTrue(flag);
@@ -4676,17 +4716,16 @@ public class SalesInvoiceFunctions {
 	 * @author Vimal - RMITS
 	 */
 	public void verifysalesInvoiceLineDetailsTab2() {
-		flag = webDB.waitForElement(SalesInvoiceLocators.SI_LineDetails2_Tab, ElementType.Xpath);
+//		flag = webDB.waitForElement(SalesInvoiceLocators.SI_LineDetails2_Tab, ElementType.Xpath);
+//		if (flag) {
+//			webDB.clickAnElement(SalesInvoiceLocators.SI_LineDetails2_Tab, ElementType.Xpath);
+//			commonFunc.hardWait(1000);
+		flag = webDB.waitForElement(SalesInvoiceLocators.SI_Shipset_Btn, ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(SalesInvoiceLocators.SI_LineDetails2_Tab, ElementType.Xpath);
-			commonFunc.hardWait(1000);
-			flag = webDB.waitForElement(SalesInvoiceLocators.SI_Shipset_Btn, ElementType.Xpath);
-			if (flag) {
-				webDB.clickAnElement(SalesInvoiceLocators.SI_Shipset_Btn, ElementType.Xpath);
-				commonFunc.hardWait(2000);
-				webDB.pressEscapeKey();
-				commonFunc.hardWait(2000);
-			}
+			webDB.clickAnElement(SalesInvoiceLocators.SI_Shipset_Btn, ElementType.Xpath);
+			commonFunc.hardWait(2000);
+			webDB.pressEscapeKey();
+			commonFunc.hardWait(2000);
 		}
 		assertTrue(flag);
 	}
@@ -4989,6 +5028,8 @@ public class SalesInvoiceFunctions {
 		CustomerDetailsVerification(commonFunc.getDataFromTestDataSheet("SI_Domestic_Local_Customer"));
 		AddingUserDefinedItemLineShipsetFromReadingExcelSheet(webDB.getDataFromProperties("ShipSet"));
 		commonFunc.checkRefreshCellsDisappear();
+		verifyAllocLSbatch();
+		commonFunc.checkRefreshCellsDisappear();
 		verifyPickButton();
 		commonFunc.checkRefreshCellsDisappear();
 		verifyCreateInvoiceNo();
@@ -5058,6 +5099,9 @@ public class SalesInvoiceFunctions {
 			if (flag) {
 				webDB.clickAnElement(SalesInvoiceLocators.CreditNote_Pending_Invoiced, ElementType.Xpath);
 				webDB.switchToFrame(SalesInvoiceLocators.CR_Pending_Iframe, ElementType.Xpath);
+				commonFunc.hardWait(2000);
+				commonFunc.expandFindTable();
+				commonFunc.hardWait(2000);
 				flag = webDB.waitForElement(SalesInvoiceLocators.CR_Pending_Invoiced_NO_LOV_Btn, ElementType.Xpath);
 				if (flag) {
 					logs.logging("INFO", "Credit Note Pending Invoiced Button Clicked Sucessfully");
@@ -5191,53 +5235,60 @@ public class SalesInvoiceFunctions {
 //		if (flag) {
 //			webDB.clickAnElement(SalesInvoiceLocators.CR_CN_Pfx_Lov_Btn, ElementType.Xpath);
 		commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.CR_CN_Pfx_Lov_Btn, CR_CN_Prefix);
-		flag = webDB.waitForElement(SalesInvoiceLocators.CR_Reason_Lov_Btn, ElementType.Xpath);
+		commonFunc.hardWait(1000);
+		flag = webDB.waitForElement(SalesInvoiceLocators.SI_ShowMore, ElementType.Xpath);
 		if (flag) {
-//				webDB.clickAnElement(SalesInvoiceLocators.CR_Reason_Lov_Btn, ElementType.Xpath);
-			commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.CR_Reason_Lov_Btn, CR_Return_Reason);
-			flag = webDB.waitForElement(SalesInvoiceLocators.CR_Save_Icon, ElementType.Xpath);
+			webDB.clickAnElement(SalesInvoiceLocators.SI_ShowMore, ElementType.Xpath);
+			commonFunc.hardWait(1000);
+			flag = webDB.waitForElement(SalesInvoiceLocators.CR_Reason_Lov_Btn, ElementType.Xpath);
 			if (flag) {
-				webDB.clickAnElement(SalesInvoiceLocators.CR_Save_Icon, ElementType.Xpath);
-				commonFunc.checkRefreshCellsDisappear();
-				checkCreditNoteHeaderDetailsDataBaseValuesWithUIValues();
-				commonFunc.hardWait(2000);
-				flag = webDB.waitForElement(SalesInvoiceLocators.CR_Cre_Inv_Btn, ElementType.Xpath);
+//				webDB.clickAnElement(SalesInvoiceLocators.CR_Reason_Lov_Btn, ElementType.Xpath);
+				commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.CR_Reason_Lov_Btn, CR_Return_Reason);
+				flag = webDB.waitForElement(SalesInvoiceLocators.CR_Save_Icon, ElementType.Xpath);
 				if (flag) {
-					logs.logging("INFO",
-							"CreditNote Prefix , Return Reason Inserted and Save Icon Clicked Sucessfully");
+					webDB.clickAnElement(SalesInvoiceLocators.CR_Save_Icon, ElementType.Xpath);
+					commonFunc.checkRefreshCellsDisappear();
+					checkCreditNoteHeaderDetailsDataBaseValuesWithUIValues();
+					commonFunc.hardWait(2000);
 					flag = webDB.waitForElement(SalesInvoiceLocators.CR_Cre_Inv_Btn, ElementType.Xpath);
 					if (flag) {
-						webDB.clickAnElement(SalesInvoiceLocators.CR_Cre_Inv_Btn, ElementType.Xpath);
-						commonFunc.checkRefreshCellsDisappear();
-						String CNdocno = webDB.getDomPropertyFromElement(SalesInvoiceLocators.CR_CN_Doc_No,
-								ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
-						VariableHandler.setCNdocno(CNdocno);
-						logs.logging("INFO", "Get CN DocNo Is: " + VariableHandler.getCNdocno());
-						commonFunc.hardWait(1000);
-						flag = webDB.waitForElement(SalesInvoiceLocators.CR_Upd_Narr_Btn, ElementType.Xpath);
+						logs.logging("INFO",
+								"CreditNote Prefix , Return Reason Inserted and Save Icon Clicked Sucessfully");
+						flag = webDB.waitForElement(SalesInvoiceLocators.CR_Cre_Inv_Btn, ElementType.Xpath);
 						if (flag) {
-							logs.logging("INFO", "CreditNote Cre.Inv No Clicked Sucessfully");
+							webDB.clickAnElement(SalesInvoiceLocators.CR_Cre_Inv_Btn, ElementType.Xpath);
 							commonFunc.checkRefreshCellsDisappear();
+							String CNdocno = webDB.getDomPropertyFromElement(SalesInvoiceLocators.CR_CN_Doc_No,
+									ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
+							VariableHandler.setCNdocno(CNdocno);
+							logs.logging("INFO", "Get CN DocNo Is: " + VariableHandler.getCNdocno());
+							commonFunc.hardWait(1000);
 							flag = webDB.waitForElement(SalesInvoiceLocators.CR_Upd_Narr_Btn, ElementType.Xpath);
 							if (flag) {
-								webDB.clickAnElement(SalesInvoiceLocators.CR_Upd_Narr_Btn, ElementType.Xpath);
+								logs.logging("INFO", "CreditNote Cre.Inv No Clicked Sucessfully");
 								commonFunc.checkRefreshCellsDisappear();
-								flag = webDB.waitForElement(SalesInvoiceLocators.CR_Create_Journal_Btn,
-										ElementType.Xpath);
+								flag = webDB.waitForElement(SalesInvoiceLocators.CR_Upd_Narr_Btn, ElementType.Xpath);
 								if (flag) {
-									webDB.clickAnElement(SalesInvoiceLocators.CR_Create_Journal_Btn, ElementType.Xpath);
+									webDB.clickAnElement(SalesInvoiceLocators.CR_Upd_Narr_Btn, ElementType.Xpath);
 									commonFunc.checkRefreshCellsDisappear();
-									commonFunc.hardWait(1000);
-									if (webDB.verifyIsElementDisplayed(SalesInvoiceLocators.CR_Linewise_Save_ToastMsg,
-											ElementType.Xpath)) {
-										webDB.clickAnElementWithoutException(
-												SalesInvoiceLocators.CR_Linewise_Save_ToastMsg, ElementType.Xpath);
-										commonFunc.hardWait(2000);
-										flag = webDB.waitForElement(SalesInvoiceLocators.CR_Post_Btn,
+									flag = webDB.waitForElement(SalesInvoiceLocators.CR_Create_Journal_Btn,
+											ElementType.Xpath);
+									if (flag) {
+										webDB.clickAnElement(SalesInvoiceLocators.CR_Create_Journal_Btn,
 												ElementType.Xpath);
-										if (flag) {
-											logs.logging("INFO",
-													"CreditNote Update Narration , CRe. Journal Clicked Sucessfully");
+										commonFunc.checkRefreshCellsDisappear();
+										commonFunc.hardWait(1000);
+										if (webDB.verifyIsElementDisplayed(
+												SalesInvoiceLocators.CR_Linewise_Save_ToastMsg, ElementType.Xpath)) {
+											webDB.clickAnElementWithoutException(
+													SalesInvoiceLocators.CR_Linewise_Save_ToastMsg, ElementType.Xpath);
+											commonFunc.hardWait(2000);
+											flag = webDB.waitForElement(SalesInvoiceLocators.CR_Post_Btn,
+													ElementType.Xpath);
+											if (flag) {
+												logs.logging("INFO",
+														"CreditNote Update Narration , CRe. Journal Clicked Sucessfully");
+											}
 										}
 									}
 								}
@@ -5247,7 +5298,6 @@ public class SalesInvoiceFunctions {
 				}
 			}
 		}
-
 		assertTrue(flag);
 	}
 

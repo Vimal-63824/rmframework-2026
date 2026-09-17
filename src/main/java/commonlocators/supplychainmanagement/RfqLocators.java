@@ -203,7 +203,7 @@ public class RfqLocators {
 
 	/** @locatorType Xpath */
 	public static final String SobItemField(int i) {
-		return "//*[@id=\'R852516569390380051_ig_grid_vc\']/div[3]/div[3]/table/tbody/tr[" + i + "]/td[2]";
+		return "//*[@id=\'R820374529125409482_ig_grid_vc\']/div[3]/div[3]/table/tbody/tr[" + i + "]/td[2]";
 	}
 
 	/** @locatorType Xpath */
@@ -244,9 +244,9 @@ public class RfqLocators {
 	/** @locatorType Xpath */
 	public static final String PoDetailsBtn = "//*[@id=\"ig_po_lineitems_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr[1]/td[32]/a/span";
 	/** @locatorType Xpath */
-	public static final String PoDetailsBtnCSS = "#ig_po_lineitems_ig_grid_vc > div.a-GV-bdy > div.a-GV-w-scroll > table > tbody > tr > td:nth-child(40) > a";
+	public static final String PoDetailsBtnCSS = "#ig_po_lineitems_ig_grid_vc > div.a-GV-bdy > div.a-GV-w-scroll > table > tbody > tr > td:nth-child(1) > a";
 	/** @locatorType Xpath */
-	public static final String PoLineDetails2 = "//label[@for='P161513106045_TYPE_1']";
+	public static final String PoLineRfqDetails = "//button[@aria-labelledby=\"a_Collapsible13_R1535540252290798082_heading\"]";
 	/** @locatorType Xpath */
 	public static final String DetailsRfqNum = "//input[@id='P161513106045_POL_RFQ_NO']";
 	/** @locatorType Xpath */
@@ -364,5 +364,14 @@ public class RfqLocators {
 
 	/** @locatorType Xpath */
 	public static final String UnitCostDataLastRowInput = UnitCostDataLastRow() + "//input";
+	
+	/** @locatorType Xpath */
+	public static final String PendingRfqShowMore = "//button[@aria-labelledby=\"a_Collapsible1_FS_heading\"]";
+	
+	
+	
+	
+	
+	
 
 }

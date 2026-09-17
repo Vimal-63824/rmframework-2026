@@ -57,7 +57,7 @@ public class OpenSoAmdLocators {
 	/** @locatorType Xpath */
 	public static final String PriceClassChange = "//select[@data-testid='SRCALN_CLASS_ID']";
 	/** @locatorType Xpath */
-	public static final String PriceClassClick = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[21]";
+	public static final String PriceClassClick = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[22]";
 	/** @locatorType Xpath */
 	public static final String AdditionofItemRadioButton = "//label[contains(text(),'Addition of Item')]";
 	/** @locatorType Xpath */
