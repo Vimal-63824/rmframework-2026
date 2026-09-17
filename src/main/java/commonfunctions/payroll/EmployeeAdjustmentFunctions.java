@@ -7,8 +7,6 @@ package commonfunctions.payroll;
 import static org.testng.Assert.assertTrue;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -73,7 +71,7 @@ public class EmployeeAdjustmentFunctions {
 			clickSaveIconInAdjustmentTable();
 			clickApproveIconForLastAddedAdjustment();
 			if (!VariableHandler.getApprovalFlag()) {
-				approvalFunc.waitingForApprovalWithFordwarder(System.getProperty("HariUsername"));
+				approvalFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
 				commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"),
 						VariableHandler.getEmpAdjustmentVouNo(), webDB.getDataFromProperties("ROAUAdminEmpId"), null,
 						System.getProperty("HariUsername"));
@@ -237,7 +235,7 @@ public class EmployeeAdjustmentFunctions {
 		commonFunc.verifyAddTableSpecs(EmployeeAdjustmentLocators.AdjustmentTablePeriodicAmntData(),
 				EmployeeAdjustmentLocators.AdjustmentTablePeriodicAmntInput(), Amount);
 		logs.logging("INFO", "Periodic Amount Entered in Adjustment: " + Amount);
-		webDB.pressTabKey();
+		webDB.pressEscapeKey();
 	}
 
 	/**
@@ -248,7 +246,7 @@ public class EmployeeAdjustmentFunctions {
 	private void clickCancelIconForLastAddedAdjustment() {
 		flag = webDB.waitForElement(EmployeeAdjustmentLocators.AdjustmentTableCancelIcon(), ElementType.Xpath);
 		if (flag) {
-			webDB.moveToElement(EmployeeAdjustmentLocators.AdjustmentTableApproveIcon(), ElementType.Xpath);
+			webDB.scrollToAnElement(EmployeeAdjustmentLocators.AdjustmentTableApproveIcon(), ElementType.Xpath);
 			webDB.moveToElement(EmployeeAdjustmentLocators.AdjustmentTableCancelIcon(), ElementType.Xpath);
 			webDB.clickAnElement(EmployeeAdjustmentLocators.AdjustmentTableCancelIcon(), ElementType.Xpath);
 			flag = webDB.waitForElement(EmployeeAdjustmentLocators.AdjustmentTableCancelOkBtn, ElementType.Xpath);
@@ -333,7 +331,7 @@ public class EmployeeAdjustmentFunctions {
 				flag = webDB.selectDropDownByText(EmployeeAdjustmentLocators.AdjustmentTableProcessHoldSelect(),
 						ProcessType, ElementType.Xpath);
 				if (flag) {
-					webDB.pressTabKey();
+					webDB.pressEscapeKey();
 					clickSaveIconInAdjustmentTable();
 					commonFunc.checkRefreshCellsDisappear();
 					flag = webDB.waitForElement(EmployeeAdjustmentLocators.AdjustmentTableProcessHoldData(),
@@ -406,10 +404,9 @@ public class EmployeeAdjustmentFunctions {
 		if (flag) {
 			commonFunc.checkRefreshCellsDisappear();
 			webDB.moveToElement(EmployeeAdjustmentLocators.AdjustmentSaveIcon, ElementType.Xpath);
-			flag = webDB.javaScriptClickAnElement(EmployeeAdjustmentLocators.AdjustmentSaveIcon, ElementType.Xpath);
-			webDB.clickAnElementWithoutException(EmployeeAdjustmentLocators.AdjustmentSaveIcon, ElementType.Xpath);
+			flag = webDB.clickAnElement(EmployeeAdjustmentLocators.AdjustmentSaveIcon, ElementType.Xpath);
 			commonFunc.checkRefreshCellsDisappear();
-			webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+			webDB.waitForElementUntilGivenTime(CommonUiLocators.PostToastMessage, ElementType.Xpath, 5);
 			if (flag) {
 				if (!webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
 					commonFunc.checkRefreshCellsDisappear();
@@ -423,7 +420,7 @@ public class EmployeeAdjustmentFunctions {
 				flag = webDB.waitForElement(EmployeeAdjustmentLocators.AdjustmentTableAdjustmentNoData(),
 						ElementType.Xpath);
 				if (flag) {
-					webDB.moveToElement(EmployeeAdjustmentLocators.AdjustmentTableApproveIcon(), ElementType.Xpath);
+					webDB.scrollToAnElement(EmployeeAdjustmentLocators.AdjustmentTableApproveIcon(), ElementType.Xpath);
 					webDB.moveToElement(EmployeeAdjustmentLocators.AdjustmentTableAdjustmentNoData(),
 							ElementType.Xpath);
 					String voucherNo = webDB.getTextFromElement(

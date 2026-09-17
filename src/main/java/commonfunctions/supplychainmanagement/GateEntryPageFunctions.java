@@ -148,6 +148,7 @@ public class GateEntryPageFunctions {
 	 */
 	public void verifyCreatingGetextForGateEntryDocNumber() {
 		webDB.switchToDefaultContent();
+		webDB.waitUntilElementToNotBeStale(GateEntryPageLocators.GateEntryDocNum, ElementType.Xpath);
 		flag = webDB.waitForElement(GateEntryPageLocators.GateEntryDocNum, ElementType.Xpath);
 		if (flag) {
 			String GATEDocNum = webDB.getTextFromElement(GateEntryPageLocators.GateEntryDocNum, ElementType.Xpath);
@@ -321,46 +322,30 @@ public class GateEntryPageFunctions {
 	public void verifygateEntryDetailsPo() {
 		flag = webDB.waitForElement(GateEntryPageLocators.SelectGateKeeper, ElementType.Xpath);
 		if (flag) {
-			webDB.doubleClickAnElement(GateEntryPageLocators.DcNumberField, ElementType.Xpath);
 			flag = webDB.selectDropDownByValue(GateEntryPageLocators.SelectGateKeeper, "0001", ElementType.Xpath);
 			logs.logging("INFO", "Gate Keeper Selected SuccessFully");
-			flag = webDB.waitForElement(GateEntryPageLocators.DcNumberField, ElementType.Xpath);
+			commonFunc.verifyAddTableSpecs(GateEntryPageLocators.DcNumberField, GateEntryPageLocators.DcNumberField,
+					VariableHandler.getPONumber());
+			logs.logging("INFO", "DC Number SuccessFully Updated");
+			commonFunc.verifyAddTableSpecs(GateEntryPageLocators.SupplierBillNumber,
+					GateEntryPageLocators.SupplierBillNumber, VariableHandler.getPONumber());
+			logs.logging("INFO", "Supplier Bill Number Updated");
+			commonFunc.verifyAddTableSpecs(GateEntryPageLocators.VehicleNumber, GateEntryPageLocators.VehicleNumber,
+					VariableHandler.getPONumber());
+			logs.logging("INFO", "Vehicle Number Updated SuccessFully");
+			commonFunc.verifyAddTableSpecs(GateEntryPageLocators.DriverName, GateEntryPageLocators.DriverName,
+					commonFunc.getDataFromTestDataSheet("DriverName"));
+			logs.logging("INFO", "Driver Name Updated SuccessFully");
+			commonFunc.verifyAddTableSpecs(GateEntryPageLocators.ReferenceField, GateEntryPageLocators.ReferenceField,
+					commonFunc.getDataFromTestDataSheet("ReferenceField"));
+			logs.logging("INFO", "Reference Field Updated SuccessFully");
+			flag = webDB.waitForElement(GateEntryPageLocators.OkButton, ElementType.Xpath);
 			if (flag) {
-				flag = webDB.sendTextToAnElement(GateEntryPageLocators.DcNumberField, VariableHandler.getPONumber(),
-						ElementType.Xpath);
-				logs.logging("INFO", "DC Number SuccessFully Updated");
-				flag = webDB.waitForElement(GateEntryPageLocators.SupplierBillNumber, ElementType.Xpath);
-				if (flag) {
-					webDB.sendTextToAnElement(GateEntryPageLocators.SupplierBillNumber, VariableHandler.getPONumber(),
-							ElementType.Xpath);
-					logs.logging("INFO", "Supplier Bill Number Updated");
-					flag = webDB.waitForElement(GateEntryPageLocators.VehicleNumber, ElementType.Xpath);
-					if (flag) {
-						webDB.sendTextToAnElement(GateEntryPageLocators.VehicleNumber, VariableHandler.getPONumber(),
-								ElementType.Xpath);
-						logs.logging("INFO", "Vehicle Number Updated SuccessFully");
-						flag = webDB.waitForElement(GateEntryPageLocators.DriverName, ElementType.Xpath);
-						if (flag) {
-							webDB.sendTextToAnElement(GateEntryPageLocators.DriverName,
-									commonFunc.getDataFromTestDataSheet("DriverName"), ElementType.Xpath);
-							logs.logging("INFO", "Driver Name Updated SuccessFully");
-							flag = webDB.waitForElement(GateEntryPageLocators.ReferenceField, ElementType.Xpath);
-							if (flag) {
-								webDB.sendTextToAnElement(GateEntryPageLocators.ReferenceField,
-										commonFunc.getDataFromTestDataSheet("ReferenceField"), ElementType.Xpath);
-								logs.logging("INFO", "Reference Field Updated SuccessFully");
-								flag = webDB.waitForElement(GateEntryPageLocators.OkButton, ElementType.Xpath);
-								if (flag) {
-									commonFunc.checkRefreshCellsDisappear();
-									webDB.clickAnElement(GateEntryPageLocators.OkButton, ElementType.Xpath);
-									logs.logging("INFO", "Gate Entry Document Created Successfully");
-									webDB.switchToDefaultContent();
-									flag = webDB.waitForElement(GateEntryPageLocators.DocNumber, ElementType.Xpath);
-								}
-							}
-						}
-					}
-				}
+				commonFunc.checkRefreshCellsDisappear();
+				webDB.clickAnElement(GateEntryPageLocators.OkButton, ElementType.Xpath);
+				webDB.switchToDefaultContent();
+				flag = webDB.waitForElement(GateEntryPageLocators.DocNumber, ElementType.Xpath);
+				logs.logging("INFO", "Gate Entry Document Created Successfully");
 			}
 		}
 		assertTrue(flag);
@@ -508,37 +493,35 @@ public class GateEntryPageFunctions {
 			VariableHandler.setGateEntryNumber(GateEntryNumber);
 			logs.logging("INFO", "Gate EntryNumber Is :" + VariableHandler.getGateEntryNumber());
 			commonFunc.searchAndSelectValueInFilters(GateEntryPageLocators.GateKeeperSso, "VIMAL");
-			webDB.sendTextToAnElement(GateEntryPageLocators.DriverNameInput, "Vimal", ElementType.Xpath);
-			flag = webDB.waitForElement(GateEntryPageLocators.EwayBillNumber, ElementType.Xpath);
+			commonFunc.verifyAddTableSpecs(GateEntryPageLocators.DriverNameInput, GateEntryPageLocators.DriverNameInput,
+					"Vimal");
+			commonFunc.clickShowMoreFindTable();
+			commonFunc.verifyAddTableSpecs(GateEntryPageLocators.EwayBillNumber, GateEntryPageLocators.EwayBillNumber,
+					commonFunc.getDataFromTestDataSheet("EwayBillNumber"));
+			logs.logging("INFO", "E-wayBill NUMBER Entered Successfully");
+			flag = webDB.waitForElement(GateEntryPageLocators.OverAllSaveButton, ElementType.Xpath);
 			if (flag) {
-				webDB.sendTextToAnElement(GateEntryPageLocators.EwayBillNumber,
-						commonFunc.getDataFromTestDataSheet("EwayBillNumber"), ElementType.Xpath);
-				logs.logging("INFO", "E-wayBill NUMBER Entered Successfully");
-				flag = webDB.waitForElement(GateEntryPageLocators.OverAllSaveButton, ElementType.Xpath);
+				webDB.moveToElement(GateEntryPageLocators.OverAllSaveButton, ElementType.Xpath);
+				webDB.clickAnElement(GateEntryPageLocators.OverAllSaveButton, ElementType.Xpath);
+				commonFunc.checkRefreshCellsDisappear();
+				webDB.waitForElementUntilGivenTime(CommonUiLocators.PostToastMessage, ElementType.Xpath, 5);
+				if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+					webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+				}
+				commonFunc.checkSuccessToastMessageDisappear();
+				flag = webDB.waitForElement(GateEntryPageLocators.PostButton, ElementType.Xpath);
 				if (flag) {
-					webDB.moveToElement(GateEntryPageLocators.OverAllSaveButton, ElementType.Xpath);
-					webDB.clickAnElement(GateEntryPageLocators.OverAllSaveButton, ElementType.Xpath);
+					webDB.moveToElement(GateEntryPageLocators.PostButton, ElementType.Xpath);
+					webDB.clickAnElement(GateEntryPageLocators.PostButton, ElementType.Xpath);
+					flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
+					if (!VariableHandler.getApprovalFlag()) {
+						approvalFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
+						commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+								VariableHandler.getGateEntryNumber(), webDB.getDataFromProperties("HodEmpId"),
+								commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+					}
+					logs.logging("INFO", "Gate Entry Document Posted Successfully");
 					commonFunc.checkRefreshCellsDisappear();
-					webDB.waitForElementUntilGivenTime(CommonUiLocators.PostToastMessage, ElementType.Xpath, 5);
-					if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
-						webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
-					}
-					commonFunc.checkSuccessToastMessageDisappear();
-					flag = webDB.waitForElement(GateEntryPageLocators.PostButton, ElementType.Xpath);
-					if (flag) {
-						webDB.moveToElement(GateEntryPageLocators.PostButton, ElementType.Xpath);
-						webDB.clickAnElement(GateEntryPageLocators.PostButton, ElementType.Xpath);
-						flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
-						if (!VariableHandler.getApprovalFlag()) {
-							approvalFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
-							commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
-									VariableHandler.getGateEntryNumber(), webDB.getDataFromProperties("HodEmpId"),
-									commonFunc.getDataFromTestDataSheet("Unit_100"),
-									System.getProperty("HariUsername"));
-						}
-						logs.logging("INFO", "Gate Entry Document Posted Successfully");
-						commonFunc.checkRefreshCellsDisappear();
-					}
 				}
 			}
 		}

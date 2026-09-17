@@ -155,15 +155,28 @@ public class PurchaseOrderPageLocators {
 	/** @locatorType Xpath */
 	public static final String AddItemCharges = "//button[@data-testid='Adds']";
 	/** @locatorType Xpath */
-	public static final String ChargeItemTable = "//tbody/tr[@data-id='t1000']/td[3]";
+	public static final String ItemChargesTable = "(//div[@aria-label='Charge Items']//table)[2]";
+
 	/** @locatorType Xpath */
-	public static final String ChargeItemInput = "//tbody/tr[@data-id='t1000']/td[3]//input[@data-testid='CHARGE_ITEM']";
+	public static final String ChargeItemTable() {
+		return "(" + CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(ItemChargesTable, "Charge Item")
+				+ ")[1]";
+	}
+
 	/** @locatorType Xpath */
-	public static final String ChargePercentage = "//tbody/tr[@data-id='t1000']/td[6]";
+	public static final String ChargeItemButton = "(//input[@data-testid='CHARGE_ITEM']/following-sibling::button)[1]";
+
 	/** @locatorType Xpath */
-	public static final String ChargePercentageInput = "//tbody/tr[@data-id='t1000']/td[6]//input";
+	public static final String ChargeItemInput = "(//input[@data-testid='CHARGE_ITEM'])[1]";
+
 	/** @locatorType Xpath */
-	public static final String ChargeItemButton = "//tbody/tr[@data-id='t1000']/td[3]//button";
+	public static final String ChargePercentage() {
+		return "(" + CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(ItemChargesTable, "%") + ")[1]";
+	}
+
+	/** @locatorType Xpath */
+	public static final String ChargePercentageInput = "(//input[@data-testid='POTC_CHRG_PCT1'])[1]";
+
 	/** @locatorType Xpath */
 	public static final String ChargesTickIcon = "//button[@data-testid='Saves']";
 	/** @locatorType Xpath */
@@ -172,14 +185,24 @@ public class PurchaseOrderPageLocators {
 	public static final String LineTab = "//label[@for='P161513106041_TAB_LINE_0']";
 	/** @locatorType Xpath */
 	public static final String LineAmountWE = "(//*[@id='ig_po_lineitems_ig_grid_vc']/div/div/table[1])[2]/tbody/tr/td[9]";
+
 	/** @locatorType Xpath */
-	public static final String GLAccDesc = "//tbody/tr[@data-id='t1000']/td[18]";
+	public static final String GLAccDesc() {
+		return "(" + CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(ItemChargesTable, "GL Acct. Desc.")
+				+ ")[1]";
+	}
+
 	/** @locatorType Xpath */
-	public static final String GlAccDescButton = "//table/tbody/tr/td[18]//input[@data-testid='CHARGE_PUR_ACT']/following-sibling::button";
+	public static final String GlAccDescButton = "(//input[@data-testid='CHARGE_PUR_ACT']/following-sibling::button)[1]";
+
 	/** @locatorType Xpath */
-	public static final String SACTableData = "//tbody/tr[@data-id='t1000']/td[8]";
+	public static final String SACTableData() {
+		return "(" + CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(ItemChargesTable, "SAC Code")
+				+ ")[1]";
+	}
+
 	/** @locatorType Xpath */
-	public static final String SACTableButton = "//table/tbody/tr/td[8]//input[@data-testid='CHARGE_SAC_CODE']/following-sibling::button";
+	public static final String SACTableButton = "(//input[@data-testid='CHARGE_SAC_CODE']/following-sibling::button)[1]";
 
 	/** @locatorType Xpath */
 	public static final String LinesCustomMenuBtnThreeDots(int rowNumber) {
@@ -188,6 +211,8 @@ public class PurchaseOrderPageLocators {
 
 	/** @locatorType Xpath */
 	public static final String DetailsMenuThreeDots = "//ul[@class='custom-row-menu']//*[text()='Details']";
+	/** @locatorType Xpath */
+	public static final String CancelMenuThreeDots = "//ul[@class='custom-row-menu']//*[text()='Cancel']";
 	/** @locatorType Xpath */
 	public static final String LnDts_DiscountExpandButton = "//div[@aria-label='Discount Details']//button";
 
@@ -590,6 +615,7 @@ public class PurchaseOrderPageLocators {
 	public static final String GrnRequired() {
 		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(AddTablePOScreen, "GRN Rqrd.");
 	}
+
 	/** @locatorType Xpath */
 	public static final String PoDetails = "//a[@data-action='LN_DTLS']";
 	/** @locatorType Xpath */

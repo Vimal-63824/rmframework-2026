@@ -279,9 +279,6 @@ public class BillOfMaterialsFunctions {
 		if (flag) {
 			webDB.moveToElement(BillOfMaterialsLocators.RoutingIRDiv(process), ElementType.Xpath);
 			flag = webDB.javaScriptClickAnElement(BillOfMaterialsLocators.RoutingIRDiv(process), ElementType.Xpath);
-//			commonFunc.hardWait(5000);
-//			commonFunc.checkRefreshCellsDisappear();
-
 			if (flag) {
 				logs.logging("INFO", "Inspection Required Checkbox Selected");
 			} else {
@@ -309,7 +306,7 @@ public class BillOfMaterialsFunctions {
 		logs.logging("INFO", "Oprn No Entered: " + OprnNo);
 		flag = webDB.waitForElement(BillOfMaterialsLocators.RoutingProcessIdData(), ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(BillOfMaterialsLocators.RoutingProcessIdData(), ElementType.Xpath);
+			webDB.doubleClickAnElement(BillOfMaterialsLocators.RoutingProcessIdData(), ElementType.Xpath);
 			commonFunc.searchAndSelectValueInFilters(BillOfMaterialsLocators.RoutingProcessIdLovBtn(), ProcessId);
 			logs.logging("INFO", "Process Id Selected: " + ProcessId);
 		}
@@ -359,9 +356,13 @@ public class BillOfMaterialsFunctions {
 		if (flag) {
 			webDB.moveToElement(BillOfMaterialsLocators.RoutingDetailsBtnWithProcessName(Process), ElementType.Xpath);
 			webDB.clickAnElement(BillOfMaterialsLocators.RoutingDetailsBtnWithProcessName(Process), ElementType.Xpath);
-			flag = webDB.waitForElement(BillOfMaterialsLocators.RoutingViewDetailsIframe, ElementType.Xpath);
+			flag = webDB.waitForElement(BillOfMaterialsLocators.Details_RoutingThreeDotsMenu, ElementType.Xpath);
 			if (flag) {
-				logs.logging("INFO", "View Details Clicked for Process: " + Process);
+				webDB.clickAnElement(BillOfMaterialsLocators.Details_RoutingThreeDotsMenu, ElementType.Xpath);
+				flag = webDB.waitForElement(BillOfMaterialsLocators.RoutingViewDetailsIframe, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "View Details Clicked for Process: " + Process);
+				}
 			}
 		}
 		assertTrue(flag);
@@ -516,11 +517,7 @@ public class BillOfMaterialsFunctions {
 			webDB.clickAnElement(BillOfMaterialsLocators.MaterialSourceWHData(), ElementType.Xpath);
 			flag = webDB.waitForElement(BillOfMaterialsLocators.MaterialSourceWHSelect(), ElementType.Xpath);
 			if (flag) {
-//				flag = webDB.selectDropDownByText(BillOfMaterialsLocators.MaterialSourceWHSelect, WH,
-//						ElementType.Xpath);
-//				if (flag) {
 				logs.logging("INFO", "Source Warehouse Selected in Material: " + WH);
-//				}
 			}
 		}
 		assertTrue(flag);
@@ -1377,8 +1374,6 @@ public class BillOfMaterialsFunctions {
 	 */
 	public boolean verifyBOMMigration() {
 		try {
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
 			commonFunc.navigateToBOMMigrationTab();
 			clickAddIconInBOMMigration();
 			fillDetailsInBOMMigrationCreation(commonFunc.getDataFromTestDataSheet("Unit_100"),
@@ -1386,7 +1381,6 @@ public class BillOfMaterialsFunctions {
 			uploadTemplateInEmployeeAllowanceMigration();
 			clickLoadRoutingBtnInBOMMigration();
 			clickCreateBOMInBOMMigration();
-			flag = commonFunc.logoutUser();
 			return flag;
 		} catch (Exception e) {
 			logs.logging("INFO", "Exception occur while executing 'verifyBOMMigration': " + e);
@@ -1409,8 +1403,6 @@ public class BillOfMaterialsFunctions {
 		String Today = date.format(formatter);
 		String RMItem = commonFunc.getDataFromTestDataSheet("RM-10001-Item");
 		try {
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
 			commonFunc.navigateItemPage();
 			priceListFunc.searchItemAndCopyWithName(commonFunc.getDataFromTestDataSheet("GwlBomItem1001"),
 					"GWL - BOM ITEM - ");
@@ -1461,7 +1453,6 @@ public class BillOfMaterialsFunctions {
 			commonFunc.navigateToBillOfMaterialsPage();
 			searchBOMNoAndVerifyStatus(VariableHandler.getBOMNumber(),
 					commonFunc.getDataFromTestDataSheet("ActiveStatus"));
-			flag = commonFunc.logoutUser();
 			return flag;
 		} catch (Exception e) {
 			logs.logging("INFO", "Exception occur while executing 'verifyCreateBOMItemSingleProcessAssembly': " + e);
@@ -1488,11 +1479,10 @@ public class BillOfMaterialsFunctions {
 		String Today = date.format(formatter);
 		String RMItem = commonFunc.getDataFromTestDataSheet("RM-10001-Item");
 		try {
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
-			commonFunc.navigateItemPage();
-			priceListFunc.searchItemAndCopyWithName(commonFunc.getDataFromTestDataSheet("GwlBomItem1001"),
-					"GWL - BOM ITEM - ");
+//			commonFunc.navigateItemPage();
+//			priceListFunc.searchItemAndCopyWithName(commonFunc.getDataFromTestDataSheet("GwlBomItem1001"),
+//					"GWL - BOM ITEM - ");
+			VariableHandler.setItemName("GWL - BOM ITEM - 449480");
 			commonFunc.navigateToBillOfMaterialsPage();
 			clickAddIconAndFillUnitBOMNameAndItem(commonFunc.getDataFromTestDataSheet("Unit_100"), BOMName,
 					VariableHandler.getItemName());
@@ -1619,7 +1609,6 @@ public class BillOfMaterialsFunctions {
 			commonFunc.navigateToBillOfMaterialsPage();
 			searchBOMNoAndVerifyStatus(VariableHandler.getBOMNumber(),
 					commonFunc.getDataFromTestDataSheet("ActiveStatus"));
-			flag = commonFunc.logoutUser();
 			return flag;
 		} catch (Exception e) {
 			logs.logging("INFO", "Exception occur while executing 'verifyCreateBOMItemMultipleSubAssembly': " + e);
@@ -1643,8 +1632,6 @@ public class BillOfMaterialsFunctions {
 		String Today = date.format(formatter);
 		String RMItem = commonFunc.getDataFromTestDataSheet("RM-10001-Item");
 		try {
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
 			commonFunc.navigateItemPage();
 			priceListFunc.searchItemAndCopyWithName(commonFunc.getDataFromTestDataSheet("GwlBomItem1001"),
 					"GWL - BOM ITEM - ");
@@ -1741,7 +1728,6 @@ public class BillOfMaterialsFunctions {
 					commonFunc.getDataFromTestDataSheet("ActiveStatus"));
 			navigateToBOMBySearchAndClickBOMNo(VariableHandler.getBOMNumber());
 			chooseBOMTypeAndSaveHeader(commonFunc.getDataFromTestDataSheet("PrimaryType"));
-			flag = commonFunc.logoutUser();
 			return flag;
 		} catch (Exception e) {
 			logs.logging("INFO", "Exception occur while executing 'verifyCreateMultipleBOMSameItem': " + e);
@@ -1763,8 +1749,6 @@ public class BillOfMaterialsFunctions {
 		String Today = date.format(formatter);
 		String RMItem = commonFunc.getDataFromTestDataSheet("RM-10001-Item");
 		try {
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
 			commonFunc.navigateItemPage();
 			priceListFunc.searchItemAndCopyWithName(commonFunc.getDataFromTestDataSheet("GwlBomItem1001"),
 					"GWL - BOM ITEM - ");
@@ -1819,7 +1803,6 @@ public class BillOfMaterialsFunctions {
 			commonFunc.navigateToBillOfMaterialsPage();
 			searchBOMNoAndVerifyStatus(VariableHandler.getBOMNumber(),
 					commonFunc.getDataFromTestDataSheet("ActiveStatus"));
-			flag = commonFunc.logoutUser();
 			return flag;
 		} catch (Exception e) {
 			logs.logging("INFO", "Exception occur while executing 'verifyCorrectBillOfMaterials': " + e);
@@ -1843,8 +1826,6 @@ public class BillOfMaterialsFunctions {
 		String Today = date.format(formatter);
 		String RMItem = commonFunc.getDataFromTestDataSheet("RM-10001-Item");
 		try {
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
 			commonFunc.navigateItemPage();
 			priceListFunc.searchItemAndCopyWithName(commonFunc.getDataFromTestDataSheet("GwlBomItem1001"),
 					"GWL - BOM ITEM - ");
@@ -1907,7 +1888,6 @@ public class BillOfMaterialsFunctions {
 			commonFunc.navigateToBillOfMaterialsPage();
 			searchBOMNoAndVerifyStatus(VariableHandler.getBOMNumber(),
 					commonFunc.getDataFromTestDataSheet("ActiveStatus"));
-			flag = commonFunc.logoutUser();
 			return flag;
 		} catch (Exception e) {
 			logs.logging("INFO", "Exception occur while executing 'verifyCopyBillOfMaterials': " + e);
@@ -1932,8 +1912,6 @@ public class BillOfMaterialsFunctions {
 		String Tomorrow = date1.format(formatter);
 		String RMItem = commonFunc.getDataFromTestDataSheet("RM-10001-Item");
 		try {
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
 			commonFunc.navigateItemPage();
 			priceListFunc.searchItemAndCopyWithName(commonFunc.getDataFromTestDataSheet("GwlBomItem1001"),
 					"GWL - BOM ITEM - ");
@@ -1991,7 +1969,6 @@ public class BillOfMaterialsFunctions {
 			commonFunc.navigateToBillOfMaterialsPage();
 			searchBOMNoAndVerifyStatus(VariableHandler.getBOMNumber(),
 					commonFunc.getDataFromTestDataSheet("ActiveStatus"));
-			flag = commonFunc.logoutUser();
 			return flag;
 		} catch (Exception e) {
 			logs.logging("INFO", "Exception occur while executing 'verifyReviseBillOfMaterials': " + e);
@@ -2013,8 +1990,6 @@ public class BillOfMaterialsFunctions {
 		String Today = date.format(formatter);
 		String RMItem = commonFunc.getDataFromTestDataSheet("RM-10001-Item");
 		try {
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
 			commonFunc.navigateItemPage();
 			priceListFunc.searchItemAndCopyWithName(commonFunc.getDataFromTestDataSheet("GwlBomItem1001"),
 					"GWL - BOM ITEM - ");
@@ -2059,7 +2034,6 @@ public class BillOfMaterialsFunctions {
 			navigateToOtherDetailsSubTab();
 			clickAndVerifyInactivateBOMOption(commonFunc.getDataFromTestDataSheet("RefText_Test"));
 			checkDisplayStatusInsideBOM(commonFunc.getDataFromTestDataSheet("InactiveStatus"));
-			flag = commonFunc.logoutUser();
 			return flag;
 		} catch (Exception e) {
 			logs.logging("INFO", "Exception occur while executing 'verifyInactivateBillOfMaterials': " + e);
