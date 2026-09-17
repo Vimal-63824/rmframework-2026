@@ -4607,11 +4607,20 @@ public class DirectGrnPageFunctions {
 					webDB.clickAnElement(DirectGrnPageLocators.GrnDetailsBtn(i - 21), ElementType.Xpath);
 					logs.logging("INFO", "Details Button Is Clicked");
 					commonFunc.hardWait(4000);
+					
+					flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineDetailsNew, ElementType.Xpath);
+					if (flag) {
+						webDB.clickAnElement(DirectGrnPageLocators.GrnLineDetailsNew, ElementType.Xpath);
+						
 					flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineDetailsFrame, ElementType.Xpath);
 					if (flag) {
 						webDB.switchToFrame(DirectGrnPageLocators.GrnLineDetailsFrame, ElementType.Xpath);
 						logs.logging("INFO", "Switched To Frame");
 						commonFunc.hardWait(3000);
+						flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineDetDiscount, ElementType.Xpath);
+						if (flag) {
+							webDB.clickAnElement(DirectGrnPageLocators.GrnLineDetDiscount, ElementType.Xpath);
+							
 						flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineSpclDisc, ElementType.Xpath);
 						if (flag) {
 							webDB.clickAnElement(DirectGrnPageLocators.GrnLineSpclDisc, ElementType.Xpath);
@@ -4648,7 +4657,7 @@ public class DirectGrnPageFunctions {
 				}
 			}
 		}
-
+			}}
 		assertTrue(flag);
 
 	}
@@ -5002,13 +5011,13 @@ public class DirectGrnPageFunctions {
 					verifyClickingReceiptQuantity(QTY);
 					verifyClickingCost(COST);
 					verifyClickingSaveLine();
+					
 					verifyDirectGRNAddingDiscount(i, SheetName);
 				}
 			}
 		}
 		assertTrue(flag);
 	}
-
 	/**
 	 * This Methods Is Used To Verify Creation Of PR General RFQ
 	 * 
@@ -5077,10 +5086,19 @@ public class DirectGrnPageFunctions {
 					webDB.clickAnElement(DirectGrnPageLocators.GrnDetailsBtn(i - 21), ElementType.Xpath);
 					logs.logging("INFO", "Details Button Is Clicked");
 					commonFunc.hardWait(500);
+					flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineDetailsNew, ElementType.Xpath);
+					if (flag) {
+						webDB.clickAnElement(DirectGrnPageLocators.GrnLineDetailsNew, ElementType.Xpath);
+						
 					flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineDetailsFrame, ElementType.Xpath);
 					if (flag) {
 						webDB.switchToFrame(DirectGrnPageLocators.GrnLineDetailsFrame, ElementType.Xpath);
 						logs.logging("INFO", "Switched To Frame");
+						
+						flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineDetDiscount, ElementType.Xpath);
+						if (flag) {
+							webDB.clickAnElement(DirectGrnPageLocators.GrnLineDetDiscount, ElementType.Xpath);
+						
 						flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineTrdDisc, ElementType.Xpath);
 						if (flag) {
 							webDB.clickAnElement(DirectGrnPageLocators.GrnLineTrdDisc, ElementType.Xpath);
@@ -5124,6 +5142,8 @@ public class DirectGrnPageFunctions {
 					}
 				}
 			}
+		}
+		}
 		}
 		assertTrue(flag);
 	}
