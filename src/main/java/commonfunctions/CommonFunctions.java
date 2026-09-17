@@ -119,31 +119,31 @@ public class CommonFunctions {
 	 */
 	@SuppressWarnings("null")
 	public boolean checkRefreshCellsDisappear() {
-		hardWait(1000);
-//		if (webDB.verifyIsElementDisplayed("(" + CommonUiLocators.EntryTableRefreshCellImage + ")[1]",
-//				ElementType.Xpath)) {
-		List<WebElement> refreshElements = WebDriverBase.getDriver()
-				.findElements(By.xpath(CommonUiLocators.EntryTableRefreshCellImage));
-		List<WebElement> AfterWaitrefreshElements = null;
-		try {
-			for (WebElement element : refreshElements) {
-				WebDriverWait wait = new WebDriverWait(WebDriverBase.getDriver(), Duration.ofSeconds(20));
-				wait.until(ExpectedConditions.invisibilityOf(element));
-				if (element.isDisplayed()) {
-					AfterWaitrefreshElements.add(element);
-				}
-			}
-			flag = AfterWaitrefreshElements.isEmpty();
-			if (!flag) {
-				for (WebElement element : AfterWaitrefreshElements) {
+		hardWait(800);
+		if (webDB.verifyIsElementDisplayed("(" + CommonUiLocators.EntryTableRefreshCellImage + ")[1]",
+				ElementType.Xpath)) {
+			List<WebElement> refreshElements = WebDriverBase.getDriver()
+					.findElements(By.xpath(CommonUiLocators.EntryTableRefreshCellImage));
+			List<WebElement> AfterWaitrefreshElements = null;
+			try {
+				for (WebElement element : refreshElements) {
 					WebDriverWait wait = new WebDriverWait(WebDriverBase.getDriver(), Duration.ofSeconds(20));
 					wait.until(ExpectedConditions.invisibilityOf(element));
+					if (element.isDisplayed()) {
+						AfterWaitrefreshElements.add(element);
+					}
 				}
-			}
-		} catch (Exception e) {
+				flag = AfterWaitrefreshElements.isEmpty();
+				if (!flag) {
+					for (WebElement element : AfterWaitrefreshElements) {
+						WebDriverWait wait = new WebDriverWait(WebDriverBase.getDriver(), Duration.ofSeconds(20));
+						wait.until(ExpectedConditions.invisibilityOf(element));
+					}
+				}
+			} catch (Exception e) {
 
+			}
 		}
-//		}
 		return flag;
 	}
 
@@ -305,7 +305,6 @@ public class CommonFunctions {
 				}
 			}
 			Assert.assertTrue(flag);
-			checkRefreshCellsDisappear();
 			checkRefreshCellsDisappear();
 			try {
 				if (webDB.verifyIsElementDisplayed("(" + CommonUiLocators.SearchBarIcon + ")[1]", ElementType.Xpath)) {

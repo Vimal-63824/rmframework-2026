@@ -63,18 +63,22 @@ public class GrnPageFunctions2 {
 					DirectGRNFunc.verifyClickingAdd();
 					commonFunc.verifyAddTableLovValue(DirectGrnPageLocators.GRNPageItemTable(),
 							DirectGrnPageLocators.GrnLineItemLov, ITEM_NAME);
-					webDB.pressEscapeKey();
+					webDB.pressTabKey();
+					webDB.pressTabKey();
 					commonFunc.verifyAddTableLovValue(DirectGrnPageLocators.GRNPageHSNTable(),
 							DirectGrnPageLocators.GrnLineHsnLov, HSN);
-					webDB.pressEscapeKey();
+					webDB.pressTabKey();
+					webDB.pressTabKey();
 					commonFunc.verifyAddTableSpecs(DirectGrnPageLocators.GRNPageSupQtyTable(),
 							DirectGrnPageLocators.GrnPageSupQtyInput(), QTY);
 					logs.logging("INFO", "Entered Supply Quantity Is:" + QTY);
-					webDB.pressEscapeKey();
+					webDB.pressTabKey();
+					webDB.pressTabKey();
 					commonFunc.verifyAddTableSpecs(DirectGrnPageLocators.GRNPageRcptQtyTable(),
 							DirectGrnPageLocators.GRNPageRcptQtyInput(), QTY);
 					logs.logging("INFO", "Entered Receipt Quantity Is:" + QTY);
-					webDB.pressEscapeKey();
+					webDB.pressTabKey();
+					webDB.pressTabKey();
 					DirectGRNFunc.verifyClickingSaveLine();
 					verifyAddingDiscount(i, FileName, SheetName);
 				}
@@ -176,18 +180,22 @@ public class GrnPageFunctions2 {
 					DirectGRNFunc.verifyClickingAdd();
 					commonFunc.verifyAddTableLovValue(DirectGrnPageLocators.GRNPageItemTable(),
 							DirectGrnPageLocators.GrnLineItemLov, ITEM_NAME);
-					webDB.pressEscapeKey();
+					webDB.pressTabKey();
+					webDB.pressTabKey();
 					commonFunc.verifyAddTableLovValue(DirectGrnPageLocators.GRNPageHSNTable(),
 							DirectGrnPageLocators.GrnLineHsnLov, HSN);
-					webDB.pressEscapeKey();
+					webDB.pressTabKey();
+					webDB.pressTabKey();
 					commonFunc.verifyAddTableSpecs(DirectGrnPageLocators.GRNPageSupQtyTable(),
 							DirectGrnPageLocators.GrnPageSupQtyInput(), QTY);
 					logs.logging("INFO", "Entered Supply Quantity Is:" + QTY);
-					webDB.pressEscapeKey();
+					webDB.pressTabKey();
+					webDB.pressTabKey();
 					commonFunc.verifyAddTableSpecs(DirectGrnPageLocators.GRNPageRcptQtyTable(),
 							DirectGrnPageLocators.GRNPageRcptQtyInput(), QTY);
 					logs.logging("INFO", "Entered Receipt Quantity Is:" + QTY);
-					webDB.pressEscapeKey();
+					webDB.pressTabKey();
+					webDB.pressTabKey();
 					DirectGRNFunc.verifyClickingSaveLine();
 					verifyAddingDiscount(i, FileName, SheetName);
 				}
@@ -260,18 +268,22 @@ public class GrnPageFunctions2 {
 					DirectGRNFunc.verifyClickingAdd();
 					commonFunc.verifyAddTableLovValue(DirectGrnPageLocators.GRNPageItemTable(),
 							DirectGrnPageLocators.GrnLineItemLov, ITEM_NAME);
-					webDB.pressEscapeKey();
+					webDB.pressTabKey();
+					webDB.pressTabKey();
 					commonFunc.verifyAddTableLovValue(DirectGrnPageLocators.GRNPageHSNTable(),
 							DirectGrnPageLocators.GrnLineHsnLov, HSN);
-					webDB.pressEscapeKey();
+					webDB.pressTabKey();
+					webDB.pressTabKey();
 					commonFunc.verifyAddTableSpecs(DirectGrnPageLocators.GRNPageSupQtyTable(),
 							DirectGrnPageLocators.GrnPageSupQtyInput(), QTY);
 					logs.logging("INFO", "Entered Supply Quantity Is:" + QTY);
-					webDB.pressEscapeKey();
+					webDB.pressTabKey();
+					webDB.pressTabKey();
 					commonFunc.verifyAddTableSpecs(DirectGrnPageLocators.GRNPageRcptQtyTable(),
 							DirectGrnPageLocators.GRNPageRcptQtyInput(), QTY);
 					logs.logging("INFO", "Entered Receipt Quantity Is:" + QTY);
-					webDB.pressEscapeKey();
+					webDB.pressTabKey();
+					webDB.pressTabKey();
 					commonFunc.verifyAddTableSpecs(DirectGrnPageLocators.GRNPageUnitCostTable(),
 							DirectGrnPageLocators.GRNPageUnitCostInput(), COST);
 					logs.logging("INFO", "Entered Unit Cost Is:" + COST);
