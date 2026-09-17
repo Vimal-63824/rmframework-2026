@@ -3802,6 +3802,10 @@ public class AttendanceLeaveFunctions {
 		if (flag) {
 			webDB.clickAnElement(AttendanceLeaveLocators.LoanPaymentFindSearch, ElementType.Xpath);
 			logs.logging("INFO", "LoanPayment Find Search Button Is Clicked");
+			commonFunc.removeFilterStock();
+			commonFunc.verifyAddTableSpecs(AttendanceLeaveLocators.LoanPaymentFindSearchBar,
+					AttendanceLeaveLocators.LoanPaymentFindSearchBar, VariableHandler.getLoanRequestDocNo());
+			webDB.pressEnterKey();
 			commonFunc.checkRefreshCellsDisappear();
 			flag = webDB.waitForElement(AttendanceLeaveLocators.LoanPaymentDocNoClick(), ElementType.Xpath);
 			if (flag) {
