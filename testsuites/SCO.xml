@@ -8,9 +8,9 @@
 	<test parallel="classes" name="SCO Road Map Test" thread-count="5">
 		<classes>
 			<class name="com.roadmapERP.SubcontractPurchaseBillsTest"></class>
-			<!--	<class name="com.roadmapERP.SubcontractSetUpTest"></class>
+			<class name="com.roadmapERP.SubcontractSetUpTest"></class>
 			<class name="com.roadmapERP.SubcontractTransactionTest"></class>
-			<class name="com.roadmapERP.SubcontractTransactionTest2"></class>-->
+			<class name="com.roadmapERP.SubcontractTransactionTest2"></class>
 		</classes>
 	</test>
 </suite>

@@ -231,6 +231,8 @@ public class ApprovalPageFunctions {
 			VariableHandler.setApprovalFlag(flag);
 			webDB.switchToFrame(CommonUiLocators.WorkApprovalFrame, ElementType.Xpath);
 			logs.logging("INFO", "Switched To Workflow Frame");
+			commonFunc.checkRefreshCellsDisappear();
+			webDB.waitUntilElementToNotBeStale(CommonUiLocators.WorkFlow_Frwd_To_Emp, ElementType.Xpath);
 			String GetText = webDB.getDomPropertyFromElement(CommonUiLocators.WorkFlow_Frwd_To_Emp, ElementType.Xpath,
 					commonFunc.getDataFromTestDataSheet("Value"));
 			logs.logging("INFO", "Already Displayed Document Forwarder Person: " + GetText);
