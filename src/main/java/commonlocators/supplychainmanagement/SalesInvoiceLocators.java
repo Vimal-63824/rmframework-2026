@@ -257,7 +257,7 @@ public class SalesInvoiceLocators {
 	/** @Locator XPATH */
 	public static final String PI_Line_Add_Icon = "//button[@data-testid='PI LINE ADD ICON']";
 	/** @Locator XPATH */
-	public static final String PI_SO_Ref_Column = "//*[@id='line1_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[2]";
+	public static final String PI_SO_Ref_Column = "//*[@id=\"line1_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[3]";
 	/** @Locator XPATH */
 	public static final String PI_SO_Ref_Btn = "//input[@data-testid='PILN_SO_SCHLD_DESC']/following-sibling::button";
 	/** @Locator XPATH */
@@ -353,7 +353,7 @@ public class SalesInvoiceLocators {
 	/** @Locator XPATH */
 	public static final String SI_Cancel_Reason = "//input[@data-testid='P191513109001_CANCEL']";
 	/** @Locator XPATH */
-	public static final String SI_Linewise_Delete_Btn = "(//span[@class='fa fa-trash-o'])[1]";
+	public static final String SI_Linewise_Delete_Btn = "//span[@class='fa fa fa-trash-o']";
 	/** @Locator XPATH */
 	public static final String SI_LineWise_NoteAlert = "(//button[@title='Close'])[1]";
 	/** @Locator XPATH */
@@ -482,8 +482,8 @@ public class SalesInvoiceLocators {
 
 	/** @locatorType Xpath */
 	public static final String LineDetails(int i) {
-		return "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[" + i
-				+ "]/td[23]/a/span[contains(@style,'blue')]";
+		return "//*[@id=\"ig_line_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr[" + i
+				+ "]/td[1]/a/span[contains(@class,'fa fa-ellipsis-v')]";
 	}
 
 	/** @locatorType Xpath */
@@ -950,4 +950,14 @@ public class SalesInvoiceLocators {
 	public static final String CRPageUnitPriceTable() {
 		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(CR_LineTable, "Unit Price");
 	}
+	public static final String SI_ShowMore = "//button[@id='M']";
+	
+	public static final String SI_detail_Button = "//span[@class='fa fa fa-indent']";
+	
+	public static final String SI_detail_Promotional = "//*[@id=\"R1811755977735489886\"]/div[1]/div[1]/button";
+	
+	public static final String SI_linedetail_Button = "//*[@id=\"ig_line_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[1]/a/span";
+	
+	
+	
 }

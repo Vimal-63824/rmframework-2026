@@ -25,50 +25,6 @@ public class ItemDetailsHandler {
 	private static ThreadLocal<String[][]> Open_SO_HeaderDetails = ThreadLocal.withInitial(() -> null);
 
 	/**
-	 * This Constructor used to set PR_LineDetails data from ItemDetails.xlsx file.
-	 * 
-	 * @author Sakthi-GWL
-	 */
-	public ItemDetailsHandler() {
-		if (PR_LineDetails.get() == null) {
-			PR_LineDetails.set(
-					excelUtils.readAllDataInExcel(Filepath, webDB.getDataFromProperties("PRItemDetailsSheetName")));
-		}
-		if (PO_LineDetails.get() == null) {
-			PO_LineDetails.set(
-					excelUtils.readAllDataInExcel(Filepath, webDB.getDataFromProperties("POItemDetailsSheetName")));
-		}
-		if (POA_LineDetails.get() == null) {
-			POA_LineDetails.set(
-					excelUtils.readAllDataInExcel(Filepath, webDB.getDataFromProperties("POAItemDetailsSheetName")));
-		}
-		if (POItem_LineDetails.get() == null) {
-			POItem_LineDetails.set(excelUtils.readAllDataInExcel(Filepath,
-					webDB.getDataFromProperties("POMultipleItemDetailsSheetName")));
-		}
-		if (SO_LineDetails.get() == null) {
-			SO_LineDetails.set(
-					excelUtils.readAllDataInExcel(Filepath, webDB.getDataFromProperties("SOItemDetailsSheetName")));
-		}
-		if (SO_CustDetails.get() == null) {
-			SO_CustDetails.set(
-					excelUtils.readAllDataInExcel(Filepath, webDB.getDataFromProperties("CustSODetailsSheetName")));
-		}
-		if (Open_SO_Lines_details.get() == null) {
-			Open_SO_Lines_details.set(excelUtils.readAllDataInExcel(Filepath,
-					webDB.getDataFromProperties("OpenSOHeaderDetailsSheetName")));
-		}
-		if (Open_Sale_Order.get() == null) {
-			Open_Sale_Order.set(excelUtils.readAllDataInExcel(Filepath,
-					webDB.getDataFromProperties("OpenSOHeaderDetailsSheetName")));
-		}
-		if (SI_CustomerDetails.get() == null) {
-			SI_CustomerDetails.set(
-					excelUtils.readAllDataInExcel(Filepath, webDB.getDataFromProperties("SICustomerDetailsSheetName")));
-		}
-	}
-
-	/**
 	 * This Enum 'PR Line Details Name column Name'
 	 */
 	public enum PRLineDetailsName {

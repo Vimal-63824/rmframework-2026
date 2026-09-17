@@ -156,7 +156,7 @@ public class DirectGrnPageLocators {
 
 	/** @locatorType Xpath */
 	public static final String GrnDetailsBtn(int i) {
-		return "//*[@id='add_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[" + i + "]/td[25]/a";
+		return "//*[@id='add_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[" + i + "]/td[1]/a";
 	}
 
 	/** @locatorType Xpath */
@@ -233,10 +233,18 @@ public class DirectGrnPageLocators {
 	public static final String BOEDateInputField = "//input[@id='P161513110303_PID_BOE_DATE_input']";
 	/** @locatorType Xpath */
 	public static final String BOEOkButton = "//button[@data-testid='OK_import_LR']";
+
 	/** @locatorType Xpath */
-	public static final String GrnFOCTabledata = "(//*[@id='add_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[23]//div)[1]";
+	public static final String GrnFOCTabledata() {
+		return "(" + CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(AddTableGRNScreen, "FOC") + ")[1]";
+	}
+
 	/** @locatorType Xpath */
-	public static final String GrnFOCTableInput = "(//*[@id='add_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[23]//input)[1]";
+	public static final String GrnFOCTableInput() {
+		return "(" + CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(AddTableGRNScreen, "FOC")
+				+ ")[1]//input";
+	}
+
 	/** @locatorType Xpath */
 	public static final String ID_AcptQty_Field = "//input[@data-testid='P20171310201_TQHD_ACPT_QTY']";
 	/** @locatorType Xpath */
@@ -256,4 +264,11 @@ public class DirectGrnPageLocators {
 	public static final String GRNAmendLineFindTableData(String i) {
 		return CommonFunctions.checkAndReturnLocatorForFindPageTable(GRNLineFindTable, i);
 	}
+	/** @locatorType Xpath */
+	public static final String GrnLineDetailsNew = "//*[@id=\"t_PageBody\"]/ul/li[1]/a";
+	/** @locatorType Xpath */
+	public static final String GrnLineDetDiscount = "//button[@aria-labelledby=\"a_Collapsible3_R277912666708252791_heading\"]";
+	
+	
+	
 }

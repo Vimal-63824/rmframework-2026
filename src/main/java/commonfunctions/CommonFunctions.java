@@ -119,31 +119,31 @@ public class CommonFunctions {
 	 */
 	@SuppressWarnings("null")
 	public boolean checkRefreshCellsDisappear() {
-		hardWait(1000);
-//		if (webDB.verifyIsElementDisplayed("(" + CommonUiLocators.EntryTableRefreshCellImage + ")[1]",
-//				ElementType.Xpath)) {
-		List<WebElement> refreshElements = WebDriverBase.getDriver()
-				.findElements(By.xpath(CommonUiLocators.EntryTableRefreshCellImage));
-		List<WebElement> AfterWaitrefreshElements = null;
-		try {
-			for (WebElement element : refreshElements) {
-				WebDriverWait wait = new WebDriverWait(WebDriverBase.getDriver(), Duration.ofSeconds(20));
-				wait.until(ExpectedConditions.invisibilityOf(element));
-				if (element.isDisplayed()) {
-					AfterWaitrefreshElements.add(element);
-				}
-			}
-			flag = AfterWaitrefreshElements.isEmpty();
-			if (!flag) {
-				for (WebElement element : AfterWaitrefreshElements) {
+		hardWait(800);
+		if (webDB.verifyIsElementDisplayed("(" + CommonUiLocators.EntryTableRefreshCellImage + ")[1]",
+				ElementType.Xpath)) {
+			List<WebElement> refreshElements = WebDriverBase.getDriver()
+					.findElements(By.xpath(CommonUiLocators.EntryTableRefreshCellImage));
+			List<WebElement> AfterWaitrefreshElements = null;
+			try {
+				for (WebElement element : refreshElements) {
 					WebDriverWait wait = new WebDriverWait(WebDriverBase.getDriver(), Duration.ofSeconds(20));
 					wait.until(ExpectedConditions.invisibilityOf(element));
+					if (element.isDisplayed()) {
+						AfterWaitrefreshElements.add(element);
+					}
 				}
-			}
-		} catch (Exception e) {
+				flag = AfterWaitrefreshElements.isEmpty();
+				if (!flag) {
+					for (WebElement element : AfterWaitrefreshElements) {
+						WebDriverWait wait = new WebDriverWait(WebDriverBase.getDriver(), Duration.ofSeconds(20));
+						wait.until(ExpectedConditions.invisibilityOf(element));
+					}
+				}
+			} catch (Exception e) {
 
+			}
 		}
-//		}
 		return flag;
 	}
 
@@ -244,6 +244,7 @@ public class CommonFunctions {
 					InputElement);
 			webDB.clickAnElement(CommonUiLocators.BusFunctionSearchBox, ElementType.Xpath);
 		}
+		checkRefreshCellsDisappear();
 		webDB.waitUntilElementToNotBeStale(CommonUiLocators.PurchaseAddIcon, ElementType.Xpath);
 		flag = webDB.waitForElement(CommonUiLocators.PurchaseAddIcon, ElementType.Xpath);
 		Assert.assertTrue(flag);
@@ -305,7 +306,6 @@ public class CommonFunctions {
 				}
 			}
 			Assert.assertTrue(flag);
-			checkRefreshCellsDisappear();
 			checkRefreshCellsDisappear();
 			try {
 				if (webDB.verifyIsElementDisplayed("(" + CommonUiLocators.SearchBarIcon + ")[1]", ElementType.Xpath)) {
@@ -3395,7 +3395,7 @@ public class CommonFunctions {
 			Object obj = parser.parse(reader);
 			jsonObject = (JSONObject) obj;
 			HeaderValue = jsonObject.get(HeaderValue).toString();
-			System.out.println("Header Value1 " + HeaderValue);
+//			System.out.println("Header Value1 " + HeaderValue);
 		} catch (Exception e) {
 			logs.logging("INFO", "No Data Found In Table.json file: " + HeaderValue);
 		}
@@ -3469,7 +3469,7 @@ public class CommonFunctions {
 		if (elements.isEmpty()) {
 			try {
 				Thread.sleep(3000);
-				System.out.println("thread wait");
+//				System.out.println("thread wait");
 			} catch (InterruptedException e) {
 			}
 			elements = webDB.getListOfElements(Locator, ElementType.Xpath);
