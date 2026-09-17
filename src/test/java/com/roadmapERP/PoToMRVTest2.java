@@ -1265,35 +1265,36 @@ public class PoToMRVTest2 extends RoadMapERPTest {
 		}
 	}
 
-//	/**
-//	 * This Methods Is Used To Create GRN Document from PO with Inspection PriceList
-//	 * Document for Material Type Without Quality Enabled For Landed Cost And Other
-//	 * Charges
-//	 * 
-//	 * @author Deepan-GWL Direct GRN
-//	 * @throws IOException
-//	 */
-//	@Author("Deepan-GWL")
-//	@Test(priority = 88, groups = { "GRN" }, description = "334  Inward GRN with Landed cost and other charges")
-//	public void poToGrnGeneralUserDefinedSameStockAndSupplierUomWithAndWithoutInspectionPlanWithLandedCostAnd()
-//			throws IOException {
-//
-//		grnPageFunc.poToGrnGeneralUserDefinedSameStockAndSupplierUomWithAndWithoutInspectionPlanWithLandedCost();
-//	}
-//
-//	/**
-//	 * Inward GRN with Landed cost and other charges
-//	 * 
-//	 * @author Deepan-GWL
-//	 */
-//	@Author("Deepan-GWL")
-//	@Test(priority = 89, groups = { "PurchaseOrder" }, description = " Inward GRN with Landed cost and other charges")
-//	public void VerifyInwardGrnWithLandedCost() {
-//		logs.logging("INFO", "Inward GRN with Landed cost and other charges");
-//		if (previousStatus != ITestResult.SUCCESS) {
-//			Assert.fail();
-//		}
-//	}
+	/**
+	 * This Methods Is Used To Create GRN Document from PO with Inspection PriceList
+	 * Document for Material Type Without Quality Enabled For Landed Cost And Other
+	 * Charges
+	 * 
+	 * @author Deepan-GWL Direct GRN
+	 * @throws IOException
+	 */
+	@Author("Deepan-GWL")
+	@Test(priority = 88, groups = { "GRN" }, description = "334  Inward GRN with Landed cost and other charges")
+	public void poToGrnGeneralUserDefinedSameStockAndSupplierUomWithAndWithoutInspectionPlanWithLandedCostAnd()
+			throws IOException {
+
+		grnPageFunc
+				.poToGrnGeneralUserDefinedSameStockAndSupplierUomWithAndWithoutInspectionPlanWithLandedCost(suiteName);
+	}
+
+	/**
+	 * Inward GRN with Landed cost and other charges
+	 * 
+	 * @author Deepan-GWL
+	 */
+	@Author("Deepan-GWL")
+	@Test(priority = 89, groups = { "PurchaseOrder" }, description = " Inward GRN with Landed cost and other charges")
+	public void VerifyInwardGrnWithLandedCost() {
+		logs.logging("INFO", "Inward GRN with Landed cost and other charges");
+		if (previousStatus != ITestResult.SUCCESS) {
+			Assert.fail();
+		}
+	}
 
 	/**
 	 * Verify After Method

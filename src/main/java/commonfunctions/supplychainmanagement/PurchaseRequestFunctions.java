@@ -330,17 +330,20 @@ public class PurchaseRequestFunctions {
 	 */
 	public void deleteParticularLinesPurchaseRequest(String DataValue) {
 		commonFunc.checkRefreshCellsDisappear();
-		flag = webDB.waitForElement(PurchaseRequestLocators.PR_LineDeleteIconWithData(DataValue), ElementType.Xpath);
+		flag = webDB.waitForElement(PurchaseRequestLocators.PR_LastItemDetailIcon(DataValue), ElementType.Xpath);
 		if (flag) {
-			webDB.moveToElement(PurchaseRequestLocators.ItemDataLastRow(), ElementType.Xpath);
-			webDB.moveToElement(PurchaseRequestLocators.PR_LineDeleteIconWithData(DataValue), ElementType.Xpath);
-			webDB.clickAnElement(PurchaseRequestLocators.PR_LineDeleteIconWithData(DataValue), ElementType.Xpath);
-			webDB.switchToAlertAccept();
-			flag = webDB.waitForElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+			webDB.moveToElement(PurchaseRequestLocators.PR_LastItemDetailIcon(DataValue), ElementType.Xpath);
+			webDB.clickAnElement(PurchaseRequestLocators.PR_LastItemDetailIcon(DataValue), ElementType.Xpath);
+			flag = webDB.waitForElement(PurchaseRequestLocators.LineDelete, ElementType.Xpath);
 			if (flag) {
-				logs.logging("INFO", "Toast Message Displayed, Line Deleted Successfully with value: " + DataValue);
-				if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
-					webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+				webDB.clickAnElement(PurchaseRequestLocators.LineDelete, ElementType.Xpath);
+				webDB.switchToAlertAccept();
+				flag = webDB.waitForElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Toast Message Displayed, Line Deleted Successfully with value: " + DataValue);
+					if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+						webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+					}
 				}
 			}
 		}
@@ -1397,6 +1400,7 @@ public class PurchaseRequestFunctions {
 	 */
 	private void validatePRLineDetailsWithDomPropertyValue(String Locator, String Item, PRLineDetailsName lineDtlName,
 			String DBData) {
+		webDB.switchToDefaultContent();
 		flag = webDB.waitForElement(PurchaseRequestLocators.PR_LineDetailsIframe, ElementType.Xpath);
 		if (flag) {
 			webDB.switchToFrame(PurchaseRequestLocators.PR_LineDetailsIframe, ElementType.Xpath);

@@ -267,7 +267,7 @@ public class GateEntryPageLocators {
 	public static final String GateEntryHeaderSearchBar = "(//input[@title='Search Report'])[last()]";
 	/** @locatorType Xpath */
 	public static final String GateEntryHeaderSearchGoBtn = "(//input[@title='Search Report'])[last()]/../following-sibling::div/button";
-	
+
 	/** @locatorType Xpath */
 	public static final String GateAmendFindTableData(String i) {
 		return CommonFunctions.checkAndReturnLocatorForFindPageTable(GateFindTable, i);
@@ -282,13 +282,15 @@ public class GateEntryPageLocators {
 	public static final String GateAmendLineFindTableData(String i) {
 		return CommonFunctions.checkAndReturnLocatorForFindPageTable(GateLineFindTable, i);
 	}
-	
+
 	/** @locatorType Xpath */
 	public static final String AddTableGateScreen = "(//table[@data-testid=\"ge_line_Result_Data\"])[2]";
 	/** @locatorType Xpath */
 	public static final String PendingPOShowMyRecordBtn = "//button[@data-testid='Show_My_Record_Show']";
 	/** @locatorType Xpath */
 	public static final String PendingPOShowMyRecordHideBtn = "//button[@data-testid='Show_My_Record_Hide']";
+	/** @locatorType Xpath */
+	public static final String ShowMore = "//span[text()='Show More']/..";
 
 	/** @locatorType Xpath */
 	public static final String GatePagePartyTable() {

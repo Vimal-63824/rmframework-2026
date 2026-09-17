@@ -304,17 +304,21 @@ public class POAmendmentLocators {
 
 	/** @locatorType Xpath */
 	public static final String LineDetails(String Item) {
-		return "//td[text()='" + Item + "']/../td[24]";
+		return "//td[text()='" + Item + "']/../td[1]/*";
 	}
 
 	/** @locatorType Xpath */
 	public static final String NewQuantity(String text) {
-		return "//td[text()='" + text + "']/../td[13]";
+		return "//table[.//td[normalize-space()='" + text + "']]//tr[td[normalize-space()='" + text
+				+ "']]/td[count(//table[.//td[normalize-space()='" + text
+				+ "']]//th[normalize-space()='New Qty.']/preceding-sibling::th) + 1]";
 	}
 
 	/** @locatorType Xpath */
 	public static final String NewUnitCost(String text) {
-		return "//td[text()='" + text + "']/../td[15]";
+		return "//table[.//td[normalize-space()='" + text + "']]//tr[td[normalize-space()='" + text
+				+ "']]/td[count(//table[.//td[normalize-space()='" + text
+				+ "']]//th[normalize-space()='New Unit Cost']/preceding-sibling::th) + 1]";
 	}
 
 	/** @locatorType Xpath */
@@ -349,6 +353,12 @@ public class POAmendmentLocators {
 	public static final String LineCheckbox = "(//input[@data-testid='P1615131168_HEAD_LINE']/following-sibling::label)[2]";
 	/** @locatorType Xpath */
 	public static final String OKButtonLast = "(//button[text()='OK'])[last()]";
+	/** @locatorType Xpath */
+	public static final String DetailsButton = "//a[@data-action='LN_DTLS']";
+	/** @locatorType Xpath */
+	public static final String NewTaxDetails = "(//div[@data-testid='R2734127918492355887_Result_Data']//button)[1]";
+	/** @locatorType Xpath */
+	public static final String DiscountExpandButton = "//div[@data-testid='R1640912248866861514_Result_Data']//button";
 
 	/** @locatorType Xpath */
 	public static final String POANumberCancelStatus(String POno) {
