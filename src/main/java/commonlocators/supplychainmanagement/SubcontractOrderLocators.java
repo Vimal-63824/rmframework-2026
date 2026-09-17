@@ -21,7 +21,7 @@ public class SubcontractOrderLocators {
 	/** @locatorType XPATH */
 	public static final String SupplierName = "//span[@id='P161713106501_POH_SUPLR_NAME_DISPLAY']";
 	/** @locatorType XPATH */
-	public static final String MRPButton = "//div[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[1]/a";
+	public static final String MRPButton = "//span[@class='fa fa fa-badge-dollar']";
 	/** @locatorType XPATH */
 	public static final String FrameMaterial = "//iframe[@title='Material']";
 	/** @locatorType XPATH */
@@ -194,7 +194,7 @@ public class SubcontractOrderLocators {
 	/** @locatorType XPATH */
 	public static final String SubcontractItemId = "//input[@data-testid='POL_PROD_REV_DUM']/following-sibling::button";
 	/** @locatorType XPATH */
-	public static final String SubcontractQtyField = "//*[@id=\"ig_line_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[7]";
+	public static final String SubcontractQtyField = "//*[@id=\"ig_line_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[7]";
 	/** @locatorType XPATH */
 	public static final String SubcontractQtyInput = "//input[@data-testid='POL_ORDERED_QTY']";
 	/** @locatorType XPATH */
@@ -309,13 +309,13 @@ public class SubcontractOrderLocators {
 	/** @locatorType XPATH */
 	public static final String SCO_Header_Status = "//input[@id='P161713106501_STATUS']";
 	/** @locatorType XPATH */
-	public static final String SCO_Item_Field = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[3]";
+	public static final String SCO_Item_Field = "//*[@id=\"ig_line_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[3]";
 	/** @locatorType XPATH */
-	public static final String SCO_Qty_Field = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[7]";
+	public static final String SCO_Qty_Field = "//*[@id=\"ig_line_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[7]";
 	/** @locatorType XPATH */
-	public static final String SCO_UnitCost_Field = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[8]";
+	public static final String SCO_UnitCost_Field = "//*[@id=\"ig_line_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[8]";
 	/** @locatorType XPATH */
-	public static final String SCO_HSN_Field = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[9]";
+	public static final String SCO_HSN_Field = "//*[@id=\"ig_line_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[9]";
 	/** @locatorType XPATH */
 	public static final String SCO_ProcessDesc_Field = "//*[@id='ig_line4_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[3]";
 	/** @locatorType XPATH */
@@ -542,4 +542,5 @@ public class SubcontractOrderLocators {
 	public static final String SCOPageProcUOMTable() {
 		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(SCO_Proc_LineTable, "UOM");
 	}
+	public static final String SCO_LineDetail_Prod_Details= "//*[@id=\"R3827637706701496361\"]/div[1]/div[1]/button";
 }
