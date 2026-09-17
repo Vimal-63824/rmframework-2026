@@ -147,7 +147,7 @@ public class CustomerScheduleLocators {
 	/** @Locator Xpath */
 	public static final String CSAmdTentativeDateInputField = "//*[@data-testid='CAML_SCHD_END_DATE']/input";
 	/** @Locator Xpath */
-	public static final String CSAmdTentaiveDateField = "//*[@id='cs_line_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[18]";
+	public static final String CSAmdTentaiveDateField = "//*[@id='cs_line_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[19]";
 	/** @Locator Xpath */
 	public static final String CSTemplateUploadButton = "//button[@data-testid='Upload_hd']";
 	/** @Locator Xpath */
@@ -248,6 +248,35 @@ public class CustomerScheduleLocators {
 	/** @locatorType Xpath */
 	public static final String HsnCode() {
 		return checkAndReturnIndexForCSLinesLocatorWithHeaderValue(CustomerScdhlLineDetailsTable, "HSN Code");
+	}
+	
+	/** @locatorType Xpath */
+	public static final String CSamdButton = "//span[contains(text(),'Customer Schedule Amd./Close')]";
+
+	
+	/** @locatorType Xpath */
+	public static final String CustomerScdhlAmdLineDetailsTable = "(//table[@data-testid='cs_line_Result_Data'])[2]";
+	/** @locatorType Xpath */
+	public static final String FirmQtyCsa() {
+		return checkAndReturnIndexForCSLinesLocatorWithHeaderValue(CustomerScdhlAmdLineDetailsTable, "Firm Qty.");
+	}
+	/** @locatorType Xpath */
+	public static final String FirmTypeInCsa() {
+		return checkAndReturnIndexForCSLinesLocatorWithHeaderValue(CustomerScdhlAmdLineDetailsTable, "Schld. Type");
+	}
+	/** @locatorType Xpath */
+	public static final String CsaTentiveQtyField() {
+		return checkAndReturnIndexForCSLinesLocatorWithHeaderValue(CustomerScdhlAmdLineDetailsTable, "Tent. Qty");
+	}
+	
+	/** @locatorType Xpath */
+	public static final String CsaPriceField() {
+		return checkAndReturnIndexForCSLinesLocatorWithHeaderValue(CustomerScdhlAmdLineDetailsTable, "Price");
+	}
+	
+	/** @locatorType Xpath */
+	public static final String CsaTentiveEndDate() {
+		return checkAndReturnIndexForCSLinesLocatorWithHeaderValue(CustomerScdhlAmdLineDetailsTable, "End Date");
 	}
 
 }

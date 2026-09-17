@@ -2259,7 +2259,8 @@ public class CustomerScheduleFunctions {
 							logs.logging("INFO", "Select Check Box IS Clicked Sucessfully");
 							webDB.clickAnElement(CustomerScheduleLocators.CSAmdFetchOkButton, ElementType.Xpath);
 							webDB.switchToDefaultContent();
-							flag = webDB.waitForElement(CustomerScheduleLocators.CSAmdTypeField, ElementType.Xpath);
+							commonFunc.checkRefreshCellsDisappear();
+							flag = webDB.waitForElement(CustomerScheduleLocators.FirmTypeInCsa(), ElementType.Xpath);
 							if (flag) {
 								commonFunc.checkRefreshCellsDisappear();
 								logs.logging("INFO", "Customer Schedule Fetch Ok Button IS Clicked Sucessfully");
@@ -2371,12 +2372,12 @@ public class CustomerScheduleFunctions {
 	 * @author Harikrishna - RMITS
 	 */
 	public void changeScheduleTypeInCSAmd(String Value) {
-		flag = webDB.waitForElement(CustomerScheduleLocators.CSAmdSchTypeField, ElementType.Xpath);
+		flag = webDB.waitForElement(CustomerScheduleLocators.FirmTypeInCsa(), ElementType.Xpath);
 		if (flag) {
-			String GetText = webDB.getTextFromElement(CustomerScheduleLocators.CSAmdSchTypeField, ElementType.Xpath);
+			String GetText = webDB.getTextFromElement(CustomerScheduleLocators.FirmTypeInCsa(), ElementType.Xpath);
 			System.out.println(GetText);
 			if (!GetText.equalsIgnoreCase(Value)) {
-				webDB.doubleClickAnElement(CustomerScheduleLocators.CSAmdSchTypeField, ElementType.Xpath);
+				webDB.doubleClickAnElement(CustomerScheduleLocators.FirmTypeInCsa(), ElementType.Xpath);
 				webDB.selectDropDownByText(CustomerScheduleLocators.CSAmdSchTypeDropDown, Value, ElementType.Xpath);
 				commonFunc.checkRefreshCellsDisappear();
 				webDB.pressTabKey();
@@ -2424,7 +2425,7 @@ public class CustomerScheduleFunctions {
 	 * @param Qty
 	 */
 	public void changeQtyInCSAmd(String Qty) {
-		salesOrderFunctions.verifyClickAndEnterValueInTableFields(CustomerScheduleLocators.CSAmdQtyField,
+		salesOrderFunctions.verifyClickAndEnterValueInTableFields(CustomerScheduleLocators.FirmQtyCsa(),
 				CustomerScheduleLocators.CSAmdQtyInputField, Qty);
 		webDB.pressTabKey();
 	}
@@ -2436,7 +2437,7 @@ public class CustomerScheduleFunctions {
 	 * @param UnitPrice
 	 */
 	public void changePriceInCSAmd(String UnitPrice) {
-		salesOrderFunctions.verifyClickAndEnterValueInTableFields(CustomerScheduleLocators.CSAmdPriceField,
+		salesOrderFunctions.verifyClickAndEnterValueInTableFields(CustomerScheduleLocators.CsaPriceField(),
 				CustomerScheduleLocators.CSAmdPriceInputField, UnitPrice);
 		webDB.pressTabKey();
 		commonFunc.checkRefreshCellsDisappear();
@@ -2449,7 +2450,7 @@ public class CustomerScheduleFunctions {
 	 * @param TentativeQty
 	 */
 	public void changeTentaiveQtyInCSAmd(String TentativeQty) {
-		salesOrderFunctions.verifyClickAndEnterValueInTableFields(CustomerScheduleLocators.CSAmdTentativeQtyField,
+		salesOrderFunctions.verifyClickAndEnterValueInTableFields(CustomerScheduleLocators.CsaTentiveQtyField(),
 				CustomerScheduleLocators.CSAmdTentativeQtyInputField, TentativeQty);
 		webDB.pressTabKey();
 	}
@@ -2471,6 +2472,28 @@ public class CustomerScheduleFunctions {
 		}
 		Assert.assertTrue(flag);
 	}
+	/**Click and Navigates Customer Schedule Amd Screen
+	 * 
+	 * @author Kowshik-RMITS
+	 */
+	public void clickAnCreateSoaandCsaAmdButton() {
+		flag = webDB.waitForElement(SalesOrderLocators.SOAmendmentPendingButton, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(SalesOrderLocators.SOAmendmentPendingButton, ElementType.Xpath);
+			flag = webDB.waitForElement(CustomerScheduleLocators.CSamdButton, ElementType.Xpath);
+			if(flag) {
+				commonFunc.checkRefreshCellsDisappear();
+				webDB.clickAnElement(CustomerScheduleLocators.CSamdButton, ElementType.Xpath);
+				flag = webDB.waitForElement(CustomerScheduleLocators.CSAmdLocationLov, ElementType.Xpath);
+				if(flag) {
+					logs.logging("INFO", "Customer Schedule Amd Screen Navigates Successfully");
+				} else {
+					logs.logging("INFO", "Failed To Navigates Customer Schedule Amd Screen");
+				}
+			}
+		}
+		assertTrue(flag);
+	}
 
 	/**
 	 * This Method Is Used To Cancel The Customer Schedule Amendment Document
@@ -2481,8 +2504,8 @@ public class CustomerScheduleFunctions {
 	public boolean cancelCustomerScheduleAmendmentDocument() {
 //		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 //				System.getProperty("AdminUsername"));
-		commonFunc.navigateCustomerScheduleAmendmentScreen();
-		clickAddButtonInCSAmd();
+		commonFunc.navigateSalesOrderAmendmentPage();
+		clickAnCreateSoaandCsaAmdButton();
 		addHeaderDetailsOfCSAmendment(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("CSAmendPrefix"), commonFunc.getDataFromTestDataSheet("Customer"));
 		clickCancelButtonInCSAmd();
@@ -2503,8 +2526,8 @@ public class CustomerScheduleFunctions {
 				commonFunc.getDataFromTestDataSheet("CSNarration"));
 //		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 //				System.getProperty("AdminUsername"));
-		commonFunc.navigateCustomerScheduleAmendmentScreen();
-		clickAddButtonInCSAmd();
+		commonFunc.navigateSalesOrderAmendmentPage();
+		clickAnCreateSoaandCsaAmdButton();
 		addHeaderDetailsOfCSAmendment(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("CSAmendPrefix"), commonFunc.getDataFromTestDataSheet("Customer"));
 		clickFetchButtonInCSAmd();
@@ -2521,7 +2544,7 @@ public class CustomerScheduleFunctions {
 					VariableHandler.getMultipleCSLineDocs().get(0),
 					commonFunc.getDataFromTestDataSheet("DBCSLineStatusColumnName"));
 			salesOrderFunctions.verifyAssertionBothValues(LineStatus,
-					commonFunc.getDataFromTestDataSheet("CloseshortedLineStatus"));
+					commonFunc.getDataFromTestDataSheet("CustomerScheduleAmendmentCloseShort"));
 		}
 		return flag;
 	}
@@ -2539,8 +2562,8 @@ public class CustomerScheduleFunctions {
 				commonFunc.getDataFromTestDataSheet("CSNarration"));
 //		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 //				System.getProperty("AdminUsername"));
-		commonFunc.navigateCustomerScheduleAmendmentScreen();
-		clickAddButtonInCSAmd();
+		commonFunc.navigateSalesOrderAmendmentPage();
+		clickAnCreateSoaandCsaAmdButton();
 		addHeaderDetailsOfCSAmendment(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("CSAmendPrefix"), commonFunc.getDataFromTestDataSheet("Customer"));
 		clickFetchButtonInCSAmd();
@@ -2579,8 +2602,8 @@ public class CustomerScheduleFunctions {
 				commonFunc.getDataFromTestDataSheet("CSNarration"));
 //		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 //				"AdminUsername");
-		commonFunc.navigateCustomerScheduleAmendmentScreen();
-		clickAddButtonInCSAmd();
+		commonFunc.navigateSalesOrderAmendmentPage();
+		clickAnCreateSoaandCsaAmdButton();	
 		addHeaderDetailsOfCSAmendment(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("CSAmendPrefix"), commonFunc.getDataFromTestDataSheet("Customer"));
 		clickFetchButtonInCSAmd();
@@ -2619,8 +2642,8 @@ public class CustomerScheduleFunctions {
 				commonFunc.getDataFromTestDataSheet("CSNarration"));
 //		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 //				System.getProperty("AdminUsername"));
-		commonFunc.navigateCustomerScheduleAmendmentScreen();
-		clickAddButtonInCSAmd();
+		commonFunc.navigateSalesOrderAmendmentPage();
+		clickAnCreateSoaandCsaAmdButton();
 		addHeaderDetailsOfCSAmendment(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("CSAmendPrefix"), commonFunc.getDataFromTestDataSheet("Customer"));
 		clickFetchButtonInCSAmd();

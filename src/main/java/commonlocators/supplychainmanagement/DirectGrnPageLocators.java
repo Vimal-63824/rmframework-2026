@@ -156,7 +156,7 @@ public class DirectGrnPageLocators {
 
 	/** @locatorType Xpath */
 	public static final String GrnDetailsBtn(int i) {
-		return "//*[@id='add_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[" + i + "]/td[25]/a";
+		return "//*[@id='add_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[" + i + "]/td[1]/a";
 	}
 
 	/** @locatorType Xpath */
@@ -256,4 +256,11 @@ public class DirectGrnPageLocators {
 	public static final String GRNAmendLineFindTableData(String i) {
 		return CommonFunctions.checkAndReturnLocatorForFindPageTable(GRNLineFindTable, i);
 	}
+	/** @locatorType Xpath */
+	public static final String GrnLineDetailsNew = "//*[@id=\"t_PageBody\"]/ul/li[1]/a";
+	/** @locatorType Xpath */
+	public static final String GrnLineDetDiscount = "//button[@aria-labelledby=\"a_Collapsible3_R277912666708252791_heading\"]";
+	
+	
+	
 }
