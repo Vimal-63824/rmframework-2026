@@ -468,6 +468,7 @@ public class POAmendmentFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyEnterAmountForDiscountCalculation(String Tradevalue, String SplValue, String CashValue) {
+		verifyDiscountTabOpening();
 		flag = webDB.waitForElement(POAmendmentLocators.NewTradeAssemblePct, ElementType.Xpath);
 		if (flag) {
 			webDB.clearText(POAmendmentLocators.NewTradeAssemblePct, ElementType.Xpath);
@@ -630,8 +631,7 @@ public class POAmendmentFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyLineDetailsUpdation(String... hsncode) {
-		webDB.moveToElement(POAmendmentLocators.NewCashAssembleAmount, ElementType.Xpath);
-		webDB.moveToElement(POAmendmentLocators.HSNCode, ElementType.Xpath);
+		verifyExpandNewTax();
 		flag = webDB.waitForElement(POAmendmentLocators.HSNCode, ElementType.Xpath);
 		if (flag) {
 			if (hsncode.length > 0) {
@@ -2388,15 +2388,19 @@ public class POAmendmentFunctions {
 	 * 
 	 */
 	public void navigateToLineDetailPage(String Item) {
-		webDB.moveToElement(POAmendmentLocators.ItemTable(), ElementType.Xpath);
+//		webDB.moveToElement(POAmendmentLocators.ItemTable(), ElementType.Xpath);
 		webDB.moveToElement(POAmendmentLocators.LineDetails(Item), ElementType.Xpath);
 		flag = webDB.waitForElement(POAmendmentLocators.LineDetails(Item), ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(POAmendmentLocators.LineDetails(Item), ElementType.Xpath);
-			flag = webDB.waitForElement(POAmendmentLocators.Details, ElementType.Xpath);
+			webDB.javaScriptClickAnElement(POAmendmentLocators.LineDetails(Item), ElementType.Xpath);
+			flag = webDB.waitForElement(POAmendmentLocators.DetailsButton, ElementType.Xpath);
 			if (flag) {
-				webDB.switchToFrame(POAmendmentLocators.LineDetailsIframe, ElementType.Xpath);
-				logs.logging("INFO", "Navigated To Line Details Page");
+				webDB.clickAnElement(POAmendmentLocators.DetailsButton, ElementType.Xpath);
+				flag = webDB.waitForElement(POAmendmentLocators.Details, ElementType.Xpath);
+				if (flag) {
+					webDB.switchToFrame(POAmendmentLocators.LineDetailsIframe, ElementType.Xpath);
+					logs.logging("INFO", "Navigated To Line Details Page");
+				}
 			}
 		}
 		assertTrue(flag);
@@ -3443,10 +3447,6 @@ public class POAmendmentFunctions {
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
-			commonFunc.navigatePurchaseOrderPage();
-			verifyOpenPONumber(VariableHandler.getPONumber());
-			flag = commonFunc.logoutUser();
 			for (int j = 3; j < itemmultiple.length; j++) {
 				if (itemmultiple[j][0].equals(commonFunc.getDataFromTestDataSheet("FinalPO"))) {
 					for (int i = j + 3; i < itemmultiple.length; i++) {
@@ -3974,10 +3974,6 @@ public class POAmendmentFunctions {
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
-			commonFunc.navigatePurchaseOrderPage();
-			verifyOpenPONumber(VariableHandler.getPONumber());
-
 			for (int j = 3; j < itemmultiple.length; j++) {
 				if (itemmultiple[j][0].equals(commonFunc.getDataFromTestDataSheet("FinalPO"))) {
 					for (int i = j + 3; i < itemmultiple.length; i++) {
@@ -4741,10 +4737,6 @@ public class POAmendmentFunctions {
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
-			commonFunc.navigatePurchaseOrderPage();
-			verifyOpenPONumber(VariableHandler.getPONumber());
-
 			for (int j = 3; j < itemmultiple.length; j++) {
 				if (itemmultiple[j][0].equals(commonFunc.getDataFromTestDataSheet("FinalPO"))) {
 					for (int i = j + 3; i < itemmultiple.length; i++) {
@@ -4813,10 +4805,6 @@ public class POAmendmentFunctions {
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
-			commonFunc.navigatePurchaseOrderPage();
-			verifyOpenPONumber(VariableHandler.getPONumber());
-
 			for (int j = 3; j < itemmultiple.length; j++) {
 				if (itemmultiple[j][0].equals(commonFunc.getDataFromTestDataSheet("FinalPO"))) {
 					for (int i = j + 3; i < itemmultiple.length; i++) {
@@ -4953,9 +4941,6 @@ public class POAmendmentFunctions {
 				System.getProperty("HariUsername"));
 		commonFunc.navigatePoAmendmentPage();
 		verifyValidatePOAStatus(VariableHandler.getPOANumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		commonFunc.navigatePurchaseOrderPage();
-		verifyOpenPONumber(VariableHandler.getPONumber());
-
 		for (int j = 3; j < itemmultiple.length; j++) {
 			if (itemmultiple[j][0].equals(commonFunc.getDataFromTestDataSheet("FinalPO"))) {
 				for (int i = j + 3; i < itemmultiple.length; i++) {
@@ -5096,10 +5081,6 @@ public class POAmendmentFunctions {
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
-			commonFunc.navigatePurchaseOrderPage();
-			verifyOpenPONumber(VariableHandler.getPONumber());
-
 			for (int j = 3; j < itemmultiple.length; j++) {
 				if (itemmultiple[j][0].equals(commonFunc.getDataFromTestDataSheet("FinalPO"))) {
 					for (int i = j + 3; i < itemmultiple.length; i++) {
@@ -5168,10 +5149,6 @@ public class POAmendmentFunctions {
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
-			commonFunc.navigatePurchaseOrderPage();
-			verifyOpenPONumber(VariableHandler.getPONumber());
-
 			for (int j = 3; j < itemmultiple.length; j++) {
 				if (itemmultiple[j][0].equals(commonFunc.getDataFromTestDataSheet("FinalPO"))) {
 					for (int i = j + 3; i < itemmultiple.length; i++) {
@@ -5240,10 +5217,6 @@ public class POAmendmentFunctions {
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
-			commonFunc.navigatePurchaseOrderPage();
-			verifyOpenPONumber(VariableHandler.getPONumber());
-
 			for (int j = 3; j < itemmultiple.length; j++) {
 				if (itemmultiple[j][0].equals(commonFunc.getDataFromTestDataSheet("FinalPO"))) {
 					for (int i = j + 3; i < itemmultiple.length; i++) {
@@ -5312,10 +5285,6 @@ public class POAmendmentFunctions {
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
-			commonFunc.navigatePurchaseOrderPage();
-			verifyOpenPONumber(VariableHandler.getPONumber());
-
 			for (int j = 3; j < itemmultiple.length; j++) {
 				if (itemmultiple[j][0].equals(commonFunc.getDataFromTestDataSheet("FinalPO"))) {
 					for (int i = j + 3; i < itemmultiple.length; i++) {
@@ -5384,10 +5353,6 @@ public class POAmendmentFunctions {
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
-			commonFunc.navigatePurchaseOrderPage();
-			verifyOpenPONumber(VariableHandler.getPONumber());
-
 			for (int j = 3; j < itemmultiple.length; j++) {
 				if (itemmultiple[j][0].equals(commonFunc.getDataFromTestDataSheet("FinalPO"))) {
 					for (int i = j + 3; i < itemmultiple.length; i++) {
@@ -5456,11 +5421,6 @@ public class POAmendmentFunctions {
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-//			flag = commonFunc.logoutUser();
-//			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
-			commonFunc.navigatePurchaseOrderPage();
-			verifyOpenPONumber(VariableHandler.getPONumber());
-
 			for (int j = 3; j < itemmultiple.length; j++) {
 				if (itemmultiple[j][0].equals(commonFunc.getDataFromTestDataSheet("FinalPO"))) {
 					for (int i = j + 3; i < itemmultiple.length; i++) {
@@ -5765,10 +5725,6 @@ public class POAmendmentFunctions {
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
-			commonFunc.navigatePurchaseOrderPage();
-			verifyOpenPONumber(VariableHandler.getPONumber());
-
 			for (int j = 3; j < itemmultiple.length; j++) {
 				if (itemmultiple[j][0].equals(commonFunc.getDataFromTestDataSheet("FinalPO"))) {
 					for (int i = j + 3; i < itemmultiple.length; i++) {
@@ -5841,11 +5797,6 @@ public class POAmendmentFunctions {
 				System.getProperty("HariUsername"));
 		verifyValidatePOAStatus(VariableHandler.getPOANumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername-Admin");
-		commonFunc.navigatePurchaseOrderPage();
-		verifyOpenPONumber(VariableHandler.getPONumber());
-		flag = commonFunc.logoutUser();
 		for (int j = 3; j < itemmultiple.length; j++) {
 			if (itemmultiple[j][0].equals(commonFunc.getDataFromTestDataSheet("FinalPO"))) {
 				for (int i = j + 3; i < itemmultiple.length; i++) {
@@ -5915,10 +5866,6 @@ public class POAmendmentFunctions {
 				webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("U1"),
 				System.getProperty("HariUsername"));
 		verifyValidatePOAStatus(VariableHandler.getPOANumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
-		commonFunc.navigatePurchaseOrderPage();
-		verifyOpenPONumber(VariableHandler.getPONumber());
 		flag = commonFunc.logoutUser();
 		for (int j = 3; j < itemmultiple.length; j++) {
 			if (itemmultiple[j][0].equals(commonFunc.getDataFromTestDataSheet("FinalPO"))) {
@@ -5991,10 +5938,6 @@ public class POAmendmentFunctions {
 				System.getProperty("HariUsername"));
 		verifyValidatePOAStatus(VariableHandler.getPOANumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
-		commonFunc.navigatePurchaseOrderPage();
-		verifyOpenPONumber(VariableHandler.getPONumber());
-		flag = commonFunc.logoutUser();
 		for (int j = 3; j < itemmultiple.length; j++) {
 			if (itemmultiple[j][0].equals(commonFunc.getDataFromTestDataSheet("FinalPO"))) {
 				for (int i = j + 3; i < itemmultiple.length; i++) {
@@ -6064,10 +6007,6 @@ public class POAmendmentFunctions {
 				webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("U1"),
 				System.getProperty("HariUsername"));
 		verifyValidatePOAStatus(VariableHandler.getPOANumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
-		commonFunc.navigatePurchaseOrderPage();
-		verifyOpenPONumber(VariableHandler.getPONumber());
 		flag = commonFunc.logoutUser();
 		for (int j = 3; j < itemmultiple.length; j++) {
 			if (itemmultiple[j][0].equals(commonFunc.getDataFromTestDataSheet("FinalPO"))) {
@@ -6143,10 +6082,6 @@ public class POAmendmentFunctions {
 				System.getProperty("HariUsername"));
 		verifyValidatePOAStatus(VariableHandler.getPOANumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
-		commonFunc.navigatePurchaseOrderPage();
-		verifyOpenPONumber(VariableHandler.getPONumber());
-
 		for (int j = 3; j < itemmultiple.length; j++) {
 			if (itemmultiple[j][0].equals(commonFunc.getDataFromTestDataSheet("FinalPO"))) {
 				for (int i = j + 3; i < itemmultiple.length; i++) {
@@ -6221,10 +6156,6 @@ public class POAmendmentFunctions {
 				System.getProperty("HariUsername"));
 		verifyValidatePOAStatus(VariableHandler.getPOANumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
-		commonFunc.navigatePurchaseOrderPage();
-		verifyOpenPONumber(VariableHandler.getPONumber());
-
 		for (int j = 3; j < itemmultiple.length; j++) {
 			if (itemmultiple[j][0].equals(commonFunc.getDataFromTestDataSheet("FinalPO"))) {
 				for (int i = j + 3; i < itemmultiple.length; i++) {
@@ -6299,10 +6230,6 @@ public class POAmendmentFunctions {
 				System.getProperty("HariUsername"));
 		verifyValidatePOAStatus(VariableHandler.getPOANumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
-		commonFunc.navigatePurchaseOrderPage();
-		verifyOpenPONumber(VariableHandler.getPONumber());
-
 		for (int j = 3; j < itemmultiple.length; j++) {
 			if (itemmultiple[j][0].equals(commonFunc.getDataFromTestDataSheet("FinalPO"))) {
 				for (int i = j + 3; i < itemmultiple.length; i++) {
@@ -6377,10 +6304,6 @@ public class POAmendmentFunctions {
 				System.getProperty("HariUsername"));
 		verifyValidatePOAStatus(VariableHandler.getPOANumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
-		commonFunc.navigatePurchaseOrderPage();
-		verifyOpenPONumber(VariableHandler.getPONumber());
-
 		for (int j = 3; j < itemmultiple.length; j++) {
 			if (itemmultiple[j][0].equals(commonFunc.getDataFromTestDataSheet("FinalPO"))) {
 				for (int i = j + 3; i < itemmultiple.length; i++) {
@@ -6443,10 +6366,6 @@ public class POAmendmentFunctions {
 				System.getProperty("HariUsername"));
 		verifyValidatePOAStatus(VariableHandler.getPOANumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
-		commonFunc.navigatePurchaseOrderPage();
-		verifyOpenPONumber(VariableHandler.getPONumber());
-
 		for (int j = 3; j < itemmultiple.length; j++) {
 			if (itemmultiple[j][0].equals(commonFunc.getDataFromTestDataSheet("FinalPO"))) {
 				for (int i = j + 3; i < itemmultiple.length; i++) {
@@ -6509,10 +6428,6 @@ public class POAmendmentFunctions {
 				System.getProperty("HariUsername"));
 		verifyValidatePOAStatus(VariableHandler.getPOANumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
-		commonFunc.navigatePurchaseOrderPage();
-		verifyOpenPONumber(VariableHandler.getPONumber());
-
 		for (int j = 3; j < itemmultiple.length; j++) {
 			if (itemmultiple[j][0].equals(commonFunc.getDataFromTestDataSheet("FinalPO"))) {
 				for (int i = j + 3; i < itemmultiple.length; i++) {
@@ -6575,10 +6490,6 @@ public class POAmendmentFunctions {
 				System.getProperty("HariUsername"));
 		verifyValidatePOAStatus(VariableHandler.getPOANumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
-		commonFunc.navigatePurchaseOrderPage();
-		verifyOpenPONumber(VariableHandler.getPONumber());
-
 		for (int j = 3; j < itemmultiple.length; j++) {
 			if (itemmultiple[j][0].equals(commonFunc.getDataFromTestDataSheet("FinalPO"))) {
 				for (int i = j + 3; i < itemmultiple.length; i++) {
@@ -6641,10 +6552,6 @@ public class POAmendmentFunctions {
 				System.getProperty("HariUsername"));
 		verifyValidatePOAStatus(VariableHandler.getPOANumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
-		commonFunc.navigatePurchaseOrderPage();
-		verifyOpenPONumber(VariableHandler.getPONumber());
-
 		for (int j = 3; j < itemmultiple.length; j++) {
 			if (itemmultiple[j][0].equals(commonFunc.getDataFromTestDataSheet("FinalPO"))) {
 				for (int i = j + 3; i < itemmultiple.length; i++) {
@@ -6748,7 +6655,8 @@ public class POAmendmentFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyLineDetailsUpdation(String HsnCode) {
-		webDB.moveToElement(POAmendmentLocators.NewCashAssembleAmount, ElementType.Xpath);
+		verifyExpandNewTax();
+//		webDB.moveToElement(POAmendmentLocators.NewCashAssembleAmount, ElementType.Xpath);
 		webDB.moveToElement(POAmendmentLocators.HSNCode, ElementType.Xpath);
 		flag = webDB.waitForElement(POAmendmentLocators.HSNCode, ElementType.Xpath);
 		if (flag) {
@@ -11969,5 +11877,40 @@ public class POAmendmentFunctions {
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 //			flag = commonFunc.logoutUser();
 		}
+	}
+
+	/**
+	 * This Method Is Used To Verify Expand New Tax Button
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyExpandNewTax() {
+		webDB.moveToElement(POAmendmentLocators.NewTaxDetails, ElementType.Xpath);
+		flag = webDB.waitForElement(POAmendmentLocators.NewTaxDetails, ElementType.Xpath);
+		if (flag) {
+			logs.logging("INFO", "New Tax Details Exppand Button Is Displayed");
+			webDB.clickAnElement(POAmendmentLocators.NewTaxDetails, ElementType.Xpath);
+			flag = webDB.waitForElement(POAmendmentLocators.HSNCode, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "New Tax Details Exppand Button Is Clicked");
+			}
+		}
+	}
+
+	/**
+	 * Verify Discount Tab Opening
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyDiscountTabOpening() {
+		flag = webDB.waitForElement(POAmendmentLocators.DiscountExpandButton, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(POAmendmentLocators.DiscountExpandButton, ElementType.Xpath);
+			flag = webDB.waitForElement(POAmendmentLocators.NewTradeAssemblePct, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Discount Expand Button Is Displyaed");
+			}
+		}
+		assertTrue(flag);
 	}
 }
