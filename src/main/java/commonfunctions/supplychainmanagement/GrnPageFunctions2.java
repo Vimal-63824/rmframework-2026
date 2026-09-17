@@ -609,12 +609,12 @@ public class GrnPageFunctions2 {
 	 * @author Sakthi-GWL
 	 */
 	public void verifyClickFOCAndSaveLines() {
-		flag = webDB.waitForElement(DirectGrnPageLocators.GrnFOCTabledata, ElementType.Xpath);
+		flag = webDB.waitForElement(DirectGrnPageLocators.GrnFOCTabledata(), ElementType.Xpath);
 		if (flag) {
-			webDB.moveToElement(DirectGrnPageLocators.GrnFOCTabledata, ElementType.Xpath);
-			webDB.clickAnElement(DirectGrnPageLocators.GrnFOCTabledata, ElementType.Xpath);
+			webDB.moveToElement(DirectGrnPageLocators.GrnFOCTabledata(), ElementType.Xpath);
+			webDB.clickAnElement(DirectGrnPageLocators.GrnFOCTabledata(), ElementType.Xpath);
 			commonFunc.hardWait(3000);
-			flag = webDB.isElementSelected(DirectGrnPageLocators.GrnFOCTableInput, ElementType.Xpath);
+			flag = webDB.isElementSelected(DirectGrnPageLocators.GrnFOCTableInput(), ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "FOC Input Box Clicked in GRN Line Details");
 				commonFunc.checkRefreshCellsDisappear();

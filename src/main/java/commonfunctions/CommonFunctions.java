@@ -244,6 +244,7 @@ public class CommonFunctions {
 					InputElement);
 			webDB.clickAnElement(CommonUiLocators.BusFunctionSearchBox, ElementType.Xpath);
 		}
+		checkRefreshCellsDisappear();
 		webDB.waitUntilElementToNotBeStale(CommonUiLocators.PurchaseAddIcon, ElementType.Xpath);
 		flag = webDB.waitForElement(CommonUiLocators.PurchaseAddIcon, ElementType.Xpath);
 		Assert.assertTrue(flag);
@@ -3394,7 +3395,7 @@ public class CommonFunctions {
 			Object obj = parser.parse(reader);
 			jsonObject = (JSONObject) obj;
 			HeaderValue = jsonObject.get(HeaderValue).toString();
-			System.out.println("Header Value1 " + HeaderValue);
+//			System.out.println("Header Value1 " + HeaderValue);
 		} catch (Exception e) {
 			logs.logging("INFO", "No Data Found In Table.json file: " + HeaderValue);
 		}
@@ -3468,7 +3469,7 @@ public class CommonFunctions {
 		if (elements.isEmpty()) {
 			try {
 				Thread.sleep(3000);
-				System.out.println("thread wait");
+//				System.out.println("thread wait");
 			} catch (InterruptedException e) {
 			}
 			elements = webDB.getListOfElements(Locator, ElementType.Xpath);
