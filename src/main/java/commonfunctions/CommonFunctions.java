@@ -3402,7 +3402,7 @@ public class CommonFunctions {
 			HeaderValue = jsonObject.get(HeaderValue).toString();
 //			System.out.println("Header Value1 " + HeaderValue);
 		} catch (Exception e) {
-			logs.logging("INFO", "No Data Found In Table.json file: " + HeaderValue);
+//			logs.logging("INFO", "No Data Found In Table.json file: " + HeaderValue);
 		}
 
 		Locator = Locator + "/tbody/tr/*[count(" + Locator + "/thead/tr[1]/th[normalize-space()='" + HeaderValue
@@ -3480,7 +3480,7 @@ public class CommonFunctions {
 			elements = webDB.getListOfElements(Locator, ElementType.Xpath);
 		}
 		for (int i = 0; i < elements.size(); i++) {
-			String text = (String) ((JavascriptExecutor) webDB.getDriver())
+			String text = (String) ((JavascriptExecutor) WebDriverBase.getDriver())
 					.executeScript("return arguments[0].textContent.trim();", elements.get(i));
 			if (text.equals(null) || text.equals("")) {
 				text = elements.get(i).getText();

@@ -43,7 +43,7 @@ public class CommonUiLocators {
 	/** @locatorType Xpath */
 	public static final String FailedNotifyMessage = "//div[contains(@class,'Notification--error')]";
 	/** @locatorType Xpath */
-	public static final String ToastCloseIcon = "//button[@title='Close']";
+	public static final String ToastCloseIcon = "//div[contains(@class,'Alert')]//button[@title='Close']";
 	/** @locatorType Xpath */
 	public static final String EntryTableRefreshCellImage = "//*[contains(@class,'u-Processing-spinner')]";
 	/** @locatorType Xpath */

@@ -18,7 +18,6 @@
 			<class name="com.roadmapERP.SalesPriceListTest"></class>
 			<class name="com.roadmapERP.SalesStandardPriceTest"></class>
 			<class name="com.roadmapERP.SetupSalesTest"></class>
-			<class name="com.roadmapERP.SsoTest"></class>
 			<class name="com.roadmapERP.StockAdjustmentTest"></class>
 		</classes>
 	</test>

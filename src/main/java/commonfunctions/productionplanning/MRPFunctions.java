@@ -286,8 +286,10 @@ public class MRPFunctions {
 							flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
 							if (flag) {
 								commonFunc.checkRefreshCellsDisappear();
-								if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
-									webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+								if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon,
+										ElementType.Xpath)) {
+									webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon,
+											ElementType.Xpath);
 								}
 							}
 						}
@@ -788,8 +790,6 @@ public class MRPFunctions {
 			if (Cost.equals("00")) {
 				Cost = "10";
 			}
-//			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-//					"AdminUsername");
 			commonFunc.navigateSalesOrderPage();
 			saleOrderFunc.navigateToSalesOrderOrCustomerSchedule(webDB.getDataFromProperties("So"));
 			saleOrderFunc.createSalesOrderWithHeaderDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -799,9 +799,14 @@ public class MRPFunctions {
 			saleOrderFunc.addQuantityAndUnitCost(Qnty, Cost);
 			saleOrderFunc.chooseHsnCodeAndClickLineWiseSaveButton(OpenSOHSN);
 			saleOrderFunc.clickLineWiseSaveButton();
-//			saleOrderFunc.checkSaleOrderTaxCalculationForLastAddedItem();
 			saleOrderFunc.clickTotalDiscountForLineDetails();
 			saleOrderFunc.switchToLineDetailFrameInSaleOrder();
+			commonFunc.checkRefreshCellsDisappear();
+			if (webDB.verifyIsElementDisplayed(SalesOrderLocators.SOTradeDiscountpercentageField, ElementType.Xpath)) {
+				commonFunc.checkDiscountInLineDetails(SalesOrderLocators.SOTradeDiscountAssblValue,
+						SalesOrderLocators.SOTradeDiscountpercentageField,
+						SalesOrderLocators.SOTradeDiscountAmountField, RandomStringUtils.randomNumeric(1));
+			}
 			commonFunc.checkDiscountInLineDetails(SalesOrderLocators.SOSpecialDiscountAssblValue,
 					SalesOrderLocators.SOSpecialDiscountpercentageField,
 					SalesOrderLocators.SOSpecialDiscountAmountField, RandomStringUtils.randomNumeric(1));
@@ -811,7 +816,6 @@ public class MRPFunctions {
 					RandomStringUtils.randomNumeric(1));
 			saleOrderFunc.clickLineWiseDetailsSaveButton();
 			webDB.switchToDefaultContent();
-			saleOrderFunc.getSalesOrderTotalAmount();
 			saleOrderFunc.clickPostButton();
 			if (!VariableHandler.getApprovalFlag()) {
 				approvalFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));

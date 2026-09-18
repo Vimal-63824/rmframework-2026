@@ -120,11 +120,11 @@ public class BillOfMaterialsLocators {
 
 	/** @locatorType Xpath */
 	public static final String RoutingDetailsBtnWithProcessName(String ProcessName) {
-		return "(//div[@id='ROUTING_ig_grid_vc']//table/tbody/tr/td[text()='" + ProcessName + "']/../td[1])//span";
+		return "(//div[@id='ROUTING_ig_grid_vc']//table/tbody/tr/td[text()='" + ProcessName + "']/../td[1])[1]//a";
 	}
 
 	/** @locatorType Xpath */
-	public static final String Details_RoutingThreeDotsMenu= "//ul[@class='custom-row-menu']//*[text()='Details']";
+	public static final String Details_RoutingThreeDotsMenu = "//ul[@class='custom-row-menu']//*[text()='Details']";
 	/** @locatorType Xpath */
 	public static final String RoutingViewDetailsIframe = "//iframe[@title='View Details']";
 	/** @locatorType Xpath */

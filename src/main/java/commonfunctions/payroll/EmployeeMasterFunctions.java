@@ -428,7 +428,6 @@ public class EmployeeMasterFunctions {
 			submitPhoneExtensionAndFaxNoInAdditionalInfo(commonFunc.randomMobileNumberGenerator(),
 					String.valueOf(random.nextInt(100)), String.valueOf(random.nextInt(5)));
 			clickTickIconInAdditionalInfo();
-			commonFunc.logoutUser();
 			return true;
 		} catch (Exception e) {
 			logs.logging("INFO", "Exception occur while executing 'verifyEmployeeCreationAdditionalInfoDetails': " + e);
@@ -518,11 +517,11 @@ public class EmployeeMasterFunctions {
 				enablePFAdjustmentFlagsInSalaryDetails();
 				enableESIAdjustmentFlagsInSalaryDetails();
 				clickPostButtonAndVerifyEmployeePosted();
-				commonFunc.logoutUser();
-				commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
-						"HrRqtUsername");
 				VariableHandler.setAddEmployeDefaultExecution(true);
 			}
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+					"HrRqtUsername");
 			commonFunc.navigateEmployeeMasterScreenInPayroll();
 			searchAndClickEmpIdInFindEmployeePage(VariableHandler.getEmpID());
 			clickUpdateButtonInAddEmployee();
@@ -594,11 +593,11 @@ public class EmployeeMasterFunctions {
 				enablePFAdjustmentFlagsInSalaryDetails();
 				enableESIAdjustmentFlagsInSalaryDetails();
 				clickPostButtonAndVerifyEmployeePosted();
-				commonFunc.logoutUser();
-				commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
-						"HrRqtUsername");
 				VariableHandler.setAddEmployeDefaultExecution(true);
 			}
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+					"HrRqtUsername");
 			commonFunc.navigateEmployeeMasterScreenInPayroll();
 			searchAndClickEmpIdInFindEmployeePage(VariableHandler.getEmpID());
 			clickUpdateButtonInAddEmployee();
@@ -660,11 +659,11 @@ public class EmployeeMasterFunctions {
 				enablePFAdjustmentFlagsInSalaryDetails();
 				enableESIAdjustmentFlagsInSalaryDetails();
 				clickPostButtonAndVerifyEmployeePosted();
-				commonFunc.logoutUser();
-				commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
-						"HrRqtUsername");
 				VariableHandler.setAddEmployeDefaultExecution(true);
 			}
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+					"HrRqtUsername");
 			commonFunc.navigateEmployeeMasterScreenInPayroll();
 			searchAndClickEmpIdInFindEmployeePage(VariableHandler.getEmpID());
 			clickUpdateButtonInAddEmployee();
@@ -730,10 +729,11 @@ public class EmployeeMasterFunctions {
 				enableESIAdjustmentFlagsInSalaryDetails();
 				clickPostButtonAndVerifyEmployeePosted();
 				commonFunc.logoutUser();
-				commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
-						"HrRqtUsername");
 				VariableHandler.setAddEmployeDefaultExecution(true);
 			}
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+					"HrRqtUsername");
 			commonFunc.navigateEmployeeMasterScreenInPayroll();
 			searchAndClickEmpIdInFindEmployeePage(VariableHandler.getEmpID());
 			clickUpdateButtonInAddEmployee();
@@ -798,11 +798,11 @@ public class EmployeeMasterFunctions {
 				enablePFAdjustmentFlagsInSalaryDetails();
 				enableESIAdjustmentFlagsInSalaryDetails();
 				clickPostButtonAndVerifyEmployeePosted();
-				commonFunc.logoutUser();
-				commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
-						"HrRqtUsername");
 				VariableHandler.setAddEmployeDefaultExecution(true);
 			}
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+					"HrRqtUsername");
 			commonFunc.navigateEmployeeMasterScreenInPayroll();
 			searchAndClickEmpIdInFindEmployeePage(VariableHandler.getEmpID());
 			clickUpdateButtonInAddEmployee();
@@ -867,11 +867,11 @@ public class EmployeeMasterFunctions {
 				enablePFAdjustmentFlagsInSalaryDetails();
 				enableESIAdjustmentFlagsInSalaryDetails();
 				clickPostButtonAndVerifyEmployeePosted();
-				commonFunc.logoutUser();
-				commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
-						"HrRqtUsername");
 				VariableHandler.setAddEmployeDefaultExecution(true);
 			}
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+					"HrRqtUsername");
 			commonFunc.navigateEmployeeMasterScreenInPayroll();
 			searchAndClickEmpIdInFindEmployeePage(VariableHandler.getEmpID());
 			clickUpdateButtonInAddEmployee();
@@ -887,6 +887,7 @@ public class EmployeeMasterFunctions {
 				commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getEmpUpdateDocNo(),
 						webDB.getDataFromProperties("ROAUAdminEmpId"), null, System.getProperty("HariUsername"));
 			}
+			commonFunc.logoutUser();
 			return flag;
 		} catch (Exception e) {
 			logs.logging("INFO", "Exception occur while executing 'verifyEmployeeCreationUpdateSkillsDetails': " + e);

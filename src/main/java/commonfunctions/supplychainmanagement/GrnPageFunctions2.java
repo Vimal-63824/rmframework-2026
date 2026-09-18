@@ -268,12 +268,8 @@ public class GrnPageFunctions2 {
 					DirectGRNFunc.verifyClickingAdd();
 					commonFunc.verifyAddTableLovValue(DirectGrnPageLocators.GRNPageItemTable(),
 							DirectGrnPageLocators.GrnLineItemLov, ITEM_NAME);
-					webDB.pressTabKey();
-					webDB.pressTabKey();
 					commonFunc.verifyAddTableLovValue(DirectGrnPageLocators.GRNPageHSNTable(),
 							DirectGrnPageLocators.GrnLineHsnLov, HSN);
-					webDB.pressTabKey();
-					webDB.pressTabKey();
 					commonFunc.verifyAddTableSpecs(DirectGrnPageLocators.GRNPageSupQtyTable(),
 							DirectGrnPageLocators.GrnPageSupQtyInput(), QTY);
 					logs.logging("INFO", "Entered Supply Quantity Is:" + QTY);
@@ -360,6 +356,7 @@ public class GrnPageFunctions2 {
 								webDB.moveToElement(DirectGrnPageLocators.GrnLineDetailsSave, ElementType.Xpath);
 								webDB.clickAnElement(DirectGrnPageLocators.GrnLineDetailsSave, ElementType.Xpath);
 								logs.logging("INFO", "Details Is Saved");
+								commonFunc.checkRefreshCellsDisappear();
 								commonFunc.checkSuccessToastMessageDisappear();
 								commonFunc.checkRefreshCellsDisappear();
 								webDB.pressEscapeKey();
@@ -470,7 +467,6 @@ public class GrnPageFunctions2 {
 					String LOT_SERIAL = itemmultiple[i][54];
 					String LOT_NUMBER = itemmultiple[i][55];
 					String SERIAL_NUMBER = itemmultiple[i][56];
-					logs.logging("INFO", "Total Line Length: " + itemmultiple.length);
 					if (!ITEM_NAME.equals("")) {
 						if (LOT_SERIAL.equals(commonFunc.getDataFromTestDataSheet("Na"))) {
 							continue;
@@ -506,9 +502,6 @@ public class GrnPageFunctions2 {
 			String GrnNumber = webDB.getTextFromElement(GrnLocators.GrnDocNumber, ElementType.Xpath);
 			VariableHandler.setGrnDocNumber(GrnNumber);
 			logs.logging("INFO", "GrnNumber Is :" + VariableHandler.getGrnDocNumber());
-			if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
-				webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
-			}
 			commonFunc.checkSuccessToastMessageDisappear();
 			webDB.moveToElement(GrnLocators.OverAllSave, ElementType.Xpath);
 			webDB.clickAnElement(GrnLocators.OverAllSave, ElementType.Xpath);
@@ -608,18 +601,23 @@ public class GrnPageFunctions2 {
 	 * 
 	 * @author Sakthi-GWL
 	 */
-	public void verifyClickFOCAndSaveLines() {
+	public void verifyEnterUnitCostZeroClickFOCAndSaveLines(String ItemType) {
 		flag = webDB.waitForElement(DirectGrnPageLocators.GrnFOCTabledata(), ElementType.Xpath);
 		if (flag) {
 			webDB.moveToElement(DirectGrnPageLocators.GrnFOCTabledata(), ElementType.Xpath);
 			webDB.clickAnElement(DirectGrnPageLocators.GrnFOCTabledata(), ElementType.Xpath);
-			commonFunc.hardWait(3000);
+			commonFunc.hardWait(2000);
 			flag = webDB.isElementSelected(DirectGrnPageLocators.GrnFOCTableInput(), ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "FOC Input Box Clicked in GRN Line Details");
+				if (ItemType.equals(commonFunc.getDataFromTestDataSheet("UD-ItemType"))) {
+					commonFunc.verifyAddTableSpecs(DirectGrnPageLocators.GRNPageUnitCostTable(),
+							DirectGrnPageLocators.GRNPageUnitCostTable(), "0");
+					webDB.pressTabKey();
+					logs.logging("INFO", "For Free Of Cost, Entered Unit Cost Is:" + "0");
+				}
 				commonFunc.checkRefreshCellsDisappear();
 				DirectGRNFunc.verifyClickingSaveLine();
-				DirectGRNFunc.closeToastIfDisplayed();
 			}
 		}
 		assertTrue(flag);
