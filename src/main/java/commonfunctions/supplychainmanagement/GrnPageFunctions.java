@@ -2148,7 +2148,7 @@ public class GrnPageFunctions {
 		logs.logging("INFO", "Expected Value Is: " + Expected);
 		flag = Actual.equals(Expected);
 		if (flag) {
-			logs.logging("INFO", "Verified Actual DataBase Value 8: " + Actual + " And Expected Values : " + Expected);
+			logs.logging("INFO", "Verified Actual DataBase Value : " + Actual + " And Expected Values : " + Expected);
 		} else {
 			logs.logging("INFO",
 					"Mismatch With Actual DataBase Value : " + Actual + " And Expected Values " + Expected);
@@ -5179,7 +5179,6 @@ public class GrnPageFunctions {
 						commonFunc.getDataFromTestDataSheet("StockCostDBColumnName"));
 				logs.logging("INFO",
 						"After GRN Actual Stock Cost For This Item '" + ItemId + "' Is : " + AfterStockCost);
-
 				verifyAssertionBothValues(AfterStockCost, AfterExcelStockCost);
 				logs.logging("INFO",
 						"Verified Expected Stock Cost For This Item '" + ItemId + "' With Database Values After MRV");
@@ -5261,7 +5260,7 @@ public class GrnPageFunctions {
 						"Expected InspectionWH Stock Cost For This Item '" + ItemId + "' Is : " + ExpectedStockCost);
 				excelUtils.writeDataInExcel(Filepath, SheetName, i, 46, BeforeStockQty);
 				excelUtils.writeDataInExcel(Filepath, SheetName, i, 47, BeforeStockCost);
-				excelUtils.writeDataInExcel(Filepath, SheetName, i, 51, BeforeStockCost);
+//				excelUtils.writeDataInExcel(Filepath, SheetName, i, 51, BeforeStockCost);
 			}
 		}
 	}
@@ -5386,7 +5385,6 @@ public class GrnPageFunctions {
 				break;
 			}
 		}
-
 	}
 
 	/**
@@ -5488,7 +5486,6 @@ public class GrnPageFunctions {
 						commonFunc.getDataFromTestDataSheet("StockQtyDBColumnName"));
 				logs.logging("INFO", "After MRV Source WareHouse Actual Stock Qty For This Item '" + ItemId + "' Is : "
 						+ AfterStockQty);
-
 				verifyAssertionBothValues(AfterStockQty, AfterExcelStockQuantity);
 				logs.logging("INFO", "Verified Expected Source WareHouse Stock Qty For This Item '" + ItemId
 						+ "' With Database Values After MRV");
@@ -5498,7 +5495,6 @@ public class GrnPageFunctions {
 						commonFunc.getDataFromTestDataSheet("StockCostDBColumnName"));
 				logs.logging("INFO", "After MRV Source WareHouse Actual Stock Qty For This Item '" + ItemId + "' Is : "
 						+ AfterStockCost);
-
 				verifyAssertionBothValues(AfterStockCost, AfterExcelStockCost);
 				logs.logging("INFO", "Verified Expected Source WareHouse Stock Cost For This Item '" + ItemId
 						+ "' With Database Values After MRV");

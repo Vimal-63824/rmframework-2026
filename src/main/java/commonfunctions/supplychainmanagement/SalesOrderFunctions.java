@@ -734,6 +734,7 @@ public class SalesOrderFunctions {
 			if (flag) {
 				logs.logging("INFO", "Line Wise Save Button is Clicked");
 				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.checkRefreshCellsDisappear();
 //				webDB.waitForElementUntilGivenTime(SalesOrderLocators.SOTotalAmountFieldTrans, ElementType.Xpath, 60);
 //				flag = webDB.waitForElement(SalesOrderLocators.SOTotalAmountFieldTrans, ElementType.Xpath);
 //				if (flag) {
