@@ -3666,6 +3666,7 @@ public class GrnPageFunctions {
 				flag = webDB.waitForElement(GrnLocators.PendingPOIframe, ElementType.Xpath);
 				if (flag) {
 					webDB.switchToFrame(GrnLocators.PendingPOIframe, ElementType.Xpath);
+					commonFunc.expandFindTable();
 					commonFunc.searchAndSelectValueInFilters(GrnLocators.PendingPOHeaderPONumberInput,
 							VariableHandler.getPONumber());
 					webDB.switchToFrame(GrnLocators.PendingPOIframe, ElementType.Xpath);
@@ -3875,16 +3876,22 @@ public class GrnPageFunctions {
 	 * @author PremKumar.K-RMITS
 	 */
 	public void verifyToClickLinewiseCancelled() {
-		flag = webDB.waitForElement(GrnLocators.GrnLineWiseDeleteButton, ElementType.Xpath);
+		flag = webDB.waitForElement(GrnLocators.DetailsCancel, ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(GrnLocators.GrnLineWiseDeleteButton, ElementType.Xpath);
-			logs.logging("INFO", "Cancelled Alerts are shown ");
-			commonFunc.hardWait(3000);
-			flag = webDB.waitForElement(GrnLocators.CancelAlertForLineWise, ElementType.Xpath);
+			webDB.clickAnElement(GrnLocators.DetailsCancel, ElementType.Xpath);
+			logs.logging("INFO", "Details Clicked Successfully ");
+			commonFunc.checkRefreshCellsDisappear();
+			flag = webDB.waitForElement(GrnLocators.GrnLineWiseDeleteButton, ElementType.Xpath);
 			if (flag) {
-				webDB.clickAnElement(GrnLocators.CancelAlertForLineWise, ElementType.Xpath);
-				logs.logging("INFO", "Successfully LineWise Cancelled");
+				webDB.clickAnElement(GrnLocators.GrnLineWiseDeleteButton, ElementType.Xpath);
+				logs.logging("INFO", "Cancelled Alerts are shown ");
 				commonFunc.hardWait(3000);
+				flag = webDB.waitForElement(GrnLocators.CancelAlertForLineWise, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(GrnLocators.CancelAlertForLineWise, ElementType.Xpath);
+					logs.logging("INFO", "Successfully LineWise Cancelled");
+					commonFunc.hardWait(3000);
+				}
 			}
 		}
 		assertTrue(flag);
@@ -12384,5 +12391,36 @@ public class GrnPageFunctions {
 		}
 
 	}
+	/**
+	 * This Methods Method to handle Create GRN Document from PO With and Without
+	 * Inspection for Contract Item(General Type)
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws Exception
+	 */
+	public void poToGrnGeneralRateContractSameStockAndSupplierUOMWithAndWithoutInspectionGeneralTypeCheckingWithToleranceQtyKp()
+			throws Exception {
+		POfunc.verifyDirectPoWithRateContractItemWithAndWithoutInspectionGeneralType(
+				webDB.getDataFromProperties("ToleranceQty"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.naviagteGrnPage();
+		clickPendingPoAndSearchPoNoAndItemWise();
+		verifyToEnteredToleranceQty();
+		clickSelectAllButtonForExcessQty();
+		createGrn();
+		supplierBillNumberAndDcNumber();
+//		multipleLotAndSerialItem(webDB.getDataFromProperties("DirectPORateGen"));
+//		lotSerialQtyApportion();
+		overAllSaveAndPostForExcess(webDB.getDataFromProperties("ToleranceQty"));
+		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		flag = commonFunc.logoutUser();
+		aafterVerifyTheStatusDocumentMoveToQcOrMrv();
+		assertTrue(flag);
+	}
+
 
 }

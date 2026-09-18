@@ -554,6 +554,7 @@ public class SsoPageFunctions {
 			webDB.clickAnElement(SsoPageLocators.FetchOPOBtn, ElementType.Xpath);
 			logs.logging("INFO", "Fetch PO Button is clicked");
 			commonFunc.hardWait(4000);
+			commonFunc.checkRefreshCellsDisappear();
 			flag = webDB.waitForElement(SsoPageLocators.FetchOPOFrame, ElementType.Xpath);
 			if (flag) {
 				webDB.switchToFrame(SsoPageLocators.FetchOPOFrame, ElementType.Xpath);
@@ -1143,27 +1144,27 @@ public class SsoPageFunctions {
 			if (flag) {
 				webDB.clickAnElement(SsoPageLocators.OPOLineAdd, ElementType.Xpath);
 				logs.logging("INFO", "Line Wise Add Button is Clicked");
-				flag = webDB.waitForElement(SsoPageLocators.OPOLineItemField, ElementType.Xpath);
+				flag = webDB.waitForElement(SsoPageLocators.OPOItemDataLastRow(), ElementType.Xpath);
 				if (flag) {
-					webDB.doubleClickAnElement(SsoPageLocators.OPOLineItemField, ElementType.Xpath);
+					webDB.clickAnElement(SsoPageLocators.OPOItemDataLastRow(), ElementType.Xpath);
 					commonFunc.searchAndSelectValueInFilters(SsoPageLocators.OPOLineItemLov, Item);
 					logs.logging("INFO", "Item is Entered:" + Item);
-					flag = webDB.waitForElement(SsoPageLocators.OPOLineCostFiled, ElementType.Xpath);
+					flag = webDB.waitForElement(SsoPageLocators.OPOCostDataLastRow(), ElementType.Xpath);
 					if (flag) {
-						webDB.doubleClickAnElement(SsoPageLocators.OPOLineCostFiled, ElementType.Xpath);
+						webDB.doubleClickAnElement(SsoPageLocators.OPOCostDataLastRow(), ElementType.Xpath);
 						webDB.clearText(SsoPageLocators.OPOLineCostInput, ElementType.Xpath);
 						webDB.sendTextToAnElement(SsoPageLocators.OPOLineCostInput, Cost, ElementType.Xpath);
 						logs.logging("INFO", "Cost is Entered:" + Cost);
-						flag = webDB.waitForElement(SsoPageLocators.OPOLineDiscField, ElementType.Xpath);
+						flag = webDB.waitForElement(SsoPageLocators.OPODisDataLastRow(), ElementType.Xpath);
 						if (flag) {
-							webDB.clickAnElement(SsoPageLocators.OPOLineDiscField, ElementType.Xpath);
+							webDB.clickAnElement(SsoPageLocators.OPODisDataLastRow(), ElementType.Xpath);
 							webDB.clearText(SsoPageLocators.OPOLineDiscInput, ElementType.Xpath);
 							webDB.sendTextToAnElement(SsoPageLocators.OPOLineDiscInput, Disc, ElementType.Xpath);
 							logs.logging("INFO", "Discount is Entered:" + Disc);
 
-							flag = webDB.waitForElement(SsoPageLocators.OPOLineHsnField, ElementType.Xpath);
+							flag = webDB.waitForElement(SsoPageLocators.OPOHSNDataLastRow(), ElementType.Xpath);
 							if (flag) {
-								webDB.clickAnElement(SsoPageLocators.OPOLineHsnField, ElementType.Xpath);
+								webDB.clickAnElement(SsoPageLocators.OPOHSNDataLastRow(), ElementType.Xpath);
 								commonFunc.searchAndSelectValueInFilters(SsoPageLocators.OPOLineHsnLov, HSN);
 								logs.logging("INFO", "Hsn Code is Entered:" + HSN);
 
