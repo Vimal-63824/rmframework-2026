@@ -1033,7 +1033,7 @@ public class GateEntryPageFunctions {
 		verifyAssertionBothValues(
 				dbCommonFunctions.GATEdetails(VariableHandler.getGATEDocNum(),
 						commonFunc.getDataFromTestDataSheet("GATEDbSupplierColumnName")),
-				commonFunc.getDataFromTestDataSheet("POSupplierName"));
+				commonFunc.getDataFromTestDataSheet("DomSupplier_ID1"));
 		logs.logging("INFO", "Header Supplier Details Matched With DataBase Values");
 	}
 
