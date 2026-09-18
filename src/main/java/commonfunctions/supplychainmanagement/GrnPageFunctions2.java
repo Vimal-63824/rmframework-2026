@@ -63,18 +63,22 @@ public class GrnPageFunctions2 {
 					DirectGRNFunc.verifyClickingAdd();
 					commonFunc.verifyAddTableLovValue(DirectGrnPageLocators.GRNPageItemTable(),
 							DirectGrnPageLocators.GrnLineItemLov, ITEM_NAME);
-					webDB.pressEscapeKey();
+					webDB.pressTabKey();
+					webDB.pressTabKey();
 					commonFunc.verifyAddTableLovValue(DirectGrnPageLocators.GRNPageHSNTable(),
 							DirectGrnPageLocators.GrnLineHsnLov, HSN);
-					webDB.pressEscapeKey();
+					webDB.pressTabKey();
+					webDB.pressTabKey();
 					commonFunc.verifyAddTableSpecs(DirectGrnPageLocators.GRNPageSupQtyTable(),
 							DirectGrnPageLocators.GrnPageSupQtyInput(), QTY);
 					logs.logging("INFO", "Entered Supply Quantity Is:" + QTY);
-					webDB.pressEscapeKey();
+					webDB.pressTabKey();
+					webDB.pressTabKey();
 					commonFunc.verifyAddTableSpecs(DirectGrnPageLocators.GRNPageRcptQtyTable(),
 							DirectGrnPageLocators.GRNPageRcptQtyInput(), QTY);
 					logs.logging("INFO", "Entered Receipt Quantity Is:" + QTY);
-					webDB.pressEscapeKey();
+					webDB.pressTabKey();
+					webDB.pressTabKey();
 					DirectGRNFunc.verifyClickingSaveLine();
 					verifyAddingDiscount(i, FileName, SheetName);
 				}
@@ -176,18 +180,22 @@ public class GrnPageFunctions2 {
 					DirectGRNFunc.verifyClickingAdd();
 					commonFunc.verifyAddTableLovValue(DirectGrnPageLocators.GRNPageItemTable(),
 							DirectGrnPageLocators.GrnLineItemLov, ITEM_NAME);
-					webDB.pressEscapeKey();
+					webDB.pressTabKey();
+					webDB.pressTabKey();
 					commonFunc.verifyAddTableLovValue(DirectGrnPageLocators.GRNPageHSNTable(),
 							DirectGrnPageLocators.GrnLineHsnLov, HSN);
-					webDB.pressEscapeKey();
+					webDB.pressTabKey();
+					webDB.pressTabKey();
 					commonFunc.verifyAddTableSpecs(DirectGrnPageLocators.GRNPageSupQtyTable(),
 							DirectGrnPageLocators.GrnPageSupQtyInput(), QTY);
 					logs.logging("INFO", "Entered Supply Quantity Is:" + QTY);
-					webDB.pressEscapeKey();
+					webDB.pressTabKey();
+					webDB.pressTabKey();
 					commonFunc.verifyAddTableSpecs(DirectGrnPageLocators.GRNPageRcptQtyTable(),
 							DirectGrnPageLocators.GRNPageRcptQtyInput(), QTY);
 					logs.logging("INFO", "Entered Receipt Quantity Is:" + QTY);
-					webDB.pressEscapeKey();
+					webDB.pressTabKey();
+					webDB.pressTabKey();
 					DirectGRNFunc.verifyClickingSaveLine();
 					verifyAddingDiscount(i, FileName, SheetName);
 				}
@@ -260,18 +268,22 @@ public class GrnPageFunctions2 {
 					DirectGRNFunc.verifyClickingAdd();
 					commonFunc.verifyAddTableLovValue(DirectGrnPageLocators.GRNPageItemTable(),
 							DirectGrnPageLocators.GrnLineItemLov, ITEM_NAME);
-					webDB.pressEscapeKey();
+					webDB.pressTabKey();
+					webDB.pressTabKey();
 					commonFunc.verifyAddTableLovValue(DirectGrnPageLocators.GRNPageHSNTable(),
 							DirectGrnPageLocators.GrnLineHsnLov, HSN);
-					webDB.pressEscapeKey();
+					webDB.pressTabKey();
+					webDB.pressTabKey();
 					commonFunc.verifyAddTableSpecs(DirectGrnPageLocators.GRNPageSupQtyTable(),
 							DirectGrnPageLocators.GrnPageSupQtyInput(), QTY);
 					logs.logging("INFO", "Entered Supply Quantity Is:" + QTY);
-					webDB.pressEscapeKey();
+					webDB.pressTabKey();
+					webDB.pressTabKey();
 					commonFunc.verifyAddTableSpecs(DirectGrnPageLocators.GRNPageRcptQtyTable(),
 							DirectGrnPageLocators.GRNPageRcptQtyInput(), QTY);
 					logs.logging("INFO", "Entered Receipt Quantity Is:" + QTY);
-					webDB.pressEscapeKey();
+					webDB.pressTabKey();
+					webDB.pressTabKey();
 					commonFunc.verifyAddTableSpecs(DirectGrnPageLocators.GRNPageUnitCostTable(),
 							DirectGrnPageLocators.GRNPageUnitCostInput(), COST);
 					logs.logging("INFO", "Entered Unit Cost Is:" + COST);
@@ -597,12 +609,12 @@ public class GrnPageFunctions2 {
 	 * @author Sakthi-GWL
 	 */
 	public void verifyClickFOCAndSaveLines() {
-		flag = webDB.waitForElement(DirectGrnPageLocators.GrnFOCTabledata, ElementType.Xpath);
+		flag = webDB.waitForElement(DirectGrnPageLocators.GrnFOCTabledata(), ElementType.Xpath);
 		if (flag) {
-			webDB.moveToElement(DirectGrnPageLocators.GrnFOCTabledata, ElementType.Xpath);
-			webDB.clickAnElement(DirectGrnPageLocators.GrnFOCTabledata, ElementType.Xpath);
+			webDB.moveToElement(DirectGrnPageLocators.GrnFOCTabledata(), ElementType.Xpath);
+			webDB.clickAnElement(DirectGrnPageLocators.GrnFOCTabledata(), ElementType.Xpath);
 			commonFunc.hardWait(3000);
-			flag = webDB.isElementSelected(DirectGrnPageLocators.GrnFOCTableInput, ElementType.Xpath);
+			flag = webDB.isElementSelected(DirectGrnPageLocators.GrnFOCTableInput(), ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "FOC Input Box Clicked in GRN Line Details");
 				commonFunc.checkRefreshCellsDisappear();

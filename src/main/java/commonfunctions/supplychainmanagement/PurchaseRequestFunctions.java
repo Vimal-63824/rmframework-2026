@@ -330,17 +330,20 @@ public class PurchaseRequestFunctions {
 	 */
 	public void deleteParticularLinesPurchaseRequest(String DataValue) {
 		commonFunc.checkRefreshCellsDisappear();
-		flag = webDB.waitForElement(PurchaseRequestLocators.PR_LineDeleteIconWithData(DataValue), ElementType.Xpath);
+		flag = webDB.waitForElement(PurchaseRequestLocators.PR_LastItemDetailIcon(DataValue), ElementType.Xpath);
 		if (flag) {
-			webDB.moveToElement(PurchaseRequestLocators.ItemDataLastRow(), ElementType.Xpath);
-			webDB.moveToElement(PurchaseRequestLocators.PR_LineDeleteIconWithData(DataValue), ElementType.Xpath);
-			webDB.clickAnElement(PurchaseRequestLocators.PR_LineDeleteIconWithData(DataValue), ElementType.Xpath);
-			webDB.switchToAlertAccept();
-			flag = webDB.waitForElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+			webDB.moveToElement(PurchaseRequestLocators.PR_LastItemDetailIcon(DataValue), ElementType.Xpath);
+			webDB.clickAnElement(PurchaseRequestLocators.PR_LastItemDetailIcon(DataValue), ElementType.Xpath);
+			flag = webDB.waitForElement(PurchaseRequestLocators.LineDelete, ElementType.Xpath);
 			if (flag) {
-				logs.logging("INFO", "Toast Message Displayed, Line Deleted Successfully with value: " + DataValue);
-				if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
-					webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+				webDB.clickAnElement(PurchaseRequestLocators.LineDelete, ElementType.Xpath);
+				webDB.switchToAlertAccept();
+				flag = webDB.waitForElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Toast Message Displayed, Line Deleted Successfully with value: " + DataValue);
+					if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+						webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+					}
 				}
 			}
 		}
@@ -383,8 +386,10 @@ public class PurchaseRequestFunctions {
 	 * @param Item
 	 */
 	public void checkPRLineDetailsForLastUpdateItem(String Item) {
+		webDB.waitForElement(PurchaseRequestLocators.PR_LineDetailsIframe, ElementType.Xpath);
 		webDB.switchToFrame(PurchaseRequestLocators.PR_LineDetailsIframe, ElementType.Xpath);
 		verifyItemDetailsTabOpening();
+		webDB.switchToDefaultContent();
 //		validatePRLineDetailsWithGetText(PurchaseRequestLocators.PRLineDetails_SubClass, Item,
 //				PRLineDetailsName.SUBCLASS, dbCommonFunctions.PRLineDetails(VariableHandler.getPRNumber(),
 //						commonFunc.getDataFromTestDataSheet("SubClassValue")));
@@ -392,7 +397,7 @@ public class PurchaseRequestFunctions {
 //		validatePRLineDetailsWithGetText(PurchaseRequestLocators.PRLineDetails_Class, Item, PRLineDetailsName.CLASS,
 //				dbCommonFunctions.PRLineDetails(VariableHandler.getPRNumber(),
 //						commonFunc.getDataFromTestDataSheet("ClassValue")));
-		logs.logging("INFO", "Class Verified in Database");
+//		logs.logging("INFO", "Class Verified in Database");
 		validatePRLineDetailsWithDomPropertyValue(PurchaseRequestLocators.PRLineDetails_Warehouse, Item,
 				PRLineDetailsName.WAREHOUSE, dbCommonFunctions.PRLineDetails(VariableHandler.getPRNumber(),
 						commonFunc.getDataFromTestDataSheet("WHValue")));
@@ -1395,6 +1400,7 @@ public class PurchaseRequestFunctions {
 	 */
 	private void validatePRLineDetailsWithDomPropertyValue(String Locator, String Item, PRLineDetailsName lineDtlName,
 			String DBData) {
+		webDB.switchToDefaultContent();
 		flag = webDB.waitForElement(PurchaseRequestLocators.PR_LineDetailsIframe, ElementType.Xpath);
 		if (flag) {
 			webDB.switchToFrame(PurchaseRequestLocators.PR_LineDetailsIframe, ElementType.Xpath);
@@ -1902,7 +1908,7 @@ public class PurchaseRequestFunctions {
 			webDB.clickAnElement(PurchaseRequestLocators.ItemDetailsButton, ElementType.Xpath);
 			flag = webDB.waitForElement(PurchaseRequestLocators.PRLineDetails_Warehouse, ElementType.Xpath);
 			if (flag) {
-				logs.logging("INFO", "Discount Expand Button Is Displyaed");
+				logs.logging("INFO", "Item Details Expand Button Is Displayed");
 			}
 		}
 		assertTrue(flag);
