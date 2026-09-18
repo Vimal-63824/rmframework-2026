@@ -5,7 +5,7 @@ public class GrnScoLocators {
 	/** @locatorType Xpath */
 	public static final String PendingSubcontractOrder = "(//button[@data-testid='Pending_PO_SCO'])[last()]";
 	/** @locatorType Xpath */
-	public static final String PendingScoFrame = "//iframe[@title='Pending SCO']";
+	public static final String PendingScoFrame = "//iframe[@title='Create SCO']";
 	/** @locatorType Xpath */
 	public static final String SCONoLovButton = "//input[@data-testid='P1615131101_PO_NO']/following-sibling::button";
 	/** @locatorType Xpath */
