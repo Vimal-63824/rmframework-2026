@@ -17,6 +17,7 @@ import org.testng.Assert;
 import commonlocators.CommonUiLocators;
 import commonlocators.supplychainmanagement.ApprovalPageLocators;
 import commonlocators.supplychainmanagement.PurchaseOrderPageLocators;
+import commonlocators.supplychainmanagement.SalesInvoiceLocators;
 import commonlocators.supplychainmanagement.SalesOrderLocators;
 import net.bytebuddy.implementation.FieldAccessor.FieldNameExtractor.ForBeanProperty;
 import utils.ExcelUtils;
@@ -707,25 +708,38 @@ public class MaterialRequestFunctions {
 		if (flag) {
 			logs.logging("INFO", "View Line Details Is Displayed");
 			webDB.clickAnElement(MaterialRequestLocators.ViewLineDetails, ElementType.Xpath);
-			flag = webDB.waitForClickElement(MaterialRequestLocators.IFrame, ElementType.Xpath);
+			commonFunc.hardWait(1000);
+			flag = webDB.waitForElement(SalesInvoiceLocators.SI_detail_Button, ElementType.Xpath);
 			if (flag) {
-				logs.logging("INFO", "Iframe Is Displayed");
-				webDB.switchToFrame(MaterialRequestLocators.IFrame, ElementType.Xpath);
-				flag = webDB.waitForElement(MaterialRequestLocators.OrderNo, ElementType.Xpath);
+				webDB.clickAnElement(SalesInvoiceLocators.SI_detail_Button, ElementType.Xpath);
+				commonFunc.hardWait(2000);
+				flag = webDB.waitForClickElement(MaterialRequestLocators.IFrame, ElementType.Xpath);
 				if (flag) {
-					String text = webDB.getTextFromElement(MaterialRequestLocators.OrderNo, ElementType.Xpath);
-					logs.logging("INFO", "Get Text Order Number Is: " + text);
-					flag = text.equals(DocNo);
+					logs.logging("INFO", "Iframe Is Displayed");
+					webDB.switchToFrame(MaterialRequestLocators.IFrame, ElementType.Xpath);
+					commonFunc.hardWait(1000);
+					flag = webDB.waitForElement(MaterialRequestLocators.ViewLineDetails_Orderdetail, ElementType.Xpath);
 					if (flag) {
-						logs.logging("INFO", "Verified Doc No With Actual And Expected");
-						webDB.switchToDefaultContent();
-						flag = webDB.waitForElement(MaterialRequestLocators.CloseLineDetail, ElementType.Xpath);
+						webDB.clickAnElement(MaterialRequestLocators.ViewLineDetails_Orderdetail, ElementType.Xpath);
+						commonFunc.hardWait(2000);
+						flag = webDB.waitForElement(MaterialRequestLocators.OrderNo, ElementType.Xpath);
 						if (flag) {
-							logs.logging("INFO", "Close Line Details Is Displayed");
-							webDB.clickAnElement(MaterialRequestLocators.CloseLineDetail, ElementType.Xpath);
-							flag = webDB.waitForElement(MaterialRequestLocators.HeaderLocationId, ElementType.Xpath);
+							String text = webDB.getTextFromElement(MaterialRequestLocators.OrderNo, ElementType.Xpath);
+							logs.logging("INFO", "Get Text Order Number Is: " + text);
+							flag = text.equals(DocNo);
 							if (flag) {
-								logs.logging("INFO", "Location Id Is Displayed");
+								logs.logging("INFO", "Verified Doc No With Actual And Expected");
+								webDB.switchToDefaultContent();
+								flag = webDB.waitForElement(MaterialRequestLocators.CloseLineDetail, ElementType.Xpath);
+								if (flag) {
+									logs.logging("INFO", "Close Line Details Is Displayed");
+									webDB.clickAnElement(MaterialRequestLocators.CloseLineDetail, ElementType.Xpath);
+									flag = webDB.waitForElement(MaterialRequestLocators.HeaderLocationId,
+											ElementType.Xpath);
+									if (flag) {
+										logs.logging("INFO", "Location Id Is Displayed");
+									}
+								}
 							}
 						}
 					}

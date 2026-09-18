@@ -83,7 +83,7 @@ public class MaterialRequestLocators {
 	/** @locatorType Xpath */
 	public static final String LineTickIcon = "//button[@data-testid='SAVE1']";
 	/** @locatorType Xpath */
-	public static final String ViewLineDetails = "(//div[@id='line_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[last()]/td/a/span[contains(@class,'list')])";
+	public static final String ViewLineDetails = "//*[@id=\"line_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[1]/a/span";
 	/** @locatorType Xpath */
 	public static final String IFrame = "//iframe[@title='Other Details']";
 	/** @locatorType Xpath */
@@ -113,7 +113,7 @@ public class MaterialRequestLocators {
 
 	/** @locatorType Xpath */
 	public static final String RequestMRNo(String MRNumber) {
-		return "//table[@data-testid='H_Result_Data']//a[text()='" + MRNumber + "']";
+		return "//table[@data-testid='L_Result_Data']//a[text()='" + MRNumber + "']";
 	}
 
 	/** @locatorType Xpath */
@@ -161,4 +161,6 @@ public class MaterialRequestLocators {
 	public static final String MRLineDetails(int i) {
 		return "//*[@id='line_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[" + i + "]/td[13]";
 	}
+	/** @locatorType Xpath */
+	public static final String ViewLineDetails_Orderdetail = "//*[@id=\"R1613565846343303768\"]/div[1]/div[1]/button";
 }
