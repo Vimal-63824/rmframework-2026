@@ -139,10 +139,12 @@ public class BillOfMaterialsFunctions {
 			if (flag) {
 				webDB.clickAnElement(BillOfMaterialsLocators.CreateBOM_TickIcon, ElementType.Xpath);
 				webDB.switchToDefaultContent();
-				flag = webDB.waitForClickElement(BillOfMaterialsLocators.DisplayBOMNumber, ElementType.Xpath);
+				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.checkSuccessToastMessageDisappear();
+				webDB.waitUntilElementToNotBeStale(BillOfMaterialsLocators.DisplayBOMNumber, ElementType.Xpath);
+				flag = webDB.waitForElement(BillOfMaterialsLocators.DisplayBOMNumber, ElementType.Xpath);
 				if (flag) {
 					logs.logging("INFO", "Tick Icon Clicked and BOM Created");
-					commonFunc.hardWait(2000);
 					String BOMNo = webDB.getTextFromElement(BillOfMaterialsLocators.DisplayBOMNumber,
 							ElementType.Xpath);
 					VariableHandler.setBOMNumber(BOMNo);
@@ -172,12 +174,14 @@ public class BillOfMaterialsFunctions {
 		if (flag) {
 			webDB.moveToElement(BillOfMaterialsLocators.BOMSaveHeaderIcon, ElementType.Xpath);
 			flag = webDB.clickAnElement(BillOfMaterialsLocators.BOMSaveHeaderIcon, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
 			webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Save Header Clicked and Toast Message Displayed");
 				if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
 					webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
 				}
+				commonFunc.checkSuccessToastMessageDisappear();
 			}
 		}
 		assertTrue(flag);
@@ -191,15 +195,15 @@ public class BillOfMaterialsFunctions {
 	public void clickHeaderSaveAndPostButtonInBOM() {
 		flag = webDB.waitForElement(BillOfMaterialsLocators.BOMSaveHeaderIcon, ElementType.Xpath);
 		if (flag) {
+			commonFunc.checkSuccessToastMessageDisappear();
 			webDB.moveToElement(BillOfMaterialsLocators.BOMSaveHeaderIcon, ElementType.Xpath);
 			webDB.clickAnElement(BillOfMaterialsLocators.BOMSaveHeaderIcon, ElementType.Xpath);
 			logs.logging("INFO", "Save Header Clicked and Toast Message Displayed");
 			commonFunc.checkRefreshCellsDisappear();
-			commonFunc.hardWait(2000);
+			webDB.waitForElementUntilGivenTime(CommonUiLocators.PostToastMessage, ElementType.Xpath, 5);
 			if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
 				webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
 			}
-			commonFunc.checkSuccessToastMessageDisappear();
 			flag = webDB.waitForClickElement(BillOfMaterialsLocators.BOMPostBtn, ElementType.Xpath);
 			if (flag) {
 				commonFunc.checkSuccessToastMessageDisappear();
@@ -256,11 +260,13 @@ public class BillOfMaterialsFunctions {
 		if (flag) {
 			webDB.moveToElement(BillOfMaterialsLocators.RoutingSaveLineBtn, ElementType.Xpath);
 			webDB.clickAnElement(BillOfMaterialsLocators.RoutingSaveLineBtn, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
 			flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
 			if (flag) {
 				if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
 					webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
 				}
+				commonFunc.checkSuccessToastMessageDisappear();
 				logs.logging("INFO", "Save Line Icon Clicked in Routing tab");
 			}
 		}
@@ -355,9 +361,12 @@ public class BillOfMaterialsFunctions {
 				ElementType.Xpath);
 		if (flag) {
 			webDB.moveToElement(BillOfMaterialsLocators.RoutingDetailsBtnWithProcessName(Process), ElementType.Xpath);
-			webDB.clickAnElement(BillOfMaterialsLocators.RoutingDetailsBtnWithProcessName(Process), ElementType.Xpath);
+			webDB.javaScriptClickAnElement(BillOfMaterialsLocators.RoutingDetailsBtnWithProcessName(Process),
+					ElementType.Xpath);
 			flag = webDB.waitForElement(BillOfMaterialsLocators.Details_RoutingThreeDotsMenu, ElementType.Xpath);
 			if (flag) {
+				logs.logging("INFO", "Three Dots Menu Clicked for Process: " + Process);
+				webDB.moveToElement(BillOfMaterialsLocators.Details_RoutingThreeDotsMenu, ElementType.Xpath);
 				webDB.clickAnElement(BillOfMaterialsLocators.Details_RoutingThreeDotsMenu, ElementType.Xpath);
 				flag = webDB.waitForElement(BillOfMaterialsLocators.RoutingViewDetailsIframe, ElementType.Xpath);
 				if (flag) {
@@ -402,8 +411,10 @@ public class BillOfMaterialsFunctions {
 			webDB.moveToElement(BillOfMaterialsLocators.RoutingViewDts_OkBtn, ElementType.Xpath);
 			webDB.clickAnElement(BillOfMaterialsLocators.RoutingViewDts_OkBtn, ElementType.Xpath);
 			webDB.switchToDefaultContent();
-			commonFunc.hardWait(2000);
-			flag = webDB.waitForClickElement(BillOfMaterialsLocators.RoutingAddLineBtn, ElementType.Xpath);
+			commonFunc.checkSuccessToastMessageDisappear();
+			commonFunc.checkRefreshCellsDisappear();
+			webDB.waitUntilElementToNotBeStale(BillOfMaterialsLocators.RoutingAddLineBtn, ElementType.Xpath);
+			flag = webDB.waitForElement(BillOfMaterialsLocators.RoutingAddLineBtn, ElementType.Xpath);
 		}
 		assertTrue(flag);
 	}
@@ -453,11 +464,13 @@ public class BillOfMaterialsFunctions {
 		if (flag) {
 			webDB.moveToElement(BillOfMaterialsLocators.MaterialSaveLineBtn, ElementType.Xpath);
 			webDB.clickAnElement(BillOfMaterialsLocators.MaterialSaveLineBtn, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
 			flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
 			if (flag) {
 				if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
 					webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
 				}
+				commonFunc.checkSuccessToastMessageDisappear();
 				logs.logging("INFO", "Save Line Icon Clicked in Material tab");
 			}
 		}
@@ -568,10 +581,12 @@ public class BillOfMaterialsFunctions {
 		if (flag) {
 			webDB.moveToElement(BillOfMaterialsLocators.BORSaveLineBtn, ElementType.Xpath);
 			webDB.clickAnElement(BillOfMaterialsLocators.BORSaveLineBtn, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
 			webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
 			if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
 				webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
 			}
+			commonFunc.checkSuccessToastMessageDisappear();
 			logs.logging("INFO", "Save Line Icon Clicked in BOR tab");
 		}
 		assertTrue(flag);
@@ -1246,6 +1261,7 @@ public class BillOfMaterialsFunctions {
 			commonFunc.searchAndSelectValueInFilters(BillOfMaterialsLocators.CopyBOMItemLovBtn, Item);
 			logs.logging("INFO", "Item Selected in Copy BOM: " + Item);
 			switchToCopyBOMFrameInBOM();
+			webDB.clearText(BillOfMaterialsLocators.CopyBOMNameInput, ElementType.Xpath);
 			flag = webDB.sendTextToAnElement(BillOfMaterialsLocators.CopyBOMNameInput, BOMName, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "BOM Name Entered in Copy BOM: " + BOMName);
@@ -1479,10 +1495,9 @@ public class BillOfMaterialsFunctions {
 		String Today = date.format(formatter);
 		String RMItem = commonFunc.getDataFromTestDataSheet("RM-10001-Item");
 		try {
-//			commonFunc.navigateItemPage();
-//			priceListFunc.searchItemAndCopyWithName(commonFunc.getDataFromTestDataSheet("GwlBomItem1001"),
-//					"GWL - BOM ITEM - ");
-			VariableHandler.setItemName("GWL - BOM ITEM - 449480");
+			commonFunc.navigateItemPage();
+			priceListFunc.searchItemAndCopyWithName(commonFunc.getDataFromTestDataSheet("GwlBomItem1001"),
+					"GWL - BOM ITEM - ");
 			commonFunc.navigateToBillOfMaterialsPage();
 			clickAddIconAndFillUnitBOMNameAndItem(commonFunc.getDataFromTestDataSheet("Unit_100"), BOMName,
 					VariableHandler.getItemName());
@@ -2033,6 +2048,10 @@ public class BillOfMaterialsFunctions {
 			navigateToBOMBySearchAndClickBOMNo(VariableHandler.getBOMNumber());
 			navigateToOtherDetailsSubTab();
 			clickAndVerifyInactivateBOMOption(commonFunc.getDataFromTestDataSheet("RefText_Test"));
+			commonFunc.navigateToBillOfMaterialsPage();
+			searchBOMNoAndVerifyStatus(VariableHandler.getBOMNumber(),
+					commonFunc.getDataFromTestDataSheet("InactiveStatus"));
+			navigateToBOMBySearchAndClickBOMNo(VariableHandler.getBOMNumber());
 			checkDisplayStatusInsideBOM(commonFunc.getDataFromTestDataSheet("InactiveStatus"));
 			return flag;
 		} catch (Exception e) {

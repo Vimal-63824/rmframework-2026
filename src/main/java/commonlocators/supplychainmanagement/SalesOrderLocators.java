@@ -185,6 +185,8 @@ public class SalesOrderLocators {
 	/** Locator Xpath */
 	public static final String LineDetailsFrame = "//iframe[contains(@title,'Line Details')]";
 	/** @Locator Xpath */
+	public static final String SOTradeDiscountAssblValue = "//input[@data-testid='SOTradeAssesableValueField']";
+	/** @Locator Xpath */
 	public static final String SOSpecialDiscountAssblValue = "//input[@data-testid='SOSpecialDiscountAssblValue']";
 	/** @Locator Xpath */
 	public static final String SOCashDiscountAssblValue = "//input[@data-testid='SOCashDiscountAssblValue']";

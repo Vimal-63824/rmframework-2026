@@ -81,8 +81,10 @@ public class EmployeeAdjustmentFunctions {
 			checkTableStatusForLastAddedAdjustment(commonFunc.getDataFromTestDataSheet("PostedStatus"));
 			changeProcessTypeForLastAddedAdjustment(commonFunc.getDataFromTestDataSheet("ProcessStatus"));
 			webDB.navigateToRefresh();
+			commonFunc.checkRefreshCellsDisappear();
 			changeProcessTypeForLastAddedAdjustment(commonFunc.getDataFromTestDataSheet("HoldStatus"));
 			webDB.navigateToRefresh();
+			commonFunc.checkRefreshCellsDisappear();
 			clickEndAndEnterNarrationForLastAddedAdjustment(commonFunc.getDataFromTestDataSheet("RefText_Test"));
 			checkTableStatusForLastAddedAdjustment(commonFunc.getDataFromTestDataSheet("EndedStatus"));
 			clickReportAndVerifyDisplayedInEmployeeAdjustment();
@@ -318,20 +320,20 @@ public class EmployeeAdjustmentFunctions {
 	 */
 	private void changeProcessTypeForLastAddedAdjustment(String ProcessType) {
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.checkRefreshCellsDisappear();
 		webDB.waitUntilElementToNotBeStale(EmployeeAdjustmentLocators.AdjustmentTableProcessHoldData(),
 				ElementType.Xpath);
 		flag = webDB.waitForElement(EmployeeAdjustmentLocators.AdjustmentTableProcessHoldData(), ElementType.Xpath);
 		if (flag) {
 			webDB.moveToElement(EmployeeAdjustmentLocators.AdjustmentTableProcessHoldData(), ElementType.Xpath);
 			webDB.doubleClickAnElement(EmployeeAdjustmentLocators.AdjustmentTableProcessHoldData(), ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
 			flag = webDB.waitForElement(EmployeeAdjustmentLocators.AdjustmentTableProcessHoldSelect(),
 					ElementType.Xpath);
 			if (flag) {
 				flag = webDB.selectDropDownByText(EmployeeAdjustmentLocators.AdjustmentTableProcessHoldSelect(),
 						ProcessType, ElementType.Xpath);
 				if (flag) {
-					webDB.pressEscapeKey();
+//					webDB.pressEscapeKey();
 					clickSaveIconInAdjustmentTable();
 					commonFunc.checkRefreshCellsDisappear();
 					flag = webDB.waitForElement(EmployeeAdjustmentLocators.AdjustmentTableProcessHoldData(),
@@ -400,13 +402,14 @@ public class EmployeeAdjustmentFunctions {
 	 * @author Sakthi-GWL
 	 */
 	private void clickSaveIconInAdjustmentTable() {
-		flag = webDB.waitForElement(EmployeeAdjustmentLocators.AdjustmentSaveIcon, ElementType.Xpath);
+		commonFunc.checkRefreshCellsDisappear();
+		flag = webDB.waitForClickElement(EmployeeAdjustmentLocators.AdjustmentSaveIcon, ElementType.Xpath);
 		if (flag) {
 			commonFunc.checkRefreshCellsDisappear();
 			webDB.moveToElement(EmployeeAdjustmentLocators.AdjustmentSaveIcon, ElementType.Xpath);
 			flag = webDB.clickAnElement(EmployeeAdjustmentLocators.AdjustmentSaveIcon, ElementType.Xpath);
 			commonFunc.checkRefreshCellsDisappear();
-			webDB.waitForElementUntilGivenTime(CommonUiLocators.PostToastMessage, ElementType.Xpath, 5);
+			webDB.waitForElementUntilGivenTime(CommonUiLocators.PostToastMessage, ElementType.Xpath, 8);
 			if (flag) {
 				if (!webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
 					commonFunc.checkRefreshCellsDisappear();

@@ -14916,7 +14916,6 @@ public class PurchaseOrderFunctions {
 	 */
 	public void verifyDirectPODomesticSameWithAndWithoutInspectionForUDItemCustomizeFOC(String Loc, String Unit,
 			String Supplier, String PoType, String SheetName, String FileName) {
-//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(Loc, Supplier, PoType);
@@ -14957,6 +14956,7 @@ public class PurchaseOrderFunctions {
 				commonFunc.checkRefreshCellsDisappear();
 				verifyDirectPoItemAddIconClicked();
 				verifyDirectPoItemSelectedFromLov(ITEM_NAME);
+				webDB.pressEscapeKey();
 				commonFunc.checkRefreshCellsDisappear();
 				commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.OrderedQuantity(),
 						PurchaseOrderPageLocators.OrderedQuantityInput, QUANTITY);
@@ -14965,26 +14965,19 @@ public class PurchaseOrderFunctions {
 				commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.UnitCost(),
 						PurchaseOrderPageLocators.UnitCostInput, UNIT_COST);
 				webDB.pressEscapeKey();
-				if (PoType.equals(commonFunc.getDataFromTestDataSheet("ServiceValue"))) {
-					verifyPoWithGrnServiceFlagChecked();
-				}
-				addHsnCode(ITEM_NAME, PurchaseOrderPageLocators.HsnCodeLovButton,
-						PurchaseOrderPageLocators.HsnCodeInput, HsnCode);
-				verifyDirectPoLineWiseSaved();
 				commonFunc.checkRefreshCellsDisappear();
-				verifyLineAmountValidationAndPom(ITEM_NAME, LineAmount);
-				navigateToLineDetailPage(ITEM_NAME);
-				verifyEnterAmountForDiscountCalculation(TradePercentage, SplDiscPercentage, CashDiscPercentage);
-				verifyNavigateLineDetailTwo();
-				verifyTaxValidation(ITEM_NAME, TaxPercent, cgst, sgst, Igst, Utgst, CessPercent, Cess);
-				verifyDiscountCalculationVerification(ITEM_NAME, TradeAssblValue, TradeAmt, SDAssemblValue, SDAmt,
-						CDAssemblValue, CDAmt);
-				navigateToLineDetailPage(ITEM_NAME);
+				commonFunc.verifyAddTableLovValue(PurchaseOrderPageLocators.HsnCode(),
+						PurchaseOrderPageLocators.HsnCodeLovButton, HsnCode);
+				webDB.pressEscapeKey();
+				verifyDirectPoLineWiseSaved();
+				discountFromPrToGrnDocument(i, SheetName, FileName);
+				webDB.switchToDefaultContent();
+				clickThreeDotsNavigateToLineDetails(i - 2);
 				switchToLineDetailFrame();
-				verifyNavigateLineDetailTwo();
 				enableFreeOfCostCheckbox();
 				verifyAddItemInPOWithQuantityAndUnitCost(QUANTITY, "0");
 				verifyTickIconcreateItem();
+				commonFunc.checkRefreshCellsDisappear();
 				verifyAssertionBothValues("0", dbCommonFunc.poDetails(VariableHandler.getPONumber(), ITEM_NAME,
 						commonFunc.getDataFromTestDataSheet("LINE_AMT")));
 				verifyTaxValidation(ITEM_NAME, "0", "0", "0", "0", "0", "0", "0");
@@ -15013,7 +15006,6 @@ public class PurchaseOrderFunctions {
 	 */
 	public void verifyDirectPODomesticSameWithAndWithoutInspectionForRCItemCustomizeFOC(String Loc, String Unit,
 			String Supplier, String PoType, String SheetName, String FileName) {
-//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(Loc, Supplier, PoType);
@@ -15054,29 +15046,28 @@ public class PurchaseOrderFunctions {
 				commonFunc.checkRefreshCellsDisappear();
 				verifyDirectPoItemAddIconClicked();
 				verifyDirectPoItemSelectedFromLov(ITEM_NAME);
+				webDB.pressEscapeKey();
 				commonFunc.checkRefreshCellsDisappear();
 				commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.OrderedQuantity(),
 						PurchaseOrderPageLocators.OrderedQuantityInput, QUANTITY);
-				if (PoType.equals(commonFunc.getDataFromTestDataSheet("ServiceValue"))) {
-					verifyPoWithGrnServiceFlagChecked();
-				}
-				addHsnCode(ITEM_NAME, PurchaseOrderPageLocators.HsnCodeLovButton,
-						PurchaseOrderPageLocators.HsnCodeInput, HsnCode);
-				verifyDirectPoLineWiseSaved();
+				webDB.pressEscapeKey();
 				commonFunc.checkRefreshCellsDisappear();
-//				verifyLineAmountValidationAndPom(ITEM_NAME, LineAmount);
-				navigateToLineDetailPage(ITEM_NAME);
-				verifyEnterAmountForDiscountCalculation(TradePercentage, SplDiscPercentage, CashDiscPercentage);
-				verifyNavigateLineDetailTwo();
-				verifyTaxValidation(ITEM_NAME, TaxPercent, cgst, sgst, Igst, Utgst, CessPercent, Cess);
-				verifyDiscountCalculationVerification(ITEM_NAME, TradeAssblValue, TradeAmt, SDAssemblValue, SDAmt,
-						CDAssemblValue, CDAmt);
-				navigateToLineDetailPage(ITEM_NAME);
+				commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.UnitCost(),
+						PurchaseOrderPageLocators.UnitCostInput, UNIT_COST);
+				webDB.pressEscapeKey();
+				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.verifyAddTableLovValue(PurchaseOrderPageLocators.HsnCode(),
+						PurchaseOrderPageLocators.HsnCodeLovButton, HsnCode);
+				webDB.pressEscapeKey();
+				verifyDirectPoLineWiseSaved();
+				discountFromPrToGrnDocument(i, SheetName, FileName);
+				webDB.switchToDefaultContent();
+				clickThreeDotsNavigateToLineDetails(i - 2);
 				switchToLineDetailFrame();
-				verifyNavigateLineDetailTwo();
 				enableFreeOfCostCheckbox();
 //				verifyAddItemInPOWithQuantityAndUnitCost(QUANTITY, "0");
 //				verifyTickIconcreateItem();
+//				commonFunc.checkRefreshCellsDisappear();
 //				verifyAssertionBothValues("0", dbCommonFunc.poDetails(VariableHandler.getPONumber(), ITEM_NAME,
 //						commonFunc.getDataFromTestDataSheet("LINE_AMT")));
 //				verifyTaxValidation(ITEM_NAME, "0", "0", "0", "0", "0", "0", "0");
@@ -15105,7 +15096,6 @@ public class PurchaseOrderFunctions {
 	 */
 	public void verifyDirectPODomesticSameWithAndWithoutInspectionForPLItemCustomizeFOC(String Loc, String Unit,
 			String Supplier, String PoType, String SheetName, String FileName) {
-//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(Loc, Supplier, PoType);
@@ -15146,29 +15136,28 @@ public class PurchaseOrderFunctions {
 				commonFunc.checkRefreshCellsDisappear();
 				verifyDirectPoItemAddIconClicked();
 				verifyDirectPoItemSelectedFromLov(ITEM_NAME);
+				webDB.pressEscapeKey();
 				commonFunc.checkRefreshCellsDisappear();
 				commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.OrderedQuantity(),
 						PurchaseOrderPageLocators.OrderedQuantityInput, QUANTITY);
-				if (PoType.equals(commonFunc.getDataFromTestDataSheet("ServiceValue"))) {
-					verifyPoWithGrnServiceFlagChecked();
-				}
-				addHsnCode(ITEM_NAME, PurchaseOrderPageLocators.HsnCodeLovButton,
-						PurchaseOrderPageLocators.HsnCodeInput, HsnCode);
-				verifyDirectPoLineWiseSaved();
+				webDB.pressEscapeKey();
 				commonFunc.checkRefreshCellsDisappear();
-//				verifyLineAmountValidationAndPom(ITEM_NAME, LineAmount);
-				navigateToLineDetailPage(ITEM_NAME);
-				verifyEnterAmountForDiscountCalculation(TradePercentage, SplDiscPercentage, CashDiscPercentage);
-				verifyNavigateLineDetailTwo();
-				verifyTaxValidation(ITEM_NAME, TaxPercent, cgst, sgst, Igst, Utgst, CessPercent, Cess);
-				verifyDiscountCalculationVerification(ITEM_NAME, TradeAssblValue, TradeAmt, SDAssemblValue, SDAmt,
-						CDAssemblValue, CDAmt);
-				navigateToLineDetailPage(ITEM_NAME);
+				commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.UnitCost(),
+						PurchaseOrderPageLocators.UnitCostInput, UNIT_COST);
+				webDB.pressEscapeKey();
+				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.verifyAddTableLovValue(PurchaseOrderPageLocators.HsnCode(),
+						PurchaseOrderPageLocators.HsnCodeLovButton, HsnCode);
+				webDB.pressEscapeKey();
+				verifyDirectPoLineWiseSaved();
+				discountFromPrToGrnDocument(i, SheetName, FileName);
+				webDB.switchToDefaultContent();
+				clickThreeDotsNavigateToLineDetails(i - 2);
 				switchToLineDetailFrame();
-				verifyNavigateLineDetailTwo();
 				enableFreeOfCostCheckbox();
 //				verifyAddItemInPOWithQuantityAndUnitCost(QUANTITY, "0");
 //				verifyTickIconcreateItem();
+//				commonFunc.checkRefreshCellsDisappear();
 //				verifyAssertionBothValues("0", dbCommonFunc.poDetails(VariableHandler.getPONumber(), ITEM_NAME,
 //						commonFunc.getDataFromTestDataSheet("LINE_AMT")));
 //				verifyTaxValidation(ITEM_NAME, "0", "0", "0", "0", "0", "0", "0");
