@@ -6321,7 +6321,7 @@ public class PurchaseOrderFunctions {
 			webDB.moveToElement(PurchaseOrderPageLocators.PolinewiseSave, ElementType.Xpath);
 			flag = webDB.clickAnElement(PurchaseOrderPageLocators.PolinewiseSave, ElementType.Xpath);
 			commonFunc.checkRefreshCellsDisappear();
-			webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
 			if (flag) {
 				commonFunc.checkRefreshCellsDisappear();
 				if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
@@ -14026,10 +14026,73 @@ public class PurchaseOrderFunctions {
 							ElementType.Xpath);
 					logs.logging("INFO", "Service Item");
 					commonFunc.checkRefreshCellsDisappear();
-					clickThreeDotsNavigateToLineDetails(i - 2);
-					verifyEnterAmountForDiscountCalculation(TradeDiscount, SpecialDiscount, CashDiscount);
-					commonFunc.checkRefreshCellsDisappear();
-					verifyDiscountAmountForPo(i1, SheetName, FileName);
+					flag = webDB.waitForElement(PurchaseOrderPageLocators.PoDetails, ElementType.Xpath);
+					if (flag) {
+						webDB.clickAnElement(PurchaseOrderPageLocators.PoDetails, ElementType.Xpath);
+						logs.logging("INFO", "PO Details field clicked successfully");
+						commonFunc.checkRefreshCellsDisappear();
+//				else {
+//					commonFunc.checkRefreshCellsDisappear();
+//					commonFunc.hardWait(2000);
+//					flag = webDB.waitForElement(PurchaseOrderPageLocators.PurchaseOrderLineDetail(i - 21),
+//							ElementType.Xpath);
+//
+//					webDB.clickAnElement(PurchaseOrderPageLocators.PurchaseOrderLineDetail(i - 21), ElementType.Xpath);
+//					logs.logging("INFO", "Non Service Item");
+//				}
+						flag = webDB.waitForElement(PurchaseOrderPageLocators.LineDetailsIframePO, ElementType.Xpath);
+						if (flag) {
+							webDB.switchToFrame(PurchaseOrderPageLocators.LineDetailsIframePO, ElementType.Xpath);
+							logs.logging("INFO", "Switched To frame");
+
+							flag = webDB.waitForElement(PurchaseOrderPageLocators.ExpandDiscountField,
+									ElementType.Xpath);
+							if (flag) {
+								webDB.clickAnElement(PurchaseOrderPageLocators.ExpandDiscountField, ElementType.Xpath);
+								logs.logging("INFO", "Successfully Expand the Discount Section");
+//					commonFunc.hardWait(3000);
+//					webDB.clearText(PurchaseOrderPageLocators.TradePercentage, ElementType.Xpath);
+//					webDB.sendTextToAnElement(PurchaseOrderPageLocators.TradePercentage, TradeDiscount,
+//							ElementType.Xpath);
+//					webDB.pressEnterKey();
+								commonFunc.checkRefreshCellsDisappear();
+//					commonFunc.hardWait(3000);
+								commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.TradePercentage,
+										PurchaseOrderPageLocators.TradePercentage, TradeDiscount);
+//					webDB.clearText(PurchaseOrderPageLocators.SpecialDiscountPercentage, ElementType.Xpath);
+//					webDB.sendTextToAnElement(PurchaseOrderPageLocators.SpecialDiscountPercentage, SpecialDiscount,
+//							ElementType.Xpath);
+//					webDB.pressEnterKey();
+								commonFunc.checkRefreshCellsDisappear();
+//					commonFunc.hardWait(3000);
+								commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.SpecialDiscountPercentage,
+										PurchaseOrderPageLocators.SpecialDiscountPercentage, SpecialDiscount);
+//					webDB.clearText(PurchaseOrderPageLocators.CashDiscountPercentage, ElementType.Xpath);
+//					webDB.sendTextToAnElement(PurchaseOrderPageLocators.CashDiscountPercentage, CashDiscount,
+//							ElementType.Xpath);
+//					webDB.pressEnterKey();
+								commonFunc.checkRefreshCellsDisappear();
+//					commonFunc.hardWait(3000);
+								commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.CashDiscountPercentage,
+										PurchaseOrderPageLocators.CashDiscountPercentage, CashDiscount);
+								commonFunc.checkRefreshCellsDisappear();
+								flag = webDB.waitForElement(PurchaseOrderPageLocators.LineDeatilsSave,
+										ElementType.Xpath);
+								if (flag) {
+									webDB.clickAnElement(PurchaseOrderPageLocators.LineDeatilsSave, ElementType.Xpath);
+									webDB.switchToDefaultContent();
+									commonFunc.checkRefreshCellsDisappear();
+//						commonFunc.hardWait(3000);
+//									flag = webDB.waitForElement(PurchaseOrderPageLocators.locationDetails,
+//											ElementType.Xpath);
+									commonFunc.checkRefreshCellsDisappear();
+//						commonFunc.hardWait(3000);
+									verifyDiscountAmountForPo(i1, SheetName, FileName);
+
+								}
+							}
+						}
+					}
 				}
 			}
 		}
@@ -14421,7 +14484,7 @@ public class PurchaseOrderFunctions {
 						PurchaseOrderPageLocators.HsnCodeLovButton, HsnCode);
 				webDB.pressEscapeKey();
 				verifyDirectPoLineWiseSaved();
-				discountFromPrToGrnDocument(i, SheetName, FileName);
+				otherThanUserdefinedDiscountAmount(i, SheetName, FileName);
 				webDB.switchToDefaultContent();
 				commonFunc.checkRefreshCellsDisappear();
 			}

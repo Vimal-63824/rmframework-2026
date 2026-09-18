@@ -4633,57 +4633,60 @@ public class DirectGrnPageFunctions {
 					webDB.clickAnElement(DirectGrnPageLocators.GrnDetailsBtn(i - 21), ElementType.Xpath);
 					logs.logging("INFO", "Details Button Is Clicked");
 					commonFunc.hardWait(4000);
-					
+
 					flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineDetailsNew, ElementType.Xpath);
 					if (flag) {
 						webDB.clickAnElement(DirectGrnPageLocators.GrnLineDetailsNew, ElementType.Xpath);
-						
-					flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineDetailsFrame, ElementType.Xpath);
-					if (flag) {
-						webDB.switchToFrame(DirectGrnPageLocators.GrnLineDetailsFrame, ElementType.Xpath);
-						logs.logging("INFO", "Switched To Frame");
-						commonFunc.hardWait(3000);
-						flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineDetDiscount, ElementType.Xpath);
+
+						flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineDetailsFrame, ElementType.Xpath);
 						if (flag) {
-							webDB.clickAnElement(DirectGrnPageLocators.GrnLineDetDiscount, ElementType.Xpath);
-							
-						flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineSpclDisc, ElementType.Xpath);
-						if (flag) {
-							webDB.clickAnElement(DirectGrnPageLocators.GrnLineSpclDisc, ElementType.Xpath);
-							webDB.clearText(DirectGrnPageLocators.GrnLineSpclDisc, ElementType.Xpath);
-							webDB.sendTextToAnElement(DirectGrnPageLocators.GrnLineSpclDisc, SpecialDiscount,
-									ElementType.Xpath);
-							webDB.pressEnterKey();
-							commonFunc.checkRefreshCellsDisappear();
+							webDB.switchToFrame(DirectGrnPageLocators.GrnLineDetailsFrame, ElementType.Xpath);
+							logs.logging("INFO", "Switched To Frame");
 							commonFunc.hardWait(3000);
-							flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineCashDisc, ElementType.Xpath);
+							flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineDetDiscount, ElementType.Xpath);
 							if (flag) {
-								webDB.clickAnElement(DirectGrnPageLocators.GrnLineCashDisc, ElementType.Xpath);
-								webDB.clearText(DirectGrnPageLocators.GrnLineCashDisc, ElementType.Xpath);
-								webDB.sendTextToAnElement(DirectGrnPageLocators.GrnLineCashDisc, CashDiscount,
-										ElementType.Xpath);
-								webDB.pressEnterKey();
-								commonFunc.checkRefreshCellsDisappear();
-								commonFunc.hardWait(3000);
-								flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineDetailsSave,
-										ElementType.Xpath);
+								webDB.clickAnElement(DirectGrnPageLocators.GrnLineDetDiscount, ElementType.Xpath);
+
+								flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineSpclDisc, ElementType.Xpath);
 								if (flag) {
-									webDB.clickAnElement(DirectGrnPageLocators.GrnLineDetailsSave, ElementType.Xpath);
-									webDB.switchToDefaultContent();
+									webDB.clickAnElement(DirectGrnPageLocators.GrnLineSpclDisc, ElementType.Xpath);
+									webDB.clearText(DirectGrnPageLocators.GrnLineSpclDisc, ElementType.Xpath);
+									webDB.sendTextToAnElement(DirectGrnPageLocators.GrnLineSpclDisc, SpecialDiscount,
+											ElementType.Xpath);
+									webDB.pressEnterKey();
 									commonFunc.checkRefreshCellsDisappear();
 									commonFunc.hardWait(3000);
-									verifyDiscountAmountForDirectGRN(i1, SheetName);
-									commonFunc.hardWait(4000);
-									webDB.pressEscapeKey();
+									flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineCashDisc,
+											ElementType.Xpath);
+									if (flag) {
+										webDB.clickAnElement(DirectGrnPageLocators.GrnLineCashDisc, ElementType.Xpath);
+										webDB.clearText(DirectGrnPageLocators.GrnLineCashDisc, ElementType.Xpath);
+										webDB.sendTextToAnElement(DirectGrnPageLocators.GrnLineCashDisc, CashDiscount,
+												ElementType.Xpath);
+										webDB.pressEnterKey();
+										commonFunc.checkRefreshCellsDisappear();
+										commonFunc.hardWait(3000);
+										flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineDetailsSave,
+												ElementType.Xpath);
+										if (flag) {
+											webDB.clickAnElement(DirectGrnPageLocators.GrnLineDetailsSave,
+													ElementType.Xpath);
+											webDB.switchToDefaultContent();
+											commonFunc.checkRefreshCellsDisappear();
+											commonFunc.hardWait(3000);
+											verifyDiscountAmountForDirectGRN(i1, SheetName);
+											commonFunc.hardWait(4000);
+											webDB.pressEscapeKey();
+										}
+									}
+
 								}
 							}
-
 						}
 					}
 				}
 			}
 		}
-			}}
 		assertTrue(flag);
 
 	}
@@ -5037,13 +5040,14 @@ public class DirectGrnPageFunctions {
 					verifyClickingReceiptQuantity(QTY);
 					verifyClickingCost(COST);
 					verifyClickingSaveLine();
-					
+
 					verifyDirectGRNAddingDiscount(i, SheetName);
 				}
 			}
 		}
 		assertTrue(flag);
 	}
+
 	/**
 	 * This Methods Is Used To Verify Creation Of PR General RFQ
 	 * 
@@ -5115,52 +5119,57 @@ public class DirectGrnPageFunctions {
 					flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineDetailsNew, ElementType.Xpath);
 					if (flag) {
 						webDB.clickAnElement(DirectGrnPageLocators.GrnLineDetailsNew, ElementType.Xpath);
-						
-					flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineDetailsFrame, ElementType.Xpath);
-					if (flag) {
-						webDB.switchToFrame(DirectGrnPageLocators.GrnLineDetailsFrame, ElementType.Xpath);
-						logs.logging("INFO", "Switched To Frame");
-						
-						flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineDetDiscount, ElementType.Xpath);
+
+						flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineDetailsFrame, ElementType.Xpath);
 						if (flag) {
-							webDB.clickAnElement(DirectGrnPageLocators.GrnLineDetDiscount, ElementType.Xpath);
-						
-						flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineTrdDisc, ElementType.Xpath);
-						if (flag) {
-							webDB.clickAnElement(DirectGrnPageLocators.GrnLineTrdDisc, ElementType.Xpath);
-							webDB.clearText(DirectGrnPageLocators.GrnLineTrdDisc, ElementType.Xpath);
-							webDB.sendTextToAnElement(DirectGrnPageLocators.GrnLineTrdDisc, TradeDiscount,
-									ElementType.Xpath);
-							logs.logging("INFO", "Entered Trade Discount Is:" + TradeDiscount);
-							commonFunc.hardWait(1000);
-							flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineSpclDisc, ElementType.Xpath);
+							webDB.switchToFrame(DirectGrnPageLocators.GrnLineDetailsFrame, ElementType.Xpath);
+							logs.logging("INFO", "Switched To Frame");
+
+							flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineDetDiscount, ElementType.Xpath);
 							if (flag) {
-								webDB.clickAnElement(DirectGrnPageLocators.GrnLineSpclDisc, ElementType.Xpath);
-								webDB.clearText(DirectGrnPageLocators.GrnLineSpclDisc, ElementType.Xpath);
-								webDB.sendTextToAnElement(DirectGrnPageLocators.GrnLineSpclDisc, SpecialDiscount,
-										ElementType.Xpath);
-								logs.logging("INFO", "Entered Trade Discount Is:" + SpecialDiscount);
-								commonFunc.hardWait(1000);
-								flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineCashDisc, ElementType.Xpath);
+								webDB.clickAnElement(DirectGrnPageLocators.GrnLineDetDiscount, ElementType.Xpath);
+
+								flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineTrdDisc, ElementType.Xpath);
 								if (flag) {
-									webDB.clickAnElement(DirectGrnPageLocators.GrnLineCashDisc, ElementType.Xpath);
-									webDB.clearText(DirectGrnPageLocators.GrnLineCashDisc, ElementType.Xpath);
-									webDB.sendTextToAnElement(DirectGrnPageLocators.GrnLineCashDisc, CashDiscount,
+									webDB.clickAnElement(DirectGrnPageLocators.GrnLineTrdDisc, ElementType.Xpath);
+									webDB.clearText(DirectGrnPageLocators.GrnLineTrdDisc, ElementType.Xpath);
+									webDB.sendTextToAnElement(DirectGrnPageLocators.GrnLineTrdDisc, TradeDiscount,
 											ElementType.Xpath);
-									logs.logging("INFO", "Entered Trade Discount Is:" + CashDiscount);
+									logs.logging("INFO", "Entered Trade Discount Is:" + TradeDiscount);
 									commonFunc.hardWait(1000);
-									flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineDetailsSave,
+									flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineSpclDisc,
 											ElementType.Xpath);
 									if (flag) {
-										webDB.clickAnElement(DirectGrnPageLocators.GrnLineDetailsSave,
-												ElementType.Xpath);
-										logs.logging("INFO", "Details Is Saved");
+										webDB.clickAnElement(DirectGrnPageLocators.GrnLineSpclDisc, ElementType.Xpath);
+										webDB.clearText(DirectGrnPageLocators.GrnLineSpclDisc, ElementType.Xpath);
+										webDB.sendTextToAnElement(DirectGrnPageLocators.GrnLineSpclDisc,
+												SpecialDiscount, ElementType.Xpath);
+										logs.logging("INFO", "Entered Trade Discount Is:" + SpecialDiscount);
 										commonFunc.hardWait(1000);
-										webDB.pressEscapeKey();
-										webDB.switchToDefaultContent();
-										commonFunc.checkRefreshCellsDisappear();
-										verifyDiscountAmountForDirectGRN(i1, SheetName);
+										flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineCashDisc,
+												ElementType.Xpath);
+										if (flag) {
+											webDB.clickAnElement(DirectGrnPageLocators.GrnLineCashDisc,
+													ElementType.Xpath);
+											webDB.clearText(DirectGrnPageLocators.GrnLineCashDisc, ElementType.Xpath);
+											webDB.sendTextToAnElement(DirectGrnPageLocators.GrnLineCashDisc,
+													CashDiscount, ElementType.Xpath);
+											logs.logging("INFO", "Entered Trade Discount Is:" + CashDiscount);
+											commonFunc.hardWait(1000);
+											flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineDetailsSave,
+													ElementType.Xpath);
+											if (flag) {
+												webDB.clickAnElement(DirectGrnPageLocators.GrnLineDetailsSave,
+														ElementType.Xpath);
+												logs.logging("INFO", "Details Is Saved");
+												commonFunc.hardWait(1000);
+												webDB.pressEscapeKey();
+												webDB.switchToDefaultContent();
+												commonFunc.checkRefreshCellsDisappear();
+												verifyDiscountAmountForDirectGRN(i1, SheetName);
 
+											}
+										}
 									}
 								}
 							}
@@ -5168,8 +5177,6 @@ public class DirectGrnPageFunctions {
 					}
 				}
 			}
-		}
-		}
 		}
 		assertTrue(flag);
 	}
@@ -5678,14 +5685,12 @@ public class DirectGrnPageFunctions {
 	 * @author Durai-RMITS
 	 */
 	public void verifyDirectGRNAddingDiscount(int i1, String FileName, String SheetName) {
-
 		String[][] PRMultipleline = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 		ExcelUtils excelUtils = new ExcelUtils();
 		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
 		PRMultipleline = excelUtils.readAllDataInExcel(Filepath, SheetName);
 		System.out.println(PRMultipleline.length);
 		for (int i = i1; i <= i1; i++) {
-
 			String ITEM_NAME = PRMultipleline[i1][1];
 			String TradeDiscount = PRMultipleline[i1][8];
 			String SpecialDiscount = PRMultipleline[i1][9];
@@ -5697,46 +5702,61 @@ public class DirectGrnPageFunctions {
 					webDB.clickAnElement(DirectGrnPageLocators.GrnDetailsBtn(i - 2), ElementType.Xpath);
 					logs.logging("INFO", "Details Button Is Clicked");
 					commonFunc.hardWait(500);
-					flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineDetailsFrame, ElementType.Xpath);
+					flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineDetailsNew, ElementType.Xpath);
 					if (flag) {
-						webDB.switchToFrame(DirectGrnPageLocators.GrnLineDetailsFrame, ElementType.Xpath);
-						logs.logging("INFO", "Switched To Frame");
-						flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineTrdDisc, ElementType.Xpath);
+						webDB.clickAnElement(DirectGrnPageLocators.GrnLineDetailsNew, ElementType.Xpath);
+
+						flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineDetailsFrame, ElementType.Xpath);
 						if (flag) {
-							webDB.clickAnElement(DirectGrnPageLocators.GrnLineTrdDisc, ElementType.Xpath);
-							webDB.clearText(DirectGrnPageLocators.GrnLineTrdDisc, ElementType.Xpath);
-							webDB.sendTextToAnElement(DirectGrnPageLocators.GrnLineTrdDisc, TradeDiscount,
-									ElementType.Xpath);
-							logs.logging("INFO", "Entered Trade Discount Is:" + TradeDiscount);
-							commonFunc.hardWait(1000);
-							flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineSpclDisc, ElementType.Xpath);
-							if (flag) {
-								webDB.clickAnElement(DirectGrnPageLocators.GrnLineSpclDisc, ElementType.Xpath);
-								webDB.clearText(DirectGrnPageLocators.GrnLineSpclDisc, ElementType.Xpath);
-								webDB.sendTextToAnElement(DirectGrnPageLocators.GrnLineSpclDisc, SpecialDiscount,
+							webDB.switchToFrame(DirectGrnPageLocators.GrnLineDetailsFrame, ElementType.Xpath);
+							logs.logging("INFO", "Switched To Frame");
+
+							if (webDB.getAttributeFromElement(DirectGrnPageLocators.GrnLineDetDiscount,
+									ElementType.Xpath, "aria-expanded").equals("false")) {
+								flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineDetDiscount,
 										ElementType.Xpath);
-								logs.logging("INFO", "Entered Trade Discount Is:" + SpecialDiscount);
-								commonFunc.hardWait(1000);
-								flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineCashDisc, ElementType.Xpath);
 								if (flag) {
-									webDB.clickAnElement(DirectGrnPageLocators.GrnLineCashDisc, ElementType.Xpath);
-									webDB.clearText(DirectGrnPageLocators.GrnLineCashDisc, ElementType.Xpath);
-									webDB.sendTextToAnElement(DirectGrnPageLocators.GrnLineCashDisc, CashDiscount,
+									webDB.clickAnElement(DirectGrnPageLocators.GrnLineDetDiscount, ElementType.Xpath);
+								}
+							}
+							flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineTrdDisc, ElementType.Xpath);
+							if (flag) {
+								webDB.clickAnElement(DirectGrnPageLocators.GrnLineTrdDisc, ElementType.Xpath);
+								webDB.clearText(DirectGrnPageLocators.GrnLineTrdDisc, ElementType.Xpath);
+								webDB.sendTextToAnElement(DirectGrnPageLocators.GrnLineTrdDisc, TradeDiscount,
+										ElementType.Xpath);
+								logs.logging("INFO", "Entered Trade Discount Is:" + TradeDiscount);
+								commonFunc.hardWait(1000);
+								flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineSpclDisc, ElementType.Xpath);
+								if (flag) {
+									webDB.clickAnElement(DirectGrnPageLocators.GrnLineSpclDisc, ElementType.Xpath);
+									webDB.clearText(DirectGrnPageLocators.GrnLineSpclDisc, ElementType.Xpath);
+									webDB.sendTextToAnElement(DirectGrnPageLocators.GrnLineSpclDisc, SpecialDiscount,
 											ElementType.Xpath);
-									logs.logging("INFO", "Entered Trade Discount Is:" + CashDiscount);
+									logs.logging("INFO", "Entered Trade Discount Is:" + SpecialDiscount);
 									commonFunc.hardWait(1000);
-									flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineDetailsSave,
+									flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineCashDisc,
 											ElementType.Xpath);
 									if (flag) {
-										webDB.clickAnElement(DirectGrnPageLocators.GrnLineDetailsSave,
+										webDB.clickAnElement(DirectGrnPageLocators.GrnLineCashDisc, ElementType.Xpath);
+										webDB.clearText(DirectGrnPageLocators.GrnLineCashDisc, ElementType.Xpath);
+										webDB.sendTextToAnElement(DirectGrnPageLocators.GrnLineCashDisc, CashDiscount,
 												ElementType.Xpath);
-										logs.logging("INFO", "Details Is Saved");
+										logs.logging("INFO", "Entered Trade Discount Is:" + CashDiscount);
 										commonFunc.hardWait(1000);
-										webDB.pressEscapeKey();
-										webDB.switchToDefaultContent();
-										commonFunc.checkRefreshCellsDisappear();
-										verifyDiscountAmountForDirectGRN(i1, FileName, SheetName);
+										flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineDetailsSave,
+												ElementType.Xpath);
+										if (flag) {
+											webDB.clickAnElement(DirectGrnPageLocators.GrnLineDetailsSave,
+													ElementType.Xpath);
+											logs.logging("INFO", "Details Is Saved");
+											commonFunc.hardWait(1000);
+											webDB.pressEscapeKey();
+											webDB.switchToDefaultContent();
+											commonFunc.checkRefreshCellsDisappear();
+											verifyDiscountAmountForDirectGRN(i1, FileName, SheetName);
 
+										}
 									}
 								}
 							}
@@ -6167,42 +6187,59 @@ public class DirectGrnPageFunctions {
 					webDB.clickAnElement(DirectGrnPageLocators.GrnDetailsBtn(i - 2), ElementType.Xpath);
 					logs.logging("INFO", "Details Button Is Clicked");
 					commonFunc.hardWait(4000);
-					flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineDetailsFrame, ElementType.Xpath);
+
+					flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineDetailsNew, ElementType.Xpath);
 					if (flag) {
-						webDB.switchToFrame(DirectGrnPageLocators.GrnLineDetailsFrame, ElementType.Xpath);
-						logs.logging("INFO", "Switched To Frame");
-						commonFunc.hardWait(3000);
-						flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineSpclDisc, ElementType.Xpath);
+						webDB.clickAnElement(DirectGrnPageLocators.GrnLineDetailsNew, ElementType.Xpath);
+
+						flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineDetailsFrame, ElementType.Xpath);
 						if (flag) {
-							webDB.clickAnElement(DirectGrnPageLocators.GrnLineSpclDisc, ElementType.Xpath);
-							webDB.clearText(DirectGrnPageLocators.GrnLineSpclDisc, ElementType.Xpath);
-							webDB.sendTextToAnElement(DirectGrnPageLocators.GrnLineSpclDisc, SpecialDiscount,
-									ElementType.Xpath);
-							webDB.pressEnterKey();
-							commonFunc.checkRefreshCellsDisappear();
+							webDB.switchToFrame(DirectGrnPageLocators.GrnLineDetailsFrame, ElementType.Xpath);
+							logs.logging("INFO", "Switched To Frame");
 							commonFunc.hardWait(3000);
-							flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineCashDisc, ElementType.Xpath);
+							commonFunc.checkRefreshCellsDisappear();
+							if (webDB.getAttributeFromElement(DirectGrnPageLocators.GrnLineDetDiscount,
+									ElementType.Xpath, "aria-expanded").equals("false")) {
+								flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineDetDiscount,
+										ElementType.Xpath);
+								if (flag) {
+									webDB.clickAnElement(DirectGrnPageLocators.GrnLineDetDiscount, ElementType.Xpath);
+								}
+							}
+
+							flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineSpclDisc, ElementType.Xpath);
 							if (flag) {
-								webDB.clickAnElement(DirectGrnPageLocators.GrnLineCashDisc, ElementType.Xpath);
-								webDB.clearText(DirectGrnPageLocators.GrnLineCashDisc, ElementType.Xpath);
-								webDB.sendTextToAnElement(DirectGrnPageLocators.GrnLineCashDisc, CashDiscount,
+								webDB.clickAnElement(DirectGrnPageLocators.GrnLineSpclDisc, ElementType.Xpath);
+								webDB.clearText(DirectGrnPageLocators.GrnLineSpclDisc, ElementType.Xpath);
+								webDB.sendTextToAnElement(DirectGrnPageLocators.GrnLineSpclDisc, SpecialDiscount,
 										ElementType.Xpath);
 								webDB.pressEnterKey();
 								commonFunc.checkRefreshCellsDisappear();
 								commonFunc.hardWait(3000);
-								flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineDetailsSave,
-										ElementType.Xpath);
+								flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineCashDisc, ElementType.Xpath);
 								if (flag) {
-									webDB.clickAnElement(DirectGrnPageLocators.GrnLineDetailsSave, ElementType.Xpath);
-									webDB.switchToDefaultContent();
+									webDB.clickAnElement(DirectGrnPageLocators.GrnLineCashDisc, ElementType.Xpath);
+									webDB.clearText(DirectGrnPageLocators.GrnLineCashDisc, ElementType.Xpath);
+									webDB.sendTextToAnElement(DirectGrnPageLocators.GrnLineCashDisc, CashDiscount,
+											ElementType.Xpath);
+									webDB.pressEnterKey();
 									commonFunc.checkRefreshCellsDisappear();
 									commonFunc.hardWait(3000);
-									verifyDiscountAmountForDirectGRN(i1, FileName, SheetName);
-									commonFunc.hardWait(4000);
-									webDB.pressEscapeKey();
+									flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineDetailsSave,
+											ElementType.Xpath);
+									if (flag) {
+										webDB.clickAnElement(DirectGrnPageLocators.GrnLineDetailsSave,
+												ElementType.Xpath);
+										webDB.switchToDefaultContent();
+										commonFunc.checkRefreshCellsDisappear();
+										commonFunc.hardWait(3000);
+										verifyDiscountAmountForDirectGRN(i1, FileName, SheetName);
+										commonFunc.hardWait(4000);
+										webDB.pressEscapeKey();
+									}
 								}
-							}
 
+							}
 						}
 					}
 				}
@@ -6210,7 +6247,6 @@ public class DirectGrnPageFunctions {
 		}
 
 		assertTrue(flag);
-
 	}
 
 	/**
