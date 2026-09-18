@@ -285,6 +285,7 @@ public class CommonFunctions {
 			webDB.clickAnElement(locator, ElementType.Xpath);
 			webDB.switchToDefaultContent();
 			checkRefreshCellsDisappear();
+			checkRefreshCellsDisappear();
 			List<WebElement> searchBar = WebDriverBase.getDriver().findElements(By.xpath(CommonUiLocators.searchBar));
 			a: for (int i = 0; i < searchBar.size(); i++) {
 				WebElement element = searchBar.get(i);
@@ -324,11 +325,15 @@ public class CommonFunctions {
 				flag = false;
 			}
 			checkRefreshCellsDisappear();
+			checkRefreshCellsDisappear();
+			checkRefreshCellsDisappear();
 			webDB.pressEnterKey();
+			checkRefreshCellsDisappear();
 			checkRefreshCellsDisappear();
 			try {
 				List<WebElement> Elements = WebDriverBase.getDriver()
 						.findElements(By.xpath(CommonUiLocators.convertListOfXPath(Value)));
+				System.out.println("elements" + Elements.size());
 				for (WebElement webElement : Elements) {
 					if (webElement.isDisplayed() && webElement.getText().trim().equalsIgnoreCase(Value.trim())) {
 						((JavascriptExecutor) WebDriverBase.getDriver())
@@ -337,6 +342,7 @@ public class CommonFunctions {
 							Actions action = new Actions(WebDriverBase.getDriver());
 							action.moveToElement(webElement).build().perform();
 						} catch (Exception e) {
+							System.out.println("Exception " + e);
 						}
 						webElement.click();
 						flag = true;
@@ -344,8 +350,11 @@ public class CommonFunctions {
 					}
 				}
 			} catch (Exception e) {
+				System.out.println("Exception " + e);
 			}
 		}
+		checkRefreshCellsDisappear();
+		checkRefreshCellsDisappear();
 		List<WebElement> searchBar = WebDriverBase.getDriver().findElements(By.xpath(CommonUiLocators.searchBar));
 		for (WebElement element : searchBar) {
 			try {
