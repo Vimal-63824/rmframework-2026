@@ -272,6 +272,7 @@ public class VariableHandler {
 	private static ThreadLocal<String> SignInUserName = ThreadLocal.withInitial(() -> null);
 	private static ThreadLocal<String> EmployeeFullName = ThreadLocal.withInitial(() -> null);
 	private static ThreadLocal<Boolean> SiteWorked = ThreadLocal.withInitial(() -> true);
+	private static ThreadLocal<String> PriceBasis = new ThreadLocal<>();
 
 	public static Boolean getSessionOpened() {
 		return SessionOpened.get();
@@ -2349,5 +2350,13 @@ public class VariableHandler {
 
 	public static void setSiteWorked(boolean Data) {
 		SiteWorked.set(Data);
+	}
+	
+	public static String getSOPriceBasis() {
+		return PriceBasis.get();
+	}
+
+	public static void setSOPriceBasis(String data) {
+		PriceBasis.set(data);
 	}
 }

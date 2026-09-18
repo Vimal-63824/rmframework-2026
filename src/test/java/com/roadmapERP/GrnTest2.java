@@ -721,7 +721,7 @@ public class GrnTest2 extends RoadMapERPTest {
 	public void PotoGrnMateriallPriceListDifferentStockAndSupplierUOMWithInspectionPlanWithoutQualityEnabledAndToleranceQty()
 			throws Exception {
 		grnPageFunc
-				.poToGrnGeneralRateContractSameStockAndSupplierUOMWithAndWithoutInspectionGeneralTypeCheckingWithToleranceQty();
+				.poToGrnGeneralRateContractSameStockAndSupplierUOMWithAndWithoutInspectionGeneralTypeCheckingWithToleranceQtyKp();
 	}
 
 	/**

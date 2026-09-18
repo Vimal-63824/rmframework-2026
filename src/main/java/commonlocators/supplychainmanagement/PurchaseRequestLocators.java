@@ -141,7 +141,7 @@ public class PurchaseRequestLocators {
 	/** @locatorType Xpath */
 	public static final String PRCloseShort_Reference = "//input[@id='P1615131122011_PCH_REF']";
 	/** @locatorType Xpath */
-	public static final String PRCloseShort_TickIcon = "//button[@data-testid='Create' and @id='B2046300750296723160']";
+	public static final String PRCloseShort_TickIcon = "//button[@data-testid='Create' and @id='B1938706070020986747']";
 	/** @locatorType Xpath */
 	public static final String PRCloseShort_DocNoText = "//input[contains(@id,'PCH_DOC_NO')]";
 	/** @locatorType Xpath */
@@ -305,5 +305,8 @@ public class PurchaseRequestLocators {
 		String Locator = "(//table[@data-testid='HD_Result_Data'])[2]";
 		return commonFunc.checkAndReturnIndexForLocatorWithHeaderValue(Locator, HeaderValue);
 	}
+
+	/** @locatorType Xpath */
+	public static final String LineDelete = "//a[@data-action='LN_DEL']";
 
 }

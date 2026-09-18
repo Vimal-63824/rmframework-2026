@@ -2003,7 +2003,7 @@ public class RfqPageFunctions {
 				"AdminUsername");
 		commonFunc.navigateRfqPage();
 //		verifyDateAfterAndBefore();
-		verifyAmendFilterSearchSOB(RfqLocators.LocId, commonFunc.getDataFromTestDataSheet("Loc_100"), "Loc.ID",
+		verifyAmendFilterSearchSOB(RfqLocators.LocId, commonFunc.getDataFromTestDataSheet("Loc_100"), "Loc. ID",
 				commonFunc.getDataFromTestDataSheet("HeaderSearchType"),
 				commonFunc.getDataFromTestDataSheet("LovButton"));
 		verifyAmendFilterSearchSOB(RfqLocators.Unit, commonFunc.getDataFromTestDataSheet("Unit_100"), "Unit",

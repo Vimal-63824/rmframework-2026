@@ -1,5 +1,7 @@
 package commonlocators.supplychainmanagement;
 
+import commonfunctions.CommonFunctions;
+
 /**
  * @author Durai
  * @company Roadmap May 02, 2025
@@ -141,37 +143,37 @@ public class SsoPageLocators {
 
 	/** @locatorType Xpath */
 	public static final String SSOItemField(int i) {
-		return "//*[@id=\'LINES_ig_grid_vc\']/div[2]/div[3]/table/tbody/tr[" + i + "]/td[2]";
+		return "//*[@id=\'LINES_ig_grid_vc\']/div[2]/div[3]/table/tbody/tr[" + i + "]/td[3]";
 	}
 
 	/** @locatorType Xpath */
 	public static final String SSOFirmQtyField(int i) {
-		return "//*[@id=\"LINES_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr[" + i + "]/td[6]";
-	}
-
-	/** @locatorType Xpath */
-	public static final String SSOTentQtyField(int i) {
 		return "//*[@id=\"LINES_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr[" + i + "]/td[7]";
 	}
 
 	/** @locatorType Xpath */
-	public static final String SSOFirmDateFromField(int i) {
+	public static final String SSOTentQtyField(int i) {
 		return "//*[@id=\"LINES_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr[" + i + "]/td[8]";
 	}
 
 	/** @locatorType Xpath */
-	public static final String SSOFirmDateToField(int i) {
+	public static final String SSOFirmDateFromField(int i) {
 		return "//*[@id=\"LINES_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr[" + i + "]/td[9]";
 	}
 
 	/** @locatorType Xpath */
+	public static final String SSOFirmDateToField(int i) {
+		return "//*[@id=\"LINES_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr[" + i + "]/td[10]";
+	}
+
+	/** @locatorType Xpath */
 	public static final String SSOTentDateFromField(int i) {
-		return "//*[@id=\"LINES_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr[" + i + "]/td[12]";
+		return "//*[@id=\"LINES_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr[" + i + "]/td[13]";
 	}
 
 	/** @locatorType Xpath */
 	public static final String SSOTentDateToField(int i) {
-		return "//*[@id=\"LINES_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr[" + i + "]/td[13]";
+		return "//*[@id=\"LINES_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr[" + i + "]/td[14]";
 	}
 	
 	/** @locatorType Xpath */
@@ -180,6 +182,33 @@ public class SsoPageLocators {
 	public static final String SsoCancelFindSearch = "//button[@data-testid='Search']";
 	
 	
+	/** @locatorType Xpath */
+	public static final String OPOTable = "(//table[@data-testid=\"ig_line_ig_report_settings_Result_Data\"])[2]";
+	/** @locatorType Xpath */
+	public static final String OPOItemDataLastRow() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(OPOTable, "Item");
+	}
+	/** @locatorType Xpath */
+	public static final String OPOCostDataLastRow() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(OPOTable, "Unit Cost");
+	}
+	/** @locatorType Xpath */
+	public static final String OPODisDataLastRow() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(OPOTable, "Disc %");
+	}
+	/** @locatorType Xpath */
+	public static final String OPOHSNDataLastRow() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(OPOTable, "HSN / SAC Code");
+	}
 	
+	/** @locatorType Xpath */
+	public static final String OPOItemDataLastRowInput = OPOItemDataLastRow() + "//button";
+	
+	/** @locatorType Xpath */
+	public static final String SSOTable = "(//table[@data-testid=\"R4139113351322702989_Result_Data\"])[2]";
+	/** @locatorType Xpath */
+	public static final String SSOItemDataLastRow() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(SSOTable, "Item");
+	}
 	
 }

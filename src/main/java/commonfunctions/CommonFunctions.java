@@ -19,6 +19,7 @@ import org.json.simple.parser.JSONParser;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -237,14 +238,13 @@ public class CommonFunctions {
 	public void navigatePurchaseOrderPage() {
 		flag = webDB.waitForElement(CommonUiLocators.BusFunctionSearchBox, ElementType.Xpath);
 		if (flag) {
-			WebElement InputElement = webDB.getDriver()
-					.findElement(By.xpath(CommonUiLocators.BusFunctionSearchBox + "/parent::*"));
-			JavascriptExecutor js = (JavascriptExecutor) webDB.getDriver();
-			js.executeScript("arguments[0].value='" + webDB.getDataFromProperties("PurchaseOrderTab") + "';",
-					InputElement);
-			webDB.clickAnElement(CommonUiLocators.BusFunctionSearchBox, ElementType.Xpath);
+			WebElement inputField = webDB.getDriver().findElement(By.xpath(CommonUiLocators.BusFunctionSearchBox));
+			inputField.clear();
+			inputField.sendKeys("URCHASE ORDERS");
+			inputField.sendKeys(Keys.HOME);
+			inputField.sendKeys("P");
 		}
-		checkRefreshCellsDisappear();
+		webDB.pressEnterKey();
 		webDB.waitUntilElementToNotBeStale(CommonUiLocators.PurchaseAddIcon, ElementType.Xpath);
 		flag = webDB.waitForElement(CommonUiLocators.PurchaseAddIcon, ElementType.Xpath);
 		Assert.assertTrue(flag);
@@ -257,20 +257,18 @@ public class CommonFunctions {
 	 * @author Sakthi-GWL
 	 */
 	public void navigatePurchaseRequestPage() {
-//		clickLeftNavigationBar();
-//		clickSupplyChainTab();
-//		clickPurchaseTab();
-//		clickPurchaseTransactionTab();
-//		flag = webDB.waitForElement(CommonUiLocators.PurchaseRequestTab, ElementType.Xpath);
-//		if (flag) {
-//			webDB.clickAnElement(CommonUiLocators.PurchaseRequestTab, ElementType.Xpath);
-//			flag = webDB.waitForElementUntilGivenTime(CommonUiLocators.LeftSideAddIcon, ElementType.Xpath, 45);
-//			if (flag) {
-//				logs.logging("INFO", "Purchase Request Clicked and navigated successfully");
-//			}
-//		}
-		navigateToSearchTab(webDB.getDataFromProperties("PurchaseRequestScreen"), CommonUiLocators.LeftSideAddIcon);
-//		Assert.assertTrue(flag);
+		flag = webDB.waitForElement(CommonUiLocators.BusFunctionSearchBox, ElementType.Xpath);
+		if (flag) {
+			WebElement inputField = webDB.getDriver().findElement(By.xpath(CommonUiLocators.BusFunctionSearchBox));
+			inputField.clear();
+			inputField.sendKeys("URCHASE REQUESTS");
+			inputField.sendKeys(Keys.HOME);
+			inputField.sendKeys("P");
+		}
+		webDB.pressEnterKey();
+		webDB.waitUntilElementToNotBeStale(CommonUiLocators.LeftSideAddIcon, ElementType.Xpath);
+		flag = webDB.waitForElement(CommonUiLocators.LeftSideAddIcon, ElementType.Xpath);
+		Assert.assertTrue(flag);
 	}
 
 	/**
@@ -286,6 +284,7 @@ public class CommonFunctions {
 			webDB.moveToElement(locator, ElementType.Xpath);
 			webDB.clickAnElement(locator, ElementType.Xpath);
 			webDB.switchToDefaultContent();
+			checkRefreshCellsDisappear();
 			checkRefreshCellsDisappear();
 			List<WebElement> searchBar = WebDriverBase.getDriver().findElements(By.xpath(CommonUiLocators.searchBar));
 			a: for (int i = 0; i < searchBar.size(); i++) {
@@ -326,11 +325,15 @@ public class CommonFunctions {
 				flag = false;
 			}
 			checkRefreshCellsDisappear();
+			checkRefreshCellsDisappear();
+			checkRefreshCellsDisappear();
 			webDB.pressEnterKey();
+			checkRefreshCellsDisappear();
 			checkRefreshCellsDisappear();
 			try {
 				List<WebElement> Elements = WebDriverBase.getDriver()
 						.findElements(By.xpath(CommonUiLocators.convertListOfXPath(Value)));
+				System.out.println("elements" + Elements.size());
 				for (WebElement webElement : Elements) {
 					if (webElement.isDisplayed() && webElement.getText().trim().equalsIgnoreCase(Value.trim())) {
 						((JavascriptExecutor) WebDriverBase.getDriver())
@@ -339,6 +342,7 @@ public class CommonFunctions {
 							Actions action = new Actions(WebDriverBase.getDriver());
 							action.moveToElement(webElement).build().perform();
 						} catch (Exception e) {
+							System.out.println("Exception " + e);
 						}
 						webElement.click();
 						flag = true;
@@ -346,8 +350,11 @@ public class CommonFunctions {
 					}
 				}
 			} catch (Exception e) {
+				System.out.println("Exception " + e);
 			}
 		}
+		checkRefreshCellsDisappear();
+		checkRefreshCellsDisappear();
 		List<WebElement> searchBar = WebDriverBase.getDriver().findElements(By.xpath(CommonUiLocators.searchBar));
 		for (WebElement element : searchBar) {
 			try {
@@ -706,19 +713,17 @@ public class CommonFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void navigatePoAmendmentPage() {
-//		clickLeftNavigationBar();
-//		clickSupplyChainTab();
-//		clickPurchaseTab();
-//		clickPurchaseTransactionTab();
-//		flag = webDB.waitForElement(CommonUiLocators.POAmendmentTab, ElementType.Xpath);
-//		if (flag) {
-//			webDB.clickAnElement(CommonUiLocators.POAmendmentTab, ElementType.Xpath);
-//			flag = webDB.waitForElement(POAmendmentLocators.POPendingIcon, ElementType.Xpath);
-//			if (flag) {
-//				logs.logging("INFO", "Navigated To PO Amendment page Successfully");
-//			}
-//		}
-		navigateToSearchTab(webDB.getDataFromProperties("PoAmendment"), POAmendmentLocators.POPendingIcon);
+		flag = webDB.waitForElement(CommonUiLocators.BusFunctionSearchBox, ElementType.Xpath);
+		if (flag) {
+			WebElement inputField = webDB.getDriver().findElement(By.xpath(CommonUiLocators.BusFunctionSearchBox));
+			inputField.clear();
+			inputField.sendKeys("URCHASE ORDERS AMENDMENT");
+			inputField.sendKeys(Keys.HOME);
+			inputField.sendKeys("P");
+		}
+		webDB.pressEnterKey();
+		webDB.waitUntilElementToNotBeStale(POAmendmentLocators.POPendingIcon, ElementType.Xpath);
+		flag = webDB.waitForElement(POAmendmentLocators.POPendingIcon, ElementType.Xpath);
 		Assert.assertTrue(flag);
 	}
 

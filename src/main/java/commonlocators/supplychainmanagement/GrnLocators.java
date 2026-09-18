@@ -392,4 +392,6 @@ public class GrnLocators {
 	public static final String GRNStatusTableText(String GRNNo) {
 		return "//a[text()='" + GRNNo + "']/../../td/div[contains(@style,'color:brown')]";
 	}
+	/** @locatorType Xpath */
+	public static final String DetailsCancel = "//div[@id='add_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[1]";
 }

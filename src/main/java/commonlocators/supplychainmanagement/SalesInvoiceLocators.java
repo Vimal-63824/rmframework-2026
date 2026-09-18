@@ -892,6 +892,8 @@ public class SalesInvoiceLocators {
 
 	/** @Locator XPATH */
 	public static final String PI_LineTable = "(//table[@data-testid='line1_ig_report_settings_Result_Data'])[2]";
+	/** @Locator XPATH */
+	public static final String ShowMore = "//span[text()='Show More']/..";
 
 	/** @locatorType Xpath */
 	public static final String PIPageItemTable() {

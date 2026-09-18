@@ -522,7 +522,7 @@ public class PurchaseOrderPageLocators {
 
 	/** @locatorType Xpath */
 	public static final String PurchaseOrderLineDetail(int i) {
-		return "//*[@id='ig_po_lineitems_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[" + i + "]/td[35]";
+		return "//*[@id='ig_po_lineitems_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[" + i + "]/td[1]";
 	}
 
 	/** @locatorType Xpath */
