@@ -92,7 +92,7 @@ public class PricelistPageLocators {
 	/** @locatorType Xpath */
 	public static final String FindDocNumDrilldown = "//table[contains(@aria-label,'Result(s)')]/tbody/tr/td[6]/a";
 	/** @locatorType Xpath */
-	public static final String AmendmentButton = "//*[@id=\"price_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[20]/a/span";
+	public static final String AmendmentButton = "//*[@id=\"price_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[20]/a";
 	/** @locatorType Xpath */
 	public static final String AmendcloseDate = "//*[@data-testid='P161513102524_CLOSE_DATE']/input";
 	/** @locatorType Xpath */
