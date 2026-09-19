@@ -469,7 +469,7 @@ public class SalesOrderLocators {
 	/** @Locator Xpath */
 	public static final String Promotional1 = "//span[@id='P191513134002_SOQ_PROMOTION_FLAG_DISPLAY']";
 	/** @Locator Xpath */
-	public static final String LovPopupHighlight = "//span[@class='popup-lov-highlight']";
+	public static final String LovPopupHighlight = "//mark[@class='popup-lov-highlight']";
 	/** @Locator Xpath */
 	public static final String PromotionalLov = "//button[@id='P191513134002_SOQ_PROMOTION_FLAG_lov_btn']";
 	/** Locator @CssSelector */
@@ -656,6 +656,10 @@ public class SalesOrderLocators {
 	public static final String SODiscountLineDetailsFrame = "//iframe[contains(@title,'Sales Order Line Details')]";
 	
 	public static final String SODiscountFrameName = "//h1[text()='Sales Order Line Details']";
+	
+	public static final String CancelAlert = "//button[text()='OK']";
+	
+	public static final String ItemTypeFieldName = "//label[text()='Item Type']";
 
 	/** @locatorType Xpath */
 	public static final String selectCheckBoxInMultiCloseShort(String SONumber, int i) {
@@ -824,4 +828,6 @@ public class SalesOrderLocators {
 	public static final String HeaderCPCcodeLovBtn = "//input[@data-testid='P191513134001_SOH_CC_ID']/following-sibling::button";
 	/** @Locator Xpath */
 	public static final String LineDetailBOMNoLov = "//input[contains(@id,'SOQ_BOM_NO')]/following-sibling::button";
+	
+	public static final String CancelLineButton = "//a[@data-action='CANCEL_LINE']";
 }
