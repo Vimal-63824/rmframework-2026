@@ -321,11 +321,11 @@ public class SubcontractOrderLocators {
 	/** @locatorType XPATH */
 	public static final String SCO_ProcessUOM_Field = "//*[@id='ig_line4_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[4]";
 	/** @locatorType XPATH */
-	public static final String SCO_Batchqty_Field = "//*[@id='ig_line4_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[5]";
+	public static final String SCO_Batchqty_Field = "//*[@id=\"ig_line4_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[5]";
 	/** @locatorType XPATH */
-	public static final String SCO_Batchcost_Field = "//*[@id='ig_line4_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[6]";
+	public static final String SCO_Batchcost_Field = "//*[@id=\"ig_line4_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[6]";
 	/** @locatorType XPATH */
-	public static final String SCO_ConvFactor_Field = "//*[@id='ig_line4_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[7]";
+	public static final String SCO_ConvFactor_Field = "//*[@id=\"ig_line4_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[7]";
 	/** @locatorType XPATH */
 	public static final String SCO_JobItem_Field = "//*[@id='ig_line4_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[8]";
 	/** @locatorType XPATH */
@@ -543,4 +543,8 @@ public class SubcontractOrderLocators {
 		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(SCO_Proc_LineTable, "UOM");
 	}
 	public static final String SCO_LineDetail_Prod_Details= "//*[@id=\"R3827637706701496361\"]/div[1]/div[1]/button";
+	
+	public static final String SCO_LineDetail_Details= "//*[@id=\"ig_line_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[1]/a/span";
+	
+	
 }

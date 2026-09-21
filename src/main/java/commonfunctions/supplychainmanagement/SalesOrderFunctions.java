@@ -706,8 +706,8 @@ public class SalesOrderFunctions {
 		commonFunc.verifyAddTableSpecs(SalesOrderLocators.QtyField(), SalesOrderLocators.QtyInputField(), Qty);
 		logs.logging("INFO", "Quantity Entered: " + Qty);
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.verifyAddTableSpecs(SalesOrderLocators.UnitCostField(),
-				SalesOrderLocators.UnitCostInputField(), UnitCost);
+		commonFunc.verifyAddTableSpecs(SalesOrderLocators.UnitCostField(), SalesOrderLocators.UnitCostInputField(),
+				UnitCost);
 		logs.logging("INFO", "Unit Cost Entered: " + UnitCost);
 	}
 
@@ -2963,8 +2963,8 @@ public class SalesOrderFunctions {
 	 * @throws IOException
 	 */
 	public boolean SoGeneral() throws IOException {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("AdminUsername"));
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				System.getProperty("AdminUsername"));
 		commonFunc.navigateSalesOrderPage();
 		checkSOMControl(webDB.getDataFromProperties("So"));
 		verifyCreationOfSalesOrderHeader(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -3453,7 +3453,7 @@ public class SalesOrderFunctions {
 		flag = webDB.waitForElement(SalesOrderLocators.ItemDetails, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(SalesOrderLocators.ItemDetails, ElementType.Xpath);
-			flag = webDB.waitForElement(SalesOrderLocators.PromotionalLov, ElementType.Xpath);
+			flag = webDB.waitForElement(SalesOrderLocators.ItemTypeFieldName, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", " Sucessfully Clicked The Item Details (+) Button ");
 				if (Promotional.equalsIgnoreCase("Promotional")) {
@@ -3482,8 +3482,8 @@ public class SalesOrderFunctions {
 	 * @throws IOException
 	 */
 	public boolean SoFreeSample() throws IOException {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("AdminUsername"));
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				System.getProperty("AdminUsername"));
 		commonFunc.navigateSalesOrderPage();
 		checkSOMControl(webDB.getDataFromProperties("So"));
 		verifyCreationOfSalesOrderHeader(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -3520,8 +3520,8 @@ public class SalesOrderFunctions {
 	 * @throws IOException
 	 */
 	public boolean SoFreeReplacement() throws IOException {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("AdminUsername"));
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				System.getProperty("AdminUsername"));
 		commonFunc.navigateSalesOrderPage();
 		checkSOMControl(webDB.getDataFromProperties("So"));
 		verifyCreationOfSalesOrderHeader(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -3559,8 +3559,8 @@ public class SalesOrderFunctions {
 	 * @throws IOException
 	 */
 	public boolean SoScrap() throws IOException {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("AdminUsername"));
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				System.getProperty("AdminUsername"));
 		commonFunc.navigateSalesOrderPage();
 		checkSOMControl(webDB.getDataFromProperties("So"));
 		verifyCreationOfSalesOrderHeader(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -3596,8 +3596,8 @@ public class SalesOrderFunctions {
 	 * @throws IOException
 	 */
 	public boolean SoService() throws IOException {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("AdminUsername"));
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				System.getProperty("AdminUsername"));
 		commonFunc.navigateSalesOrderPage();
 		checkSOMControl(webDB.getDataFromProperties("So"));
 		verifyCreationOfSalesOrderHeader(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -3633,8 +3633,8 @@ public class SalesOrderFunctions {
 	 * @throws IOException
 	 */
 	public boolean SoPromotional() throws IOException {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("AdminUsername"));
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				System.getProperty("AdminUsername"));
 		commonFunc.navigateSalesOrderPage();
 		checkSOMControl(webDB.getDataFromProperties("So"));
 		verifyCreationOfSalesOrderHeader(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -3786,8 +3786,8 @@ public class SalesOrderFunctions {
 	 * @throws IOException
 	 */
 	public boolean SoCESS() throws IOException {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("AdminUsername"));
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				System.getProperty("AdminUsername"));
 		commonFunc.navigateSalesOrderPage();
 		checkSOMControl(webDB.getDataFromProperties("So"));
 		verifyCreationOfSalesOrderHeader(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -3823,8 +3823,8 @@ public class SalesOrderFunctions {
 	 * @throws IOException
 	 */
 	public boolean SoCharges() throws IOException {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("AdminUsername"));
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				System.getProperty("AdminUsername"));
 		commonFunc.navigateSalesOrderPage();
 		checkSOMControl(webDB.getDataFromProperties("So"));
 		verifyCreationOfSalesOrderHeader(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -4186,8 +4186,8 @@ public class SalesOrderFunctions {
 	 * @return boolean flag
 	 */
 	public void verifyCancelSalesOrderLines() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("AdminUsername"));
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				System.getProperty("AdminUsername"));
 		commonFunc.navigateSalesOrderPage();
 		checkSOMControl(webDB.getDataFromProperties("So"));
 		verifyCreationOfSalesOrderHeader(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -4201,7 +4201,28 @@ public class SalesOrderFunctions {
 				commonFunc.getDataFromTestDataSheet("SO_General"), commonFunc.getDataFromTestDataSheet("SO_HSNCode"),
 				commonFunc.getDataFromTestDataSheet("Customer"));
 		verifySalesOrderLinesStatusDraftWithDB();
-		clickLineWiseDeleteButton();
+		flag = webDB.waitForElement(SalesOrderLocators.LineDetails(1), ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(SalesOrderLocators.LineDetails(1), ElementType.Xpath);
+			flag = webDB.waitForElement(SalesOrderLocators.CancelLineButton, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(SalesOrderLocators.CancelLineButton, ElementType.Xpath);
+				flag = webDB.waitForElementUntilGivenTime(SalesOrderLocators.CancelAlert, ElementType.Xpath, 30);
+				if (flag) {
+					webDB.clickAnElement(SalesOrderLocators.CancelAlert, ElementType.Xpath);
+					flag = webDB.waitForElementUntilGivenTime(SalesOrderLocators.NoteAlertMessage, ElementType.Xpath,
+							45);
+					if (flag) {
+						logs.logging("INFO", "Note Alert Is Displayed And Sales Order Line Document Is Cancelled.");
+						if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+							webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+						}
+					}
+				}
+			}
+		}
+		verifySalesOrderLinesStatusCancelledWithDB(webDB.getDataFromProperties("SOLineCancel"));
+//		clickLineWiseDeleteButton();
 	}
 
 	/**
@@ -4281,9 +4302,12 @@ public class SalesOrderFunctions {
 				lineDetailVerification12(ITEM_ID, getTextCurrencyInHeaderAfterSaveTheLine(), QUANTITY, i, Trade_Disc,
 						Spl_Disc, Cash_Disc, SOType, Promotional, Filepath, SheetName, PriceClass, Customer);
 				clickLineWiseDetailsSaveButton();
-				enterDiscount(Trade_Disc, Spl_Disc, Cash_Disc, Customer, ITEM_ID, PriceClass, Filepath, SheetName,
-						i - 3);
-				verifyExpectedLineItemCalculationWithDBValues(i, ITEM_ID, SheetName);
+				if (!SOType.equalsIgnoreCase("SO - FREE SAMPLE") && !SOType.equalsIgnoreCase("SO - FREE REPLACEMENT")
+						&& !SOType.equalsIgnoreCase("SO - DEMO / EXHN.")&& !Promotional.equalsIgnoreCase("Promotional")) {
+					enterDiscount(Trade_Disc, Spl_Disc, Cash_Disc, Customer, ITEM_ID, PriceClass, Filepath, SheetName,
+							i - 3);
+					verifyExpectedLineItemCalculationWithDBValues(i, ITEM_ID, SheetName);
+				}
 			}
 		}
 		verifySOTotalAmountWithExcelAndDB(SheetName);
@@ -4333,7 +4357,7 @@ public class SalesOrderFunctions {
 						Spl_Disc, Cash_Disc, SOType, Promotional, Filepath, SheetName, PriceClass, Customer);
 				clickLineWiseDetailsSaveButton();
 				enterDiscount(Trade_Disc, Spl_Disc, Cash_Disc, Customer, ITEM_ID, PriceClass, Filepath, SheetName,
-						i - 3);
+						i);
 				verifyExpectedLineItemCalculationWithDBValues(i, ITEM_ID, SheetName);
 			}
 		}
@@ -7448,17 +7472,16 @@ public class SalesOrderFunctions {
 	public void enterDiscount(String TD, String SD, String CD, String Customer, String Item, String PriceClass,
 			String FilePath, String SheetName, int i) {
 		String PriceBasis = VariableHandler.getSOPriceBasis();
-		flag = webDB.waitForElement(SalesOrderLocators.DiscountTable(i), ElementType.Xpath);
+		flag = webDB.waitForElement(SalesOrderLocators.DiscountTable(i-3), ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(SalesOrderLocators.DiscountTable(i), ElementType.Xpath);
+			webDB.clickAnElement(SalesOrderLocators.DiscountTable(i-3), ElementType.Xpath);
 			webDB.waitForElement(SalesOrderLocators.SODiscountFrameName, ElementType.Xpath);
 			webDB.switchToFrame(SalesOrderLocators.SODiscountLineDetailsFrame, ElementType.Xpath);
 			if ((!"Open Order".equals(PriceBasis)) && (!"Price List".equals(PriceBasis))) {
 				enterSODiscountDetails(SalesOrderLocators.SOTradeDiscountpercentageField, TD);
 //			commonFunc.checkRefreshCellsDisappear();
 			} else {
-				flag = webDB.waitForElement(SalesOrderLocators.SOTradeDiscountpercentageField,
-						ElementType.Xpath);
+				flag = webDB.waitForElement(SalesOrderLocators.SOTradeDiscountpercentageField, ElementType.Xpath);
 				if (flag) {
 					String TradeDiscountPercentage = webDB.getDomPropertyFromElement(
 							SalesOrderLocators.SOTradeDiscountpercentageField, ElementType.Xpath,

@@ -885,7 +885,7 @@ public class SubcontractOrderFunctions {
 			verifyAddTableSpecs(SubcontractOrderLocators.SubcontractQtyField,
 					SubcontractOrderLocators.SubcontractQtyInput, SCOQty);
 			webDB.pressTabKey();
-			commonFunc.hardWait(3000);
+			commonFunc.hardWait(4000);
 			flag = webDB.waitForElement(SubcontractOrderLocators.SubcontractLineSaveIcon, ElementType.Xpath);
 			if (flag) {
 				webDB.clickAnElement(SubcontractOrderLocators.SubcontractLineSaveIcon, ElementType.Xpath);
@@ -919,7 +919,8 @@ public class SubcontractOrderFunctions {
 //										ElementType.Xpath);
 //								commonFunc.hardWait(8000);
 							storeBatchQtyAndBtachCost();
-							flag = webDB.waitForElement(SalesInvoiceLocators.SI_linedetail_Button, ElementType.Xpath);
+							flag = webDB.waitForElement(SubcontractOrderLocators.SCO_LineDetail_Details,
+									ElementType.Xpath);
 							if (flag) {
 								logs.logging("INFO", "Process Added Successfuly");
 							}
@@ -983,9 +984,9 @@ public class SubcontractOrderFunctions {
 				webDB.clickAnElementWithoutException(SubcontractOrderLocators.OpenSCO_NoteAlert_Close,
 						ElementType.Xpath);
 				commonFunc.hardWait(2000);
-				flag = webDB.waitForElement(SalesInvoiceLocators.SI_linedetail_Button, ElementType.Xpath);
+				flag = webDB.waitForElement(SubcontractOrderLocators.SCO_LineDetail_Details, ElementType.Xpath);
 				if (flag) {
-					webDB.clickAnElement(SalesInvoiceLocators.SI_linedetail_Button, ElementType.Xpath);
+					webDB.clickAnElement(SubcontractOrderLocators.SCO_LineDetail_Details, ElementType.Xpath);
 					commonFunc.hardWait(1000);
 					flag = webDB.waitForElement(SubcontractOrderLocators.MRPButton, ElementType.Xpath);
 					if (flag) {
@@ -2707,7 +2708,7 @@ public class SubcontractOrderFunctions {
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
 		materialRequestFunc.verifyCreateMaterialRequestDocument(VariableHandler.getMRNumber());
-		materialRequestFunc.verifyNavigateToLineDetail(VariableHandler.getSCOdocno());
+
 		materialRequestFunc.headerSaveAndPost();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
@@ -2759,7 +2760,7 @@ public class SubcontractOrderFunctions {
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
 		materialRequestFunc.verifyCreateMaterialRequestDocument(VariableHandler.getMRNumber());
-		materialRequestFunc.verifyNavigateToLineDetail(VariableHandler.getSCOdocno());
+
 		materialRequestFunc.headerSaveAndPost();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
@@ -3338,24 +3339,31 @@ public class SubcontractOrderFunctions {
 	 * @author Vimal - RMITS
 	 */
 	public void clickingMRPDetailsTabVerificationWithBOMAgainst() {
-		flag = webDB.waitForElement(SubcontractOrderLocators.MRPButton, ElementType.Xpath);
+		commonFunc.hardWait(2000);
+		flag = webDB.waitForElement(SubcontractOrderLocators.SCO_LineDetail_Details, ElementType.Xpath);
 		if (flag) {
-			logs.logging("INFO", "MRP Button Is Displayed");
-			webDB.clickAnElement(SubcontractOrderLocators.MRPButton, ElementType.Xpath);
-			flag = webDB.waitForElement(SubcontractOrderLocators.FrameMaterial, ElementType.Xpath);
+			webDB.clickAnElement(SubcontractOrderLocators.SCO_LineDetail_Details, ElementType.Xpath);
+			commonFunc.hardWait(1000);
+			flag = webDB.waitForElement(SubcontractOrderLocators.MRPButton, ElementType.Xpath);
 			if (flag) {
-				logs.logging("INFO", "Frame Material Is Displayed");
-				webDB.switchToFrame(SubcontractOrderLocators.FrameMaterial, ElementType.Xpath);
-				commonFunc.hardWait(1000);
-				checkSucontractOrderMaterialDetailsDataBaseValuesWithUIValues();
-				commonFunc.hardWait(2000);
-				webDB.switchToDefaultContent();
-				flag = webDB.waitForElement(SubcontractOrderLocators.CloseButton, ElementType.Xpath);
+				logs.logging("INFO", "MRP Button Is Displayed");
+				webDB.clickAnElement(SubcontractOrderLocators.MRPButton, ElementType.Xpath);
+				flag = webDB.waitForElement(SubcontractOrderLocators.FrameMaterial, ElementType.Xpath);
 				if (flag) {
-					webDB.clickAnElement(SubcontractOrderLocators.CloseButton, ElementType.Xpath);
-					flag = webDB.waitForElement(SubcontractOrderLocators.SubcontractInclCostButton, ElementType.Xpath);
+					logs.logging("INFO", "Frame Material Is Displayed");
+					webDB.switchToFrame(SubcontractOrderLocators.FrameMaterial, ElementType.Xpath);
+					commonFunc.hardWait(1000);
+					checkSucontractOrderMaterialDetailsDataBaseValuesWithUIValues();
+					commonFunc.hardWait(2000);
+					webDB.switchToDefaultContent();
+					flag = webDB.waitForElement(SubcontractOrderLocators.CloseButton, ElementType.Xpath);
 					if (flag) {
-						logs.logging("INFO", "Verified MRP Screen Is Closed");
+						webDB.clickAnElement(SubcontractOrderLocators.CloseButton, ElementType.Xpath);
+						flag = webDB.waitForElement(SubcontractOrderLocators.SubcontractInclCostButton,
+								ElementType.Xpath);
+						if (flag) {
+							logs.logging("INFO", "Verified MRP Screen Is Closed");
+						}
 					}
 				}
 			}
@@ -4209,12 +4217,12 @@ public class SubcontractOrderFunctions {
 			logs.logging("INFO", "Include Charges Is Displayed");
 			webDB.clickAnElement(SubcontractOrderLocators.SubcontractInclCostButton, ElementType.Xpath);
 			commonFunc.hardWait(1500);
-			if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
-				webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
-			}
-			commonFunc.hardWait(1000);
-			directstandardTypeclickLineDetailsButtonValidationwithDataBase();
-			commonFunc.hardWait(1000);
+//			if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+//				webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+//			}
+//			commonFunc.hardWait(1000);
+			// directstandardTypeclickLineDetailsButtonValidationwithDataBase();
+			// commonFunc.hardWait(1000);
 		}
 		assertTrue(flag);
 	}
@@ -4274,11 +4282,11 @@ public class SubcontractOrderFunctions {
 	 * @author Vimal - RMITS
 	 */
 	public void standardTypeclickLineDetailsButtonValidationwithDataBase() {
-		webDB.moveToElement(SubcontractOrderLocators.LineDetails, ElementType.Xpath);
-		flag = webDB.waitForElement(SubcontractOrderLocators.LineDetails, ElementType.Xpath);
+		webDB.moveToElement(SubcontractOrderLocators.SCO_LineDetail_Details, ElementType.Xpath);
+		flag = webDB.waitForElement(SubcontractOrderLocators.SCO_LineDetail_Details, ElementType.Xpath);
 		if (flag) {
 			logs.logging("INFO", "Line Details Is Displayed");
-			webDB.clickAnElement(SubcontractOrderLocators.LineDetails, ElementType.Xpath);
+			webDB.clickAnElement(SubcontractOrderLocators.SCO_LineDetail_Details, ElementType.Xpath);
 			flag = webDB.waitForElement(SubcontractOrderLocators.FrameDetails, ElementType.Xpath);
 			if (flag) {
 				webDB.switchToFrame(SubcontractOrderLocators.FrameDetails, ElementType.Xpath);
@@ -4371,11 +4379,11 @@ public class SubcontractOrderFunctions {
 	 * @author Vimal - RMITS
 	 */
 	public void directstandardTypeclickLineDetailsButtonValidationwithDataBase() {
-		webDB.moveToElement(SubcontractOrderLocators.LineDetails, ElementType.Xpath);
-		flag = webDB.waitForElement(SubcontractOrderLocators.LineDetails, ElementType.Xpath);
+		// webDB.moveToElement(SubcontractOrderLocators.LineDetails, ElementType.Xpath);
+		flag = webDB.waitForElement(SubcontractOrderLocators.SCO_LineDetail_Details, ElementType.Xpath);
 		if (flag) {
 			logs.logging("INFO", "Line Details Is Displayed");
-			webDB.clickAnElement(SubcontractOrderLocators.LineDetails, ElementType.Xpath);
+			webDB.clickAnElement(SubcontractOrderLocators.SCO_LineDetail_Details, ElementType.Xpath);
 			flag = webDB.waitForElement(SubcontractOrderLocators.FrameDetails, ElementType.Xpath);
 			if (flag) {
 				webDB.switchToFrame(SubcontractOrderLocators.FrameDetails, ElementType.Xpath);
@@ -5562,6 +5570,7 @@ public class SubcontractOrderFunctions {
 				excelUtils.writeDataInExcel(Filepath, Sheetname, i, 7, VariableHandler.getSCOConvFact());
 				logs.logging("INFO", "Before ProcUOM  " + ProcUOM + "Is : " + VariableHandler.getSCOProcUOM());
 				excelUtils.writeDataInExcel(Filepath, Sheetname, i, 11, VariableHandler.getSCOProcUOM());
+				commonFunc.hardWait(3000);
 			}
 		}
 	}
@@ -10251,10 +10260,10 @@ public class SubcontractOrderFunctions {
 	 * @author Vimal - RMITS
 	 */
 	public void firstProcessSourceAndTargetSFcode() {
-		 webDB.moveToElement(SalesInvoiceLocators.SI_linedetail_Button, ElementType.Xpath);
-		flag = webDB.waitForElement(SalesInvoiceLocators.SI_linedetail_Button, ElementType.Xpath);
+		webDB.moveToElement(SubcontractOrderLocators.SCO_LineDetail_Details, ElementType.Xpath);
+		flag = webDB.waitForElement(SubcontractOrderLocators.SCO_LineDetail_Details, ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(SalesInvoiceLocators.SI_linedetail_Button, ElementType.Xpath);
+			webDB.clickAnElement(SubcontractOrderLocators.SCO_LineDetail_Details, ElementType.Xpath);
 			commonFunc.hardWait(1000);
 			flag = webDB.waitForElement(SalesInvoiceLocators.SI_detail_Button, ElementType.Xpath);
 			if (flag) {

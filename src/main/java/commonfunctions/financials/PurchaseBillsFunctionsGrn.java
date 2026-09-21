@@ -2657,6 +2657,7 @@ public class PurchaseBillsFunctionsGrn {
 				if (flag) {
 					logs.logging("INFO", "Iframe Is Displayed");
 					webDB.switchToFrame(PurchaseBillsGrnLocators.Iframe, ElementType.Xpath);
+					commonFunc.checkRefreshCellsDisappear();
 					commonFunc.searchAndSelectValueInFilters(PurchaseBillsGrnLocators.GrnNo, DocNo);
 					flag = webDB.waitForElement(PurchaseBillsGrnLocators.Iframe, ElementType.Xpath);
 					if (flag) {
@@ -2722,10 +2723,10 @@ public class PurchaseBillsFunctionsGrn {
 			webDB.clickAnElement(PurchaseBillsLocators.ExpandButton, ElementType.Xpath);
 		}
 		webDB.moveToElement(PurchaseBillsLocators.TableData, ElementType.Xpath);
-		webDB.moveToElement(PurchaseBillsLocators.TDSU_S, ElementType.Xpath);
-		flag = webDB.waitForElement(PurchaseBillsLocators.TDSU_S, ElementType.Xpath);
+		webDB.moveToElement(PurchaseBillsLocators.PurchaseBillsTransLocGstTds(), ElementType.Xpath);
+		flag = webDB.waitForElement(PurchaseBillsLocators.PurchaseBillsTransLocGstTds(), ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(PurchaseBillsLocators.TDSU_S, ElementType.Xpath);
+			webDB.clickAnElement(PurchaseBillsLocators.PurchaseBillsTransLocGstTds(), ElementType.Xpath);
 			flag = webDB.waitForElement(PurchaseBillsLocators.TDSLovButton, ElementType.Xpath);
 			if (flag) {
 				commonFunc.checkRefreshCellsDisappear();
@@ -3031,9 +3032,9 @@ public class PurchaseBillsFunctionsGrn {
 			System.out.println(GRNMultipleline.length);
 			String Cost = GRNMultipleline[i][6];
 			if (!Cost.equals("")) {
-				flag = webDB.waitForElement(PurchaseBillsGrnLocators.PBCostField, ElementType.Xpath);
+				flag = webDB.waitForElement(PurchaseBillsGrnLocators.PurchaseBillsTransLocunitprice(), ElementType.Xpath);
 				if (flag) {
-					webDB.clickAnElement(PurchaseBillsGrnLocators.PBCostField, ElementType.Xpath);
+					webDB.clickAnElement(PurchaseBillsGrnLocators.PurchaseBillsTransLocunitprice(), ElementType.Xpath);
 					webDB.clearText(PurchaseBillsGrnLocators.PBCostInput, ElementType.Xpath);
 					webDB.sendTextToAnElement(PurchaseBillsGrnLocators.PBCostInput, Cost, ElementType.Xpath);
 					logs.logging("INFO", "Entered Deviation Cost Is:" + Cost);
@@ -3064,9 +3065,9 @@ public class PurchaseBillsFunctionsGrn {
 				webDB.clickAnElement(PurchaseBillsGrnLocators.PBAddTypeExp, ElementType.Xpath);
 				webDB.selectDropDownByValue(PurchaseBillsGrnLocators.PBAddTypeExp, Type, ElementType.Xpath);
 				logs.logging("INFO", "Type Is Entered:" + Type);
-				flag = webDB.waitForElement(PurchaseBillsGrnLocators.GlAccDescField, ElementType.Xpath);
+				flag = webDB.waitForElement(PurchaseBillsGrnLocators.PurchaseBillsTransLocGLAccnt(), ElementType.Xpath);
 				if (flag) {
-					webDB.clickAnElement(PurchaseBillsGrnLocators.GlAccDescField, ElementType.Xpath);
+					webDB.clickAnElement(PurchaseBillsGrnLocators.PurchaseBillsTransLocGLAccnt(), ElementType.Xpath);
 					logs.logging("INFO", "Field Is Clicked");
 					flag = webDB.waitForElement(PurchaseBillsGrnLocators.GlAccLov, ElementType.Xpath);
 					if (flag) {
@@ -3262,10 +3263,10 @@ public class PurchaseBillsFunctionsGrn {
 	 * @author Durai
 	 */
 	public void verifyClickingHSNCode(String HSN) {
-		flag = webDB.waitForElement(PurchaseBillsGrnLocators.ExpenseHsnField, ElementType.Xpath);
+		flag = webDB.waitForElement(PurchaseBillsGrnLocators.PurchaseBillsTransLocHsnCode(), ElementType.Xpath);
 		if (flag) {
 			commonFunc.hardWait(3000);
-			webDB.clickAnElement(PurchaseBillsGrnLocators.ExpenseHsnField, ElementType.Xpath);
+			webDB.clickAnElement(PurchaseBillsGrnLocators.PurchaseBillsTransLocHsnCode(), ElementType.Xpath);
 			commonFunc.searchAndSelectValueInFilters(PurchaseBillsGrnLocators.ExpenseHsnLovBtn, HSN);
 			logs.logging("INFO", "HSN code IS Enterd:" + HSN);
 			webDB.pressTabKey();

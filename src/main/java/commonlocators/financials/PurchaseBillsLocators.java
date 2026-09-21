@@ -402,5 +402,9 @@ public class PurchaseBillsLocators {
 	public static final String PurchaseBillsTransLocGstInelSection() {
 		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(GlAccDescField1, "Inel. Section");
 	}
+	/** @locatorType Xpath */
+	public static final String PurchaseBillsTransLocGstTds() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(GlAccDescField1, "TDS u/s ID");
+	}
 
 }
