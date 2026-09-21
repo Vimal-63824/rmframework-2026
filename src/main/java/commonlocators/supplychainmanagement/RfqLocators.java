@@ -81,9 +81,9 @@ public class RfqLocators {
 	/** @locatorType Xpath */
 	public static final String RfqRateFinalize = "//button[@data-testid='EntryCompleted']";
 	/** @locatorType Xpath */
-	public static final String RfqSupplcurrField1 = "//*[@id=\"sup_tab_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr[1]/td[2]";
+	public static final String RfqSupplcurrField1 = "//*[@id=\"sup_tab_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr[1]/td[4]";
 	/** @locatorType Xpath */
-	public static final String RfqSupplcurrField2 = "//*[@id=\"sup_tab_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr[2]/td[2]";
+	public static final String RfqSupplcurrField2 = "//*[@id=\"sup_tab_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr[2]/td[4]";
 	/** @locatorType Xpath */
 	public static final String RfqOverallSave = "//button[@data-testid='SAVE']";
 	/** @locatorType Xpath */
@@ -203,7 +203,7 @@ public class RfqLocators {
 
 	/** @locatorType Xpath */
 	public static final String SobItemField(int i) {
-		return "//*[@id=\'R820374529125409482_ig_grid_vc\']/div[3]/div[3]/table/tbody/tr[" + i + "]/td[2]";
+		return "//*[@id=\'R891832730658104382_ig_grid_vc\']/div[3]/div[3]/table/tbody/tr[" + i + "]/td[2]";
 	}
 
 	/** @locatorType Xpath */

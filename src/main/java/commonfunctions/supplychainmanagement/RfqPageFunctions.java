@@ -789,8 +789,10 @@ public class RfqPageFunctions {
 									commonFunc.getDataFromTestDataSheet("Spcl_Discount"), i);
 							chooseCashDiscForParticularSupllierItem(
 									commonFunc.getDataFromTestDataSheet("Cash_Discount"), i);
+							System.out.println("HSN Field");
 							if (Currency.equals(commonFunc.getDataFromTestDataSheet("Cur_Inr"))) {
 								chooseHsnForParticularSupllierItem(commonFunc.getDataFromTestDataSheet("Hsn_code"), i);
+								
 								verifysSupplierLineSave();
 								commonFunc.hardWait(1000);
 							} else {
@@ -970,8 +972,9 @@ public class RfqPageFunctions {
 				webDB.clickAnElement(RfqLocators.BaseLineField(i), ElementType.Xpath);
 				flag = webDB.waitForElement(RfqLocators.HsnField(i), ElementType.Xpath);
 				if (flag) {
+					webDB.doubleClickAnElement(RfqLocators.HsnField(i), ElementType.Xpath);
 					webDB.clickAnElement(RfqLocators.HsnField(i), ElementType.Xpath);
-					webDB.clickAnElement(RfqLocators.HsnInput, ElementType.Xpath);
+					webDB.doubleClickAnElement(RfqLocators.HsnInput, ElementType.Xpath);
 					logs.logging("INFO", "Supplier HSN Field Is Clicked");
 					commonFunc.hardWait(2000);
 					flag = webDB.waitForElement(RfqLocators.RfqsuplineHsnlov, ElementType.Xpath);
@@ -1038,6 +1041,7 @@ public class RfqPageFunctions {
 			if (flag) {
 				webDB.switchToFrame(RfqLocators.RfqPendingFrame, ElementType.Xpath);
 				logs.logging("INFO", "Switched to Frame");
+				commonFunc.expandFindTable();
 				flag = webDB.waitForElement(RfqLocators.RfqpendPRNumField, ElementType.Xpath);
 				if (flag) {
 					logs.logging("INFO", "PR Number Field Is Searched");
@@ -1055,7 +1059,7 @@ public class RfqPageFunctions {
 	 * @param Number
 	 */
 	public void pendingRfqPRNumber(String Number) {
-
+//		commonFunc.expandFindTable();
 		flag = webDB.waitForElement(RfqLocators.RfqpendPRNumField, ElementType.Xpath);
 		if (flag) {
 			webDB.sendTextToAnElement(RfqLocators.RfqpendPRNumField, Number, ElementType.Xpath);
