@@ -561,13 +561,13 @@ public class SalesInvoiceLocators {
 	/** @Locator XPATH */
 	public static final String GE_Pend_SelectAll = "(//input[@id='check_all'])[1]";
 	/** @Locator XPATH */
-	public static final String GE_Pend_Curr_ProcQty = "//*[@id=\"2241038455808624475_orig\"]/tbody/tr[2]/td[14]";
+	public static final String GE_Pend_Curr_ProcQty = "//*[@id=\"2288533973947868382_orig\"]/tbody/tr[2]/td[14]";
 	/** @Locator XPATH */
 	public static final String GE_Pend_LS_Tab = "//span[@class='fa fa-balance-scale']";
 	/** @Locator XPATH */
 	public static final String GE_Pend_Curr_Qty_Column = "//*[@id=\"LS_GE_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[7]";
 	/** @Locator XPATH */
-	public static final String GE_Pend_Entering_Curr_Qty = "//input[@id='C2304692373861280113']";
+	public static final String GE_Pend_Entering_Curr_Qty = "//input[@data-testid='process_qty']";
 	/** @Locator XPATH */
 	public static final String GE_LS_Iframe = "//iframe[@title='Lot /Serial']";
 	/** @Locator XPATH */
@@ -950,16 +950,19 @@ public class SalesInvoiceLocators {
 	public static final String CRPageUnitPriceTable() {
 		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(CR_LineTable, "Unit Price");
 	}
+	/** @Locator XPATH */
 	public static final String SI_ShowMore = "//button[@data-testid='SHOW_MORE']";
-	
+	/** @Locator XPATH */
 	public static final String SI_detail_Button = "//span[@class='fa fa fa-indent']";
-	
-	public static final String SI_detail_Promotional = "//*[@id=\"R1811755977735489886\"]/div[1]/div[1]/button";
-	
+	/** @Locator XPATH */
+	public static final String SI_detail_Promotional = "//*[@id=\"R1883452696052818893\"]/div[1]/div[1]/button";
+	/** @Locator XPATH */
 	public static final String SI_linedetail_Button = "//*[@id=\"ig_line_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[1]/a/span";
-	
-	public static final String SI_Include_Charge = "//button[@data-testid='INC_CHARGE_1']";
-	
+	/** @Locator XPATH */
+	public static final String SI_Include_Charge = "//button[@data-testid='INC_CHARGE']";
+	/** @Locator XPATH */
 	public static final String CR_ShowMore = "//button[@data-testid='show_more']";
+	/** @Locator XPATH */
+	public static final String Header_Other_Tab = "//button[@data-testid='Others']";
 	
 }

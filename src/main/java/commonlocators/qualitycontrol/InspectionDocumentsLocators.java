@@ -1,5 +1,7 @@
 package commonlocators.qualitycontrol;
 
+import commonfunctions.CommonFunctions;
+
 /**
  * @author Deepan-GWL, Sakthi
  * @company Galaxy Weblinks Feburary 12, 2025
@@ -73,7 +75,7 @@ public class InspectionDocumentsLocators {
 	/** @locatorType Xpath */
 	public static final String InspectionDocumentNumberLov = "//*[@id='P2017131020_QC_NO_1_lov_btn']";
 	/** @locatorType Xpath */
-	public static final String InspectionDocumentNumberDrillDown = "//table[@data-testid='H_Result_Data']/tbody/tr[2]/td[6]";
+	public static final String InspectionDocumentNumberDrillDown = "//table[@data-testid='H_Result_Data']/tbody/tr[2]/td[5]";
 	/** @locatorType Xpath */
 	public static final String FindPageSearchBtn = "//button[@data-testid='Find_line']";
 
@@ -134,5 +136,13 @@ public class InspectionDocumentsLocators {
 	public static final String ProductionOrderNoLovButton = "//input[@data-testid='P20171310150_PROD_ORD_NO']/following-sibling::button";
 	/** @locatorType Xpath */
 	public static final String InspectionPlanLovButton = "//input[@data-testid='P20171310201_TQHD_INSP_PLAN_NO_1']/following-sibling::button";
+	/** @locatorType Xpath */
+	public static final String InsDocumentDrillDown = "//table[@data-testid='H_Result_Data']/tbody/tr/th";
+
+	/** @locatorType Xpath */
+	public static final String InsDocumentDrillDown() {
+		return CommonFunctions.checkAndReturnLocatorForFindPageTable(InsDocumentDrillDown, "Doc. No.");
+	}
+
 
 }

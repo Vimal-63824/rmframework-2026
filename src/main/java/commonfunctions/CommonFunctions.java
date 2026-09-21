@@ -351,7 +351,7 @@ public class CommonFunctions {
 			if (flag) {
 				webDB.clickAnElement(CommonUiLocators.CreatePoButton, ElementType.Xpath);
 				checkRefreshCellsDisappear();
-				webDB.waitForElement(CommonUiLocators.PoCreateFrame, ElementType.Xpath);
+//				webDB.waitForElement(CommonUiLocators.PoCreateFrame, ElementType.Xpath);
 				webDB.switchToFrame(CommonUiLocators.PoCreateFrame, ElementType.Xpath);
 				flag = webDB.waitForElement(CommonUiLocators.CreatePoTickIcon, ElementType.Xpath);
 			}

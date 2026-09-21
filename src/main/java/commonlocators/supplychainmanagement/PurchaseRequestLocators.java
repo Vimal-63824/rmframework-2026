@@ -298,7 +298,7 @@ public class PurchaseRequestLocators {
 	/** @Locator XPATH */
 	public static final String PRAmendFrame = "//iframe[contains(@title,'Create')]";
 	/** @Locator XPATH */
-	public static final String ItemDetailsButton = "//div[@data-testid='R1557118174237374119_Result_Data']//button";
+	public static final String ItemDetailsButton = "//h2[text()='Item Details']/../..//button";
 
 	/** @Locator XPATH */
 	public static String PurchaseNo(String HeaderValue) {
