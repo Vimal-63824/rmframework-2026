@@ -240,7 +240,7 @@ public class InspectionDocumentFunctions {
 		pendingInspectionRequestDocumentToCreateInspectionDocument();
 		getInspectionDocumentNumberFromToastMessage();
 		inspectionPlanNumberCheckingInInspectionDocument();
-		if (VariableHandler.getInspectionPlanNumber().equals("")) {
+		if (VariableHandler.getInspectionPlanNumber().equals("--Select Insp. Plan No. --")) {
 		} else {
 			enterObservationValue();
 		}
@@ -630,15 +630,16 @@ public class InspectionDocumentFunctions {
 				if (flag) {
 					webDB.clickAnElement(InspectionDocumentsLocators.FindPageSearchBtn, ElementType.Xpath);
 					commonFunc.hardWait(1000);
-					flag = webDB.waitForElement(InspectionDocumentsLocators.InspectionDocumentNumberDrillDown,
+					flag = webDB.waitForElement(InspectionDocumentsLocators.InsDocumentDrillDown(),
 							ElementType.Xpath);
 					if (flag) {
-						webDB.clickAnElement(InspectionDocumentsLocators.InspectionDocumentNumberDrillDown,
+						webDB.clickAnElement(InspectionDocumentsLocators.InsDocumentDrillDown(),
 								ElementType.Xpath);
+						logs.logging("INFO", "Document DrillDown SuccessFully");
 						commonFunc.hardWait(2000);
 						inspectionPlanNumberCheckingInInspectionDocument();
 						commonFunc.hardWait(2000);
-						if (VariableHandler.getInspectionPlanNumber().equals("")) {
+						if (VariableHandler.getInspectionPlanNumber().equals("--Select Insp. Plan No. --")) {
 						} else {
 							enterObservationValue();
 						}
@@ -894,6 +895,9 @@ public class InspectionDocumentFunctions {
 			if (flag) {
 				logs.logging("INFO", "Pending Inspection Documents Is Displayed");
 				webDB.switchToFrame(InspectionDocumentsLocators.PendingInspectionFrame, ElementType.Xpath);
+				commonFunc.hardWait(3000);
+				commonFunc.expandFindTable();
+				commonFunc.hardWait(2000);
 				flag = webDB.waitForElement(InspectionDocumentsLocators.VoucherLov, ElementType.Xpath);
 				commonFunc.searchAndSelectValueInFilters(InspectionDocumentsLocators.VoucherLov,
 						VariableHandler.getScoGrnNumber());

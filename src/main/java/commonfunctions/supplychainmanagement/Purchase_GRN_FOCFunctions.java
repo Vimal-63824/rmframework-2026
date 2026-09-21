@@ -1166,8 +1166,6 @@ public class Purchase_GRN_FOCFunctions {
 				webDB.getDataFromProperties("DirectGRN-FocFileName"));
 		GRNFunc.validateStockQtyAndCostQtyForSourceWH(webDB.getDataFromProperties("DirGRNImpSameUDGeneral"),
 				webDB.getDataFromProperties("DirectGRN-FocFileName"));
-//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-//				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		GRNFunc.verifyGrnAdd();
 		GRNFunc.verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1179,14 +1177,7 @@ public class Purchase_GRN_FOCFunctions {
 				webDB.getDataFromProperties("DirGRNImpSameUDGeneral"));
 		DirectGRNFunc.lotSerialQtyApportion();
 		GRN2Func.clickImportLRAndfillBillNo(BillNo, Today);
-		GRN2Func.verifyClickFOCAndSaveLines();
-		DirectGRNFunc.closeToastIfDisplayed();
-		webDB.navigateToRefresh();
-		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.verifyAddTableSpecs(DirectGrnPageLocators.GRNPageUnitCostTable(),
-				DirectGrnPageLocators.GRNPageUnitCostTable(), "0");
-		logs.logging("INFO", "For Free Of Cost, Entered Unit Cost Is:" + "0");
-		DirectGRNFunc.verifyClickingSaveLine();
+		GRN2Func.verifyEnterUnitCostZeroClickFOCAndSaveLines(commonFunc.getDataFromTestDataSheet("UD-ItemType"));
 		GRN2Func.overAllSaveAndPostForExcess();
 		if (!VariableHandler.getApprovalFlag()) {
 			approveFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
@@ -1201,7 +1192,6 @@ public class Purchase_GRN_FOCFunctions {
 		GRNFunc.validateExpectedStockQtyAndCostQtyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DirGRNImpSameUDGeneral"),
 				webDB.getDataFromProperties("DirectGRN-FocFileName"));
-//		flag = commonFunc.logoutUser();
 		return true;
 	}
 
@@ -1221,8 +1211,6 @@ public class Purchase_GRN_FOCFunctions {
 				webDB.getDataFromProperties("DirectGRN-FocFileName"));
 		GRNFunc.validateStockQtyAndCostQtyForSourceWH(webDB.getDataFromProperties("DirGRNImpSameUDRawMat"),
 				webDB.getDataFromProperties("DirectGRN-FocFileName"));
-//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-//				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		GRNFunc.verifyGrnAdd();
 		GRNFunc.verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1234,14 +1222,7 @@ public class Purchase_GRN_FOCFunctions {
 				webDB.getDataFromProperties("DirGRNImpSameUDRawMat"));
 		DirectGRNFunc.lotSerialQtyApportion();
 		GRN2Func.clickImportLRAndfillBillNo(BillNo, Today);
-		GRN2Func.verifyClickFOCAndSaveLines();
-		DirectGRNFunc.closeToastIfDisplayed();
-		webDB.navigateToRefresh();
-		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.verifyAddTableSpecs(DirectGrnPageLocators.GRNPageUnitCostTable(),
-				DirectGrnPageLocators.GRNPageUnitCostTable(), "0");
-		logs.logging("INFO", "For Free Of Cost, Entered Unit Cost Is:" + "0");
-		DirectGRNFunc.verifyClickingSaveLine();
+		GRN2Func.verifyEnterUnitCostZeroClickFOCAndSaveLines(commonFunc.getDataFromTestDataSheet("UD-ItemType"));
 		GRN2Func.overAllSaveAndPostForExcess();
 		if (!VariableHandler.getApprovalFlag()) {
 			approveFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
@@ -1256,7 +1237,6 @@ public class Purchase_GRN_FOCFunctions {
 		GRNFunc.validateExpectedStockQtyAndCostQtyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DirGRNImpSameUDRawMat"),
 				webDB.getDataFromProperties("DirectGRN-FocFileName"));
-//		flag = commonFunc.logoutUser();
 		return true;
 	}
 
@@ -1272,8 +1252,6 @@ public class Purchase_GRN_FOCFunctions {
 		LocalDate date = LocalDate.now();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy", Locale.ENGLISH);
 		String Today = date.format(formatter);
-//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-//				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		GRNFunc.verifyGrnAdd();
 		GRNFunc.verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1281,18 +1259,8 @@ public class Purchase_GRN_FOCFunctions {
 				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
 		GRN2Func.verifyGrnAddLineDetails(webDB.getDataFromProperties("DirectGRN-FocFileName"),
 				webDB.getDataFromProperties("DirGRNImpSameUDService"));
-//		GRN2Func.multipleLotandSerialWithGeneralType(webDB.getDataFromProperties("DirectGRN-FocFileName"),
-//				webDB.getDataFromProperties("DirGRNImpSameUDService"));
-//		DirectGRNFunc.lotSerialQtyApportion();
 		GRN2Func.clickImportLRAndfillBillNo(BillNo, Today);
-		GRN2Func.verifyClickFOCAndSaveLines();
-		DirectGRNFunc.closeToastIfDisplayed();
-		webDB.navigateToRefresh();
-		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.verifyAddTableSpecs(DirectGrnPageLocators.GRNPageUnitCostTable(),
-				DirectGrnPageLocators.GRNPageUnitCostTable(), "0");
-		logs.logging("INFO", "For Free Of Cost, Entered Unit Cost Is:" + "0");
-		DirectGRNFunc.verifyClickingSaveLine();
+		GRN2Func.verifyEnterUnitCostZeroClickFOCAndSaveLines(commonFunc.getDataFromTestDataSheet("UD-ItemType"));
 		GRN2Func.overAllSaveAndPostForExcess();
 		if (!VariableHandler.getApprovalFlag()) {
 			approveFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
@@ -1301,7 +1269,6 @@ public class Purchase_GRN_FOCFunctions {
 					System.getProperty("HariUsername"));
 		}
 		GRN2Func.verifyGRNDocumentApprovedStatus();
-//		flag = commonFunc.logoutUser();
 		return true;
 	}
 
@@ -1321,8 +1288,6 @@ public class Purchase_GRN_FOCFunctions {
 				webDB.getDataFromProperties("DirectGRN-FocFileName"));
 		GRNFunc.validateStockQtyAndCostQtyForSourceWH(webDB.getDataFromProperties("DirGRNImpDiffUDGeneral"),
 				webDB.getDataFromProperties("DirectGRN-FocFileName"));
-//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-//				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		GRNFunc.verifyGrnAdd();
 		GRNFunc.verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1334,14 +1299,7 @@ public class Purchase_GRN_FOCFunctions {
 				webDB.getDataFromProperties("DirGRNImpDiffUDGeneral"));
 		DirectGRNFunc.lotSerialQtyApportion();
 		GRN2Func.clickImportLRAndfillBillNo(BillNo, Today);
-		GRN2Func.verifyClickFOCAndSaveLines();
-		DirectGRNFunc.closeToastIfDisplayed();
-		webDB.navigateToRefresh();
-		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.verifyAddTableSpecs(DirectGrnPageLocators.GRNPageUnitCostTable(),
-				DirectGrnPageLocators.GRNPageUnitCostTable(), "0");
-		logs.logging("INFO", "For Free Of Cost, Entered Unit Cost Is:" + "0");
-		DirectGRNFunc.verifyClickingSaveLine();
+		GRN2Func.verifyEnterUnitCostZeroClickFOCAndSaveLines(commonFunc.getDataFromTestDataSheet("UD-ItemType"));
 		GRN2Func.overAllSaveAndPostForExcess();
 		if (!VariableHandler.getApprovalFlag()) {
 			approveFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
@@ -1356,7 +1314,6 @@ public class Purchase_GRN_FOCFunctions {
 		GRNFunc.validateExpectedStockQtyAndCostQtyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DirGRNImpDiffUDGeneral"),
 				webDB.getDataFromProperties("DirectGRN-FocFileName"));
-//		flag = commonFunc.logoutUser();
 		return true;
 	}
 
@@ -1376,8 +1333,6 @@ public class Purchase_GRN_FOCFunctions {
 				webDB.getDataFromProperties("DirectGRN-FocFileName"));
 		GRNFunc.validateStockQtyAndCostQtyForSourceWH(webDB.getDataFromProperties("DirGRNImpDiffUDRawMat"),
 				webDB.getDataFromProperties("DirectGRN-FocFileName"));
-//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-//				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		GRNFunc.verifyGrnAdd();
 		GRNFunc.verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1389,14 +1344,7 @@ public class Purchase_GRN_FOCFunctions {
 				webDB.getDataFromProperties("DirGRNImpDiffUDRawMat"));
 		DirectGRNFunc.lotSerialQtyApportion();
 		GRN2Func.clickImportLRAndfillBillNo(BillNo, Today);
-		GRN2Func.verifyClickFOCAndSaveLines();
-		DirectGRNFunc.closeToastIfDisplayed();
-		webDB.navigateToRefresh();
-		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.verifyAddTableSpecs(DirectGrnPageLocators.GRNPageUnitCostTable(),
-				DirectGrnPageLocators.GRNPageUnitCostTable(), "0");
-		logs.logging("INFO", "For Free Of Cost, Entered Unit Cost Is:" + "0");
-		DirectGRNFunc.verifyClickingSaveLine();
+		GRN2Func.verifyEnterUnitCostZeroClickFOCAndSaveLines(commonFunc.getDataFromTestDataSheet("UD-ItemType"));
 		GRN2Func.overAllSaveAndPostForExcess();
 		if (!VariableHandler.getApprovalFlag()) {
 			approveFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
@@ -1411,7 +1359,6 @@ public class Purchase_GRN_FOCFunctions {
 		GRNFunc.validateExpectedStockQtyAndCostQtyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DirGRNImpDiffUDRawMat"),
 				webDB.getDataFromProperties("DirectGRN-FocFileName"));
-//		flag = commonFunc.logoutUser();
 		return true;
 	}
 
@@ -1431,8 +1378,6 @@ public class Purchase_GRN_FOCFunctions {
 				webDB.getDataFromProperties("DirectGRN-FocFileName"));
 		GRNFunc.validateStockQtyAndCostQtyForSourceWH(webDB.getDataFromProperties("DirGRNImpSameRCGeneral"),
 				webDB.getDataFromProperties("DirectGRN-FocFileName"));
-//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-//				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		GRNFunc.verifyGrnAdd();
 		GRNFunc.verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1444,7 +1389,7 @@ public class Purchase_GRN_FOCFunctions {
 				webDB.getDataFromProperties("DirGRNImpSameRCGeneral"));
 		DirectGRNFunc.lotSerialQtyApportion();
 		GRN2Func.clickImportLRAndfillBillNo(BillNo, Today);
-		GRN2Func.verifyClickFOCAndSaveLines();
+		GRN2Func.verifyEnterUnitCostZeroClickFOCAndSaveLines(commonFunc.getDataFromTestDataSheet("RC-ItemType"));
 		GRN2Func.overAllSaveAndPostForExcess();
 		if (!VariableHandler.getApprovalFlag()) {
 			approveFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
@@ -1459,7 +1404,6 @@ public class Purchase_GRN_FOCFunctions {
 		GRNFunc.validateExpectedStockQtyAndCostQtyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DirGRNImpSameRCGeneral"),
 				webDB.getDataFromProperties("DirectGRN-FocFileName"));
-//		flag = commonFunc.logoutUser();
 		return true;
 	}
 
@@ -1479,8 +1423,6 @@ public class Purchase_GRN_FOCFunctions {
 				webDB.getDataFromProperties("DirectGRN-FocFileName"));
 		GRNFunc.validateStockQtyAndCostQtyForSourceWH(webDB.getDataFromProperties("DirGRNImpSameRCRawMat"),
 				webDB.getDataFromProperties("DirectGRN-FocFileName"));
-//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-//				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		GRNFunc.verifyGrnAdd();
 		GRNFunc.verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1492,7 +1434,7 @@ public class Purchase_GRN_FOCFunctions {
 				webDB.getDataFromProperties("DirGRNImpSameRCRawMat"));
 		DirectGRNFunc.lotSerialQtyApportion();
 		GRN2Func.clickImportLRAndfillBillNo(BillNo, Today);
-		GRN2Func.verifyClickFOCAndSaveLines();
+		GRN2Func.verifyEnterUnitCostZeroClickFOCAndSaveLines(commonFunc.getDataFromTestDataSheet("RC-ItemType"));
 		GRN2Func.overAllSaveAndPostForExcess();
 		if (!VariableHandler.getApprovalFlag()) {
 			approveFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
@@ -1507,7 +1449,6 @@ public class Purchase_GRN_FOCFunctions {
 		GRNFunc.validateExpectedStockQtyAndCostQtyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DirGRNImpSameRCRawMat"),
 				webDB.getDataFromProperties("DirectGRN-FocFileName"));
-//		flag = commonFunc.logoutUser();
 		return true;
 	}
 
@@ -1523,8 +1464,6 @@ public class Purchase_GRN_FOCFunctions {
 		LocalDate date = LocalDate.now();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy", Locale.ENGLISH);
 		String Today = date.format(formatter);
-//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-//				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		GRNFunc.verifyGrnAdd();
 		GRNFunc.verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1532,11 +1471,8 @@ public class Purchase_GRN_FOCFunctions {
 				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
 		GRN2Func.verifyGrnAddLineDetails(webDB.getDataFromProperties("DirectGRN-FocFileName"),
 				webDB.getDataFromProperties("DirGRNImpSameRCService"));
-//		GRN2Func.multipleLotandSerialWithGeneralType(webDB.getDataFromProperties("DirectGRN-FocFileName"),
-//				webDB.getDataFromProperties("DirGRNImpSameRCService"));
-//		DirectGRNFunc.lotSerialQtyApportion();
 		GRN2Func.clickImportLRAndfillBillNo(BillNo, Today);
-		GRN2Func.verifyClickFOCAndSaveLines();
+		GRN2Func.verifyEnterUnitCostZeroClickFOCAndSaveLines(commonFunc.getDataFromTestDataSheet("RC-ItemType"));
 		GRN2Func.overAllSaveAndPostForExcess();
 		if (!VariableHandler.getApprovalFlag()) {
 			approveFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
@@ -1545,7 +1481,6 @@ public class Purchase_GRN_FOCFunctions {
 					System.getProperty("HariUsername"));
 		}
 		GRN2Func.verifyGRNDocumentApprovedStatus();
-//		flag = commonFunc.logoutUser();
 		return true;
 	}
 
@@ -1565,8 +1500,6 @@ public class Purchase_GRN_FOCFunctions {
 				webDB.getDataFromProperties("DirectGRN-FocFileName"));
 		GRNFunc.validateStockQtyAndCostQtyForSourceWH(webDB.getDataFromProperties("DirGRNImpDiffRCGeneral"),
 				webDB.getDataFromProperties("DirectGRN-FocFileName"));
-//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-//				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		GRNFunc.verifyGrnAdd();
 		GRNFunc.verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1578,7 +1511,7 @@ public class Purchase_GRN_FOCFunctions {
 				webDB.getDataFromProperties("DirGRNImpDiffRCGeneral"));
 		DirectGRNFunc.lotSerialQtyApportion();
 		GRN2Func.clickImportLRAndfillBillNo(BillNo, Today);
-		GRN2Func.verifyClickFOCAndSaveLines();
+		GRN2Func.verifyEnterUnitCostZeroClickFOCAndSaveLines(commonFunc.getDataFromTestDataSheet("RC-ItemType"));
 		GRN2Func.overAllSaveAndPostForExcess();
 		if (!VariableHandler.getApprovalFlag()) {
 			approveFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
@@ -1593,7 +1526,6 @@ public class Purchase_GRN_FOCFunctions {
 		GRNFunc.validateExpectedStockQtyAndCostQtyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DirGRNImpDiffRCGeneral"),
 				webDB.getDataFromProperties("DirectGRN-FocFileName"));
-//		flag = commonFunc.logoutUser();
 		return true;
 	}
 
@@ -1613,8 +1545,6 @@ public class Purchase_GRN_FOCFunctions {
 				webDB.getDataFromProperties("DirectGRN-FocFileName"));
 		GRNFunc.validateStockQtyAndCostQtyForSourceWH(webDB.getDataFromProperties("DirGRNImpDiffRCRawMat"),
 				webDB.getDataFromProperties("DirectGRN-FocFileName"));
-//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-//				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		GRNFunc.verifyGrnAdd();
 		GRNFunc.verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1626,7 +1556,7 @@ public class Purchase_GRN_FOCFunctions {
 				webDB.getDataFromProperties("DirGRNImpDiffRCRawMat"));
 		DirectGRNFunc.lotSerialQtyApportion();
 		GRN2Func.clickImportLRAndfillBillNo(BillNo, Today);
-		GRN2Func.verifyClickFOCAndSaveLines();
+		GRN2Func.verifyEnterUnitCostZeroClickFOCAndSaveLines(commonFunc.getDataFromTestDataSheet("RC-ItemType"));
 		GRN2Func.overAllSaveAndPostForExcess();
 		if (!VariableHandler.getApprovalFlag()) {
 			approveFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
@@ -1641,7 +1571,6 @@ public class Purchase_GRN_FOCFunctions {
 		GRNFunc.validateExpectedStockQtyAndCostQtyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DirGRNImpDiffRCRawMat"),
 				webDB.getDataFromProperties("DirectGRN-FocFileName"));
-//		flag = commonFunc.logoutUser();
 		return true;
 	}
 
@@ -1661,8 +1590,6 @@ public class Purchase_GRN_FOCFunctions {
 				webDB.getDataFromProperties("DirectGRN-FocFileName"));
 		GRNFunc.validateStockQtyAndCostQtyForSourceWH(webDB.getDataFromProperties("DirGRNImpSamePLGeneral"),
 				webDB.getDataFromProperties("DirectGRN-FocFileName"));
-//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-//				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		GRNFunc.verifyGrnAdd();
 		GRNFunc.verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1674,7 +1601,7 @@ public class Purchase_GRN_FOCFunctions {
 				webDB.getDataFromProperties("DirGRNImpSamePLGeneral"));
 		DirectGRNFunc.lotSerialQtyApportion();
 		GRN2Func.clickImportLRAndfillBillNo(BillNo, Today);
-		GRN2Func.verifyClickFOCAndSaveLines();
+		GRN2Func.verifyEnterUnitCostZeroClickFOCAndSaveLines(commonFunc.getDataFromTestDataSheet("PL-ItemType"));
 		GRN2Func.overAllSaveAndPostForExcess();
 		if (!VariableHandler.getApprovalFlag()) {
 			approveFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
@@ -1689,7 +1616,6 @@ public class Purchase_GRN_FOCFunctions {
 		GRNFunc.validateExpectedStockQtyAndCostQtyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DirGRNImpSamePLGeneral"),
 				webDB.getDataFromProperties("DirectGRN-FocFileName"));
-//		flag = commonFunc.logoutUser();
 		return true;
 	}
 
@@ -1709,8 +1635,6 @@ public class Purchase_GRN_FOCFunctions {
 				webDB.getDataFromProperties("DirectGRN-FocFileName"));
 		GRNFunc.validateStockQtyAndCostQtyForSourceWH(webDB.getDataFromProperties("DirGRNImpSamePLRawMat"),
 				webDB.getDataFromProperties("DirectGRN-FocFileName"));
-//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-//				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		GRNFunc.verifyGrnAdd();
 		GRNFunc.verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1722,7 +1646,7 @@ public class Purchase_GRN_FOCFunctions {
 				webDB.getDataFromProperties("DirGRNImpSamePLRawMat"));
 		DirectGRNFunc.lotSerialQtyApportion();
 		GRN2Func.clickImportLRAndfillBillNo(BillNo, Today);
-		GRN2Func.verifyClickFOCAndSaveLines();
+		GRN2Func.verifyEnterUnitCostZeroClickFOCAndSaveLines(commonFunc.getDataFromTestDataSheet("PL-ItemType"));
 		GRN2Func.overAllSaveAndPostForExcess();
 		if (!VariableHandler.getApprovalFlag()) {
 			approveFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
@@ -1737,7 +1661,6 @@ public class Purchase_GRN_FOCFunctions {
 		GRNFunc.validateExpectedStockQtyAndCostQtyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DirGRNImpSamePLRawMat"),
 				webDB.getDataFromProperties("DirectGRN-FocFileName"));
-//		flag = commonFunc.logoutUser();
 		return true;
 	}
 
@@ -1753,8 +1676,6 @@ public class Purchase_GRN_FOCFunctions {
 		LocalDate date = LocalDate.now();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy", Locale.ENGLISH);
 		String Today = date.format(formatter);
-//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-//				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		GRNFunc.verifyGrnAdd();
 		GRNFunc.verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1762,11 +1683,8 @@ public class Purchase_GRN_FOCFunctions {
 				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
 		GRN2Func.verifyGrnAddLineDetails(webDB.getDataFromProperties("DirectGRN-FocFileName"),
 				webDB.getDataFromProperties("DirGRNImpSamePLService"));
-//		GRN2Func.multipleLotandSerialWithGeneralType(webDB.getDataFromProperties("DirectGRN-FocFileName"),
-//				webDB.getDataFromProperties("DirGRNImpSamePLService"));
-//		DirectGRNFunc.lotSerialQtyApportion();
 		GRN2Func.clickImportLRAndfillBillNo(BillNo, Today);
-		GRN2Func.verifyClickFOCAndSaveLines();
+		GRN2Func.verifyEnterUnitCostZeroClickFOCAndSaveLines(commonFunc.getDataFromTestDataSheet("PL-ItemType"));
 		GRN2Func.overAllSaveAndPostForExcess();
 		if (!VariableHandler.getApprovalFlag()) {
 			approveFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
@@ -1775,7 +1693,6 @@ public class Purchase_GRN_FOCFunctions {
 					System.getProperty("HariUsername"));
 		}
 		GRN2Func.verifyGRNDocumentApprovedStatus();
-//		flag = commonFunc.logoutUser();
 		return true;
 	}
 
@@ -1795,8 +1712,6 @@ public class Purchase_GRN_FOCFunctions {
 				webDB.getDataFromProperties("DirectGRN-FocFileName"));
 		GRNFunc.validateStockQtyAndCostQtyForSourceWH(webDB.getDataFromProperties("DirGRNImpDiffPLGeneral"),
 				webDB.getDataFromProperties("DirectGRN-FocFileName"));
-//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-//				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		GRNFunc.verifyGrnAdd();
 		GRNFunc.verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1808,7 +1723,7 @@ public class Purchase_GRN_FOCFunctions {
 				webDB.getDataFromProperties("DirGRNImpDiffPLGeneral"));
 		DirectGRNFunc.lotSerialQtyApportion();
 		GRN2Func.clickImportLRAndfillBillNo(BillNo, Today);
-		GRN2Func.verifyClickFOCAndSaveLines();
+		GRN2Func.verifyEnterUnitCostZeroClickFOCAndSaveLines(commonFunc.getDataFromTestDataSheet("PL-ItemType"));
 		GRN2Func.overAllSaveAndPostForExcess();
 		if (!VariableHandler.getApprovalFlag()) {
 			approveFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
@@ -1823,7 +1738,6 @@ public class Purchase_GRN_FOCFunctions {
 		GRNFunc.validateExpectedStockQtyAndCostQtyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DirGRNImpDiffPLGeneral"),
 				webDB.getDataFromProperties("DirectGRN-FocFileName"));
-//		flag = commonFunc.logoutUser();
 		return true;
 	}
 
@@ -1843,8 +1757,6 @@ public class Purchase_GRN_FOCFunctions {
 				webDB.getDataFromProperties("DirectGRN-FocFileName"));
 		GRNFunc.validateStockQtyAndCostQtyForSourceWH(webDB.getDataFromProperties("DirGRNImpDiffPLRawMat"),
 				webDB.getDataFromProperties("DirectGRN-FocFileName"));
-//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-//				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		GRNFunc.verifyGrnAdd();
 		GRNFunc.verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1856,7 +1768,7 @@ public class Purchase_GRN_FOCFunctions {
 				webDB.getDataFromProperties("DirGRNImpDiffPLRawMat"));
 		DirectGRNFunc.lotSerialQtyApportion();
 		GRN2Func.clickImportLRAndfillBillNo(BillNo, Today);
-		GRN2Func.verifyClickFOCAndSaveLines();
+		GRN2Func.verifyEnterUnitCostZeroClickFOCAndSaveLines(commonFunc.getDataFromTestDataSheet("PL-ItemType"));
 		GRN2Func.overAllSaveAndPostForExcess();
 		if (!VariableHandler.getApprovalFlag()) {
 			approveFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
@@ -1871,7 +1783,6 @@ public class Purchase_GRN_FOCFunctions {
 		GRNFunc.validateExpectedStockQtyAndCostQtyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DirGRNImpDiffPLRawMat"),
 				webDB.getDataFromProperties("DirectGRN-FocFileName"));
-//		flag = commonFunc.logoutUser();
 		return true;
 	}
 
@@ -1885,17 +1796,9 @@ public class Purchase_GRN_FOCFunctions {
 	public boolean verifyPoToGRNDomesticSameUOMGeneralUDWithInspectionGEFOC() {
 		String SheetName = webDB.getDataFromProperties("PoToGRNFOCUDGeneralSameUOMWI");
 		String FileName = webDB.getDataFromProperties("PoToGRN-FocFileName");
-		String UnitCost = null;
 		logs.logging("INFO", "SheetName: " + SheetName);
 		GRNFunc.verifyStockQtyAndCostForQualityWhForFOC(SheetName, FileName);
 		GRNFunc.verifyStockQtyAndCostForSourceWHForFOC(SheetName, FileName);
-		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
-		ExcelUtils excelUtils = new ExcelUtils();
-		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
-		itemmultiple = excelUtils.readAllDataInExcel(Filepath, SheetName);
-		for (int i = 3; i < itemmultiple.length; i++) {
-			UnitCost = itemmultiple[i][6];
-		}
 		POfunc.verifyDirectPODomesticSameWithAndWithoutInspectionForUDItemCustomizeFOC(
 				commonFunc.getDataFromTestDataSheet("L49ID"), commonFunc.getDataFromTestDataSheet("L3"),
 				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
@@ -1927,7 +1830,6 @@ public class Purchase_GRN_FOCFunctions {
 		GRNFunc.verifyExpectedStockQtAndCostyForQualityWH(SheetName, FileName);
 		GRNFunc.afterVerifyTheStatusDocumentMoveToQcOrMrvForDifferentLoc();
 		GRNFunc.verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(SheetName, FileName);
-		// excelUtils.writeDataInExcel(FileName, SheetName, 3, 6, UnitCost);
 		flag = commonFunc.logoutUser();
 		return flag;
 	}
@@ -1942,17 +1844,9 @@ public class Purchase_GRN_FOCFunctions {
 	public boolean verifyPoToGRNDomesticSameUOMGeneralUDWithoutInspectionGEFOC() {
 		String SheetName = webDB.getDataFromProperties("PoToGRNFOCUDGeneralSameUOMWOI");
 		String FileName = webDB.getDataFromProperties("PoToGRN-FocFileName");
-		String UnitCost = null;
 		logs.logging("INFO", "SheetName: " + SheetName);
 		GRNFunc.verifyStockQtyAndCostForQualityWhForFOC(SheetName, FileName);
 		GRNFunc.verifyStockQtyAndCostForSourceWHForFOC(SheetName, FileName);
-		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
-		ExcelUtils excelUtils = new ExcelUtils();
-		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
-		itemmultiple = excelUtils.readAllDataInExcel(Filepath, SheetName);
-		for (int i = 3; i < itemmultiple.length; i++) {
-			UnitCost = itemmultiple[i][6];
-		}
 		POfunc.verifyDirectPODomesticSameWithAndWithoutInspectionForUDItemCustomizeFOC(
 				commonFunc.getDataFromTestDataSheet("L49ID"), commonFunc.getDataFromTestDataSheet("L3"),
 				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
@@ -1999,17 +1893,9 @@ public class Purchase_GRN_FOCFunctions {
 	public boolean verifyPoToGRNDomesticSameUOMMaterialUDWithInspectionGEFOC() {
 		String SheetName = webDB.getDataFromProperties("PoToGRNFOCUDMaterialSameUOMWI");
 		String FileName = webDB.getDataFromProperties("PoToGRN-FocFileName");
-		String UnitCost = null;
 		logs.logging("INFO", "SheetName: " + SheetName);
 		GRNFunc.verifyStockQtyAndCostForQualityWhForFOC(SheetName, FileName);
 		GRNFunc.verifyStockQtyAndCostForSourceWHForFOC(SheetName, FileName);
-		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
-		ExcelUtils excelUtils = new ExcelUtils();
-		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
-		itemmultiple = excelUtils.readAllDataInExcel(Filepath, SheetName);
-		for (int i = 3; i < itemmultiple.length; i++) {
-			UnitCost = itemmultiple[i][6];
-		}
 		POfunc.verifyDirectPODomesticSameWithAndWithoutInspectionForUDItemCustomizeFOC(
 				commonFunc.getDataFromTestDataSheet("L49ID"), commonFunc.getDataFromTestDataSheet("L3"),
 				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
@@ -2056,17 +1942,9 @@ public class Purchase_GRN_FOCFunctions {
 	public boolean verifyPoToGRNDomesticSameUOMMaterialUDWithoutInspectionGEFOC() {
 		String SheetName = webDB.getDataFromProperties("PoToGRNFOCUDMaterialSameUOMWOI");
 		String FileName = webDB.getDataFromProperties("PoToGRN-FocFileName");
-		String UnitCost = null;
 		logs.logging("INFO", "SheetName: " + SheetName);
 		GRNFunc.verifyStockQtyAndCostForQualityWhForFOC(SheetName, FileName);
 		GRNFunc.verifyStockQtyAndCostForSourceWHForFOC(SheetName, FileName);
-		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
-		ExcelUtils excelUtils = new ExcelUtils();
-		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
-		itemmultiple = excelUtils.readAllDataInExcel(Filepath, SheetName);
-		for (int i = 3; i < itemmultiple.length; i++) {
-			UnitCost = itemmultiple[i][6];
-		}
 		POfunc.verifyDirectPODomesticSameWithAndWithoutInspectionForUDItemCustomizeFOC(
 				commonFunc.getDataFromTestDataSheet("L49ID"), commonFunc.getDataFromTestDataSheet("L3"),
 				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
@@ -2113,17 +1991,9 @@ public class Purchase_GRN_FOCFunctions {
 	public boolean verifyPoToGRNDomesticDiffUOMGeneralUDWithInspectionGEFOC() {
 		String SheetName = webDB.getDataFromProperties("PoToGRNFOCUDGeneralDiffUOMWI");
 		String FileName = webDB.getDataFromProperties("PoToGRN-FocFileName");
-		String UnitCost = null;
 		logs.logging("INFO", "SheetName: " + SheetName);
 		GRNFunc.verifyStockQtyAndCostForQualityWhForFOC(SheetName, FileName);
 		GRNFunc.verifyStockQtyAndCostForSourceWHForFOC(SheetName, FileName);
-		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
-		ExcelUtils excelUtils = new ExcelUtils();
-		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
-		itemmultiple = excelUtils.readAllDataInExcel(Filepath, SheetName);
-		for (int i = 3; i < itemmultiple.length; i++) {
-			UnitCost = itemmultiple[i][6];
-		}
 		POfunc.verifyDirectPODomesticSameWithAndWithoutInspectionForUDItemCustomizeFOC(
 				commonFunc.getDataFromTestDataSheet("L49ID"), commonFunc.getDataFromTestDataSheet("L3"),
 				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
@@ -2170,17 +2040,9 @@ public class Purchase_GRN_FOCFunctions {
 	public boolean verifyPoToGRNDomesticDiffUOMGeneralUDWithoutInspectionGEFOC() {
 		String SheetName = webDB.getDataFromProperties("PoToGRNFOCUDGeneralDiffUOMWOI");
 		String FileName = webDB.getDataFromProperties("PoToGRN-FocFileName");
-		String UnitCost = null;
 		logs.logging("INFO", "SheetName: " + SheetName);
 		GRNFunc.verifyStockQtyAndCostForQualityWhForFOC(SheetName, FileName);
 		GRNFunc.verifyStockQtyAndCostForSourceWHForFOC(SheetName, FileName);
-		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
-		ExcelUtils excelUtils = new ExcelUtils();
-		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
-		itemmultiple = excelUtils.readAllDataInExcel(Filepath, SheetName);
-		for (int i = 3; i < itemmultiple.length; i++) {
-			UnitCost = itemmultiple[i][6];
-		}
 		POfunc.verifyDirectPODomesticSameWithAndWithoutInspectionForUDItemCustomizeFOC(
 				commonFunc.getDataFromTestDataSheet("L49ID"), commonFunc.getDataFromTestDataSheet("L3"),
 				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
@@ -2227,17 +2089,9 @@ public class Purchase_GRN_FOCFunctions {
 	public boolean verifyPoToGRNDomesticDiffUOMMaterialUDWithInspectionGEFOC() {
 		String SheetName = webDB.getDataFromProperties("PoToGRNFOCUDMaterialDiffUOMWI");
 		String FileName = webDB.getDataFromProperties("PoToGRN-FocFileName");
-		String UnitCost = null;
 		logs.logging("INFO", "SheetName: " + SheetName);
 		GRNFunc.verifyStockQtyAndCostForQualityWhForFOC(SheetName, FileName);
 		GRNFunc.verifyStockQtyAndCostForSourceWHForFOC(SheetName, FileName);
-		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
-		ExcelUtils excelUtils = new ExcelUtils();
-		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
-		itemmultiple = excelUtils.readAllDataInExcel(Filepath, SheetName);
-		for (int i = 3; i < itemmultiple.length; i++) {
-			UnitCost = itemmultiple[i][6];
-		}
 		POfunc.verifyDirectPODomesticSameWithAndWithoutInspectionForUDItemCustomizeFOC(
 				commonFunc.getDataFromTestDataSheet("L49ID"), commonFunc.getDataFromTestDataSheet("L3"),
 				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
@@ -2284,17 +2138,9 @@ public class Purchase_GRN_FOCFunctions {
 	public boolean verifyPoToGRNDomesticDiffUOMMaterialUDWithoutInspectionGEFOC() {
 		String SheetName = webDB.getDataFromProperties("PoToGRNFOCUDMaterialDiffUOMWOI");
 		String FileName = webDB.getDataFromProperties("PoToGRN-FocFileName");
-		String UnitCost = null;
 		logs.logging("INFO", "SheetName: " + SheetName);
 		GRNFunc.verifyStockQtyAndCostForQualityWhForFOC(SheetName, FileName);
 		GRNFunc.verifyStockQtyAndCostForSourceWHForFOC(SheetName, FileName);
-		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
-		ExcelUtils excelUtils = new ExcelUtils();
-		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
-		itemmultiple = excelUtils.readAllDataInExcel(Filepath, SheetName);
-		for (int i = 3; i < itemmultiple.length; i++) {
-			UnitCost = itemmultiple[i][6];
-		}
 		POfunc.verifyDirectPODomesticSameWithAndWithoutInspectionForUDItemCustomizeFOC(
 				commonFunc.getDataFromTestDataSheet("L49ID"), commonFunc.getDataFromTestDataSheet("L3"),
 				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
@@ -2341,17 +2187,9 @@ public class Purchase_GRN_FOCFunctions {
 	public boolean verifyPoToGRNDomesticSameUOMGeneralRCWithInspectionGEFOC() {
 		String SheetName = webDB.getDataFromProperties("PoToGRNFOCRCGeneralSameUOMWI");
 		String FileName = webDB.getDataFromProperties("PoToGRN-FocFileName");
-		String UnitCost = null;
 		logs.logging("INFO", "SheetName: " + SheetName);
 		GRNFunc.verifyStockQtyAndCostForQualityWh(SheetName, FileName);
 		GRNFunc.verifyStockQtyAndCostForSourceWH(SheetName, FileName);
-		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
-		ExcelUtils excelUtils = new ExcelUtils();
-		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
-		itemmultiple = excelUtils.readAllDataInExcel(Filepath, SheetName);
-		for (int i = 3; i < itemmultiple.length; i++) {
-			UnitCost = itemmultiple[i][6];
-		}
 		POfunc.verifyDirectPODomesticSameWithAndWithoutInspectionForRCItemCustomizeFOC(
 				commonFunc.getDataFromTestDataSheet("L49ID"), commonFunc.getDataFromTestDataSheet("L3"),
 				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
@@ -2398,17 +2236,9 @@ public class Purchase_GRN_FOCFunctions {
 	public boolean verifyPoToGRNDomesticSameUOMGeneralRCWithoutInspectionGEFOC() {
 		String SheetName = webDB.getDataFromProperties("PoToGRNFOCRCGeneralSameUOMWOI");
 		String FileName = webDB.getDataFromProperties("PoToGRN-FocFileName");
-		String UnitCost = null;
 		logs.logging("INFO", "SheetName: " + SheetName);
 		GRNFunc.verifyStockQtyAndCostForQualityWh(SheetName, FileName);
 		GRNFunc.verifyStockQtyAndCostForSourceWH(SheetName, FileName);
-		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
-		ExcelUtils excelUtils = new ExcelUtils();
-		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
-		itemmultiple = excelUtils.readAllDataInExcel(Filepath, SheetName);
-		for (int i = 3; i < itemmultiple.length; i++) {
-			UnitCost = itemmultiple[i][6];
-		}
 		POfunc.verifyDirectPODomesticSameWithAndWithoutInspectionForRCItemCustomizeFOC(
 				commonFunc.getDataFromTestDataSheet("L49ID"), commonFunc.getDataFromTestDataSheet("L3"),
 				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
@@ -2455,17 +2285,9 @@ public class Purchase_GRN_FOCFunctions {
 	public boolean verifyPoToGRNDomesticSameUOMMaterialRCWithInspectionGEFOC() {
 		String SheetName = webDB.getDataFromProperties("PoToGRNFOCRCMaterialSameUOMWI");
 		String FileName = webDB.getDataFromProperties("PoToGRN-FocFileName");
-		String UnitCost = null;
 		logs.logging("INFO", "SheetName: " + SheetName);
 		GRNFunc.verifyStockQtyAndCostForQualityWh(SheetName, FileName);
 		GRNFunc.verifyStockQtyAndCostForSourceWH(SheetName, FileName);
-		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
-		ExcelUtils excelUtils = new ExcelUtils();
-		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
-		itemmultiple = excelUtils.readAllDataInExcel(Filepath, SheetName);
-		for (int i = 3; i < itemmultiple.length; i++) {
-			UnitCost = itemmultiple[i][6];
-		}
 		POfunc.verifyDirectPODomesticSameWithAndWithoutInspectionForRCItemCustomizeFOC(
 				commonFunc.getDataFromTestDataSheet("L49ID"), commonFunc.getDataFromTestDataSheet("L3"),
 				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
@@ -2512,17 +2334,9 @@ public class Purchase_GRN_FOCFunctions {
 	public boolean verifyPoToGRNDomesticSameUOMMaterialRCWithoutInspectionGEFOC() {
 		String SheetName = webDB.getDataFromProperties("PoToGRNFOCRCMaterialSameUOMWOI");
 		String FileName = webDB.getDataFromProperties("PoToGRN-FocFileName");
-		String UnitCost = null;
 		logs.logging("INFO", "SheetName: " + SheetName);
 		GRNFunc.verifyStockQtyAndCostForQualityWh(SheetName, FileName);
 		GRNFunc.verifyStockQtyAndCostForSourceWH(SheetName, FileName);
-		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
-		ExcelUtils excelUtils = new ExcelUtils();
-		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
-		itemmultiple = excelUtils.readAllDataInExcel(Filepath, SheetName);
-		for (int i = 3; i < itemmultiple.length; i++) {
-			UnitCost = itemmultiple[i][6];
-		}
 		POfunc.verifyDirectPODomesticSameWithAndWithoutInspectionForRCItemCustomizeFOC(
 				commonFunc.getDataFromTestDataSheet("L49ID"), commonFunc.getDataFromTestDataSheet("L3"),
 				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
@@ -2569,17 +2383,9 @@ public class Purchase_GRN_FOCFunctions {
 	public boolean verifyPoToGRNDomesticSameUOMGeneralPLWithInspectionGEFOC() {
 		String SheetName = webDB.getDataFromProperties("PoToGRNFOCPLGeneralSameUOMWI");
 		String FileName = webDB.getDataFromProperties("PoToGRN-FocFileName");
-		String UnitCost = null;
 		logs.logging("INFO", "SheetName: " + SheetName);
 		GRNFunc.verifyStockQtyAndCostForQualityWh(SheetName, FileName);
 		GRNFunc.verifyStockQtyAndCostForSourceWH(SheetName, FileName);
-		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
-		ExcelUtils excelUtils = new ExcelUtils();
-		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
-		itemmultiple = excelUtils.readAllDataInExcel(Filepath, SheetName);
-		for (int i = 3; i < itemmultiple.length; i++) {
-			UnitCost = itemmultiple[i][6];
-		}
 		POfunc.verifyDirectPODomesticSameWithAndWithoutInspectionForPLItemCustomizeFOC(
 				commonFunc.getDataFromTestDataSheet("L49ID"), commonFunc.getDataFromTestDataSheet("L3"),
 				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
@@ -2626,17 +2432,9 @@ public class Purchase_GRN_FOCFunctions {
 	public boolean verifyPoToGRNDomesticSameUOMGeneralPLWithoutInspectionGEFOC() {
 		String SheetName = webDB.getDataFromProperties("PoToGRNFOCPLGeneralSameUOMWOI");
 		String FileName = webDB.getDataFromProperties("PoToGRN-FocFileName");
-		String UnitCost = null;
 		logs.logging("INFO", "SheetName: " + SheetName);
 		GRNFunc.verifyStockQtyAndCostForQualityWh(SheetName, FileName);
 		GRNFunc.verifyStockQtyAndCostForSourceWH(SheetName, FileName);
-		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
-		ExcelUtils excelUtils = new ExcelUtils();
-		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
-		itemmultiple = excelUtils.readAllDataInExcel(Filepath, SheetName);
-		for (int i = 3; i < itemmultiple.length; i++) {
-			UnitCost = itemmultiple[i][6];
-		}
 		POfunc.verifyDirectPODomesticSameWithAndWithoutInspectionForPLItemCustomizeFOC(
 				commonFunc.getDataFromTestDataSheet("L49ID"), commonFunc.getDataFromTestDataSheet("L3"),
 				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
@@ -2683,17 +2481,9 @@ public class Purchase_GRN_FOCFunctions {
 	public boolean verifyPoToGRNDomesticSameUOMMaterialPLWithInspectionGEFOC() {
 		String SheetName = webDB.getDataFromProperties("PoToGRNFOCPLMaterialSameUOMWI");
 		String FileName = webDB.getDataFromProperties("PoToGRN-FocFileName");
-		String UnitCost = null;
 		logs.logging("INFO", "SheetName: " + SheetName);
 		GRNFunc.verifyStockQtyAndCostForQualityWh(SheetName, FileName);
 		GRNFunc.verifyStockQtyAndCostForSourceWH(SheetName, FileName);
-		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
-		ExcelUtils excelUtils = new ExcelUtils();
-		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
-		itemmultiple = excelUtils.readAllDataInExcel(Filepath, SheetName);
-		for (int i = 3; i < itemmultiple.length; i++) {
-			UnitCost = itemmultiple[i][6];
-		}
 		POfunc.verifyDirectPODomesticSameWithAndWithoutInspectionForPLItemCustomizeFOC(
 				commonFunc.getDataFromTestDataSheet("L49ID"), commonFunc.getDataFromTestDataSheet("L3"),
 				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
@@ -2740,17 +2530,9 @@ public class Purchase_GRN_FOCFunctions {
 	public boolean verifyPoToGRNDomesticSameUOMMaterialPLWithoutInspectionGEFOC() {
 		String SheetName = webDB.getDataFromProperties("PoToGRNFOCPLMaterialSameUOMWOI");
 		String FileName = webDB.getDataFromProperties("PoToGRN-FocFileName");
-		String UnitCost = null;
 		logs.logging("INFO", "SheetName: " + SheetName);
 		GRNFunc.verifyStockQtyAndCostForQualityWh(SheetName, FileName);
 		GRNFunc.verifyStockQtyAndCostForSourceWH(SheetName, FileName);
-		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
-		ExcelUtils excelUtils = new ExcelUtils();
-		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
-		itemmultiple = excelUtils.readAllDataInExcel(Filepath, SheetName);
-		for (int i = 3; i < itemmultiple.length; i++) {
-			UnitCost = itemmultiple[i][6];
-		}
 		POfunc.verifyDirectPODomesticSameWithAndWithoutInspectionForPLItemCustomizeFOC(
 				commonFunc.getDataFromTestDataSheet("L49ID"), commonFunc.getDataFromTestDataSheet("L3"),
 				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
@@ -2797,17 +2579,9 @@ public class Purchase_GRN_FOCFunctions {
 	public boolean verifyPoToGRNDomesticDiffUOMGeneralRCWithInspectionGEFOC() {
 		String SheetName = webDB.getDataFromProperties("PoToGRNFOCRCGeneralDiffUOMWI");
 		String FileName = webDB.getDataFromProperties("PoToGRN-FocFileName");
-		String UnitCost = null;
 		logs.logging("INFO", "SheetName: " + SheetName);
 		GRNFunc.verifyStockQtyAndCostForQualityWh(SheetName, FileName);
 		GRNFunc.verifyStockQtyAndCostForSourceWH(SheetName, FileName);
-		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
-		ExcelUtils excelUtils = new ExcelUtils();
-		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
-		itemmultiple = excelUtils.readAllDataInExcel(Filepath, SheetName);
-		for (int i = 3; i < itemmultiple.length; i++) {
-			UnitCost = itemmultiple[i][6];
-		}
 		POfunc.verifyDirectPODomesticSameWithAndWithoutInspectionForRCItemCustomizeFOC(
 				commonFunc.getDataFromTestDataSheet("L49ID"), commonFunc.getDataFromTestDataSheet("L3"),
 				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
@@ -2854,17 +2628,9 @@ public class Purchase_GRN_FOCFunctions {
 	public boolean verifyPoToGRNDomesticDiffUOMGeneralRCWithoutInspectionGEFOC() {
 		String SheetName = webDB.getDataFromProperties("PoToGRNFOCRCGeneralDiffUOMWOI");
 		String FileName = webDB.getDataFromProperties("PoToGRN-FocFileName");
-		String UnitCost = null;
 		logs.logging("INFO", "SheetName: " + SheetName);
 		GRNFunc.verifyStockQtyAndCostForQualityWh(SheetName, FileName);
 		GRNFunc.verifyStockQtyAndCostForSourceWH(SheetName, FileName);
-		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
-		ExcelUtils excelUtils = new ExcelUtils();
-		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
-		itemmultiple = excelUtils.readAllDataInExcel(Filepath, SheetName);
-		for (int i = 3; i < itemmultiple.length; i++) {
-			UnitCost = itemmultiple[i][6];
-		}
 		POfunc.verifyDirectPODomesticSameWithAndWithoutInspectionForRCItemCustomizeFOC(
 				commonFunc.getDataFromTestDataSheet("L49ID"), commonFunc.getDataFromTestDataSheet("L3"),
 				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
@@ -2911,17 +2677,9 @@ public class Purchase_GRN_FOCFunctions {
 	public boolean verifyPoToGRNDomesticDiffUOMMaterialRCWithInspectionGEFOC() {
 		String SheetName = webDB.getDataFromProperties("PoToGRNFOCRCMaterialDiffUOMWI");
 		String FileName = webDB.getDataFromProperties("PoToGRN-FocFileName");
-		String UnitCost = null;
 		logs.logging("INFO", "SheetName: " + SheetName);
 		GRNFunc.verifyStockQtyAndCostForQualityWh(SheetName, FileName);
 		GRNFunc.verifyStockQtyAndCostForSourceWH(SheetName, FileName);
-		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
-		ExcelUtils excelUtils = new ExcelUtils();
-		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
-		itemmultiple = excelUtils.readAllDataInExcel(Filepath, SheetName);
-		for (int i = 3; i < itemmultiple.length; i++) {
-			UnitCost = itemmultiple[i][6];
-		}
 		POfunc.verifyDirectPODomesticSameWithAndWithoutInspectionForRCItemCustomizeFOC(
 				commonFunc.getDataFromTestDataSheet("L49ID"), commonFunc.getDataFromTestDataSheet("L3"),
 				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
@@ -2968,17 +2726,9 @@ public class Purchase_GRN_FOCFunctions {
 	public boolean verifyPoToGRNDomesticDiffUOMMaterialRCWithoutInspectionGEFOC() {
 		String SheetName = webDB.getDataFromProperties("PoToGRNFOCRCMaterialDiffUOMWOI");
 		String FileName = webDB.getDataFromProperties("PoToGRN-FocFileName");
-		String UnitCost = null;
 		logs.logging("INFO", "SheetName: " + SheetName);
 		GRNFunc.verifyStockQtyAndCostForQualityWh(SheetName, FileName);
 		GRNFunc.verifyStockQtyAndCostForSourceWH(SheetName, FileName);
-		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
-		ExcelUtils excelUtils = new ExcelUtils();
-		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
-		itemmultiple = excelUtils.readAllDataInExcel(Filepath, SheetName);
-		for (int i = 3; i < itemmultiple.length; i++) {
-			UnitCost = itemmultiple[i][6];
-		}
 		POfunc.verifyDirectPODomesticSameWithAndWithoutInspectionForRCItemCustomizeFOC(
 				commonFunc.getDataFromTestDataSheet("L49ID"), commonFunc.getDataFromTestDataSheet("L3"),
 				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
@@ -3025,17 +2775,9 @@ public class Purchase_GRN_FOCFunctions {
 	public boolean verifyPoToGRNDomesticDiffUOMGeneralPLWithInspectionGEFOC() {
 		String SheetName = webDB.getDataFromProperties("PoToGRNFOCPLGeneralDiffUOMWI");
 		String FileName = webDB.getDataFromProperties("PoToGRN-FocFileName");
-		String UnitCost = null;
 		logs.logging("INFO", "SheetName: " + SheetName);
 		GRNFunc.verifyStockQtyAndCostForQualityWh(SheetName, FileName);
 		GRNFunc.verifyStockQtyAndCostForSourceWH(SheetName, FileName);
-		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
-		ExcelUtils excelUtils = new ExcelUtils();
-		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
-		itemmultiple = excelUtils.readAllDataInExcel(Filepath, SheetName);
-		for (int i = 3; i < itemmultiple.length; i++) {
-			UnitCost = itemmultiple[i][6];
-		}
 		POfunc.verifyDirectPODomesticSameWithAndWithoutInspectionForPLItemCustomizeFOC(
 				commonFunc.getDataFromTestDataSheet("L49ID"), commonFunc.getDataFromTestDataSheet("L3"),
 				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
@@ -3082,17 +2824,9 @@ public class Purchase_GRN_FOCFunctions {
 	public boolean verifyPoToGRNDomesticDiffUOMGeneralPLWithoutInspectionGEFOC() {
 		String SheetName = webDB.getDataFromProperties("PoToGRNFOCPLGeneralDiffUOMWOI");
 		String FileName = webDB.getDataFromProperties("PoToGRN-FocFileName");
-		String UnitCost = null;
 		logs.logging("INFO", "SheetName: " + SheetName);
 		GRNFunc.verifyStockQtyAndCostForQualityWh(SheetName, FileName);
 		GRNFunc.verifyStockQtyAndCostForSourceWH(SheetName, FileName);
-		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
-		ExcelUtils excelUtils = new ExcelUtils();
-		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
-		itemmultiple = excelUtils.readAllDataInExcel(Filepath, SheetName);
-		for (int i = 3; i < itemmultiple.length; i++) {
-			UnitCost = itemmultiple[i][6];
-		}
 		POfunc.verifyDirectPODomesticSameWithAndWithoutInspectionForPLItemCustomizeFOC(
 				commonFunc.getDataFromTestDataSheet("L49ID"), commonFunc.getDataFromTestDataSheet("L3"),
 				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
@@ -3139,17 +2873,9 @@ public class Purchase_GRN_FOCFunctions {
 	public boolean verifyPoToGRNDomesticDiffUOMMaterialPLWithInspectionGEFOC() {
 		String SheetName = webDB.getDataFromProperties("PoToGRNFOCPLMaterialDiffUOMWI");
 		String FileName = webDB.getDataFromProperties("PoToGRN-FocFileName");
-		String UnitCost = null;
 		logs.logging("INFO", "SheetName: " + SheetName);
 		GRNFunc.verifyStockQtyAndCostForQualityWh(SheetName, FileName);
 		GRNFunc.verifyStockQtyAndCostForSourceWH(SheetName, FileName);
-		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
-		ExcelUtils excelUtils = new ExcelUtils();
-		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
-		itemmultiple = excelUtils.readAllDataInExcel(Filepath, SheetName);
-		for (int i = 3; i < itemmultiple.length; i++) {
-			UnitCost = itemmultiple[i][6];
-		}
 		POfunc.verifyDirectPODomesticSameWithAndWithoutInspectionForPLItemCustomizeFOC(
 				commonFunc.getDataFromTestDataSheet("L49ID"), commonFunc.getDataFromTestDataSheet("L3"),
 				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
@@ -3196,17 +2922,9 @@ public class Purchase_GRN_FOCFunctions {
 	public boolean verifyPoToGRNDomesticDiffUOMMaterialPLWithoutInspectionGEFOC() {
 		String SheetName = webDB.getDataFromProperties("PoToGRNFOCPLMaterialDiffUOMWOI");
 		String FileName = webDB.getDataFromProperties("PoToGRN-FocFileName");
-		String UnitCost = null;
 		logs.logging("INFO", "SheetName: " + SheetName);
 		GRNFunc.verifyStockQtyAndCostForQualityWh(SheetName, FileName);
 		GRNFunc.verifyStockQtyAndCostForSourceWH(SheetName, FileName);
-		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
-		ExcelUtils excelUtils = new ExcelUtils();
-		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
-		itemmultiple = excelUtils.readAllDataInExcel(Filepath, SheetName);
-		for (int i = 3; i < itemmultiple.length; i++) {
-			UnitCost = itemmultiple[i][6];
-		}
 		POfunc.verifyDirectPODomesticSameWithAndWithoutInspectionForPLItemCustomizeFOC(
 				commonFunc.getDataFromTestDataSheet("L49ID"), commonFunc.getDataFromTestDataSheet("L3"),
 				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
@@ -3253,15 +2971,7 @@ public class Purchase_GRN_FOCFunctions {
 	public boolean verifyPoToGRNDomesticSameUOMServiceUDWithoutInspectionGEFOC() {
 		String SheetName = webDB.getDataFromProperties("PoToGRNFOCUDServiceSameUOMWOI");
 		String FileName = webDB.getDataFromProperties("PoToGRN-FocFileName");
-		String UnitCost = null;
 		logs.logging("INFO", "SheetName: " + SheetName);
-		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
-		ExcelUtils excelUtils = new ExcelUtils();
-		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
-		itemmultiple = excelUtils.readAllDataInExcel(Filepath, SheetName);
-		for (int i = 3; i < itemmultiple.length; i++) {
-			UnitCost = itemmultiple[i][6];
-		}
 		POfunc.verifyDirectPODomesticSameWithAndWithoutInspectionForUDItemCustomizeFOC(
 				commonFunc.getDataFromTestDataSheet("L49ID"), commonFunc.getDataFromTestDataSheet("L3"),
 				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
@@ -3281,8 +2991,6 @@ public class Purchase_GRN_FOCFunctions {
 		GRNFunc.clickSelectAllGEButton();
 		GRNFunc.createGrnWithGeButton();
 		GRNFunc.clickOkButton();
-//		GRNFunc.multipleLotAndSerialItemWithPoToMrvSheet(SheetName, FileName);
-//		DirectGRNFunc.lotSerialQtyApportion();
 		GRN2Func.overAllSaveAndPostForExcess();
 		if (!VariableHandler.getApprovalFlag()) {
 			approveFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
@@ -3304,15 +3012,7 @@ public class Purchase_GRN_FOCFunctions {
 	public boolean verifyPoToGRNDomesticSameUOMServiceRCWithoutInspectionGEFOC() {
 		String SheetName = webDB.getDataFromProperties("PoToGRNFOCRCServiceSameUOMWOI");
 		String FileName = webDB.getDataFromProperties("PoToGRN-FocFileName");
-		String UnitCost = null;
 		logs.logging("INFO", "SheetName: " + SheetName);
-		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
-		ExcelUtils excelUtils = new ExcelUtils();
-		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
-		itemmultiple = excelUtils.readAllDataInExcel(Filepath, SheetName);
-		for (int i = 3; i < itemmultiple.length; i++) {
-			UnitCost = itemmultiple[i][6];
-		}
 		POfunc.verifyDirectPODomesticSameWithAndWithoutInspectionForRCItemCustomizeFOC(
 				commonFunc.getDataFromTestDataSheet("L49ID"), commonFunc.getDataFromTestDataSheet("L3"),
 				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
@@ -3332,8 +3032,6 @@ public class Purchase_GRN_FOCFunctions {
 		GRNFunc.clickSelectAllGEButton();
 		GRNFunc.createGrnWithGeButton();
 		GRNFunc.clickOkButton();
-//		GRNFunc.multipleLotAndSerialItemWithPoToMrvSheet(SheetName, FileName);
-//		DirectGRNFunc.lotSerialQtyApportion();
 		GRN2Func.overAllSaveAndPostForExcess();
 		if (!VariableHandler.getApprovalFlag()) {
 			approveFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
@@ -3356,15 +3054,7 @@ public class Purchase_GRN_FOCFunctions {
 	public boolean verifyPoToGRNDomesticSameUOMServicePLWithoutInspectionGEFOC() {
 		String SheetName = webDB.getDataFromProperties("PoToGRNFOCPLServiceSameUOMWOI");
 		String FileName = webDB.getDataFromProperties("PoToGRN-FocFileName");
-		String UnitCost = null;
 		logs.logging("INFO", "SheetName: " + SheetName);
-		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
-		ExcelUtils excelUtils = new ExcelUtils();
-		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
-		itemmultiple = excelUtils.readAllDataInExcel(Filepath, SheetName);
-		for (int i = 3; i < itemmultiple.length; i++) {
-			UnitCost = itemmultiple[i][6];
-		}
 		POfunc.verifyDirectPODomesticSameWithAndWithoutInspectionForPLItemCustomizeFOC(
 				commonFunc.getDataFromTestDataSheet("L49ID"), commonFunc.getDataFromTestDataSheet("L3"),
 				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
@@ -3384,8 +3074,6 @@ public class Purchase_GRN_FOCFunctions {
 		GRNFunc.clickSelectAllGEButton();
 		GRNFunc.createGrnWithGeButton();
 		GRNFunc.clickOkButton();
-//		GRNFunc.multipleLotAndSerialItemWithPoToMrvSheet(SheetName, FileName);
-//		DirectGRNFunc.lotSerialQtyApportion();
 		GRN2Func.overAllSaveAndPostForExcess();
 		if (!VariableHandler.getApprovalFlag()) {
 			approveFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));

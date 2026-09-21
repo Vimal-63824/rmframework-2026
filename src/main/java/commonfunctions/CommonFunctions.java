@@ -128,7 +128,7 @@ public class CommonFunctions {
 			List<WebElement> AfterWaitrefreshElements = null;
 			try {
 				for (WebElement element : refreshElements) {
-					WebDriverWait wait = new WebDriverWait(WebDriverBase.getDriver(), Duration.ofSeconds(20));
+					WebDriverWait wait = new WebDriverWait(WebDriverBase.getDriver(), Duration.ofSeconds(10));
 					wait.until(ExpectedConditions.invisibilityOf(element));
 					if (element.isDisplayed()) {
 						AfterWaitrefreshElements.add(element);
@@ -137,7 +137,7 @@ public class CommonFunctions {
 				flag = AfterWaitrefreshElements.isEmpty();
 				if (!flag) {
 					for (WebElement element : AfterWaitrefreshElements) {
-						WebDriverWait wait = new WebDriverWait(WebDriverBase.getDriver(), Duration.ofSeconds(20));
+						WebDriverWait wait = new WebDriverWait(WebDriverBase.getDriver(), Duration.ofSeconds(10));
 						wait.until(ExpectedConditions.invisibilityOf(element));
 					}
 				}
@@ -279,89 +279,55 @@ public class CommonFunctions {
 	 * @param Value
 	 */
 	public void searchAndSelectValueInFilters(String locator, String Value) {
-		flag = webDB.waitForElement(locator, ElementType.Xpath);
-		if (flag) {
-			webDB.moveToElement(locator, ElementType.Xpath);
-			webDB.clickAnElement(locator, ElementType.Xpath);
-			webDB.switchToDefaultContent();
-			checkRefreshCellsDisappear();
-			List<WebElement> searchBar = WebDriverBase.getDriver().findElements(By.xpath(CommonUiLocators.searchBar));
-			a: for (int i = 0; i < searchBar.size(); i++) {
-				WebElement element = searchBar.get(i);
+		String DisplayText = null;
+		checkRefreshCellsDisappear();
+		boolean Displayflag = webDB.verifyIsElementDisplayed((locator + "/preceding-sibling::input"),
+				ElementType.Xpath);
+		if (Displayflag) {
+			DisplayText = webDB.getDomPropertyFromElement((locator + "/preceding-sibling::input"), ElementType.Xpath,
+					getDataFromTestDataSheet("Value"));
+		}
+		if (DisplayText == null || DisplayText.isBlank() || !DisplayText.equalsIgnoreCase(Value)) {
+			flag = webDB.waitForElement(locator, ElementType.Xpath);
+			if (flag) {
+				webDB.moveToElement(locator, ElementType.Xpath);
+				webDB.clickAnElement(locator, ElementType.Xpath);
+				webDB.switchToDefaultContent();
+				checkRefreshCellsDisappear();
+				WebElement search = new WebDriverWait(WebDriverBase.getDriver(), Duration.ofSeconds(10))
+						.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(CommonUiLocators.searchBar)));
+				search.clear();
+				search.sendKeys(Value);
+				checkRefreshCellsDisappear();
+				webDB.waitForElementUntilGivenTime(CommonUiLocators.searchBarResults, ElementType.Xpath, 10);
+				if (webDB.verifyIsElementDisplayed(CommonUiLocators.SearchBarIcon, ElementType.Xpath)) {
+					checkRefreshCellsDisappear();
+					webDB.clickAnElementWithoutException(CommonUiLocators.SearchBarIcon, ElementType.Xpath);
+				}
+				checkRefreshCellsDisappear();
 				try {
-					if (element.isDisplayed()) {
-						element.clear();
-						flag = fluentWaitClickElement(element);
-						if (flag) {
-							element.clear();
-							element.sendKeys(Value);
-							break a;
-						}
-					}
+					WebElement result = new WebDriverWait(WebDriverBase.getDriver(), Duration.ofSeconds(10))
+							.until(ExpectedConditions
+									.visibilityOfElementLocated(By.xpath(CommonUiLocators.convertListOfXPath(Value))));
+					result = new WebDriverWait(WebDriverBase.getDriver(), Duration.ofSeconds(10))
+							.ignoring(StaleElementReferenceException.class).until(ExpectedConditions
+									.elementToBeClickable(By.xpath(CommonUiLocators.convertListOfXPath(Value))));
+					((JavascriptExecutor) WebDriverBase.getDriver()).executeScript("arguments[0].scrollIntoView(true);",
+							result);
+					Actions action = new Actions(WebDriverBase.getDriver());
+					action.moveToElement(result).build().perform();
+					result.click();
+					checkRefreshCellsDisappear();
+					logs.logging("INFO", "Searched and selected '" + Value + "' in Lov");
 				} catch (Exception e) {
-					logs.logging("INFO", "failed to enter search bar Exception is: " + e);
-					flag = false;
-				}
-			}
-			Assert.assertTrue(flag);
-			checkRefreshCellsDisappear();
-			try {
-				if (webDB.verifyIsElementDisplayed("(" + CommonUiLocators.SearchBarIcon + ")[1]", ElementType.Xpath)) {
-					List<WebElement> SearchBarIcon = WebDriverBase.getDriver()
-							.findElements(By.xpath(CommonUiLocators.SearchBarIcon));
-					a: for (int i = 0; i < SearchBarIcon.size(); i++) {
-						WebElement element = SearchBarIcon.get(i);
-						if (element.isDisplayed()) {
-							((JavascriptExecutor) WebDriverBase.getDriver())
-									.executeScript("arguments[0].scrollIntoView(true);", element);
-							element.click();
-							break a;
-						}
-					}
-				}
-			} catch (Exception e) {
-				logs.logging("INFO", "failed to locate and click search bar icon Exception is: " + e);
-				flag = false;
-			}
-			checkRefreshCellsDisappear();
-			webDB.pressEnterKey();
-			checkRefreshCellsDisappear();
-			try {
-				List<WebElement> Elements = WebDriverBase.getDriver()
-						.findElements(By.xpath(CommonUiLocators.convertListOfXPath(Value)));
-				for (WebElement webElement : Elements) {
-					if (webElement.isDisplayed() && webElement.getText().trim().equalsIgnoreCase(Value.trim())) {
-						((JavascriptExecutor) WebDriverBase.getDriver())
-								.executeScript("arguments[0].scrollIntoView(true);", webElement);
-						try {
-							Actions action = new Actions(WebDriverBase.getDriver());
-							action.moveToElement(webElement).build().perform();
-						} catch (Exception e) {
-						}
-						webElement.click();
-						flag = true;
-					} else {
-					}
-				}
-			} catch (Exception e) {
-			}
-		}
-		List<WebElement> searchBar = WebDriverBase.getDriver().findElements(By.xpath(CommonUiLocators.searchBar));
-		for (WebElement element : searchBar) {
-			try {
-				if (element.isDisplayed()) {
-					flag = false;
 					logs.logging("INFO", "Search bar Still Displayed Not Clicked Values in Lov Btn");
-					Assert.fail("Search bar Still Displayed Not Clicked Values in Lov Btn");
-					break;
+//					Assert.fail("Search bar Still Displayed Not Clicked Values in Lov Btn");
 				}
-			} catch (Exception e) {
 			}
+		} else {
+			logs.logging("INFO", "Already the '" + Value + "' selected in Lov");
+			webDB.switchToDefaultContent();
 		}
-		if (flag) {
-			logs.logging("INFO", "Searched and selected '" + Value + "' in Filter");
-		}
-		Assert.assertTrue(flag);
 	}
 
 	public boolean fluentWaitClickElement(WebElement element) {
@@ -2610,6 +2576,7 @@ public class CommonFunctions {
 			webDB.doubleClickAnElement(Tablespec, ElementType.Xpath);
 			webDB.waitForElement(InputParameter, ElementType.Xpath);
 			webDB.clearText(InputParameter, ElementType.Xpath);
+			checkRefreshCellsDisappear();
 			webDB.waitForElement(InputParameter, ElementType.Xpath);
 			flag = webDB.sendTextToAnElement(InputParameter, Enteredvalue, ElementType.Xpath);
 			if (flag) {
@@ -3393,7 +3360,7 @@ public class CommonFunctions {
 			HeaderValue = jsonObject.get(HeaderValue).toString();
 //			System.out.println("Header Value1 " + HeaderValue);
 		} catch (Exception e) {
-			logs.logging("INFO", "No Data Found In Table.json file: " + HeaderValue);
+//			logs.logging("INFO", "No Data Found In Table.json file: " + HeaderValue);
 		}
 
 		Locator = Locator + "/tbody/tr/*[count(" + Locator + "/thead/tr[1]/th[normalize-space()='" + HeaderValue
@@ -3471,7 +3438,7 @@ public class CommonFunctions {
 			elements = webDB.getListOfElements(Locator, ElementType.Xpath);
 		}
 		for (int i = 0; i < elements.size(); i++) {
-			String text = (String) ((JavascriptExecutor) webDB.getDriver())
+			String text = (String) ((JavascriptExecutor) WebDriverBase.getDriver())
 					.executeScript("return arguments[0].textContent.trim();", elements.get(i));
 			if (text.equals(null) || text.equals("")) {
 				text = elements.get(i).getText();

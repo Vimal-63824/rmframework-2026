@@ -103,7 +103,7 @@ public class DirectGrnPageLocators {
 	/** @locatorType Xpath */
 	public static final String TextNoDataFound = "//*[@id='ig_line_text_ig_grid_vc_no_msg']";
 	/** @locatorType Xpath */
-	public static final String OverallSave = "//*[@id='B3490118160695547080']/span";
+	public static final String OverallSave = "//button[@data-testid='SAVE']";
 	/** @locatorType Xpath */
 	public static final String ObservationLineNum = "//*[@id='ig_line_var_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[1]/td[1]";
 	/** @locatorType Xpath */
@@ -264,11 +264,11 @@ public class DirectGrnPageLocators {
 	public static final String GRNAmendLineFindTableData(String i) {
 		return CommonFunctions.checkAndReturnLocatorForFindPageTable(GRNLineFindTable, i);
 	}
+
 	/** @locatorType Xpath */
 	public static final String GrnLineDetailsNew = "//*[@id=\"t_PageBody\"]/ul/li[1]/a";
 	/** @locatorType Xpath */
 	public static final String GrnLineDetDiscount = "//button[@aria-labelledby=\"a_Collapsible3_R277912666708252791_heading\"]";
-	
-	
-	
+	/** @locatorType Xpath */
+	public static final String GrnLineDetailsexpandButton  = "(//div[@aria-label='Discount']//button)[1]";
 }

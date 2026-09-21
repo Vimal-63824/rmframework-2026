@@ -46,9 +46,9 @@ public class PricelistPageLocators {
 	/** @locatorType Xpath */
 	public static final String Pricelist_HeaderLoc = "//td[@class='a-GV-cell u-tS is-readonly']";
 	/** @locatorType Xpath */
-	public static final String Pricelist_HeaderSupplier = "//td[@class='a-GV-cell u-tS'][3]";
+	public static final String Pricelist_HeaderSupplier = "//td[@class='a-GV-cell u-tS rfield'][2]";
 	/** @locatorType Xpath */
-	public static final String Pricelist_HeaderItem = "//td[@class='a-GV-cell u-tS'][4]";
+	public static final String Pricelist_HeaderItem = "//td[@class='a-GV-cell u-tS rfield'][3]";
 	/** @locatorType Xpath */
 	public static final String PricelistDocNum = "//table[@class='a-GV-table']/tbody/tr/td[4]";
 	/** @locatorType Xpath */
@@ -145,7 +145,7 @@ public class PricelistPageLocators {
 	}
 
 	/** @locatorType Xpath */
-	public static final String ItemGeneral = "//label[text()='General']";
+	public static final String ItemGeneral = "(//div[@aria-label='General']//button)[1]";
 	/** @locatorType Xpath */
 	public static final String ItemCopy = "//button[@data-testid='Copy_Item']";
 	/** @locatorType Xpath */

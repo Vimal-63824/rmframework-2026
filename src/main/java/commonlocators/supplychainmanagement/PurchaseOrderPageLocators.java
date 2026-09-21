@@ -42,7 +42,7 @@ public class PurchaseOrderPageLocators {
 	/** @locatorType Xpath */
 	public static final String LocationheaderBar = "//*[@id='ui-id-4']";
 	/** @locatorType Xpath */
-	public static final String DPOTickButton = "//div[@data-testid='TickButton']";
+	public static final String DPOTickButton = "//button[@data-testid='Create_PO_Form']";
 	/** @locatorType Xpath */
 	public static final String ItemAddButton = "//button[@data-testid='PO_Item_Add_Button']";
 
@@ -620,5 +620,7 @@ public class PurchaseOrderPageLocators {
 	public static final String PoDetails = "//a[@data-action='LN_DTLS']";
 	/** @locatorType Xpath */
 	public static final String ExpandDiscountField = "//button[@aria-controls='a_Collapsible2_R1534433044390492718_content']";
+	/** @locatorType Xpath */
+	public static final String DiscountExpand = "//div[@data-testid='Discount Details']//button";
 
 }

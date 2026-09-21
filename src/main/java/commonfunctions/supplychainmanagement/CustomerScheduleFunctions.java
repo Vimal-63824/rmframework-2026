@@ -491,8 +491,12 @@ public class CustomerScheduleFunctions {
 	public void verifyClickingGeneralTab() {
 		flag = webDB.waitForElement(PricelistPageLocators.ItemGeneral, ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(PricelistPageLocators.ItemGeneral, ElementType.Xpath);
-			logs.logging("INFO", "General  Button is clicked");
+			String value = webDB.getDomAttributeFromElement(PricelistPageLocators.ItemGeneral, ElementType.Xpath,
+					"aria-expanded");
+			if (value.equalsIgnoreCase("false")) {
+				webDB.javaScriptClickAnElement(PricelistPageLocators.ItemGeneral, ElementType.Xpath);
+				logs.logging("INFO", "General  Button is clicked");
+			}
 			flag = webDB.waitForElement(PricelistPageLocators.ItemCopy, ElementType.Xpath);
 			if (flag) {
 				webDB.clickAnElement(PricelistPageLocators.ItemCopy, ElementType.Xpath);

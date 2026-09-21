@@ -83,15 +83,15 @@ public class MaterialRequestLocators {
 	/** @locatorType Xpath */
 	public static final String LineTickIcon = "//button[@data-testid='SAVE1']";
 	/** @locatorType Xpath */
-	public static final String ViewLineDetails = "(//div[@id='line_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[last()]/td/a/span[contains(@class,'list')])";
+	public static final String ViewLineDetails = "//*[@id=\"line_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[1]/a/span";
 	/** @locatorType Xpath */
-	public static final String IFrame = "//iframe[@title='Other Details']";
+	public static final String IFrame = "//iframe[@title='Details']";
 	/** @locatorType Xpath */
 	public static final String UnitCostLineDetail = "//input[@data-testid='P9313101003_IMRLN_UNIT_COST']";
 	/** @locatorType Xpath */
 	public static final String LineDetailLineAmount = "//input[@data-testid='P9313101003_IMRL_TOT_AMT']";
 	/** @locatorType Xpath */
-	public static final String CloseLineDetail = "//h1[text()='Other Details']/../button";
+	public static final String CloseLineDetail = "//h1[text()='Details']/../button";
 	/** @locatorType Xpath */
 	public static final String HeaderTickIcon = "//button[@data-testid='SAVE']";
 	/** @locatorType Xpath */
@@ -113,7 +113,7 @@ public class MaterialRequestLocators {
 
 	/** @locatorType Xpath */
 	public static final String RequestMRNo(String MRNumber) {
-		return "//table[@data-testid='H_Result_Data']//a[text()='" + MRNumber + "']";
+		return "//table[@data-testid='L_Result_Data']//a[text()='" + MRNumber + "']";
 	}
 
 	/** @locatorType Xpath */
@@ -161,4 +161,6 @@ public class MaterialRequestLocators {
 	public static final String MRLineDetails(int i) {
 		return "//*[@id='line_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[" + i + "]/td[13]";
 	}
+	/** @locatorType Xpath */
+	public static final String ViewLineDetails_Orderdetail = "//*[@id=\"R1661028708928755332\"]/div[1]/div[1]/button";
 }

@@ -1100,7 +1100,7 @@
 	"ProdNumber": "PROD-2526-0001",
 	"ReceiverWH": "RM KD",
 	"ReceiverWHDesc": "RM KD WH",
-	"MrvItem": "ROAU-RM-KDK-01",
+	"MrvItem": "ROAU-RM-KPK-WOQE-RC-01",
 	"MrvItemDesc": "ROAU-RM-KDK-01",
 	"Issued": "Issued",
 	"ProcessFlowStatus": "Status",
@@ -2086,5 +2086,8 @@
 	"SecondaryRejection": "SecondaryRejection",
 	"ScrapWH-L49": "SCRAP WAREHOUSE L49",
 	"Shift_100-L49": "SHIFT100-L49",
-	"ScrapItem-HKTVS1001": "HK-TVS-SCRAP-10001"
+	"ScrapItem-HKTVS1001": "HK-TVS-SCRAP-10001",
+	"UD-ItemType": "User Defined",
+	"RC-ItemType": "Rate Contract",
+	"PL-ItemType": "Price List"
 }

@@ -1230,7 +1230,7 @@ public class MaterialReceiptVoucherFunctions {
 		findPageShowMore();
 		verifyDateAfterAndBefore();
 		verifyAmendFilterSearchSOB(MaterialReceiptVoucherLocators.LocId, commonFunc.getDataFromTestDataSheet("Loc_100"),
-				"Loc.ID", commonFunc.getDataFromTestDataSheet("HeaderSearchType"),
+				"Loc. ID", commonFunc.getDataFromTestDataSheet("HeaderSearchType"),
 				commonFunc.getDataFromTestDataSheet("LovButton"));
 		verifyAmendFilterSearchSOB(MaterialReceiptVoucherLocators.Unit, commonFunc.getDataFromTestDataSheet("Unit_100"),
 				"Unit", commonFunc.getDataFromTestDataSheet("HeaderSearchType"),
@@ -1244,7 +1244,7 @@ public class MaterialReceiptVoucherFunctions {
 				commonFunc.getDataFromTestDataSheet("LineSearchType"),
 				commonFunc.getDataFromTestDataSheet("LovButton"));
 		verifyAmendFilterSearchSOB(MaterialReceiptVoucherLocators.SourceVoucherNumber,
-				commonFunc.getDataFromTestDataSheet("GrnSourceVoucherNumber"), "Vou. No.",
+				commonFunc.getDataFromTestDataSheet("GrnSourceVoucherNumber"), "Source Vou. No.",
 				commonFunc.getDataFromTestDataSheet("LineSearchType"),
 				commonFunc.getDataFromTestDataSheet("SendTextInput"));
 		verifyAmendFilterSearchSOB(MaterialReceiptVoucherLocators.ReceiverWHID,
@@ -1487,6 +1487,8 @@ public class MaterialReceiptVoucherFunctions {
 					logs.logging("INFO", "Mrv Frame Is Displayed");
 					webDB.switchToFrame(MaterialReceiptVoucherLocators.MrvFrame, ElementType.Xpath);
 					commonFunc.hardWait(3000);
+					commonFunc.expandFindTable();
+					commonFunc.hardWait(2000);
 					flag = webDB.waitForElement(InspectionDocumentsLocators.PendingSearchField, ElementType.Xpath);
 					if (flag) {
 						logs.logging("INFO", "Inspection Pending Icon IS Clicked");
