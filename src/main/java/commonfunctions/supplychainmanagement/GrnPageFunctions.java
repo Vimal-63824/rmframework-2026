@@ -4663,6 +4663,7 @@ public class GrnPageFunctions {
 	 * @author PremKumar.K-RMITS
 	 */
 	public void verfytoEnteredLandedCostDocumentNumber(String BillNo) {
+		System.out.println("Bill");
 		String SupBillNo = RandomStringUtils.randomNumeric(6);
 		if (SupBillNo.equals("000")) {
 			SupBillNo = "10";
@@ -4670,10 +4671,14 @@ public class GrnPageFunctions {
 		String DCNO = BillNo + SupBillNo;
 		flag = webDB.waitForElement(GrnLocators.GrnLandedCostDocumentGrid, ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(GrnLocators.GrnLandedCostDocumentGrid, ElementType.Xpath);
+			webDB.moveToElement(GrnLocators.GrnLandedCostDocumentGrid, ElementType.Xpath);
+			webDB.javaScriptClickAnElement(GrnLocators.GrnLandedCostDocumentGrid, ElementType.Xpath);
+			System.out.println("Grid Clicked Suceessfully");
 			flag = webDB.waitForElement(GrnLocators.GrnLandedCostDocumentNumberField, ElementType.Xpath);
 			if (flag) {
+				webDB.doubleClickAnElement(GrnLocators.GrnLandedCostDocumentNumberField, ElementType.Xpath);
 				webDB.clickAnElement(GrnLocators.GrnLandedCostDocumentNumberField, ElementType.Xpath);
+				System.out.println("Document Number Field");
 				webDB.clearText(GrnLocators.GrnLandedCostDocumentNumberField, ElementType.Xpath);
 				webDB.sendTextToAnElement(GrnLocators.GrnLandedCostDocumentNumberField, DCNO, ElementType.Xpath);
 				commonFunc.checkRefreshCellsDisappear();

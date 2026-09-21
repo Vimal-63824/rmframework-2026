@@ -85,13 +85,13 @@ public class MaterialRequestLocators {
 	/** @locatorType Xpath */
 	public static final String ViewLineDetails = "//*[@id=\"line_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[1]/a/span";
 	/** @locatorType Xpath */
-	public static final String IFrame = "//iframe[@title='Other Details']";
+	public static final String IFrame = "//iframe[@title='Details']";
 	/** @locatorType Xpath */
 	public static final String UnitCostLineDetail = "//input[@data-testid='P9313101003_IMRLN_UNIT_COST']";
 	/** @locatorType Xpath */
 	public static final String LineDetailLineAmount = "//input[@data-testid='P9313101003_IMRL_TOT_AMT']";
 	/** @locatorType Xpath */
-	public static final String CloseLineDetail = "//h1[text()='Other Details']/../button";
+	public static final String CloseLineDetail = "//h1[text()='Details']/../button";
 	/** @locatorType Xpath */
 	public static final String HeaderTickIcon = "//button[@data-testid='SAVE']";
 	/** @locatorType Xpath */
@@ -162,5 +162,5 @@ public class MaterialRequestLocators {
 		return "//*[@id='line_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[" + i + "]/td[13]";
 	}
 	/** @locatorType Xpath */
-	public static final String ViewLineDetails_Orderdetail = "//*[@id=\"R1613565846343303768\"]/div[1]/div[1]/button";
+	public static final String ViewLineDetails_Orderdetail = "//*[@id=\"R1661028708928755332\"]/div[1]/div[1]/button";
 }
