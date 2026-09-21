@@ -41,7 +41,9 @@ public class CommonUiLocators {
 	/** @locatorType Xpath */
 	public static final String searchBar = "//div[@role='dialog' and not(contains(@style,'display: none')) and contains(@class,'ui-dialog-popuplov')]//input[@aria-label='Search']";
 	/** @locatorType Xpath */
-	public static final String searchBarResults = "//div[@role='dialog' and not(contains(@style,'display: none')) and contains(@class,'ui-dialog-popuplov')]//div[contains(@class,'PopupLOV-results')]";
+	public static final String searchBarAllList = "//input[@aria-label='Search']";
+	/** @locatorType Xpath */
+	public static final String searchBarResults = "//div[@role='dialog' and not(contains(@style,'display: none'))]//div[contains(@class,'PopupLOV-results')]//*[(self::tbody or self::li)]/..";
 	/** @locatorType Xpath */
 	public static final String FailedNotifyMessage = "//div[contains(@class,'Notification--error')]";
 	/** @locatorType Xpath */
@@ -63,7 +65,7 @@ public class CommonUiLocators {
 	/** @locatorType Xpath */
 	public static final String PendingText = "//h1";
 	/** @locatorType Xpath */
-	public static final String SearchBarIcon = "//button[contains(@class,'doSearch')]";
+	public static final String SearchBarIcon = "//div[@role='dialog' and not(contains(@style,'display: none')) and contains(@class,'ui-dialog-popuplov')]//input[@aria-label='Search']/following-sibling::button";
 	/** @locatorType Xpath */
 	public static final String PurchaseRequestCloseShortTab = "//span[text()='Supply Chain']/ancestor::li/*/li[1]/*/li[2]/*/li[7]";
 	/** @locatorType Xpath */
@@ -156,8 +158,8 @@ public class CommonUiLocators {
 
 	/** @locatorType Xpath */
 	public static String convertListOfXPath(String text) {
-		return "//div[@role='dialog' and not(contains(@style,'display: none')) and contains(@class,'ui-dialog-popuplov')]//div[contains(@class,'a-PopupLOV-results')]//*[text()='"
-				+ text + "']";
+		return "//*[contains(@id,'PopupLov')]//td[text()='" + text + "'] | //*[contains(@id,'PopupLov')]//li[text()='"
+				+ text + "'] | //*[contains(@id,'PopupLov')]//*[text()='" + text + "']/parent::*";
 	}
 
 	/** @locatorType Xpath */

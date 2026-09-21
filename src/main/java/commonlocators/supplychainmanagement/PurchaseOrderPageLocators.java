@@ -316,7 +316,7 @@ public class PurchaseOrderPageLocators {
 	/** @locatorType Xpath */
 	public static final String FreeOfCostLabel = "//label[contains(@id,'POL_FOC_FLAG_LABEL')]";
 	/** @locatorType Xpath */
-	public static final String LnDts_TestCertificatesExpandButton = "//div[@aria-label='Test Certificate']//button[not(contains(@class, 'LOV'))]";
+	public static final String LnDts_ItemDetailsExpandButton = "//div[@aria-label='Item  Details']//button";
 	/** @locatorType Xpath */
 	public static final String FreeOfCostInput = "//input[contains(@id,'POL_FOC_FLAG_HIDDENVALUE')]";
 	/** @locatorType Xpath */
