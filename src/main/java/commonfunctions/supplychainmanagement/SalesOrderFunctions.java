@@ -756,6 +756,7 @@ public class SalesOrderFunctions {
 		commonFunc.checkRefreshCellsDisappear();
 		flag = webDB.waitForElement(SalesOrderLocators.PostButton, ElementType.Xpath);
 		if (flag) {
+			commonFunc.checkSuccessToastMessageDisappear();
 			webDB.clickAnElement(SalesOrderLocators.PostButton, ElementType.Xpath);
 			flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
 			if (flag) {
@@ -1013,10 +1014,11 @@ public class SalesOrderFunctions {
 		if (flag) {
 			webDB.clickAnElement(SalesOrderLocators.LineWiseDetailsSaveIcon, ElementType.Xpath);
 			webDB.switchToDefaultContent();
-			if (webDB.isElementDisplayed(SalesOrderLocators.DetailsCloseButton, ElementType.Xpath)) {
+			if (webDB.verifyIsElementDisplayed(SalesOrderLocators.DetailsCloseButton, ElementType.Xpath)) {
 				webDB.clickAnElement(SalesOrderLocators.DetailsCloseButton, ElementType.Xpath);
 				flag = webDB.waitForElement(SalesOrderLocators.PostButton, ElementType.Xpath);
 			}
+			commonFunc.checkSuccessToastMessageDisappear();
 			if (flag) {
 				logs.logging("INFO", "Line Wise Details are saved sucessfully");
 			}
