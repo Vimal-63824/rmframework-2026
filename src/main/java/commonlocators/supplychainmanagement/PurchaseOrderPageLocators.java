@@ -620,5 +620,7 @@ public class PurchaseOrderPageLocators {
 	public static final String PoDetails = "//a[@data-action='LN_DTLS']";
 	/** @locatorType Xpath */
 	public static final String ExpandDiscountField = "//button[@aria-controls='a_Collapsible2_R1534433044390492718_content']";
+	/** @locatorType Xpath */
+	public static final String DiscountExpand = "//div[@data-testid='Discount Details']//button";
 
 }
