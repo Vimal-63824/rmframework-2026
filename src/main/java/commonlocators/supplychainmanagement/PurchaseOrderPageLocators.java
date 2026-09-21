@@ -42,7 +42,7 @@ public class PurchaseOrderPageLocators {
 	/** @locatorType Xpath */
 	public static final String LocationheaderBar = "//*[@id='ui-id-4']";
 	/** @locatorType Xpath */
-	public static final String DPOTickButton = "//div[@data-testid='TickButton']";
+	public static final String DPOTickButton = "//button[@data-testid='Create_PO_Form']";
 	/** @locatorType Xpath */
 	public static final String ItemAddButton = "//button[@data-testid='PO_Item_Add_Button']";
 

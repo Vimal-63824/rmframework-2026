@@ -145,7 +145,7 @@ public class PricelistPageLocators {
 	}
 
 	/** @locatorType Xpath */
-	public static final String ItemGeneral = "//label[text()='General']";
+	public static final String ItemGeneral = "(//div[@aria-label='General']//button)[1]";
 	/** @locatorType Xpath */
 	public static final String ItemCopy = "//button[@data-testid='Copy_Item']";
 	/** @locatorType Xpath */

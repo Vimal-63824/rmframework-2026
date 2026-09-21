@@ -530,30 +530,23 @@ public class GrnPageFunctions2 {
 	 */
 	public void verifyGRNDocumentApprovedStatus() {
 		commonFunc.naviagteGrnPage();
-		flag = webDB.waitForElement(GrnLocators.FindPageGrnNoLov, ElementType.Xpath);
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.searchAndSelectValueInFilters(GrnLocators.FindPageGrnNoLov, VariableHandler.getGrnDocNumber());
+		logs.logging("INFO", "Document Number Search And Selected Successfully");
+		flag = webDB.waitForElement(GrnLocators.GrnHeaderRadioBtn, ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(GrnLocators.FindPageGrnNoLov, ElementType.Xpath);
-			flag = webDB.waitForElement(GrnLocators.GrnNumberInput, ElementType.Xpath);
+			webDB.clickAnElement(GrnLocators.GrnHeaderRadioBtn, ElementType.Xpath);
+			logs.logging("INFO", "Header Button Clicked");
+			flag = webDB.waitForElement(GrnLocators.GrnSearchButton, ElementType.Xpath);
 			if (flag) {
-				commonFunc.searchAndSelectValueInFilters(GrnLocators.GrnNumberInput, VariableHandler.getGrnDocNumber());
-				logs.logging("INFO", "Document Number Search And Selected Successfully");
-				flag = webDB.waitForElement(GrnLocators.GrnHeaderRadioBtn, ElementType.Xpath);
+				webDB.clickAnElement(GrnLocators.GrnSearchButton, ElementType.Xpath);
+				logs.logging("INFO", "Document Searched SuccessFully");
+				commonFunc.checkRefreshCellsDisappear();
+				flag = webDB.waitForElement(GrnLocators.GrnDocumentStatus, ElementType.Xpath);
 				if (flag) {
-					webDB.clickAnElement(GrnLocators.GrnHeaderRadioBtn, ElementType.Xpath);
-					logs.logging("INFO", "Header Button Clicked");
-					flag = webDB.waitForElement(GrnLocators.GrnSearchButton, ElementType.Xpath);
-					if (flag) {
-						webDB.clickAnElement(GrnLocators.GrnSearchButton, ElementType.Xpath);
-						logs.logging("INFO", "Document Searched SuccessFully");
-						commonFunc.checkRefreshCellsDisappear();
-						flag = webDB.waitForElement(GrnLocators.GrnDocumentStatus, ElementType.Xpath);
-						if (flag) {
-							String GRNSTATUS = webDB.getTextFromElement(GrnLocators.GrnDocumentStatus,
-									ElementType.Xpath);
-							VariableHandler.setGrnStatus(GRNSTATUS);
-							logs.logging("INFO", "GRN ProcesWise STATUS: " + VariableHandler.getGrnStatus());
-						}
-					}
+					String GRNSTATUS = webDB.getTextFromElement(GrnLocators.GrnDocumentStatus, ElementType.Xpath);
+					VariableHandler.setGrnStatus(GRNSTATUS);
+					logs.logging("INFO", "GRN ProcesWise STATUS: " + VariableHandler.getGrnStatus());
 				}
 			}
 		}
