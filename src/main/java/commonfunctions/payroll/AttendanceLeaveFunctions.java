@@ -5537,6 +5537,7 @@ public class AttendanceLeaveFunctions {
 			webDB.moveToElement(AttendanceLeaveLocators.TravelReimbFindSearchButton, ElementType.Xpath);
 			webDB.clickAnElement(AttendanceLeaveLocators.TravelReimbFindSearchButton, ElementType.Xpath);
 			commonFunc.checkRefreshCellsDisappear();
+			webDB.waitUntilElementToNotBeStale(AttendanceLeaveLocators.TravelReimbDocNo(), ElementType.Xpath);
 			flag = webDB.waitForElement(AttendanceLeaveLocators.TravelReimbDocNo(), ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Find Search Button Is Clicked");
