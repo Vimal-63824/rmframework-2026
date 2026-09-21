@@ -658,6 +658,9 @@ public class PricelistPageFunctions {
 			webDB.clearText(PricelistPageLocators.Costinput, ElementType.Xpath);
 			webDB.sendTextToAnElement(PricelistPageLocators.Costinput, Cost1, ElementType.Xpath);
 			logs.logging("INFO", "Cost is Entered" + Cost1);
+			webDB.pressTabKey();
+			commonFunc.hardWait(2000);
+			commonFunc.checkRefreshCellsDisappear();
 			flag = webDB.waitForElement(PricelistPageLocators.PricelistOverallsave, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Overall Save is Clicked");
@@ -821,11 +824,13 @@ public class PricelistPageFunctions {
 	 * @author Durai-RMITS
 	 */
 	public void saveHeaderAndClickPost() {
+		commonFunc.checkRefreshCellsDisappear();
 		flag = webDB.waitForClickElement(PricelistPageLocators.SAVEBtn, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(PricelistPageLocators.SAVEBtn, ElementType.Xpath);
 			logs.logging("INFO", "Header Saved Successfully.");
 			commonFunc.hardWait(3500);
+			commonFunc.checkRefreshCellsDisappear();
 			flag = webDB.waitForElement(PricelistPageLocators.ActiveButton, ElementType.Xpath);
 			if (flag) {
 				webDB.clickAnElement(PricelistPageLocators.ActiveButton, ElementType.Xpath);
