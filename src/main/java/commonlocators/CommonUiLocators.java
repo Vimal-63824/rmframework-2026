@@ -39,7 +39,9 @@ public class CommonUiLocators {
 	/** @locatorType Xpath */
 	public static final String PostToastMessage = "//*[@class='succ_msg'] | //*[@id='APEX_SUCCESS_MESSAGE']//h2";
 	/** @locatorType Xpath */
-	public static final String searchBar = "//input[@aria-label='Search']";
+	public static final String searchBar = "//div[@role='dialog' and not(contains(@style,'display: none')) and contains(@class,'ui-dialog-popuplov')]//input[@aria-label='Search']";
+	/** @locatorType Xpath */
+	public static final String searchBarResults = "//div[@role='dialog' and not(contains(@style,'display: none')) and contains(@class,'ui-dialog-popuplov')]//div[contains(@class,'PopupLOV-results')]";
 	/** @locatorType Xpath */
 	public static final String FailedNotifyMessage = "//div[contains(@class,'Notification--error')]";
 	/** @locatorType Xpath */
@@ -154,8 +156,8 @@ public class CommonUiLocators {
 
 	/** @locatorType Xpath */
 	public static String convertListOfXPath(String text) {
-		return "//*[contains(@id,'PopupLov')]//td[text()='" + text + "'] | //*[contains(@id,'PopupLov')]//li[text()='"
-				+ text + "'] | //*[contains(@id,'PopupLov')]//*[text()='" + text + "']/parent::*";
+		return "//div[@role='dialog' and not(contains(@style,'display: none')) and contains(@class,'ui-dialog-popuplov')]//div[contains(@class,'a-PopupLOV-results')]//*[text()='"
+				+ text + "']";
 	}
 
 	/** @locatorType Xpath */
