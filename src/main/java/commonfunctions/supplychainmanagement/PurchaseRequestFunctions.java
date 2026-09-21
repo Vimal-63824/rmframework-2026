@@ -1905,7 +1905,10 @@ public class PurchaseRequestFunctions {
 	public void verifyItemDetailsTabOpening() {
 		flag = webDB.waitForElement(PurchaseRequestLocators.ItemDetailsButton, ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(PurchaseRequestLocators.ItemDetailsButton, ElementType.Xpath);
+			if (webDB.getAttributeFromElement(PurchaseRequestLocators.ItemDetailsButton, ElementType.Xpath,
+					"aria-expanded").equals("false")) {
+				webDB.clickAnElement(PurchaseRequestLocators.ItemDetailsButton, ElementType.Xpath);
+			}
 			flag = webDB.waitForElement(PurchaseRequestLocators.PRLineDetails_Warehouse, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Item Details Expand Button Is Displayed");
