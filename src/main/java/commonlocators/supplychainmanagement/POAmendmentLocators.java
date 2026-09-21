@@ -356,9 +356,9 @@ public class POAmendmentLocators {
 	/** @locatorType Xpath */
 	public static final String DetailsButton = "//a[@data-action='LN_DTLS']";
 	/** @locatorType Xpath */
-	public static final String NewTaxDetails = "(//div[@data-testid='R2734127918492355887_Result_Data']//button)[1]";
+	public static final String NewTaxDetails = "//h2[text()='New Tax Details']/../..//button";
 	/** @locatorType Xpath */
-	public static final String DiscountExpandButton = "//div[@data-testid='R1640912248866861514_Result_Data']//button";
+	public static final String DiscountExpandButton = "//h2[text()='New Discount']/../..//button";
 
 	/** @locatorType Xpath */
 	public static final String POANumberCancelStatus(String POno) {

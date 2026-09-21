@@ -976,6 +976,7 @@ public class OpenPoRcFunctions {
 		flag = webDB.waitForElement(OpenPoRcLocators.AmendOpenPoButton, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(OpenPoRcLocators.AmendOpenPoButton, ElementType.Xpath);
+			commonFunc.expandFindTable();
 			flag = webDB.waitForElement(OpenPoRcLocators.AmendOpenPOLovButton, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Amend OpenPO Button Is Clicked Successfully");

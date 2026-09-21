@@ -75,7 +75,7 @@ public class InspectionDocumentsLocators {
 	/** @locatorType Xpath */
 	public static final String InspectionDocumentNumberLov = "//*[@id='P2017131020_QC_NO_1_lov_btn']";
 	/** @locatorType Xpath */
-	public static final String InspectionDocumentNumberDrillDown = "//table[@data-testid='H_Result_Data']/tbody/tr[2]/td[6]";
+	public static final String InspectionDocumentNumberDrillDown = "//table[@data-testid='H_Result_Data']/tbody/tr[2]/td[5]";
 	/** @locatorType Xpath */
 	public static final String FindPageSearchBtn = "//button[@data-testid='Find_line']";
 
