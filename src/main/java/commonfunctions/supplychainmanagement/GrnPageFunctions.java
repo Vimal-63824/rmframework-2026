@@ -1059,23 +1059,27 @@ public class GrnPageFunctions {
 	 * @author PremKumar.K-RMITS
 	 */
 	public void verifyCreateInvoiceNoForStockTransferSupplier() {
-		flag = webDB.waitForElement(SalesInvoiceLocators.Cre_Inv_No, ElementType.Xpath);
+		commonFunc.hardWait(1000);
+		flag = webDB.waitForElement(SalesInvoiceLocators.Header_Other_Tab, ElementType.Xpath);
 		if (flag) {
-			logs.logging("INFO", "Cre.Inv.No Button Displayed Successfully");
-			webDB.clickAnElement(SalesInvoiceLocators.Cre_Inv_No, ElementType.Xpath);
-			flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
-			if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
-				webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+			webDB.clickAnElement(SalesInvoiceLocators.Header_Other_Tab, ElementType.Xpath);
+			commonFunc.hardWait(1000);
+			flag = webDB.waitForElement(SalesInvoiceLocators.Cre_Inv_No, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Cre.Inv.No Button Displayed Successfully");
+				webDB.clickAnElement(SalesInvoiceLocators.Cre_Inv_No, ElementType.Xpath);
+				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.hardWait(1000);
+				String SalesInvoiceNumber = webDB
+						.getTextFromElement(SalesInvoiceLocators.SalesInvoiceNumberTextField, ElementType.Xpath);
+				VariableHandler.setSalesInvoiceNumber(SalesInvoiceNumber);
+				logs.logging("INFO", "Sales Invoice Number:" + VariableHandler.getSalesInvoiceNumber());
+//			flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+				if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+					webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+				}
 				if (flag) {
-					commonFunc.checkRefreshCellsDisappear();
-					String SalesInvoiceNumber = webDB
-							.getTextFromElement(SalesInvoiceLocators.SalesInvoiceNumberTextField, ElementType.Xpath);
-					VariableHandler.setSalesInvoiceNumber(SalesInvoiceNumber);
-					logs.logging("INFO", "Sales Invoice Number:" + VariableHandler.getSalesInvoiceNumber());
-
-					if (flag) {
-						logs.logging("INFO", "Cre.Inv.No Button clicked Successfully");
-					}
+					logs.logging("INFO", "Cre.Inv.No Button clicked Successfully");
 				}
 			}
 		}
@@ -4663,6 +4667,7 @@ public class GrnPageFunctions {
 	 * @author PremKumar.K-RMITS
 	 */
 	public void verfytoEnteredLandedCostDocumentNumber(String BillNo) {
+		System.out.println("Bill");
 		String SupBillNo = RandomStringUtils.randomNumeric(6);
 		if (SupBillNo.equals("000")) {
 			SupBillNo = "10";
@@ -4670,10 +4675,14 @@ public class GrnPageFunctions {
 		String DCNO = BillNo + SupBillNo;
 		flag = webDB.waitForElement(GrnLocators.GrnLandedCostDocumentGrid, ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(GrnLocators.GrnLandedCostDocumentGrid, ElementType.Xpath);
+			webDB.moveToElement(GrnLocators.GrnLandedCostDocumentGrid, ElementType.Xpath);
+			webDB.javaScriptClickAnElement(GrnLocators.GrnLandedCostDocumentGrid, ElementType.Xpath);
+			System.out.println("Grid Clicked Suceessfully");
 			flag = webDB.waitForElement(GrnLocators.GrnLandedCostDocumentNumberField, ElementType.Xpath);
 			if (flag) {
+				webDB.doubleClickAnElement(GrnLocators.GrnLandedCostDocumentNumberField, ElementType.Xpath);
 				webDB.clickAnElement(GrnLocators.GrnLandedCostDocumentNumberField, ElementType.Xpath);
+				System.out.println("Document Number Field");
 				webDB.clearText(GrnLocators.GrnLandedCostDocumentNumberField, ElementType.Xpath);
 				webDB.sendTextToAnElement(GrnLocators.GrnLandedCostDocumentNumberField, DCNO, ElementType.Xpath);
 				commonFunc.checkRefreshCellsDisappear();
@@ -12387,6 +12396,7 @@ public class GrnPageFunctions {
 		}
 
 	}
+
 	/**
 	 * This Methods Method to handle Create GRN Document from PO With and Without
 	 * Inspection for Contract Item(General Type)
@@ -12418,5 +12428,52 @@ public class GrnPageFunctions {
 		assertTrue(flag);
 	}
 
+	/**
+	 * This Methods Method to handle Create GRN Document from PO With and Without
+	 * Inspection for Contract Item(General Type)
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws IOException
+	 * @throws Exception
+	 */
+	public void poToGrnGeneralUserDefinedSameStockAndSupplierUomWithAndWithoutInspectionPlanWithLandedCostLatest()
+			throws IOException {
+		poToGrnGeneralUserDefinedSameStockAndSupplierUomWithAndWithoutInspectionPlanWithLandedCostLatest(
+				webDB.getDataFromProperties("LandedCostDB"));
+
+	}
+
+	/**
+	 * This Methods Method to handle Create GRN From PO With General With And
+	 * Without Inspection Document(Multiple Item)
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+	public void poToGrnGeneralUserDefinedSameStockAndSupplierUomWithAndWithoutInspectionPlanWithLandedCostLatest(
+			String SheetName) throws IOException {
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.naviagteGrnPage();
+		verifyGrnAdd();
+		verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("GRNPM"), commonFunc.getDataFromTestDataSheet("POSupplier"),
+				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
+		DirectGrnFunc.verifyGrnAddLineDetails(webDB.getDataFromProperties("ToleranceQty"));
+		DirectGrnFunc.multipleLotandSerialWithGeneralType(webDB.getDataFromProperties("ToleranceQty"));
+		lotSerialQtyApportion();
+		verifyToAddChargeItem();
+		clickChargeButtonClosed();
+		verifyToClickLandedCostField(SheetName);
+		clickChargeButtonClosed();
+		clickIncludeCharge();
+		overAllSaveAndPostForExcess(webDB.getDataFromProperties("ToleranceQty"));
+		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		flag = commonFunc.logoutUser();
+		aafterVerifyTheStatusDocumentMoveToQcOrMrv();
+		assertTrue(flag);
+	}
 
 }
