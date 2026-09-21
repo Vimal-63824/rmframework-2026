@@ -895,6 +895,9 @@ public class InspectionDocumentFunctions {
 			if (flag) {
 				logs.logging("INFO", "Pending Inspection Documents Is Displayed");
 				webDB.switchToFrame(InspectionDocumentsLocators.PendingInspectionFrame, ElementType.Xpath);
+				commonFunc.hardWait(3000);
+				commonFunc.expandFindTable();
+				commonFunc.hardWait(2000);
 				flag = webDB.waitForElement(InspectionDocumentsLocators.VoucherLov, ElementType.Xpath);
 				commonFunc.searchAndSelectValueInFilters(InspectionDocumentsLocators.VoucherLov,
 						VariableHandler.getScoGrnNumber());
