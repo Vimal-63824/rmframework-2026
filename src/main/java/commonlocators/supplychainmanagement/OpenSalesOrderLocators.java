@@ -147,7 +147,7 @@ public class OpenSalesOrderLocators {
 	/** @locatorType Xpath */
 	public static final String OpsoWorkApprovalFrame = "//iframe[@title='Workflow Approval']";
 	/** @locatorType Xpath */
-	public static final String OpsoOkButtonForward = "//button[@data-testid='btn_entry']";
+	public static final String OpsoOkButtonForward = "//button[@data-testid='Entry']";
 	/** @locatorType Xpath */
 	public static final String Transactions = "//span[contains(text(),'Transaction')]";
 	/** @locatorType Xpath */
