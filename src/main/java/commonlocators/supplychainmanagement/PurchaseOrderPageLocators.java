@@ -316,7 +316,7 @@ public class PurchaseOrderPageLocators {
 	/** @locatorType Xpath */
 	public static final String FreeOfCostLabel = "//label[contains(@id,'POL_FOC_FLAG_LABEL')]";
 	/** @locatorType Xpath */
-	public static final String LnDts_TestCertificatesExpandButton = "//div[@aria-label='Test Certificate']//button[not(contains(@class, 'LOV'))]";
+	public static final String LnDts_ItemDetailsExpandButton = "//div[@aria-label='Item  Details']//button";
 	/** @locatorType Xpath */
 	public static final String FreeOfCostInput = "//input[contains(@id,'POL_FOC_FLAG_HIDDENVALUE')]";
 	/** @locatorType Xpath */
@@ -604,7 +604,7 @@ public class PurchaseOrderPageLocators {
 	/** @locatorType Xpath */
 	public static final String DiscountButton = "//div[@data-testid='Discount Details']//button";
 	/** @locatorType Xpath */
-	public static final String ContractExpandButton = "//div[@data-testid='R1535540252290798082_Result_Data']//button";
+	public static final String ContractExpandButton = "//h2[text()='PR Details / Open Order/ RFQ']/../..//button";
 
 	/** @locatorType Xpath */
 	public static final String HsnField() {
@@ -622,5 +622,7 @@ public class PurchaseOrderPageLocators {
 	public static final String ExpandDiscountField = "//button[@aria-controls='a_Collapsible2_R1534433044390492718_content']";
 	/** @locatorType Xpath */
 	public static final String DiscountExpand = "//div[@data-testid='Discount Details']//button";
+	/** @locatorType Xpath */
+	public static final String ExpandServiceButton = "//h2[text()='Service / Maintenance']/../..//button";
 
 }

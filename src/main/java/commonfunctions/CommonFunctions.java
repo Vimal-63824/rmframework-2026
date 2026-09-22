@@ -121,30 +121,30 @@ public class CommonFunctions {
 	@SuppressWarnings("null")
 	public boolean checkRefreshCellsDisappear() {
 		hardWait(800);
-		if (webDB.verifyIsElementDisplayed("(" + CommonUiLocators.EntryTableRefreshCellImage + ")[1]",
-				ElementType.Xpath)) {
-			List<WebElement> refreshElements = WebDriverBase.getDriver()
-					.findElements(By.xpath(CommonUiLocators.EntryTableRefreshCellImage));
-			List<WebElement> AfterWaitrefreshElements = null;
-			try {
-				for (WebElement element : refreshElements) {
+//		if (webDB.verifyIsElementDisplayed("(" + CommonUiLocators.EntryTableRefreshCellImage + ")[1]",
+//				ElementType.Xpath)) {
+		List<WebElement> refreshElements = WebDriverBase.getDriver()
+				.findElements(By.xpath(CommonUiLocators.EntryTableRefreshCellImage));
+		List<WebElement> AfterWaitrefreshElements = null;
+		try {
+			for (WebElement element : refreshElements) {
+				WebDriverWait wait = new WebDriverWait(WebDriverBase.getDriver(), Duration.ofSeconds(10));
+				wait.until(ExpectedConditions.invisibilityOf(element));
+				if (element.isDisplayed()) {
+					AfterWaitrefreshElements.add(element);
+				}
+			}
+			flag = AfterWaitrefreshElements.isEmpty();
+			if (!flag) {
+				for (WebElement element : AfterWaitrefreshElements) {
 					WebDriverWait wait = new WebDriverWait(WebDriverBase.getDriver(), Duration.ofSeconds(10));
 					wait.until(ExpectedConditions.invisibilityOf(element));
-					if (element.isDisplayed()) {
-						AfterWaitrefreshElements.add(element);
-					}
 				}
-				flag = AfterWaitrefreshElements.isEmpty();
-				if (!flag) {
-					for (WebElement element : AfterWaitrefreshElements) {
-						WebDriverWait wait = new WebDriverWait(WebDriverBase.getDriver(), Duration.ofSeconds(10));
-						wait.until(ExpectedConditions.invisibilityOf(element));
-					}
-				}
-			} catch (Exception e) {
-
 			}
+		} catch (Exception e) {
+
 		}
+//		}
 		return flag;
 	}
 
@@ -286,6 +286,12 @@ public class CommonFunctions {
 		if (Displayflag) {
 			DisplayText = webDB.getDomPropertyFromElement((locator + "/preceding-sibling::input"), ElementType.Xpath,
 					getDataFromTestDataSheet("Value"));
+			if (DisplayText.equalsIgnoreCase(getDataFromTestDataSheet("Loc_100"))
+					|| DisplayText.equalsIgnoreCase(getDataFromTestDataSheet("L0001"))
+					|| DisplayText.equalsIgnoreCase(getDataFromTestDataSheet("PI_Loc_Id"))
+					|| DisplayText.equalsIgnoreCase(getDataFromTestDataSheet("LOCATION100"))) {
+				DisplayText = "L0001111";
+			}
 		}
 		if (DisplayText == null || DisplayText.isBlank() || !DisplayText.equalsIgnoreCase(Value)) {
 			flag = webDB.waitForElement(locator, ElementType.Xpath);
@@ -299,31 +305,51 @@ public class CommonFunctions {
 				search.clear();
 				search.sendKeys(Value);
 				checkRefreshCellsDisappear();
-				webDB.waitForElementUntilGivenTime(CommonUiLocators.searchBarResults, ElementType.Xpath, 10);
+				checkRefreshCellsDisappear();
+				webDB.waitForElementUntilGivenTime(CommonUiLocators.searchBarResults, ElementType.Xpath, 5);
+				checkRefreshCellsDisappear();
 				if (webDB.verifyIsElementDisplayed(CommonUiLocators.SearchBarIcon, ElementType.Xpath)) {
-					checkRefreshCellsDisappear();
+					webDB.clickAnElement(CommonUiLocators.SearchBarIcon, ElementType.Xpath);
 					webDB.clickAnElementWithoutException(CommonUiLocators.SearchBarIcon, ElementType.Xpath);
 				}
 				checkRefreshCellsDisappear();
+				webDB.pressEnterKey();
+				checkRefreshCellsDisappear();
+				checkRefreshCellsDisappear();
 				try {
-					WebElement result = new WebDriverWait(WebDriverBase.getDriver(), Duration.ofSeconds(10))
-							.until(ExpectedConditions
-									.visibilityOfElementLocated(By.xpath(CommonUiLocators.convertListOfXPath(Value))));
-					result = new WebDriverWait(WebDriverBase.getDriver(), Duration.ofSeconds(10))
-							.ignoring(StaleElementReferenceException.class).until(ExpectedConditions
-									.elementToBeClickable(By.xpath(CommonUiLocators.convertListOfXPath(Value))));
-					((JavascriptExecutor) WebDriverBase.getDriver()).executeScript("arguments[0].scrollIntoView(true);",
-							result);
-					Actions action = new Actions(WebDriverBase.getDriver());
-					action.moveToElement(result).build().perform();
-					result.click();
-					checkRefreshCellsDisappear();
-					logs.logging("INFO", "Searched and selected '" + Value + "' in Lov");
+					List<WebElement> Elements = WebDriverBase.getDriver()
+							.findElements(By.xpath(CommonUiLocators.convertListOfXPath(Value)));
+					for (WebElement webElement : Elements) {
+						if (webElement.isDisplayed() && webElement.getText().trim().equalsIgnoreCase(Value.trim())) {
+							((JavascriptExecutor) WebDriverBase.getDriver())
+									.executeScript("arguments[0].scrollIntoView(true);", webElement);
+							try {
+								Actions action = new Actions(WebDriverBase.getDriver());
+								action.moveToElement(webElement).build().perform();
+							} catch (Exception e) {
+							}
+							webElement.click();
+							flag = true;
+						} else {
+						}
+					}
 				} catch (Exception e) {
-					logs.logging("INFO", "Search bar Still Displayed Not Clicked Values in Lov Btn");
-//					Assert.fail("Search bar Still Displayed Not Clicked Values in Lov Btn");
+					webDB.pressEnterKey();
+					logs.logging("INFO",
+							"Search bar Still Displayed Not Clicked Values in Lov Btn with Exception: " + e);
+					List<WebElement> searchBar = WebDriverBase.getDriver()
+							.findElements(By.xpath(CommonUiLocators.searchBarAllList));
+					for (WebElement element : searchBar) {
+						try {
+							if (element.isDisplayed()) {
+								flag = false;
+							}
+						} catch (Exception e1) {
+						}
+					}
 				}
 			}
+			assertTrue(flag);
 		} else {
 			logs.logging("INFO", "Already the '" + Value + "' selected in Lov");
 			webDB.switchToDefaultContent();
@@ -351,7 +377,7 @@ public class CommonFunctions {
 			if (flag) {
 				webDB.clickAnElement(CommonUiLocators.CreatePoButton, ElementType.Xpath);
 				checkRefreshCellsDisappear();
-				webDB.waitForElement(CommonUiLocators.PoCreateFrame, ElementType.Xpath);
+//				webDB.waitForElement(CommonUiLocators.PoCreateFrame, ElementType.Xpath);
 				webDB.switchToFrame(CommonUiLocators.PoCreateFrame, ElementType.Xpath);
 				flag = webDB.waitForElement(CommonUiLocators.CreatePoTickIcon, ElementType.Xpath);
 			}

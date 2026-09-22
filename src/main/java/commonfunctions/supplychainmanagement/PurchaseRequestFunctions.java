@@ -296,17 +296,18 @@ public class PurchaseRequestFunctions {
 	public void saveHeaderAndClickPost() {
 		flag = webDB.waitForElement(PurchaseRequestLocators.SaveHeaderBtn, ElementType.Xpath);
 		if (flag) {
+			commonFunc.checkSuccessToastMessageDisappear();
 			webDB.moveToElement(PurchaseRequestLocators.SaveHeaderBtn, ElementType.Xpath);
 			webDB.clickAnElement(PurchaseRequestLocators.SaveHeaderBtn, ElementType.Xpath);
 			logs.logging("INFO", "Header Saved Successfully.");
-			webDB.waitForElementUntilGivenTime(CommonUiLocators.PostToastMessage, ElementType.Xpath, 10);
-			if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+			commonFunc.checkRefreshCellsDisappear();
+			if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
 				webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
 			}
-			commonFunc.checkSuccessToastMessageDisappear();
 			flag = webDB.waitForClickElement(PurchaseRequestLocators.PostBtn, ElementType.Xpath);
 			if (flag) {
 				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.checkSuccessToastMessageDisappear();
 				webDB.moveToElement(PurchaseRequestLocators.PostBtn, ElementType.Xpath);
 				webDB.clickAnElement(PurchaseRequestLocators.PostBtn, ElementType.Xpath);
 				flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
@@ -1905,7 +1906,11 @@ public class PurchaseRequestFunctions {
 	public void verifyItemDetailsTabOpening() {
 		flag = webDB.waitForElement(PurchaseRequestLocators.ItemDetailsButton, ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(PurchaseRequestLocators.ItemDetailsButton, ElementType.Xpath);
+			String Value = webDB.getDomAttributeFromElement(PurchaseRequestLocators.ItemDetailsButton,
+					ElementType.Xpath, "aria-expanded");
+			if (Value.equalsIgnoreCase("false")) {
+				webDB.clickAnElement(PurchaseRequestLocators.ItemDetailsButton, ElementType.Xpath);
+			}
 			flag = webDB.waitForElement(PurchaseRequestLocators.PRLineDetails_Warehouse, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Item Details Expand Button Is Displayed");
