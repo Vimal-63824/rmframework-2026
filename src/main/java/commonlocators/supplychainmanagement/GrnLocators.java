@@ -394,4 +394,9 @@ public class GrnLocators {
 	}
 	/** @locatorType Xpath */
 	public static final String DetailsCancel = "//div[@id='add_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[1]";
+	
+	public static final String LotSerialAcceptQtyTable = "//div[@id='grn_lot_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[7]";
+	
+	/** @locatorType Xpath */
+	public static final String AcceptInput = LotSerialAcceptQtyTable + "//input";
 }

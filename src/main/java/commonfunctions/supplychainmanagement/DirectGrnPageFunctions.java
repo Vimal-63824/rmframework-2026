@@ -7918,6 +7918,7 @@ public class DirectGrnPageFunctions {
 					verifyClickingCost(COST);
 					verifyClickingSaveLine();
 					GRNFunc.ChangeLotSerialQty(QTY);
+					GRNFunc.ChangeLotSerialReciptQty(QTY);
 				}
 			}
 		}

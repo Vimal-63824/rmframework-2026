@@ -368,8 +368,8 @@ public class SalesOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyExportSOGeneralPriceListSimilarStockAndCustomerUOM() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("AdminUsername"));
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				System.getProperty("AdminUsername"));
 		commonFunc.navigateSalesOrderPage();
 		checkSOMControl(webDB.getDataFromProperties("So"));
 		verifyCreationOfSalesOrderHeader(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1000,8 +1000,9 @@ public class SalesOrderFunctions {
 		if (flag) {
 			webDB.doubleClickAnElement(Locator, ElementType.Xpath);
 			webDB.sendTextToAnElement(Locator, InputValue, ElementType.Xpath);
-//			commonFunc.checkRefreshCellsDisappear();
+			commonFunc.checkRefreshCellsDisappear();
 			webDB.pressTabKey();
+			commonFunc.checkRefreshCellsDisappear();
 		}
 	}
 
@@ -4296,18 +4297,29 @@ public class SalesOrderFunctions {
 //					clickLineWiseSaveButton();
 //				}
 				verifyItemCalculationWithLineAmount();
-//				if (webDB.verifyIsElementDisplayed(SalesOrderLocators.ShipSetDetails(i - 3), ElementType.Xpath)) {
-//					commonFunc.checkRefreshCellsDisappear();
-//					webDB.clickAnElement(SalesOrderLocators.ShipSetDetails(i - 3), ElementType.Xpath);
-//					VerifyShipsetDetails(ITEM_ID);
-//				}
+				if (SheetName.equals(webDB.getDataFromProperties("SOShipSet"))) {
+					flag = webDB.waitForElement(SalesOrderLocators.LineDetails(i - 3), ElementType.Xpath);
+					if (flag) {
+						webDB.clickAnElement(SalesOrderLocators.LineDetails(i - 3), ElementType.Xpath);
+						flag = webDB.waitForElement(SalesOrderLocators.ShipsetItemButton, ElementType.Xpath);
+						if (flag) {
+							webDB.clickAnElement(SalesOrderLocators.ShipsetItemButton, ElementType.Xpath);
+							flag = webDB.waitForElement(SalesOrderLocators.ShipsetFrameName, ElementType.Xpath);
+							if (flag) {
+								logs.logging("INFO", " Sucessfully Clicked The ShipSet Item Button ");
+							}
+						}
+					}
+					VerifyShipsetDetails(ITEM_ID);
+				}
 				lineDetailVerification12(ITEM_ID, getTextCurrencyInHeaderAfterSaveTheLine(), QUANTITY, i, Trade_Disc,
 						Spl_Disc, Cash_Disc, SOType, Promotional, Filepath, SheetName, PriceClass, Customer);
 				clickLineWiseDetailsSaveButton();
 				if (!SOType.equalsIgnoreCase("SO - FREE SAMPLE") && !SOType.equalsIgnoreCase("SO - FREE REPLACEMENT")
-						&& !SOType.equalsIgnoreCase("SO - DEMO / EXHN.")&& !Promotional.equalsIgnoreCase("Promotional")) {
+						&& !SOType.equalsIgnoreCase("SO - DEMO / EXHN.")
+						&& !Promotional.equalsIgnoreCase("Promotional")) {
 					enterDiscount(Trade_Disc, Spl_Disc, Cash_Disc, Customer, ITEM_ID, PriceClass, Filepath, SheetName,
-							i - 3);
+							i);
 					verifyExpectedLineItemCalculationWithDBValues(i, ITEM_ID, SheetName);
 				}
 			}
@@ -4358,8 +4370,7 @@ public class SalesOrderFunctions {
 				lineDetailVerification12(ITEM_ID, getTextCurrencyInHeaderAfterSaveTheLine(), QUANTITY, i, Trade_Disc,
 						Spl_Disc, Cash_Disc, SOType, Promotional, Filepath, SheetName, PriceClass, Customer);
 				clickLineWiseDetailsSaveButton();
-				enterDiscount(Trade_Disc, Spl_Disc, Cash_Disc, Customer, ITEM_ID, PriceClass, Filepath, SheetName,
-						i);
+				enterDiscount(Trade_Disc, Spl_Disc, Cash_Disc, Customer, ITEM_ID, PriceClass, Filepath, SheetName, i);
 				verifyExpectedLineItemCalculationWithDBValues(i, ITEM_ID, SheetName);
 			}
 		}
@@ -5237,8 +5248,8 @@ public class SalesOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean SOShipSet() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				System.getProperty("AdminUsername"));
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				System.getProperty("AdminUsername"));
 		commonFunc.navigateSalesOrderPage();
 		checkSOMControl(webDB.getDataFromProperties("So"));
 		verifyCreationOfSalesOrderHeader(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -5306,9 +5317,28 @@ public class SalesOrderFunctions {
 		flag = webDB.waitForElement(SalesOrderLocators.SOAmdLineDetails(i), ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(SalesOrderLocators.SOAmdLineDetails(i), ElementType.Xpath);
-			flag = webDB.waitForElement(SalesOrderLocators.SoAmdDetailsFrame, ElementType.Xpath);
+			flag = webDB.waitForElement(SalesOrderLocators.SOAmdDetailsButton, ElementType.Xpath);
 			if (flag) {
-				logs.logging("INFO", "Sales Order Amendment Line Wise Details Button Is Clicked Sucessfully");
+				webDB.clickAnElement(SalesOrderLocators.SOAmdDetailsButton, ElementType.Xpath);
+				flag = webDB.waitForElement(SalesOrderLocators.SoAmdDetailsFrame, ElementType.Xpath);
+				if (flag) {
+					webDB.switchToFrame(SalesOrderLocators.SoAmdDetailsFrame, ElementType.Xpath);
+						flag = webDB.waitForElement(SalesOrderLocators.SOAmdDiscountDetails, ElementType.Xpath);
+						logs.logging("INFO", "Sales Order Amendment Line Wise Details Button Is Clicked Sucessfully");
+						if (flag) {
+							webDB.clickAnElement(SalesOrderLocators.SOAmdDiscountDetails, ElementType.Xpath);
+							flag = webDB.waitForElement(SalesOrderLocators.SOAmdNewDiscDetailsButton,
+									ElementType.Xpath);
+							if (flag) {
+								webDB.clickAnElement(SalesOrderLocators.SOAmdNewDiscDetailsButton, ElementType.Xpath);
+								flag = webDB.waitForElement(SalesOrderLocators.SoAmdTradeDiscountPercentage,
+										ElementType.Xpath);
+								if (flag) {
+									logs.logging("INFO", "New Discount Amount (+) Button Is Clicked Successfully");
+								}
+							}
+						}
+				}
 			}
 		}
 		assertTrue(flag);
@@ -5320,10 +5350,10 @@ public class SalesOrderFunctions {
 	 * @author Harikrishna - RMITS
 	 */
 	public void clickSoAmdLineWiseDetails2() {
-		webDB.switchToFrame(SalesOrderLocators.SoAmdDetailsFrame, ElementType.Xpath);
-		flag = webDB.waitForElement(SalesOrderLocators.SoAmdLineDetails2, ElementType.Xpath);
+//		webDB.switchToFrame(SalesOrderLocators.SoAmdDetailsFrame, ElementType.Xpath);
+		flag = webDB.waitForElement(SalesOrderLocators.SOAmdSourceDetailsButton, ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(SalesOrderLocators.SoAmdLineDetails2, ElementType.Xpath);
+			webDB.clickAnElement(SalesOrderLocators.SOAmdSourceDetailsButton, ElementType.Xpath);
 			flag = webDB.waitForElement(SalesOrderLocators.SoAmdPriceClassLov, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Sales Order Amendment Line Wise Details 2 Button Is Clicked Sucessfully");
@@ -5352,7 +5382,7 @@ public class SalesOrderFunctions {
 	 * @param New_CD
 	 */
 	public void changeSoAmdDiscountDetails(String New_TD, String New_SD, String New_CD) {
-		webDB.switchToFrame(SalesOrderLocators.SoAmdDetailsFrame, ElementType.Xpath);
+//		webDB.switchToFrame(SalesOrderLocators.SoAmdDetailsFrame, ElementType.Xpath);
 		commonFunc.checkRefreshCellsDisappear();
 		enterSODiscountDetails(SalesOrderLocators.SoAmdTradeDiscountPercentage, New_TD);
 		logs.logging("INFO", "New Trade Discount Percentage " + New_TD + " is Entered Sucessfully");
@@ -7474,9 +7504,9 @@ public class SalesOrderFunctions {
 	public void enterDiscount(String TD, String SD, String CD, String Customer, String Item, String PriceClass,
 			String FilePath, String SheetName, int i) {
 		String PriceBasis = VariableHandler.getSOPriceBasis();
-		flag = webDB.waitForElement(SalesOrderLocators.DiscountTable(i-3), ElementType.Xpath);
+		flag = webDB.waitForElement(SalesOrderLocators.DiscountTable(i - 3), ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(SalesOrderLocators.DiscountTable(i-3), ElementType.Xpath);
+			webDB.clickAnElement(SalesOrderLocators.DiscountTable(i - 3), ElementType.Xpath);
 			webDB.waitForElement(SalesOrderLocators.SODiscountFrameName, ElementType.Xpath);
 			webDB.switchToFrame(SalesOrderLocators.SODiscountLineDetailsFrame, ElementType.Xpath);
 			if ((!"Open Order".equals(PriceBasis)) && (!"Price List".equals(PriceBasis))) {

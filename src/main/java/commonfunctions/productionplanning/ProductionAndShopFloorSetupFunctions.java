@@ -264,9 +264,10 @@ public class ProductionAndShopFloorSetupFunctions {
 								ElementType.Xpath);
 						logs.logging("INFO", "Get Process ID Is: " + GetProcID);
 						VariableHandler.setProcessIDAsso(GetProcID);
-						commonFunc.hardWait(1000);
+						commonFunc.hardWait(2500);
 						getProcessIDandWriteInExcelSheet(webDB.getDataFromProperties("OpenSCO"));
-						flag = webDB.waitForElement(ProductionAndShopFloorSetupLocator.Process_save_Toast_Msg,
+						commonFunc.hardWait(1000);
+						flag = webDB.waitForElement(ProductionAndShopFloorSetupLocator.ProcessAsso_Tab,
 								ElementType.Xpath);
 						if (flag) {
 							logs.logging("INFO", "Process created Successfully");
@@ -345,7 +346,7 @@ public class ProductionAndShopFloorSetupFunctions {
 						VariableHandler.setProcessIDAsso(GetProcID);
 						commonFunc.hardWait(1000);
 						getProcessIDForReverseandWriteInExcelSheet(webDB.getDataFromProperties("OpenSCORevise"));
-						flag = webDB.waitForElement(ProductionAndShopFloorSetupLocator.Process_save_Toast_Msg,
+						flag = webDB.waitForElement(ProductionAndShopFloorSetupLocator.ProcessAsso_Tab,
 								ElementType.Xpath);
 						if (flag) {
 							logs.logging("INFO", "Process created Successfully");
@@ -583,6 +584,7 @@ public class ProductionAndShopFloorSetupFunctions {
 	 * @author Vimal - RMITS
 	 */
 	public void ClickingProcessAssociatedTab() {
+		commonFunc.hardWait(2000);
 		flag = webDB.waitForElement(ProductionAndShopFloorSetupLocator.ProcessAsso_Tab, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(ProductionAndShopFloorSetupLocator.ProcessAsso_Tab, ElementType.Xpath);

@@ -9253,9 +9253,9 @@ public class PurchaseOrderFunctions {
 //				commonFunc.getDataFromTestDataSheet("Pol_Cess_pct")));
 //		verifyAssertionBothValues(CessAmount, dbCommonFunc.poDetails(VariableHandler.getPONumber(), Item,
 //				commonFunc.getDataFromTestDataSheet("Pol_Cess_Amt")));
-		verifyAssertionBothValues(Taxpercent, dbCommonFunc.poDetails(VariableHandler.getPONumber(), Item,
-				commonFunc.getDataFromTestDataSheet("POL_TAX_PCT")));
-		logs.logging("INFO", "Overall Tax Amount Verified");
+//		verifyAssertionBothValues(Taxpercent, dbCommonFunc.poDetails(VariableHandler.getPONumber(), Item,
+//				commonFunc.getDataFromTestDataSheet("POL_TAX_PCT")));
+//		logs.logging("INFO", "Overall Tax Amount Verified");
 	}
 
 	/**

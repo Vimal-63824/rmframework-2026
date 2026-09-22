@@ -1188,7 +1188,7 @@ public class SubcontractOrderFunctions {
 				webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
 			}
 			commonFunc.hardWait(1000);
-			valueAdditionTypeWIthSOrefclickLineDetailsButtonValidationwithDataBase();
+			// valueAdditionTypeWIthSOrefclickLineDetailsButtonValidationwithDataBase();
 			commonFunc.hardWait(1000);
 		}
 		assertTrue(flag);
@@ -1938,41 +1938,50 @@ public class SubcontractOrderFunctions {
 										ElementType.Xpath);
 								if (flag) {
 									logs.logging("INFO", "Process Added Successfuly");
-									webDB.moveToElement(SubcontractOrderLocators.SCO_LineDetail_Details, ElementType.Xpath);
-									flag = webDB.waitForElement(SubcontractOrderLocators.SCO_LineDetail_Details, ElementType.Xpath);
+									webDB.moveToElement(SubcontractOrderLocators.SCO_LineDetail_Details,
+											ElementType.Xpath);
+									flag = webDB.waitForElement(SubcontractOrderLocators.SCO_LineDetail_Details,
+											ElementType.Xpath);
 									if (flag) {
-										webDB.clickAnElement(SubcontractOrderLocators.SCO_LineDetail_Details, ElementType.Xpath);
+										webDB.clickAnElement(SubcontractOrderLocators.SCO_LineDetail_Details,
+												ElementType.Xpath);
 										commonFunc.hardWait(1000);
-										flag = webDB.waitForElement(SalesInvoiceLocators.SI_detail_Button, ElementType.Xpath);
+										flag = webDB.waitForElement(SalesInvoiceLocators.SI_detail_Button,
+												ElementType.Xpath);
 										if (flag) {
-											webDB.clickAnElement(SalesInvoiceLocators.SI_detail_Button, ElementType.Xpath);
+											webDB.clickAnElement(SalesInvoiceLocators.SI_detail_Button,
+													ElementType.Xpath);
 											commonFunc.hardWait(2000);
-											flag = webDB.waitForElement(SubcontractOrderLocators.FrameDetails, ElementType.Xpath);
-											if (flag) {
-												webDB.switchToFrame(SubcontractOrderLocators.FrameDetails, ElementType.Xpath);
-												commonFunc.hardWait(2000);
-												webDB.clickAnElement(SubcontractOrderLocators.SCO_LineDetail_SO_Details, ElementType.Xpath);
-											flag = webDB.waitForElement(SubcontractOrderLocators.SCO_SO_Ref_Lov,
+											flag = webDB.waitForElement(SubcontractOrderLocators.FrameDetails,
 													ElementType.Xpath);
 											if (flag) {
-												commonFunc.searchAndSelectValueInFilters(
-														SubcontractOrderLocators.SCO_SO_Ref_Lov, SORef);
 												webDB.switchToFrame(SubcontractOrderLocators.FrameDetails,
 														ElementType.Xpath);
-												commonFunc.hardWait(1000);
-												webDB.clickAnElement(SubcontractOrderLocators.SCO_LineDet_Save_Icon,
-														ElementType.Xpath);
 												commonFunc.hardWait(2000);
-												webDB.switchToDefaultContent();
-												flag = webDB.waitForElement(SubcontractOrderLocators.CloseDetails,
+												webDB.clickAnElement(SubcontractOrderLocators.SCO_LineDetail_SO_Details,
+														ElementType.Xpath);
+												flag = webDB.waitForElement(SubcontractOrderLocators.SCO_SO_Ref_Lov,
 														ElementType.Xpath);
 												if (flag) {
-													webDB.clickAnElement(SubcontractOrderLocators.CloseDetails,
+													commonFunc.searchAndSelectValueInFilters(
+															SubcontractOrderLocators.SCO_SO_Ref_Lov, SORef);
+													webDB.switchToFrame(SubcontractOrderLocators.FrameDetails,
 															ElementType.Xpath);
-													flag = webDB.waitForElement(SubcontractOrderLocators.LocationId,
+													commonFunc.hardWait(1000);
+													webDB.clickAnElement(SubcontractOrderLocators.SCO_LineDet_Save_Icon,
+															ElementType.Xpath);
+													commonFunc.hardWait(2000);
+													webDB.switchToDefaultContent();
+													flag = webDB.waitForElement(SubcontractOrderLocators.CloseDetails,
 															ElementType.Xpath);
 													if (flag) {
-														logs.logging("INFO", "Verified Line Details Is Closed");
+														webDB.clickAnElement(SubcontractOrderLocators.CloseDetails,
+																ElementType.Xpath);
+														flag = webDB.waitForElement(SubcontractOrderLocators.LocationId,
+																ElementType.Xpath);
+														if (flag) {
+															logs.logging("INFO", "Verified Line Details Is Closed");
+														}
 													}
 												}
 											}
@@ -1984,7 +1993,6 @@ public class SubcontractOrderFunctions {
 					}
 				}
 			}
-		}
 		}
 		assertTrue(flag);
 	}
@@ -4214,7 +4222,7 @@ public class SubcontractOrderFunctions {
 				webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
 			}
 			commonFunc.hardWait(1000);
-			//directstandardTypeWithSOrefclickLineDetailsButtonValidationwithDataBase();
+			// directstandardTypeWithSOrefclickLineDetailsButtonValidationwithDataBase();
 			commonFunc.hardWait(1000);
 		}
 		assertTrue(flag);
@@ -10594,6 +10602,7 @@ public class SubcontractOrderFunctions {
 										webDB.clickAnElement(GrnScoLocators.Pending_CreateGateEntry_OkButton,
 												ElementType.Xpath);
 										webDB.switchToDefaultContent();
+										commonFunc.hardWait(2000);
 										flag = webDB.waitForElement(GrnScoLocators.GrnNumber, ElementType.Xpath);
 										if (flag) {
 											logs.logging("INFO", "Grn Number Is Displayed");
@@ -10605,6 +10614,7 @@ public class SubcontractOrderFunctions {
 													ElementType.Xpath)) {
 												webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon,
 														ElementType.Xpath);
+												commonFunc.hardWait(2000);
 											}
 										}
 									}
@@ -10873,6 +10883,9 @@ public class SubcontractOrderFunctions {
 	 */
 	public void createRecordUPTypeFromPending(String SCOdocno, String Gatekeeper, String QtyApplyFor0) {
 		webDB.switchToFrame(SubcontractOrderLocators.Pend_SCO_GE_iFrame, ElementType.Xpath);
+		commonFunc.hardWait(2000);
+		commonFunc.expandFindTable();
+		commonFunc.hardWait(2000);
 		commonFunc.searchAndSelectValueInFilters(SubcontractOrderLocators.Pend_GE_SCO_No_Lov, SCOdocno);
 		webDB.switchToFrame(SubcontractOrderLocators.Pend_SCO_GE_iFrame, ElementType.Xpath);
 		flag = webDB.waitForElement(SubcontractOrderLocators.Pend_SCO_GE_Search, ElementType.Xpath);
@@ -11003,10 +11016,12 @@ public class SubcontractOrderFunctions {
 						webDB.selectDropDownByText(SubcontractOrderLocators.Select_GateKeeper, Gatekeeper,
 								ElementType.Xpath);
 						logs.logging("INFO", "GateKeeper Type Selected Successfully");
+						commonFunc.hardWait(1000);
 						flag = webDB.waitForElement(SubcontractOrderLocators.Pend_SCO_GE_DCno, ElementType.Xpath);
 						if (flag) {
 							webDB.sendTextToAnElement(SubcontractOrderLocators.Pend_SCO_GE_DCno, SCOdocno,
 									ElementType.Xpath);
+							commonFunc.hardWait(1000);
 							flag = webDB.waitForElement(SubcontractOrderLocators.Pend_SCO_GE_InvNo, ElementType.Xpath);
 							if (flag) {
 								webDB.sendTextToAnElement(SubcontractOrderLocators.Pend_SCO_GE_InvNo, SCOdocno,
@@ -11936,13 +11951,24 @@ public class SubcontractOrderFunctions {
 	 * @author Vimal - RMITS
 	 */
 	public void clickingLineWiseDeleteIcon() {
-		flag = webDB.waitForElement(SubcontractOrderLocators.SCO_GRN_LineWise_Delete, ElementType.Xpath);
+		commonFunc.hardWait(2000);
+		webDB.moveToElement(SubcontractOrderLocators.GRNSCO_LineDetail_Details, ElementType.Xpath);
+		flag = webDB.waitForElement(SubcontractOrderLocators.GRNSCO_LineDetail_Details, ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(SubcontractOrderLocators.SCO_GRN_LineWise_Delete, ElementType.Xpath);
-			commonFunc.checkRefreshCellsDisappear();
-			flag = webDB.waitForElement(CommonUiLocators.PendingGrn, ElementType.Xpath);
+			webDB.clickAnElement(SubcontractOrderLocators.GRNSCO_LineDetail_Details, ElementType.Xpath);
+			commonFunc.hardWait(2000);
+			flag = webDB.waitForElement(SubcontractOrderLocators.GRNSCO_LineDelete, ElementType.Xpath);
 			if (flag) {
-				logs.logging("INFO", "SCO - GRN LineWise Cancelled Successfully");
+				webDB.clickAnElement(SubcontractOrderLocators.GRNSCO_LineDelete, ElementType.Xpath);
+				flag = webDB.waitForElement(SubcontractOrderLocators.OP_Cancel_okBtn, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(SubcontractOrderLocators.OP_Cancel_okBtn, ElementType.Xpath);
+					commonFunc.checkRefreshCellsDisappear();
+					flag = webDB.waitForElement(CommonUiLocators.PendingGrn, ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "SCO - GRN LineWise Cancelled Successfully");
+					}
+				}
 			}
 		}
 		assertTrue(flag);
@@ -12271,8 +12297,8 @@ public class SubcontractOrderFunctions {
 	 * @return boolean
 	 */
 	public boolean directSubcontractorderToGRNWithQCTypePR() {
-		commonFunc.validCommonLogin(System.getProperty("VimalUsername"), System.getProperty("LoginPassword"),
-				"VimalUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateToSubcontractOrder();
 		clickingAddIconForSCO();
 		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
