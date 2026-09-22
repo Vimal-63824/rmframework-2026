@@ -553,7 +553,7 @@ public class PurchaseOrderPageLocators {
 	/** @locatorType Xpath */
 	public static final String DocAprovalIfrmae = "//iframe[@title='Workflow Approval']";
 	/** @locatorType Xpath */
-	public static final String GE_SelectAllCheckBox = "//table[@id='15090836212521926977_orig']/tbody/tr/td/input[@type='checkbox']";
+	public static final String GE_SelectAllCheckBox = "//input[@id='check_allge']";
 	/** @locatorType Xpath */
 	public static final String ForwardEmployeefield = "//input[@data-testid='P236131090_FWD_PERSON']";
 	/** @locatorType Xpath */

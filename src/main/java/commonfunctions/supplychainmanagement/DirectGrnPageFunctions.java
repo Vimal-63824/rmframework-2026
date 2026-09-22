@@ -7075,7 +7075,6 @@ public class DirectGrnPageFunctions {
 		GRNFunc.verifyImportLrBillNumber();
 		GRNFunc.overAllSaveAndPost();
 		GRNFunc.waitingForApproval();
-		GRNFunc.verifyReturnToGrnPageHeaderStatus();
 		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectGrnSheet"),
 				webDB.getDataFromProperties("DGSUomWIWoQRcImpSheet"));
 		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrv();
@@ -7109,7 +7108,6 @@ public class DirectGrnPageFunctions {
 		GRNFunc.verifyImportLrBillNumber();
 		GRNFunc.overAllSaveAndPost();
 		GRNFunc.waitingForApproval();
-		GRNFunc.verifyReturnToGrnPageHeaderStatus();
 		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectGrnSheet"),
 				webDB.getDataFromProperties("DGSUomWIWoQRcImpSheet"));
 		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrv();

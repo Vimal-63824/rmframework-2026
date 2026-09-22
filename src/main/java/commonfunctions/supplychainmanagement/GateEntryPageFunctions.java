@@ -1545,6 +1545,7 @@ public class GateEntryPageFunctions {
 			webDB.clickAnElement(GateEntryPageLocators.PendingStockTransfer, ElementType.Xpath);
 			logs.logging("INFO", "PendingPOButtonLov Shown");
 			webDB.switchToFrame(GateEntryPageLocators.IframePendingST, ElementType.Xpath);
+			commonFunc.expandFindTable();
 			flag = webDB.waitForElement(GateEntryPageLocators.InvoiceNumberLovBtn, ElementType.Xpath);
 			if (flag) {
 				commonFunc.searchAndSelectValueInFilters(GateEntryPageLocators.InvoiceNumberLovBtn,
