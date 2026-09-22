@@ -829,6 +829,7 @@ public class MaterialRequestFunctions {
 		if (flag) {
 			webDB.selectDropDownByText(MaterialRequestLocators.FindStatusSelectField,
 					commonFunc.getDataFromTestDataSheet("Draft"), ElementType.Xpath);
+			webDB.clickAnElement(MaterialRequestLocators.FindSearchLinesRadioBtn, ElementType.Xpath);
 			flag = webDB.waitForElement(MaterialRequestLocators.FindSearchBtn, ElementType.Xpath);
 			if (flag) {
 				webDB.clickAnElement(MaterialRequestLocators.FindSearchBtn, ElementType.Xpath);
@@ -854,9 +855,6 @@ public class MaterialRequestFunctions {
 									commonFunc.getDataFromTestDataSheet("Unit_100"),
 									System.getProperty("HariUsername"));
 						}
-//						commonFunc.navigateToInventoryMaterialRequest();
-//						checkStatusOfMRNo(VariableHandler.getMaterialRequestNo(),
-//								commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 					}
 				}
 			}

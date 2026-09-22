@@ -45,6 +45,8 @@ public class CommonUiLocators {
 	/** @locatorType Xpath */
 	public static final String searchBarResults = "//div[@role='dialog' and not(contains(@style,'display: none'))]//div[contains(@class,'PopupLOV-results')]//*[(self::tbody or self::li)]/..";
 	/** @locatorType Xpath */
+	public static final String searchBarHeader = "//div[@role='dialog' and not(contains(@style,'display: none'))]//*[contains(@class,'dialog-titlebar') and not(contains(@title,'Close'))]";
+	/** @locatorType Xpath */
 	public static final String FailedNotifyMessage = "//div[contains(@class,'Notification--error')]";
 	/** @locatorType Xpath */
 	public static final String ToastCloseIcon = "//div[contains(@class,'Alert')]//button[@title='Close']";

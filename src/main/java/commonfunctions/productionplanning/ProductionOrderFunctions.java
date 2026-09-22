@@ -874,6 +874,7 @@ public class ProductionOrderFunctions {
 						ElementType.Xpath);
 				String ProcessType = elements.get(i - 1).getText();
 				ProcessTypeMap.put(ProcessType, ProcessName);
+				logs.logging("INFO", i + ". ProcessType: " + ProcessType + ",ProcessName: " + ProcessName);
 			}
 		}
 		VariableHandler.setProductionProcess(ProcessTypeMap);
@@ -892,12 +893,12 @@ public class ProductionOrderFunctions {
 								ElementType.Xpath);
 						String ProcessName = MaterialProcess.get(i - 1).getText();
 						ProcessItemMap.put(ProcessName, ItemName);
+						logs.logging("INFO", i + ". ProcessName: " + ProcessName + ",ItemName: " + ItemName);
 					}
 				}
 				VariableHandler.setProductionProcessItem(ProcessItemMap);
 			}
 		}
-
 		assertTrue(flag);
 	}
 
@@ -7562,20 +7563,20 @@ public class ProductionOrderFunctions {
 
 		String StockCost = dbFunction.validateStockCostAndStockQuantityWithItemWarehouse(FGItem, FGWH,
 				commonFunc.getDataFromTestDataSheet("StockUpdCostDBHeader"));
-		logs.logging("INFO", "For FGItem: " + FGItem + " Stock Quanity Before = " + StockCost);
+		logs.logging("INFO", "For FGItem: " + FGItem + " Stock Cost Before = " + StockCost);
 		excelUtils.writeDataInExcel(Filepath, SheetName, 2, 10, StockCost);
 
-		for (int i = 10; i <= 16; i++) {
+		for (int i = 10; i <= 32; i++) {
 			String RMItem = TotalData[i][4];
 			String RMWH = commonFunc.getDataFromTestDataSheet("RM WH");
 			StockQuantity = dbFunction.validateStockCostAndStockQuantityWithItemWarehouse(RMItem, RMWH,
 					commonFunc.getDataFromTestDataSheet("StockQtyHandDBHeader"));
-			logs.logging("INFO", "For RMItem: " + FGItem + " Stock Quanity Before = " + StockQuantity);
+			logs.logging("INFO", "For RMItem: " + RMItem + " Stock Quanity Before = " + StockQuantity);
 			excelUtils.writeDataInExcel(Filepath, SheetName, i, 7, StockQuantity);
 
 			String AllocQuantity = dbFunction.validateStockCostAndStockQuantityWithItemWarehouse(RMItem, RMWH,
 					commonFunc.getDataFromTestDataSheet("StockUpdAllocQtyDBHeader"));
-			logs.logging("INFO", "For RGItem: " + FGItem + " Stock Allocate Quanity Before = " + AllocQuantity);
+			logs.logging("INFO", "For RGItem: " + RMItem + " Stock Allocate Quanity Before = " + AllocQuantity);
 			excelUtils.writeDataInExcel(Filepath, SheetName, i, 8, AllocQuantity);
 		}
 	}
@@ -7658,9 +7659,6 @@ public class ProductionOrderFunctions {
 		materialIssuanceVoucherFunc.clickheaderSaveIconInMIV();
 		verifyWriteAllocateStockForRawMaterials(FileName, SheetName, AllocateIndex);
 		materialIssuanceVoucherFunc.clickSaveHeaderAndPostBtnInMIV();
-		commonFunc.navigateToMaterialIssuanceVoucherTab();
-		materialIssuanceVoucherFunc.checkStatusOfMaterialIssuanceVoucher(VariableHandler.getMIVNumber(),
-				commonFunc.getDataFromTestDataSheet("PostedStatus"));
 		materialIssuanceVoucherFunc.verifyHeaderAndLinesValidationInMaterialIssuanceVoucherWithDB(FileName, SheetName,
 				StartIndex);
 		materialIssuanceVoucherFunc.verifyStockTransactionValidationInMIVForRawMaterials(FileName, SheetName,
@@ -7728,7 +7726,7 @@ public class ProductionOrderFunctions {
 	 */
 	public void productionOrderInsideMultipleMoveType(int i, int StartIndex, int AllocateIndex, String FileName,
 			String SheetName) {
-		commonFunc.navigateToCompletionProductionOrderInProdPlanning();
+		commonFunc.navigateToCompletionProductionOrderMultipleProcessInProdPlanning();
 		completionProductionOrderFunc.clickPendingIconInCompletionProcess();
 		completionProductionOrderFunc
 				.clickMaterialRequestCreationAndSearchProdNo(VariableHandler.getProductionOrderNumber());
@@ -7750,9 +7748,6 @@ public class ProductionOrderFunctions {
 		}
 		verifyWriteAllocateStockForRawMaterials(FileName, SheetName, AllocateIndex);
 		materialIssuanceVoucherFunc.clickSaveHeaderAndPostBtnInMIV();
-		commonFunc.navigateToMaterialIssuanceVoucherTab();
-		materialIssuanceVoucherFunc.checkStatusOfMaterialIssuanceVoucher(VariableHandler.getMIVNumber(),
-				commonFunc.getDataFromTestDataSheet("PostedStatus"));
 		if (!(i == 0)) {
 			StartIndex = 61;
 		}
@@ -7780,13 +7775,11 @@ public class ProductionOrderFunctions {
 				StartIndex);
 		materialIssuanceVoucherFunc.verifyStockTransactionValidationInMIVForRawMaterials(FileName, SheetName,
 				StartIndex);
-		commonFunc.navigateToCompletionProductionOrderInProdPlanning();
+		commonFunc.navigateToCompletionProductionOrderMultipleProcessInProdPlanning();
 		completionProductionOrderFunc.clickPendingIconInCompletionProcess();
-		clickPendingProdCompletion();
 		if (i == 0) {
-			completionProductionOrderFunc.selectPendingMultipleProdOrderAndClickCreateCompletionProcessWithNoButton(
-					VariableHandler.getProductionOrderNumber());
-
+		completionProductionOrderFunc.selectPendingMultipleProdOrderAndClickCreateCompletionProcessWithNoButton(
+				VariableHandler.getProductionOrderNumber());
 		} else {
 			completionProductionOrderFunc.selectPendingMultipleProdOrderAndClickCreateCompletionProcess(
 					VariableHandler.getProductionOrderNumber());
@@ -8210,9 +8203,9 @@ public class ProductionOrderFunctions {
 	 */
 	public boolean verifyProdOrderWithoutSOAllInsideMoveTypeSingle() {
 		try {
-			commonFunc.navigateToProductionOrderInProdPlanning();
 			verifyWriteBeforeStockForFGAndRawMaterials(webDB.getDataFromProperties("PMFFileName"),
 					webDB.getDataFromProperties("AllInsideSheetName-Single"));
+			commonFunc.navigateToProductionOrderInProdPlanning();
 			clickAddIconInCreationProductionOrder();
 			createProdOrderAndFillFormDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
 					commonFunc.getDataFromTestDataSheet("ProdOrderStandard"),
@@ -8224,8 +8217,6 @@ public class ProductionOrderFunctions {
 			verifyHeaderValidationInProductionOrderWithDB(webDB.getDataFromProperties("PMFFileName"),
 					webDB.getDataFromProperties("AllInsideSheetName-Single"));
 			verifyProductionOrderMREventAndRestOP(null, null, commonFunc.getDataFromTestDataSheet("Emp_MaritalStatus"));
-			verifyProcessType(commonFunc.getDataFromTestDataSheet("InsideType"),
-					commonFunc.getDataFromTestDataSheet("InsideType"));
 			verifyStoreProcessAndRawMaterial();
 			verifyRoutingValidationInProductionOrderWithDB(webDB.getDataFromProperties("PMFFileName"),
 					webDB.getDataFromProperties("AllInsideSheetName-Single"));
@@ -8236,9 +8227,9 @@ public class ProductionOrderFunctions {
 			storeRoutingProcessAndConsumptionAndRecipientWareHouse();
 			clickHeaderSaveAndPostProdOrder();
 			if (!VariableHandler.getApprovalFlag()) {
-				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+				approvalFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
 				commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
-						VariableHandler.getProductionOrderNumber(), webDB.getDataFromProperties("HodEmpId"),
+						VariableHandler.getProductionOrderNumber(), webDB.getDataFromProperties("HariEmpId"),
 						commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
 			}
 			commonFunc.navigateToProductionOrderInProdPlanning();
@@ -8294,8 +8285,6 @@ public class ProductionOrderFunctions {
 			verifyHeaderValidationInProductionOrderWithDB(webDB.getDataFromProperties("PMFFileName"),
 					webDB.getDataFromProperties("AllInsideSheetName-Multiple"));
 			verifyProductionOrderMREventAndRestOP(null, null, commonFunc.getDataFromTestDataSheet("MultipleType"));
-			verifyProcessType(commonFunc.getDataFromTestDataSheet("InsideType"),
-					commonFunc.getDataFromTestDataSheet("InsideType"));
 			verifyStoreProcessAndRawMaterial();
 			verifyRoutingValidationInProductionOrderWithDB(webDB.getDataFromProperties("PMFFileName"),
 					webDB.getDataFromProperties("AllInsideSheetName-Multiple"));

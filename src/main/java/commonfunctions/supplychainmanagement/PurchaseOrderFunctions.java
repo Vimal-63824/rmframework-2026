@@ -5111,6 +5111,7 @@ public class PurchaseOrderFunctions {
 	 */
 	public void verifyEnterAmountForDiscountCalculation(String TradePercentage, String SpecialPercent,
 			String CashDisPercent) {
+		commonFunc.checkRefreshCellsDisappear();
 		webDB.waitForElement(PurchaseOrderPageLocators.LineDetailsIframePO, ElementType.Xpath);
 		webDB.switchToFrame(PurchaseOrderPageLocators.LineDetailsIframePO, ElementType.Xpath);
 		verifyDiscountTabOpening();
@@ -6123,17 +6124,29 @@ public class PurchaseOrderFunctions {
 	public void verifyAddServiceItem() {
 		flag = webDB.waitForElement(PurchaseOrderPageLocators.ExpandServiceButton, ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(PurchaseOrderPageLocators.ExpandServiceButton, ElementType.Xpath);
+			webDB.moveToElement(PurchaseOrderPageLocators.ExpandServiceButton, ElementType.Xpath);
+			String value = webDB.getDomAttributeFromElement(PurchaseOrderPageLocators.ExpandServiceButton,
+					ElementType.Xpath, "aria-expanded");
+			if (value.equalsIgnoreCase("false")) {
+				webDB.javaScriptClickAnElement(PurchaseOrderPageLocators.ExpandServiceButton, ElementType.Xpath);
+				logs.logging("INFO", "Service / Maintenance Expandable Button is clicked");
+			}
 			flag = webDB.waitForElement(PurchaseOrderPageLocators.ServiceType, ElementType.Xpath);
 			if (flag) {
-				webDB.selectDropDownByText(PurchaseOrderPageLocators.ServiceType,
-						commonFunc.getDataFromTestDataSheet("InsideType"), ElementType.Xpath);
+				Select select = new Select(
+						WebDriverBase.getDriver().findElement(By.xpath(PurchaseOrderPageLocators.ServiceType)));
+				String selectedText = select.getFirstSelectedOption().getText();
+				System.out.println("Selected Text: " + selectedText);
+				if (!selectedText.equals(commonFunc.getDataFromTestDataSheet("InsideType"))) {
+					commonFunc.searchAndSelectValueInFilters(PurchaseOrderPageLocators.ServiceItemButton,
+							commonFunc.getDataFromTestDataSheet("Equip1000"));
+					switchToLineDetailFrame();
+				}
 			}
 			flag = webDB.waitForElement(PurchaseOrderPageLocators.TickButtonLineOne, ElementType.Xpath);
 			if (flag) {
 				webDB.clickAnElement(PurchaseOrderPageLocators.TickButtonLineOne, ElementType.Xpath);
 				commonFunc.checkRefreshCellsDisappear();
-
 			}
 			webDB.switchToDefaultContent();
 			try {
@@ -14055,16 +14068,18 @@ public class PurchaseOrderFunctions {
 								commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.CashDiscountPercentage,
 										PurchaseOrderPageLocators.CashDiscountPercentage, CashDiscount);
 								commonFunc.checkRefreshCellsDisappear();
+								commonFunc.checkRefreshCellsDisappear();
 								logs.logging("INFO", "Cash Discount Entered: " + CashDiscount);
-								flag = webDB.waitForElement(PurchaseOrderPageLocators.LineDeatilsSave,
-										ElementType.Xpath);
-								if (flag) {
-									webDB.clickAnElement(PurchaseOrderPageLocators.LineDeatilsSave, ElementType.Xpath);
-									webDB.switchToDefaultContent();
-									commonFunc.checkRefreshCellsDisappear();
-									commonFunc.checkRefreshCellsDisappear();
-									verifyDiscountAmountForPo(i1, SheetName, FileName);
+								if (Type.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("ServiceType"))) {
+									verifyAddServiceItem();
 								}
+								if (webDB.verifyIsElementDisplayed(PurchaseOrderPageLocators.LineDeatilsSave,
+										ElementType.Xpath)) {
+									webDB.clickAnElement(PurchaseOrderPageLocators.LineDeatilsSave, ElementType.Xpath);
+								}
+								webDB.switchToDefaultContent();
+								commonFunc.checkRefreshCellsDisappear();
+								verifyDiscountAmountForPo(i1, SheetName, FileName);
 							}
 						}
 					}
@@ -14727,7 +14742,20 @@ public class PurchaseOrderFunctions {
 						webDB.pressEscapeKey();
 						verifyTickIconcreateItem();
 						verifyLineAmountValidationAndPom(item, LineAmount);
-						navigateToLineDetailPage(item);
+						commonFunc.checkRefreshCellsDisappear();
+						String Type = webDB.getTextFromElement(PurchaseOrderPageLocators.POType, ElementType.Xpath);
+						logs.logging("INFO", "PO Type is: " + Type);
+						clickThreeDotsNavigateToLineDetails(i - 2);
+						commonFunc.checkRefreshCellsDisappear();
+						if (Type.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("ServiceType"))) {
+							webDB.waitForElement(PurchaseOrderPageLocators.LineDetailsIframePO, ElementType.Xpath);
+							webDB.switchToFrame(PurchaseOrderPageLocators.LineDetailsIframePO, ElementType.Xpath);
+							verifyAddServiceItem();
+							commonFunc.checkRefreshCellsDisappear();
+							clickThreeDotsNavigateToLineDetails(i - 2);
+						}
+						webDB.switchToDefaultContent();
+						commonFunc.checkRefreshCellsDisappear();
 						verifyEnterAmountForDiscountCalculation(TradePercentage, SplDiscPercentage, CashDiscPercentage);
 						verifyNavigateLineDetailTwo();
 						if (commonFunc.getDataFromTestDataSheet("PR_Service").equalsIgnoreCase(PRType)) {

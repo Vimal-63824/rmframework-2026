@@ -619,10 +619,8 @@ public class PurchaseOrderPageLocators {
 	/** @locatorType Xpath */
 	public static final String PoDetails = "//a[@data-action='LN_DTLS']";
 	/** @locatorType Xpath */
-	public static final String ExpandDiscountField = "//button[@aria-controls='a_Collapsible2_R1534433044390492718_content']";
+	public static final String DiscountExpand = "(//div[@data-testid='Discount Details']//button)[1]";
 	/** @locatorType Xpath */
-	public static final String DiscountExpand = "//div[@data-testid='Discount Details']//button";
-	/** @locatorType Xpath */
-	public static final String ExpandServiceButton = "//h2[text()='Service / Maintenance']/../..//button";
+	public static final String ExpandServiceButton = "(//div[@aria-label='Service / Maintenance']//button)[1]";
 
 }

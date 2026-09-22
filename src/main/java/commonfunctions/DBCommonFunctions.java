@@ -20,10 +20,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
 
-import commonlocators.CommonUiLocators;
 import utils.ExcelUtils;
 import utils.WebDriverBase;
-import utils.WebDriverBase.ElementType;
 
 public class DBCommonFunctions {
 	ExcelUtils excelUtils = new ExcelUtils();
