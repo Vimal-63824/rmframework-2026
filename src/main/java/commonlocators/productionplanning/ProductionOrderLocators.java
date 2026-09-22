@@ -148,13 +148,13 @@ public class ProductionOrderLocators {
 	/** @locatorType XPATH */
 	public static final String SoDesc = "//input[@data-testid='SoDesc']/following-sibling::button";
 	/** @locatorType XPATH */
-	public static final String ShowMore = "//button[@title='Show More']";
+	public static final String ShowMore = "//span[text()='Show More']/..";
 	/** @locatorType XPATH */
 	public static final String FirstOprSelect = "//select[@data-testid='FirstOprMREventSelect']";
 	/** @locatorType XPATH */
 	public static final String RestOprSelect = "//select[@data-testid='RestOprMREventSelect']";
 	/** @locatorType XPATH */
-	public static final String ShowLess = "//button[@title='Show Less']";
+	public static final String ShowLess = "//span[text()='Show Less']/..";
 	/** @locatorType XPATH */
 	public static final String AddedRoutingTable = "(//div[@aria-label='Routing']//table[@data-testid='ROUTING_Result_Data'])[2]";
 
@@ -190,7 +190,7 @@ public class ProductionOrderLocators {
 
 	/** @locatorType XPATH */
 	public static final String ProcessType(int i) {
-		return "//div[@id='ROUTING_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[" + i + "]/td[5]";
+		return "//div[@id='ROUTING_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[" + i + "]/td[6]";
 	}
 
 	/** @locatorType XPATH */
@@ -200,7 +200,7 @@ public class ProductionOrderLocators {
 
 	/** @locatorType XPATH */
 	public static final String ProcessName(int i) {
-		return "//div[@id='ROUTING_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[" + i + "]/td[4]";
+		return "//div[@id='ROUTING_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[" + i + "]/td[5]";
 	}
 
 	/** @locatorType XPATH */
@@ -218,7 +218,7 @@ public class ProductionOrderLocators {
 
 	/** @locatorType XPATH */
 	public static final String ItemName(int i) {
-		return "//div[@id='material_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[" + i + "]/td[5]";
+		return "//div[@id='material_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[" + i + "]/td[6]";
 	}
 
 	/** @locatorType XPATH */

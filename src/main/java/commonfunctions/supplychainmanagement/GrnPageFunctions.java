@@ -1070,8 +1070,8 @@ public class GrnPageFunctions {
 				webDB.clickAnElement(SalesInvoiceLocators.Cre_Inv_No, ElementType.Xpath);
 				commonFunc.checkRefreshCellsDisappear();
 				commonFunc.hardWait(1000);
-				String SalesInvoiceNumber = webDB
-						.getTextFromElement(SalesInvoiceLocators.SalesInvoiceNumberTextField, ElementType.Xpath);
+				String SalesInvoiceNumber = webDB.getTextFromElement(SalesInvoiceLocators.SalesInvoiceNumberTextField,
+						ElementType.Xpath);
 				VariableHandler.setSalesInvoiceNumber(SalesInvoiceNumber);
 				logs.logging("INFO", "Sales Invoice Number:" + VariableHandler.getSalesInvoiceNumber());
 //			flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
@@ -4964,6 +4964,10 @@ public class GrnPageFunctions {
 			String ItemId = PRMultipleline[i][1];
 			if (!ItemId.equals("")) {
 				System.out.println("tradevalueup");
+				System.out.println("VariableHandler.getPONumber()" + VariableHandler.getPONumber());
+				System.out.println("Item " + ItemId);
+				System.out.println("VariableHandler.getGRNDOCNO " + VariableHandler.getGrnDocNumber());
+				System.out.println("Item Id " + ItemId);
 				verifyAssertionBothValues(
 						dbCommonFunctions.poDetails(VariableHandler.getPONumber(), ItemId,
 								commonFunc.getDataFromTestDataSheet("TradeAssessableValue")),
@@ -6355,7 +6359,7 @@ public class GrnPageFunctions {
 				webDB.getDataFromProperties("PoToMrvSheet2"));
 		lotSerialQtyApportion();
 		overAllSaveAndPost(webDB.getDataFromProperties("PoToMRVWFSUomSheet"),
-				webDB.getDataFromProperties("PoToMrvSheet3"));
+				webDB.getDataFromProperties("PoToMrvSheet2"));
 		waitingForApproval();
 		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("PoToMRVWFSUomSheet"),
 				webDB.getDataFromProperties("PoToMrvSheet2"));
@@ -6942,6 +6946,7 @@ public class GrnPageFunctions {
 					.findElements(By.xpath(PurchaseOrderPageLocators.GE_SelectAllCheckBox));
 			for (WebElement element : CheckBox) {
 				try {
+					new Actions(webDB.getDriver()).moveToElement(element);
 					if (element.isDisplayed()) {
 						new Actions(webDB.getDriver()).moveToElement(element);
 						if (!element.isSelected()) {
