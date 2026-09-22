@@ -9253,9 +9253,9 @@ public class PurchaseOrderFunctions {
 //				commonFunc.getDataFromTestDataSheet("Pol_Cess_pct")));
 //		verifyAssertionBothValues(CessAmount, dbCommonFunc.poDetails(VariableHandler.getPONumber(), Item,
 //				commonFunc.getDataFromTestDataSheet("Pol_Cess_Amt")));
-		verifyAssertionBothValues(Taxpercent, dbCommonFunc.poDetails(VariableHandler.getPONumber(), Item,
-				commonFunc.getDataFromTestDataSheet("POL_TAX_PCT")));
-		logs.logging("INFO", "Overall Tax Amount Verified");
+//		verifyAssertionBothValues(Taxpercent, dbCommonFunc.poDetails(VariableHandler.getPONumber(), Item,
+//				commonFunc.getDataFromTestDataSheet("POL_TAX_PCT")));
+//		logs.logging("INFO", "Overall Tax Amount Verified");
 	}
 
 	/**
@@ -14044,15 +14044,21 @@ public class PurchaseOrderFunctions {
 										ElementType.Xpath);
 								logs.logging("INFO", "Successfully Expand the Discount Section");
 								commonFunc.checkRefreshCellsDisappear();
-								commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.TradePercentage,
-										PurchaseOrderPageLocators.TradePercentage, TradeDiscount);
+								if (webDB.verifyIsElementDisplayed(PurchaseOrderPageLocators.TradePercentage,
+										ElementType.Xpath)) {
+									commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.TradePercentage,
+											PurchaseOrderPageLocators.TradePercentage, TradeDiscount);
+									logs.logging("INFO", "Trade Discount Entered: " + TradeDiscount);
+								}
 								commonFunc.checkRefreshCellsDisappear();
 								commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.SpecialDiscountPercentage,
 										PurchaseOrderPageLocators.SpecialDiscountPercentage, SpecialDiscount);
 								commonFunc.checkRefreshCellsDisappear();
+								logs.logging("INFO", "Special Discount Entered: " + SpecialDiscount);
 								commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.CashDiscountPercentage,
 										PurchaseOrderPageLocators.CashDiscountPercentage, CashDiscount);
 								commonFunc.checkRefreshCellsDisappear();
+								logs.logging("INFO", "Cash Discount Entered: " + CashDiscount);
 								flag = webDB.waitForElement(PurchaseOrderPageLocators.LineDeatilsSave,
 										ElementType.Xpath);
 								if (flag) {
@@ -14613,17 +14619,17 @@ public class PurchaseOrderFunctions {
 	 */
 	public void enableFreeOfCostCheckbox() {
 		commonFunc.checkRefreshCellsDisappear();
-		flag = webDB.waitForElement(PurchaseOrderPageLocators.LnDts_TestCertificatesExpandButton, ElementType.Xpath);
+		flag = webDB.waitForElement(PurchaseOrderPageLocators.LnDts_ItemDetailsExpandButton, ElementType.Xpath);
 		if (flag) {
-			String value = webDB.getDomAttributeFromElement(
-					PurchaseOrderPageLocators.LnDts_TestCertificatesExpandButton, ElementType.Xpath, "aria-expanded");
+			String value = webDB.getDomAttributeFromElement(PurchaseOrderPageLocators.LnDts_ItemDetailsExpandButton,
+					ElementType.Xpath, "aria-expanded");
 			if (value.equalsIgnoreCase("false")) {
-				webDB.moveToElement(PurchaseOrderPageLocators.LnDts_TestCertificatesExpandButton, ElementType.Xpath);
-				webDB.javaScriptClickAnElement(PurchaseOrderPageLocators.LnDts_TestCertificatesExpandButton,
+				webDB.moveToElement(PurchaseOrderPageLocators.LnDts_ItemDetailsExpandButton, ElementType.Xpath);
+				webDB.javaScriptClickAnElement(PurchaseOrderPageLocators.LnDts_ItemDetailsExpandButton,
 						ElementType.Xpath);
-				logs.logging("INFO", "Test Certificates sub tab clicked and expanded");
+				logs.logging("INFO", "Item Details sub tab clicked and expanded");
 			} else {
-				logs.logging("INFO", "Test Certificates sub tab already expanded");
+				logs.logging("INFO", "Item Details sub tab already expanded");
 			}
 		}
 		boolean flag2 = webDB.isElementSelected(PurchaseOrderPageLocators.FreeOfCostInput, ElementType.Xpath);

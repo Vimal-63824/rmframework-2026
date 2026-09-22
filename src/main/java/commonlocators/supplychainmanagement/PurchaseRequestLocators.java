@@ -7,7 +7,6 @@ import commonfunctions.CommonFunctions;
  * @company Galaxy Weblinks Feburary 12, 2025
  */
 public class PurchaseRequestLocators {
-	public static CommonFunctions commonFunc = new CommonFunctions();
 	/** @locatorType Xpath */
 	public static final String PurchaseIDHeader = "//span[@data-testid='PR_DOC_NO_TEXT']";
 	/** @locatorType Xpath */
@@ -298,12 +297,12 @@ public class PurchaseRequestLocators {
 	/** @Locator XPATH */
 	public static final String PRAmendFrame = "//iframe[contains(@title,'Create')]";
 	/** @Locator XPATH */
-	public static final String ItemDetailsButton = "//h2[text()='Item Details']/../..//button";
+	public static final String ItemDetailsButton = "//div[@aria-label='Item Details']//button";
 
 	/** @Locator XPATH */
 	public static String PurchaseNo(String HeaderValue) {
 		String Locator = "(//table[@data-testid='HD_Result_Data'])[2]";
-		return commonFunc.checkAndReturnIndexForLocatorWithHeaderValue(Locator, HeaderValue);
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(Locator, HeaderValue);
 	}
 
 	/** @locatorType Xpath */

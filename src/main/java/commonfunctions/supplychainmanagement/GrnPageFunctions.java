@@ -10614,6 +10614,20 @@ public class GrnPageFunctions {
 			flag = webDB.waitForClickElement(CommonUiLocators.ToastMessagePopup, ElementType.Xpath);
 		}
 	}
+	
+	/**
+	 * This Methods Is Used for Change Lot
+	 * 
+	 * @author Kowshikan-Rmits
+	 */
+	public void ChangeLotSerialReciptQty(String Qty) {
+		webDB.moveToElement(GrnLocators.LotSerialAcceptQtyTable, ElementType.Xpath);
+		commonFunc.verifyAddTableSpecs(GrnLocators.LotSerialAcceptQtyTable, GrnLocators.AcceptInput, Qty);
+		if(flag) {
+			webDB.clickAnElement(GrnLocators.LineSaveButton, ElementType.Xpath);
+			flag = webDB.waitForClickElement(CommonUiLocators.ToastMessagePopup, ElementType.Xpath);
+		}
+	}
 
 	/**
 	 * This Methods PO to GRN-General-User Defined-Same Stock and Supplier UOM
