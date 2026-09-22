@@ -643,10 +643,17 @@ public class SubcontractSetUpFunctions {
 				flag = webDB.waitForElement(SubcontractOrderLocators.OP_Cancel_Btn, ElementType.Xpath);
 				if (flag) {
 					webDB.clickAnElement(SubcontractOrderLocators.OP_Cancel_Btn, ElementType.Xpath);
-					flag = webDB.waitForElement(SubcontractOrderLocators.Open_SCO_Find_AddIcon, ElementType.Xpath);
+					commonFunc.hardWait(1000);
+					flag = webDB.waitForElement(SubcontractOrderLocators.OP_Cancel_okBtn, ElementType.Xpath);
 					if (flag) {
-						logs.logging("INFO", "Document Cancelled Sucessfully");
+						webDB.clickAnElement(SubcontractOrderLocators.OP_Cancel_okBtn, ElementType.Xpath);
+						commonFunc.checkRefreshCellsDisappear();
+						commonFunc.hardWait(1000);
+						flag = webDB.waitForElement(SubcontractOrderLocators.Open_SCO_Find_AddIcon, ElementType.Xpath);
+						if (flag) {
+							logs.logging("INFO", "Document Cancelled Sucessfully");
 
+						}
 					}
 				}
 			}

@@ -3087,6 +3087,9 @@ public class SalesInvoiceFunctions {
 	 */
 	public void verifySIPendingSOSaleorderNo(String SI_Pend_Domestic_SO_No) {
 		webDB.switchToFrame(SalesInvoiceLocators.SI_Pend_Iframe, ElementType.Xpath);
+		commonFunc.hardWait(2000);
+		commonFunc.expandFindTable();
+		commonFunc.hardWait(1000);
 		commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.SI_Pend_SO_No_Lov, SI_Pend_Domestic_SO_No);
 		logs.logging("INFO", "Sales Invoice PendingSO SaleOrder No Inserted Successfully");
 		commonFunc.hardWait(1000);
@@ -6794,6 +6797,8 @@ public class SalesInvoiceFunctions {
 	 * @param ChargeSAC
 	 */
 	public void InsertingSACcodeAndSaveIcon(String Charges_SAC) {
+		webDB.pressTabKey();
+		commonFunc.hardWait(1000);
 		flag = webDB.waitForElement(SalesInvoiceLocators.SI_Charge_SAC_Column, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(SalesInvoiceLocators.SI_Charge_SAC_Column, ElementType.Xpath);

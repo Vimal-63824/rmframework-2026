@@ -15,7 +15,7 @@ public class ProductionAndShopFloorSetupLocator {
 	/** @locatorType Xpath */
 	public static final String Workcenter_ToastMsg = "(//button[@title='Close'])[1]";
 	/** @locatorType Xpath */
-	public static final String Process_Tab = "//label[@for='P3670133_PP_TABS_5']";
+	public static final String Process_Tab = "//label[@for='P3670133_PP_TABS_4']";
 	/** @locatorType Xpath */
 	public static final String Process_AddIcon = "//button[@data-testid='Process_AddIcon']";
 	/** @locatorType Xpath */
@@ -41,7 +41,7 @@ public class ProductionAndShopFloorSetupLocator {
 	/** @locatorType Xpath */
 	public static final String Get_ProcessID = "//*[@id=\"process_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr[1]/td[1]";
 	/** @locatorType Xpath */
-	public static final String ProcessAsso_Tab = "//label[@for='P3670133_PP_TABS_6']";
+	public static final String ProcessAsso_Tab = "//label[@for='P3670133_PP_TABS_5']";
 	/** @locatorType Xpath */
 	public static final String ProcessAsso_AddIcon = "//button[@data-testid='ProcessAsso_AddIcon']";
 	/** @locatorType Xpath */

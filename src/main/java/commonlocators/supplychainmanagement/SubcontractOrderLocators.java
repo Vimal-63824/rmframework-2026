@@ -154,7 +154,7 @@ public class SubcontractOrderLocators {
 	/** @locatorType XPATH */
 	public static final String OP_Find_Search_Btn = "//button[@data-testid='Find']";
 	/** @locatorType XPATH */
-	public static final String OP_DrillDown = "//*[@id=\"3124895942814564736_orig\"]/tbody/tr[2]/td[5]/a";
+	public static final String OP_DrillDown = "//table[@data-testid='H_Result_Data']/tbody/tr[2]/td[5]/a";
 	/** @locatorType XPATH */
 	public static final String OP_Reverse_Btn = "//button[@data-testid='REVERSE']";
 	/** @locatorType XPATH */
@@ -166,7 +166,7 @@ public class SubcontractOrderLocators {
 	/** @locatorType XPATH */
 	public static final String OP_Reverse_ToDate_input = "(//button[@class='a-Button a-DatePicker--today'])[3]";
 	/** @locatorType XPATH */
-	public static final String OP_Reverse_OK_Btn = "//button[@id='B3140455448540036441']";
+	public static final String OP_Reverse_OK_Btn = "//button[@id='B1597174889937828806']";
 	/** @locatorType XPATH */
 	public static final String OP_Reverse_ToDate = "//input[@ID='P1931510101_EFF_TO_input']";
 	/** @locatorType XPATH */
@@ -174,7 +174,7 @@ public class SubcontractOrderLocators {
 	/** @locatorType XPATH */
 	public static final String OP_Cancel_Btn = "//button[@data-testid='CANCEL']";
 	/** @locatorType XPATH */
-	public static final String OP_Iframe = "//iframe[@title='Open SCO Price']";
+	public static final String OP_Iframe = "//iframe[@title='Create Open SCO Price']";
 	/** @locatorType XPATH */
 	public static final String SubcontractFindAddIcon = "//button[@data-testid='Add']";
 	/** @locatorType XPATH */
@@ -548,9 +548,14 @@ public class SubcontractOrderLocators {
 	public static final String SCO_LineDetail_Details= "//*[@id=\"ig_line_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[1]/a/span";
 	
 	/** @Locator XPATH */
-	public static final String SCO_Cancel_okBtn = "//*[@id=\"t_PageBody\"]/div[38]/div[3]/div/button[2]";
+	public static final String SCO_Cancel_okBtn = "//button[text()='OK']";
 	/** @Locator XPATH */
 	public static final String SCO_LineDetail_SO_Details= "//*[@id=\"R1589938191070404089\"]/div[1]/div[1]/button";
-	
+	/** @Locator XPATH */
+	public static final String GRNSCO_LineDetail_Details= "//*[@id=\"add_line_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr[1]/td[1]/a/span";
+	/** @Locator XPATH */
+	public static final String GRNSCO_LineDelete= "//span[@class='fa fa fa fa-trash-o']";
+	/** @locatorType XPATH */
+	public static final String OP_Cancel_okBtn = "//button[text()='OK']";
 	
 }

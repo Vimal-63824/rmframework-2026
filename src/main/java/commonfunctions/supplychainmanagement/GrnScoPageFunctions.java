@@ -147,6 +147,7 @@ public class GrnScoPageFunctions {
 		flag = webDB.waitForElement(GrnScoLocators.GenLotSerial, ElementType.Xpath);
 		if (flag) {
 			logs.logging("INFO", "Gen Lot Serial Button Is Displayed");
+			commonFunc.hardWait(2000);
 			webDB.clickAnElement(GrnScoLocators.GenLotSerial, ElementType.Xpath);
 			commonFunc.checkRefreshCellsDisappear();
 			if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
@@ -155,6 +156,7 @@ public class GrnScoPageFunctions {
 			flag = webDB.waitForElement(GrnScoLocators.GenMatCons, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Gen Mat Cons Button Is Displayed");
+				commonFunc.hardWait(2000);
 				webDB.clickAnElement(GrnScoLocators.GenMatCons, ElementType.Xpath);
 				commonFunc.checkRefreshCellsDisappear();
 				if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
@@ -163,6 +165,7 @@ public class GrnScoPageFunctions {
 				flag = webDB.waitForElement(GrnScoLocators.Allocate, ElementType.Xpath);
 				if (flag) {
 					logs.logging("INFO", "Allocate Button Is Displayed");
+					commonFunc.hardWait(2000);
 					webDB.clickAnElement(GrnScoLocators.Allocate, ElementType.Xpath);
 					commonFunc.checkRefreshCellsDisappear();
 					if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
@@ -618,6 +621,9 @@ public class GrnScoPageFunctions {
 				flag = webDB.waitForClickElement(GrnScoLocators.PendingScoFrame, ElementType.Xpath);
 				if (flag) {
 					webDB.switchToFrame(GrnScoLocators.PendingScoFrame, ElementType.Xpath);
+					commonFunc.hardWait(2000);
+					commonFunc.expandFindTable();
+					commonFunc.hardWait(2000);
 					commonFunc.searchAndSelectValueInFilters(GrnScoLocators.SCONoLovButton, DocNo);
 					flag = webDB.waitForClickElement(GrnScoLocators.PendingScoFrame, ElementType.Xpath);
 					if (flag) {
