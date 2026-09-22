@@ -148,13 +148,13 @@ public class ProductionOrderLocators {
 	/** @locatorType XPATH */
 	public static final String SoDesc = "//input[@data-testid='SoDesc']/following-sibling::button";
 	/** @locatorType XPATH */
-	public static final String ShowMore = "//span[text()='Show More']/..";
+	public static final String ShowMore = "//button[@id='show']";
 	/** @locatorType XPATH */
 	public static final String FirstOprSelect = "//select[@data-testid='FirstOprMREventSelect']";
 	/** @locatorType XPATH */
 	public static final String RestOprSelect = "//select[@data-testid='RestOprMREventSelect']";
 	/** @locatorType XPATH */
-	public static final String ShowLess = "//span[text()='Show Less']/..";
+	public static final String ShowLess = "//button[@id='hide']";
 	/** @locatorType XPATH */
 	public static final String AddedRoutingTable = "(//div[@aria-label='Routing']//table[@data-testid='ROUTING_Result_Data'])[2]";
 

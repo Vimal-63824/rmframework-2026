@@ -69,6 +69,10 @@ public class CompletionProductionOrderLocators {
 	/** @locatorType XPATH */
 	public static final String CompletionProcessPendingIcon = "//button[@data-testid='CompletionProcessPendingIcon']";
 	/** @locatorType XPATH */
+	public static final String CompletionProcessSingleLabel = "//label[text()='Single Process']";
+	/** @locatorType XPATH */
+	public static final String CompletionProcessMultipleLabel = "//label[text()='Multi Process']";
+	/** @locatorType XPATH */
 	public static final String ProductionOrderNumber = "//input[@data-testid='ProductionOrderNumber']/following-sibling::button";
 	/** @locatorType XPATH */
 	public static final String SearchButton = "//button[@data-testid='SearchButton']";
@@ -273,12 +277,10 @@ public class CompletionProductionOrderLocators {
 	public static final String ComplMultipleConsumptionNextButton = "//div[@id='consumption_ig_grid_vc_floatingItem_dialog']/following::div[@aria-label='Pagination']/button[@title='Next']";
 	/** @locatorType XPATH */
 	public static final String Pend_ProdOrderLovBtn = "//button[@id='P33_FIND_PROD_NO_lov_btn']";
-//	/** @locatorType XPATH */
-//	public static final String PendingSearchBtn = "//button[@data-testid='PendingProdOrderSearchGoBtn']";
 	/** @locatorType XPATH */
 	public static final String PendingSearchBtn = "//span[text()='Search']/parent::button";
 	/** @locatorType XPATH */
-	public static final String SearchResultStatusData = "//table[contains(@aria-label,'Results Last')]//tbody/tr/td/div[contains(@style,'color')]";
+	public static final String SearchResultStatusData = "//table[contains(@aria-label,'Result (s)')]//tbody/tr/td/div[contains(@style,'color')]";
 	/** @locatorType XPATH */
 	public static final String Pending_TableSelectAllCheckBox = "(//table[contains(@aria-label,'PEND_PROD_PROC')]//tr/td//input)[2]";
 	/** @locatorType XPATH */
@@ -290,11 +292,17 @@ public class CompletionProductionOrderLocators {
 	/** @locatorType XPATH */
 	public static final String Pending_MRCreateBtn = "//button[@data-testid='CompletionProcessPendingIconmr']";
 	/** @locatorType XPATH */
+	public static final String Pending_MRCreateShowRecordBtn = "(//button[@data-testid='CreateCompletionProcessBtn']/following-sibling::button)[1]";
+	/** @locatorType XPATH */
+	public static final String Pending_MRCreateShowRecordClickedBtn = "(//button[@data-testid='CreateCompletionProcessBtn']/following-sibling::button)[2]";
+	/** @locatorType XPATH */
 	public static final String PendingMRCreateIframe = "//iframe[@title='Pend. Prod. Ord. MR']";
 	/** @locatorType XPATH */
 	public static final String PendingMRFindProdNoLov = "//*[@data-testid='Pend_ProdOrderLovBtn']/following-sibling::button";
 	/** @locatorType XPATH */
 	public static final String PendingMRFindSearchBtn = "//button[@data-testid='PendingProdOrderSearchGoBtn']";
+	/** @locatorType XPATH */
+	public static final String PendingMRSelectAllBtn = "//table[@data-testid='L_Result_Title']//th//input[@id='check_all']";
 
 	/** @locatorType XPATH */
 	public static final String PendingMRSelectAllBtn(String prodNo) {

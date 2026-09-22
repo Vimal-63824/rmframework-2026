@@ -268,6 +268,9 @@ public class Purchase_GRN_FOCFunctions {
 				String Utgst = itemmultiple[i][24];
 				String CessPercent = itemmultiple[i][25];
 				String Cess = itemmultiple[i][26];
+				commonFunc.checkRefreshCellsDisappear();
+				String Type = webDB.getTextFromElement(PurchaseOrderPageLocators.POType, ElementType.Xpath);
+				logs.logging("INFO", "PO Type is: " + Type);
 				String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 				commonFunc.checkRefreshCellsDisappear();
 				POfunc.verifyDirectPoItemAddIconClicked();
@@ -289,8 +292,20 @@ public class Purchase_GRN_FOCFunctions {
 				commonFunc.checkRefreshCellsDisappear();
 				POfunc.verifyLineAmountValidationAndPom(item, LineAmount);
 				POfunc.clickThreeDotsNavigateToLineDetails(i - 2);
+				commonFunc.checkRefreshCellsDisappear();
+				POfunc.clickThreeDotsNavigateToLineDetails(i - 2);
+				commonFunc.checkRefreshCellsDisappear();
+				if (Type.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("ServiceType"))) {
+					webDB.waitForElement(PurchaseOrderPageLocators.LineDetailsIframePO, ElementType.Xpath);
+					webDB.switchToFrame(PurchaseOrderPageLocators.LineDetailsIframePO, ElementType.Xpath);
+					POfunc.verifyAddServiceItem();
+					commonFunc.checkRefreshCellsDisappear();
+					POfunc.clickThreeDotsNavigateToLineDetails(i - 2);
+				}
 				POfunc.verifyEnterAmountForDiscountCalculation(TradePercentage, SplDiscPercentage, CashDiscPercentage);
 				// POfunc.verifyNavigateLineDetailTwo();
+				webDB.switchToDefaultContent();
+				commonFunc.checkRefreshCellsDisappear();
 				POfunc.verifyTaxValidation(item, TaxPercent, cgst, sgst, Igst, Utgst, CessPercent, Cess);
 				POfunc.verifyDiscountCalculationVerification(item, TradeAssblValue, TradeAmt, SDAssemblValue, SDAmt,
 						CDAssemblValue, CDAmt);
@@ -569,8 +584,19 @@ public class Purchase_GRN_FOCFunctions {
 				webDB.pressEscapeKey();
 				POfunc.verifyDirectPoLineWiseSaved();
 				commonFunc.checkRefreshCellsDisappear();
+				String Type = webDB.getTextFromElement(PurchaseOrderPageLocators.POType, ElementType.Xpath);
+				logs.logging("INFO", "PO Type is: " + Type);
+				commonFunc.checkRefreshCellsDisappear();
 				POfunc.verifyLineAmountValidationAndPom(item, LineAmount);
 				POfunc.clickThreeDotsNavigateToLineDetails(i - 2);
+				commonFunc.checkRefreshCellsDisappear();
+				if (Type.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("ServiceType"))) {
+					webDB.waitForElement(PurchaseOrderPageLocators.LineDetailsIframePO, ElementType.Xpath);
+					webDB.switchToFrame(PurchaseOrderPageLocators.LineDetailsIframePO, ElementType.Xpath);
+					POfunc.verifyAddServiceItem();
+					commonFunc.checkRefreshCellsDisappear();
+					POfunc.clickThreeDotsNavigateToLineDetails(i - 2);
+				}
 				POfunc.verifyEnterAmountForDiscountCalculation(TradePercentage, SplDiscPercentage, CashDiscPercentage);
 				// POfunc.verifyNavigateLineDetailTwo();
 				POfunc.verifyTaxValidation(item, TaxPercent, cgst, sgst, Igst, Utgst, CessPercent, Cess);
