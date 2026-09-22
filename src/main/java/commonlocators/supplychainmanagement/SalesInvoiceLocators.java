@@ -625,9 +625,9 @@ public class SalesInvoiceLocators {
 	/** @Locator XPATH */
 	public static final String SI_Charge_Percentage_Input = "//input[@data-testid='SIOTC_CHRG_PCT']";
 	/** @Locator XPATH */
-	public static final String SI_Charge_SAC_Column = "//*[@id='IG_TAX_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[9]";
+	public static final String SI_Charge_SAC_Column = "//*[@id=\"IG_TAX_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[9]";
 	/** @Locator XPATH */
-	public static final String SI_Charge_SAC_Lov_Btn = "//input[@data-testid='SIOTC_HSN_CODE']";
+	public static final String SI_Charge_SAC_Lov_Btn = "//input[@data-testid='SIOTC_HSN_CODE']/following-sibling::button";
 	/** @Locator XPATH */
 	public static final String SI_Charge_Basis_Column = "//*[@id='IG_TAX_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[2]";
 	/** @Locator XPATH */
@@ -743,7 +743,7 @@ public class SalesInvoiceLocators {
 	/** @Locator XPATH */
 	public static final String RWC_ToDate_Today = "//*[@id=\"C15886462193726423094_dialog\"]/div/div[3]/div[2]/button[1]";
 	/** @Locator XPATH */
-	public static final String RWC_ToDate_Done = "//*[@id=\"C14329115508586941289_dialog\"]/div/div[3]/div[2]/button[2]";
+	public static final String RWC_ToDate_Done = "//*[@id=\"C14392064809040117112_dialog\"]/div/div[3]/div[2]/button[2]";
 	/** @Locator XPATH */
 	public static final String RWC_Line_save_Icon = "//button[@data-testid='RWC_Res_Save_btn']";
 	/** @Locator XPATH */

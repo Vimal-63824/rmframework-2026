@@ -110,7 +110,7 @@ public class BillOfMaterialsLocators {
 
 	/** @locatorType Xpath */
 	public static final String RoutingIRDiv(String ProcessName) {
-		return "//td[text()='" + ProcessName + "']/../td[12]/div";
+		return "//td[text()='" + ProcessName + "']/../td[13]/div";
 	}
 
 	/** @locatorType Xpath */

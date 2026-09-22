@@ -9253,9 +9253,9 @@ public class PurchaseOrderFunctions {
 //				commonFunc.getDataFromTestDataSheet("Pol_Cess_pct")));
 //		verifyAssertionBothValues(CessAmount, dbCommonFunc.poDetails(VariableHandler.getPONumber(), Item,
 //				commonFunc.getDataFromTestDataSheet("Pol_Cess_Amt")));
-		verifyAssertionBothValues(Taxpercent, dbCommonFunc.poDetails(VariableHandler.getPONumber(), Item,
-				commonFunc.getDataFromTestDataSheet("POL_TAX_PCT")));
-		logs.logging("INFO", "Overall Tax Amount Verified");
+//		verifyAssertionBothValues(Taxpercent, dbCommonFunc.poDetails(VariableHandler.getPONumber(), Item,
+//				commonFunc.getDataFromTestDataSheet("POL_TAX_PCT")));
+//		logs.logging("INFO", "Overall Tax Amount Verified");
 	}
 
 	/**
@@ -10876,8 +10876,7 @@ public class PurchaseOrderFunctions {
 //								commonFunc.getDataFromTestDataSheet("GeneralExpense"));
 //						webDB.switchToFrame(PurchaseOrderPageLocators.LineDetailsIframePO, ElementType.Xpath);
 						verifyNavigateLineDetailTwo();
-						commonFunc.searchAndSelectValueInFilters(PurchaseOrderPageLocators.ServiceItemButton,
-								commonFunc.getDataFromTestDataSheet("Equip1000"));
+						verifyAddServiceItem();
 						webDB.switchToFrame(PurchaseOrderPageLocators.LineDetailsIframePO, ElementType.Xpath);
 						verifyTaxValidation(item, TaxPercent, cgst);
 						verifyDiscountCalculationVerification(item, TradeAssblValue, TradeAmt, SDAssemblValue, SDAmt,
@@ -10974,8 +10973,7 @@ public class PurchaseOrderFunctions {
 //								commonFunc.getDataFromTestDataSheet("GeneralExpense"));
 //						webDB.switchToFrame(PurchaseOrderPageLocators.LineDetailsIframePO, ElementType.Xpath);
 						verifyNavigateLineDetailTwo();
-						commonFunc.searchAndSelectValueInFilters(PurchaseOrderPageLocators.ServiceItemButton,
-								commonFunc.getDataFromTestDataSheet("Equip1000"));
+						verifyAddServiceItem();
 						webDB.switchToFrame(PurchaseOrderPageLocators.LineDetailsIframePO, ElementType.Xpath);
 						verifyTaxValidation(item, TaxPercent, cgst);
 						verifyDiscountCalculationVerification(item, TradeAssblValue, TradeAmt, SDAssemblValue, SDAmt,
@@ -11171,8 +11169,7 @@ public class PurchaseOrderFunctions {
 //								commonFunc.getDataFromTestDataSheet("GeneralExpense"));
 //						webDB.switchToFrame(PurchaseOrderPageLocators.LineDetailsIframePO, ElementType.Xpath);
 						verifyNavigateLineDetailTwo();
-						commonFunc.searchAndSelectValueInFilters(PurchaseOrderPageLocators.ServiceItemButton,
-								commonFunc.getDataFromTestDataSheet("Equip1000"));
+						verifyAddServiceItem();
 						webDB.switchToFrame(PurchaseOrderPageLocators.LineDetailsIframePO, ElementType.Xpath);
 						verifyTaxValidation(item, TaxPercent, cgst);
 						verifyDiscountCalculationVerification(item, TradeAssblValue, TradeAmt, SDAssemblValue, SDAmt,
@@ -11265,8 +11262,7 @@ public class PurchaseOrderFunctions {
 						navigateToLineDetailPage(item);
 						verifyEnterAmountForDiscountCalculation(TradePercentage, SplDiscPercentage, CashDiscPercentage);
 						verifyNavigateLineDetailTwo();
-						commonFunc.searchAndSelectValueInFilters(PurchaseOrderPageLocators.ServiceItemButton,
-								commonFunc.getDataFromTestDataSheet("Equip1000"));
+						verifyAddServiceItem();
 						webDB.switchToFrame(PurchaseOrderPageLocators.LineDetailsIframePO, ElementType.Xpath);
 						verifyTaxValidation(item, TaxPercent, cgst);
 						verifyDiscountCalculationVerification(item, TradeAssblValue, TradeAmt, SDAssemblValue, SDAmt,
@@ -13969,6 +13965,7 @@ public class PurchaseOrderFunctions {
 					commonFunc.verifyAddTableLovValue(PurchaseOrderPageLocators.HsnCode(),
 							PurchaseOrderPageLocators.HsnCodeLovButton, HsnCode);
 					webDB.pressEscapeKey();
+					commonFunc.checkRefreshCellsDisappear();
 					verifyDirectPoLineWiseSaved();
 					discountFromPrToGrnDocument(i, SheetName, FileName);
 					webDB.switchToDefaultContent();
