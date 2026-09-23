@@ -160,7 +160,7 @@ public class CompletionProductionOrderLocators {
 	/** @locatorType XPATH */
 	public static final String CreateCompProc = "//button[@id='B1']";
 	/** @locatorType XPATH */
-	public static final String MultipleCreateCompletionProcessOkBtn = "//button[@id='CREATE']";
+	public static final String MultipleCreateCompletionProcessOkBtn = "//button[@data-testid='CreateCompletionProcessOkBtn']";
 	/** @locatorType XPATH */
 	public static final String MultipleProceedRestOprYesBtn = "//button[text()='Yes']";
 	/** @locatorType XPATH */
@@ -181,7 +181,7 @@ public class CompletionProductionOrderLocators {
 	/** @locatorType XPATH */
 	public static final String CloseButton = "(//iframe[@scrolling='auto'])[2]/../../div[1]/h1/following::button[@title='Close']";
 	/** @locatorType XPATH */
-	public static final String MultiplePendingMovingLocId = "//button[@id='P80_LOC_ID_lov_btn']";
+	public static final String MultiplePendingMovingLocId = "//input[@data-testid='SingleLocId']/following-sibling::button";
 	/** @locatorType XPATH */
 	public static final String MultipleProcessDetailIframe = "(//iframe[@scrolling='auto'])[2]";
 
