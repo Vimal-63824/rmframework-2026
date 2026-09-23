@@ -2437,10 +2437,10 @@ public class CommonFunctions {
 			webDB.waitForPageReady(20);
 			// TODO will comment the hard script lines once loading issue resolved
 			webDB.waitForElement("//a[@class='t-Header-logo-link']", ElementType.Xpath);
-			if (webDB.verifyIsElementDisplayed(PageLocators, ElementType.Xpath)) {
-				logs.logging("INFO", "Already In Navigated Tab: " + TabName);
-				return;
-			}
+//			if (webDB.verifyIsElementDisplayed(PageLocators, ElementType.Xpath)) {
+//				logs.logging("INFO", "Already In Navigated Tab: " + TabName);
+//				return;
+//			}
 			webDB.clickAnElement("//a[@class='t-Header-logo-link']", ElementType.Xpath);
 			checkRefreshCellsDisappear();
 			webDB.waitForPageReady(20);

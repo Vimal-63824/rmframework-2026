@@ -81,7 +81,7 @@ public class DirectGrnPageLocators {
 	/** @locatorType Xpath */
 	public static final String InspAttrTab = "//*[@id='SR_R5658842567854189405_tab']/a/span";
 	/** @locatorType Xpath */
-	public static final String InspAttrTabBtn = "//li[@id='SR_R7310093216860621686_tab']";
+	public static final String InspAttrTabBtn = "//span[text()='Attribute']/..";
 	/** @locatorType Xpath */
 	public static final String InspAttrSpecField = "//*[@id='ig_line_attr_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[6]";
 	/** @locatorType Xpath */
@@ -89,7 +89,7 @@ public class DirectGrnPageLocators {
 	/** @locatorType Xpath */
 	public static final String InspBottomPage = "//*[@id='t_Body_content']/footer/div[1]/div[2]/table/tbody/tr/th[1]";
 	/** @locatorType Xpath */
-	public static final String InspTextTab = "//li[@id='SR_R7312113616688198563_tab']";
+	public static final String InspTextTab = "//span[text()='Text']/..";
 	/** @locatorType Xpath */
 	public static final String InspTextField = "//*[@id='ig_line_text_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[6]";
 	/** @locatorType Xpath */
