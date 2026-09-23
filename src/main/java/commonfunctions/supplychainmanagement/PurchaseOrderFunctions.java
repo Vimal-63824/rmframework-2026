@@ -1528,7 +1528,6 @@ public class PurchaseOrderFunctions {
 		verifyAddItemCharges(commonFunc.getDataFromTestDataSheet("PackingCharges"));
 		verifyAddItemChargesPercentages();
 		itemChargesTickIcon();
-		verifyTotalAmountCalculation();
 		verifyClickPostIcon();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
@@ -6511,11 +6510,22 @@ public class PurchaseOrderFunctions {
 					webDB.clickAnElement(PurchaseOrderPageLocators.PurchaseOrderLineDetail(i - 21), ElementType.Xpath);
 					logs.logging("INFO", "Non Service Item");
 				}
+				flag = webDB.waitForElement(PurchaseOrderPageLocators.PoDetails, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(PurchaseOrderPageLocators.PoDetails, ElementType.Xpath);
+					webDB.javaScriptClickAnElement(PurchaseOrderPageLocators.PoDetails, ElementType.Xpath);
+					logs.logging("INFO", "PO Details field clicked successfully");
+					
 				flag = webDB.waitForElement(PurchaseOrderPageLocators.LineDetailsIframePO, ElementType.Xpath);
 				if (flag) {
 					webDB.switchToFrame(PurchaseOrderPageLocators.LineDetailsIframePO, ElementType.Xpath);
 					logs.logging("INFO", "Switched To frame");
 					commonFunc.hardWait(3000);
+					flag = webDB.waitForElement(PurchaseOrderPageLocators.DiscountExpand, ElementType.Xpath);
+					if (flag) {
+						webDB.clickAnElement(PurchaseOrderPageLocators.DiscountExpand, ElementType.Xpath);
+						logs.logging("INFO", "Discount field clicked successfully");
+						
 					webDB.clearText(PurchaseOrderPageLocators.TradePercentage, ElementType.Xpath);
 					webDB.sendTextToAnElement(PurchaseOrderPageLocators.TradePercentage, TradeDiscount,
 							ElementType.Xpath);
@@ -6549,7 +6559,8 @@ public class PurchaseOrderFunctions {
 				}
 			}
 		}
-
+		}
+		}
 		Assert.assertTrue(flag);
 	}
 

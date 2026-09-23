@@ -557,5 +557,9 @@ public class SubcontractOrderLocators {
 	public static final String GRNSCO_LineDelete= "//span[@class='fa fa fa fa-trash-o']";
 	/** @locatorType XPATH */
 	public static final String OP_Cancel_okBtn = "//button[text()='OK']";
+	/** @locatorType XPATH */
+	public static final String Open_SCO_ReFindIcon = "//button[@title='Multi']";
+	/** @locatorType XPATH */
+	public static final String SCO_DOC_Cancel_Btn = "//button[@data-testid='Cancel']";
 	
 }

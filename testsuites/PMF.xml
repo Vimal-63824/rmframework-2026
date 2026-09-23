@@ -9,6 +9,7 @@
 		<classes>
 			<class name="com.roadmapERP.BillOfMaterialsMRPTest"></class>
 			<class name="com.roadmapERP.QualityInspectionTest"></class>
+			<class name="com.roadmapERP.ProductionOrderTest2"></class>
 		</classes>
 	</test>
 </suite>
