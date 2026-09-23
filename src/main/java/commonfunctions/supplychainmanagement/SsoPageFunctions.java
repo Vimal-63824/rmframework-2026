@@ -728,6 +728,12 @@ public class SsoPageFunctions {
 		if (flag) {
 			webDB.clickAnElement(SsoPageLocators.SsoLineCancel, ElementType.Xpath);
 			logs.logging("INFO", "Line is Cancelled");
+
+			flag = webDB.waitForElement(SsoPageLocators.SsoLineCancelNew, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(SsoPageLocators.SsoLineCancelNew, ElementType.Xpath);
+				logs.logging("INFO", "Cancel Button is Clicked");
+			}
 		}
 		assertTrue(flag);
 	}

@@ -7,31 +7,31 @@ public class SalesStandardPriceLocators {
 	/** @locatorType Xpath */
 	public static final String AddButton = "//BUTTON[@data-testid='AddButton']";
 	/** @locatorType Xpath */
-	public static final String LocutionIdClick = "//*[@id='ig_line_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[2]/td[1]";
+	public static final String LocutionIdClick = "//*[@id='ig_line_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[1]/td[1]";
 	/** @locatorType Xpath */
 	public static final String LocutionIdLov = "//INPUT[@data-testid='LocutionIdClick']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String UnitDesc = "//*[@id='ig_line_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[2]/td[2]";
+	public static final String UnitDesc = "//*[@id='ig_line_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[1]/td[2]";
 	/** @locatorType Xpath */
 	public static final String ItemIdLov = "//INPUT[@data-testid='ItemdIdField']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String ItemdIdField = "//*[@id='ig_line_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[2]/td[3]";
+	public static final String ItemdIdField = "//*[@id='ig_line_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[1]/td[3]";
 	/** @locatorType Xpath */
-	public static final String CurcyField = "//*[@id='ig_line_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[2]/td[6]";
+	public static final String CurcyField = "//*[@id='ig_line_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[1]/td[6]";
 	/** @locatorType Xpath */
 	public static final String CurcyLov = "//INPUT[@data-testid='CurcyField']/following-sibling::button";
 	/** @locatorType Xpath */
 	public static final String MapPriceInput = "//input[@data-testid='SSP_MAP_PRICE']";
 	/** @locatorType Xpath */
-	public static final String MapPriceField = "//*[@id='ig_line_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[2]/td[10]";
+	public static final String MapPriceField = "//*[@id='ig_line_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[1]/td[10]";
 	/** @locatorType Xpath */
-	public static final String MinPriceField = "//*[@id='ig_line_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[2]/td[13]";
+	public static final String MinPriceField = "//*[@id='ig_line_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[1]/td[13]";
 	/** @locatorType Xpath */
-	public static final String MaxDiscField = "//*[@id='ig_line_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[2]/td[14]";
+	public static final String MaxDiscField = "//*[@id='ig_line_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[1]/td[14]";
 	/** @locatorType Xpath */
 	public static final String MaxDiscInput = "//input[@data-testid='MaxDiscField']";
 	/** @locatorType Xpath */
-	public static final String PriceClassClick = "//*[@id='ig_line_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[2]/td[16]";
+	public static final String PriceClassClick = "//*[@id='ig_line_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[1]/td[16]";
 	/** @locatorType Xpath */
 	public static final String PriceClassLov = "//input[@data-testid='PriceClassClick']/following-sibling::button";
 	/** @locatorType Xpath */

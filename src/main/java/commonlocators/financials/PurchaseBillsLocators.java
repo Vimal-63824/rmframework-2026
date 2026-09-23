@@ -117,7 +117,7 @@ public class PurchaseBillsLocators {
 	/** @locatorType Xpath */
 	public static final String WfOkButtton = "//button[@data-testid='OK']";
 	/** @locatorType Xpath */
-	public static final String gstClafField = "//*[@id='report_6360571096274207940_catch']/dl/dd[12]";
+	public static final String gstClafField = "//*[@id='report_2482465621170058410_catch']/dl/dd[12]";
 	/** @locatorType Xpath */
 	public static final String SideScroll = "//button[@id='t_Button_rightControlButton']";
 	/** @locatorType Xpath */
@@ -406,5 +406,8 @@ public class PurchaseBillsLocators {
 	public static final String PurchaseBillsTransLocGstTds() {
 		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(GlAccDescField1, "TDS u/s ID");
 	}
+	
+	/** @locatorType Xpath */
+	public static final String PurchaseBillsExpandButton = "(//div[@aria-label='Purchase, Tax & Other Details']//button)[1]" ;
 
 }

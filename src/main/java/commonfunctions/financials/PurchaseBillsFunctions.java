@@ -795,6 +795,13 @@ public class PurchaseBillsFunctions {
 			webDB.moveToElement(PurchaseBillsLocators.ReferenceField, ElementType.Xpath);
 			webDB.javaScriptClickAnElement(PurchaseBillsLocators.ReferenceField, ElementType.Xpath);
 			logs.logging("INFO", "Reference Tap Moved ");
+			
+			String value = webDB.getDomAttributeFromElement(PurchaseBillsLocators.PurchaseBillsExpandButton, ElementType.Xpath,
+					"aria-expanded");
+			if (value.equalsIgnoreCase("false")) {
+				webDB.javaScriptClickAnElement(PurchaseBillsLocators.PurchaseBillsExpandButton, ElementType.Xpath);
+				logs.logging("INFO", "Expand  Button is clicked");
+			}
 			flag = webDB.waitForElement(PurchaseBillsLocators.AllowIgstCheckFlag, ElementType.Xpath);
 			if (flag) {
 				webDB.moveToElement(PurchaseBillsLocators.AllowIgstCheckFlag, ElementType.Xpath);
@@ -830,6 +837,12 @@ public class PurchaseBillsFunctions {
 			webDB.javaScriptClickAnElement(PurchaseBillsLocators.ReferenceField, ElementType.Xpath);
 			logs.logging("INFO", "Reference Tap Moved ");
 			commonFunc.checkRefreshCellsDisappear();
+			String value = webDB.getDomAttributeFromElement(PurchaseBillsLocators.PurchaseBillsExpandButton, ElementType.Xpath,
+					"aria-expanded");
+			if (value.equalsIgnoreCase("false")) {
+				webDB.javaScriptClickAnElement(PurchaseBillsLocators.PurchaseBillsExpandButton, ElementType.Xpath);
+				logs.logging("INFO", "Expand  Button is clicked");
+			}
 			flag = webDB.waitForElement(PurchaseBillsLocators.AllowRcmFlag, ElementType.Xpath);
 			if (flag) {
 				webDB.moveToElement(PurchaseBillsLocators.AllowRcmFlag, ElementType.Xpath);
@@ -2426,7 +2439,7 @@ public class PurchaseBillsFunctions {
 	 * @author Kowshik-RMITS
 	 */
 	public void validAllowIgstCheckboxForTaxAmountCalculation() {
-		flag = webDB.waitForElement(PurchaseBillsLocators.AllowIgstCheckFlag, ElementType.Xpath);
+//		flag = webDB.waitForElement(PurchaseBillsLocators.AllowIgstCheckFlag, ElementType.Xpath);
 		if (flag) {
 			boolean isIgstChecked = webDB.isElementSelected(PurchaseBillsLocators.AllowIgstCheckFlag,
 					ElementType.Xpath);
@@ -4404,7 +4417,7 @@ public class PurchaseBillsFunctions {
 		openExpandButtonDirect();
 		getGstClafInLocation();
 		getValueFromTaxAmountInLineDetails();
-		clickValidateAllowIgstFlag(commonFunc.getDataFromTestDataSheet("Purchase_Bills_Allow_IGST"));
+		clickValidateAllowIgstFlag(webDB.getDataFromProperties("Purchase_Bills_Allow_IGST"));
 		movesToInvoiceTap();
 		getValueFromTaxAmountInLineDetails();
 		createJvForRecord();

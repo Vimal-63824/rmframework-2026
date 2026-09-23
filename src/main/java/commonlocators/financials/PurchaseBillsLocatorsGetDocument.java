@@ -42,7 +42,7 @@ public class PurchaseBillsLocatorsGetDocument {
 
 	/** @locatorType Xpath */
 	public static final String ApprovedStatus(String PbNo) {
-		return "//a[text()='" + PbNo + "']/../../td/div[contains(@style,'color:green')]";
+	    return "//tr[.//a[normalize-space()='" + PbNo + "']]//div[contains(@style,'color:green')]";
 	}
 
 	/** @locatorType Xpath */
@@ -87,7 +87,7 @@ public class PurchaseBillsLocatorsGetDocument {
 	/** @locatorType Xpath */
 	public static final String OkButtonForward = "//button[@data-testid='OK']";
 	/** @locatorType Xpath */
-	public static final String TDSU_SForLandedCost = "//div[@id='IN_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[27]";
+	public static final String TDSU_SForLandedCost = "//div[@id='IN_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[28]";
 	/** @locatorType Xpath */
 	public static final String PBAddSave = "//button[@id='IN_SAVE']";
 	/** @locatorType Xpath */
