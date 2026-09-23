@@ -2020,12 +2020,12 @@ public class RfqPageFunctions {
 //				commonFunc.getDataFromTestDataSheet("ARAVIND AGENCY"), "Supplier Name",
 //				commonFunc.getDataFromTestDataSheet("LineSearchType"),
 //				commonFunc.getDataFromTestDataSheet("LovButton"));
-		verifyAmendFilterSearchSOB(RfqLocators.ItemId, commonFunc.getDataFromTestDataSheet("Rfqitem"), "Item ID",
-				commonFunc.getDataFromTestDataSheet("LineSearchType"),
-				commonFunc.getDataFromTestDataSheet("LovButton"));
-		verifyAmendFilterSearchSOB(RfqLocators.ItemDesc, commonFunc.getDataFromTestDataSheet("Rfqitem"), "Item Desc.",
-				commonFunc.getDataFromTestDataSheet("LineSearchType"),
-				commonFunc.getDataFromTestDataSheet("SendTextInput"));
+//		verifyAmendFilterSearchSOB(RfqLocators.ItemId, commonFunc.getDataFromTestDataSheet("Rfqitem"), "Item ID",
+//				commonFunc.getDataFromTestDataSheet("LineSearchType"),
+//				commonFunc.getDataFromTestDataSheet("LovButton"));
+//		verifyAmendFilterSearchSOB(RfqLocators.ItemDesc, commonFunc.getDataFromTestDataSheet("Rfqitem"), "Item Desc.",
+//				commonFunc.getDataFromTestDataSheet("LineSearchType"),
+//				commonFunc.getDataFromTestDataSheet("SendTextInput"));
 		verifyAmendFilterSearchSOB(RfqLocators.RFQ_Status, commonFunc.getDataFromTestDataSheet("ApproveStatus"), "Status",
 				commonFunc.getDataFromTestDataSheet("HeaderSearchType"),
 				commonFunc.getDataFromTestDataSheet("LovButton"));

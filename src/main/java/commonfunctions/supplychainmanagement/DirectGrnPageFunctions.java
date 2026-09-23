@@ -4660,6 +4660,7 @@ public class DirectGrnPageFunctions {
 
 					flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineDetailsNew, ElementType.Xpath);
 					if (flag) {
+						webDB.javaScriptClickAnElement(DirectGrnPageLocators.GrnLineDetailsNew, ElementType.Xpath);
 						webDB.clickAnElement(DirectGrnPageLocators.GrnLineDetailsNew, ElementType.Xpath);
 
 						flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineDetailsFrame, ElementType.Xpath);
@@ -5150,6 +5151,7 @@ public class DirectGrnPageFunctions {
 					commonFunc.hardWait(500);
 					flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineDetailsNew, ElementType.Xpath);
 					if (flag) {
+						webDB.javaScriptClickAnElement(DirectGrnPageLocators.GrnLineDetailsNew, ElementType.Xpath);
 						webDB.clickAnElement(DirectGrnPageLocators.GrnLineDetailsNew, ElementType.Xpath);
 
 						flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineDetailsFrame, ElementType.Xpath);

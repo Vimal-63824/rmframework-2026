@@ -129,7 +129,7 @@ public class SsoPageLocators {
 	/** @locatorType Xpath */
 	public static final String SsoLineCount = "//*[@id=\"LINES_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[1]";
 	/** @locatorType Xpath */
-	public static final String SsoLineCancel = "//*[@id=\"LINES_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[19]/a/span";
+	public static final String SsoLineCancel = "//*[@id=\"LINES_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[1]/a/span";
 	/** @locatorType Xpath */
 	public static final String SsoHeaderCancel = "//button[@data-testid='Cancel']";
 	/** @locatorType Xpath */
@@ -137,7 +137,7 @@ public class SsoPageLocators {
 	/** @locatorType Xpath */
 	public static final String SsoFindSearchBtn = "//button[@data-testid='Find']";
 	/** @locatorType Xpath */
-	public static final String SsoCanclStatus = "//table[@data-testid='L_Result_Data']/tbody/tr/td[16]";
+	public static final String SsoCanclStatus = "//table[@data-testid='H_Result_Data']/tbody/tr/td[16]";
 	/** @locatorType Xpath */
 	public static final String SsoDocNoLovFindPage = "//input[@data-testid='P1615132060_PO_SSO_NO']/following-sibling::button";
 
@@ -210,5 +210,8 @@ public class SsoPageLocators {
 	public static final String SSOItemDataLastRow() {
 		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(SSOTable, "Item");
 	}
+	
+	/** @locatorType Xpath */
+	public static final String SsoLineCancelNew = "//*[@id=\"t_PageBody\"]/ul/li[2]/a/span";
 	
 }
