@@ -32,7 +32,6 @@ public class EmployeeAdjustmentFunctions {
 	private static ReportLoger logs = new ReportLoger();
 	private CommonFunctions commonFunc = new CommonFunctions();
 	public ApprovalPageFunctions approvalFunc = new ApprovalPageFunctions();
-	private static CommonPayrollFunctions commonPayrollFunctions = new CommonPayrollFunctions();
 	private static EmployeeMasterFunctions empMasterFunc = new EmployeeMasterFunctions();
 
 	/**
@@ -79,12 +78,8 @@ public class EmployeeAdjustmentFunctions {
 			commonFunc.navigateToEmployeeAdjustmentTab();
 			searchAndClickEmpIdUsingEmpNameLovBtn(commonFunc.getDataFromTestDataSheet("Emp_GWP0001"));
 			checkTableStatusForLastAddedAdjustment(commonFunc.getDataFromTestDataSheet("PostedStatus"));
-			changeProcessTypeForLastAddedAdjustment(commonFunc.getDataFromTestDataSheet("ProcessStatus"));
-			webDB.navigateToRefresh();
-			commonFunc.checkRefreshCellsDisappear();
 			changeProcessTypeForLastAddedAdjustment(commonFunc.getDataFromTestDataSheet("HoldStatus"));
-			webDB.navigateToRefresh();
-			commonFunc.checkRefreshCellsDisappear();
+			changeProcessTypeForLastAddedAdjustment(commonFunc.getDataFromTestDataSheet("ProcessStatus"));
 			clickEndAndEnterNarrationForLastAddedAdjustment(commonFunc.getDataFromTestDataSheet("RefText_Test"));
 			checkTableStatusForLastAddedAdjustment(commonFunc.getDataFromTestDataSheet("EndedStatus"));
 			clickReportAndVerifyDisplayedInEmployeeAdjustment();
@@ -279,7 +274,6 @@ public class EmployeeAdjustmentFunctions {
 			webDB.waitUntilElementToNotBeStale(EmployeeAdjustmentLocators.AdjustmentTableAdjustmentNoData(),
 					ElementType.Xpath);
 			webDB.scrollToAnElement(EmployeeAdjustmentLocators.AdjustmentTableAdjustmentNoData(), ElementType.Xpath);
-			webDB.scrollToAnElement(EmployeeAdjustmentLocators.AdjustmentTablePeriodData(), ElementType.Xpath);
 			webDB.scrollToAnElement(EmployeeAdjustmentLocators.AdjustmentTableProcessHoldData(), ElementType.Xpath);
 			webDB.scrollToAnElement(EmployeeAdjustmentLocators.AdjustmentTableApproveIcon(), ElementType.Xpath);
 			webDB.clickAnElement(EmployeeAdjustmentLocators.AdjustmentTableApproveIcon(), ElementType.Xpath);
@@ -324,6 +318,7 @@ public class EmployeeAdjustmentFunctions {
 				ElementType.Xpath);
 		flag = webDB.waitForElement(EmployeeAdjustmentLocators.AdjustmentTableProcessHoldData(), ElementType.Xpath);
 		if (flag) {
+			webDB.scrollToAnElement(EmployeeAdjustmentLocators.AdjustmentTablePeriodData(), ElementType.Xpath);
 			webDB.moveToElement(EmployeeAdjustmentLocators.AdjustmentTableProcessHoldData(), ElementType.Xpath);
 			webDB.doubleClickAnElement(EmployeeAdjustmentLocators.AdjustmentTableProcessHoldData(), ElementType.Xpath);
 			commonFunc.checkRefreshCellsDisappear();
@@ -333,7 +328,9 @@ public class EmployeeAdjustmentFunctions {
 				flag = webDB.selectDropDownByText(EmployeeAdjustmentLocators.AdjustmentTableProcessHoldSelect(),
 						ProcessType, ElementType.Xpath);
 				if (flag) {
-//					webDB.pressEscapeKey();
+					commonFunc.checkRefreshCellsDisappear();
+					webDB.pressTabKey();
+					webDB.pressTabKey();
 					clickSaveIconInAdjustmentTable();
 					commonFunc.checkRefreshCellsDisappear();
 					flag = webDB.waitForElement(EmployeeAdjustmentLocators.AdjustmentTableProcessHoldData(),
@@ -405,25 +402,18 @@ public class EmployeeAdjustmentFunctions {
 		commonFunc.checkRefreshCellsDisappear();
 		flag = webDB.waitForClickElement(EmployeeAdjustmentLocators.AdjustmentSaveIcon, ElementType.Xpath);
 		if (flag) {
-			commonFunc.checkRefreshCellsDisappear();
 			webDB.moveToElement(EmployeeAdjustmentLocators.AdjustmentSaveIcon, ElementType.Xpath);
-			flag = webDB.clickAnElement(EmployeeAdjustmentLocators.AdjustmentSaveIcon, ElementType.Xpath);
+			webDB.javaScriptClickAnElement(EmployeeAdjustmentLocators.AdjustmentSaveIcon, ElementType.Xpath);
 			commonFunc.checkRefreshCellsDisappear();
 			webDB.waitForElementUntilGivenTime(CommonUiLocators.PostToastMessage, ElementType.Xpath, 8);
 			if (flag) {
-				if (!webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
-					commonFunc.checkRefreshCellsDisappear();
-					webDB.moveToElement(EmployeeAdjustmentLocators.AdjustmentSaveIcon, ElementType.Xpath);
-					webDB.clickAnElement(EmployeeAdjustmentLocators.AdjustmentSaveIcon, ElementType.Xpath);
-				}
 				logs.logging("INFO", "Adjustment table Save Icon Clicked Successfully");
 				commonFunc.checkSuccessToastMessageDisappear();
-				webDB.waitUntilElementToNotBeStale(EmployeeAdjustmentLocators.AdjustmentTableAdjustmentNoData(),
-						ElementType.Xpath);
-				flag = webDB.waitForElement(EmployeeAdjustmentLocators.AdjustmentTableAdjustmentNoData(),
-						ElementType.Xpath);
+				flag = webDB.waitForElement(EmployeeAdjustmentLocators.AdjustmentTableApproveIcon(), ElementType.Xpath);
 				if (flag) {
 					webDB.scrollToAnElement(EmployeeAdjustmentLocators.AdjustmentTableApproveIcon(), ElementType.Xpath);
+					webDB.waitUntilElementToNotBeStale(EmployeeAdjustmentLocators.AdjustmentTableAdjustmentNoData(),
+							ElementType.Xpath);
 					webDB.moveToElement(EmployeeAdjustmentLocators.AdjustmentTableAdjustmentNoData(),
 							ElementType.Xpath);
 					String voucherNo = webDB.getTextFromElement(
@@ -447,7 +437,7 @@ public class EmployeeAdjustmentFunctions {
 			webDB.moveToElement(EmployeeAdjustmentLocators.AdjustmentReportBtn, ElementType.Xpath);
 			webDB.clickAnElement(EmployeeAdjustmentLocators.AdjustmentReportBtn, ElementType.Xpath);
 			commonFunc.hardWait(5000);
-			ArrayList<String> tabs = new ArrayList<String>(webDB.getDriver().getWindowHandles());
+			ArrayList<String> tabs = new ArrayList<String>(WebDriverBase.getDriver().getWindowHandles());
 			flag = tabs.size() > 1;
 			logs.loggingconsole("INFO",
 					"After Clicking Report Icon in Employee Adjustment.. tabs size: " + tabs.size());
@@ -455,7 +445,7 @@ public class EmployeeAdjustmentFunctions {
 				logs.logging("INFO", "Employee Adjustment Report Icon Clicked... New tab Opened");
 				webDB.switchToTabByIndex(1);
 				commonFunc.hardWait(2000);
-				String Title = webDB.getDriver().getTitle();
+				String Title = WebDriverBase.getDriver().getTitle();
 				logs.logging("INFO", "Switched to Report Page... Displayed Title: " + Title);
 				if (flag) {
 					webDB.closeExistingTab();

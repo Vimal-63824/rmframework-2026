@@ -118,8 +118,7 @@ public class EmployeeAdjustmentLocators {
 
 	/** @locatorType Xpath */
 	public static String AdjustmentTablePeriodData() {
-		return checkAndReturnIndexForEmployeeAdjustmentAddLocatorWithHeaderValue(AdjustmentAddTableLocator,
-				"Process / Hold");
+		return checkAndReturnIndexForEmployeeAdjustmentAddLocatorWithHeaderValue(AdjustmentAddTableLocator, "Period");
 	}
 
 	/** @locatorType Xpath */
