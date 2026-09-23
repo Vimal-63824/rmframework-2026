@@ -630,11 +630,9 @@ public class InspectionDocumentFunctions {
 				if (flag) {
 					webDB.clickAnElement(InspectionDocumentsLocators.FindPageSearchBtn, ElementType.Xpath);
 					commonFunc.hardWait(1000);
-					flag = webDB.waitForElement(InspectionDocumentsLocators.InsDocumentDrillDown(),
-							ElementType.Xpath);
+					flag = webDB.waitForElement(InspectionDocumentsLocators.InsDocumentDrillDown(), ElementType.Xpath);
 					if (flag) {
-						webDB.clickAnElement(InspectionDocumentsLocators.InsDocumentDrillDown(),
-								ElementType.Xpath);
+						webDB.clickAnElement(InspectionDocumentsLocators.InsDocumentDrillDown(), ElementType.Xpath);
 						logs.logging("INFO", "Document DrillDown SuccessFully");
 						commonFunc.hardWait(2000);
 						inspectionPlanNumberCheckingInInspectionDocument();

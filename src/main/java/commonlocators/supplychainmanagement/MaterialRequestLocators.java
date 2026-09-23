@@ -17,6 +17,8 @@ public class MaterialRequestLocators {
 	/** @locatorType Xpath */
 	public static final String TickIconMaterialRequest = "//button[@title='Create']";
 	/** @locatorType Xpath */
+	public static final String FindSearchLinesRadioBtn = "//label[text()='Line(s)']";
+	/** @locatorType Xpath */
 	public static final String FindSearchBtn = "//button[@data-testid='FindSearchBtn']";
 	/** @locatorType Xpath */
 	public static final String FindProdNoLovBtn = "//input[@data-testid='FindProdNoLovBtn']/following-sibling::button";

@@ -62,7 +62,6 @@ import commonlocators.supplychainmanagement.SsoPageLocators;
 import commonlocators.supplychainmanagement.StockAdjustmentLocators;
 import commonlocators.supplychainmanagement.StocksPageLocators;
 import io.restassured.http.ContentType;
-import utils.ExcelUtils;
 import utils.Listener;
 import utils.ReportLoger;
 import utils.RestUtils;
@@ -74,7 +73,6 @@ public class CommonFunctions {
 	boolean flag = false;
 	private static WebDriverBase webDB = new WebDriverBase();
 	private static ReportLoger logs = new ReportLoger();
-	private static ExcelUtils excelUtils = new ExcelUtils();
 	private static PurchaseOrderFunctions purchaseOrderFunc = new PurchaseOrderFunctions();
 	private static RestUtils restApi = new RestUtils();
 
@@ -120,7 +118,7 @@ public class CommonFunctions {
 	 */
 	@SuppressWarnings("null")
 	public boolean checkRefreshCellsDisappear() {
-		hardWait(800);
+		hardWait(500);
 //		if (webDB.verifyIsElementDisplayed("(" + CommonUiLocators.EntryTableRefreshCellImage + ")[1]",
 //				ElementType.Xpath)) {
 		List<WebElement> refreshElements = WebDriverBase.getDriver()
@@ -286,12 +284,6 @@ public class CommonFunctions {
 		if (Displayflag) {
 			DisplayText = webDB.getDomPropertyFromElement((locator + "/preceding-sibling::input"), ElementType.Xpath,
 					getDataFromTestDataSheet("Value"));
-			if (DisplayText.equalsIgnoreCase(getDataFromTestDataSheet("Loc_100"))
-					|| DisplayText.equalsIgnoreCase(getDataFromTestDataSheet("L0001"))
-					|| DisplayText.equalsIgnoreCase(getDataFromTestDataSheet("PI_Loc_Id"))
-					|| DisplayText.equalsIgnoreCase(getDataFromTestDataSheet("LOCATION100"))) {
-				DisplayText = "L0001111";
-			}
 		}
 		if (DisplayText == null || DisplayText.isBlank() || !DisplayText.equalsIgnoreCase(Value)) {
 			flag = webDB.waitForElement(locator, ElementType.Xpath);
@@ -313,42 +305,37 @@ public class CommonFunctions {
 					webDB.clickAnElementWithoutException(CommonUiLocators.SearchBarIcon, ElementType.Xpath);
 				}
 				checkRefreshCellsDisappear();
-				webDB.pressEnterKey();
 				checkRefreshCellsDisappear();
 				checkRefreshCellsDisappear();
 				try {
 					List<WebElement> Elements = WebDriverBase.getDriver()
 							.findElements(By.xpath(CommonUiLocators.convertListOfXPath(Value)));
-					for (WebElement webElement : Elements) {
-						if (webElement.isDisplayed() && webElement.getText().trim().equalsIgnoreCase(Value.trim())) {
-							((JavascriptExecutor) WebDriverBase.getDriver())
-									.executeScript("arguments[0].scrollIntoView(true);", webElement);
-							try {
-								Actions action = new Actions(WebDriverBase.getDriver());
-								action.moveToElement(webElement).build().perform();
-							} catch (Exception e) {
+					if (Elements.size() > 0) {
+						for (WebElement webElement : Elements) {
+							if (webElement.isDisplayed()
+									&& webElement.getText().trim().equalsIgnoreCase(Value.trim())) {
+								((JavascriptExecutor) WebDriverBase.getDriver())
+										.executeScript("arguments[0].scrollIntoView(true);", webElement);
+								try {
+									Actions action = new Actions(WebDriverBase.getDriver());
+									action.moveToElement(webElement).build().perform();
+								} catch (Exception e) {
+								}
+								webElement.click();
+								return;
 							}
-							webElement.click();
-							flag = true;
-						} else {
 						}
 					}
 				} catch (Exception e) {
 					webDB.pressEnterKey();
+					checkRefreshCellsDisappear();
 					logs.logging("INFO",
 							"Search bar Still Displayed Not Clicked Values in Lov Btn with Exception: " + e);
-					List<WebElement> searchBar = WebDriverBase.getDriver()
-							.findElements(By.xpath(CommonUiLocators.searchBarAllList));
-					for (WebElement element : searchBar) {
-						try {
-							if (element.isDisplayed()) {
-								flag = false;
-							}
-						} catch (Exception e1) {
-						}
-					}
 				}
 			}
+			checkRefreshCellsDisappear();
+			checkRefreshCellsDisappear();
+//			flag = !webDB.verifyIsElementDisplayed(CommonUiLocators.searchBarHeader, ElementType.Xpath);
 			assertTrue(flag);
 		} else {
 			logs.logging("INFO", "Already the '" + Value + "' selected in Lov");
@@ -1667,7 +1654,9 @@ public class CommonFunctions {
 //			}
 //		}
 		navigateToSearchTab(webDB.getDataFromProperties("CompProdOrderSingleProcessScreen"),
-				CompletionProductionOrderLocators.CompletionProcessPendingIcon);
+				CompletionProductionOrderLocators.CompletionProcessSingleLabel);
+		webDB.clickAnElement(CompletionProductionOrderLocators.CompletionProcessSingleLabel, ElementType.Xpath);
+		flag = webDB.waitForElement(CompletionProductionOrderLocators.CompletionProcessPendingIcon, ElementType.Xpath);
 		Assert.assertTrue(flag);
 	}
 
@@ -2445,11 +2434,15 @@ public class CommonFunctions {
 	 */
 	public void navigateToSearchTab(String TabName, String PageLocators) {
 		if (VariableHandler.getSiteWorked()) {
+			webDB.waitForPageReady(20);
 			// TODO will comment the hard script lines once loading issue resolved
 			webDB.waitForElement("//a[@class='t-Header-logo-link']", ElementType.Xpath);
+			if (webDB.verifyIsElementDisplayed(PageLocators, ElementType.Xpath)) {
+				logs.logging("INFO", "Already In Navigated Tab: " + TabName);
+				return;
+			}
 			webDB.clickAnElement("//a[@class='t-Header-logo-link']", ElementType.Xpath);
 			checkRefreshCellsDisappear();
-			webDB.waitForElement("//button[@id='INFO']", ElementType.Xpath);
 			webDB.waitForPageReady(20);
 			flag = webDB.waitForElement(CommonUiLocators.BusFunctionSearchBox, ElementType.Xpath);
 			if (flag) {
@@ -2765,7 +2758,9 @@ public class CommonFunctions {
 	 */
 	public void navigateToCompletionProductionOrderMultipleProcessInProdPlanning() {
 		navigateToSearchTab(webDB.getDataFromProperties("ProductionCompletionMultiple"),
-				CompletionProductionOrderLocators.MultiProc_PendingIcon);
+				CompletionProductionOrderLocators.CompletionProcessMultipleLabel);
+		webDB.clickAnElement(CompletionProductionOrderLocators.CompletionProcessMultipleLabel, ElementType.Xpath);
+		flag = webDB.waitForElement(CompletionProductionOrderLocators.MultiProc_PendingIcon, ElementType.Xpath);
 	}
 
 	/**
@@ -3507,10 +3502,14 @@ public class CommonFunctions {
 	 * @author PremKumar.K-RMITS
 	 */
 	public void expandFindTable() {
-		if (webDB.getAttributeFromElement(CommonUiLocators.PendingPoShowMore, ElementType.Xpath, "aria-expanded")
-				.equals("false")) {
-			webDB.clickAnElement(CommonUiLocators.PendingPoShowMore, ElementType.Xpath);
-		} else {
+		List<WebElement> elements = webDB.getListOfElements(CommonUiLocators.PendingPoShowMore, ElementType.Xpath);
+		for (WebElement element : elements) {
+			try {
+				if (element.getDomAttribute("aria-expanded").equals("false")) {
+					element.click();
+				}
+			} catch (Exception e) {
+			}
 		}
 	}
 
@@ -3561,6 +3560,7 @@ public class CommonFunctions {
 				logs.logging("INFO", "No Data Selected Container displayed");
 				webDB.moveToElement(HideBtn, ElementType.Xpath);
 				webDB.clickAnElement(HideBtn, ElementType.Xpath);
+				flag = webDB.waitForElement(ShowBtn, ElementType.Xpath);
 			}
 		}
 	}

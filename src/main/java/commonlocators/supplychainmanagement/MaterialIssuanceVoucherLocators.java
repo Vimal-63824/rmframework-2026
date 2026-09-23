@@ -133,9 +133,9 @@ public class MaterialIssuanceVoucherLocators {
 	/** @locatorType XPATH */
 	public static final String PendingCreateMIV = "//button[@data-testid='btn_cre_miv']";
 	/** @locatorType XPATH */
-	public static final String Pending_TableShowMyRecordBtn = "//button[@id='hid']";
+	public static final String Pending_TableShowMyRecordBtn = "//button[@data-testid='Show_my_Record']";
 	/** @locatorType XPATH */
-	public static final String Pending_TableShowMyRecordBtnClicked = "//button[@id='shd']";
+	public static final String Pending_TableShowMyRecordBtnClicked = "//button[@data-testid='Show_my_Record_1']";
 	/** @locatorType XPATH */
 	public static final String Pending_TableNoDataSelected = "//div[@id='PEND_data_panel']//div[@class='a-IRR-noDataMsg-icon']";
 	/** @locatorType XPATH */
