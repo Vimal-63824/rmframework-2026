@@ -439,9 +439,9 @@ public class SalesStandardPriceFunctions {
 	 */
 	public void insertItemIdStandardPrice() {
 
-		flag = webDB.waitForElement(SalesStandardPriceLocators.ItemIdField(2), ElementType.Xpath);
+		flag = webDB.waitForElement(SalesStandardPriceLocators.ItemIdField(1), ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(SalesStandardPriceLocators.ItemIdField(2), ElementType.Xpath);
+			webDB.clickAnElement(SalesStandardPriceLocators.ItemIdField(1), ElementType.Xpath);
 			if (flag) {
 				commonFunc.searchAndSelectValueInFilters(SalesStandardPriceLocators.ItemIdLov,
 						VariableHandler.getItemName());
@@ -485,7 +485,7 @@ public class SalesStandardPriceFunctions {
 			webDB.waitForElement(SalesStandardPriceLocators.MapPriceInput, ElementType.Xpath);
 			if (flag) {
 				webDB.moveToElement(SalesStandardPriceLocators.MapPriceInput, ElementType.Xpath);
-				verifyClickAndEnterValueInTableFields(SalesStandardPriceLocators.MapPriceField(2),
+				verifyClickAndEnterValueInTableFields(SalesStandardPriceLocators.MapPriceField(1),
 						SalesStandardPriceLocators.MapPriceInput, Map_Value);
 				if (flag) {
 					logs.logging("INFO", "Successfully Insert Map Value" + Map_Value);
@@ -502,10 +502,10 @@ public class SalesStandardPriceFunctions {
 	 * @param Landing_Cost
 	 */
 	public void insertLandingCost(String Landing_Cost) {
-		webDB.waitForElement(SalesStandardPriceLocators.LandingCostField(2), ElementType.Xpath);
+		webDB.waitForElement(SalesStandardPriceLocators.LandingCostField(1), ElementType.Xpath);
 		if (flag) {
 			webDB.moveToElement(SalesStandardPriceLocators.LandingCostInput, ElementType.Xpath);
-			verifyClickAndEnterValueInTableFields(SalesStandardPriceLocators.LandingCostField(2),
+			verifyClickAndEnterValueInTableFields(SalesStandardPriceLocators.LandingCostField(1),
 					SalesStandardPriceLocators.LandingCostInput, Landing_Cost);
 			if (flag) {
 				logs.logging("INFO", "Successfully Insert Landing Cost" + Landing_Cost);

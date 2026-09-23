@@ -648,8 +648,8 @@ public class SubcontractSetUpFunctions {
 					if (flag) {
 						webDB.clickAnElement(SubcontractOrderLocators.OP_Cancel_okBtn, ElementType.Xpath);
 						commonFunc.checkRefreshCellsDisappear();
-						commonFunc.hardWait(1000);
-						flag = webDB.waitForElement(SubcontractOrderLocators.Open_SCO_Find_AddIcon, ElementType.Xpath);
+						commonFunc.hardWait(3000);
+						flag = webDB.waitForElement(SubcontractOrderLocators.Open_SCO_ReFindIcon, ElementType.Xpath);
 						if (flag) {
 							logs.logging("INFO", "Document Cancelled Sucessfully");
 

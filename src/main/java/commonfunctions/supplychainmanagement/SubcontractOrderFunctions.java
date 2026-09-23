@@ -1691,18 +1691,15 @@ public class SubcontractOrderFunctions {
 	 * @author Vimal - RMITS
 	 */
 	public void clickingHeaderCancelButton() {
-		webDB.moveToElement(SubcontractOrderLocators.SCO_LineDetail_Details, ElementType.Xpath);
-		flag = webDB.waitForElement(SubcontractOrderLocators.SCO_LineDetail_Details, ElementType.Xpath);
+		webDB.moveToElement(SubcontractOrderLocators.SCO_DOC_Cancel_Btn, ElementType.Xpath);
+		flag = webDB.waitForElement(SubcontractOrderLocators.SCO_DOC_Cancel_Btn, ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(SubcontractOrderLocators.SCO_LineDetail_Details, ElementType.Xpath);
+			webDB.clickAnElement(SubcontractOrderLocators.SCO_DOC_Cancel_Btn, ElementType.Xpath);
 			commonFunc.hardWait(1000);
-			flag = webDB.waitForElement(SubcontractOrderLocators.SCO_Cancel_Btn, ElementType.Xpath);
+			flag = webDB.waitForElement(SubcontractOrderLocators.SCO_Cancel_okBtn, ElementType.Xpath);
 			if (flag) {
-				webDB.clickAnElement(SubcontractOrderLocators.SCO_Cancel_Btn, ElementType.Xpath);
+				webDB.clickAnElement(SubcontractOrderLocators.SCO_Cancel_okBtn, ElementType.Xpath);
 				commonFunc.hardWait(1000);
-				flag = webDB.waitForElement(SubcontractOrderLocators.SCO_Cancel_okBtn, ElementType.Xpath);
-				if (flag) {
-					webDB.clickAnElement(SubcontractOrderLocators.SCO_Cancel_okBtn, ElementType.Xpath);
 					commonFunc.checkRefreshCellsDisappear();
 					commonFunc.hardWait(1000);
 					flag = webDB.waitForElement(SubcontractOrderLocators.SubcontractFindAddIcon, ElementType.Xpath);
@@ -1711,7 +1708,6 @@ public class SubcontractOrderFunctions {
 					}
 				}
 			}
-		}
 		assertTrue(flag);
 	}
 
@@ -10501,16 +10497,16 @@ public class SubcontractOrderFunctions {
 											webDB.switchToDefaultContent();
 											commonFunc.checkRefreshCellsDisappear();
 											commonFunc.hardWait(1000);
-											flag = webDB.waitForElement(
-													SubcontractOrderLocators.GateEntryCloseNoteAlert,
-													ElementType.Xpath);
-											if (webDB.verifyIsElementDisplayed(
-													SubcontractOrderLocators.GateEntryCloseNoteAlert,
-													ElementType.Xpath)) {
-												webDB.clickAnElementWithoutException(
-														SubcontractOrderLocators.GateEntryCloseNoteAlert,
-														ElementType.Xpath);
-												commonFunc.hardWait(2000);
+//											flag = webDB.waitForElement(
+//													SubcontractOrderLocators.GateEntryCloseNoteAlert,
+//													ElementType.Xpath);
+//											if (webDB.verifyIsElementDisplayed(
+//													SubcontractOrderLocators.GateEntryCloseNoteAlert,
+//													ElementType.Xpath)) {
+//												webDB.clickAnElementWithoutException(
+//														SubcontractOrderLocators.GateEntryCloseNoteAlert,
+//														ElementType.Xpath);
+												commonFunc.hardWait(3000);
 												String GEdocno = webDB.getTextFromElement(
 														SalesInvoiceLocators.GE_Doc_No, ElementType.Xpath);
 												logs.logging("INFO", "Get GE DocNo Is: " + GEdocno);
@@ -10530,7 +10526,6 @@ public class SubcontractOrderFunctions {
 					}
 				}
 			}
-		}
 		assertTrue(flag);
 	}
 
@@ -10943,15 +10938,15 @@ public class SubcontractOrderFunctions {
 											webDB.switchToDefaultContent();
 											commonFunc.checkRefreshCellsDisappear();
 											commonFunc.hardWait(1000);
-											flag = webDB.waitForElement(
-													SubcontractOrderLocators.GateEntryCloseNoteAlert,
-													ElementType.Xpath);
-											if (webDB.verifyIsElementDisplayed(
-													SubcontractOrderLocators.GateEntryCloseNoteAlert,
-													ElementType.Xpath)) {
-												webDB.clickAnElementWithoutException(
-														SubcontractOrderLocators.GateEntryCloseNoteAlert,
-														ElementType.Xpath);
+//											flag = webDB.waitForElement(
+//													SubcontractOrderLocators.GateEntryCloseNoteAlert,
+//													ElementType.Xpath);
+//											if (webDB.verifyIsElementDisplayed(
+//													SubcontractOrderLocators.GateEntryCloseNoteAlert,
+//													ElementType.Xpath)) {
+//												webDB.clickAnElementWithoutException(
+//														SubcontractOrderLocators.GateEntryCloseNoteAlert,
+//														ElementType.Xpath);
 												commonFunc.hardWait(2000);
 												String GEdocno = webDB.getTextFromElement(
 														SalesInvoiceLocators.GE_Doc_No, ElementType.Xpath);
@@ -10972,7 +10967,6 @@ public class SubcontractOrderFunctions {
 					}
 				}
 			}
-		}
 		assertTrue(flag);
 	}
 
@@ -11045,15 +11039,15 @@ public class SubcontractOrderFunctions {
 											webDB.switchToDefaultContent();
 											commonFunc.checkRefreshCellsDisappear();
 											commonFunc.hardWait(1000);
-											flag = webDB.waitForElement(
-													SubcontractOrderLocators.GateEntryCloseNoteAlert,
-													ElementType.Xpath);
-											if (webDB.verifyIsElementDisplayed(
-													SubcontractOrderLocators.GateEntryCloseNoteAlert,
-													ElementType.Xpath)) {
-												webDB.clickAnElementWithoutException(
-														SubcontractOrderLocators.GateEntryCloseNoteAlert,
-														ElementType.Xpath);
+//											flag = webDB.waitForElement(
+//													SubcontractOrderLocators.GateEntryCloseNoteAlert,
+//													ElementType.Xpath);
+//											if (webDB.verifyIsElementDisplayed(
+//													SubcontractOrderLocators.GateEntryCloseNoteAlert,
+//													ElementType.Xpath)) {
+//												webDB.clickAnElementWithoutException(
+//														SubcontractOrderLocators.GateEntryCloseNoteAlert,
+//														ElementType.Xpath);
 												commonFunc.hardWait(2000);
 												String GEdocno = webDB.getTextFromElement(
 														SalesInvoiceLocators.GE_Doc_No, ElementType.Xpath);
@@ -11074,7 +11068,6 @@ public class SubcontractOrderFunctions {
 					}
 				}
 			}
-		}
 		assertTrue(flag);
 	}
 
@@ -11145,15 +11138,15 @@ public class SubcontractOrderFunctions {
 											webDB.switchToDefaultContent();
 											commonFunc.checkRefreshCellsDisappear();
 											commonFunc.hardWait(1000);
-											flag = webDB.waitForElement(
-													SubcontractOrderLocators.GateEntryCloseNoteAlert,
-													ElementType.Xpath);
-											if (webDB.verifyIsElementDisplayed(
-													SubcontractOrderLocators.GateEntryCloseNoteAlert,
-													ElementType.Xpath)) {
-												webDB.clickAnElementWithoutException(
-														SubcontractOrderLocators.GateEntryCloseNoteAlert,
-														ElementType.Xpath);
+//											flag = webDB.waitForElement(
+//													SubcontractOrderLocators.GateEntryCloseNoteAlert,
+//													ElementType.Xpath);
+//											if (webDB.verifyIsElementDisplayed(
+//													SubcontractOrderLocators.GateEntryCloseNoteAlert,
+//													ElementType.Xpath)) {
+//												webDB.clickAnElementWithoutException(
+//														SubcontractOrderLocators.GateEntryCloseNoteAlert,
+//														ElementType.Xpath);
 												commonFunc.hardWait(2000);
 												String GEdocno = webDB.getTextFromElement(
 														SalesInvoiceLocators.GE_Doc_No, ElementType.Xpath);
@@ -11174,7 +11167,6 @@ public class SubcontractOrderFunctions {
 					}
 				}
 			}
-		}
 		assertTrue(flag);
 	}
 
@@ -11242,15 +11234,15 @@ public class SubcontractOrderFunctions {
 											webDB.switchToDefaultContent();
 											commonFunc.checkRefreshCellsDisappear();
 											commonFunc.hardWait(1000);
-											flag = webDB.waitForElement(
-													SubcontractOrderLocators.GateEntryCloseNoteAlert,
-													ElementType.Xpath);
-											if (webDB.verifyIsElementDisplayed(
-													SubcontractOrderLocators.GateEntryCloseNoteAlert,
-													ElementType.Xpath)) {
-												webDB.clickAnElementWithoutException(
-														SubcontractOrderLocators.GateEntryCloseNoteAlert,
-														ElementType.Xpath);
+//											flag = webDB.waitForElement(
+//													SubcontractOrderLocators.GateEntryCloseNoteAlert,
+//													ElementType.Xpath);
+//											if (webDB.verifyIsElementDisplayed(
+//													SubcontractOrderLocators.GateEntryCloseNoteAlert,
+//													ElementType.Xpath)) {
+//												webDB.clickAnElementWithoutException(
+//														SubcontractOrderLocators.GateEntryCloseNoteAlert,
+//														ElementType.Xpath);
 												commonFunc.hardWait(2000);
 												String GEdocno = webDB.getTextFromElement(
 														SalesInvoiceLocators.GE_Doc_No, ElementType.Xpath);
@@ -11271,7 +11263,6 @@ public class SubcontractOrderFunctions {
 					}
 				}
 			}
-		}
 		assertTrue(flag);
 	}
 
