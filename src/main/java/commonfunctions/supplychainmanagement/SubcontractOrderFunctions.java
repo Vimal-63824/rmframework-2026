@@ -76,6 +76,7 @@ public class SubcontractOrderFunctions {
 			if (flag) {
 				logs.logging("INFO", "Pending Frame Is Displayed");
 				webDB.switchToFrame(SubcontractOrderLocators.FrameProdPoc, ElementType.Xpath);
+				commonFunc.expandFindTable();
 				commonFunc.hardWait(3000);
 //				flag = webDB.waitForElement(SubcontractOrderLocators.ProdOrderNo, ElementType.Xpath);
 //				if (flag) {

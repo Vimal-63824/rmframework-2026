@@ -451,7 +451,7 @@ public class CommonUiLocators {
 	/** @locatorType Xpath */
 	public static final String OkayButton = "//button[text()='OK']";
 	/** @locatorType Xpath */
-	public static final String CancelBtn = "//*[text()='Cancel']/parent::button";
+	public static final String CancelBtn = "//*[text()='Cancel']/..//button[1]";
 	/** @locatorType Xpath */
 	public static final String ItemLovButton = "//input[@data-testid='P93132130_ITEM']/following-sibling::button";
 	/** @locatorType Xpath */
