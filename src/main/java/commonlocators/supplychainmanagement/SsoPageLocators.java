@@ -137,7 +137,7 @@ public class SsoPageLocators {
 	/** @locatorType Xpath */
 	public static final String SsoFindSearchBtn = "//button[@data-testid='Find']";
 	/** @locatorType Xpath */
-	public static final String SsoCanclStatus = "//table[@data-testid='L_Result_Data']/tbody/tr/td[16]";
+	public static final String SsoCanclStatus = "//table[@data-testid='H_Result_Data']/tbody/tr/td[16]";
 	/** @locatorType Xpath */
 	public static final String SsoDocNoLovFindPage = "//input[@data-testid='P1615132060_PO_SSO_NO']/following-sibling::button";
 
