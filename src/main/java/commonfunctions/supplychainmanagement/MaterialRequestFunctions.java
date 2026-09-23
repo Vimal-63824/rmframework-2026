@@ -1123,6 +1123,7 @@ public class MaterialRequestFunctions {
 	 */
 	public void verifyHeaderValidationInMaterialRequestWithDB(String FileName, String SheetName, int StartIndex) {
 		logs.logging("INFO", "****Material Request DB Validation - Raw Materials & Headers****");
+		logs.logging("INFO", "Start Index: " + StartIndex);
 		String LineNo, SeqNo, Process, Unit, RMName, UOM, SourceWH, ReceiverWH, ReqQnty = null;
 		String[][] TotalData = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 		ExcelUtils excelUtils = new ExcelUtils();
