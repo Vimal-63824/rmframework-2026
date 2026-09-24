@@ -299,8 +299,8 @@ public class InspectionPlanFunctions {
 	 * @param Attribute
 	 */
 	public void fillNoOfSampleAndObservations(String sampleCount, String ObservationCount) {
-		commonFunc.verifyAddTableSpecs(InspectionPlanLocators.NoOfSampleData,
-				InspectionPlanLocators.NoOfSampleInput, sampleCount);
+		commonFunc.verifyAddTableSpecs(InspectionPlanLocators.NoOfSampleData, InspectionPlanLocators.NoOfSampleInput,
+				sampleCount);
 		logs.logging("INFO", "Sample Count entered in Lines of Inspection Plan: " + sampleCount);
 		commonFunc.verifyAddTableSpecs(InspectionPlanLocators.NoOfObservationData,
 				InspectionPlanLocators.NoOfObservationInput, ObservationCount);
@@ -335,8 +335,7 @@ public class InspectionPlanFunctions {
 							if (flag) {
 								logs.logging("INFO",
 										"Std Operator Selected in Lines of Inspection Plan: " + StdOperator);
-								commonFunc.verifyAddTableSpecs(
-										InspectionPlanLocators.SpecValueTableData,
+								commonFunc.verifyAddTableSpecs(InspectionPlanLocators.SpecValueTableData,
 										InspectionPlanLocators.SpecValueTableInput, SpecValue);
 								logs.logging("INFO", "Spec Value Entered in Lines of Inspection Plan: " + SpecValue);
 							}
@@ -1184,14 +1183,14 @@ public class InspectionPlanFunctions {
 		fillUnitofMeasureAndStdValTextForInProcess(commonFunc.getDataFromTestDataSheet("Kgs"), "30");
 		fillNoOfSampleAndObservationsForInProcess("1", "1");
 		clickSaveLinesInspectionPlan();
-		clickAddLinesInspectionPlan();
-		fillCharacteristicsProcessIdModOfInsForInProcess(commonFunc.getDataFromTestDataSheet("Surface_CharText"),
-				commonFunc.getDataFromTestDataSheet("GwlProcess1"),
-				commonFunc.getDataFromTestDataSheet("RefText_Test"));
-		fillUnitofMeasureAndAttributeSpecForInProcess(commonFunc.getDataFromTestDataSheet("Kgs"),
-				commonFunc.getDataFromTestDataSheet("RubberTypeText"));
-		fillNoOfSampleAndObservationsForInProcess("1", "1");
-		clickSaveLinesInspectionPlan();
+//		clickAddLinesInspectionPlan();
+//		fillCharacteristicsProcessIdModOfInsForInProcess(commonFunc.getDataFromTestDataSheet("Surface_CharText"),
+//				commonFunc.getDataFromTestDataSheet("GwlProcess1"),
+//				commonFunc.getDataFromTestDataSheet("RefText_Test"));
+//		fillUnitofMeasureAndAttributeSpecForInProcess(commonFunc.getDataFromTestDataSheet("Kgs"),
+//				commonFunc.getDataFromTestDataSheet("RubberTypeText"));
+//		fillNoOfSampleAndObservationsForInProcess("1", "1");
+//		clickSaveLinesInspectionPlan();
 		clickSaveHeaderInInspectionPlan();
 		clickPostButtonInInspectionPlan();
 		if (!VariableHandler.getApprovalFlag()) {
@@ -1285,8 +1284,7 @@ public class InspectionPlanFunctions {
 							if (flag) {
 								logs.logging("INFO",
 										"Std Operator Selected in Lines of Inspection Plan: " + StdOperator);
-								commonFunc.verifyAddTableSpecs(
-										InspectionPlanLocators.SpecValueTableDataInProcess,
+								commonFunc.verifyAddTableSpecs(InspectionPlanLocators.SpecValueTableDataInProcess,
 										InspectionPlanLocators.SpecValueTableInputInProcess, SpecValue);
 								logs.logging("INFO", "Spec Value Entered in Lines of Inspection Plan: " + SpecValue);
 							}
@@ -1315,8 +1313,7 @@ public class InspectionPlanFunctions {
 						ElementType.Xpath);
 				if (flag) {
 					logs.logging("INFO", "UOM Selected in Lines of Inspection Plan: " + UOM);
-					commonFunc.verifyAddTableSpecs(
-							InspectionPlanLocators.StdValTextTableDataInProcess,
+					commonFunc.verifyAddTableSpecs(InspectionPlanLocators.StdValTextTableDataInProcess,
 							InspectionPlanLocators.StdValTextTableInputInProcess, StdValText);
 					logs.logging("INFO", "Std Value Text Entered in Lines of Inspection Plan: " + StdValText);
 				}

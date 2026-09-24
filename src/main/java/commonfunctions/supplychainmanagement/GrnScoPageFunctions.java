@@ -109,28 +109,33 @@ public class GrnScoPageFunctions {
 	public void checkConsumptionBeforeGenerationMat() {
 		webDB.waitForElement(GrnScoLocators.ItemTable, ElementType.Xpath);
 		webDB.moveToElement(GrnScoLocators.ItemTable, ElementType.Xpath);
-		webDB.moveToElement(GrnScoLocators.Consmp, ElementType.Xpath);
-		flag = webDB.waitForElement(GrnScoLocators.Consmp, ElementType.Xpath);
+		webDB.moveToElement(GrnScoLocators.FirstItemOption, ElementType.Xpath);
+		flag = webDB.waitForElement(GrnScoLocators.FirstItemOption, ElementType.Xpath);
 		if (flag) {
 			logs.logging("INFO", "Consump Button Is Displayed");
-			webDB.clickAnElement(GrnScoLocators.Consmp, ElementType.Xpath);
-			flag = webDB.waitForClickElement(GrnScoLocators.ConsumptionFrame, ElementType.Xpath);
+			webDB.clickAnElement(GrnScoLocators.FirstItemOption, ElementType.Xpath);
+			flag = webDB.waitForElement(GrnScoLocators.Consmp, ElementType.Xpath);
 			if (flag) {
-				logs.logging("INFO", "Consumption Frame Is Displayed");
-				webDB.switchToFrame(GrnScoLocators.ConsumptionFrame, ElementType.Xpath);
-				purchaseOrderFunc.verifyGetTextValidation(GrnScoLocators.BatchDetails,
-						commonFunc.getDataFromTestDataSheet("DcDetails"));
-				purchaseOrderFunc.verifyGetTextValidation(GrnScoLocators.ConsumptionDetails,
-						commonFunc.getDataFromTestDataSheet("NoDataFound"));
-				purchaseOrderFunc.verifyGetTextValidation(GrnScoLocators.DCDetails,
-						commonFunc.getDataFromTestDataSheet("DcDetails"));
-				webDB.switchToDefaultContent();
-				flag = webDB.waitForElement(GrnScoLocators.ConsumptionCloseButton, ElementType.Xpath);
+				logs.logging("INFO", "Consump Button Is Displayed");
+				webDB.clickAnElement(GrnScoLocators.Consmp, ElementType.Xpath);
+				flag = webDB.waitForClickElement(GrnScoLocators.ConsumptionFrame, ElementType.Xpath);
 				if (flag) {
-					logs.logging("INFO", "Consumption Close Button Is Displayed");
-					webDB.moveToElement(GrnScoLocators.ConsumptionCloseButton, ElementType.Xpath);
-					webDB.clickAnElement(GrnScoLocators.ConsumptionCloseButton, ElementType.Xpath);
-					flag = webDB.waitForElement(GrnScoLocators.GrnNumber, ElementType.Xpath);
+					logs.logging("INFO", "Consumption Frame Is Displayed");
+					webDB.switchToFrame(GrnScoLocators.ConsumptionFrame, ElementType.Xpath);
+					purchaseOrderFunc.verifyGetTextValidation(GrnScoLocators.BatchDetails,
+							commonFunc.getDataFromTestDataSheet("DcDetails"));
+					purchaseOrderFunc.verifyGetTextValidation(GrnScoLocators.ConsumptionDetails,
+							commonFunc.getDataFromTestDataSheet("NoDataFound"));
+					purchaseOrderFunc.verifyGetTextValidation(GrnScoLocators.DCDetails,
+							commonFunc.getDataFromTestDataSheet("DcDetails"));
+					webDB.switchToDefaultContent();
+					flag = webDB.waitForElement(GrnScoLocators.ConsumptionCloseButton, ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Consumption Close Button Is Displayed");
+						webDB.moveToElement(GrnScoLocators.ConsumptionCloseButton, ElementType.Xpath);
+						webDB.clickAnElement(GrnScoLocators.ConsumptionCloseButton, ElementType.Xpath);
+						flag = webDB.waitForElement(GrnScoLocators.GrnNumber, ElementType.Xpath);
+					}
 				}
 			}
 		}
@@ -185,40 +190,45 @@ public class GrnScoPageFunctions {
 	public void checkConsumptionAfterGenerationMat() {
 		webDB.waitForElement(GrnScoLocators.ItemTable, ElementType.Xpath);
 		webDB.moveToElement(GrnScoLocators.ItemTable, ElementType.Xpath);
-		webDB.moveToElement(GrnScoLocators.Consmp, ElementType.Xpath);
-		flag = webDB.waitForElement(GrnScoLocators.Consmp, ElementType.Xpath);
+		webDB.moveToElement(GrnScoLocators.FirstItemOption, ElementType.Xpath);
+		flag = webDB.waitForElement(GrnScoLocators.FirstItemOption, ElementType.Xpath);
 		if (flag) {
 			logs.logging("INFO", "Consump Button Is Displayed");
-			webDB.clickAnElement(GrnScoLocators.Consmp, ElementType.Xpath);
-			flag = webDB.waitForElement(GrnScoLocators.ConsumptionFrame, ElementType.Xpath);
+			webDB.clickAnElement(GrnScoLocators.FirstItemOption, ElementType.Xpath);
+			flag = webDB.waitForElement(GrnScoLocators.Consmp, ElementType.Xpath);
 			if (flag) {
-				logs.logging("INFO", "Consump Frame Is Displayed");
-				webDB.waitForElement(GrnScoLocators.ConsumptionFrame, ElementType.Xpath);
-				webDB.switchToFrame(GrnScoLocators.ConsumptionFrame, ElementType.Xpath);
+				logs.logging("INFO", "Consump Button Is Displayed");
+				webDB.clickAnElement(GrnScoLocators.Consmp, ElementType.Xpath);
+				flag = webDB.waitForElement(GrnScoLocators.ConsumptionFrame, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Consump Frame Is Displayed");
+					webDB.waitForElement(GrnScoLocators.ConsumptionFrame, ElementType.Xpath);
+					webDB.switchToFrame(GrnScoLocators.ConsumptionFrame, ElementType.Xpath);
 //				purchaseOrderFunc.verifyGetTextValidation(GrnScoLocators.ConsumptionItem,
 //						commonFunc.getDataFromTestDataSheet("RawMaterialSco"));
-				webDB.waitForElement(GrnScoLocators.AllatedQty, ElementType.Xpath);
-				String text = webDB.getTextFromElement(GrnScoLocators.AllatedQty, ElementType.Xpath);
-				flag = text.equals(commonFunc.getDataFromTestDataSheet("ZeroValue"));
-				if (!flag) {
-					flag = webDB.waitForElement(GrnScoLocators.DCNumber(1), ElementType.Xpath);
-					if (flag) {
-						String text1 = webDB.getTextFromElement(GrnScoLocators.DCNumber(1), ElementType.Xpath);
-						logs.logging("INFO", "Get Text Value Is: " + text1);
-						flag = text1.contains("D");
+					webDB.waitForElement(GrnScoLocators.AllatedQty, ElementType.Xpath);
+					String text = webDB.getTextFromElement(GrnScoLocators.AllatedQty, ElementType.Xpath);
+					flag = text.equals(commonFunc.getDataFromTestDataSheet("ZeroValue"));
+					if (!flag) {
+						flag = webDB.waitForElement(GrnScoLocators.DCNumber(1), ElementType.Xpath);
 						if (flag) {
-							webDB.switchToDefaultContent();
-							flag = webDB.waitForElement(GrnScoLocators.ConsumptionCloseButton, ElementType.Xpath);
+							String text1 = webDB.getTextFromElement(GrnScoLocators.DCNumber(1), ElementType.Xpath);
+							logs.logging("INFO", "Get Text Value Is: " + text1);
+							flag = text1.contains("D");
 							if (flag) {
-								webDB.moveToElement(GrnScoLocators.ConsumptionCloseButton, ElementType.Xpath);
-								logs.logging("INFO", "Switched To Default Content Close Button Is Displayed");
-								webDB.clickAnElement(GrnScoLocators.ConsumptionCloseButton, ElementType.Xpath);
-								flag = webDB.waitForElement(GrnScoLocators.GrnNumber, ElementType.Xpath);
+								webDB.switchToDefaultContent();
+								flag = webDB.waitForElement(GrnScoLocators.ConsumptionCloseButton, ElementType.Xpath);
+								if (flag) {
+									webDB.moveToElement(GrnScoLocators.ConsumptionCloseButton, ElementType.Xpath);
+									logs.logging("INFO", "Switched To Default Content Close Button Is Displayed");
+									webDB.clickAnElement(GrnScoLocators.ConsumptionCloseButton, ElementType.Xpath);
+									flag = webDB.waitForElement(GrnScoLocators.GrnNumber, ElementType.Xpath);
+								}
 							}
 						}
+					} else {
+						flag = false;
 					}
-				} else {
-					flag = false;
 				}
 			}
 		}
@@ -234,25 +244,35 @@ public class GrnScoPageFunctions {
 	public void verifyViewLineDetails() {
 		webDB.waitForElement(GrnScoLocators.ItemTable, ElementType.Xpath);
 		webDB.moveToElement(GrnScoLocators.ItemTable, ElementType.Xpath);
-		webDB.moveToElement(GrnScoLocators.ViewDetails, ElementType.Xpath);
-		flag = webDB.waitForElement(GrnScoLocators.ViewDetails, ElementType.Xpath);
+		webDB.moveToElement(GrnScoLocators.FirstItemOption, ElementType.Xpath);
+		flag = webDB.waitForElement(GrnScoLocators.FirstItemOption, ElementType.Xpath);
 		if (flag) {
-			logs.logging("INFO", "View Details Buttton Is Displayed");
-			webDB.clickAnElement(GrnScoLocators.ViewDetails, ElementType.Xpath);
-			flag = webDB.waitForElement(GrnScoLocators.FrameLineDetails, ElementType.Xpath);
+			logs.logging("INFO", "Consump Button Is Displayed");
+			webDB.clickAnElement(GrnScoLocators.FirstItemOption, ElementType.Xpath);
+			webDB.moveToElement(GrnScoLocators.ViewDetails, ElementType.Xpath);
+			flag = webDB.waitForElement(GrnScoLocators.ViewDetails, ElementType.Xpath);
 			if (flag) {
-				webDB.switchToFrame(GrnScoLocators.FrameLineDetails, ElementType.Xpath);
-				purchaseOrderFunc.verifyDomPropertyValidation(GrnScoLocators.SCONumber, VariableHandler.getScoNumber());
-				purchaseOrderFunc.verifyDomPropertyValidation(GrnScoLocators.PONumber,
-						VariableHandler.getProductionOrderNumber());
-				purchaseOrderFunc.verifyGetTextValidation(GrnScoLocators.QcRequired,
-						commonFunc.getDataFromTestDataSheet("FreePass"));
-				webDB.switchToDefaultContent();
-				flag = webDB.waitForElement(GrnScoLocators.CloseLineDetials, ElementType.Xpath);
+				logs.logging("INFO", "View Details Buttton Is Displayed");
+				webDB.clickAnElement(GrnScoLocators.ViewDetails, ElementType.Xpath);
+				flag = webDB.waitForElement(GrnScoLocators.FrameLineDetails, ElementType.Xpath);
 				if (flag) {
-					logs.logging("INFO", "Close Line Detail Button Is Displayed");
-					webDB.clickAnElement(GrnScoLocators.CloseLineDetials, ElementType.Xpath);
-					flag = webDB.waitForElement(GrnScoLocators.GrnNumber, ElementType.Xpath);
+					webDB.switchToFrame(GrnScoLocators.FrameLineDetails, ElementType.Xpath);
+					flag = webDB.waitForElement("//h2[text()='Source Document']/../..//button", ElementType.Xpath);
+					webDB.clickAnElement("//h2[text()='Source Document']/../..//button", ElementType.Xpath);
+
+					purchaseOrderFunc.verifyDomPropertyValidation(GrnScoLocators.SCONumber,
+							VariableHandler.getScoNumber());
+					purchaseOrderFunc.verifyDomPropertyValidation(GrnScoLocators.PONumber,
+							VariableHandler.getProductionOrderNumber());
+					purchaseOrderFunc.verifyGetTextValidation(GrnScoLocators.QcRequired,
+							commonFunc.getDataFromTestDataSheet("FreePass"));
+					webDB.switchToDefaultContent();
+					flag = webDB.waitForElement(GrnScoLocators.CloseLineDetials, ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Close Line Detail Button Is Displayed");
+						webDB.clickAnElement(GrnScoLocators.CloseLineDetials, ElementType.Xpath);
+						flag = webDB.waitForElement(GrnScoLocators.GrnNumber, ElementType.Xpath);
+					}
 				}
 			}
 		}

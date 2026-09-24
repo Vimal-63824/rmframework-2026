@@ -2278,6 +2278,7 @@ public class InspectionDocumentFunctions {
 			if (flag) {
 				logs.logging("INFO", "Pending Inspection Documents Is Displayed");
 				webDB.switchToFrame(InspectionDocumentsLocators.PendingInspectionFrame, ElementType.Xpath);
+				commonFunc.expandFindTable();
 				flag = webDB.waitForElement(InspectionDocumentsLocators.ProductionOrderNoLovButton, ElementType.Xpath);
 				commonFunc.searchAndSelectValueInFilters(InspectionDocumentsLocators.ProductionOrderNoLovButton,
 						VariableHandler.getProductionOrderNumber());
@@ -2401,6 +2402,7 @@ public class InspectionDocumentFunctions {
 			if (flag) {
 				logs.logging("INFO", "Pending Inspection Documents Is Displayed");
 				webDB.switchToFrame(InspectionDocumentsLocators.PendingInspectionFrame, ElementType.Xpath);
+				commonFunc.expandFindTable();
 				flag = webDB.waitForElement(InspectionDocumentsLocators.VoucherLov, ElementType.Xpath);
 				commonFunc.searchAndSelectValueInFilters(InspectionDocumentsLocators.VoucherLov, VoucherNo);
 				logs.logging("INFO", "Search Field Displayed");

@@ -714,6 +714,7 @@ public class MaterialIssuanceVoucherFunctions {
 	public void verifyHeaderAndLinesValidationInMaterialIssuanceVoucherWithDB(String FileName, String SheetName,
 			int StartIndex) {
 		logs.logging("INFO", "****Material Issuance Voucher DB Validation - Raw Materials & Headers****");
+		logs.logging("INFO", "Start Index: " + StartIndex);
 		String SeqNo, Process, RMName, UOM, SourceWH, IssnceQnty, StockQnty, ReqQnty, UnitCost = null;
 		String[][] TotalData = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 		ExcelUtils excelUtils = new ExcelUtils();
@@ -782,6 +783,7 @@ public class MaterialIssuanceVoucherFunctions {
 	public void verifyStockTransactionValidationInMIVForRawMaterials(String FileName, String SheetName,
 			int StartIndex) {
 		logs.logging("INFO", "****Material Issuance Voucher Stock Transaction DB Validation****");
+		logs.logging("INFO", "Start Index: " + StartIndex);
 		String[][] TotalData = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 		ExcelUtils excelUtils = new ExcelUtils();
 		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
@@ -826,6 +828,7 @@ public class MaterialIssuanceVoucherFunctions {
 	 */
 	public void verifyWriteBeforeLotQuantityInLotForRawMaterials(String FileName, String SheetName, int StartIndex) {
 		logs.logging("INFO", "****Writing Before Lot Serial Quantity DB Validation in MIV****");
+		logs.logging("INFO", "Start Index: " + StartIndex);
 		String[][] TotalData = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 		ExcelUtils excelUtils = new ExcelUtils();
 		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
@@ -853,6 +856,7 @@ public class MaterialIssuanceVoucherFunctions {
 	public void verifyAfterLotQuantityInLotSerialValidationForRawMaterials(String FileName, String SheetName,
 			int StartIndex) {
 		logs.logging("INFO", "****After Validation Lot Serial Quantity DB Validation in MIV****");
+		logs.logging("INFO", "Start Index: " + StartIndex);
 		String[][] TotalData = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 		ExcelUtils excelUtils = new ExcelUtils();
 		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;

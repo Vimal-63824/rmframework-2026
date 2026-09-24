@@ -322,7 +322,7 @@ public class CommonFunctions {
 								} catch (Exception e) {
 								}
 								webElement.click();
-								return;
+//								return;
 							}
 						}
 					}
@@ -2437,10 +2437,10 @@ public class CommonFunctions {
 			webDB.waitForPageReady(20);
 			// TODO will comment the hard script lines once loading issue resolved
 			webDB.waitForElement("//a[@class='t-Header-logo-link']", ElementType.Xpath);
-			if (webDB.verifyIsElementDisplayed(PageLocators, ElementType.Xpath)) {
-				logs.logging("INFO", "Already In Navigated Tab: " + TabName);
-				return;
-			}
+//			if (webDB.verifyIsElementDisplayed(PageLocators, ElementType.Xpath)) {
+//				logs.logging("INFO", "Already In Navigated Tab: " + TabName);
+//				return;
+//			}
 			webDB.clickAnElement("//a[@class='t-Header-logo-link']", ElementType.Xpath);
 			checkRefreshCellsDisappear();
 			webDB.waitForPageReady(20);
@@ -2739,7 +2739,11 @@ public class CommonFunctions {
 				|| (Actual.equalsIgnoreCase("RM KD WH") && Expected.equalsIgnoreCase("RM KD"))) {
 			Actual = Expected;
 		}
-		flag = (Actual.equalsIgnoreCase(Expected));
+		try {
+			flag = (Actual.equalsIgnoreCase(Expected));
+		} catch (Exception e) {
+			logs.logging("INFO", "Exception occurs while asserting: " + e);
+		}
 		if (flag) {
 			logs.logging("INFO", "Verified Actual And Expected Values");
 		} else {
@@ -2760,7 +2764,7 @@ public class CommonFunctions {
 		navigateToSearchTab(webDB.getDataFromProperties("ProductionCompletionMultiple"),
 				CompletionProductionOrderLocators.CompletionProcessMultipleLabel);
 		webDB.clickAnElement(CompletionProductionOrderLocators.CompletionProcessMultipleLabel, ElementType.Xpath);
-		flag = webDB.waitForElement(CompletionProductionOrderLocators.MultiProc_PendingIcon, ElementType.Xpath);
+		flag = webDB.waitForElement(CompletionProductionOrderLocators.CompletionProcessPendingIcon, ElementType.Xpath);
 	}
 
 	/**

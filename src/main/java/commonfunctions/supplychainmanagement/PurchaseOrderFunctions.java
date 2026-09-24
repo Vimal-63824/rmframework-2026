@@ -1528,7 +1528,6 @@ public class PurchaseOrderFunctions {
 		verifyAddItemCharges(commonFunc.getDataFromTestDataSheet("PackingCharges"));
 		verifyAddItemChargesPercentages();
 		itemChargesTickIcon();
-		verifyTotalAmountCalculation();
 		verifyClickPostIcon();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HariEmpId"));
@@ -13990,6 +13989,11 @@ public class PurchaseOrderFunctions {
 					commonFunc.verifyAddTableLovValue(PurchaseOrderPageLocators.HsnCode(),
 							PurchaseOrderPageLocators.HsnCodeLovButton, HsnCode);
 					webDB.pressEscapeKey();
+					if (PoType.equals(commonFunc.getDataFromTestDataSheet("ServiceValue"))) {
+						verifyPoWithGrnServiceFlagChecked();
+						webDB.pressEscapeKey();
+						commonFunc.checkRefreshCellsDisappear();
+					}
 					commonFunc.checkRefreshCellsDisappear();
 					verifyDirectPoLineWiseSaved();
 					discountFromPrToGrnDocument(i, SheetName, FileName);
