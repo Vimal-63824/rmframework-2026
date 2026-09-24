@@ -144,5 +144,9 @@ public class InspectionDocumentsLocators {
 		return CommonFunctions.checkAndReturnLocatorForFindPageTable(InsDocumentDrillDown, "Doc. No.");
 	}
 
+	/** @locatorType Xpath */
+	public static final String PendingPOShowMyRecordBtn = "//button[@id='show']";
+	/** @locatorType Xpath */
+	public static final String PendingPOShowMyRecordHideBtn = "//button[@id='hide']";
 
 }
