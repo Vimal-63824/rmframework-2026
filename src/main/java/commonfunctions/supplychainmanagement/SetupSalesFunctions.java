@@ -125,8 +125,8 @@ public class SetupSalesFunctions {
 	 * @param Itm
 	 */
 	public void CreatesSalesZone(String Itm) {
-		String SalesZones = RandomStringUtils.randomNumeric(3);
-		if (SalesZones.equals("000")) {
+		String SalesZones = RandomStringUtils.randomNumeric(4);
+		if (SalesZones.equals("0000")) {
 			SalesZones = "10";
 		}
 		String SimItemId = Itm + SalesZones;
@@ -146,8 +146,8 @@ public class SetupSalesFunctions {
 	 * @param Itm
 	 */
 	public void CreatesSalesSubTerritoy(String Itm) {
-		String SalesSubTerritory = RandomStringUtils.randomNumeric(3);
-		if (SalesSubTerritory.equals("000")) {
+		String SalesSubTerritory = RandomStringUtils.randomNumeric(4);
+		if (SalesSubTerritory.equals("0000")) {
 			SalesSubTerritory = "10";
 		}
 		String SimItemId = Itm + SalesSubTerritory;

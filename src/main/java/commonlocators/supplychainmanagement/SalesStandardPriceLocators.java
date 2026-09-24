@@ -107,5 +107,7 @@ public class SalesStandardPriceLocators {
 	public static final String ItemInputField = "//input[@data-testid='P1915131012_ITEM']";
 	/** @locatorType Xpath */
 	public static final String SearchFindPage = "//button[@data-testid='Find']";
+	/** @locatorType Xpath */
+	public static final String StandardHyderLinkinFindPage = " //a[text()='Standard']" ;
 
 }
