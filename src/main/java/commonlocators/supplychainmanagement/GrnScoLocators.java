@@ -19,7 +19,7 @@ public class GrnScoLocators {
 	/** @locatorType Xpath */
 	public static final String OkButton = "//button[@data-testid='OK']";
 	/** @locatorType Xpath */
-	public static final String ItemTable = "//div[@id='add_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[3]";
+	public static final String ItemTable = "//div[@id='add_line_ig_grid_vc']//table/tbody/tr[1]/td[3]";
 	/** @locatorType Xpath */
 	public static final String LineProcess = "//div[@id='add_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[29]";
 	/** @locatorType Xpath */
@@ -27,9 +27,9 @@ public class GrnScoLocators {
 	/** @locatorType Xpath */
 	public static final String TargetSFCode = "//div[@id='add_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[28]";
 	/** @locatorType Xpath */
-	public static final String Consmp = "//div[@id='add_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[30]";
+	public static final String Consmp = "//a[@data-action='LN_CONSMP']";
 	/** @locatorType Xpath */
-	public static final String ViewDetails = "//div[@id='add_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[32]";
+	public static final String ViewDetails = "//a[@data-action='LN_DTLS']";
 	/** @locatorType Xpath */
 	public static final String ConsumptionFrame = "//iframe[@title='Subcontract GRN Consumption Details']";
 	/** @locatorType Xpath */
@@ -165,5 +165,7 @@ public class GrnScoLocators {
 	public static final String GRN_SCO_LotSerial_Save = "//button[@data-testid='Save_Lot_ser']";
 	/** @locatorType Xpath */
 	public static final String SDS_Type_Field = "(//input[@type='number'])[2]";
+	/** @locatorType Xpath */
+	public static final String FirstItemOption = "//div[@id='add_line_ig_grid_vc']//table/tbody/tr[1]/td[1]";
 
 }

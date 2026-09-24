@@ -513,6 +513,83 @@ public class SalesStandardPriceFunctions {
 		}
 		assertTrue(flag);
 	}
+	
+	/**This Methed to used to Click a Search Button in Transaction Page
+	 * 
+	 * @author Kowshik-RMITS
+	 */
+	public void clickSearchButtoninStdPrice() {
+		flag = webDB.waitForElement(SalesStandardPriceLocators.SearchButton, ElementType.Xpath);
+		if(flag) {
+			webDB.moveToElement(SalesStandardPriceLocators.SearchButton, ElementType.Xpath);
+			webDB.javaScriptClickAnElement(SalesStandardPriceLocators.SearchButton, ElementType.Xpath);
+			flag = webDB.waitForElement(SalesPriceListLocators.CatalogueFlagFindPage, ElementType.Xpath);
+			if(flag) {
+				logs.logging("info","Search Button is Clicked");
+			}
+		}
+		assertTrue(flag);
+	}
+	
+	/**This Method is Used to Uncheck Flag in Find Page 
+	 * 
+	 * @author Kowshik-RMITS
+	 */
+	public void uncheckaRadioButtonOfCatalogandPriceListFlag() {
+		flag = webDB.waitForElement(SalesPriceListLocators.CatalogueFlagFindPage, ElementType.Xpath);
+		if(flag) {
+			webDB.javaScriptClickAnElement(SalesPriceListLocators.CatalogueFlagFindPage, ElementType.Xpath);
+			flag = webDB.waitForElement(SalesPriceListLocators.PriceListFlagFindPage, ElementType.Xpath);
+			if(flag) {
+				logs.logging("info", "Uncheck a Catalog price flag");
+				flag = webDB.waitForElement(SalesPriceListLocators.PriceListFlagFindPage, ElementType.Xpath);
+				if(flag) {
+					webDB.clickAnElement(SalesPriceListLocators.PriceListFlagFindPage, ElementType.Xpath);
+					flag =webDB.waitForElement(SalesStandardPriceLocators.ItemInputField, ElementType.Xpath);
+					if(flag) {
+						logs.logging("Info", "Uncheck a Price List Flag ");
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+	
+	/**This Is Method is Used to Search Std price Item
+	 * 
+	 * @author Kowshik-RMITS
+	 */
+	public void passingStdPriceItemToBeFillterInFindPage() {
+		flag =webDB.waitForElement(SalesStandardPriceLocators.ItemInputField, ElementType.Xpath);
+		if(flag) {
+			if (flag) {
+				commonFunc.searchAndSelectValueInFilters(SalesPriceListLocators.ItemLovFindPage,
+						VariableHandler.getItemName());
+				flag = webDB.waitForElement(SalesPriceListLocators.searchBoxFindPage, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(SalesPriceListLocators.SearchButtoninFindPage, ElementType.Xpath);
+					logs.logging("INFO", "Successfully Clicked SearchBox");
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+	
+	/**Click Standard Hyder Link
+	 * 
+	 * @author Kowshik-RMITS
+	 */
+	public void clickHyderLinkInFindPage() {
+		flag = webDB.waitForElement(SalesStandardPriceLocators.StandardHyderLinkinFindPage, ElementType.Xpath );
+		if(flag) {
+			webDB.javaScriptClickAnElement(SalesStandardPriceLocators.StandardHyderLinkinFindPage, ElementType.Xpath);
+			flag = webDB.waitForElement(SalesStandardPriceLocators.ActiveButton, ElementType.Xpath);
+			if(flag) {
+				logs.logging("INFO", "Successfully Clicked Standard Hyder Link");
+			}
+		}
+		assertTrue(flag);
+	}
 
 	/**
 	 * @author Harikrishna -RMITS This Method Is Used To Click the Table Field And
@@ -631,6 +708,11 @@ public class SalesStandardPriceFunctions {
 			if (flag) {
 				logs.logging("INFO", "Successfully Saved a Record ");
 				commonFunc.hardWait(2000);
+				clickSearchButtoninStdPrice();
+				uncheckaRadioButtonOfCatalogandPriceListFlag();
+				passingStdPriceItemToBeFillterInFindPage();
+				clickHyderLinkInFindPage();
+				commonFunc.checkRefreshCellsDisappear();
 			}
 		}
 		assertTrue(flag);

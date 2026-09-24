@@ -8,7 +8,7 @@ public class InspectionPlanLocators {
 	/** @locatorType Xpath */
 	public static final String AddIconInFindPage = "//button[@title='Add']";
 	/** @locatorType Xpath */
-	public static final String CreateInspectionIframe = "//iframe[@title='Create Inspection']";
+	public static final String CreateInspectionIframe = "//iframe[contains(@title,'Create')]";
 	/** @locatorType Xpath */
 	public static final String CreateInprocessButton = "//span[text()='TSA/In Process Inspec.']/..";
 	/** @locatorType Xpath */

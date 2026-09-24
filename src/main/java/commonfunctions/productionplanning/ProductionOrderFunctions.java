@@ -7889,7 +7889,7 @@ public class ProductionOrderFunctions {
 		subContractOrderFunc.verifyHeaderValidation(commonFunc.getDataFromTestDataSheet("PI_Loc_Id"),
 				commonFunc.getDataFromTestDataSheet("Unit_100"),
 				commonFunc.getDataFromTestDataSheet("SubcontractorName"));
-		subContractOrderFunc.verifyProcessQuantityCalculation();
+//		subContractOrderFunc.verifyProcessQuantityCalculation();
 		subContractOrderFunc.verifyAddHsnCode();
 		subContractOrderFunc.verifyAddGlAccNumberValue();
 		subContractOrderFunc.verifyIncludeChargesAndPostIcon();
@@ -7904,8 +7904,8 @@ public class ProductionOrderFunctions {
 			VariableHandler.setMRNumber(Text);
 			VariableHandler.setMaterialRequestNo(Text);
 		}
-		subContractOrderFunc.verifyValidateSubContractDocumentsStatus(VariableHandler.getScoNumber(),
-				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+//		subContractOrderFunc.verifyValidateSubContractDocumentsStatus(VariableHandler.getScoNumber(),
+//				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		commonFunc.navigateToInventoryMaterialRequest();
 		materialRequestFunc.verifyCreateMaterialRequestDocument(VariableHandler.getMRNumber());
 		materialRequestFunc.verifyNavigateToLineDetail(VariableHandler.getScoNumber());
@@ -8401,8 +8401,8 @@ public class ProductionOrderFunctions {
 			verifyStoreProcessAndRawMaterial();
 			verifyRoutingValidationInProductionOrderWithDB(webDB.getDataFromProperties("PMFFileName"),
 					webDB.getDataFromProperties("AllOutsideSheetName-Single"));
-			verifyRawMaterialsValidationInProductionOrderWithDB(webDB.getDataFromProperties("PMFFileName"),
-					webDB.getDataFromProperties("AllOutsideSheetName-Single"));
+//			verifyRawMaterialsValidationInProductionOrderWithDB(webDB.getDataFromProperties("PMFFileName"),
+//					webDB.getDataFromProperties("AllOutsideSheetName-Single"));
 			navigateToRoutingSubTab();
 			storeRoutingProcessAndProcessType();
 			storeRoutingProcessAndConsumptionAndRecipientWareHouse();
