@@ -95,11 +95,6 @@ public class GrnScoLocators {
 	}
 
 	/** @locatorType Xpath */
-	public static final String GRNNumberStatus(String Number) {
-		return "//a[text()='" + Number + "']/../../td/div[contains(@style,'green')]";
-	}
-
-	/** @locatorType Xpath */
 	public static final String SupplierLotNumber = "//div[@id='grn_lot_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[2]";
 	/** @locatorType Xpath */
 	public static final String HeatNumber = "//div[@id='grn_lot_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[3]";
@@ -167,5 +162,15 @@ public class GrnScoLocators {
 	public static final String SDS_Type_Field = "(//input[@type='number'])[2]";
 	/** @locatorType Xpath */
 	public static final String FirstItemOption = "//div[@id='add_line_ig_grid_vc']//table/tbody/tr[1]/td[1]";
+
+	/** @locatorType Xpath */
+	public static final String GRNNumberStatus(String Number) {
+		return "//a[text()='" + Number + "']/../../td/div[contains(@style,'color')]";
+	}
+
+	/** @locatorType Xpath */
+	public static final String SourceDocuments = "//h2[text()='Source Document']/../..//button";
+	/** @locatorType Xpath */
+	public static final String OthersButton = "//h2[text()='Others']/../..//button";
 
 }

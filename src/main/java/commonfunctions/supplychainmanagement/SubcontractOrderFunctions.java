@@ -77,52 +77,39 @@ public class SubcontractOrderFunctions {
 				logs.logging("INFO", "Pending Frame Is Displayed");
 				webDB.switchToFrame(SubcontractOrderLocators.FrameProdPoc, ElementType.Xpath);
 				commonFunc.expandFindTable();
-				commonFunc.hardWait(3000);
-//				flag = webDB.waitForElement(SubcontractOrderLocators.ProdOrderNo, ElementType.Xpath);
-//				if (flag) {
-//					logs.logging("INFO", "Switched To Pending Frame");
-//					webDB.clickAnElement(SubcontractOrderLocators.ProdOrderNo, ElementType.Xpath);
+				commonFunc.clearFiltersInFindPage();
 				commonFunc.searchAndSelectValueInFilters(SubcontractOrderLocators.ProdOrderNo, DocNo);
+				webDB.waitForElement(SubcontractOrderLocators.FrameProdPoc, ElementType.Xpath);
 				webDB.switchToFrame(SubcontractOrderLocators.FrameProdPoc, ElementType.Xpath);
 				flag = webDB.waitForElement(SubcontractOrderLocators.SearchButton, ElementType.Xpath);
 				if (flag) {
 					logs.logging("INFO", "Go Button Is Displayed");
 					webDB.clickAnElement(SubcontractOrderLocators.SearchButton, ElementType.Xpath);
 					commonFunc.checkRefreshCellsDisappear();
-					commonFunc.hardWait(12000);
 					flag = webDB.waitForElement(SubcontractOrderLocators.CheckBox(DocNo), ElementType.Xpath);
 					if (flag) {
 						webDB.clickAnElement(SubcontractOrderLocators.CheckBox(DocNo), ElementType.Xpath);
-						commonFunc.hardWait(2000);
 						flag = webDB.waitForElement(SubcontractOrderLocators.Pending_CreateSCO_Button,
 								ElementType.Xpath);
 						if (flag) {
-							commonFunc.hardWait(2000);
 							logs.logging("INFO", "Create SubContract Order Doc Is Displayed");
 							webDB.clickAnElement(SubcontractOrderLocators.Pending_CreateSCO_Button, ElementType.Xpath);
-
-							flag = webDB.waitForElement(SubcontractOrderLocators.SubcontractorLovButton,
-									ElementType.Xpath);
+							commonFunc.searchAndSelectValueInFilters(SubcontractOrderLocators.SubcontractorLovButton,
+									commonFunc.getDataFromTestDataSheet("SubcontractorName"));
+							webDB.switchToFrame(SubcontractOrderLocators.FrameProdPoc, ElementType.Xpath);
+							flag = webDB.waitForElement(SubcontractOrderLocators.OkButton, ElementType.Xpath);
 							if (flag) {
-								commonFunc.searchAndSelectValueInFilters(
-										SubcontractOrderLocators.SubcontractorLovButton,
-										commonFunc.getDataFromTestDataSheet("SubcontractorName"));
-								webDB.switchToFrame(SubcontractOrderLocators.FrameProdPoc, ElementType.Xpath);
-								flag = webDB.waitForElement(SubcontractOrderLocators.OkButton, ElementType.Xpath);
-								if (flag) {
-									commonFunc.hardWait(2000);
-									logs.logging("INFO", "Ok Button Is Displayed");
-									webDB.clickAnElement(SubcontractOrderLocators.OkButton, ElementType.Xpath);
-									webDB.switchToDefaultContent();
-									flag = webDB.waitForElement(SubcontractOrderLocators.LocationId, ElementType.Xpath);
-									storeSCODocumentsNumber();
-									if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
-										webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon,
-												ElementType.Xpath);
-									}
+								logs.logging("INFO", "Ok Button Is Displayed");
+								webDB.clickAnElement(SubcontractOrderLocators.OkButton, ElementType.Xpath);
+								webDB.switchToDefaultContent();
+								commonFunc.checkRefreshCellsDisappear();
+								storeSCODocumentsNumber();
+								if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon,
+										ElementType.Xpath)) {
+									webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon,
+											ElementType.Xpath);
 								}
 							}
-//							}
 						}
 					}
 				}
@@ -221,8 +208,11 @@ public class SubcontractOrderFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void storeSCODocumentsNumber() {
-		String Number = webDB.getTextFromElement(SubcontractOrderLocators.ScoNumber, ElementType.Xpath);
-		VariableHandler.setScoNumber(Number);
+		flag = webDB.waitForElement(SubcontractOrderLocators.LocationId, ElementType.Xpath);
+		if (flag) {
+			String Number = webDB.getTextFromElement(SubcontractOrderLocators.ScoNumber, ElementType.Xpath);
+			VariableHandler.setScoNumber(Number);
+		}
 	}
 
 	/**
@@ -1701,14 +1691,14 @@ public class SubcontractOrderFunctions {
 			if (flag) {
 				webDB.clickAnElement(SubcontractOrderLocators.SCO_Cancel_okBtn, ElementType.Xpath);
 				commonFunc.hardWait(1000);
-					commonFunc.checkRefreshCellsDisappear();
-					commonFunc.hardWait(1000);
-					flag = webDB.waitForElement(SubcontractOrderLocators.SubcontractFindAddIcon, ElementType.Xpath);
-					if (flag) {
-						logs.logging("INFO", "Document Cancelled Successfully");
-					}
+				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.hardWait(1000);
+				flag = webDB.waitForElement(SubcontractOrderLocators.SubcontractFindAddIcon, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Document Cancelled Successfully");
 				}
 			}
+		}
 		assertTrue(flag);
 	}
 
@@ -10507,17 +10497,16 @@ public class SubcontractOrderFunctions {
 //												webDB.clickAnElementWithoutException(
 //														SubcontractOrderLocators.GateEntryCloseNoteAlert,
 //														ElementType.Xpath);
-												commonFunc.hardWait(3000);
-												String GEdocno = webDB.getTextFromElement(
-														SalesInvoiceLocators.GE_Doc_No, ElementType.Xpath);
-												logs.logging("INFO", "Get GE DocNo Is: " + GEdocno);
-												VariableHandler.setGEdocno(GEdocno);
-												commonFunc.hardWait(1000);
-												flag = webDB.waitForElement(SalesInvoiceLocators.GE_Driver_Name,
-														ElementType.Xpath);
-												if (flag) {
-													logs.logging("INFO", "GateEnrty Document No Get Successfully");
-												}
+											commonFunc.hardWait(3000);
+											String GEdocno = webDB.getTextFromElement(SalesInvoiceLocators.GE_Doc_No,
+													ElementType.Xpath);
+											logs.logging("INFO", "Get GE DocNo Is: " + GEdocno);
+											VariableHandler.setGEdocno(GEdocno);
+											commonFunc.hardWait(1000);
+											flag = webDB.waitForElement(SalesInvoiceLocators.GE_Driver_Name,
+													ElementType.Xpath);
+											if (flag) {
+												logs.logging("INFO", "GateEnrty Document No Get Successfully");
 											}
 										}
 									}
@@ -10527,6 +10516,7 @@ public class SubcontractOrderFunctions {
 					}
 				}
 			}
+		}
 		assertTrue(flag);
 	}
 
@@ -10948,17 +10938,16 @@ public class SubcontractOrderFunctions {
 //												webDB.clickAnElementWithoutException(
 //														SubcontractOrderLocators.GateEntryCloseNoteAlert,
 //														ElementType.Xpath);
-												commonFunc.hardWait(2000);
-												String GEdocno = webDB.getTextFromElement(
-														SalesInvoiceLocators.GE_Doc_No, ElementType.Xpath);
-												logs.logging("INFO", "Get GE DocNo Is: " + GEdocno);
-												VariableHandler.setGEdocno(GEdocno);
-												commonFunc.hardWait(1000);
-												flag = webDB.waitForElement(SalesInvoiceLocators.GE_Driver_Name,
-														ElementType.Xpath);
-												if (flag) {
-													logs.logging("INFO", "GateEnrty Document No Get Successfully");
-												}
+											commonFunc.hardWait(2000);
+											String GEdocno = webDB.getTextFromElement(SalesInvoiceLocators.GE_Doc_No,
+													ElementType.Xpath);
+											logs.logging("INFO", "Get GE DocNo Is: " + GEdocno);
+											VariableHandler.setGEdocno(GEdocno);
+											commonFunc.hardWait(1000);
+											flag = webDB.waitForElement(SalesInvoiceLocators.GE_Driver_Name,
+													ElementType.Xpath);
+											if (flag) {
+												logs.logging("INFO", "GateEnrty Document No Get Successfully");
 											}
 										}
 									}
@@ -10968,6 +10957,7 @@ public class SubcontractOrderFunctions {
 					}
 				}
 			}
+		}
 		assertTrue(flag);
 	}
 
@@ -11049,17 +11039,16 @@ public class SubcontractOrderFunctions {
 //												webDB.clickAnElementWithoutException(
 //														SubcontractOrderLocators.GateEntryCloseNoteAlert,
 //														ElementType.Xpath);
-												commonFunc.hardWait(2000);
-												String GEdocno = webDB.getTextFromElement(
-														SalesInvoiceLocators.GE_Doc_No, ElementType.Xpath);
-												logs.logging("INFO", "Get GE DocNo Is: " + GEdocno);
-												VariableHandler.setGEdocno(GEdocno);
-												commonFunc.hardWait(1000);
-												flag = webDB.waitForElement(SalesInvoiceLocators.GE_Driver_Name,
-														ElementType.Xpath);
-												if (flag) {
-													logs.logging("INFO", "GateEnrty Document No Get Successfully");
-												}
+											commonFunc.hardWait(2000);
+											String GEdocno = webDB.getTextFromElement(SalesInvoiceLocators.GE_Doc_No,
+													ElementType.Xpath);
+											logs.logging("INFO", "Get GE DocNo Is: " + GEdocno);
+											VariableHandler.setGEdocno(GEdocno);
+											commonFunc.hardWait(1000);
+											flag = webDB.waitForElement(SalesInvoiceLocators.GE_Driver_Name,
+													ElementType.Xpath);
+											if (flag) {
+												logs.logging("INFO", "GateEnrty Document No Get Successfully");
 											}
 										}
 									}
@@ -11069,6 +11058,7 @@ public class SubcontractOrderFunctions {
 					}
 				}
 			}
+		}
 		assertTrue(flag);
 	}
 
@@ -11148,17 +11138,16 @@ public class SubcontractOrderFunctions {
 //												webDB.clickAnElementWithoutException(
 //														SubcontractOrderLocators.GateEntryCloseNoteAlert,
 //														ElementType.Xpath);
-												commonFunc.hardWait(2000);
-												String GEdocno = webDB.getTextFromElement(
-														SalesInvoiceLocators.GE_Doc_No, ElementType.Xpath);
-												logs.logging("INFO", "Get GE DocNo Is: " + GEdocno);
-												VariableHandler.setGEdocno(GEdocno);
-												commonFunc.hardWait(1000);
-												flag = webDB.waitForElement(SalesInvoiceLocators.GE_Driver_Name,
-														ElementType.Xpath);
-												if (flag) {
-													logs.logging("INFO", "GateEnrty Document No Get Successfully");
-												}
+											commonFunc.hardWait(2000);
+											String GEdocno = webDB.getTextFromElement(SalesInvoiceLocators.GE_Doc_No,
+													ElementType.Xpath);
+											logs.logging("INFO", "Get GE DocNo Is: " + GEdocno);
+											VariableHandler.setGEdocno(GEdocno);
+											commonFunc.hardWait(1000);
+											flag = webDB.waitForElement(SalesInvoiceLocators.GE_Driver_Name,
+													ElementType.Xpath);
+											if (flag) {
+												logs.logging("INFO", "GateEnrty Document No Get Successfully");
 											}
 										}
 									}
@@ -11168,6 +11157,7 @@ public class SubcontractOrderFunctions {
 					}
 				}
 			}
+		}
 		assertTrue(flag);
 	}
 
@@ -11244,17 +11234,16 @@ public class SubcontractOrderFunctions {
 //												webDB.clickAnElementWithoutException(
 //														SubcontractOrderLocators.GateEntryCloseNoteAlert,
 //														ElementType.Xpath);
-												commonFunc.hardWait(2000);
-												String GEdocno = webDB.getTextFromElement(
-														SalesInvoiceLocators.GE_Doc_No, ElementType.Xpath);
-												logs.logging("INFO", "Get GE DocNo Is: " + GEdocno);
-												VariableHandler.setGEdocno(GEdocno);
-												commonFunc.hardWait(1000);
-												flag = webDB.waitForElement(SalesInvoiceLocators.GE_Driver_Name,
-														ElementType.Xpath);
-												if (flag) {
-													logs.logging("INFO", "GateEnrty Document No Get Successfully");
-												}
+											commonFunc.hardWait(2000);
+											String GEdocno = webDB.getTextFromElement(SalesInvoiceLocators.GE_Doc_No,
+													ElementType.Xpath);
+											logs.logging("INFO", "Get GE DocNo Is: " + GEdocno);
+											VariableHandler.setGEdocno(GEdocno);
+											commonFunc.hardWait(1000);
+											flag = webDB.waitForElement(SalesInvoiceLocators.GE_Driver_Name,
+													ElementType.Xpath);
+											if (flag) {
+												logs.logging("INFO", "GateEnrty Document No Get Successfully");
 											}
 										}
 									}
@@ -11264,6 +11253,7 @@ public class SubcontractOrderFunctions {
 					}
 				}
 			}
+		}
 		assertTrue(flag);
 	}
 
