@@ -322,7 +322,7 @@ public class CommonFunctions {
 								} catch (Exception e) {
 								}
 								webElement.click();
-//								return;
+								flag = true;
 							}
 						}
 					}
@@ -335,7 +335,6 @@ public class CommonFunctions {
 			}
 			checkRefreshCellsDisappear();
 			checkRefreshCellsDisappear();
-//			flag = !webDB.verifyIsElementDisplayed(CommonUiLocators.searchBarHeader, ElementType.Xpath);
 			assertTrue(flag);
 		} else {
 			logs.logging("INFO", "Already the '" + Value + "' selected in Lov");
