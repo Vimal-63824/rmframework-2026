@@ -400,4 +400,12 @@ public class GrnLocators {
 	
 	/** @locatorType Xpath */
 	public static final String AcceptInput = LotSerialAcceptQtyTable + "//input";
+	/** @locatorType Xpath */
+	public static final String PendingPOShowMyRecordBtn = "//button[@id='po_sel']";
+	/** @locatorType Xpath */
+	public static final String PendingPOShowMyRecordHideBtn = "//button[@id='po_unsel']";
+	/** @locatorType Xpath */
+	public static final String PendingPoStShowmyRecordBtn = "//button[@id='sst_sel']";
+	/** @locatorType Xpath */
+	public static final String PendingPoStHidemyRecordBtn = "//button[@id='sst_unsel']";
 }

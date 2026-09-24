@@ -79,8 +79,13 @@ public class GrnPageFunctions {
 				flag = webDB.waitForElement(GrnLocators.PendingPOIframe, ElementType.Xpath);
 				if (flag) {
 					webDB.switchToFrame(GrnLocators.PendingPOIframe, ElementType.Xpath);
+					commonFunc.checkRefreshCellsDisappear();
+					commonFunc.checkShowMyRecordAndUnselectAll(GrnLocators.PendingPOShowMyRecordBtn,
+							GrnLocators.PendingPOShowMyRecordHideBtn,
+							PurchaseOrderPageLocators.PendingPR_SelectAllCheckBox);
+					commonFunc.checkRefreshCellsDisappear();
 					commonFunc.hardWait(2000);
-					commonFunc.expandFindTable();
+					commonFunc.expandFindTable();					
 					commonFunc.searchAndSelectValueInFilters(GrnLocators.PendingPOHeaderPONumberInput,
 							VariableHandler.getPONumber());
 					logs.logging("INFO", "PO Number Succesfully search and Selected");
@@ -1107,6 +1112,10 @@ public class GrnPageFunctions {
 				flag = webDB.waitForElement(GrnLocators.PendingPOIframe, ElementType.Xpath);
 				if (flag) {
 					webDB.switchToFrame(GrnLocators.PendingPOIframe, ElementType.Xpath);
+					commonFunc.checkRefreshCellsDisappear();
+					commonFunc.checkShowMyRecordAndUnselectAll(GrnLocators.PendingPoStShowmyRecordBtn,
+							GrnLocators.PendingPoStHidemyRecordBtn,
+							GrnLocators.PendingPOSelectAllButton);
 					commonFunc.checkRefreshCellsDisappear();
 					commonFunc.expandFindTable();
 					commonFunc.checkRefreshCellsDisappear();

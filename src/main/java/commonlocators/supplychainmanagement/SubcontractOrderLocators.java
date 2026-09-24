@@ -467,41 +467,41 @@ public class SubcontractOrderLocators {
 	/** @Locator XPATH */
 	public static final String SCO_GetTarSFcode = "//span[@data-testid='P161713106504_POL_TARG_SF_CODE']";
 	/** @Locator XPATH */
-	public static final String SubcontractCSFindAddIcon = "//button[@id='B1881864447764329204']";
+	public static final String SubcontractCSFindAddIcon = "//button[@data-testid='Add_SCO_Amd']";
 	/** @Locator XPATH */
-	public static final String SubcontractCSBackIcon = "//button[@id='B1764212743701233410']";
+	public static final String SubcontractCSBackIcon = "//button[@data-testid='Back']";
 	/** @Locator XPATH */
 	public static final String SCOA_SCOPfx = "//input[@data-testid='P60_PFX']/following-sibling::button";
 	/** @Locator XPATH */
-	public static final String SubcontractCSHeaderSaveIcon = "//button[@id='B1764208411668233406']";
+	public static final String SubcontractCSHeaderSaveIcon = "//button[@title='Save']";
 	/** @Locator XPATH */
-	public static final String SubcontractCSAddSCOLine = "//button[@id='B1764206787289233403']";
+	public static final String SubcontractCSAddSCOLine = "//button[@data-testid='Add_SCO']";
 	/** @Locator XPATH */
 	public static final String SubcontractCSAddSCOLine_Iframe = "//iframe[@title='SCO Details']";
 	/** @Locator XPATH */
-	public static final String SubcontractCSAddSCOLine_SelectAll = "//*[@id=\"check_all\"]";
+	public static final String SubcontractCSAddSCOLine_SelectAll = "//*[@id=\"4101776970104955082_orig\"]/tbody/tr[2]/td[12]";
 	/** @Locator XPATH */
-	public static final String SubcontractCSAddSCOLine_OKButton = "//button[@id='B1']";
+	public static final String SubcontractCSAddSCOLine_OKButton = "//button[@data-testid='OK']";
 	/** @Locator XPATH */
-	public static final String SubcontractCS_ProcDetailsButton = "(//span[@class='fa fa-info-circle'])[3]";
+	public static final String SubcontractCS_ProcDetailsButton = "//*[@id=\"process_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[1]/a/span";
 	/** @Locator XPATH */
 	public static final String SubcontractCS_ProcDetails_Iframe = "//iframe[@title='Details']";
 	/** @Locator XPATH */
-	public static final String SubcontractCS_ProcDetails_BatchQty = "//input[@id='P61_SCOAP_NEW_BATCH_QTY']";
+	public static final String SubcontractCS_ProcDetails_BatchQty = "//input[@data-testid='P61_SCOAP_NEW_BATCH_QTY']";
 	/** @Locator XPATH */
-	public static final String SubcontractCS_ProcDetails_BatchCost = "//input[@id='P61_SCOAP_NEW_BATCH_COST']";
+	public static final String SubcontractCS_ProcDetails_BatchCost = "//input[@data-testid='P61_SCOAP_NEW_BATCH_COST']";
 	/** @Locator XPATH */
 	public static final String SubcontractCS_ProcDetails_SaveIcon = "//button[@title='Save']";
 	/** @Locator XPATH */
-	public static final String SubcontractCS_PostIcon = "//button[@id='B1764208792183233406']";
+	public static final String SubcontractCS_PostIcon = "//button[@data-testid='Entry_Completed']";
 	/** @Locator XPATH */
 	public static final String SubcontractCS_DocNO = "//input[@data-testid='P60_PAH_DOC_NO']";
 	/** @Locator XPATH */
-	public static final String SubcontractCS_ProcDetails_SACLov = "//input[@id='P61_SCOAP_HSN_CODE']/following-sibling::button";
+	public static final String SubcontractCS_ProcDetails_SACLov = "//input[@data-testid='P61_SCOAP_HSN_CODE']/following-sibling::button";
 	/** @Locator XPATH */
-	public static final String SubcontractCS_CloseshortButton = "//button[@id='B1']";
+	public static final String SubcontractCS_CloseshortButton = "//button[@data-testid='CS']";
 	/** @Locator XPATH */
-	public static final String SubcontractCS_Closeshort_CancelButton = "//button[@id='B1764209957747233407']";
+	public static final String SubcontractCS_Closeshort_CancelButton = "//button[@data-testid='Cancel']";
 	/** @Locator XPATH */
 	public static final String PendingSCOProcessDetailsIframe = "//iframe[@title='Process Details']";
 	/** @Locator XPATH */
@@ -570,5 +570,11 @@ public class SubcontractOrderLocators {
 	public static final String Open_SCO_ReFindIcon = "//button[@title='Multi']";
 	/** @locatorType XPATH */
 	public static final String SCO_DOC_Cancel_Btn = "//button[@data-testid='Cancel']";
+	/** @locatorType XPATH */
+	public static final String SCO_Amd_Det_Btn = "//span[@class='fa fa fa-indent']";
+	/** @Locator XPATH */
+	public static final String SCO_AMD_LineDetail_NewCost = "//*[@id=\"R230190271602287923\"]/div[1]/div[1]/button";
+	/** @Locator XPATH */
+	public static final String SCO_AMD_LineDetail_NewTAX = "//*[@id=\"R231828621571081192\"]/div[1]/div[1]/button";
 
 }
