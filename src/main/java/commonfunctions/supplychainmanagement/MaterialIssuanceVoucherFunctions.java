@@ -200,7 +200,6 @@ public class MaterialIssuanceVoucherFunctions {
 	 * @param ExpectedStatus
 	 */
 	public void checkStatusOfMaterialIssuanceVoucher(String MrNo, String ExpectedStatus) {
-		commonFunc.hardWait(3000);
 		commonFunc.searchAndSelectValueInFilters(MaterialIssuanceVoucherLocators.VoucherNoLovButton, MrNo);
 		flag = webDB.waitForElement(MaterialIssuanceVoucherLocators.MivSearchButton, ElementType.Xpath);
 		if (flag) {
@@ -414,7 +413,6 @@ public class MaterialIssuanceVoucherFunctions {
 				System.out.println("Pattern not found!");
 			}
 		}
-
 	}
 
 	/**

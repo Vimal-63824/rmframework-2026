@@ -1,5 +1,7 @@
 package commonlocators.financials;
 
+import commonfunctions.CommonFunctions;
+
 /**
  * @author Deepan-GWL, Sakthi
  * @company Galaxy Weblinks December 17, 2025
@@ -42,7 +44,7 @@ public class PurchaseBillsLocatorsGetDocument {
 
 	/** @locatorType Xpath */
 	public static final String ApprovedStatus(String PbNo) {
-	    return "//tr[.//a[normalize-space()='" + PbNo + "']]//div[contains(@style,'color:green')]";
+		return "//tr[.//a[normalize-space()='" + PbNo + "']]//div[contains(@style,'color:green')]";
 	}
 
 	/** @locatorType Xpath */
@@ -89,7 +91,7 @@ public class PurchaseBillsLocatorsGetDocument {
 	/** @locatorType Xpath */
 	public static final String TDSU_SForLandedCost = "//div[@id='IN_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[28]";
 	/** @locatorType Xpath */
-	public static final String PBAddSave = "//button[@id='IN_SAVE']";
+	public static final String PBAddSave = "//button[@data-testid='IN_SAVE']";
 	/** @locatorType Xpath */
 	public static final String HsnLov = "//input[@data-testid=\"SUPLN_HSN_CODE\"]/following-sibling::button";
 	/** @locatorType Xpath */
@@ -215,4 +217,100 @@ public class PurchaseBillsLocatorsGetDocument {
 	public static final String SCODirectReferenceTab = "//input[@id='P11613101001_TABS_4']/following-sibling::label";
 	/** @locatorType Xpath */
 	public static final String AllowExemptedFlag = "//input[@id='P11613101001_SUPHD_TDS_EXMP_FL']/following-sibling::label";
+
+	/** @locatorType Xpath */
+	public static final String AddTablePurchaseBillScreen = "(//table[@data-testid='IN_Result_Data'])[2]";
+
+	/** @locatorType Xpath */
+	public static final String PBItemTable() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(AddTablePurchaseBillScreen, "Item");
+	}
+
+	/** @locatorType Xpath */
+	public static final String PBItemType() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(AddTablePurchaseBillScreen, "Type");
+	}
+
+	/** @locatorType Xpath */
+	public static final String PBGLAccount() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(AddTablePurchaseBillScreen,
+				"GL Acct. Desc.");
+	}
+
+	/** @locatorType Xpath */
+	public static final String PBInvoiceQty() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(AddTablePurchaseBillScreen, "Inv. Qty.");
+	}
+
+	/** @locatorType Xpath */
+	public static final String PBInvoiceUnitCost() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(AddTablePurchaseBillScreen, "Unit Cost");
+	}
+
+	/** @locatorType Xpath */
+	public static final String PBHSNCode() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(AddTablePurchaseBillScreen, "HSN/SAC Code");
+	}
+
+	/** @locatorType Xpath */
+	public static final String PBTradeDisPct() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(AddTablePurchaseBillScreen, "Trd. Disc. %");
+	}
+
+	/** @locatorType Xpath */
+	public static final String PBSplDisPct() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(AddTablePurchaseBillScreen, "Spl. Disc. %");
+	}
+
+	/** @locatorType Xpath */
+	public static final String PBCashDisPct() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(AddTablePurchaseBillScreen, "Cash Disc. %");
+	}
+
+	/** @locatorType Xpath */
+	public static final String PBCpcDesc() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(AddTablePurchaseBillScreen, "CPC Desc.");
+	}
+
+	/** @locatorType Xpath */
+	public static final String PBHsnInput() {
+		return "(" + CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(AddTablePurchaseBillScreen,
+				"HSN/SAC Code") + ")[1]//input";
+	}
+
+	/** @locatorType Xpath */
+	public static final String PBGLAccountInput() {
+		return "(" + CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(AddTablePurchaseBillScreen,
+				"GL Acct. Desc.") + ")[1]//input";
+	}
+
+	/** @locatorType Xpath */
+	public static final String PBInvoiceUnitCostInput() {
+		return "("
+				+ CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(AddTablePurchaseBillScreen, "Unit Cost")
+				+ ")[1]//input";
+	}
+
+	/** @locatorType Xpath */
+	public static final String PBItemTableInPut() {
+		return "(" + CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(AddTablePurchaseBillScreen, "Item")
+				+ ")[1]//input";
+	}
+
+	/** @locatorType Xpath */
+	public static final String PBInvoiceQtyInput() {
+		return "("
+				+ CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(AddTablePurchaseBillScreen, "Inv. Qty.")
+				+ ")[1]//input";
+	}
+
+//	/** @locatorType Xpath */
+//	public static final String GrnPageSupQtyInput() {
+//		return "(" + CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(AddTableGRNScreen, "Suplr. Bill Qty.")
+//				+ ")[1]//input";
+//	}
+	/** @locatorType Xpath */
+	public static final String PBGstSupply() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(AddTablePurchaseBillScreen, "GST Supply");
+	}
 }

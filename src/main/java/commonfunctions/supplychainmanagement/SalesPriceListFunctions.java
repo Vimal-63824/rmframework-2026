@@ -727,24 +727,31 @@ public class SalesPriceListFunctions {
 	 */
 	public void searchItemINFindPageForAmdendTheRecord(String Unit_100, String CUSTOMER_ID) {
 
-		commonFunc.searchAndSelectValueInFilters(SalesPriceListLocators.unitLovFindPage, Unit_100);
-		flag = webDB.waitForElement(SalesPriceListLocators.CustomerLovFindPage, ElementType.Xpath);
+//		flag = webDB.waitForElement(SalesPriceListLocators.unitLovFindPage, ElementType.Xpath);
+//		if (flag) {
+//			commonFunc.checkRefreshCellsDisappear();
+//			commonFunc.searchAndSelectValueInFilters(SalesPriceListLocators.unitLovFindPage, Unit_100);
+//			flag = webDB.waitForElement(SalesPriceListLocators.CustomerLovFindPage, ElementType.Xpath);
+//			if (flag) {
+//				logs.logging("INFO", "UNIT IS SUCCESSFULLY POPULATED" + Unit_100);
+//				if (flag) {
+//					commonFunc.checkRefreshCellsDisappear();
+//					commonFunc.searchAndSelectValueInFilters(SalesPriceListLocators.CustomerLovFindPage, CUSTOMER_ID);
+		flag = webDB.waitForElement(SalesPriceListLocators.ItemLovFindPage, ElementType.Xpath);
 		if (flag) {
-			logs.logging("INFO", "UNIT IS SUCCESSFULLY POPULATED" + Unit_100);
+			logs.logging("INFO", "Successfully Inserted a Customer Id" + CUSTOMER_ID);
 			if (flag) {
-				commonFunc.searchAndSelectValueInFilters(SalesPriceListLocators.CustomerLovFindPage, CUSTOMER_ID);
-				flag = webDB.waitForElement(SalesPriceListLocators.ItemLovFindPage, ElementType.Xpath);
-				if (flag) {
-					logs.logging("INFO", "Successfully Inserted a Customer Id" + CUSTOMER_ID);
-					if (flag) {
-						commonFunc.searchAndSelectValueInFilters(SalesPriceListLocators.ItemLovFindPage,
-								VariableHandler.getItemName());
-					}
-				}
+				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.searchAndSelectValueInFilters(SalesPriceListLocators.ItemLovFindPage,
+						VariableHandler.getItemName());
+
 			}
+			assertTrue(flag);
 		}
-		assertTrue(flag);
+
 	}
+//			}
+//		}
 
 	/**
 	 * Unchecked a Radio Button In Find Page

@@ -276,6 +276,10 @@ public class InspectionDocumentFunctions {
 				logs.logging("INFO", "Pending Inspection Documents Is Displayed");
 				webDB.switchToFrame(InspectionDocumentsLocators.PendingInspectionFrame, ElementType.Xpath);
 				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.checkShowMyRecordAndUnselectAll(InspectionDocumentsLocators.PendingPOShowMyRecordBtn,
+						InspectionDocumentsLocators.PendingPOShowMyRecordHideBtn,
+						InspectionDocumentsLocators.PendingInspectionSelectAllBtn);
+				commonFunc.checkRefreshCellsDisappear();
 				commonFunc.expandFindTable();
 				flag = webDB.waitForElement(InspectionDocumentsLocators.VoucherLov, ElementType.Xpath);
 				commonFunc.searchAndSelectValueInFilters(InspectionDocumentsLocators.VoucherLov,

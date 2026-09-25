@@ -367,7 +367,7 @@ public class SalesOrderLocators {
 	/** @Locator Xpath */
 	public static final String PaymentTermClickSearchIcon = "//button[@class='a-Button a-PopupLOV-doSearch']";
 	/** @Locator Xpath */
-	public static final String PaymentTermClickHighLightText = "//span[@class='popup-lov-highlight']";
+	public static final String PaymentTermClickHighLightText = "//mark[@class='popup-lov-highlight']";
 	/** Locator @CssSelector */
 	public static final String SalesOrderDocumentDrillDown = "#\\31 960290421519866117_orig > tbody > tr:nth-child(2) > td:nth-child(8) > a";
 	/** @Locator Xpath */
@@ -670,6 +670,10 @@ public class SalesOrderLocators {
 	public static final String SOAmdNewDiscDetailsButton = "(//h2[text()='New Disc. Details']/parent::div/ancestor::div[1]/div/button)[1]";
 	
 	public static final String SOAmdSourceDetailsButton = "(//h2[text()='Source Details']/parent::div/ancestor::div[1]/div/button)[1]";
+	
+	public static final String SOGeneralAdvanceButton = "(//h2[text()='Advance']/parent::div/ancestor::div[1]/div/button)[1]";
+	
+	public static final String SOAmdTDDiscLabel = "//label[text()='Trade Ass.']";
 	
 
 	/** @locatorType Xpath */

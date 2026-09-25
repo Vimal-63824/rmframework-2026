@@ -997,7 +997,7 @@
 	"InactiveStatus": "Inactive",
 	"FG-10002-Item": "GWL-FG-10002",
 	"SetupSalesScreen": "Setup - Sales",
-	"South": "South_Region_",
+	"South": "South_Reg_",
 	"SalesRegionManager": "EMP0003",
 	"BomOutsideAndInsideWithMaterial": "BOM-2526-0000171",
 	"ProdOrderNonStandard": "Production Order - Non Standard",
@@ -2089,5 +2089,8 @@
 	"ScrapItem-HKTVS1001": "HK-TVS-SCRAP-10001",
 	"UD-ItemType": "User Defined",
 	"RC-ItemType": "Rate Contract",
-	"PL-ItemType": "Price List"
+	"PL-ItemType": "Price List",
+	"CustomerScheduleAmendmentCloseShort":"Amended",
+	"customerScdhlDraftStatus":"Draft" 
+	
 }
