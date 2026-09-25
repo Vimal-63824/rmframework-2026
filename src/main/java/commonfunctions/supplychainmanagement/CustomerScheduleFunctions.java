@@ -125,10 +125,10 @@ public class CustomerScheduleFunctions {
 		flag = webDB.waitForElement(CustomerScheduleLocators.CSLineWiseAddButton, ElementType.Xpath);
 		if (flag) {
 			commonFunc.checkRefreshCellsDisappear();
-			webDB.clickAnElement(CustomerScheduleLocators.CSLineWiseAddButton, ElementType.Xpath);
+			webDB.javaScriptClickAnElement(CustomerScheduleLocators.CSLineWiseAddButton, ElementType.Xpath);
 			flag = webDB.waitForElement(CustomerScheduleLocators.CSLineWiseCustField, ElementType.Xpath);
 			if (flag) {
-				webDB.clickAnElement(CustomerScheduleLocators.CSLineWiseCustField, ElementType.Xpath);
+				webDB.javaScriptClickAnElement(CustomerScheduleLocators.CSLineWiseCustField, ElementType.Xpath);
 				commonFunc.searchAndSelectValueInFilters(CustomerScheduleLocators.CSLineWiseCustLov, Customer);
 				webDB.pressTabKey();
 				commonFunc.checkRefreshCellsDisappear();
@@ -146,7 +146,7 @@ public class CustomerScheduleFunctions {
 	public void addItemsInCS(String Item) {
 		flag = webDB.waitForElement(CustomerScheduleLocators.AddItemField(), ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(CustomerScheduleLocators.AddItemField(), ElementType.Xpath);
+			webDB.javaScriptClickAnElement(CustomerScheduleLocators.AddItemField(), ElementType.Xpath);
 			commonFunc.searchAndSelectValueInFilters(CustomerScheduleLocators.CSLineWiseItemLov, Item);
 			webDB.pressTabKey();
 			commonFunc.checkRefreshCellsDisappear();
@@ -1590,7 +1590,7 @@ public class CustomerScheduleFunctions {
 			if (flag) {
 				webDB.moveToElement(SalesStandardPriceLocators.min_DiscInput, ElementType.Xpath);
 				webDB.clickAnElement(SalesStandardPriceLocators.min_DiscInput, ElementType.Xpath);
-				salesOrderFunctions.verifyClickAndEnterValueInTableFields(SalesStandardPriceLocators.Min_Disc(2),
+				salesOrderFunctions.verifyClickAndEnterValueInTableFields(SalesStandardPriceLocators.Min_Disc(1),
 						SalesStandardPriceLocators.min_DiscInput, Min_Disc_Value);
 				logs.logging("INFO", "Successfully Inserted  Min Disc " + Min_Disc_Value);
 			}
@@ -1658,9 +1658,9 @@ public class CustomerScheduleFunctions {
 	 */
 	public void insertItemIdStandardPrice(String Item) {
 
-		flag = webDB.waitForElement(SalesStandardPriceLocators.ItemIdField(2), ElementType.Xpath);
+		flag = webDB.waitForElement(SalesStandardPriceLocators.ItemIdField(1), ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(SalesStandardPriceLocators.ItemIdField(2), ElementType.Xpath);
+			webDB.clickAnElement(SalesStandardPriceLocators.ItemIdField(1), ElementType.Xpath);
 			if (flag) {
 				commonFunc.searchAndSelectValueInFilters(SalesStandardPriceLocators.ItemIdLov, Item);
 				webDB.waitForElement(SalesStandardPriceLocators.CurcyField, ElementType.Xpath);
@@ -1706,7 +1706,7 @@ public class CustomerScheduleFunctions {
 			if (flag) {
 				webDB.moveToElement(SalesStandardPriceLocators.MapPriceInput, ElementType.Xpath);
 				webDB.clickAnElement(SalesStandardPriceLocators.MapPriceInput, ElementType.Xpath);
-				salesOrderFunctions.verifyClickAndEnterValueInTableFields(SalesStandardPriceLocators.MapPriceField(2),
+				salesOrderFunctions.verifyClickAndEnterValueInTableFields(SalesStandardPriceLocators.MapPriceField(1),
 						SalesStandardPriceLocators.MapPriceInput, Map_Value);
 				if (flag) {
 					logs.logging("INFO", "Successfully Insert Map Value" + Map_Value);

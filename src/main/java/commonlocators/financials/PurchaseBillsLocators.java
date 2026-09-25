@@ -107,7 +107,7 @@ public class PurchaseBillsLocators {
 	/** @locatorType Xpath */
 	public static final String HsnCodeField = "//*[@id='IN_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[14]";
 	/** @locatorType Xpath */
-	public static final String HsnCodeLov = "//input[@data-testid='SUPLN_HSN_CODE']";
+	public static final String HsnCodeLov = "//input[@data-testid='SUPLN_HSN_CODE']/following-sibling::button";
 	/** @locatorType Xpath */
 	public static final String SaveButtonLines = "//button[@data-testid='IN_SAVE']";
 	/** @locatorType Xpath */
@@ -405,6 +405,16 @@ public class PurchaseBillsLocators {
 	/** @locatorType Xpath */
 	public static final String PurchaseBillsTransLocGstTds() {
 		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(GlAccDescField1, "TDS u/s ID");
+	}
+	
+	/** @locatorType Xpath */
+	public static final String PurchaseBillsLineWiseItem() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(GlAccDescField1, "Item");
+	}
+	
+	/** @locatorType Xpath */
+	public static final String PurchaseBillsLineWiseInvQty() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(GlAccDescField1, "Inv. Qty.");
 	}
 	
 	/** @locatorType Xpath */

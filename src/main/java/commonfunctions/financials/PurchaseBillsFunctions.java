@@ -1275,17 +1275,17 @@ public class PurchaseBillsFunctions {
 				if (flag) {
 					webDB.clickAnElement(PurchaseBillsLocators.AddNew, ElementType.Xpath);
 					logs.logging("INFO", "Add Button Is Clicked ");
-					flag = webDB.waitForElement(PurchaseBillsLocators.ItemField, ElementType.Xpath);
+					flag = webDB.waitForElement(PurchaseBillsLocators.PurchaseBillsLineWiseItem(), ElementType.Xpath);
 					if (flag) {
-						webDB.clickAnElement(PurchaseBillsLocators.ItemField, ElementType.Xpath);
+						webDB.clickAnElement(PurchaseBillsLocators.PurchaseBillsLineWiseItem(), ElementType.Xpath);
 //						flag = webDB.waitForElement(PurchaseBillsLocators.ItemLovField, ElementType.Xpath);
 //						if (flag) {
 						commonFunc.hardWait(1000);
 						commonFunc.searchAndSelectValueInFilters(PurchaseBillsLocators.ItemLovField, ItemId);
 						commonFunc.checkRefreshCellsDisappear();
-						flag = webDB.waitForElement(PurchaseBillsLocators.GlAccDescField, ElementType.Xpath);
+						flag = webDB.waitForElement(PurchaseBillsLocators.PurchaseBillsTransLoc(), ElementType.Xpath);
 						if (flag) {
-							webDB.doubleClickAnElement(PurchaseBillsLocators.GlAccDescField, ElementType.Xpath);
+							webDB.doubleClickAnElement(PurchaseBillsLocators.PurchaseBillsTransLoc(), ElementType.Xpath);
 //							flag = webDB.waitForElement(PurchaseBillsLocators.GlAccLoc, ElementType.Xpath);
 							if (flag) {
 								commonFunc.hardWait(1000);
@@ -1296,27 +1296,27 @@ public class PurchaseBillsFunctions {
 //						flag = webDB.waitForElement(PurchaseBillsLocators.InvQtyField, ElementType.Xpath);
 								if (flag) {
 									SalesordFunc.verifyClickAndEnterValueInTableFields(
-											PurchaseBillsLocators.InvQtyField, PurchaseBillsLocators.InvQty, InvQty);
+											PurchaseBillsLocators.PurchaseBillsLineWiseInvQty(), PurchaseBillsLocators.InvQty, InvQty);
 									logs.logging("INFO", "Inv Qty Is Entered");
 									commonFunc.checkRefreshCellsDisappear();
-									flag = webDB.waitForElement(PurchaseBillsLocators.UnitCostField, ElementType.Xpath);
+									flag = webDB.waitForElement(PurchaseBillsLocators.PurchaseBillsTransLocunitprice(), ElementType.Xpath);
 									if (flag) {
 										SalesordFunc.verifyClickAndEnterValueInTableFields(
-												PurchaseBillsLocators.UnitCostField, PurchaseBillsLocators.UnitCost,
+												PurchaseBillsLocators.PurchaseBillsTransLocunitprice(), PurchaseBillsLocators.UnitCost,
 												UnitPrice);
 										logs.logging("INFO", "Unit Cost Is Entered ");
 										commonFunc.checkRefreshCellsDisappear();
-										flag = webDB.waitForElement(PurchaseBillsLocators.HsnCodeField,
+										flag = webDB.waitForElement(PurchaseBillsLocators.PurchaseBillsTransLocHsnCode(),
 												ElementType.Xpath);
 										if (flag) {
 											commonFunc.checkRefreshCellsDisappear();
-											webDB.javaScriptClickAnElement(PurchaseBillsLocators.HsnCodeField,
+											webDB.javaScriptClickAnElement(PurchaseBillsLocators.PurchaseBillsTransLocHsnCode(),
 													ElementType.Xpath);
 //										flag = webDB.waitForElement(PurchaseBillsLocators.HsnCodeLov,
 //												ElementType.Xpath);
 //										if (flag) {
 											String GetTextHSN = webDB.getTextFromElement(
-													PurchaseBillsLocators.HsnCodeField, ElementType.Xpath);
+													PurchaseBillsLocators.PurchaseBillsTransLocHsnCode(), ElementType.Xpath);
 											if (!GetTextHSN.equals(Hsncode)) {
 												commonFunc.searchAndSelectValueInFilters(
 														PurchaseBillsLocators.HsnCodeLov, Hsncode);
