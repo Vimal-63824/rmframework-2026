@@ -1817,9 +1817,11 @@ public class SalesOrderFunctions {
 		if (flag) {
 			webDB.clickAnElement(SalesOrderLocators.GeneralTab, ElementType.Xpath);
 			commonFunc.checkRefreshCellsDisappear();
-			flag = webDB.waitForElement(SalesOrderLocators.PrintCustDesc, ElementType.Xpath);
+			flag = webDB.waitForElement(SalesOrderLocators.SOGeneralAdvanceButton, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Navigated Sucessfully To General Tab");
+				webDB.clickAnElement(SalesOrderLocators.SOGeneralAdvanceButton, ElementType.Xpath);
+				logs.logging("INFO", "Advance ( + ) Button Is clicked Successfully");
 			}
 		}
 		assertTrue(flag);
@@ -5323,21 +5325,20 @@ public class SalesOrderFunctions {
 				flag = webDB.waitForElement(SalesOrderLocators.SoAmdDetailsFrame, ElementType.Xpath);
 				if (flag) {
 					webDB.switchToFrame(SalesOrderLocators.SoAmdDetailsFrame, ElementType.Xpath);
-						flag = webDB.waitForElement(SalesOrderLocators.SOAmdDiscountDetails, ElementType.Xpath);
-						logs.logging("INFO", "Sales Order Amendment Line Wise Details Button Is Clicked Sucessfully");
+					flag = webDB.waitForElement(SalesOrderLocators.SOAmdDiscountDetails, ElementType.Xpath);
+					logs.logging("INFO", "Sales Order Amendment Line Wise Details Button Is Clicked Sucessfully");
+					if (flag) {
+						webDB.clickAnElement(SalesOrderLocators.SOAmdDiscountDetails, ElementType.Xpath);
+						flag = webDB.waitForElement(SalesOrderLocators.SOAmdNewDiscDetailsButton, ElementType.Xpath);
 						if (flag) {
-							webDB.clickAnElement(SalesOrderLocators.SOAmdDiscountDetails, ElementType.Xpath);
-							flag = webDB.waitForElement(SalesOrderLocators.SOAmdNewDiscDetailsButton,
+							webDB.clickAnElement(SalesOrderLocators.SOAmdNewDiscDetailsButton, ElementType.Xpath);
+							flag = webDB.waitForElement(SalesOrderLocators.SOAmdTDDiscLabel,
 									ElementType.Xpath);
 							if (flag) {
-								webDB.clickAnElement(SalesOrderLocators.SOAmdNewDiscDetailsButton, ElementType.Xpath);
-								flag = webDB.waitForElement(SalesOrderLocators.SoAmdTradeDiscountPercentage,
-										ElementType.Xpath);
-								if (flag) {
-									logs.logging("INFO", "New Discount Amount (+) Button Is Clicked Successfully");
-								}
+								logs.logging("INFO", "New Discount Amount (+) Button Is Clicked Successfully");
 							}
 						}
+					}
 				}
 			}
 		}
@@ -5604,8 +5605,14 @@ public class SalesOrderFunctions {
 				commonFunc.getDataFromTestDataSheet("Unit_100"), Customer, CustomerDesc,
 				commonFunc.getDataFromTestDataSheet("SO_General"));
 		checkSOHeaderDetailsDataBaseValuesWithUIValues();// TODO
-		addSalesOrderLineThroughExcelUD(SheetName, commonFunc.getDataFromTestDataSheet("SO_General"),
-				commonFunc.getDataFromTestDataSheet("SO_HSNCode"), Customer);
+		if (SheetName.equals(webDB.getDataFromProperties("SODomRateContract"))) {
+			addSalesOrderLineThroughExcelOtherThanUD(SheetName, commonFunc.getDataFromTestDataSheet("SO_General"),
+					commonFunc.getDataFromTestDataSheet("SO_HSNCode"), commonFunc.getDataFromTestDataSheet("Customer"));
+		} else {
+			addSalesOrderLineThroughExcelUD(SheetName, commonFunc.getDataFromTestDataSheet("SO_General"),
+					commonFunc.getDataFromTestDataSheet("SO_HSNCode"), Customer);
+		}
+
 		clickPostButton();
 		forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		if (flag) {
