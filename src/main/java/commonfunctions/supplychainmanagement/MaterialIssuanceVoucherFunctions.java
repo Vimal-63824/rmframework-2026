@@ -528,7 +528,7 @@ public class MaterialIssuanceVoucherFunctions {
 			switchMaterialRequestLinesIframe();
 			commonFunc.checkShowMyRecordAndUnselectAll(MaterialIssuanceVoucherLocators.Pending_TableShowMyRecordBtn,
 					MaterialIssuanceVoucherLocators.Pending_TableShowMyRecordBtnClicked,
-					MaterialIssuanceVoucherLocators.Pending_TableSelectAllCheckBox);
+					MaterialIssuanceVoucherLocators.CheckBox);
 			commonFunc.checkRefreshCellsDisappear();
 			commonFunc.expandFindTable();
 			commonFunc.clearFiltersInFindPage();
