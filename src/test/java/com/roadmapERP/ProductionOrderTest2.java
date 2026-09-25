@@ -69,87 +69,87 @@ public class ProductionOrderTest2 extends RoadMapERPTest {
 		Assert.assertTrue(flag);
 	}
 
-//	/**
-//	 * Manual production order without Sales Order reference (ALL PROCESS - OUTSIDE)
-//	 * 
-//	 * @author Sakthi-GWL
-//	 */
-//	@Author("Sakthi-GWL")
-//	@Test(priority = 4, groups = {
-//			"Prod Order" }, description = "46 Manual Production order with Move Type - Single (ALL OUTSIDE)")
-//	public void VerifyProdOrderWithoutSOAllOutsideMoveTypeSingle() {
-//		flag = prodOrderFunc.verifyProdOrderWithoutSOAllOutsideMoveTypeSingle();
-//		Assert.assertTrue(flag);
-//	}
-//
-//	/**
-//	 * Manual production order without Sales Order reference (ALL PROCESS - OUTSIDE)
-//	 * 
-//	 * @author Sakthi-GWL
-//	 */
-//	@Author("Sakthi-GWL")
-//	@Test(priority = 5, groups = {
-//			"Prod Order" }, description = "47 Manual Production order with Move Type - Multiple (ALL OUTSIDE)")
-//	public void VerifyProdOrderWithoutSOAllOutsideMoveTypeMultiple() {
-//		flag = prodOrderFunc.verifyProdOrderWithoutSOAllOutsideMoveTypeMultiple();
-//		Assert.assertTrue(flag);
-//	}
-//
-//	/**
-//	 * Manual production order without Sales Order reference (ALL PROCESS - OUTSIDE)
-//	 * 
-//	 * @author Sakthi-GWL
-//	 */
-//	@Author("Sakthi-GWL")
-//	@Test(priority = 6, groups = {
-//			"Prod Order" }, description = "48 Manual Production order with Move Type - Item (ALL OUTSIDE)")
-//	public void VerifyProdOrderWithoutSOAllOutsideMoveTypeItem() {
-//		flag = prodOrderFunc.verifyProdOrderWithoutSOAllOutsideMoveTypeItem();
-//		Assert.assertTrue(flag);
-//	}
-//
-//	/**
-//	 * Manual production order Without Sales Order Reference(First Process - Inside
-//	 * - subsequent process- Outside)
-//	 * 
-//	 * @author Sakthi-GWL
-//	 */
-//	@Author("Sakthi-GWL")
-//	@Test(priority = 7, groups = {
-//			"Prod Order" }, description = "49 Manual Production order with Move Type - Single (FIRST IN REST OUT)")
-//	public void VerifyProdOrderWithoutSOFirstInsideRestOutsideMoveTypeSingle() {
-//		flag = prodOrderFunc.verifyProdOrderWithoutSOFirstInsideRestOutsideMoveTypeSingle();
-//		Assert.assertTrue(flag);
-//	}
-//
-//	/**
-//	 * Manual production order Without Sales Order Reference(First Process - Inside
-//	 * - subsequent process- Outside)
-//	 * 
-//	 * @author Sakthi-GWL
-//	 */
-//	@Author("Sakthi-GWL")
-//	@Test(priority = 8, groups = {
-//			"Prod Order" }, description = "50 Manual Production order with Move Type - Multiple (FIRST IN REST OUT)")
-//	public void VerifyProdOrderWithoutSOFirstInsideRestOutsideMoveTypeMultiple() {
-//		flag = prodOrderFunc.verifyProdOrderWithoutSOFirstInsideRestOutsideMoveTypeMultiple();
-//		Assert.assertTrue(flag);
-//	}
-//
-//	/**
-//	 * Manual production order Without Sales Order Reference(First Process - Inside
-//	 * - subsequent process- Outside)
-//	 * 
-//	 * @author Sakthi-GWL
-//	 */
-//	@Author("Sakthi-GWL")
-//	@Test(priority = 9, groups = {
-//			"Prod Order" }, description = "51 Manual Production order with Move Type - Item (FIRST IN REST OUT)")
-//	public void VerifyProdOrderWithoutSOFirstInsideRestOutsideMoveTypeItem() {
-//		flag = prodOrderFunc.verifyProdOrderWithoutSOFirstInsideRestOutsideMoveTypeItem();
-//		Assert.assertTrue(flag);
-//	}
-//
+	/**
+	 * Manual production order without Sales Order reference (ALL PROCESS - OUTSIDE)
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	@Author("Sakthi-GWL")
+	@Test(priority = 4, groups = {
+			"Prod Order" }, description = "46 Manual Production order with Move Type - Single (ALL OUTSIDE)")
+	public void VerifyProdOrderWithoutSOAllOutsideMoveTypeSingle() {
+		flag = prodOrderFunc.verifyProdOrderWithoutSOAllOutsideMoveTypeSingle();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Manual production order without Sales Order reference (ALL PROCESS - OUTSIDE)
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	@Author("Sakthi-GWL")
+	@Test(priority = 5, groups = {
+			"Prod Order" }, description = "47 Manual Production order with Move Type - Multiple (ALL OUTSIDE)")
+	public void VerifyProdOrderWithoutSOAllOutsideMoveTypeMultiple() {
+		flag = prodOrderFunc.verifyProdOrderWithoutSOAllOutsideMoveTypeMultiple();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Manual production order without Sales Order reference (ALL PROCESS - OUTSIDE)
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	@Author("Sakthi-GWL")
+	@Test(priority = 6, groups = {
+			"Prod Order" }, description = "48 Manual Production order with Move Type - Item (ALL OUTSIDE)")
+	public void VerifyProdOrderWithoutSOAllOutsideMoveTypeItem() {
+		flag = prodOrderFunc.verifyProdOrderWithoutSOAllOutsideMoveTypeItem();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Manual production order Without Sales Order Reference(First Process - Inside
+	 * - subsequent process- Outside)
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	@Author("Sakthi-GWL")
+	@Test(priority = 7, groups = {
+			"Prod Order" }, description = "49 Manual Production order with Move Type - Single (FIRST IN REST OUT)")
+	public void VerifyProdOrderWithoutSOFirstInsideRestOutsideMoveTypeSingle() {
+		flag = prodOrderFunc.verifyProdOrderWithoutSOFirstInsideRestOutsideMoveTypeSingle();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Manual production order Without Sales Order Reference(First Process - Inside
+	 * - subsequent process- Outside)
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	@Author("Sakthi-GWL")
+	@Test(priority = 8, groups = {
+			"Prod Order" }, description = "50 Manual Production order with Move Type - Multiple (FIRST IN REST OUT)")
+	public void VerifyProdOrderWithoutSOFirstInsideRestOutsideMoveTypeMultiple() {
+		flag = prodOrderFunc.verifyProdOrderWithoutSOFirstInsideRestOutsideMoveTypeMultiple();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Manual production order Without Sales Order Reference(First Process - Inside
+	 * - subsequent process- Outside)
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	@Author("Sakthi-GWL")
+	@Test(priority = 9, groups = {
+			"Prod Order" }, description = "51 Manual Production order with Move Type - Item (FIRST IN REST OUT)")
+	public void VerifyProdOrderWithoutSOFirstInsideRestOutsideMoveTypeItem() {
+		flag = prodOrderFunc.verifyProdOrderWithoutSOFirstInsideRestOutsideMoveTypeItem();
+		Assert.assertTrue(flag);
+	}
+
 //	/**
 //	 * Manual production order Without Sales Order Reference(First Process - Outside
 //	 * - subsequent process- Inside)

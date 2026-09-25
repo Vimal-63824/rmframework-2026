@@ -18138,23 +18138,16 @@ public class SubcontractOrderFunctions {
 			if (ProcUOM.equalsIgnoreCase("Total")) {
 				break a;
 			}
-			assertEquals(BatchQty, VariableHandler.getSCOBatchQty());
-			assertEquals(BatchCost, VariableHandler.getSCOBatchCost());
-			assertEquals(BatchQty, VariableHandler.getSCOBatchQty());
-			assertEquals(BatchQty, VariableHandler.getSCOBatchQty());
-			assertEquals(BatchQty, VariableHandler.getSCOBatchQty());
-			assertEquals(BatchQty, VariableHandler.getSCOBatchQty());
-			logs.logging("INFO", "Before BatchQty  " + BatchQty + "Is : " + VariableHandler.getSCOBatchQty());
-
-//			excelUtils.writeDataInExcel(Filepath, Sheetname, i, 27, VariableHandler.getSCOBatchQty());
-			logs.logging("INFO", "Before BatchCost  " + BatchCost + "Is : " + VariableHandler.getSCOBatchCost());
-			excelUtils.writeDataInExcel(Filepath, Sheetname, i, 28, VariableHandler.getSCOBatchCost());
-			logs.logging("INFO", "Before OrderQty  " + OrderQty + "Is : " + VariableHandler.getSCOOrderQty());
-			excelUtils.writeDataInExcel(Filepath, Sheetname, i, 2, VariableHandler.getSCOOrderQty());
-			logs.logging("INFO", "Before ConvFact  " + ConvFact + "Is : " + VariableHandler.getSCOConvFact());
-			excelUtils.writeDataInExcel(Filepath, Sheetname, i, 7, VariableHandler.getSCOConvFact());
-			logs.logging("INFO", "Before ProcUOM  " + ProcUOM + "Is : " + VariableHandler.getSCOProcUOM());
-			excelUtils.writeDataInExcel(Filepath, Sheetname, i, 11, VariableHandler.getSCOProcUOM());
+			commonFunc.verifyAssertionBothValues(BatchQty, VariableHandler.getSCOBatchQty());
+			logs.logging("INFO", "verified BatchQty:  " + BatchCost + "Is : " + VariableHandler.getSCOBatchQty());
+			commonFunc.verifyAssertionBothValues(BatchCost, VariableHandler.getSCOBatchCost());
+			logs.logging("INFO", "verified BatchCost:  " + BatchCost + "Is : " + VariableHandler.getSCOBatchCost());
+			commonFunc.verifyAssertionBothValues(BatchQty, VariableHandler.getSCOOrderQty());
+			logs.logging("INFO", "verified OrderQty:  " + OrderQty + "Is : " + VariableHandler.getSCOOrderQty());
+			commonFunc.verifyAssertionBothValues(BatchQty, VariableHandler.getSCOConvFact());
+			logs.logging("INFO", "verified ConvFact:  " + ConvFact + "Is : " + VariableHandler.getSCOConvFact());
+			commonFunc.verifyAssertionBothValues(BatchQty, VariableHandler.getSCOProcUOM());
+			logs.logging("INFO", "verified ProcUOM:  " + ProcUOM + "Is : " + VariableHandler.getSCOProcUOM());
 		}
 	}
 

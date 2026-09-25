@@ -43,6 +43,7 @@ public class GrnTest3 extends RoadMapERPTest {
 	 * 
 	 * @author Sakthi-GWL
 	 */
+	@Author("Sakthi-GWL")
 	@Test(priority = 1, groups = {
 			"Direct GRN" }, description = "643 Direct GRN-General-User Defined-Same Stock and Supplier UOM")
 	public void VerifyCreationOfDirectGrnUserDefinedSameUomGeneralTypeImportSupplier() {

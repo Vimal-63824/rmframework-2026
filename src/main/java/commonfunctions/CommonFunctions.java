@@ -3201,6 +3201,7 @@ public class CommonFunctions {
 		String ClassName = method.getDeclaringClass().getSimpleName();
 		if (author != null) {
 			Listener.test.get().assignAuthor(author.value());
+		} else if (ClassName != null) {
 			Listener.test.get().assignCategory(ClassName);
 		}
 	}
@@ -3526,7 +3527,6 @@ public class CommonFunctions {
 		if (webDB.verifyIsElementDisplayed(CommonUiLocators.FindShowMore, ElementType.Xpath)) {
 			webDB.clickAnElementWithoutException(CommonUiLocators.FindShowMore, ElementType.Xpath);
 		}
-		checkRefreshCellsDisappear();
 	}
 
 	/**

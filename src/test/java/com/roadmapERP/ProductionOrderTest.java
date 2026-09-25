@@ -45,41 +45,41 @@ public class ProductionOrderTest extends RoadMapERPTest {
 		Assert.assertTrue(flag);
 	}
 
-//	/**
-//	 * How to create Manual Standard Production order?
-//	 * 
-//	 * @author Sakthi-GWL
-//	 */
-//	@Author("Sakthi-GWL")
-//	@Test(priority = 2, groups = { "Prod Order" }, description = "26 How to create Manual Standard Production order?")
-//	public void VerifyCreateManualStandardProductionOrder() {
-//		flag = prodOrderFunc.verifyCreateManualStandardProductionOrder();
-//		Assert.assertTrue(flag);
-//	}
-//
-//	/**
-//	 * How to create Production order from MRP?
-//	 * 
-//	 * @author Sakthi-GWL
-//	 */
-//	@Author("Sakthi-GWL")
-//	@Test(priority = 3, groups = { "Prod Order" }, description = "27 How to create Production order from MRP?")
-//	public void VerifyCreateProductionOrderFromMRP() {
-//		flag = prodOrderFunc.verifyCreateProductionOrderFromMRP();
-//		Assert.assertTrue(flag);
-//	}
-//
-//	/**
-//	 * How to cancel the Production order?
-//	 * 
-//	 * @author Sakthi-GWL
-//	 */
-//	@Author("Sakthi-GWL")
-//	@Test(priority = 4, groups = { "Prod Order" }, description = "32 How to cancel the Production order?")
-//	public void VerifyCancelProductionOrder() {
-//		flag = prodOrderFunc.verifyCancelProductionOrder();
-//		Assert.assertTrue(flag);
-//	}
+	/**
+	 * How to create Manual Standard Production order?
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	@Author("Sakthi-GWL")
+	@Test(priority = 2, groups = { "Prod Order" }, description = "26 How to create Manual Standard Production order?")
+	public void VerifyCreateManualStandardProductionOrder() {
+		flag = prodOrderFunc.verifyCreateManualStandardProductionOrder();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * How to create Production order from MRP?
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	@Author("Sakthi-GWL")
+	@Test(priority = 3, groups = { "Prod Order" }, description = "27 How to create Production order from MRP?")
+	public void VerifyCreateProductionOrderFromMRP() {
+		flag = prodOrderFunc.verifyCreateProductionOrderFromMRP();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * How to cancel the Production order?
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	@Author("Sakthi-GWL")
+	@Test(priority = 4, groups = { "Prod Order" }, description = "32 How to cancel the Production order?")
+	public void VerifyCancelProductionOrder() {
+		flag = prodOrderFunc.verifyCancelProductionOrder();
+		Assert.assertTrue(flag);
+	}
 
 	/**
 	 * Verify After Method
