@@ -507,31 +507,21 @@ public class PurchaseBillsFunctionsGetDocument {
 				VerifyToValidateHeaderAmountForPurchaseBill(webDB.getDataFromProperties("LandedCostDB"), i);
 				VerifyToClickCreateJournalButton();
 				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.hardWait(1000);
 				verifyToValiadteJournalPartForStocktransaferType(webDB.getDataFromProperties("LandedCostDB"));
 				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.hardWait(1000);
 				verifyToValiadteJournalDetailsPartForStocktransaferAllTypeSupplierCommon(
 						webDB.getDataFromProperties("LandedCostDB"),
 						commonFunc.getDataFromTestDataSheet("LOCAL_REGISTERED"));
 				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.hardWait(1000);
-				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.hardWait(1000);
 				verifyToValiadteJournalDetailPartForAccuralAccountStocktransaferTypeLocalSupplierForCommon(
 						webDB.getDataFromProperties("LandedCostDB"),
 						commonFunc.getDataFromTestDataSheet("JJ_AUTOMOBILES"));
 				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.hardWait(1000);
-				System.out.println("100");
 				VerifyToValidateRoundOffAmountForDirectStockTransferType(webDB.getDataFromProperties("LandedCostDB"));
 				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.hardWait(2000);
-				System.out.println("101");
 				VerifyToValidateRoundOffAmountForHeaderValueForStockTransferType(
 						webDB.getDataFromProperties("LandedCostDB"));
 				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.hardWait(1000);
 				VerifyToClickPostButton();
 				waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
 				commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPbNumber(),
@@ -1387,34 +1377,21 @@ public class PurchaseBillsFunctionsGetDocument {
 				VerifySaveLine();
 				VerifyToClickCreateJournalButton();
 				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.hardWait(1000);
 				verifyToValiadteJournalPartForStocktransaferType(webDB.getDataFromProperties("LandedCostWTDS"));
 				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.hardWait(1000);
-				System.out.println("89654");
 				verifyToValiadteJournalDetailsPartForStocktransaferAllTypeSupplierCommon(
 						webDB.getDataFromProperties("LandedCostWTDS"),
 						commonFunc.getDataFromTestDataSheet("LOCAL_REGISTERED_WITH_TDS"));
-				System.out.println("123645");
 				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.hardWait(1000);
-				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.hardWait(1000);
 				verifyPraxisTDSForStandardType(webDB.getDataFromProperties("LandedCostWTDS"),
 						commonFunc.getDataFromTestDataSheet("PRAXAIR_INDIA_PVT_LTD"),
 						commonFunc.getDataFromTestDataSheet("194C_TDS"));
 				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.hardWait(1000);
-				System.out.println("100");
 				VerifyToValidateRoundOffAmountForDirectStockTransferType(webDB.getDataFromProperties("LandedCostWTDS"));
 				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.hardWait(2000);
-				System.out.println("101");
 				VerifyToValidateRoundOffAmountForHeaderValueForStockTransferType(
 						webDB.getDataFromProperties("LandedCostWTDS"));
 				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.hardWait(1000);
 				VerifyToClickPostButton();
 				waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
 				commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPbNumber(),
@@ -1516,35 +1493,22 @@ public class PurchaseBillsFunctionsGetDocument {
 				VerifySaveLine();
 				VerifyToClickCreateJournalButton();
 				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.hardWait(1000);
 				verifyToValiadteJournalPartForStocktransaferType(webDB.getDataFromProperties("LandedCostWTDSandESI"));
 				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.hardWait(1000);
-				System.out.println("89654");
 				verifyToValiadteJournalDetailsPartForStocktransaferAllTypeSupplierCommon(
 						webDB.getDataFromProperties("LandedCostWTDSandESI"),
 						commonFunc.getDataFromTestDataSheet("INTERSTATE_REGISTERED_WITH_TDS"));
-				System.out.println("123645");
 				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.hardWait(1000);
-				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.hardWait(1000);
 				verifyPraxisTDSForStandardType(webDB.getDataFromProperties("LandedCostWTDSandESI"),
 						commonFunc.getDataFromTestDataSheet("SRI_LAKSHMI_ELECTRONICS"),
 						commonFunc.getDataFromTestDataSheet("194C_TDS"));
 				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.hardWait(1000);
-				System.out.println("100");
 				VerifyToValidateRoundOffAmountForDirectStockTransferType(
 						webDB.getDataFromProperties("LandedCostWTDSandESI"));
 				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.hardWait(2000);
-				System.out.println("101");
 				VerifyToValidateRoundOffAmountForHeaderValueForStockTransferType(
 						webDB.getDataFromProperties("LandedCostWTDSandESI"));
 				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.hardWait(1000);
 				VerifyToClickPostButton();
 
 				waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
@@ -1629,45 +1593,31 @@ public class PurchaseBillsFunctionsGetDocument {
 				ValidateLineDetailsForLandedCost(LandedCostSupplier, i - 21);
 				VerifyToValidateHeaderAmountForPurchaseBill(webDB.getDataFromProperties("LandedCostHSNCHanged"), i);
 				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.hardWait(3000);
 				VerifyToChangeTheHsnCode(commonFunc.getDataFromTestDataSheet("HsnAddition"));
 				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.hardWait(3000);
 				VerifySaveLine();
 				verifyToWritetaxPctValue(webDB.getDataFromProperties("LandedCostHSNCHanged"));
 				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.hardWait(2000);
 				VerifyToValidateLineWiseQueryAfterHsnChanged(webDB.getDataFromProperties("LandedCostHSNCHanged"));
 				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.hardWait(1000);
 				VerifyToClickCreateJournalButton();
 				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.hardWait(1000);
 				verifyToValiadteJournalPartForStocktransaferType(webDB.getDataFromProperties("LandedCostHSNCHanged"));
 				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.hardWait(1000);
 				verifyToValiadteJournalDetailsPartForStocktransaferAllTypeSupplierCommon(
 						webDB.getDataFromProperties("LandedCostHSNCHanged"),
 						commonFunc.getDataFromTestDataSheet("LOCAL_REGISTERED"));
 				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.hardWait(1000);
-				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.hardWait(1000);
 				verifyToValiadteJournalDetailPartForAccuralAccountStocktransaferTypeLocalSupplierForCommon(
 						webDB.getDataFromProperties("LandedCostHSNCHanged"),
 						commonFunc.getDataFromTestDataSheet("JJ_AUTOMOBILES"));
 				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.hardWait(1000);
-				System.out.println("100");
 				VerifyToValidateRoundOffAmountForDirectStockTransferType(
 						webDB.getDataFromProperties("LandedCostHSNCHanged"));
 				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.hardWait(2000);
-				System.out.println("101");
 				VerifyToValidateRoundOffAmountForHeaderValueForStockTransferType(
 						webDB.getDataFromProperties("LandedCostHSNCHanged"));
 				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.hardWait(1000);
 				VerifyToClickPostButton();
 				waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
 				commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPbNumber(),
@@ -1925,37 +1875,24 @@ public class PurchaseBillsFunctionsGetDocument {
 				VerifyToValidateLineWiseQueryAfterAddTheItemForLandedCostType(
 						webDB.getDataFromProperties("LandedCostAdditem"));
 				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.hardWait(1000);
-				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.hardWait(1000);
 				VerifyToClickCreateJournalButton();
 				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.hardWait(1000);
 				verifyToValiadteJournalPartForStocktransaferType(webDB.getDataFromProperties("LandedCostAdditem"));
 				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.hardWait(1000);
 				verifyToValiadteJournalDetailsPartForStocktransaferAllTypeSupplierCommon(
 						webDB.getDataFromProperties("LandedCostAdditem"),
 						commonFunc.getDataFromTestDataSheet("LOCAL_REGISTERED"));
 				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.hardWait(1000);
-				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.hardWait(1000);
 				verifyToValiadteJournalDetailPartForAccuralAccountStocktransaferTypeLocalSupplierForCommon(
 						webDB.getDataFromProperties("LandedCostAdditem"),
 						commonFunc.getDataFromTestDataSheet("JJ_AUTOMOBILES"));
 				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.hardWait(1000);
-				System.out.println("100");
 				VerifyToValidateRoundOffAmountForDirectStockTransferType(
 						webDB.getDataFromProperties("LandedCostAdditem"));
 				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.hardWait(2000);
-				System.out.println("101");
 				VerifyToValidateRoundOffAmountForHeaderValueForStockTransferType(
 						webDB.getDataFromProperties("LandedCostAdditem"));
 				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.hardWait(1000);
 				VerifyToClickPostButton();
 				waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
 				commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPbNumber(),
@@ -2068,34 +2005,23 @@ public class PurchaseBillsFunctionsGetDocument {
 				verifyToGetDocumentFromLandedCost();
 				ValidateLineDetailsForLandedCost(LandedCostSupplier, i - 21);
 				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.hardWait(1000);
 				VerifyToClickCreateJournalButton();
 				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.hardWait(1000);
 				verifyToValiadteJournalPartForStocktransaferType(webDB.getDataFromProperties("RoundOFValue"));
 				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.hardWait(1000);
 				verifyToValiadteJournalDetailsPartForStocktransaferAllTypeSupplierCommon(
 						webDB.getDataFromProperties("RoundOFValue"),
 						commonFunc.getDataFromTestDataSheet("LOCAL_REGISTERED"));
 				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.hardWait(1000);
-				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.hardWait(1000);
 				verifyToValiadteJournalDetailPartForAccuralAccountStocktransaferTypeLocalSupplierForCommon(
 						webDB.getDataFromProperties("RoundOFValue"),
 						commonFunc.getDataFromTestDataSheet("JJ_AUTOMOBILES"));
 				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.hardWait(1000);
-				System.out.println("100");
 				VerifyToValidateRoundOffAmountForDirectStockTransferType(webDB.getDataFromProperties("RoundOFValue"));
 				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.hardWait(2000);
-				System.out.println("101");
 				VerifyToValidateRoundOffAmountForHeaderValueForStockTransferType(
 						webDB.getDataFromProperties("RoundOFValue"));
 				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.hardWait(1000);
 				VerifyToClickPostButton();
 				waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
 				commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPbNumber(),
@@ -2160,49 +2086,33 @@ public class PurchaseBillsFunctionsGetDocument {
 				verifyToGetDocumentFromLandedCost();
 				ValidateLineDetailsForLandedCost(LandedCostSupplier, i - 21);
 				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.hardWait(1000);
 				verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(
 						webDB.getDataFromProperties("LandedCostAddition"));
 				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.hardWait(1000);
 				VerifytoPutPriceDeviation(webDB.getDataFromProperties("LandedCostAddition"));
 				VerifySaveLine();
 				VerifyToValidateAfterPriceDeviation(webDB.getDataFromProperties("LandedCostAddition"));
 				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.hardWait(1000);
-				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.hardWait(1000);
-				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.hardWait(1000);
 				VerifyToValidateAfterPriceDeviation(webDB.getDataFromProperties("LandedCostAddition"));
 				VerifyToClickCreateJournalButton();
 				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.hardWait(1000);
 				verifyToValiadteJournalPartForStocktransaferType(webDB.getDataFromProperties("LandedCostAddition"));
 				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.hardWait(1000);
 				verifyToValiadteJournalDetailsPartForStocktransaferAllTypeSupplierCommon(
 						webDB.getDataFromProperties("LandedCostAddition"),
 						commonFunc.getDataFromTestDataSheet("LOCAL_REGISTERED"));
 				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.hardWait(1000);
 				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.hardWait(1000);
 				verifyToValiadteJournalDetailPartForAccuralAccountStocktransaferTypeLocalSupplierForCommon(
 						webDB.getDataFromProperties("LandedCostAddition"),
 						commonFunc.getDataFromTestDataSheet("JJ_AUTOMOBILES"));
 				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.hardWait(1000);
-				System.out.println("100");
 				VerifyToValidateRoundOffAmountForDirectStockTransferType(
 						webDB.getDataFromProperties("LandedCostAddition"));
 				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.hardWait(2000);
-				System.out.println("101");
 				VerifyToValidateRoundOffAmountForHeaderValueForStockTransferType(
 						webDB.getDataFromProperties("LandedCostAddition"));
 				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.hardWait(1000);
 				VerifyToClickPostButton();
 				waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
 				commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPbNumber(),
@@ -2377,7 +2287,6 @@ public class PurchaseBillsFunctionsGetDocument {
 				verifyToGetDocumentFromLandedCost();
 				ValidateLineDetailsForLandedCost(LandedCostSupplier, i - 21);
 				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.hardWait(1000);
 				verifyTowritePriceDeductionToWriteInExcelForPurchasebillDocument(
 						webDB.getDataFromProperties("LandedCostDeduction"));
 				commonFunc.checkRefreshCellsDisappear();
@@ -2564,31 +2473,21 @@ public class PurchaseBillsFunctionsGetDocument {
 				ValidateLineDetailsForLandedCost(LandedCostSupplier, i - 21);
 				VerifyToClickCreateJournalButton();
 				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.hardWait(1000);
 				verifyToValiadteJournalPartForStocktransaferType(webDB.getDataFromProperties("LandedCostDB"));
 				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.hardWait(1000);
 				verifyToValiadteJournalDetailsPartForStocktransaferAllTypeSupplierCommon(
 						webDB.getDataFromProperties("LandedCostDB"),
 						commonFunc.getDataFromTestDataSheet("LOCAL_REGISTERED"));
 				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.hardWait(1000);
-				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.hardWait(1000);
 				verifyToValiadteJournalDetailPartForAccuralAccountStocktransaferTypeLocalSupplierForCommon(
 						webDB.getDataFromProperties("LandedCostDB"),
 						commonFunc.getDataFromTestDataSheet("JJ_AUTOMOBILES"));
 				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.hardWait(1000);
-				System.out.println("100");
 				VerifyToValidateRoundOffAmountForDirectStockTransferType(webDB.getDataFromProperties("LandedCostDB"));
 				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.hardWait(2000);
-				System.out.println("101");
 				VerifyToValidateRoundOffAmountForHeaderValueForStockTransferType(
 						webDB.getDataFromProperties("LandedCostDB"));
 				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.hardWait(1000);
 				VerifyToClickPostButton();
 				waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
 				commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPbNumber(),
@@ -2667,16 +2566,11 @@ public class PurchaseBillsFunctionsGetDocument {
 				VerifySaveLine();
 				VerifyToClickCreateJournalButton();
 				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.hardWait(1000);
 				verifyToValiadteJournalPartForStocktransaferType(webDB.getDataFromProperties("LandedCostWTDS"));
 				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.hardWait(1000);
-				System.out.println("89654");
 				verifyToValiadteJournalDetailsPartForStocktransaferAllTypeSupplierCommon(
 						webDB.getDataFromProperties("LandedCostWTDS"),
 						commonFunc.getDataFromTestDataSheet("LOCAL_REGISTERED_WITH_TDS"));
-				System.out.println("123645");
-				commonFunc.checkRefreshCellsDisappear();
 				commonFunc.checkRefreshCellsDisappear();
 				commonFunc.hardWait(1000);
 				commonFunc.checkRefreshCellsDisappear();
@@ -2685,16 +2579,11 @@ public class PurchaseBillsFunctionsGetDocument {
 						commonFunc.getDataFromTestDataSheet("PRAXAIR_INDIA_PVT_LTD"),
 						commonFunc.getDataFromTestDataSheet("194C_TDS"));
 				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.hardWait(1000);
-				System.out.println("100");
 				VerifyToValidateRoundOffAmountForDirectStockTransferType(webDB.getDataFromProperties("LandedCostWTDS"));
 				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.hardWait(2000);
-				System.out.println("101");
 				VerifyToValidateRoundOffAmountForHeaderValueForStockTransferType(
 						webDB.getDataFromProperties("LandedCostWTDS"));
 				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.hardWait(1000);
 				VerifyToClickPostButton();
 				waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
 				commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPbNumber(),

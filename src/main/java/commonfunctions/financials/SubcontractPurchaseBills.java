@@ -99,11 +99,14 @@ public class SubcontractPurchaseBills {
 								if (flag) {
 									logs.logging("INFO", "Create Documents Is Displayed");
 									webDB.clickAnElement(PurchaseBillsGrnLocators.CreateDoc, ElementType.Xpath);
+									commonFunc.hardWait(3000);
 									flag = webDB.waitForElement(PurchaseBillsGrnLocators.OkButton, ElementType.Xpath);
 									if (flag) {
 										logs.logging("INFO", "Okay Button Is Displayed");
 										webDB.clickAnElement(PurchaseBillsGrnLocators.OkButton, ElementType.Xpath);
 										webDB.switchToDefaultContent();
+										commonFunc.checkRefreshCellsDisappear();
+										commonFunc.hardWait(2000);
 										flag = webDB.waitForElement(PurchaseBillsGrnLocators.LocationId,
 												ElementType.Xpath);
 										PurBillFunc.storePurchaseVoucherNumber();
@@ -151,27 +154,33 @@ public class SubcontractPurchaseBills {
 	 * @author Vimal - RMITS
 	 */
 	public void clickingLinewiseProcessDetails(String TdsNo) {
-		webDB.moveToElement(PurchaseBillsGrnLocators.PB_LineProcess_Button, ElementType.Xpath);
-		webDB.clickAnElement(PurchaseBillsGrnLocators.PB_LineProcess_Button, ElementType.Xpath);
-		webDB.switchToFrame(PurchaseBillsGrnLocators.PB_ProcessFrame, ElementType.Xpath);
-		webDB.moveToElement(PurchaseBillsGrnLocators.PB_Process_TDS_Lov, ElementType.Xpath);
-		flag = webDB.waitForElement(PurchaseBillsGrnLocators.PB_Process_TDS_Lov, ElementType.Xpath);
+		webDB.moveToElement(PurchaseBillsGrnLocators.PB_Line_Detail_Btn, ElementType.Xpath);
+		webDB.clickAnElement(PurchaseBillsGrnLocators.PB_Line_Detail_Btn, ElementType.Xpath);
+		flag = webDB.waitForElement(PurchaseBillsGrnLocators.PB_LineProcess_Button, ElementType.Xpath);
 		if (flag) {
-			webDB.doubleClickAnElement(PurchaseBillsGrnLocators.PB_Process_TDS_Lov, ElementType.Xpath);
-			commonFunc.searchAndSelectValueInFilters(PurchaseBillsGrnLocators.ProcessTDSLovButton, TdsNo);
+			webDB.clickAnElement(PurchaseBillsGrnLocators.PB_LineProcess_Button, ElementType.Xpath);
+			commonFunc.hardWait(1000);
+			;
 			webDB.switchToFrame(PurchaseBillsGrnLocators.PB_ProcessFrame, ElementType.Xpath);
-			flag = webDB.waitForElement(PurchaseBillsGrnLocators.PB_Process_Save, ElementType.Xpath);
+			webDB.moveToElement(PurchaseBillsGrnLocators.PB_Process_TDS_Lov, ElementType.Xpath);
+			flag = webDB.waitForElement(PurchaseBillsGrnLocators.PB_Process_TDS_Lov, ElementType.Xpath);
 			if (flag) {
-				webDB.clickAnElement(PurchaseBillsGrnLocators.PB_Process_Save, ElementType.Xpath);
-				commonFunc.hardWait(3000);
-				storePurchaseBillProcesTabProcessQtyAndUnitCost();
-				commonFunc.hardWait(1000);
-				flag = webDB.waitForElement(PurchaseBillsGrnLocators.PB_Process_Close, ElementType.Xpath);
+				webDB.doubleClickAnElement(PurchaseBillsGrnLocators.PB_Process_TDS_Lov, ElementType.Xpath);
+				commonFunc.searchAndSelectValueInFilters(PurchaseBillsGrnLocators.ProcessTDSLovButton, TdsNo);
+				webDB.switchToFrame(PurchaseBillsGrnLocators.PB_ProcessFrame, ElementType.Xpath);
+				flag = webDB.waitForElement(PurchaseBillsGrnLocators.PB_Process_Save, ElementType.Xpath);
 				if (flag) {
-					webDB.clickAnElement(PurchaseBillsGrnLocators.PB_Process_Close, ElementType.Xpath);
-					webDB.switchToDefaultContent();
-					commonFunc.checkRefreshCellsDisappear();
+					webDB.clickAnElement(PurchaseBillsGrnLocators.PB_Process_Save, ElementType.Xpath);
+					commonFunc.hardWait(3000);
+					storePurchaseBillProcesTabProcessQtyAndUnitCost();
 					commonFunc.hardWait(1000);
+					flag = webDB.waitForElement(PurchaseBillsGrnLocators.PB_Process_Close, ElementType.Xpath);
+					if (flag) {
+						webDB.clickAnElement(PurchaseBillsGrnLocators.PB_Process_Close, ElementType.Xpath);
+						webDB.switchToDefaultContent();
+						commonFunc.checkRefreshCellsDisappear();
+						commonFunc.hardWait(1000);
+					}
 				}
 			}
 		}
@@ -514,30 +523,36 @@ public class SubcontractPurchaseBills {
 	 * @author Vimal - RMITS
 	 */
 	public void clickingLinewiseProcessDetailsChangingQtyandUnitcost(String TdsNo, String PBProcessQtyInput) {
-		webDB.moveToElement(PurchaseBillsGrnLocators.PB_LineProcess_Button, ElementType.Xpath);
-		webDB.clickAnElement(PurchaseBillsGrnLocators.PB_LineProcess_Button, ElementType.Xpath);
-		webDB.switchToFrame(PurchaseBillsGrnLocators.PB_ProcessFrame, ElementType.Xpath);
-		verifyAddTableSpecs(PurchaseBillsGrnLocators.PB_ProcessTab_ProcQty,
-				PurchaseBillsGrnLocators.PB_ProcessTab_procQtyField, PBProcessQtyInput);
-		commonFunc.hardWait(1000);
-		webDB.moveToElement(PurchaseBillsGrnLocators.PB_Process_TDS_Lov, ElementType.Xpath);
-		flag = webDB.waitForElement(PurchaseBillsGrnLocators.PB_Process_TDS_Lov, ElementType.Xpath);
+		webDB.moveToElement(PurchaseBillsGrnLocators.PB_Line_Detail_Btn, ElementType.Xpath);
+		webDB.clickAnElement(PurchaseBillsGrnLocators.PB_Line_Detail_Btn, ElementType.Xpath);
+		flag = webDB.waitForElement(PurchaseBillsGrnLocators.PB_LineProcess_Button, ElementType.Xpath);
 		if (flag) {
-			webDB.doubleClickAnElement(PurchaseBillsGrnLocators.PB_Process_TDS_Lov, ElementType.Xpath);
-			commonFunc.searchAndSelectValueInFilters(PurchaseBillsGrnLocators.ProcessTDSLovButton, TdsNo);
+			webDB.clickAnElement(PurchaseBillsGrnLocators.PB_LineProcess_Button, ElementType.Xpath);
+			commonFunc.hardWait(1000);
 			webDB.switchToFrame(PurchaseBillsGrnLocators.PB_ProcessFrame, ElementType.Xpath);
-			flag = webDB.waitForElement(PurchaseBillsGrnLocators.PB_Process_Save, ElementType.Xpath);
+			commonFunc.hardWait(1000);
+			verifyAddTableSpecs(PurchaseBillsGrnLocators.PB_ProcessTab_ProcQty,
+					PurchaseBillsGrnLocators.PB_ProcessTab_procQtyField, PBProcessQtyInput);
+			commonFunc.hardWait(1000);
+			webDB.moveToElement(PurchaseBillsGrnLocators.PB_Process_TDS_Lov, ElementType.Xpath);
+			flag = webDB.waitForElement(PurchaseBillsGrnLocators.PB_Process_TDS_Lov, ElementType.Xpath);
 			if (flag) {
-				webDB.clickAnElement(PurchaseBillsGrnLocators.PB_Process_Save, ElementType.Xpath);
-				commonFunc.hardWait(3000);
-				storePurchaseBillProcesTabProcessQtyAndUnitCost();
-				commonFunc.hardWait(1000);
-				flag = webDB.waitForElement(PurchaseBillsGrnLocators.PB_Process_Close, ElementType.Xpath);
+				webDB.doubleClickAnElement(PurchaseBillsGrnLocators.PB_Process_TDS_Lov, ElementType.Xpath);
+				commonFunc.searchAndSelectValueInFilters(PurchaseBillsGrnLocators.ProcessTDSLovButton, TdsNo);
+				webDB.switchToFrame(PurchaseBillsGrnLocators.PB_ProcessFrame, ElementType.Xpath);
+				flag = webDB.waitForElement(PurchaseBillsGrnLocators.PB_Process_Save, ElementType.Xpath);
 				if (flag) {
-					webDB.clickAnElement(PurchaseBillsGrnLocators.PB_Process_Close, ElementType.Xpath);
-					webDB.switchToDefaultContent();
-					commonFunc.checkRefreshCellsDisappear();
+					webDB.clickAnElement(PurchaseBillsGrnLocators.PB_Process_Save, ElementType.Xpath);
+					commonFunc.hardWait(3000);
+					storePurchaseBillProcesTabProcessQtyAndUnitCost();
 					commonFunc.hardWait(1000);
+					flag = webDB.waitForElement(PurchaseBillsGrnLocators.PB_Process_Close, ElementType.Xpath);
+					if (flag) {
+						webDB.clickAnElement(PurchaseBillsGrnLocators.PB_Process_Close, ElementType.Xpath);
+						webDB.switchToDefaultContent();
+						commonFunc.checkRefreshCellsDisappear();
+						commonFunc.hardWait(1000);
+					}
 				}
 			}
 		}

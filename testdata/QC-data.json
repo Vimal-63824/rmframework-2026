@@ -2089,5 +2089,8 @@
 	"ScrapItem-HKTVS1001": "HK-TVS-SCRAP-10001",
 	"UD-ItemType": "User Defined",
 	"RC-ItemType": "Rate Contract",
-	"PL-ItemType": "Price List"
+	"PL-ItemType": "Price List",
+	"CustomerScheduleAmendmentCloseShort":"Amended",
+	"customerScdhlDraftStatus":"Draft" 
+	
 }
