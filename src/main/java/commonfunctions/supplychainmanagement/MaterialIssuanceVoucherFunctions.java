@@ -177,6 +177,7 @@ public class MaterialIssuanceVoucherFunctions {
 				if (flag) {
 					webDB.moveToElement(MaterialIssuanceVoucherLocators.MIVPostBtn, ElementType.Xpath);
 					webDB.clickAnElement(MaterialIssuanceVoucherLocators.MIVPostBtn, ElementType.Xpath);
+					commonFunc.checkRefreshCellsDisappear();
 					flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
 					if (flag) {
 						logs.logging("INFO", "Post Button Clicked and Toast Message Displayed");
@@ -187,7 +188,6 @@ public class MaterialIssuanceVoucherFunctions {
 					}
 				}
 			}
-
 		}
 		assertTrue(flag);
 	}

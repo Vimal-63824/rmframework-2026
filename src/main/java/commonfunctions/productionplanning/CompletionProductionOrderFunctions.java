@@ -54,6 +54,7 @@ public class CompletionProductionOrderFunctions {
 						ElementType.Xpath);
 				webDB.clickAnElement(CompletionProductionOrderLocators.ComplProdOrderAllocateDeAllocateBtn,
 						ElementType.Xpath);
+				commonFunc.checkRefreshCellsDisappear();
 				flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
 			}
 		}
@@ -438,6 +439,7 @@ public class CompletionProductionOrderFunctions {
 		if (flag) {
 			webDB.moveToElement(CompletionProductionOrderLocators.ComplProdHeaderSaveIcon, ElementType.Xpath);
 			webDB.clickAnElement(CompletionProductionOrderLocators.ComplProdHeaderSaveIcon, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
 			flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Header Saved Succesfully");
@@ -485,11 +487,10 @@ public class CompletionProductionOrderFunctions {
 	public void clickPostButtonInCompletionProcess() {
 		flag = webDB.waitForElement(CompletionProductionOrderLocators.ComplProdPostBtn, ElementType.Xpath);
 		if (flag) {
+			commonFunc.checkRefreshCellsDisappear();
 			commonFunc.checkSuccessToastMessageDisappear();
 			webDB.moveToElement(CompletionProductionOrderLocators.ComplProdPostBtn, ElementType.Xpath);
 			webDB.clickAnElement(CompletionProductionOrderLocators.ComplProdPostBtn, ElementType.Xpath);
-			commonFunc.checkRefreshCellsDisappear();
-			commonFunc.checkRefreshCellsDisappear();
 			flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
 			if (flag) {
 				logs.logging("INFO", "Post Button Clicked Succesfully");
@@ -1694,12 +1695,12 @@ public class CompletionProductionOrderFunctions {
 			TotalConsQnty = TotalData[i][9];
 			AcceptQnty = TotalData[i][10];
 			ProdOrderNo = VariableHandler.getProductionOrderNumber();
-			if (OprnNo.equals("") || OprnNo == null || OprnNo.isBlank() || OprnNo.isEmpty()
+			if (OprnNo == null || OprnNo.equals("") || OprnNo.isBlank() || OprnNo.isEmpty()
 					|| OprnNo.equalsIgnoreCase("Completion") || OprnNo.equalsIgnoreCase("SFG")) {
 				break a;
 			}
 			if (Integer.parseInt(SeqNo) > 7) {
-				SeqNo = String.valueOf(Integer.parseInt(SeqNo) - 7);
+				SeqNo = String.valueOf(((Integer.parseInt(SeqNo) - 1) % 7) + 1);
 			}
 			commonFunc.verifyAssertionBothValues(dbCommonFunctions.validateCompProductionOrderLinesDetails(SeqNo,
 					OprnNo, commonFunc.getDataFromTestDataSheet("CompProcessLinesUnit")), Unit);
