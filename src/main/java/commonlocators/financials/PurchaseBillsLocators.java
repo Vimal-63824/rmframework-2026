@@ -107,7 +107,7 @@ public class PurchaseBillsLocators {
 	/** @locatorType Xpath */
 	public static final String HsnCodeField = "//*[@id='IN_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[14]";
 	/** @locatorType Xpath */
-	public static final String HsnCodeLov = "//input[@data-testid='SUPLN_HSN_CODE']";
+	public static final String HsnCodeLov = "//input[@data-testid='SUPLN_HSN_CODE']/following-sibling::button";
 	/** @locatorType Xpath */
 	public static final String SaveButtonLines = "//button[@data-testid='IN_SAVE']";
 	/** @locatorType Xpath */
@@ -287,17 +287,17 @@ public class PurchaseBillsLocators {
 	/** @locatorType Xpath */
 	public static final String AddButtonViewTap = "//button[@title='Add']";
 	/** @locatorType Xpath */
-	public static final String BillDocNo = "//input[@id='C5010252538784801497']";
+	public static final String BillDocNo = "//input[@id='C1132147063680651967']";//TODO
 	/** @locatorType Xpath */
-	public static final String PayAmt = "//input[@id='C5010246565666801490']";
+	public static final String PayAmt = "//input[@id='C1132141090562651960']";//TODO
 	/** @locatorType Xpath */
-	public static final String SaveButtonView = "//button[@id='B5023054244495265241']";
+	public static final String SaveButtonView = "//button[@id='B1144948769391115711']";//TODO
 	/** @locatorType Xpath */
-	public static final String CloseButton = "//*[@id='t_PageBody']/div[10]/div[1]/button";
+	public static final String CloseButton = "//*[@id=\"t_PageBody\"]/div[11]/div[1]/button/span";
 	/** @locatorType Xpath */
-	public static final String BillDocField = "//*[@id=\"ig_line1_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[2]";
+	public static final String BillDocField = "//*[@id=\"ig_line1_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr[1]/td[2]";//TODO
 	/** @locatorType Xpath */
-	public static final String PayamountField = "//*[@id=\"ig_line1_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[4]";
+	public static final String PayamountField = "//*[@id=\"ig_line1_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr[1]/td[4]";//TODO
 	/** @locatorType Xpath */
 	public static final String AdjButton = "//label[text()='Adjustments']";
 	/** @locatorType Xpath */
@@ -408,6 +408,20 @@ public class PurchaseBillsLocators {
 	}
 	
 	/** @locatorType Xpath */
+	public static final String PurchaseBillsLineWiseItem() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(GlAccDescField1, "Item");
+	}
+	
+	/** @locatorType Xpath */
+	public static final String PurchaseBillsLineWiseInvQty() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(GlAccDescField1, "Inv. Qty.");
+	}
+	
+	/** @locatorType Xpath */
 	public static final String PurchaseBillsExpandButton = "(//div[@aria-label='Purchase, Tax & Other Details']//button)[1]" ;
+	/** @locatorType Xpath */
+	public static final String Payment_LineDetails_Btn = "//table[@data-testid='R1088051364275366746_Result_Data']/tbody/tr/td[1]/a/span";
+	/** @locatorType Xpath */
+	public static final String Payment_ViewButton = "//span[@class='fa fa-code-group']";
 
 }
