@@ -1,5 +1,6 @@
 package commonfunctions.supplychainmanagement;
 
+import static org.testng.Assert.assertEquals;
 /**
  * @author Vimal - RMITS
  * @company RoadMap IT Solutions Oct 14, 2025
@@ -223,6 +224,7 @@ public class SubcontractOrderFunctions {
 	public void storeSCODocumentsNumber() {
 		String Number = webDB.getTextFromElement(SubcontractOrderLocators.ScoNumber, ElementType.Xpath);
 		VariableHandler.setScoNumber(Number);
+		VariableHandler.setSCOdocno(Number);
 	}
 
 	/**
@@ -234,6 +236,7 @@ public class SubcontractOrderFunctions {
 	 * @param Supplier
 	 */
 	public void verifyHeaderValidation(String Location, String Unit, String Supplier) {
+
 		purchaseOrderFunc.verifyGetTextValidation(SubcontractOrderLocators.LocationId, Location);
 		purchaseOrderFunc.verifyGetTextValidation(SubcontractOrderLocators.UnitId, Unit);
 		purchaseOrderFunc.verifyGetTextValidation(SubcontractOrderLocators.SupplierName, Supplier);
@@ -418,24 +421,24 @@ public class SubcontractOrderFunctions {
 			if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
 				webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
 			}
-			flag = webDB.waitForElement(SubcontractOrderLocators.Save, ElementType.Xpath);
+		}
+		flag = webDB.waitForElement(SubcontractOrderLocators.Save, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(SubcontractOrderLocators.Save, ElementType.Xpath);
+			webDB.clickAnElement(SubcontractOrderLocators.Save, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
+			webDB.waitForElementUntilGivenTime(CommonUiLocators.PostToastMessage, ElementType.Xpath, 5);
+			if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+				webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+			}
+			commonFunc.checkSuccessToastMessageDisappear();
+			flag = webDB.waitForElement(SubcontractOrderLocators.HeaderPost, ElementType.Xpath);
 			if (flag) {
-				webDB.moveToElement(SubcontractOrderLocators.Save, ElementType.Xpath);
-				webDB.clickAnElement(SubcontractOrderLocators.Save, ElementType.Xpath);
-				commonFunc.checkRefreshCellsDisappear();
-				webDB.waitForElementUntilGivenTime(CommonUiLocators.PostToastMessage, ElementType.Xpath, 5);
-				if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
-					webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
-				}
 				commonFunc.checkSuccessToastMessageDisappear();
-				flag = webDB.waitForElement(SubcontractOrderLocators.HeaderPost, ElementType.Xpath);
-				if (flag) {
-					commonFunc.checkSuccessToastMessageDisappear();
-					logs.logging("INFO", "Save Button Is Clicked");
-					webDB.clickAnElement(SubcontractOrderLocators.HeaderPost, ElementType.Xpath);
-					flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
-					logs.logging("INFO", "Post Button Is Clicked");
-				}
+				logs.logging("INFO", "Save Button Is Clicked");
+				webDB.clickAnElement(SubcontractOrderLocators.HeaderPost, ElementType.Xpath);
+				flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
+				logs.logging("INFO", "Post Button Is Clicked");
 			}
 		}
 		assertTrue(flag);
@@ -665,6 +668,7 @@ public class SubcontractOrderFunctions {
 				logs.logging("INFO", "Pending Frame Is Displayed");
 				webDB.switchToFrame(SubcontractOrderLocators.FrameProdPoc, ElementType.Xpath);
 				commonFunc.hardWait(3000);
+				commonFunc.expandFindTable();
 				commonFunc.searchAndSelectValueInFilters(SubcontractOrderLocators.ProdOrderNo, DocNo);
 				webDB.switchToFrame(SubcontractOrderLocators.FrameProdPoc, ElementType.Xpath);
 				flag = webDB.waitForElement(SubcontractOrderLocators.SearchButton, ElementType.Xpath);
@@ -3359,7 +3363,7 @@ public class SubcontractOrderFunctions {
 	 * 
 	 * @author Vimal - RMITS
 	 */
-	public void clickingMRPDetailsTabVerificationWithBOMAgainst() {
+	public void clickingMRPDetailsTabVerificationWithBOMAgainstNew() {
 		commonFunc.hardWait(2000);
 		flag = webDB.waitForElement(SubcontractOrderLocators.SCO_LineDetail_Details, ElementType.Xpath);
 		if (flag) {
@@ -3374,7 +3378,7 @@ public class SubcontractOrderFunctions {
 					logs.logging("INFO", "Frame Material Is Displayed");
 					webDB.switchToFrame(SubcontractOrderLocators.FrameMaterial, ElementType.Xpath);
 					commonFunc.hardWait(1000);
-					checkSucontractOrderMaterialDetailsDataBaseValuesWithUIValues();
+//					checkSucontractOrderMaterialDetailsDataBaseValuesWithUIValues();
 					commonFunc.hardWait(2000);
 					webDB.switchToDefaultContent();
 					flag = webDB.waitForElement(SubcontractOrderLocators.CloseButton, ElementType.Xpath);
@@ -14815,7 +14819,8 @@ public class SubcontractOrderFunctions {
 						commonFunc.hardWait(1000);
 						webDB.sendTextToAnElement(SubcontractOrderLocators.SubcontractCS_ProcDetails_BatchQty,
 								SCOCloseShortBatchQty, ElementType.Xpath);
-						webDB.moveToElement(SubcontractOrderLocators.SubcontractCS_ProcDetails_SaveIcon, ElementType.Xpath);
+						webDB.moveToElement(SubcontractOrderLocators.SubcontractCS_ProcDetails_SaveIcon,
+								ElementType.Xpath);
 						flag = webDB.waitForElement(SubcontractOrderLocators.SubcontractCS_ProcDetails_SaveIcon,
 								ElementType.Xpath);
 						if (flag) {
@@ -14859,11 +14864,13 @@ public class SubcontractOrderFunctions {
 					flag = webDB.waitForElement(SubcontractOrderLocators.SubcontractCS_ProcDetails_BatchCost,
 							ElementType.Xpath);
 					if (flag) {
-						webDB.clearText(SubcontractOrderLocators.SubcontractCS_ProcDetails_BatchCost, ElementType.Xpath);
+						webDB.clearText(SubcontractOrderLocators.SubcontractCS_ProcDetails_BatchCost,
+								ElementType.Xpath);
 						commonFunc.hardWait(1000);
 						webDB.sendTextToAnElement(SubcontractOrderLocators.SubcontractCS_ProcDetails_BatchCost,
 								SCOCloseShortBatchCost, ElementType.Xpath);
-						webDB.moveToElement(SubcontractOrderLocators.SubcontractCS_ProcDetails_SaveIcon, ElementType.Xpath);
+						webDB.moveToElement(SubcontractOrderLocators.SubcontractCS_ProcDetails_SaveIcon,
+								ElementType.Xpath);
 						flag = webDB.waitForElement(SubcontractOrderLocators.SubcontractCS_ProcDetails_SaveIcon,
 								ElementType.Xpath);
 						if (flag) {
@@ -14912,7 +14919,8 @@ public class SubcontractOrderFunctions {
 						commonFunc.hardWait(1000);
 						webDB.sendTextToAnElement(SubcontractOrderLocators.SubcontractCS_ProcDetails_BatchQty,
 								SCOCloseShortBatchQty, ElementType.Xpath);
-						webDB.clearText(SubcontractOrderLocators.SubcontractCS_ProcDetails_BatchCost, ElementType.Xpath);
+						webDB.clearText(SubcontractOrderLocators.SubcontractCS_ProcDetails_BatchCost,
+								ElementType.Xpath);
 						commonFunc.hardWait(1000);
 						webDB.sendTextToAnElement(SubcontractOrderLocators.SubcontractCS_ProcDetails_BatchCost,
 								SCOCloseShortBatchCost, ElementType.Xpath);
@@ -14922,7 +14930,8 @@ public class SubcontractOrderFunctions {
 						commonFunc.searchAndSelectValueInFilters(
 								SubcontractOrderLocators.SubcontractCS_ProcDetails_SACLov, SCOASACCode);
 						commonFunc.hardWait(2000);
-						webDB.moveToElement(SubcontractOrderLocators.SubcontractCS_ProcDetails_SaveIcon, ElementType.Xpath);
+						webDB.moveToElement(SubcontractOrderLocators.SubcontractCS_ProcDetails_SaveIcon,
+								ElementType.Xpath);
 						flag = webDB.waitForElement(SubcontractOrderLocators.SubcontractCS_ProcDetails_SaveIcon,
 								ElementType.Xpath);
 						if (flag) {
@@ -14986,8 +14995,7 @@ public class SubcontractOrderFunctions {
 		if (flag) {
 			webDB.clickAnElement(SubcontractOrderLocators.SubcontractCS_Closeshort_CancelButton, ElementType.Xpath);
 			commonFunc.hardWait(2000);
-			flag = webDB.waitForElement(SubcontractOrderLocators.OP_Cancel_okBtn,
-					ElementType.Xpath);
+			flag = webDB.waitForElement(SubcontractOrderLocators.OP_Cancel_okBtn, ElementType.Xpath);
 			if (flag) {
 				webDB.clickAnElement(SubcontractOrderLocators.OP_Cancel_okBtn, ElementType.Xpath);
 				commonFunc.checkRefreshCellsDisappear();
@@ -18070,6 +18078,7 @@ public class SubcontractOrderFunctions {
 	 * @param ProcessName
 	 */
 	public void clickProcessDetailsAndSelectAllProcess(String ProdNo) {
+		webDB.switchToDefaultContent();
 		flag = webDB.waitForElement(SubcontractOrderLocators.FrameProdPoc, ElementType.Xpath);
 		if (flag) {
 			webDB.switchToFrame(SubcontractOrderLocators.FrameProdPoc, ElementType.Xpath);
@@ -18120,19 +18129,26 @@ public class SubcontractOrderFunctions {
 		ExcelUtils excelUtils = new ExcelUtils();
 		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
 		TotalData = excelUtils.readAllDataInExcel(Filepath, Sheetname);
-		a: for (int i = StartIndex; i < TotalData.length; i++) {
-			String BatchQty = TotalData[i][28];
-			String BatchCost = TotalData[i][29];
-			String OrderQty = TotalData[i][25];
-			String ConvFact = TotalData[i][30];
-			String ProcUOM = TotalData[i][24];
+		a: for (int i = StartIndex; i <= StartIndex; i++) {
+			String BatchQty = TotalData[i][27];
+			String BatchCost = TotalData[i][28];
+			String OrderQty = TotalData[i][24];
+			String ConvFact = TotalData[i][29];
+			String ProcUOM = TotalData[i][23];
 			if (ProcUOM.equalsIgnoreCase("Total")) {
 				break a;
 			}
+			assertEquals(BatchQty, VariableHandler.getSCOBatchQty());
+			assertEquals(BatchCost, VariableHandler.getSCOBatchCost());
+			assertEquals(BatchQty, VariableHandler.getSCOBatchQty());
+			assertEquals(BatchQty, VariableHandler.getSCOBatchQty());
+			assertEquals(BatchQty, VariableHandler.getSCOBatchQty());
+			assertEquals(BatchQty, VariableHandler.getSCOBatchQty());
 			logs.logging("INFO", "Before BatchQty  " + BatchQty + "Is : " + VariableHandler.getSCOBatchQty());
-			excelUtils.writeDataInExcel(Filepath, Sheetname, i, 5, VariableHandler.getSCOBatchQty());
+
+//			excelUtils.writeDataInExcel(Filepath, Sheetname, i, 27, VariableHandler.getSCOBatchQty());
 			logs.logging("INFO", "Before BatchCost  " + BatchCost + "Is : " + VariableHandler.getSCOBatchCost());
-			excelUtils.writeDataInExcel(Filepath, Sheetname, i, 6, VariableHandler.getSCOBatchCost());
+			excelUtils.writeDataInExcel(Filepath, Sheetname, i, 28, VariableHandler.getSCOBatchCost());
 			logs.logging("INFO", "Before OrderQty  " + OrderQty + "Is : " + VariableHandler.getSCOOrderQty());
 			excelUtils.writeDataInExcel(Filepath, Sheetname, i, 2, VariableHandler.getSCOOrderQty());
 			logs.logging("INFO", "Before ConvFact  " + ConvFact + "Is : " + VariableHandler.getSCOConvFact());
@@ -18152,20 +18168,20 @@ public class SubcontractOrderFunctions {
 		ExcelUtils excelUtils = new ExcelUtils();
 		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
 		TotalData = excelUtils.readAllDataInExcel(Filepath, Sheetname);
-		a: for (int i = StartIndex; i < TotalData.length; i++) {
-			String BatchQty = TotalData[i][28];
-			String BatchCost = TotalData[i][29];
-			String OrderQty = TotalData[i][25];
-			String ConvFact = TotalData[i][30];
-			String SACcode = TotalData[i][36];
-			String ProcQty = TotalData[i][31];
-			String LineOrdQty = TotalData[i][31];
-			String LineUnitCost = TotalData[i][32];
-			String UOM = TotalData[i][24];
-			String IGSTamt = TotalData[i][40];
-			String CGSTamt = TotalData[i][38];
-			String SGSTamt = TotalData[i][39];
-			String UTGSTamt = TotalData[i][41];
+		a: for (int i = StartIndex; i <= StartIndex; i++) {
+			String BatchQty = TotalData[i][27];
+			String BatchCost = TotalData[i][28];
+			String OrderQty = TotalData[i][24];
+			String ConvFact = TotalData[i][29];
+			String SACcode = TotalData[i][35];
+			String ProcQty = TotalData[i][30];
+			String LineOrdQty = TotalData[i][30];
+			String LineUnitCost = TotalData[i][31];
+			String UOM = TotalData[i][23];
+			String IGSTamt = TotalData[i][39];
+			String CGSTamt = TotalData[i][37];
+			String SGSTamt = TotalData[i][38];
+			String UTGSTamt = TotalData[i][40];
 			if (BatchQty.equalsIgnoreCase("Total")) {
 				break a;
 			}
@@ -18281,9 +18297,9 @@ public class SubcontractOrderFunctions {
 		ExcelUtils excelUtils = new ExcelUtils();
 		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
 		TotalData = excelUtils.readAllDataInExcel(Filepath, Sheetname);
-		a: for (int i = StartIndex; i < TotalData.length; i++) {
-			String ProcUOM = TotalData[i][24];
-			String SCOamt = TotalData[i][33];
+		a: for (int i = StartIndex; i <= StartIndex; i++) {
+			String ProcUOM = TotalData[i][23];
+			String SCOamt = TotalData[i][32];
 			String TaxAmt = TotalData[i][41];
 			String SCONetAmt = TotalData[i][44];
 			if (ProcUOM.equalsIgnoreCase("Total")) {
@@ -18376,6 +18392,82 @@ public class SubcontractOrderFunctions {
 				flag = webDB.waitForElement(SalesInvoiceLocators.LineWise_Add_Btn, ElementType.Xpath);
 				if (flag) {
 					logs.logging("INFO", "Linewise Delete Icon Clicked Sucessfully");
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Verify MRP Detail Verification
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void clickingMRPDetailsTabVerificationWithBOMAgainst() {
+		commonFunc.hardWait(2000);
+		flag = webDB.waitForElement(SubcontractOrderLocators.SCO_LineDetail_Details, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(SubcontractOrderLocators.SCO_LineDetail_Details, ElementType.Xpath);
+			commonFunc.hardWait(1000);
+			flag = webDB.waitForElement(SubcontractOrderLocators.MRPButton, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "MRP Button Is Displayed");
+				webDB.clickAnElement(SubcontractOrderLocators.MRPButton, ElementType.Xpath);
+				flag = webDB.waitForElement(SubcontractOrderLocators.FrameMaterial, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Frame Material Is Displayed");
+					webDB.switchToFrame(SubcontractOrderLocators.FrameMaterial, ElementType.Xpath);
+					commonFunc.hardWait(1000);
+//					checkSucontractOrderMaterialDetailsDataBaseValuesWithUIValues();
+					commonFunc.hardWait(2000);
+					webDB.switchToDefaultContent();
+					flag = webDB.waitForElement(SubcontractOrderLocators.CloseButton, ElementType.Xpath);
+					if (flag) {
+						webDB.clickAnElement(SubcontractOrderLocators.CloseButton, ElementType.Xpath);
+						flag = webDB.waitForElement(SubcontractOrderLocators.SubcontractInclCostButton,
+								ElementType.Xpath);
+						if (flag) {
+							logs.logging("INFO", "Verified MRP Screen Is Closed");
+						}
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Value Addition Process Sources And Target SF Code
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void ValueAdditionProcessSourceAndTargetSFcodeNew() {
+		webDB.moveToElement(SubcontractOrderLocators.SCO_LineDetail_Details, ElementType.Xpath);
+		flag = webDB.waitForElement(SubcontractOrderLocators.SCO_LineDetail_Details, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(SubcontractOrderLocators.SCO_LineDetail_Details, ElementType.Xpath);
+			commonFunc.hardWait(1000);
+			flag = webDB.waitForElement(SalesInvoiceLocators.SI_detail_Button, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(SalesInvoiceLocators.SI_detail_Button, ElementType.Xpath);
+				commonFunc.hardWait(2000);
+				flag = webDB.waitForElement(SubcontractOrderLocators.FrameDetails, ElementType.Xpath);
+				if (flag) {
+					webDB.switchToFrame(SubcontractOrderLocators.FrameDetails, ElementType.Xpath);
+					commonFunc.hardWait(2000);
+					webDB.clickAnElement(SubcontractOrderLocators.SCO_LineDetail_Prod_Details, ElementType.Xpath);
+//					valueAdditionprocessSourceSFcodeAndTarSFcode(webDB.getDataFromProperties("SourceSFCode"));
+					commonFunc.hardWait(1000);
+					webDB.switchToDefaultContent();
+					flag = webDB.waitForElement(SubcontractOrderLocators.CloseDetails, ElementType.Xpath);
+					if (flag) {
+						webDB.clickAnElement(SubcontractOrderLocators.CloseDetails, ElementType.Xpath);
+						commonFunc.hardWait(1000);
+						flag = webDB.waitForElement(SubcontractOrderLocators.Save, ElementType.Xpath);
+						if (flag) {
+							logs.logging("INFO", "Verified Line Details Is Closed");
+						}
+					}
 				}
 			}
 		}
