@@ -117,7 +117,7 @@ public class PurchaseBillsLocators {
 	/** @locatorType Xpath */
 	public static final String WfOkButtton = "//button[@data-testid='OK']";
 	/** @locatorType Xpath */
-	public static final String gstClafField = "//*[@id='report_2482465621170058410_catch']/dl/dd[12]";
+	public static final String gstClafField = "//*[@id='report_2591333995983395016_catch']/dl/dd[12]";
 	/** @locatorType Xpath */
 	public static final String SideScroll = "//button[@id='t_Button_rightControlButton']";
 	/** @locatorType Xpath */
@@ -257,7 +257,7 @@ public class PurchaseBillsLocators {
 	/** @locatorType Xpath */
 	public static final String StockTransferQtyInput = "//input[@id='qty']";
 	/** @locatorType Xpath */
-	public static final String StockTransferTypeQtyField = "//*[@id=\"IN_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr[1]/td[9]";
+	public static final String StockTransferTypeQtyField = "//*[@id='IN_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[10]";
 	/** @locatorType Xpath */
 	public static final String StockTransferTypeHsnField = "//*[@id=\"IN_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr[1]/td[14]";
 	/** @locatorType Xpath */
@@ -415,6 +415,11 @@ public class PurchaseBillsLocators {
 	/** @locatorType Xpath */
 	public static final String PurchaseBillsLineWiseInvQty() {
 		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(GlAccDescField1, "Inv. Qty.");
+	}
+	
+	/** @locatorType Xpath */
+	public static final String PurchaseBillsLineWiseGstType() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(GlAccDescField1, "Gst Supply");
 	}
 	
 	/** @locatorType Xpath */

@@ -125,6 +125,12 @@ public class CustomerItemsFunctions {
 		flag = webDB.waitForElement(CommonUiLocators.QualityTab, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(CommonUiLocators.QualityTab, ElementType.Xpath);
+			String value = webDB.getDomAttributeFromElement(CommonUiLocators.QualityTab, ElementType.Xpath,
+					"aria-expanded");
+			if (value.equalsIgnoreCase("false")) {
+				webDB.javaScriptClickAnElement(CommonUiLocators.QualityTab, ElementType.Xpath);
+				logs.logging("INFO", "Quality Tab Is Clicked ");
+			}
 			flag = webDB.waitForElement(CommonUiLocators.TypeDropDown, ElementType.Xpath);
 			if (flag) {
 				flag = webDB.selectDropDownByText(CommonUiLocators.TypeDropDown, QcFlag, ElementType.Xpath);
@@ -439,6 +445,12 @@ public class CustomerItemsFunctions {
 		flag = webDB.waitForElement(CommonUiLocators.SalesTab, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(CommonUiLocators.SalesTab, ElementType.Xpath);
+			String value = webDB.getDomAttributeFromElement(CommonUiLocators.SalesTab, ElementType.Xpath,
+					"aria-expanded");
+			if (value.equalsIgnoreCase("false")) {
+				webDB.javaScriptClickAnElement(CommonUiLocators.SalesTab, ElementType.Xpath);
+				logs.logging("INFO", "Sales Tab Is Clicked ");
+			}
 			flag = webDB.waitForElement(CommonUiLocators.CustomerAssoFlag, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Successfully Moved a Sales Tap ");
@@ -453,7 +465,6 @@ public class CustomerItemsFunctions {
 		}
 		assertTrue(flag);
 	}
-
 	/**
 	 * Click Active Button
 	 * 
