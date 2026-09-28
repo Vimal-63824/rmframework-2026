@@ -54,11 +54,11 @@ public class PurchaseBillsGrnLocators {
 	/** @locatorType Xpath */
 	public static final String PBCostInput = "//input[@data-testid='SUPLN_UNIT_COST']";
 	/** @locatorType Xpath */
-	public static final String PBCostField = "//*[@id=\"IN_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr[1]/td[11]";//TODO
+	public static final String PBCostField = "//*[@id=\"IN_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[11]";//TODO
 	/** @locatorType Xpath */
 	public static final String PBAddLine = "//button[@data-testid='ADDLN']";
 	/** @locatorType Xpath */
-	public static final String GlAccDescField = "//*[@id=\"IN_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr[1]/td[7]";//TODO
+	public static final String GlAccDescField = "//*[@id=\"IN_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[7]";//TODO
 	/** @locatorType Xpath */
 	public static final String GlAccLov = "//input[@data-testid='SUPLN_ACCT_DESC']/following-sibling::button";
 	/** @locatorType Xpath */
@@ -170,7 +170,7 @@ public class PurchaseBillsGrnLocators {
 	/** @locatorType Xpath */
 	public static final String PB_Process_Save = "//button[@title='Save']";
 	/** @locatorType Xpath */
-	public static final String PB_Process_Close = "//button[@id='B2265938386304456986']";//TODO
+	public static final String PB_Process_Close = "//button[@id='B2374806761117793592']";//TODO
 	/** @locatorType Xpath */
 	public static final String PendingPayableSelectAll = "//input[@id='check_all']";
 	/** @locatorType Xpath */

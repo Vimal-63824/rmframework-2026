@@ -561,7 +561,7 @@ public class SalesInvoiceLocators {
 	/** @Locator XPATH */
 	public static final String GE_Pend_SelectAll = "(//input[@id='check_all'])[1]";
 	/** @Locator XPATH */
-	public static final String GE_Pend_Curr_ProcQty = "//*[@id=\"2288533973947868382_orig\"]/tbody/tr[2]/td[14]";
+	public static final String GE_Pend_Curr_ProcQty = "//*[@id=\"2397415601543505368_orig\"]/tbody/tr[2]/td[14]";//TODO
 	/** @Locator XPATH */
 	public static final String GE_Pend_LS_Tab = "//span[@class='fa fa-balance-scale']";
 	/** @Locator XPATH */
@@ -643,7 +643,7 @@ public class SalesInvoiceLocators {
 	/** @Locator XPATH */
 	public static final String SI_Predispatch_Btn = "//button[@data-testid='Cre_pre_disp']";
 	/** @Locator XPATH */
-	public static final String CR_AcptQty_Column = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[10]";
+	public static final String CR_AcptQty_Column = "//*[@id=\"ig_line_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr[1]/td[11]";
 	/** @Locator XPATH */
 	public static final String CR_AcptQty_Input = "//input[@data-testid='SILN_ACCEPTED_QTY']";
 	/** @Locator XPATH */
@@ -651,7 +651,7 @@ public class SalesInvoiceLocators {
 
 	// Recent Update
 
-	public static final String CR_LS_Acpt_Qty = "//*[@id='ig_line1_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[5]";
+	public static final String CR_LS_Acpt_Qty = "//*[@id=\"ig_line1_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[5]";
 	/** @Locator XPATH */
 	public static final String CR_LS_Save_Icon = "//button[@data-testid='Save_line']";
 	/** @Locator XPATH */
@@ -741,9 +741,9 @@ public class SalesInvoiceLocators {
 	/** @Locator XPATH */
 	public static final String RWC_ToDate_Next = "//td[@class='is-current']/following::td[1]";
 	/** @Locator XPATH */
-	public static final String RWC_ToDate_Today = "//*[@id=\"C15886462193726423094_dialog\"]/div/div[3]/div[2]/button[1]";
+	public static final String RWC_ToDate_Today = "//*[@id=\"C14485702157279956998_dialog\"]/div/div[3]/div[2]/button[1]";
 	/** @Locator XPATH */
-	public static final String RWC_ToDate_Done = "//*[@id=\"C14392064809040117112_dialog\"]/div/div[3]/div[2]/button[2]";
+	public static final String RWC_ToDate_Done = "//*[@id=\"C14485702157279956998_dialog\"]/div/div[3]/div[2]/button[2]";
 	/** @Locator XPATH */
 	public static final String RWC_Line_save_Icon = "//button[@data-testid='RWC_Res_Save_btn']";
 	/** @Locator XPATH */
@@ -955,7 +955,7 @@ public class SalesInvoiceLocators {
 	/** @Locator XPATH */
 	public static final String SI_detail_Button = "//span[@class='fa fa fa-indent']";
 	/** @Locator XPATH */
-	public static final String SI_detail_Promotional = "//*[@id=\"R1883452696052818893\"]/div[1]/div[1]/button";
+	public static final String SI_detail_Promotional = "//div[@aria-label='Tax Details']//button";
 	/** @Locator XPATH */
 	public static final String SI_linedetail_Button = "//*[@id=\"ig_line_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[1]/a/span";
 	/** @Locator XPATH */

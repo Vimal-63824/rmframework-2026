@@ -483,7 +483,7 @@ public class SubcontractOrderLocators {
 	/** @Locator XPATH */
 	public static final String SubcontractCSAddSCOLine_OKButton = "//button[@data-testid='OK']";
 	/** @Locator XPATH */
-	public static final String SubcontractCS_ProcDetailsButton = "//*[@id=\"process_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[1]/a/span";
+	public static final String SubcontractCS_ProcDetailsButton = "//table[@data-testid='Line_Result_Data']/tbody/tr/td[1]/a/span";
 	/** @Locator XPATH */
 	public static final String SubcontractCS_ProcDetails_Iframe = "//iframe[@title='Details']";
 	/** @Locator XPATH */
@@ -552,7 +552,7 @@ public class SubcontractOrderLocators {
 	}
 
 	/** @Locator XPATH */
-	public static final String SCO_LineDetail_Prod_Details = "//*[@id=\"R3875139802364168253\"]/div[1]/div[1]/button";
+	public static final String SCO_LineDetail_Prod_Details = "(//div[@aria-label='Production Details']//button)[1]";
 	/** @Locator XPATH */
 	public static final String SCO_LineDetail_Details = "//*[@id=\"ig_line_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[1]/a/span";
 
@@ -573,8 +573,8 @@ public class SubcontractOrderLocators {
 	/** @locatorType XPATH */
 	public static final String SCO_Amd_Det_Btn = "//span[@class='fa fa fa-indent']";
 	/** @Locator XPATH */
-	public static final String SCO_AMD_LineDetail_NewCost = "//*[@id=\"R230190271602287923\"]/div[1]/div[1]/button";
+	public static final String SCO_AMD_LineDetail_NewCost = "(//div[@aria-label='New Cost']//button)[1]";
 	/** @Locator XPATH */
-	public static final String SCO_AMD_LineDetail_NewTAX = "//*[@id=\"R231828621571081192\"]/div[1]/div[1]/button";
+	public static final String SCO_AMD_LineDetail_NewTAX = "(//div[@aria-label='New Tax']//button)[1]";
 
 }
