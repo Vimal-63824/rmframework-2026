@@ -164,5 +164,5 @@ public class MaterialRequestLocators {
 		return "//*[@id='line_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[" + i + "]/td[13]";
 	}
 	/** @locatorType Xpath */
-	public static final String ViewLineDetails_Orderdetail = "//*[@id=\"R1661028708928755332\"]/div[1]/div[1]/button";
+	public static final String ViewLineDetails_Orderdetail = "//div[@aria-label='SO & Order Details']//button";
 }
