@@ -3201,7 +3201,8 @@ public class CommonFunctions {
 		String ClassName = method.getDeclaringClass().getSimpleName();
 		if (author != null) {
 			Listener.test.get().assignAuthor(author.value());
-		} else if (ClassName != null) {
+		}
+		if (ClassName != null) {
 			Listener.test.get().assignCategory(ClassName);
 		}
 	}
