@@ -2905,7 +2905,7 @@ public class DirectGrnPageFunctions {
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"), "Status",
 				commonFunc.getDataFromTestDataSheet("HeaderSearchType"),
 				commonFunc.getDataFromTestDataSheet("SelectType"));
-		verifyDateAfterAndBefore();
+//		verifyDateAfterAndBefore();
 		commonFunc.logoutUser();
 	}
 

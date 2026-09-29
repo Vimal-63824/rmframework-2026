@@ -287,17 +287,17 @@ public class PurchaseBillsLocators {
 	/** @locatorType Xpath */
 	public static final String AddButtonViewTap = "//button[@title='Add']";
 	/** @locatorType Xpath */
-	public static final String BillDocNo = "//input[@id='C1132147063680651967']";//TODO
+	public static final String BillDocNo = "//input[@id='C1241015438493988573']";//TODO
 	/** @locatorType Xpath */
-	public static final String PayAmt = "//input[@id='C1132141090562651960']";//TODO
+	public static final String PayAmt = "//input[@id='C1241009465375988566']";//TODO
 	/** @locatorType Xpath */
 	public static final String SaveButtonView = "//button[@id='B1144948769391115711']";//TODO
 	/** @locatorType Xpath */
 	public static final String CloseButton = "//*[@id=\"t_PageBody\"]/div[11]/div[1]/button/span";
 	/** @locatorType Xpath */
-	public static final String BillDocField = "//*[@id=\"ig_line1_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr[1]/td[2]";//TODO
+	public static final String BillDocField = "//*[@id=\"ig_line1_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[2]";//TODO
 	/** @locatorType Xpath */
-	public static final String PayamountField = "//*[@id=\"ig_line1_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr[1]/td[4]";//TODO
+	public static final String PayamountField = "//*[@id=\"ig_line1_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[4]";//TODO
 	/** @locatorType Xpath */
 	public static final String AdjButton = "//label[text()='Adjustments']";
 	/** @locatorType Xpath */

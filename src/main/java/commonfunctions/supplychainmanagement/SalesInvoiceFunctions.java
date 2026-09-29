@@ -6142,15 +6142,16 @@ public class SalesInvoiceFunctions {
 	 * @param SalesGL_Acct
 	 */
 	public void InsertingSalesGlAccount(String SalesGL_Acct) {
-		flag = webDB.waitForElement(SalesInvoiceLocators.CR_Gl_Acct_Column, ElementType.Xpath);
-		if (flag) {
-			webDB.clickAnElement(SalesInvoiceLocators.CR_Gl_Acct_Column, ElementType.Xpath);
+//		flag = webDB.waitForElement(SalesInvoiceLocators.CR_Gl_Acct_Column, ElementType.Xpath);
+//		if (flag) {
+//			webDB.clickAnElement(SalesInvoiceLocators.CR_Gl_Acct_Column, ElementType.Xpath);
 			commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.CR_GL_Acct_LOV_Btn, SalesGL_Acct);
+			webDB.pressTabKey();
+			commonFunc.hardWait(1000);
 			flag = webDB.waitForElement(SalesInvoiceLocators.CRPageCPCTable(), ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Sales GL Account Inserted Successfully");
 			}
-		}
 		assertTrue(flag);
 	}
 
@@ -6275,6 +6276,11 @@ public class SalesInvoiceFunctions {
 			webDB.clickAnElement(SalesInvoiceLocators.CRPageItemTable(), ElementType.Xpath);
 			commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.CR_Item_LOV_Btn, SI_Service_Item);
 			logs.logging("INFO", "Linewise Item ID Inserted Successfully: " + SI_Service_Item);
+			webDB.pressTabKey();
+			commonFunc.hardWait(1000);
+			webDB.pressTabKey();
+			commonFunc.hardWait(1000);
+			webDB.pressTabKey();
 			flag = webDB.waitForElement(SalesInvoiceLocators.CRPageGLAcctTable(), ElementType.Xpath);
 		}
 		assertTrue(flag);
@@ -7963,6 +7969,7 @@ public class SalesInvoiceFunctions {
 						if (flag) {
 							logs.logging("INFO",
 									"CreditNote Prefix , Return Reason Inserted and Save Icon Clicked Sucessfully");
+							commonFunc.hardWait(2000);
 							flag = webDB.waitForElement(SalesInvoiceLocators.CR_AcptQty_Column, ElementType.Xpath);
 							if (flag) {
 								webDB.doubleClickAnElement(SalesInvoiceLocators.CR_AcptQty_Column, ElementType.Xpath);
@@ -7978,6 +7985,8 @@ public class SalesInvoiceFunctions {
 									commonFunc.hardWait(3000);
 									webDB.clickAnElement(SalesInvoiceLocators.CR_Save_Icon, ElementType.Xpath);
 									commonFunc.checkRefreshCellsDisappear();
+									commonFunc.hardWait(2000);
+									webDB.scrollToAnElement(SalesInvoiceLocators.CR_LS_Acpt_Qty, ElementType.Xpath);
 									commonFunc.hardWait(2000);
 									flag = webDB.waitForElement(SalesInvoiceLocators.CR_LS_Acpt_Qty, ElementType.Xpath);
 									if (flag) {

@@ -219,9 +219,14 @@ public class PurchaseBillsFunctionsGrn {
 	 * @author Harikrishna - RMITS
 	 */
 	public void clickLineWiseViewButtonForAdvance() {
-		flag = webDB.waitForElement(BankPaymentLocators.BankLineViewButton(1), ElementType.CssSelector);
+		flag = webDB.waitForElement(BankPaymentLocators.BPAddLineTable, ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(BankPaymentLocators.BankLineViewButton(1), ElementType.CssSelector);
+			webDB.clickAnElement(BankPaymentLocators.BPAddLineTable, ElementType.Xpath);
+			logs.logging("INFO", "Line Details Button is Clicked");
+			flag = webDB.waitForElement(BankPaymentLocators.BPLineDetailViewBtn, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(BankPaymentLocators.BPLineDetailViewBtn, ElementType.Xpath);
+				logs.logging("INFO", "Line Details View Button is Clicked");
 			flag = webDB.waitForElementUntilGivenTime(BankPaymentLocators.BankViewFrame, ElementType.Xpath, 20);
 			if (flag) {
 				webDB.switchToFrame(BankPaymentLocators.BankViewFrame, ElementType.Xpath);
@@ -231,6 +236,7 @@ public class PurchaseBillsFunctionsGrn {
 					logs.logging("INFO", "Bank Payment Line Wise View Button Is clicked Successfully");
 				}
 			}
+		}
 		}
 		assertTrue(flag);
 	}
@@ -3841,39 +3847,39 @@ public class PurchaseBillsFunctionsGrn {
 	public void verifyToCreatetheItemTypeDocument(String Item, String Cost, String Qty, String HSN, String GLAccount,
 			String TrdDisc, String SpclDisc, String CashDisc, String TdsNo, String TaxAmountCGST, String TaxAmountSGST,
 			String TaxAmountIGST, String PBLineAmount, String PBDiscAmount) {
-		webDB.waitForElement(PurchaseBillsGrnLocators.PBItemField, ElementType.Xpath);
+		webDB.waitForElement(PurchaseBillsGrnLocators.PurchaseBillsTransLocGstItem(), ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(PurchaseBillsGrnLocators.PBItemField, ElementType.Xpath);
+			webDB.clickAnElement(PurchaseBillsGrnLocators.PurchaseBillsTransLocGstItem(), ElementType.Xpath);
 			flag = webDB.waitForElement(PurchaseBillsGrnLocators.PBItemLov, ElementType.Xpath);
 			if (flag) {
 				commonFunc.searchAndSelectValueInFilters(PurchaseBillsGrnLocators.PBItemLov, Item);
 				logs.logging("INFO", "Item Is Selected SuccessFully:" + Item);
-				flag = webDB.waitForElement(PurchaseBillsGrnLocators.GlAccDescField, ElementType.Xpath);
+				flag = webDB.waitForElement(PurchaseBillsGrnLocators.PurchaseBillsTransLocGLAccnt(), ElementType.Xpath);
 				if (flag) {
-					webDB.clickAnElement(PurchaseBillsGrnLocators.GlAccDescField, ElementType.Xpath);
+					webDB.clickAnElement(PurchaseBillsGrnLocators.PurchaseBillsTransLocGLAccnt(), ElementType.Xpath);
 					logs.logging("INFO", "Field Is Clicked");
 					flag = webDB.waitForElement(PurchaseBillsGrnLocators.GlAccLov, ElementType.Xpath);
 					if (flag) {
 						commonFunc.searchAndSelectValueInFilters(PurchaseBillsGrnLocators.GlAccLov, GLAccount);
 						logs.logging("INFO", "GL Account Is Entered:" + GLAccount);
 						commonFunc.checkRefreshCellsDisappear();
-						flag = webDB.waitForElement(PurchaseBillsGrnLocators.PBQtyField, ElementType.Xpath);
+						flag = webDB.waitForElement(PurchaseBillsGrnLocators.PurchaseBillsTransLocGstQty(), ElementType.Xpath);
 						if (flag) {
-							webDB.clickAnElement(PurchaseBillsGrnLocators.PBQtyField, ElementType.Xpath);
+							webDB.clickAnElement(PurchaseBillsGrnLocators.PurchaseBillsTransLocGstQty(), ElementType.Xpath);
 							webDB.clearText(PurchaseBillsGrnLocators.PBQtyInput, ElementType.Xpath);
 							webDB.sendTextToAnElement(PurchaseBillsGrnLocators.PBQtyInput, Qty, ElementType.Xpath);
 							logs.logging("INFO", "Entered Qty Is:" + Qty);
-							flag = webDB.waitForElement(PurchaseBillsGrnLocators.PBCostField, ElementType.Xpath);
+							flag = webDB.waitForElement(PurchaseBillsGrnLocators.PurchaseBillsTransLocunitprice(), ElementType.Xpath);
 							if (flag) {
-								webDB.clickAnElement(PurchaseBillsGrnLocators.PBCostField, ElementType.Xpath);
+								webDB.clickAnElement(PurchaseBillsGrnLocators.PurchaseBillsTransLocunitprice(), ElementType.Xpath);
 								webDB.clearText(PurchaseBillsGrnLocators.PBCostInput, ElementType.Xpath);
 								webDB.sendTextToAnElement(PurchaseBillsGrnLocators.PBCostInput, Cost,
 										ElementType.Xpath);
 								logs.logging("INFO", "Entered Cost Is:" + Cost);
-								flag = webDB.waitForElement(PurchaseBillsGrnLocators.ExpenseHsnField,
+								flag = webDB.waitForElement(PurchaseBillsGrnLocators.PurchaseBillsTransLocHsnCode(),
 										ElementType.Xpath);
 								if (flag) {
-									webDB.clickAnElement(PurchaseBillsGrnLocators.ExpenseHsnField, ElementType.Xpath);
+									webDB.clickAnElement(PurchaseBillsGrnLocators.PurchaseBillsTransLocHsnCode(), ElementType.Xpath);
 									flag = webDB.waitForElement(PurchaseBillsGrnLocators.ExpenseHsnLovBtn,
 											ElementType.Xpath);
 									if (flag) {
@@ -3900,21 +3906,21 @@ public class PurchaseBillsFunctionsGrn {
 
 	private void verifyAddingTradeSpclCashDiscount(String TrdDisc, String SpclDisc, String CashDisc) {
 		commonFunc.checkRefreshCellsDisappear();
-		flag = webDB.waitForElement(PurchaseBillsGrnLocators.PBTrdDiscPercField, ElementType.Xpath);
+		flag = webDB.waitForElement(PurchaseBillsGrnLocators.PurchaseBillsTransLocGstTrdDis(), ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(PurchaseBillsGrnLocators.PBTrdDiscPercField, ElementType.Xpath);
+			webDB.clickAnElement(PurchaseBillsGrnLocators.PurchaseBillsTransLocGstTrdDis(), ElementType.Xpath);
 			webDB.clearText(PurchaseBillsGrnLocators.PBTrdDiscPercInput, ElementType.Xpath);
 			webDB.sendTextToAnElement(PurchaseBillsGrnLocators.PBTrdDiscPercInput, TrdDisc, ElementType.Xpath);
 			logs.logging("INFO", "Trade Discount Percent Is Entered: " + TrdDisc);
-			flag = webDB.waitForElement(PurchaseBillsGrnLocators.PBSpclDiscPercField, ElementType.Xpath);
+			flag = webDB.waitForElement(PurchaseBillsGrnLocators.PurchaseBillsTransLocGstSpclDis(), ElementType.Xpath);
 			if (flag) {
-				webDB.clickAnElement(PurchaseBillsGrnLocators.PBSpclDiscPercField, ElementType.Xpath);
+				webDB.clickAnElement(PurchaseBillsGrnLocators.PurchaseBillsTransLocGstSpclDis(), ElementType.Xpath);
 				webDB.clearText(PurchaseBillsGrnLocators.PBSpclDiscPercInput, ElementType.Xpath);
 				webDB.sendTextToAnElement(PurchaseBillsGrnLocators.PBSpclDiscPercInput, SpclDisc, ElementType.Xpath);
 				logs.logging("INFO", "Special Discount Percent Is Entered: " + SpclDisc);
-				flag = webDB.waitForElement(PurchaseBillsGrnLocators.PBCashDiscPercField, ElementType.Xpath);
+				flag = webDB.waitForElement(PurchaseBillsGrnLocators.PurchaseBillsTransLocGstCashDis(), ElementType.Xpath);
 				if (flag) {
-					webDB.clickAnElement(PurchaseBillsGrnLocators.PBCashDiscPercField, ElementType.Xpath);
+					webDB.clickAnElement(PurchaseBillsGrnLocators.PurchaseBillsTransLocGstCashDis(), ElementType.Xpath);
 					webDB.clearText(PurchaseBillsGrnLocators.PBCashDiscPercInput, ElementType.Xpath);
 					webDB.sendTextToAnElement(PurchaseBillsGrnLocators.PBCashDiscPercInput, CashDisc,
 							ElementType.Xpath);

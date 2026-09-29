@@ -2060,6 +2060,7 @@ public class RfqPageFunctions {
 			commonFunc.hardWait(3000);
 			verifyLineAmendTableValue(i, Value);
 		}
+		commonFunc.expandFindTable();
 		clearSearchFilter();
 	}
 

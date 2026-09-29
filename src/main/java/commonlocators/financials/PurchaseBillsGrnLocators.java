@@ -52,13 +52,13 @@ public class PurchaseBillsGrnLocators {
 	/** @locatorType Xpath */
 	public static final String OkButtonForward = "//button[@data-testid='OK']";
 	/** @locatorType Xpath */
-	public static final String PBCostInput = "//input[@data-testid='SUPLN_UNIT_COST']";
+	public static final String PBCostInput = "//input[@id='amt']";
 	/** @locatorType Xpath */
-	public static final String PBCostField = "//*[@id=\"IN_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr[1]/td[11]";//TODO
+	public static final String PBCostField = "//*[@id=\"IN_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr[1]/td[10]";
 	/** @locatorType Xpath */
 	public static final String PBAddLine = "//button[@data-testid='ADDLN']";
 	/** @locatorType Xpath */
-	public static final String GlAccDescField = "//*[@id=\"IN_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr[1]/td[7]";//TODO
+	public static final String GlAccDescField = "//*[@id='IN_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[6]";
 	/** @locatorType Xpath */
 	public static final String GlAccLov = "//input[@data-testid='SUPLN_ACCT_DESC']/following-sibling::button";
 	/** @locatorType Xpath */
@@ -74,9 +74,9 @@ public class PurchaseBillsGrnLocators {
 	/** @locatorType Xpath */
 	public static final String PBAdjustmentFrame = "//iframe[@title='Advance Adjustment ']";
 	/** @locatorType Xpath */
-	public static final String PBAdjustDocSelect = "//*[@id='2014502332938981561_orig']/tbody/tr[2]/td[11]";
+	public static final String PBAdjustDocSelect = "//table[@id=\"2060107643985105878_orig\"]/tbody/tr/td[11]";
 	/** @locatorType Xpath */
-	public static final String PBAdjustValueEnterField = "//*[@id='2014502332938981561_orig']/tbody/tr[2]/td[10]";
+	public static final String PBAdjustValueEnterField = "//table[@id=\"2060107643985105878_orig\"]/tbody/tr/td[10]";
 	/** @locatorType Xpath */
 	public static final String PBAdjustValueEnterInput = "//input[@type=\"number\"]";
 	/** @locatorType Xpath */
@@ -160,9 +160,9 @@ public class PurchaseBillsGrnLocators {
 	/** @locatorType Xpath */
 	public static final String SCO_CheckBox = "(//input[@id='check_all'])[1]";
 	/** @locatorType Xpath */
-	public static final String PB_LineProcess_Button = "(//span[@class='fa fa-cogs'])[1]";
+	public static final String PB_LineProcess_Button = "(//span[@class='fa fa-info'])[1]";
 	/** @locatorType Xpath */
-	public static final String PB_ProcessFrame = "//iframe[@title='Process']";
+	public static final String PB_ProcessFrame = "//iframe[@title='Supplier Bill - Process']";
 	/** @locatorType Xpath */
 	public static final String PB_Process_TDS_Lov = "//*[@id=\"ig_line_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[28]";
 	/** @locatorType Xpath */
@@ -170,7 +170,7 @@ public class PurchaseBillsGrnLocators {
 	/** @locatorType Xpath */
 	public static final String PB_Process_Save = "//button[@title='Save']";
 	/** @locatorType Xpath */
-	public static final String PB_Process_Close = "//button[@id='B2265938386304456986']";//TODO
+	public static final String PB_Process_Close = "//button[@id='B2362517250755170401']";
 	/** @locatorType Xpath */
 	public static final String PendingPayableSelectAll = "//input[@id='check_all']";
 	/** @locatorType Xpath */
@@ -203,35 +203,54 @@ public class PurchaseBillsGrnLocators {
 	public static final String PB_ApplyDeduction_Yes = "//*[@id=\"t_PageBody\"]/div[35]/div[3]/div/button[2]";
 	
 	/** @locatorType Xpath */
-	public static final String GlAccDescField1  = "(//TABLE[@data-testid='IN_Result_Data'])[2]";
+	public static final String PBAddLineTable  = "(//TABLE[@data-testid='IN_Result_Data'])[2]";
 	/** @locatorType Xpath */
 	public static final String PurchaseBillsTransLocGLAccnt() {
-		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(GlAccDescField1, "GL Acct. Desc.");
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(PBAddLineTable, "GL Acct. Desc.");
 	}
 	
 	/** @locatorType Xpath */
 	public static final String PurchaseBillsTransLocunitprice() {
-		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(GlAccDescField1, "Unit Cost");
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(PBAddLineTable, "Unit Cost");
 	}
 	
 	/** @locatorType Xpath */
 	public static final String PurchaseBillsTransLocHsnCode() {
-		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(GlAccDescField1, "HSN/SAC Code");
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(PBAddLineTable, "HSN/SAC Code");
 	}
 
 	/** @locatorType Xpath */
 	public static final String PurchaseBillsTransLocGstType() {
-		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(GlAccDescField1, "Type");
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(PBAddLineTable, "Type");
 	}
 	
 	/** @locatorType Xpath */
 	public static final String PurchaseBillsTransLocGstInelSection() {
-		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(GlAccDescField1, "Inel. Section");
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(PBAddLineTable, "Inel. Section");
 	}
 	/** @locatorType Xpath */
 	public static final String PurchaseBillsTransLocGstTds() {
-		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(GlAccDescField1, "TDS u/s ID");
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(PBAddLineTable, "TDS u/s ID");
 	}
 	/** @locatorType Xpath */
-	public static final String PB_Line_Detail_Btn = "//table[@data-testid='IN_Result_Data']/tbody/tr/td[1]";
+	public static final String PurchaseBillsTransLocGstItem() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(PBAddLineTable, "Item");
+	}
+	/** @locatorType Xpath */
+	public static final String PurchaseBillsTransLocGstQty() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(PBAddLineTable, "Inv. Qty.");
+	}
+	/** @locatorType Xpath */
+	public static final String PurchaseBillsTransLocGstTrdDis() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(PBAddLineTable, "Trd. Disc. %");
+	}
+	/** @locatorType Xpath */
+	public static final String PurchaseBillsTransLocGstSpclDis() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(PBAddLineTable, "Spl. Disc. %");
+	}
+	/** @locatorType Xpath */
+	public static final String PurchaseBillsTransLocGstCashDis() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(PBAddLineTable, "Cash Disc. %");
+	}
+	
 }

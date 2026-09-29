@@ -93,7 +93,7 @@ public class RfqLocators {
 	/** @locatorType Xpath */
 	public static final String RfqSobItemField = "//*[@id=\"R753134531811453201_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[2]";
 	/** @locatorType Xpath */
-	public static final String RfqSobPercField1 = "//*[@id=\"sob_sup_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr[1]/td[9]";
+	public static final String RfqSobPercField1 = "(//table[@data-testid=\"sob_sup_Result_Data\"])[2]/tbody/tr/td[9]";
 	/** @locatorType Xpath */
 	public static final String RfqSobFrame = "//iframe[@title='Share Of Business']";
 	/** @locatorType Xpath */
@@ -203,7 +203,7 @@ public class RfqLocators {
 
 	/** @locatorType Xpath */
 	public static final String SobItemField(int i) {
-		return "//*[@id=\'R891832730658104382_ig_grid_vc\']/div[3]/div[3]/table/tbody/tr[" + i + "]/td[2]";
+		return "//table[@data-testid='R1000711620521711065_Result_Data']/tbody/tr["+ i +"]/td[2]";
 	}
 
 	/** @locatorType Xpath */
