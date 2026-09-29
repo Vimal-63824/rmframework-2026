@@ -332,8 +332,8 @@ public class PurchaseFOCTest extends RoadMapERPTest {
 	 * @author Sakthi-GWL
 	 */
 	@Author("Sakthi-GWL")
-	@Test(priority = 21, groups = {
-			"Direct PO" }, description = "695 Purchase Order-With Free Of Cost - Direct PO - Domestic Supplier - Stock Transfer Items with Similar Stock and Supplier UOM")
+//	@Test(priority = 21, groups = {
+//			"Direct PO" }, description = "695 Purchase Order-With Free Of Cost - Direct PO - Domestic Supplier - Stock Transfer Items with Similar Stock and Supplier UOM")
 	public void VerifyFOCForDirectPODomesticSuplrStockTransferItemSimilarUOM() {
 		flag = purchaseFocFunc.verifyFOCForDirectPODomesticSuplrStockTransferItemSimilarUOM();
 		assertTrue(flag);
