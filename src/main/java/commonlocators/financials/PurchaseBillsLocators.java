@@ -392,6 +392,11 @@ public class PurchaseBillsLocators {
 	public static final String PurchaseBillsTransLocHsnCode() {
 		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(GlAccDescField1, "HSN/SAC Code");
 	}
+	
+	/** @locatorType Xpath */
+	public static final String PurchaseBillsLineWiseGstType() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(GlAccDescField1, "GST Supply");
+	}
 
 	/** @locatorType Xpath */
 	public static final String PurchaseBillsTransLocGstType() {

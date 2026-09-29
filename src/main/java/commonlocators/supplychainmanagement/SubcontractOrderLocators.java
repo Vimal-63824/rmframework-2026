@@ -21,15 +21,15 @@ public class SubcontractOrderLocators {
 	/** @locatorType XPATH */
 	public static final String SupplierName = "//span[@id='P161713106501_POH_SUPLR_NAME_DISPLAY']";
 	/** @locatorType XPATH */
-	public static final String MRPButton = "//span[@class='fa fa fa-badge-dollar']";
+	public static final String MRPButton = "//*[@class='custom-row-menu']//*[text()='Material Requirement']";
 	/** @locatorType XPATH */
 	public static final String FrameMaterial = "//iframe[@title='Material']";
 	/** @locatorType XPATH */
-	public static final String Item = "//div[@id='ig_line_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[1]/td[3]";
+	public static final String Item = "//div[@id='ig_line_ig_grid_vc']//table/tbody/tr[1]/td[3]";
 	/** @locatorType XPATH */
-	public static final String Uom = "//div[@id='ig_line_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[1]/td[6]";
+	public static final String Uom = "//div[@id='ig_line_ig_grid_vc']//table/tbody/tr[1]/td[6]";
 	/** @locatorType XPATH */
-	public static final String TarProcess = "//div[@id='ig_line_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[1]/td[14]";
+	public static final String TarProcess = "//div[@id='ig_line_ig_grid_vc']//table/tbody/tr[1]/td[14]";
 	/** @locatorType XPATH */
 	public static final String CloseButton = "//h1[text()='Material']/../button";
 	/** @locatorType XPATH */
@@ -47,21 +47,21 @@ public class SubcontractOrderLocators {
 	/** @locatorType XPATH */
 	public static final String CloseDetails = "//h1[text()='Details']/../button";
 	/** @locatorType XPATH */
-	public static final String LineDetails = "(//div[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td/a)[2]";
+	public static final String LineDetails = "(//div[@id='ig_line_ig_grid_vc']//table/tbody/tr[1]/td/a)[2]";
 	/** @locatorType XPATH */
-	public static final String OrderedQuantity = "//div[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[7]";
+	public static final String OrderedQuantity = "//div[@id='ig_line_ig_grid_vc']//table/tbody/tr[1]/td[7]";
 	/** @locatorType XPATH */
-	public static final String LineUnitCost = "//div[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[8]";
+	public static final String LineUnitCost = "//div[@id='ig_line_ig_grid_vc']//table/tbody/tr[1]/td[8]";
 	/** @locatorType XPATH */
-	public static final String ConvFactor = "//div[@id='ig_line4_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[7]";
+	public static final String ConvFactor = "//div[@id='ig_line4_ig_grid_vc']//table/tbody/tr[1]/td[7]";
 	/** @locatorType XPATH */
 	public static final String BatchQuantity = "//div[@id='ig_line4_ig_grid_vc']//table/tbody/tr[1]/td[5]";
 	/** @locatorType XPATH */
-	public static final String ProcessQuantity = "//div[@id='ig_line4_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[11]";
+	public static final String ProcessQuantity = "//div[@id='ig_line4_ig_grid_vc']//table/tbody/tr[1]/td[11]";
 	/** @locatorType XPATH */
-	public static final String BatchCost = "//div[@id='ig_line4_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[6]";
+	public static final String BatchCost = "//div[@id='ig_line4_ig_grid_vc']//table/tbody/tr[1]/td[6]";
 	/** @locatorType XPATH */
-	public static final String AssembleValue = "//div[@id='ig_line4_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[14]";
+	public static final String AssembleValue = "//div[@id='ig_line4_ig_grid_vc']//table/tbody/tr[1]/td[14]";
 	/** @locatorType XPATH */
 	public static final String GLAccNo = "//div[@id='ig_line4_ig_grid_vc']//table/tbody/tr[1]/td[20]";
 	/** @locatorType XPATH */
@@ -77,9 +77,9 @@ public class SubcontractOrderLocators {
 	/** @locatorType XPATH */
 	public static final String ScoSearchButton = "//button[@data-testid='Find_Lines']";
 	/** @locatorType XPATH */
-	public static final String TaxPercentage = "//div[@id='ig_line4_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[13]";
+	public static final String TaxPercentage = "//div[@id='ig_line4_ig_grid_vc']//table/tbody/tr[1]/td[13]";
 	/** @locatorType XPATH */
-	public static final String IgstValue = "//div[@id='ig_line4_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[15]";
+	public static final String IgstValue = "//div[@id='ig_line4_ig_grid_vc']//table/tbody/tr[1]/td[15]";
 
 	/** @locatorType XPATH */
 	public static final String ApprovedStatus(String status) {
@@ -92,9 +92,9 @@ public class SubcontractOrderLocators {
 	}
 
 	/** @locatorType XPATH */
-	public static final String CgstValue = "//div[@id='ig_line4_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[16]";
+	public static final String CgstValue = "//div[@id='ig_line4_ig_grid_vc']//table/tbody/tr[1]/td[16]";
 	/** @locatorType XPATH */
-	public static final String SgstValue = "//div[@id='ig_line4_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[17]";
+	public static final String SgstValue = "//div[@id='ig_line4_ig_grid_vc']//table/tbody/tr[1]/td[17]";
 	/** @locatorType XPATH */
 	public static final String LineSave = "//button[@data-testid='Active']";
 	/** @locatorType XPATH */
@@ -124,9 +124,9 @@ public class SubcontractOrderLocators {
 	/** @locatorType XPATH */
 	public static final String OpenSCO_Supl_Input = "//input[@data-testid='P193151010_SPRCHD_SUPLR_ID']/following-sibling::button";
 	/** @locatorType XPATH */
-	public static final String Open_SCO_FROMDATE_Field = "//*[@id=\"P193151011_SPRCHD_EFF_FROM_input\"]";
+	public static final String Open_SCO_FROMDATE_Field = "//*[@id='P193151011_SPRCHD_EFF_FROM_input']";
 	/** @locatorType XPATH */
-	public static final String Open_SCO_FROMDATE_input = "//*[@id=\"P193151011_SPRCHD_EFF_FROM_dialog\"]/div/div[3]/div/button";
+	public static final String Open_SCO_FROMDATE_input = "//*[@id='P193151011_SPRCHD_EFF_FROM_dialog']/div/div[3]/div/button";
 	/** @locatorType XPATH */
 	public static final String Open_SCO_ToDATE_input = "//input[@id='P193151011_SPRCHD_EFF_TO_input']";
 	/** @locatorType XPATH */
@@ -170,7 +170,7 @@ public class SubcontractOrderLocators {
 	/** @locatorType XPATH */
 	public static final String OP_Reverse_ToDate = "//input[@ID='P1931510101_EFF_TO_input']";
 	/** @locatorType XPATH */
-	public static final String OP_AfterReverse_NewDoc_NoteAlert = "//*[@id=\"t_Alert_Success\"]/div/div[2]/div/h6";
+	public static final String OP_AfterReverse_NewDoc_NoteAlert = "//*[@id='t_Alert_Success']/div/div[2]/div/h6";
 	/** @locatorType XPATH */
 	public static final String OP_Cancel_Btn = "//button[@data-testid='CANCEL']";
 	/** @locatorType XPATH */
@@ -194,7 +194,7 @@ public class SubcontractOrderLocators {
 	/** @locatorType XPATH */
 	public static final String SubcontractItemId = "//input[@data-testid='POL_PROD_REV_DUM']/following-sibling::button";
 	/** @locatorType XPATH */
-	public static final String SubcontractQtyField = "//*[@id=\"ig_line_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[7]";
+	public static final String SubcontractQtyField = "//*[@id='ig_line_ig_grid_vc']//table/tbody/tr/td[7]";
 	/** @locatorType XPATH */
 	public static final String SubcontractQtyInput = "//input[@data-testid='POL_ORDERED_QTY']";
 	/** @locatorType XPATH */
@@ -232,12 +232,12 @@ public class SubcontractOrderLocators {
 
 	/** @Locator XPATH */
 	public static final String BatchQtyField(int i) {
-		return "//*[@id='PROC_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[" + i + "]/td[4]";
+		return "//*[@id='PROC_ig_grid_vc']//table/tbody/tr[" + i + "]/td[4]";
 	}
 
 	/** @Locator XPATH */
 	public static final String BatchCostField(int i) {
-		return "//*[@id='PROC_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[" + i + "]/td[5]";
+		return "//*[@id='PROC_ig_grid_vc']//table/tbody/tr[" + i + "]/td[5]";
 	}
 
 	/** @Locator XPATH */
@@ -247,7 +247,7 @@ public class SubcontractOrderLocators {
 	/** @Locator XPATH */
 	public static final String ProcessGLacct_lov = "//input[@data-testid='SCOP_PUR_ACCT']/following-sibling::button";
 	/** @Locator XPATH */
-	public static final String GLacctField = "//*[@id=\"ig_line4_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[20]";
+	public static final String GLacctField = "//*[@id='ig_line4_ig_grid_vc']//table/tbody/tr/td[20]";
 	/** @Locator XPATH */
 	public static final String SCO_Cancel_Btn = "//span[@class='fa fa fa-trash-o']";
 	/** @Locator XPATH */
@@ -273,13 +273,13 @@ public class SubcontractOrderLocators {
 	/** @Locator XPATH */
 	public static final String SCO_Status = "//span[@data-testid='P1931510101_SPRCHD_STATUS']";
 	/** @Locator XPATH */
-	public static final String OSP_ProcessField = "//*[@id=\'PROC_ig_grid_vc\']/div[3]/div[3]/table/tbody/tr/td[2]";
+	public static final String OSP_ProcessField = "//*[@id='PROC_ig_grid_vc']//table/tbody/tr/td[2]";
 	/** @Locator XPATH */
-	public static final String OSP_UOMField = "//*[@id=\'PROC_ig_grid_vc\']/div[3]/div[3]/table/tbody/tr/td[3]";
+	public static final String OSP_UOMField = "//*[@id='PROC_ig_grid_vc']//table/tbody/tr/td[3]";
 	/** @Locator XPATH */
-	public static final String OSP_BatchqtyField = "//*[@id=\'PROC_ig_grid_vc\']/div[3]/div[3]/table/tbody/tr/td[4]";
+	public static final String OSP_BatchqtyField = "//*[@id='PROC_ig_grid_vc']//table/tbody/tr/td[4]";
 	/** @Locator XPATH */
-	public static final String OSP_BatchCostField = "//*[@id=\'PROC_ig_grid_vc\']/div[3]/div[3]/table/tbody/tr/td[5]";
+	public static final String OSP_BatchCostField = "//*[@id='PROC_ig_grid_vc']//table/tbody/tr/td[5]";
 	/** @Locator XPATH */
 	public static final String OSP_UOM = "//select[@data-testid='SPRCLN_UOM']";
 	/** @locatorType XPATH */
@@ -309,65 +309,65 @@ public class SubcontractOrderLocators {
 	/** @locatorType XPATH */
 	public static final String SCO_Header_Status = "//input[@id='P161713106501_STATUS']";
 	/** @locatorType XPATH */
-	public static final String SCO_Item_Field = "//*[@id=\"ig_line_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[3]";
+	public static final String SCO_Item_Field = "//*[@id='ig_line_ig_grid_vc']//table/tbody/tr/td[3]";
 	/** @locatorType XPATH */
-	public static final String SCO_Qty_Field = "//*[@id=\"ig_line_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[7]";
+	public static final String SCO_Qty_Field = "//*[@id='ig_line_ig_grid_vc']//table/tbody/tr/td[7]";
 	/** @locatorType XPATH */
-	public static final String SCO_UnitCost_Field = "//*[@id=\"ig_line_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[8]";
+	public static final String SCO_UnitCost_Field = "//*[@id='ig_line_ig_grid_vc']//table/tbody/tr/td[8]";
 	/** @locatorType XPATH */
-	public static final String SCO_HSN_Field = "//*[@id=\"ig_line_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[9]";
+	public static final String SCO_HSN_Field = "//*[@id='ig_line_ig_grid_vc']//table/tbody/tr/td[9]";
 	/** @locatorType XPATH */
-	public static final String SCO_ProcessDesc_Field = "//*[@id='ig_line4_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[3]";
+	public static final String SCO_ProcessDesc_Field = "//*[@id='ig_line4_ig_grid_vc']//table/tbody/tr/td[3]";
 	/** @locatorType XPATH */
-	public static final String SCO_ProcessUOM_Field = "//*[@id='ig_line4_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[4]";
+	public static final String SCO_ProcessUOM_Field = "//*[@id='ig_line4_ig_grid_vc']//table/tbody/tr/td[4]";
 	/** @locatorType XPATH */
-	public static final String SCO_Batchqty_Field = "//*[@id=\"ig_line4_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[5]";
+	public static final String SCO_Batchqty_Field = "//*[@id='ig_line4_ig_grid_vc']//table/tbody/tr/td[5]";
 	/** @locatorType XPATH */
-	public static final String SCO_Batchcost_Field = "//*[@id=\"ig_line4_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[6]";
+	public static final String SCO_Batchcost_Field = "//*[@id='ig_line4_ig_grid_vc']//table/tbody/tr/td[6]";
 	/** @locatorType XPATH */
-	public static final String SCO_ConvFactor_Field = "//*[@id=\"ig_line4_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[7]";
+	public static final String SCO_ConvFactor_Field = "//*[@id='ig_line4_ig_grid_vc']//table/tbody/tr/td[7]";
 	/** @locatorType XPATH */
-	public static final String SCO_JobItem_Field = "//*[@id='ig_line4_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[8]";
+	public static final String SCO_JobItem_Field = "//*[@id='ig_line4_ig_grid_vc']//table/tbody/tr/td[8]";
 	/** @locatorType XPATH */
-	public static final String SCO_JobItemDesc_Field = "//*[@id='ig_line4_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[9]";
+	public static final String SCO_JobItemDesc_Field = "//*[@id='ig_line4_ig_grid_vc']//table/tbody/tr/td[9]";
 	/** @locatorType XPATH */
-	public static final String SCO_SACcode_Field = "//*[@id='ig_line4_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[10]";
+	public static final String SCO_SACcode_Field = "//*[@id='ig_line4_ig_grid_vc']//table/tbody/tr/td[10]";
 	/** @locatorType XPATH */
-	public static final String SCO_ProcessQty_Field = "//*[@id='ig_line4_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[11]";
+	public static final String SCO_ProcessQty_Field = "//*[@id='ig_line4_ig_grid_vc']//table/tbody/tr/td[11]";
 	/** @locatorType XPATH */
-	public static final String SCO_ProcessUnitcost_Field = "//*[@id='ig_line4_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[12]";
+	public static final String SCO_ProcessUnitcost_Field = "//*[@id='ig_line4_ig_grid_vc']//table/tbody/tr/td[12]";
 	/** @locatorType XPATH */
-	public static final String SCO_ProcessTax_Field = "//*[@id='ig_line4_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[13]";
+	public static final String SCO_ProcessTax_Field = "//*[@id='ig_line4_ig_grid_vc']//table/tbody/tr/td[13]";
 	/** @locatorType XPATH */
-	public static final String SCO_ProcessAsblvalue_Field = "//*[@id='ig_line4_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[14]";
+	public static final String SCO_ProcessAsblvalue_Field = "//*[@id='ig_line4_ig_grid_vc']//table/tbody/tr/td[14]";
 	/** @locatorType XPATH */
-	public static final String SCO_ProcessIGSTamt_Field = "//*[@id='ig_line4_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[15]";
+	public static final String SCO_ProcessIGSTamt_Field = "//*[@id='ig_line4_ig_grid_vc']//table/tbody/tr/td[15]";
 	/** @locatorType XPATH */
-	public static final String SCO_ProcessCGSTamt_Field = "//*[@id='ig_line4_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[16]";
+	public static final String SCO_ProcessCGSTamt_Field = "//*[@id='ig_line4_ig_grid_vc']//table/tbody/tr/td[16]";
 	/** @locatorType XPATH */
-	public static final String SCO_ProcessSGSTamt_Field = "//*[@id='ig_line4_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[17]";
+	public static final String SCO_ProcessSGSTamt_Field = "//*[@id='ig_line4_ig_grid_vc']//table/tbody/tr/td[17]";
 	/** @locatorType XPATH */
-	public static final String SCO_ProcessUTGSTamt_Field = "//*[@id='ig_line4_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[18]";
+	public static final String SCO_ProcessUTGSTamt_Field = "//*[@id='ig_line4_ig_grid_vc']//table/tbody/tr/td[18]";
 	/** @locatorType XPATH */
-	public static final String SCO_ProcessCESSTamt_Field = "//*[@id='ig_line4_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[19]";
+	public static final String SCO_ProcessCESSTamt_Field = "//*[@id='ig_line4_ig_grid_vc']//table/tbody/tr/td[19]";
 	/** @locatorType XPATH */
-	public static final String SCO_ContrPfx_Field = "//*[@id='ig_line4_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[25]";
+	public static final String SCO_ContrPfx_Field = "//*[@id='ig_line4_ig_grid_vc']//table/tbody/tr/td[25]";
 	/** @locatorType XPATH */
-	public static final String SCO_ContrDocNO_Field = "//*[@id='ig_line4_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[26]";
+	public static final String SCO_ContrDocNO_Field = "//*[@id='ig_line4_ig_grid_vc']//table/tbody/tr/td[26]";
 	/** @locatorType XPATH */
-	public static final String SCO_MaterialType_Field = "//*[@id='ig_line_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[1]";
+	public static final String SCO_MaterialType_Field = "//*[@id='ig_line_ig_grid_vc']//table/tbody/tr/td[1]";
 	/** @locatorType XPATH */
-	public static final String SCO_MaterialWHdesc_Field = "//*[@id='ig_line_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[2]";
+	public static final String SCO_MaterialWHdesc_Field = "//*[@id='ig_line_ig_grid_vc']//table/tbody/tr/td[2]";
 	/** @locatorType XPATH */
-	public static final String SCO_MaterialItemID_Field = "//*[@id='ig_line_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[3]";
+	public static final String SCO_MaterialItemID_Field = "//*[@id='ig_line_ig_grid_vc']//table/tbody/tr/td[3]";
 	/** @locatorType XPATH */
-	public static final String SCO_MaterialReqQty_Field = "//*[@id='ig_line_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[12]";
+	public static final String SCO_MaterialReqQty_Field = "//*[@id='ig_line_ig_grid_vc']//table/tbody/tr/td[12]";
 	/** @locatorType XPATH */
-	public static final String SCO_MaterialTarNo_Field = "//*[@id='ig_line_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[13]";
+	public static final String SCO_MaterialTarNo_Field = "//*[@id='ig_line_ig_grid_vc']//table/tbody/tr/td[13]";
 	/** @locatorType XPATH */
-	public static final String SCO_MaterialTarProc_Field = "//*[@id='ig_line_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[14]";
+	public static final String SCO_MaterialTarProc_Field = "//*[@id='ig_line_ig_grid_vc']//table/tbody/tr/td[14]";
 	/** @locatorType XPATH */
-	public static final String SCO_MaterialTab = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[1]/a";
+	public static final String SCO_MaterialTab = "//*[@id='ig_line_ig_grid_vc']//table/tbody/tr/td[1]/a";
 	/** @locatorType XPATH */
 	public static final String SCO_LineDetails_Inputtype = "//span[@data-testid='P161713106504_POL_GST_INPUT_TYPE']";
 	/** @locatorType XPATH */
@@ -435,9 +435,9 @@ public class SubcontractOrderLocators {
 	/** @Locator XPATH */
 	public static final String Pend_SCO_GE_Search = "//button[@data-testid='Find']";
 	/** @Locator XPATH */
-	public static final String Pend_SCO_GE_SelectAll = "//*[@id=\"check_all\"]";
+	public static final String Pend_SCO_GE_SelectAll = "//*[@id='check_all']";
 	/** @Locator XPATH */
-	public static final String Pend_SCO_GE_Select = "//*[@id=\"17140040611188313354_orig\"]/tbody/tr[2]/td[19]";
+	public static final String Pend_SCO_GE_Select = "//*[@id='17140040611188313354_orig']/tbody/tr[2]/td[19]";
 	/** @Locator XPATH */
 	public static final String Pend_SCO_GE_CreateGE = "//button[@data-testid='Create_GE']";
 	/** @Locator XPATH */
@@ -455,7 +455,7 @@ public class SubcontractOrderLocators {
 	/** @locatorType XPATH */
 	public static final String GateEntryCloseNoteAlert = "(//button[@title='Close'])[1]";
 	/** @locatorType XPATH */
-	public static final String SCO_GRN_LineWise_Delete = "//*[@id=\"add_line_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[34]/a/span";
+	public static final String SCO_GRN_LineWise_Delete = "//*[@id='add_line_ig_grid_vc']//table/tbody/tr/td[34]/a/span";
 	/** @Locator XPATH */
 	public static final String SCO_GRN_Header_CancelBtn = "//button[@data-testid='Cancel_GRN']";
 	/** @Locator XPATH */
@@ -479,11 +479,11 @@ public class SubcontractOrderLocators {
 	/** @Locator XPATH */
 	public static final String SubcontractCSAddSCOLine_Iframe = "//iframe[@title='SCO Details']";
 	/** @Locator XPATH */
-	public static final String SubcontractCSAddSCOLine_SelectAll = "//*[@id=\"4210658468302574690_orig\"]/tbody/tr[2]/td[12]";
+	public static final String SubcontractCSAddSCOLine_SelectAll = "//*[@id='4101776970104955082_orig']/tbody/tr[2]/td[12]";
 	/** @Locator XPATH */
 	public static final String SubcontractCSAddSCOLine_OKButton = "//button[@data-testid='OK']";
 	/** @Locator XPATH */
-	public static final String SubcontractCS_ProcDetailsButton = "(//table[@data-testid='Line_Result_Data']/tbody/tr/td[1]/a/span)[2]";
+	public static final String SubcontractCS_ProcDetailsButton = "//*[@id='process_ig_grid_vc']//table/tbody/tr/td[1]/a/span";
 	/** @Locator XPATH */
 	public static final String SubcontractCS_ProcDetails_Iframe = "//iframe[@title='Details']";
 	/** @Locator XPATH */
@@ -554,14 +554,14 @@ public class SubcontractOrderLocators {
 	/** @Locator XPATH */
 	public static final String SCO_LineDetail_Prod_Details = "(//div[@aria-label='Production Details']//button)[1]";
 	/** @Locator XPATH */
-	public static final String SCO_LineDetail_Details = "//table[@data-testid='ig_line_Result_Data']/tbody/tr/td[1]/a/span";
+	public static final String SCO_LineDetail_Details = "//table[@data-testid='ig_line_Result_Data']/tbody/tr/td[1]/a";
 
 	/** @Locator XPATH */
 	public static final String SCO_Cancel_okBtn = "//button[text()='OK']";
 	/** @Locator XPATH */
 	public static final String SCO_LineDetail_SO_Details = "(//div[@aria-label='Ref.']//button)[1]";
 	/** @Locator XPATH */
-	public static final String GRNSCO_LineDetail_Details = "//*[@id=\"add_line_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr[1]/td[1]/a/span";
+	public static final String GRNSCO_LineDetail_Details = "//*[@id='add_line_ig_grid_vc']//table/tbody/tr[1]/td[1]/a/span";
 	/** @Locator XPATH */
 	public static final String GRNSCO_LineDelete = "//span[@class='fa fa fa fa-trash-o']";
 	/** @locatorType XPATH */
@@ -576,5 +576,11 @@ public class SubcontractOrderLocators {
 	public static final String SCO_AMD_LineDetail_NewCost = "(//div[@aria-label='New Cost']//button)[1]";
 	/** @Locator XPATH */
 	public static final String SCO_AMD_LineDetail_NewTAX = "(//div[@aria-label='New Tax']//button)[1]";
+	/** @Locator XPATH */
+	public static final String ShowMyRecordBtn = "//button[@data-testid='show_my_rec']";
+	/** @Locator XPATH */
+	public static final String ShowMyRecordClickedBtn = "//button[@data-testid='show_my_rec_1']";
+	/** @Locator XPATH */
+	public static final String SelectAllButton = "//table[@data-testid='L_Result_Title']//th//input[@id='check_all']";
 
 }

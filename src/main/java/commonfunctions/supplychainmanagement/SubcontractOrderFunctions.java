@@ -18189,6 +18189,12 @@ public class SubcontractOrderFunctions {
 			String SGSTamt = TotalData[i][38];
 			String UTGSTamt = TotalData[i][40];
 			if (BatchQty.equalsIgnoreCase("Total")) {
+				commonFunc.verifyAssertionBothValues(dbCommonFunctions.SCOLineDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBQTYCOLUMN")), LineOrdQty);
+				logs.logging("INFO", "Process LineOrderQty Details Matched With DataBase Values");
+				commonFunc.verifyAssertionBothValues(dbCommonFunctions.SCOLineDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBUNITCOLUMN")), LineUnitCost);
+				logs.logging("INFO", "Process LineUnitCost Details Matched With DataBase Values");
 				break a;
 			}
 			commonFunc.verifyAssertionBothValues(dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),

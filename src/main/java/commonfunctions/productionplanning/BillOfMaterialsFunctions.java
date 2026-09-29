@@ -72,6 +72,7 @@ public class BillOfMaterialsFunctions {
 	 * @param BOMNo
 	 */
 	public void navigateToBOMBySearchAndClickBOMNo(String BOMNo) {
+		commonFunc.expandFindTable();
 		commonFunc.searchAndSelectValueInFilters(BillOfMaterialsLocators.Find_BOMNoLovBtn, BOMNo);
 		logs.logging("INFO", "BOM Number Entered in Find");
 		flag = webDB.waitForClickElement(BillOfMaterialsLocators.BOM_FindSearchBtn, ElementType.Xpath);

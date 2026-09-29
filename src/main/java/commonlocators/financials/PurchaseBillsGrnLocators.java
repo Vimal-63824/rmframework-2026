@@ -14,7 +14,7 @@ public class PurchaseBillsGrnLocators {
 	/** @locatorType Xpath */
 	public static final String Iframe = "//iframe";
 	/** @locatorType Xpath */
-	public static final String GrnNo = "//input[@data-testid=\"P116131004_GRN_NO\"]/following-sibling::button";
+	public static final String GrnNo = "//input[@data-testid='P116131004_GRN_NO']/following-sibling::button";
 	/** @locatorType Xpath */
 	public static final String SearchButton = "//button[@data-testid='SearchGRN']";
 
@@ -54,7 +54,7 @@ public class PurchaseBillsGrnLocators {
 	/** @locatorType Xpath */
 	public static final String PBCostInput = "//input[@id='amt']";
 	/** @locatorType Xpath */
-	public static final String PBCostField = "//*[@id=\"IN_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr[1]/td[10]";
+	public static final String PBCostField = "//*[@id='IN_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[10]";
 	/** @locatorType Xpath */
 	public static final String PBAddLine = "//button[@data-testid='ADDLN']";
 	/** @locatorType Xpath */
@@ -74,11 +74,11 @@ public class PurchaseBillsGrnLocators {
 	/** @locatorType Xpath */
 	public static final String PBAdjustmentFrame = "//iframe[@title='Advance Adjustment ']";
 	/** @locatorType Xpath */
-	public static final String PBAdjustDocSelect = "//table[@id=\"2060107643985105878_orig\"]/tbody/tr/td[11]";
+	public static final String PBAdjustDocSelect = "//table[@id='2060107643985105878_orig']/tbody/tr/td[11]";
 	/** @locatorType Xpath */
-	public static final String PBAdjustValueEnterField = "//table[@id=\"2060107643985105878_orig\"]/tbody/tr/td[10]";
+	public static final String PBAdjustValueEnterField = "//table[@id='2060107643985105878_orig']/tbody/tr/td[10]";
 	/** @locatorType Xpath */
-	public static final String PBAdjustValueEnterInput = "//input[@type=\"number\"]";
+	public static final String PBAdjustValueEnterInput = "//input[@type='number']";
 	/** @locatorType Xpath */
 	public static final String PBAdjustmentOk = "//button[@id='B1']";
 	/** @locatorType Xpath */
@@ -90,15 +90,15 @@ public class PurchaseBillsGrnLocators {
 	/** @locatorType Xpath */
 	public static final String PBItcSelect = "//select[@id='C2386871711424680771']";
 	/** @locatorType Xpath */
-	public static final String PBItcSelectField = "//*[@id=\"IN_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[24]";
+	public static final String PBItcSelectField = "//*[@id='IN_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[24]";
 	/** @locatorType Xpath */
 	public static final String PBItcSectionSelect = "//select[@id='C2386874327766680748']";
 	/** @locatorType Xpath */
-	public static final String PBItcSectionField = "//*[@id=\"IN_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[63]";
+	public static final String PBItcSectionField = "//*[@id='IN_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[63]";
 	/** @locatorType Xpath */
 	public static final String PBItcSubSectionSelect = "//select[@id='C2386874439302680749']";
 	/** @locatorType Xpath */
-	public static final String PBItcSubSectionField = "//*[@id=\"IN_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[64]";
+	public static final String PBItcSubSectionField = "//*[@id='IN_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[64]";
 	/** @locatorType Xpath */
 	public static final String PBAdjustmentSearchField = "//input[@id='PEND_search_field']";
 	/** @locatorType Xpath */
@@ -124,21 +124,21 @@ public class PurchaseBillsGrnLocators {
 	/** @locatorType Xpath */
 	public static final String ExpenseHsnLovBtn = "//input[@data-testid='SUPLN_HSN_CODE']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String ExpenseHsnField = "//*[@id=\"IN_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr[1]/td[14]";
+	public static final String ExpenseHsnField = "//*[@id='IN_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[14]";
 	/** @locatorType Xpath */
-	public static final String PBQtyField = "//*[@id=\"IN_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr[1]/td[9]";
+	public static final String PBQtyField = "//*[@id='IN_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[9]";
 	/** @locatorType Xpath */
 	public static final String PBQtyInput = "//input[@data-testid='SUPLN_INV_QTY']";
 	/** @locatorType Xpath */
-	public static final String PBItemField = "//*[@id=\"IN_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr[1]/td[3]";
+	public static final String PBItemField = "//*[@id='IN_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[3]";
 	/** @locatorType Xpath */
 	public static final String PBItemLov = "//input[@data-testid='PROD_ID_REV']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String PBTrdDiscPercField = "//*[@id=\"IN_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr[1]/td[33]";
+	public static final String PBTrdDiscPercField = "//*[@id='IN_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[33]";
 	/** @locatorType Xpath */
 	public static final String PBTrdDiscPercInput = "//input[@data-testid='SUPLN_TRD_DISC_PCT']";
 	/** @locatorType Xpath */
-	public static final String PBSpclDiscPercField = "//*[@id=\"IN_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr[1]/td[36]";
+	public static final String PBSpclDiscPercField = "//*[@id='IN_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[36]";
 	/** @locatorType Xpath */
 	public static final String PBSpclDiscPercInput = "//input[@data-testid='SUPLN_SPL_DISC_PCT']";
 	/** @locatorType Xpath */
@@ -164,7 +164,7 @@ public class PurchaseBillsGrnLocators {
 	/** @locatorType Xpath */
 	public static final String PB_ProcessFrame = "//iframe[@title='Supplier Bill - Process']";
 	/** @locatorType Xpath */
-	public static final String PB_Process_TDS_Lov = "//*[@id=\"ig_line_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[28]";
+	public static final String PB_Process_TDS_Lov = "//*[@id='ig_line_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[28]";
 	/** @locatorType Xpath */
 	public static final String ProcessTDSLovButton = "//input[@data-testid='SDPLH_TDS_US_ID']/following-sibling::button";
 	/** @locatorType Xpath */
@@ -180,9 +180,9 @@ public class PurchaseBillsGrnLocators {
 	/** @locatorType Xpath */
 	public static final String PB_Reference_DeviationAmt = "//input[@id='P11613101001_GRN_BAL_AMT']";
 	/** @locatorType Xpath */
-	public static final String PB_ProcessTab_ProcQty = "//*[@id=\"ig_line_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[7]";
+	public static final String PB_ProcessTab_ProcQty = "//*[@id='ig_line_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[7]";
 	/** @locatorType Xpath */
-	public static final String PB_ProcessTab_UnitCost = "//*[@id=\"ig_line_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[8]";
+	public static final String PB_ProcessTab_UnitCost = "//*[@id='ig_line_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[8]";
 	/** @locatorType Xpath */
 	public static final String PB_ProcessTab_procQtyField = "//input[@data-testid='SDPL_PROC_QTY']";
 	/** @locatorType Xpath */
@@ -190,30 +190,33 @@ public class PurchaseBillsGrnLocators {
 	/** @locatorType Xpath */
 	public static final String PB_InvoiceTab = "//label[@for='P11613101001_TABS_0']";
 	/** @locatorType Xpath */
-	public static final String PBQty = "//*[@id=\"IN_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[9]";
+	public static final String PBQty = "//*[@id='IN_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[9]";
 	/** @locatorType Xpath */
-	public static final String PBUnitCost = "//*[@id=\"IN_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[10]";
+	public static final String PBUnitCost = "//*[@id='IN_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[10]";
 	/** @locatorType Xpath */
-	public static final String BankPaymentAmountField = "//*[@id=\"ig_line_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[7]";
+	public static final String BankPaymentAmountField = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[7]";
 	/** @locatorType Xpath */
-	public static final String PendingPBPrefixLov = "//input[@data-testid=\"P116131004_INV_PFX\"]/following-sibling::button";
+	public static final String PendingPBPrefixLov = "//input[@data-testid='P116131004_INV_PFX']/following-sibling::button";
 	/** @locatorType Xpath */
 	public static final String PB_ApplyDeduction = "//button[@data-testid='ApplyDeductions']";
 	/** @locatorType Xpath */
-	public static final String PB_ApplyDeduction_Yes = "//*[@id=\"t_PageBody\"]/div[35]/div[3]/div/button[2]";
-	
+	public static final String PB_ApplyDeduction_Yes = "//*[@id='t_PageBody']/div[35]/div[3]/div/button[2]";
+
 	/** @locatorType Xpath */
-	public static final String PBAddLineTable  = "(//TABLE[@data-testid='IN_Result_Data'])[2]";
+	public static final String PBAddLineTable = "(//TABLE[@data-testid='IN_Result_Data'])[2]";
+	/** @locatorType Xpath */
+	public static final String PB_Line_Detail_Btn = "//table[@data-testid='IN_Result_Data']/tbody/tr/td[1]";
+
 	/** @locatorType Xpath */
 	public static final String PurchaseBillsTransLocGLAccnt() {
 		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(PBAddLineTable, "GL Acct. Desc.");
 	}
-	
+
 	/** @locatorType Xpath */
 	public static final String PurchaseBillsTransLocunitprice() {
 		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(PBAddLineTable, "Unit Cost");
 	}
-	
+
 	/** @locatorType Xpath */
 	public static final String PurchaseBillsTransLocHsnCode() {
 		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(PBAddLineTable, "HSN/SAC Code");
@@ -223,34 +226,40 @@ public class PurchaseBillsGrnLocators {
 	public static final String PurchaseBillsTransLocGstType() {
 		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(PBAddLineTable, "Type");
 	}
-	
+
 	/** @locatorType Xpath */
 	public static final String PurchaseBillsTransLocGstInelSection() {
 		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(PBAddLineTable, "Inel. Section");
 	}
+
 	/** @locatorType Xpath */
 	public static final String PurchaseBillsTransLocGstTds() {
 		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(PBAddLineTable, "TDS u/s ID");
 	}
+
 	/** @locatorType Xpath */
 	public static final String PurchaseBillsTransLocGstItem() {
 		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(PBAddLineTable, "Item");
 	}
+
 	/** @locatorType Xpath */
 	public static final String PurchaseBillsTransLocGstQty() {
 		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(PBAddLineTable, "Inv. Qty.");
 	}
+
 	/** @locatorType Xpath */
 	public static final String PurchaseBillsTransLocGstTrdDis() {
 		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(PBAddLineTable, "Trd. Disc. %");
 	}
+
 	/** @locatorType Xpath */
 	public static final String PurchaseBillsTransLocGstSpclDis() {
 		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(PBAddLineTable, "Spl. Disc. %");
 	}
+
 	/** @locatorType Xpath */
 	public static final String PurchaseBillsTransLocGstCashDis() {
 		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(PBAddLineTable, "Cash Disc. %");
 	}
-	
+
 }

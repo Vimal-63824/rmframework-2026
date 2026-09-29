@@ -638,6 +638,7 @@ public class MRPFunctions {
 		if (webDB.verifyIsElementDisplayed(MRPLocators.FindLinesBtn, ElementType.Xpath)) {
 			webDB.clickAnElement(MRPLocators.FindLinesBtn, ElementType.Xpath);
 		}
+		commonFunc.expandFindTable();
 		commonFunc.searchAndSelectValueInFilters(MRPLocators.FindMRPNoLovBtn, MRPNo);
 		flag = webDB.waitForElement(MRPLocators.FindSearchBtn, ElementType.Xpath);
 		if (flag) {
@@ -662,6 +663,7 @@ public class MRPFunctions {
 	 * @param MRPNo
 	 */
 	public void searchAndClickMRPNoInFindPage(String MRPNo) {
+		commonFunc.expandFindTable();
 		commonFunc.searchAndSelectValueInFilters(MRPLocators.FindMRPNoLovBtn, MRPNo);
 		flag = webDB.waitForElement(MRPLocators.FindSearchBtn, ElementType.Xpath);
 		if (flag) {

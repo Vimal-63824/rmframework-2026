@@ -64,7 +64,7 @@ public class MaterialIssuanceVoucherLocators {
 	public static final String SearchButton = "//button[@data-testid=' PendingMRSearchBar']";
 	/** @locatorType XPATH */
 
-	public static final String CheckBox = "(//div[@id='PEND_data_panel']//table//tr/th//input[@id='check_all'])[1]";
+	public static final String CheckBox = "(//table//tr/th//input[@id='check_all'])[1]";
 	/** @locatorType XPATH */
 	public static final String CreateMiButton = "//button[@data-testid='PendingMRCreateMIBtn']";
 	/** @locatorType XPATH */
