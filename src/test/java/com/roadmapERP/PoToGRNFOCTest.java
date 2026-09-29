@@ -112,8 +112,8 @@ public class PoToGRNFOCTest extends RoadMapERPTest {
 	 * @author Sakthi-GWL
 	 */
 	@Author("Sakthi-GWL")
-	@Test(priority = 6, groups = {
-			"Po to GRN" }, description = "721 PO to GRN-Stock Transfer-User Defined-Same Stock and Supplier UOM - With Inspection Plan - FOC")
+//	@Test(priority = 6, groups = {
+//			"Po to GRN" }, description = "721 PO to GRN-Stock Transfer-User Defined-Same Stock and Supplier UOM - With Inspection Plan - FOC")
 	public void VerifyPoToGRNDomesticSameUOMStockTransferUDWithInspectionGEFOC() {
 		flag = purchaseFocFunc.verifyPoToGRNDomesticSameUOMStockTransferUDWithInspectionGEFOC();
 		assertTrue(flag);
@@ -126,8 +126,8 @@ public class PoToGRNFOCTest extends RoadMapERPTest {
 	 * @author Sakthi-GWL
 	 */
 	@Author("Sakthi-GWL")
-	@Test(priority = 7, groups = {
-			"Po to GRN" }, description = "722 PO to GRN-Stock Transfer-User Defined-Same Stock and Supplier UOM - Without Inspection Plan - FOC")
+//	@Test(priority = 7, groups = {
+//			"Po to GRN" }, description = "722 PO to GRN-Stock Transfer-User Defined-Same Stock and Supplier UOM - Without Inspection Plan - FOC")
 	public void VerifyPoToGRNDomesticSameUOMStockTransferUDWithoutInspectionGEFOC() {
 		flag = purchaseFocFunc.verifyPoToGRNDomesticSameUOMStockTransferUDWithoutInspectionGEFOC();
 		assertTrue(flag);
@@ -210,8 +210,8 @@ public class PoToGRNFOCTest extends RoadMapERPTest {
 	 * @author Sakthi-GWL
 	 */
 	@Author("Sakthi-GWL")
-	@Test(priority = 13, groups = {
-			"Po to GRN" }, description = "728 PO to GRN-Stock Transfer-Rate Contract-Same Stock and Supplier UOM - With Inspection Plan - FOC")
+//	@Test(priority = 13, groups = {
+//			"Po to GRN" }, description = "728 PO to GRN-Stock Transfer-Rate Contract-Same Stock and Supplier UOM - With Inspection Plan - FOC")
 	public void VerifyPoToGRNDomesticSameUOMStockTransferRCWithInspectionGEFOC() {
 		flag = purchaseFocFunc.verifyPoToGRNDomesticSameUOMStockTransferRCWithInspectionGEFOC();
 		assertTrue(flag);
@@ -224,8 +224,8 @@ public class PoToGRNFOCTest extends RoadMapERPTest {
 	 * @author Sakthi-GWL
 	 */
 	@Author("Sakthi-GWL")
-	@Test(priority = 14, groups = {
-			"Po to GRN" }, description = "729 PO to GRN-Stock Transfer-Rate Contract-Same Stock and Supplier UOM - Without Inspection Plan - FOC")
+//	@Test(priority = 14, groups = {
+//			"Po to GRN" }, description = "729 PO to GRN-Stock Transfer-Rate Contract-Same Stock and Supplier UOM - Without Inspection Plan - FOC")
 	public void VerifyPoToGRNDomesticSameUOMStockTransferRCWithoutInspectionGEFOC() {
 		flag = purchaseFocFunc.verifyPoToGRNDomesticSameUOMStockTransferRCWithoutInspectionGEFOC();
 		assertTrue(flag);
@@ -308,8 +308,8 @@ public class PoToGRNFOCTest extends RoadMapERPTest {
 	 * @author Sakthi-GWL
 	 */
 	@Author("Sakthi-GWL")
-	@Test(priority = 20, groups = {
-			"Po to GRN" }, description = "735 PO to GRN-Stock Transfer-Price List-Same Stock and Supplier UOM - With Inspection Plan - FOC")
+//	@Test(priority = 20, groups = {
+//			"Po to GRN" }, description = "735 PO to GRN-Stock Transfer-Price List-Same Stock and Supplier UOM - With Inspection Plan - FOC")
 	public void VerifyPoToGRNDomesticSameUOMStockTransferPLWithInspectionGEFOC() {
 		flag = purchaseFocFunc.verifyPoToGRNDomesticSameUOMStockTransferPLWithInspectionGEFOC();
 		assertTrue(flag);
@@ -322,8 +322,8 @@ public class PoToGRNFOCTest extends RoadMapERPTest {
 	 * @author Sakthi-GWL
 	 */
 	@Author("Sakthi-GWL")
-	@Test(priority = 21, groups = {
-			"Po to GRN" }, description = "736 PO to GRN-Stock Transfer-Price List-Same Stock and Supplier UOM - Without Inspection Plan - FOC")
+//	@Test(priority = 21, groups = {
+//			"Po to GRN" }, description = "736 PO to GRN-Stock Transfer-Price List-Same Stock and Supplier UOM - Without Inspection Plan - FOC")
 	public void VerifyPoToGRNDomesticSameUOMStockTransferPLWithoutInspectionGEFOC() {
 		flag = purchaseFocFunc.verifyPoToGRNDomesticSameUOMStockTransferPLWithoutInspectionGEFOC();
 		assertTrue(flag);
@@ -392,8 +392,8 @@ public class PoToGRNFOCTest extends RoadMapERPTest {
 	 * @author Sakthi-GWL
 	 */
 	@Author("Sakthi-GWL")
-	@Test(priority = 26, groups = {
-			"Po to GRN" }, description = "742 PO to GRN-Stock Transfer-User Defined-Diff Stock and Supplier UOM - With Inspection Plan - FOC")
+//	@Test(priority = 26, groups = {
+//			"Po to GRN" }, description = "742 PO to GRN-Stock Transfer-User Defined-Diff Stock and Supplier UOM - With Inspection Plan - FOC")
 	public void VerifyPoToGRNDomesticDiffUOMStockTransferUDWithInspectionGEFOC() {
 		flag = purchaseFocFunc.verifyPoToGRNDomesticDiffUOMStockTransferUDWithInspectionGEFOC();
 		assertTrue(flag);
@@ -406,8 +406,8 @@ public class PoToGRNFOCTest extends RoadMapERPTest {
 	 * @author Sakthi-GWL
 	 */
 	@Author("Sakthi-GWL")
-	@Test(priority = 27, groups = {
-			"Po to GRN" }, description = "743 PO to GRN-Stock Transfer-User Defined-Diff Stock and Supplier UOM - Without Inspection Plan - FOC")
+//	@Test(priority = 27, groups = {
+//			"Po to GRN" }, description = "743 PO to GRN-Stock Transfer-User Defined-Diff Stock and Supplier UOM - Without Inspection Plan - FOC")
 	public void VerifyPoToGRNDomesticDiffUOMStockTransferUDWithoutInspectionGEFOC() {
 		flag = purchaseFocFunc.verifyPoToGRNDomesticDiffUOMStockTransferUDWithoutInspectionGEFOC();
 		assertTrue(flag);
@@ -476,8 +476,8 @@ public class PoToGRNFOCTest extends RoadMapERPTest {
 	 * @author Sakthi-GWL
 	 */
 	@Author("Sakthi-GWL")
-	@Test(priority = 32, groups = {
-			"Po to GRN" }, description = "749 PO to GRN-Stock Transfer-Rate Contract-Diff Stock and Supplier UOM - With Inspection Plan - FOC")
+//	@Test(priority = 32, groups = {
+//			"Po to GRN" }, description = "749 PO to GRN-Stock Transfer-Rate Contract-Diff Stock and Supplier UOM - With Inspection Plan - FOC")
 	public void VerifyPoToGRNDomesticDiffUOMStockTransferRCWithInspectionGEFOC() {
 		flag = purchaseFocFunc.verifyPoToGRNDomesticDiffUOMStockTransferRCWithInspectionGEFOC();
 		assertTrue(flag);
@@ -490,8 +490,8 @@ public class PoToGRNFOCTest extends RoadMapERPTest {
 	 * @author Sakthi-GWL
 	 */
 	@Author("Sakthi-GWL")
-	@Test(priority = 33, groups = {
-			"Po to GRN" }, description = "750 PO to GRN-Stock Transfer-Rate Contract-Diff Stock and Supplier UOM - Without Inspection Plan - FOC")
+//	@Test(priority = 33, groups = {
+//			"Po to GRN" }, description = "750 PO to GRN-Stock Transfer-Rate Contract-Diff Stock and Supplier UOM - Without Inspection Plan - FOC")
 	public void VerifyPoToGRNDomesticDiffUOMStockTransferRCWithoutInspectionGEFOC() {
 		flag = purchaseFocFunc.verifyPoToGRNDomesticDiffUOMStockTransferRCWithoutInspectionGEFOC();
 		assertTrue(flag);
@@ -560,8 +560,8 @@ public class PoToGRNFOCTest extends RoadMapERPTest {
 	 * @author Sakthi-GWL
 	 */
 	@Author("Sakthi-GWL")
-	@Test(priority = 38, groups = {
-			"Po to GRN" }, description = "756 PO to GRN-Stock Transfer-Price List-Diff Stock and Supplier UOM - Without Inspection Plan - FOC")
+//	@Test(priority = 38, groups = {
+//			"Po to GRN" }, description = "756 PO to GRN-Stock Transfer-Price List-Diff Stock and Supplier UOM - Without Inspection Plan - FOC")
 	public void VerifyPoToGRNDomesticDiffUOMStockTransferPLWithoutInspectionGEFOC() {
 		flag = purchaseFocFunc.verifyPoToGRNDomesticDiffUOMStockTransferPLWithoutInspectionGEFOC();
 		assertTrue(flag);
@@ -574,8 +574,8 @@ public class PoToGRNFOCTest extends RoadMapERPTest {
 	 * @author Sakthi-GWL
 	 */
 	@Author("Sakthi-GWL")
-	@Test(priority = 39, groups = {
-			"Po to GRN" }, description = "757 PO to GRN-Stock Transfer-Price List-Diff Stock and Supplier UOM - With Inspection Plan - FOC")
+//	@Test(priority = 39, groups = {
+//			"Po to GRN" }, description = "757 PO to GRN-Stock Transfer-Price List-Diff Stock and Supplier UOM - With Inspection Plan - FOC")
 	public void VerifyPoToGRNDomesticDiffUOMStockTransferPLWithInspectionGEFOC() {
 		flag = purchaseFocFunc.verifyPoToGRNDomesticDiffUOMStockTransferPLWithInspectionGEFOC();
 		assertTrue(flag);

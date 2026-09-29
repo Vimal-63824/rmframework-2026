@@ -5503,6 +5503,10 @@ public class POAmendmentFunctions {
 			webDB.moveToElement(POAmendmentLocators.Item(Item), ElementType.Xpath);
 			webDB.moveToElement(POAmendmentLocators.CancelLine(Item), ElementType.Xpath);
 			webDB.clickAnElement(POAmendmentLocators.CancelLine(Item), ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
+			if (webDB.verifyIsElementDisplayed(CommonUiLocators.OkayButton, ElementType.Xpath)) {
+				webDB.clickAnElementWithoutException(CommonUiLocators.OkayButton, ElementType.Xpath);
+			}
 			flag = webDB.waitForElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Toast Message Displayed, Line Deleted Successfully with value: " + Item);
@@ -5533,15 +5537,15 @@ public class POAmendmentFunctions {
 			flag = webDB.waitForElement(POAmendmentLocators.CancelDoc, ElementType.Xpath);
 			if (flag) {
 				webDB.clickAnElement(POAmendmentLocators.CancelDoc, ElementType.Xpath);
-				flag = webDB.waitForElement(POAmendmentLocators.OKButtonLast, ElementType.Xpath);
+				commonFunc.checkRefreshCellsDisappear();
+				if (webDB.verifyIsElementDisplayed(CommonUiLocators.OkayButton, ElementType.Xpath)) {
+					webDB.clickAnElementWithoutException(CommonUiLocators.OkayButton, ElementType.Xpath);
+				}
+				flag = webDB.waitForElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
 				if (flag) {
-					webDB.clickAnElement(POAmendmentLocators.OKButtonLast, ElementType.Xpath);
-					flag = webDB.waitForElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
-					if (flag) {
-						logs.logging("INFO", "Toast Message Displayed, POA Cancelled Successfully");
-						if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
-							webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
-						}
+					logs.logging("INFO", "Toast Message Displayed, POA Cancelled Successfully");
+					if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+						webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
 					}
 				}
 			}

@@ -338,7 +338,11 @@ public class PurchaseRequestFunctions {
 			flag = webDB.waitForElement(PurchaseRequestLocators.LineDelete, ElementType.Xpath);
 			if (flag) {
 				webDB.clickAnElement(PurchaseRequestLocators.LineDelete, ElementType.Xpath);
-				webDB.switchToAlertAccept();
+				commonFunc.checkRefreshCellsDisappear();
+				if (webDB.verifyIsElementDisplayed(CommonUiLocators.OkayButton, ElementType.Xpath)) {
+					webDB.clickAnElementWithoutException(CommonUiLocators.OkayButton, ElementType.Xpath);
+				}
+//				webDB.switchToAlertAccept();
 				flag = webDB.waitForElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
 				if (flag) {
 					logs.logging("INFO", "Toast Message Displayed, Line Deleted Successfully with value: " + DataValue);

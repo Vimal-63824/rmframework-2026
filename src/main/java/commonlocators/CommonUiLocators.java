@@ -455,7 +455,11 @@ public class CommonUiLocators {
 	/** @locatorType Xpath */
 	public static final String ItemLovButton = "//input[@data-testid='P93132130_ITEM']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String PendingPoShowMore = "//span[@class='a-Icon a-Collapsible-icon']/parent::button[contains(@aria-controls,'a_Collapsible1')]";
+	public static final String ShowMoreIcon = "//span[contains(@class,'a-Collapsible-icon')]/parent::button";
+	/** @locatorType Xpath */
+	public static final String CollapseAllLinesBtn = "//button[@title='Collapse']";
+	/** @locatorType Xpath */
+	public static final String ExpandAllLinesBtn = "//button[@title='Expand']";
 	/** @locatorType Xpath */
 	public static final String FindShowMore = "//button[@id='M']";
 	/** @locatorType Xpath */

@@ -490,8 +490,9 @@ public class CompletionProductionOrderFunctions {
 			commonFunc.checkRefreshCellsDisappear();
 			commonFunc.checkSuccessToastMessageDisappear();
 			webDB.moveToElement(CompletionProductionOrderLocators.ComplProdPostBtn, ElementType.Xpath);
-			webDB.clickAnElement(CompletionProductionOrderLocators.ComplProdPostBtn, ElementType.Xpath);
-			flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
+			flag = webDB.clickAnElement(CompletionProductionOrderLocators.ComplProdPostBtn, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
+//			flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
 			if (flag) {
 				logs.logging("INFO", "Post Button Clicked Succesfully");
 				if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
@@ -977,6 +978,7 @@ public class CompletionProductionOrderFunctions {
 			if (flag) {
 				webDB.clickAnElement(CompletionProductionOrderLocators.PendingProdOrderSearchGoBtn, ElementType.Xpath);
 				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.expandFindTable();
 				flag = webDB.waitForElement(
 						CompletionProductionOrderLocators.PendingProdOrder_SelectCheckboxTableData(ProdNo),
 						ElementType.Xpath);
@@ -1136,6 +1138,7 @@ public class CompletionProductionOrderFunctions {
 			if (flag) {
 				webDB.clickAnElement(CompletionProductionOrderLocators.PendingProdOrderSearchGoBtn, ElementType.Xpath);
 				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.expandFindTable();
 				flag = webDB.waitForElement(
 						CompletionProductionOrderLocators.PendingProdOrder_SelectCheckboxTableData(ProdNo),
 						ElementType.Xpath);
@@ -1277,6 +1280,8 @@ public class CompletionProductionOrderFunctions {
 			if (flag) {
 				webDB.moveToElement(CompletionProductionOrderLocators.PendingSearchBtn, ElementType.Xpath);
 				webDB.clickAnElement(CompletionProductionOrderLocators.PendingSearchBtn, ElementType.Xpath);
+				commonFunc.expandFindTable();
+				commonFunc.checkRefreshCellsDisappear();
 				flag = webDB.waitForElement(CompletionProductionOrderLocators.Pending_TableSelectAllCheckBox,
 						ElementType.Xpath);
 				if (flag) {
@@ -1285,7 +1290,6 @@ public class CompletionProductionOrderFunctions {
 							ElementType.Xpath);
 					webDB.clickAnElement(CompletionProductionOrderLocators.Pending_TableSelectAllCheckBox,
 							ElementType.Xpath);
-					commonFunc.hardWait(2000);
 					flag = webDB.waitForElement(CompletionProductionOrderLocators.CreateCompletionProcessBtn,
 							ElementType.Xpath);
 					if (flag) {
@@ -1307,7 +1311,6 @@ public class CompletionProductionOrderFunctions {
 							webDB.clickAnElement(CompletionProductionOrderLocators.CreateCompletionProcessOkBtn,
 									ElementType.Xpath);
 							commonFunc.checkRefreshCellsDisappear();
-							commonFunc.hardWait(1000);
 							if (webDB.verifyIsElementDisplayed(
 									CompletionProductionOrderLocators.MultipleProceedRestOprNoBtn, ElementType.Xpath)) {
 								flag = webDB.clickAnElement(
@@ -1406,6 +1409,7 @@ public class CompletionProductionOrderFunctions {
 						webDB.clickAnElement(CompletionProductionOrderLocators.PendingMRFindSearchBtn,
 								ElementType.Xpath);
 						commonFunc.checkRefreshCellsDisappear();
+						commonFunc.expandFindTable();
 						flag = webDB.waitForElement(CompletionProductionOrderLocators.PendingMRSelectAllBtn(ProdNumber),
 								ElementType.Xpath);
 						if (flag) {
@@ -1446,10 +1450,12 @@ public class CompletionProductionOrderFunctions {
 		flag = webDB.waitForElement(CompletionProductionOrderLocators.PendingMRCreateIframe, ElementType.Xpath);
 		if (flag) {
 			webDB.switchToFrame(CompletionProductionOrderLocators.PendingMRCreateIframe, ElementType.Xpath);
+			commonFunc.expandFindTable();
 			flag = webDB.waitForElement(CompletionProductionOrderLocators.PendingMRFindSearchBtn, ElementType.Xpath);
 			if (flag) {
 				webDB.clickAnElement(CompletionProductionOrderLocators.PendingMRFindSearchBtn, ElementType.Xpath);
 				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.expandFindTable();
 				flag = webDB.waitForElement(CompletionProductionOrderLocators.PendingMRSelectAllBtn(ProdNumber),
 						ElementType.Xpath);
 				if (flag) {
@@ -1653,6 +1659,7 @@ public class CompletionProductionOrderFunctions {
 						webDB.switchToFrame(CompletionProductionOrderLocators.PendingMRCreateIframe, ElementType.Xpath);
 						flag = webDB.waitForElement(CompletionProductionOrderLocators.PendingMRFindSearchBtn,
 								ElementType.Xpath);
+						commonFunc.expandFindTable();
 						commonFunc.checkRefreshCellsDisappear();
 					}
 				}

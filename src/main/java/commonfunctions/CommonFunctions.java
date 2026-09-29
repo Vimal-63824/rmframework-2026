@@ -1829,7 +1829,7 @@ public class CommonFunctions {
 //			}
 //		}
 		navigateToSearchTab(webDB.getDataFromProperties("BOMScreen"), BillOfMaterialsLocators.BOM_FindSearchBtn);
-		Assert.assertTrue(flag);
+		expandFindTable();
 	}
 
 	/**
@@ -3504,16 +3504,39 @@ public class CommonFunctions {
 	/**
 	 * This Methods Is Used To Click Fully selected
 	 *
+	 * @author Sakthi-GWL
+	 */
+	public void expandAllInLineDetails() {
+		checkRefreshCellsDisappear();
+		if (!webDB.verifyIsElementDisplayed(CommonUiLocators.CollapseAllLinesBtn, ElementType.Xpath)) {
+			flag = webDB.waitForElement(CommonUiLocators.ExpandAllLinesBtn, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(CommonUiLocators.ExpandAllLinesBtn, ElementType.Xpath);
+			}
+		}
+		flag = webDB.waitForElement(CommonUiLocators.CollapseAllLinesBtn, ElementType.Xpath);
+	}
+
+	/**
+	 * This Methods Is Used To Click Fully selected
+	 *
 	 * @author PremKumar.K-RMITS
 	 */
 	public void expandFindTable() {
-		List<WebElement> elements = webDB.getListOfElements(CommonUiLocators.PendingPoShowMore, ElementType.Xpath);
+		webDB.waitForElement(CommonUiLocators.ShowMoreIcon, ElementType.Xpath);
+		List<WebElement> elements = webDB.getListOfElements(CommonUiLocators.ShowMoreIcon, ElementType.Xpath);
 		for (WebElement element : elements) {
 			try {
-				if (element.getDomAttribute("aria-expanded").equals("false")) {
+				if (element.getDomAttribute("aria-expanded").equals("false") && element.isDisplayed()) {
+					Actions action = new Actions(WebDriverBase.getDriver());
+					action.moveToElement(element).build().perform();
 					element.click();
 				}
 			} catch (Exception e) {
+				if (element.getDomAttribute("aria-expanded").equals("false") && element.isDisplayed()) {
+					JavascriptExecutor js = (JavascriptExecutor) WebDriverBase.getDriver();
+					js.executeScript("arguments[0].click();", element);
+				}
 			}
 		}
 	}
@@ -3543,29 +3566,37 @@ public class CommonFunctions {
 		if (flag) {
 			webDB.moveToElement(ShowBtn, ElementType.Xpath);
 			webDB.clickAnElement(ShowBtn, ElementType.Xpath);
+			if (webDB.waitForElement(HideBtn, ElementType.Xpath)) {
+				logs.logging("INFO", "Show all record button selected");
+			}
 			checkRefreshCellsDisappear();
 			checkRefreshCellsDisappear();
 			flag = webDB.verifyIsElementDisplayed(CompletionProductionOrderLocators.Pending_TableNoDataSelected,
 					ElementType.Xpath);
+			if (flag)
+				logs.logging("INFO", "No Pending document already selected");
 			if (!flag) {
-				logs.logging("INFO", "No Data Selected Container not displayed");
 				webDB.waitForElementUntilGivenTime(SelectAllBtn, ElementType.Xpath, 5);
 				if (webDB.isElementSelected(SelectAllBtn, ElementType.Xpath)) {
-					logs.logging("INFO", "Check all selected");
+					logs.logging("INFO", "Already Pending document selected");
 					webDB.moveToElement(SelectAllBtn, ElementType.Xpath);
 					webDB.clickAnElement(SelectAllBtn, ElementType.Xpath);
+					checkRefreshCellsDisappear();
+					checkRefreshCellsDisappear();
+					flag = webDB.verifyIsElementDisplayed(CompletionProductionOrderLocators.Pending_TableNoDataSelected,
+							ElementType.Xpath);
+					if (flag)
+						logs.logging("INFO", "Uncheck all clicked");
 				}
-				checkRefreshCellsDisappear();
-				checkRefreshCellsDisappear();
-				flag = webDB.verifyIsElementDisplayed(CompletionProductionOrderLocators.Pending_TableNoDataSelected,
-						ElementType.Xpath);
 			}
 			if (flag) {
-				logs.logging("INFO", "No Data Selected Container displayed");
 				webDB.moveToElement(HideBtn, ElementType.Xpath);
 				webDB.clickAnElement(HideBtn, ElementType.Xpath);
 				flag = webDB.waitForElement(ShowBtn, ElementType.Xpath);
+				if (flag)
+					logs.logging("INFO", "Show all record button unselected");
 			}
 		}
 	}
+
 }

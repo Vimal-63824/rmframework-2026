@@ -992,6 +992,10 @@ public class PurchaseOrderFunctions {
 			if (flag) {
 				logs.logging("INFO", "Item Delete Button Is Displayed");
 				webDB.clickAnElement(PurchaseOrderPageLocators.CancelMenuThreeDots, ElementType.Xpath);
+				commonFunc.checkRefreshCellsDisappear();
+				if (webDB.verifyIsElementDisplayed(CommonUiLocators.OkayButton, ElementType.Xpath)) {
+					webDB.clickAnElementWithoutException(CommonUiLocators.OkayButton, ElementType.Xpath);
+				}
 				flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
 				if (flag) {
 					logs.logging("INFO", "Toast Message Displayed, Line Deleted Successfully with value: " + DataValue);

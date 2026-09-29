@@ -672,11 +672,13 @@ public class MaterialRequestFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyCreateMaterialRequestDocument(String DocNo) {
+		commonFunc.expandFindTable();
 		commonFunc.searchAndSelectValueInFilters(MaterialRequestLocators.ReqNo, DocNo);
 		flag = webDB.waitForElement(MaterialRequestLocators.FindSearchBtn, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(MaterialRequestLocators.FindSearchBtn, ElementType.Xpath);
 			commonFunc.checkRefreshCellsDisappear();
+			commonFunc.expandFindTable();
 			flag = webDB.waitForElement(MaterialRequestLocators.RequestMRNo(DocNo), ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Search Button Is Clicked");
@@ -703,42 +705,35 @@ public class MaterialRequestFunctions {
 	 * 
 	 */
 	public void verifyNavigateToLineDetail(String DocNo) {
-		webDB.moveToElement(MaterialRequestLocators.ViewLineDetails, ElementType.Xpath);
 		flag = webDB.waitForElement(MaterialRequestLocators.ViewLineDetails, ElementType.Xpath);
 		if (flag) {
 			logs.logging("INFO", "View Line Details Is Displayed");
-			webDB.clickAnElement(MaterialRequestLocators.ViewLineDetails, ElementType.Xpath);
-			commonFunc.hardWait(1000);
+			webDB.moveToElement(MaterialRequestLocators.ViewLineDetails, ElementType.Xpath);
+			webDB.javaScriptClickAnElement(MaterialRequestLocators.ViewLineDetails, ElementType.Xpath);
 			flag = webDB.waitForElement(SalesInvoiceLocators.SI_detail_Button, ElementType.Xpath);
 			if (flag) {
 				webDB.clickAnElement(SalesInvoiceLocators.SI_detail_Button, ElementType.Xpath);
-				commonFunc.hardWait(2000);
 				flag = webDB.waitForClickElement(MaterialRequestLocators.IFrame, ElementType.Xpath);
 				if (flag) {
 					logs.logging("INFO", "Iframe Is Displayed");
 					webDB.switchToFrame(MaterialRequestLocators.IFrame, ElementType.Xpath);
-					commonFunc.hardWait(1000);
-					flag = webDB.waitForElement(MaterialRequestLocators.ViewLineDetails_Orderdetail, ElementType.Xpath);
+					commonFunc.expandAllInLineDetails();
+					flag = webDB.waitForElement(MaterialRequestLocators.OrderNo, ElementType.Xpath);
 					if (flag) {
-						webDB.clickAnElement(MaterialRequestLocators.ViewLineDetails_Orderdetail, ElementType.Xpath);
-						commonFunc.hardWait(2000);
-						flag = webDB.waitForElement(MaterialRequestLocators.OrderNo, ElementType.Xpath);
+						String text = webDB.getTextFromElement(MaterialRequestLocators.OrderNo, ElementType.Xpath);
+						logs.logging("INFO", "Get Text Order Number Is: " + text);
+						flag = text.equals(DocNo);
 						if (flag) {
-							String text = webDB.getTextFromElement(MaterialRequestLocators.OrderNo, ElementType.Xpath);
-							logs.logging("INFO", "Get Text Order Number Is: " + text);
-							flag = text.equals(DocNo);
+							logs.logging("INFO", "Verified Doc No With Actual And Expected");
+							webDB.switchToDefaultContent();
+							flag = webDB.waitForElement(MaterialRequestLocators.CloseLineDetail, ElementType.Xpath);
 							if (flag) {
-								logs.logging("INFO", "Verified Doc No With Actual And Expected");
-								webDB.switchToDefaultContent();
-								flag = webDB.waitForElement(MaterialRequestLocators.CloseLineDetail, ElementType.Xpath);
+								logs.logging("INFO", "Close Line Details Is Displayed");
+								webDB.clickAnElement(MaterialRequestLocators.CloseLineDetail, ElementType.Xpath);
+								flag = webDB.waitForElement(MaterialRequestLocators.HeaderLocationId,
+										ElementType.Xpath);
 								if (flag) {
-									logs.logging("INFO", "Close Line Details Is Displayed");
-									webDB.clickAnElement(MaterialRequestLocators.CloseLineDetail, ElementType.Xpath);
-									flag = webDB.waitForElement(MaterialRequestLocators.HeaderLocationId,
-											ElementType.Xpath);
-									if (flag) {
-										logs.logging("INFO", "Location Id Is Displayed");
-									}
+									logs.logging("INFO", "Location Id Is Displayed");
 								}
 							}
 						}
@@ -824,6 +819,7 @@ public class MaterialRequestFunctions {
 	 * @param ExpectedStatus
 	 */
 	public void storeMRNoAndCheckStatusDraftAndPostWithProdNo(String ProdNo) {
+		commonFunc.expandFindTable();
 		commonFunc.searchAndSelectValueInFilters(MaterialRequestLocators.FindProdNoLovBtn, ProdNo);
 		flag = webDB.waitForElement(MaterialRequestLocators.FindStatusSelectField, ElementType.Xpath);
 		if (flag) {
@@ -834,6 +830,7 @@ public class MaterialRequestFunctions {
 			if (flag) {
 				webDB.clickAnElement(MaterialRequestLocators.FindSearchBtn, ElementType.Xpath);
 				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.expandFindTable();
 				flag = webDB.waitForElement(MaterialRequestLocators.Find_MRNo_TableData(ProdNo), ElementType.Xpath);
 				if (flag) {
 					logs.logging("INFO", "Search Button clicked and Prod No: " + ProdNo + " Displayed");

@@ -719,7 +719,10 @@ public class OpenPoRcFunctions {
 			webDB.moveToElement(OpenPoRcLocators.ItemTable, ElementType.Xpath);
 			webDB.moveToElement(OpenPoRcLocators.LineCancelButton, ElementType.Xpath);
 			webDB.doubleClickAnElement(OpenPoRcLocators.LineCancelButton, ElementType.Xpath);
-			commonFunc.hardWait(2000);
+			commonFunc.checkRefreshCellsDisappear();
+			if (webDB.verifyIsElementDisplayed(CommonUiLocators.OkayButton, ElementType.Xpath)) {
+				webDB.clickAnElementWithoutException(CommonUiLocators.OkayButton, ElementType.Xpath);
+			}
 //			webDB.pressEnterKey();
 //			webDB.switchToAlertAccept(5);
 //			commonFunc.hardWait(7000);
@@ -861,6 +864,7 @@ public class OpenPoRcFunctions {
 			logs.logging("INFO", "Clear Button Is Clicked");
 			commonFunc.hardWait(1000);
 			commonFunc.checkRefreshCellsDisappear();
+			commonFunc.expandFindTable();
 		}
 		assertTrue(flag);
 	}
@@ -3625,10 +3629,12 @@ public class OpenPoRcFunctions {
 		}
 		if (Type.equals(commonFunc.getDataFromTestDataSheet("HeaderSearchType"))) {
 			clickAmendSearchButton();
+			commonFunc.expandFindTable();
 			commonFunc.hardWait(3000);
 			verifyAmendTableValue(i, Value);
 		} else if (Type.equals(commonFunc.getDataFromTestDataSheet("LineSearchType"))) {
 			clickAmendLineSearchButton();
+			commonFunc.expandFindTable();
 			commonFunc.hardWait(3000);
 			verifyAmendTableLineValue(i, Value);
 		}
