@@ -1,5 +1,7 @@
 package commonlocators.financials;
 
+import commonfunctions.CommonFunctions;
+
 /**
  * @author Harikrishna - RMITS
  * @company RoadMap IT Solutions October 16, 2025
@@ -66,19 +68,19 @@ public class BankPaymentLocators {
 	/** @locatorType Xpath */
 	public static final String BankViewFrame = "(//h1[contains(text(),'Payment Details')]/ancestor::div/following-sibling::div)//iframe";
 	/** @locatorType Xpath */
-	public static final String BankBillNumberInputField = "//input[@id='C1086541752634527650']";
+	public static final String BankBillNumberInputField = "//input[@id='C1132147063680651967']";
 	/** @locatorType Xpath */
-	public static final String BankPayAmountInputField = "//input[@id='C1086535779516527643']";
+	public static final String BankPayAmountInputField = "//input[@id='C1132141090562651960']";
 	/** @locatorType Xpath */
 	public static final String BankAgainstRefFieldName = "//*[@id='ig_line1_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[1]";
 	/** @locatorType Xpath */
-	public static final String BankBillDocField = "//*[@id='ig_line1_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[2]";
+	public static final String BankBillDocField = "(//table[@data-testid=\"ig_line1_Result_Data\"])[2]/tbody/tr/td[2]";
 	/** @locatorType Xpath */
 	public static final String BankBillDateField = "//*[@id='ig_line1_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[3]";
 	/** @locatorType Xpath */
 	public static final String BankPayAmountField = "//*[@id='ig_line1_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[4]";
 	/** @locatorType Xpath */
-	public static final String BankViewSaveButton = "//button[@id='B1099343458344991394']";
+	public static final String BankViewSaveButton = "//button[@id='B1144948769391115711']";
 	/** @locatorType Xpath */
 	public static final String BankViewDeleteButton = "#ig_line1_ig_grid_vc > div.a-GV-bdy > div.a-GV-w-scroll > table > tbody > tr > td:nth-child(27) > a";
 	/** @locatorType Xpath */
@@ -323,5 +325,16 @@ public class BankPaymentLocators {
 	public static final String LineWiseTDS(int i) {
 		return "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[" + i + "]/td[27]";
 	}
+	/** @locatorType Xpath */
+	public static final String BPLineDetailViewBtn  = "//*[@id=\"t_PageBody\"]/ul/li[2]/a";
+	/** @locatorType Xpath */
+	public static final String BPAddLineTable  = "(//table[@data-testid=\"R1196919739088703352_Result_Data\"])[2]/tbody/tr/td[1]";
+	/** @locatorType Xpath */
+	public static final String BankPaymentsTransLocGLAccnt() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(BPAddLineTable, "GL Acct. Desc.");
+	}
+	
+	
+	
 
 }
