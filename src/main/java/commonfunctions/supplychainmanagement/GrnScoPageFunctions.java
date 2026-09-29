@@ -1067,4 +1067,41 @@ public class GrnScoPageFunctions {
 		}
 		assertTrue(flag);
 	}
+
+	/**
+	 * This Method Is Used To Clicking Header Import button
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void clickingHeaderImportbutton(String grnno) {
+		flag = webDB.waitForElement(GrnScoLocators.GRNSCO_ImportLR, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(GrnScoLocators.GRNSCO_ImportLR, ElementType.Xpath);
+			commonFunc.hardWait(2000);
+			flag = webDB.waitForElement(GrnScoLocators.GRNSCO_ImportLR_Input, ElementType.Xpath);
+			if (flag) {
+				//webDB.clickAnElement(GrnScoLocators.GRNSCO_ImportLR, ElementType.Xpath);
+				webDB.sendTextToAnElement(GrnScoLocators.GRNSCO_ImportLR_Input, grnno, ElementType.Xpath);
+				commonFunc.hardWait(2000);
+				webDB.pressTabKey();
+				webDB.clickAnElement(GrnScoLocators.GRNSCO_ImportLR_date, ElementType.Xpath);
+				commonFunc.hardWait(2000);
+				flag = webDB.waitForElement(GrnScoLocators.GRNSCO_ImportLR_ok_btn, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(GrnScoLocators.GRNSCO_ImportLR_ok_btn, ElementType.Xpath);
+					commonFunc.checkRefreshCellsDisappear();
+					commonFunc.hardWait(2000);
+					if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+						webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+						commonFunc.hardWait(1000);
+						flag = webDB.waitForElement(GrnScoLocators.PostButton, ElementType.Xpath);
+						if (flag) {
+							logs.logging("INFO", "Post Button Is Displayed");
+						}
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
 }

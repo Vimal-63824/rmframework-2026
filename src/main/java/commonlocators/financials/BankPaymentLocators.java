@@ -36,7 +36,7 @@ public class BankPaymentLocators {
 	/** @locatorType Xpath */
 	public static final String BankPostButton = "//button[@data-testid='Post']";
 	/** @locatorType Xpath */
-	public static final String BankRefInputField = "//input[@id='P341310009_BTRANS_TRANS_REF_NO1']";
+	public static final String BankRefInputField = "//input[@data-testid='P341310009_BTRANS_TRANS_REF_NO1']";
 	/** @locatorType Xpath */
 	public static final String BankDocumentNumberField = "//span[@data-testid='VouNo']";
 	/** @locatorType Xpath */
