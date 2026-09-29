@@ -339,9 +339,9 @@ public class CommonUiLocators {
 	}
 
 	/** @locatorType Xpath */
-	public static final String SalesTab = "//*[@id='P36719401_TYPE_ASSO']/div/div/div[4]/label";
+	public static final String SalesTab = "(//div[@aria-label='Sales']//button)[1]";
 	/** @locatorType Xpath */
-	public static final String CustomerAssoFlag = "//label[text()='Customer Associate']";
+	public static final String CustomerAssoFlag = "//label[text()='Sales Customer Associate']";
 	/** @locatorType Xpath */
 	public static final String activeButton = "//*[@data-testid='Activate']";
 	/** @locatorType Xpath */
@@ -385,7 +385,7 @@ public class CommonUiLocators {
 	/** @locatorType Xpath */
 	public static final String GetTextUserName = "//li[@title='Sign Out']/../li[3]/a/span[2]";
 	/** @locatorType Xpath */
-	public static final String QualityTab = "//label[text()='Quality']";
+	public static final String QualityTab = "(//div[@aria-label='Quality']//button)[1]";
 	/** @locatorType Xpath */
 	public static final String TypeDropDown = "//select[@data-testid='P36719401_PRODPLNT_FREQ_TYPE_3']";
 	/** @locatorType Xpath */
