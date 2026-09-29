@@ -611,7 +611,7 @@ public class SalesInvoiceLocators {
 	/** @Locator XPATH */
 	public static final String SI_Reverse_OK_Btn = "//button[@data-testid='btn_ok']";
 	/** @Locator XPATH */
-	public static final String SI_Reverse_ForwardApproval = "//button[@data-testid='btn_entry']";
+	public static final String SI_Reverse_ForwardApproval = "//button[@data-testid='Entry']";
 	/** @Locator XPATH */
 	public static final String SI_Charges_Tab = "//label[@for='P191513109001_TAB_LINE_1']";
 	/** @Locator XPATH */

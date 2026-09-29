@@ -221,12 +221,19 @@ public class PricelistPageFunctions {
 				"AdminUsername");
 		commonFunc.navigatePricelistPage();
 		clickLocationLov(commonFunc.getDataFromTestDataSheet("Loc_100"));
+		commonFunc.expandFindTable();
 		clickUnitLov(commonFunc.getDataFromTestDataSheet("Unit_100"));
+		commonFunc.expandFindTable();
 		clickItemLov(commonFunc.getDataFromTestDataSheet("SimItem_ID"));
+		commonFunc.expandFindTable();
 		clickSupplierLov(commonFunc.getDataFromTestDataSheet("DomSupplier_ID"));
+		commonFunc.expandFindTable();
 		clickFindEffectiveFromDate(commonFunc.getDataFromTestDataSheet("Efffrom_Date"));
+		commonFunc.expandFindTable();
 		clickFindEffectiveToDate(commonFunc.getDataFromTestDataSheet("Effto_Date"));
+		commonFunc.expandFindTable();
 		verifyStatusInFindPage();
+		commonFunc.expandFindTable();
 		verifyDocNoInFindPage(VariableHandler.getPRLISTNumber());
 		assertTrue(flag);
 	}
@@ -1989,6 +1996,7 @@ public class PricelistPageFunctions {
 //			commonFunc.hardWait(3000);
 //			verifyLineAmendTableValue(i, Value);
 //		}
+		commonFunc.expandFindTable();
 		clearSearchFilter();
 	}
 

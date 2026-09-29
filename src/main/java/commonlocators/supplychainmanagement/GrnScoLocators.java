@@ -129,7 +129,7 @@ public class GrnScoLocators {
 	/** @locatorType Xpath */
 	public static final String GRN_SCO_AddIcon = "//button[@data-testid='add']";
 	/** @locatorType Xpath */
-	public static final String GRN_SCO_Add_Iframe = "//iframe[@title='GRN - SCO']";
+	public static final String GRN_SCO_Add_Iframe = "//iframe[@title='Create GRN - SCO']";
 	/** @locatorType Xpath */
 	public static final String GRN_SCO_Add_Loc_Lov = "//input[@data-testid='P193151040_PORH_PLNT_LOC_ID']/following-sibling::button";
 	/** @locatorType Xpath */
@@ -172,5 +172,16 @@ public class GrnScoLocators {
 	public static final String SourceDocuments = "//h2[text()='Source Document']/../..//button";
 	/** @locatorType Xpath */
 	public static final String OthersButton = "//h2[text()='Others']/../..//button";
-
+	/** @locatorType Xpath */
+	public static final String GRN_SCO_Add_GRNPfx_Lov = "//input[@data-testid='P193151040_PORH_RECEIPT_PFX_1']/following-sibling::button";
+	/** @locatorType Xpath */
+	public static final String GRN_SCO_Add_GRNDate = "//*[@id=\"P193151041_PORH_GRN_DATE_dialog\"]/div/div[3]/div/button";
+	/** @locatorType Xpath */
+	public static final String GRNSCO_ImportLR = "//button[@data-testid='Import_LR']";
+	/** @locatorType Xpath */
+	public static final String GRNSCO_ImportLR_Input = "//input[@data-testid='P19315104001_PID_BOE_NO']";
+	/** @locatorType Xpath */
+	public static final String GRNSCO_ImportLR_date = "//*[@id=\"P19315104001_PID_BOE_DATE_dialog\"]/div/div[3]/div/button";
+	/** @locatorType Xpath */
+	public static final String GRNSCO_ImportLR_ok_btn = "//button[@data-testid='OK_import_LR']";
 }

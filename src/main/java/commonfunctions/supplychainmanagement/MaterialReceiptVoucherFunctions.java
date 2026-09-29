@@ -1298,6 +1298,7 @@ public class MaterialReceiptVoucherFunctions {
 			commonFunc.hardWait(3000);
 			verifyLineAmendTableValue(i, Value);
 		}
+		commonFunc.expandFindTable();
 		clearSearchFilter();
 	}
 
@@ -1406,6 +1407,7 @@ public class MaterialReceiptVoucherFunctions {
 		clickSearchButton();
 		commonFunc.hardWait(3000);
 		verifyAmendTableValueAfterDate(4, commonFunc.getDataFromTestDataSheet("EffFrom"));
+		commonFunc.expandFindTable();
 		clearSearchFilter();
 		flag = webDB.waitForElement(MaterialReceiptVoucherLocators.MRVdateTo, ElementType.Xpath);
 		webDB.sendTextToAnElement(MaterialReceiptVoucherLocators.MRVdateTo,
@@ -1413,6 +1415,7 @@ public class MaterialReceiptVoucherFunctions {
 		clickSearchButton();
 		commonFunc.hardWait(3000);
 		verifyAmendTableValueBeforeDate(4, commonFunc.getDataFromTestDataSheet("EffTo"));
+		commonFunc.expandFindTable();
 		clearSearchFilter();
 	}
 

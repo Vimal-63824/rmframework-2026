@@ -166,7 +166,7 @@ public class SubcontractOrderLocators {
 	/** @locatorType XPATH */
 	public static final String OP_Reverse_ToDate_input = "(//button[@class='a-Button a-DatePicker--today'])[3]";
 	/** @locatorType XPATH */
-	public static final String OP_Reverse_OK_Btn = "//button[@id='B1597174889937828806']";
+	public static final String OP_Reverse_OK_Btn = "//button[@id='B1706056388135448414']";
 	/** @locatorType XPATH */
 	public static final String OP_Reverse_ToDate = "//input[@ID='P1931510101_EFF_TO_input']";
 	/** @locatorType XPATH */
@@ -479,11 +479,11 @@ public class SubcontractOrderLocators {
 	/** @Locator XPATH */
 	public static final String SubcontractCSAddSCOLine_Iframe = "//iframe[@title='SCO Details']";
 	/** @Locator XPATH */
-	public static final String SubcontractCSAddSCOLine_SelectAll = "//*[@id=\"4101776970104955082_orig\"]/tbody/tr[2]/td[12]";
+	public static final String SubcontractCSAddSCOLine_SelectAll = "//*[@id=\"4210658468302574690_orig\"]/tbody/tr[2]/td[12]";
 	/** @Locator XPATH */
 	public static final String SubcontractCSAddSCOLine_OKButton = "//button[@data-testid='OK']";
 	/** @Locator XPATH */
-	public static final String SubcontractCS_ProcDetailsButton = "//table[@data-testid='Line_Result_Data']/tbody/tr/td[1]/a/span";
+	public static final String SubcontractCS_ProcDetailsButton = "(//table[@data-testid='Line_Result_Data']/tbody/tr/td[1]/a/span)[2]";
 	/** @Locator XPATH */
 	public static final String SubcontractCS_ProcDetails_Iframe = "//iframe[@title='Details']";
 	/** @Locator XPATH */
@@ -554,12 +554,12 @@ public class SubcontractOrderLocators {
 	/** @Locator XPATH */
 	public static final String SCO_LineDetail_Prod_Details = "(//div[@aria-label='Production Details']//button)[1]";
 	/** @Locator XPATH */
-	public static final String SCO_LineDetail_Details = "//*[@id=\"ig_line_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[1]/a/span";
+	public static final String SCO_LineDetail_Details = "//table[@data-testid='ig_line_Result_Data']/tbody/tr/td[1]/a/span";
 
 	/** @Locator XPATH */
 	public static final String SCO_Cancel_okBtn = "//button[text()='OK']";
 	/** @Locator XPATH */
-	public static final String SCO_LineDetail_SO_Details = "//*[@id=\"R1589938191070404089\"]/div[1]/div[1]/button";
+	public static final String SCO_LineDetail_SO_Details = "(//div[@aria-label='Ref.']//button)[1]";
 	/** @Locator XPATH */
 	public static final String GRNSCO_LineDetail_Details = "//*[@id=\"add_line_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr[1]/td[1]/a/span";
 	/** @Locator XPATH */
