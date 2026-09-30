@@ -162,7 +162,6 @@ public class MaterialIssuanceVoucherFunctions {
 	 */
 	public void clickSaveHeaderAndPostBtnInMIV() {
 		commonFunc.checkSuccessToastMessageDisappear();
-		// TODO Adding DB Steps
 		flag = webDB.waitForClickElement(MaterialIssuanceVoucherLocators.SaveHeaderIcon, ElementType.Xpath);
 		if (flag) {
 			webDB.moveToElement(MaterialIssuanceVoucherLocators.SaveHeaderIcon, ElementType.Xpath);
@@ -539,15 +538,18 @@ public class MaterialIssuanceVoucherFunctions {
 				logs.logging("INFO", "Search Button Is Displayed");
 				webDB.clickAnElement(MaterialIssuanceVoucherLocators.SearchButton, ElementType.Xpath);
 				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.expandFindTable();
 				flag = webDB.waitForElement(MaterialIssuanceVoucherLocators.CheckBox, ElementType.Xpath);
 				if (flag) {
 					logs.logging("INFO", "CheckBox IS Displayed");
 					webDB.moveToElement(MaterialIssuanceVoucherLocators.CheckBox, ElementType.Xpath);
-					webDB.clickAnElement(MaterialIssuanceVoucherLocators.CheckBox, ElementType.Xpath);
+					webDB.javaScriptClickAnElement(MaterialIssuanceVoucherLocators.CheckBox, ElementType.Xpath);
 					commonFunc.checkRefreshCellsDisappear();
 					flag = webDB.waitForElement(MaterialIssuanceVoucherLocators.CreateMiButton, ElementType.Xpath);
 					if (flag) {
-						logs.logging("INFO", "Create Mi Button Is Displayed");
+						System.out.println(webDB.isElementEnabled(MaterialIssuanceVoucherLocators.CreateMiButton,
+								ElementType.Xpath));
+						logs.logging("INFO", "Create MIV Button Is Displayed");
 						webDB.moveToElement(MaterialIssuanceVoucherLocators.CreateMiButton, ElementType.Xpath);
 						webDB.clickAnElement(MaterialIssuanceVoucherLocators.CreateMiButton, ElementType.Xpath);
 						webDB.switchToDefaultContent();
@@ -832,9 +834,9 @@ public class MaterialIssuanceVoucherFunctions {
 		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
 		TotalData = excelUtils.readAllDataInExcel(Filepath, SheetName);
 		for (int i = StartIndex; i < TotalData.length; i++) {
-//			if (TotalData[i][0].equalsIgnoreCase("SFG")) {
-//				break;
-//			}
+			if (TotalData[i][0].equalsIgnoreCase("Completion")) {
+				break;
+			}
 			String RMItem = TotalData[i][4];
 			String RMWH = commonFunc.getDataFromTestDataSheet("RM WH");
 			String LotQuantity = dbCommonFunctions.validateLotSerialWithRMItemWarehouse(RMItem, RMWH,

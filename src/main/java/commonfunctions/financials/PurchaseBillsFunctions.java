@@ -1224,8 +1224,8 @@ public class PurchaseBillsFunctions {
 									flag = webDB.waitForElement(PurchaseBillsLocators.HsnCodeLov, ElementType.Xpath);
 									if (flag) {
 										logs.logging("INFO", "HSN Code Is Entered ");
-										 commonFunc.searchAndSelectValueInFilters(PurchaseBillsLocators.HsnCodeLov,
-										 Hsncode);
+										commonFunc.searchAndSelectValueInFilters(PurchaseBillsLocators.HsnCodeLov,
+												Hsncode);
 										commonFunc.checkRefreshCellsDisappear();
 //										webDB.sendTextToAnElement(PurchaseBillsLocators.HsnCodeLov, Hsncode,
 //												ElementType.Xpath);
@@ -1285,7 +1285,8 @@ public class PurchaseBillsFunctions {
 						commonFunc.checkRefreshCellsDisappear();
 						flag = webDB.waitForElement(PurchaseBillsLocators.PurchaseBillsTransLoc(), ElementType.Xpath);
 						if (flag) {
-							webDB.doubleClickAnElement(PurchaseBillsLocators.PurchaseBillsTransLoc(), ElementType.Xpath);
+							webDB.doubleClickAnElement(PurchaseBillsLocators.PurchaseBillsTransLoc(),
+									ElementType.Xpath);
 //							flag = webDB.waitForElement(PurchaseBillsLocators.GlAccLoc, ElementType.Xpath);
 							if (flag) {
 								commonFunc.hardWait(1000);
@@ -1296,27 +1297,32 @@ public class PurchaseBillsFunctions {
 //						flag = webDB.waitForElement(PurchaseBillsLocators.InvQtyField, ElementType.Xpath);
 								if (flag) {
 									SalesordFunc.verifyClickAndEnterValueInTableFields(
-											PurchaseBillsLocators.PurchaseBillsLineWiseInvQty(), PurchaseBillsLocators.InvQty, InvQty);
+											PurchaseBillsLocators.PurchaseBillsLineWiseInvQty(),
+											PurchaseBillsLocators.InvQty, InvQty);
 									logs.logging("INFO", "Inv Qty Is Entered");
 									commonFunc.checkRefreshCellsDisappear();
-									flag = webDB.waitForElement(PurchaseBillsLocators.PurchaseBillsTransLocunitprice(), ElementType.Xpath);
+									flag = webDB.waitForElement(PurchaseBillsLocators.PurchaseBillsTransLocunitprice(),
+											ElementType.Xpath);
 									if (flag) {
 										SalesordFunc.verifyClickAndEnterValueInTableFields(
-												PurchaseBillsLocators.PurchaseBillsTransLocunitprice(), PurchaseBillsLocators.UnitCost,
-												UnitPrice);
+												PurchaseBillsLocators.PurchaseBillsTransLocunitprice(),
+												PurchaseBillsLocators.UnitCost, UnitPrice);
 										logs.logging("INFO", "Unit Cost Is Entered ");
 										commonFunc.checkRefreshCellsDisappear();
-										flag = webDB.waitForElement(PurchaseBillsLocators.PurchaseBillsTransLocHsnCode(),
+										flag = webDB.waitForElement(
+												PurchaseBillsLocators.PurchaseBillsTransLocHsnCode(),
 												ElementType.Xpath);
 										if (flag) {
 											commonFunc.checkRefreshCellsDisappear();
-											webDB.javaScriptClickAnElement(PurchaseBillsLocators.PurchaseBillsTransLocHsnCode(),
+											webDB.javaScriptClickAnElement(
+													PurchaseBillsLocators.PurchaseBillsTransLocHsnCode(),
 													ElementType.Xpath);
 //										flag = webDB.waitForElement(PurchaseBillsLocators.HsnCodeLov,
 //												ElementType.Xpath);
 //										if (flag) {
 											String GetTextHSN = webDB.getTextFromElement(
-													PurchaseBillsLocators.PurchaseBillsTransLocHsnCode(), ElementType.Xpath);
+													PurchaseBillsLocators.PurchaseBillsTransLocHsnCode(),
+													ElementType.Xpath);
 											if (!GetTextHSN.equals(Hsncode)) {
 												commonFunc.searchAndSelectValueInFilters(
 														PurchaseBillsLocators.HsnCodeLov, Hsncode);
@@ -1417,7 +1423,6 @@ public class PurchaseBillsFunctions {
 				}
 			}
 		}
-
 		assertTrue(flag);
 	}
 
@@ -1427,13 +1432,12 @@ public class PurchaseBillsFunctions {
 	 * @author PremKumar.K-RMITS
 	 */
 	public void VerifyToCreateExpenseType(String GLAccount, String Cost, String HSN, String GstSupply) {
-
 		flag = webDB.waitForElement(PurchaseBillsLocators.PurchaseBillsTransLoc(), ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(PurchaseBillsLocators.PurchaseBillsTransLoc(), ElementType.Xpath);
 			logs.logging("INFO", "Field Is Clicked");
 			commonFunc.checkRefreshCellsDisappear();
-//			flag = webDB.waitForElement(PurchaseBillsLocators.GlAccLoc, ElementType.Xpath);
+			flag = webDB.waitForElement(PurchaseBillsLocators.GlAccLoc, ElementType.Xpath);
 			if (flag) {
 				commonFunc.searchAndSelectValueInFilters(PurchaseBillsLocators.GlAccLoc, GLAccount);
 				logs.logging("INFO", "GL Account Is Entered:" + GLAccount);
@@ -1444,7 +1448,8 @@ public class PurchaseBillsFunctions {
 					webDB.clearText(PurchaseBillsLocators.PBCostInput, ElementType.Xpath);
 					webDB.sendTextToAnElement(PurchaseBillsLocators.PBCostInput, Cost, ElementType.Xpath);
 					logs.logging("INFO", "Entered Cost Is:" + Cost);
-					flag = webDB.waitForElement(PurchaseBillsLocators.PurchaseBillsTransLocHsnCode(), ElementType.Xpath);
+					flag = webDB.waitForElement(PurchaseBillsLocators.PurchaseBillsTransLocHsnCode(),
+							ElementType.Xpath);
 					if (flag) {
 						webDB.clickAnElement(PurchaseBillsLocators.PurchaseBillsTransLocHsnCode(), ElementType.Xpath);
 						flag = webDB.waitForElement(PurchaseBillsLocators.StockTransferHsnLov, ElementType.Xpath);
@@ -1453,7 +1458,8 @@ public class PurchaseBillsFunctions {
 							commonFunc.searchAndSelectValueInFilters(PurchaseBillsLocators.StockTransferHsnLov, HSN);
 							logs.logging("INFO", "Entered Cost Is:" + HSN);
 							commonFunc.checkRefreshCellsDisappear();
-							flag = webDB.waitForElement(PurchaseBillsLocators.PurchaseBillsLineWiseGstType(), ElementType.Xpath);
+							flag = webDB.waitForElement(PurchaseBillsLocators.PurchaseBillsLineWiseGstType(),
+									ElementType.Xpath);
 							if (flag) {
 								commonFunc.checkRefreshCellsDisappear();
 								webDB.javaScriptClickAnElement(PurchaseBillsLocators.PurchaseBillsLineWiseGstType(),
@@ -1467,11 +1473,7 @@ public class PurchaseBillsFunctions {
 								}
 								webDB.pressTabKey();
 								ClickSaveButton();
-
-								// VerifyToValidateAfterPriceDeviationForAfterAddItem(i, SheetName);
-
 							}
-
 						}
 					}
 				}
@@ -1479,7 +1481,7 @@ public class PurchaseBillsFunctions {
 		}
 		assertTrue(flag);
 	}
-	
+
 	/**
 	 * @author Harikrishna -RMITS This Method Is Used To Click the Table Field And
 	 *         Pass The Input Value
@@ -1528,7 +1530,8 @@ public class PurchaseBillsFunctions {
 			if (flag) {
 				commonFunc.searchAndSelectValueInFilters(PurchaseBillsLocators.ItemLovField, ITEM_ID);
 				logs.logging("INFO", "Type Selected SuccessFully");
-				//flag = webDB.waitForElement(PurchaseBillsLocators.StockTransferTypeQtyField, ElementType.Xpath);
+				// flag = webDB.waitForElement(PurchaseBillsLocators.StockTransferTypeQtyField,
+				// ElementType.Xpath);
 				flag = webDB.waitForElement(PurchaseBillsLocators.PurchaseBillsTransLoc(), ElementType.Xpath);
 				if (flag) {
 					webDB.clickAnElement(PurchaseBillsLocators.PurchaseBillsTransLoc(), ElementType.Xpath);
@@ -1539,9 +1542,10 @@ public class PurchaseBillsFunctions {
 						logs.logging("INFO", "GL Account Is Entered:" + GLAccount);
 						commonFunc.checkRefreshCellsDisappear();
 						if (flag) {
-							webDB.javaScriptClickAnElement(PurchaseBillsLocators.StockTransferTypeQtyField, ElementType.Xpath);
+							webDB.javaScriptClickAnElement(PurchaseBillsLocators.StockTransferTypeQtyField,
+									ElementType.Xpath);
 							verifyClickAndEnterValueInTableFields(PurchaseBillsLocators.StockTransferTypeQtyField,
-									PurchaseBillsLocators.StockTransferQtyInput , Qty);
+									PurchaseBillsLocators.StockTransferQtyInput, Qty);
 //							webDB.clearTextField(PurchaseBillsLocators.StockTransferQtyInput,
 //									ElementType.Xpath);
 //							commonFunc.checkRefreshCellsDisappear();
@@ -1549,9 +1553,11 @@ public class PurchaseBillsFunctions {
 //							webDB.javaScriptSendTextToAnElement(PurchaseBillsLocators.StockTransferQtyInput, Qty,
 //									ElementType.Xpath);
 							logs.logging("INFO", "Entered Qty Is:" + Cost);
-							flag = webDB.waitForElement(PurchaseBillsLocators.PurchaseBillsTransLocunitprice(), ElementType.Xpath);
+							flag = webDB.waitForElement(PurchaseBillsLocators.PurchaseBillsTransLocunitprice(),
+									ElementType.Xpath);
 							if (flag) {
-								webDB.clickAnElement(PurchaseBillsLocators.PurchaseBillsTransLocunitprice(), ElementType.Xpath);
+								webDB.clickAnElement(PurchaseBillsLocators.PurchaseBillsTransLocunitprice(),
+										ElementType.Xpath);
 								webDB.clearText(PurchaseBillsLocators.PBCostInput, ElementType.Xpath);
 								webDB.sendTextToAnElement(PurchaseBillsLocators.PBCostInput, Cost, ElementType.Xpath);
 								logs.logging("INFO", "Entered Cost Is:" + Cost);
@@ -1567,14 +1573,17 @@ public class PurchaseBillsFunctions {
 												PurchaseBillsLocators.StockTransferHsnLov, HSN);
 										logs.logging("INFO", "Entered Cost Is:" + HSN);
 										commonFunc.checkRefreshCellsDisappear();
-										flag = webDB.waitForElement(PurchaseBillsLocators.PurchaseBillsLineWiseGstType(),
+										flag = webDB.waitForElement(
+												PurchaseBillsLocators.PurchaseBillsLineWiseGstType(),
 												ElementType.Xpath);
 										if (flag) {
 											commonFunc.checkRefreshCellsDisappear();
-											webDB.javaScriptClickAnElement(PurchaseBillsLocators.PurchaseBillsLineWiseGstType(),
+											webDB.javaScriptClickAnElement(
+													PurchaseBillsLocators.PurchaseBillsLineWiseGstType(),
 													ElementType.Xpath);
 											String GetTextGstType = webDB.getTextFromElement(
-													PurchaseBillsLocators.PurchaseBillsLineWiseGstType(), ElementType.Xpath);
+													PurchaseBillsLocators.PurchaseBillsLineWiseGstType(),
+													ElementType.Xpath);
 											if (!GetTextGstType.equals(GstSupply)) {
 												webDB.selectDropDownByText(PurchaseBillsLocators.GstSupplyType,
 														GstSupply, ElementType.Xpath);

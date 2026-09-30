@@ -950,10 +950,11 @@ public class SalesInvoiceLocators {
 	public static final String CRPageUnitPriceTable() {
 		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(CR_LineTable, "Unit Price");
 	}
+
 	/** @Locator XPATH */
 	public static final String SI_ShowMore = "//button[@data-testid='SHOW_MORE']";
 	/** @Locator XPATH */
-	public static final String SI_detail_Button = "//span[@class='fa fa fa-indent']";
+	public static final String SI_detail_Button = "//*[text()='Details']";
 	/** @Locator XPATH */
 	public static final String SI_detail_Promotional = "//div[@aria-label='Tax Details']//button";
 	/** @Locator XPATH */
@@ -964,5 +965,5 @@ public class SalesInvoiceLocators {
 	public static final String CR_ShowMore = "//button[@data-testid='show_more']";
 	/** @Locator XPATH */
 	public static final String Header_Other_Tab = "//button[@data-testid='Others']";
-	
+
 }

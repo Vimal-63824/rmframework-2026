@@ -150,48 +150,48 @@ public class ProductionOrderTest2 extends RoadMapERPTest {
 		Assert.assertTrue(flag);
 	}
 
-//	/**
-//	 * Manual production order Without Sales Order Reference(First Process - Outside
-//	 * - subsequent process- Inside)
-//	 * 
-//	 * @author Sakthi-GWL
-//	 */
-//	@Author("Sakthi-GWL")
-//	@Test(priority = 10, groups = {
-//			"Prod Order" }, description = "52 Manual Production order with Move Type - Single (FIRST OUT REST IN)")
-//	public void VerifyProdOrderWithoutSOFirstOutsideRestInsideMoveTypeSingle() {
-//		flag = prodOrderFunc.verifyProdOrderWithoutSOFirstOutsideRestInsideMoveTypeSingle();
-//		Assert.assertTrue(flag);
-//	}
-//
-//	/**
-//	 * Manual production order Without Sales Order Reference(First Process - Outside
-//	 * - subsequent process- Inside)
-//	 * 
-//	 * @author Sakthi-GWL
-//	 */
-//	@Author("Sakthi-GWL")
-//	@Test(priority = 11, groups = {
-//			"Prod Order" }, description = "53 Manual Production order with Move Type - Multiple (FIRST OUT REST IN)")
-//	public void VerifyProdOrderWithoutSOFirstOutsideRestInsideMoveTypeMultiple() {
-//		flag = prodOrderFunc.verifyProdOrderWithoutSOFirstOutsideRestInsideMoveTypeMultiple();
-//		Assert.assertTrue(flag);
-//	}
-//
-//	/**
-//	 * Manual production order Without Sales Order Reference(First Process - Outside
-//	 * - subsequent process- Inside)
-//	 * 
-//	 * @author Sakthi-GWL
-//	 */
-//	@Author("Sakthi-GWL")
-//	@Test(priority = 12, groups = {
-//			"Prod Order" }, description = "54 Manual Production order with Move Type - Item (FIRST OUT REST IN)")
-//	public void VerifyProdOrderWithoutSOFirstOutsideRestInsideMoveTypeItem() {
-//		flag = prodOrderFunc.verifyProdOrderWithoutSOFirstOutsideRestInsideMoveTypeItem();
-//		Assert.assertTrue(flag);
-//	}
-//
+	/**
+	 * Manual production order Without Sales Order Reference(First Process - Outside
+	 * - subsequent process- Inside)
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	@Author("Sakthi-GWL")
+	@Test(priority = 10, groups = {
+			"Prod Order" }, description = "52 Manual Production order with Move Type - Single (FIRST OUT REST IN)")
+	public void VerifyProdOrderWithoutSOFirstOutsideRestInsideMoveTypeSingle() {
+		flag = prodOrderFunc.verifyProdOrderWithoutSOFirstOutsideRestInsideMoveTypeSingle();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Manual production order Without Sales Order Reference(First Process - Outside
+	 * - subsequent process- Inside)
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	@Author("Sakthi-GWL")
+	@Test(priority = 11, groups = {
+			"Prod Order" }, description = "53 Manual Production order with Move Type - Multiple (FIRST OUT REST IN)")
+	public void VerifyProdOrderWithoutSOFirstOutsideRestInsideMoveTypeMultiple() {
+		flag = prodOrderFunc.verifyProdOrderWithoutSOFirstOutsideRestInsideMoveTypeMultiple();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Manual production order Without Sales Order Reference(First Process - Outside
+	 * - subsequent process- Inside)
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	@Author("Sakthi-GWL")
+	@Test(priority = 12, groups = {
+			"Prod Order" }, description = "54 Manual Production order with Move Type - Item (FIRST OUT REST IN)")
+	public void VerifyProdOrderWithoutSOFirstOutsideRestInsideMoveTypeItem() {
+		flag = prodOrderFunc.verifyProdOrderWithoutSOFirstOutsideRestInsideMoveTypeItem();
+		Assert.assertTrue(flag);
+	}
+
 //	/**
 //	 * Manual production order Without Sales Order reference (First Process -
 //	 * Outside- subsequent process- Inside / Outside(Comb. of Both))
