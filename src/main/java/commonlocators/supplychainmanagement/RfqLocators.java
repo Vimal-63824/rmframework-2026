@@ -203,7 +203,7 @@ public class RfqLocators {
 
 	/** @locatorType Xpath */
 	public static final String SobItemField(int i) {
-		return "(//table[@data-testid='sob_Result_Data'])[2]/tbody/tr["+ i +"]/td[2]]";
+		return "//*[@id=\"sob_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr["+ i +"]/td[2]";
 	}
 
 	/** @locatorType Xpath */
