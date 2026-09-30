@@ -727,7 +727,7 @@ public class DirectGrnPageFunctions {
 				commonFunc.checkRefreshCellsDisappear();
 				flag = webDB.waitForElement(DirectGrnPageLocators.GrnDetailsBtn(i - 21), ElementType.Xpath);
 				if (flag) {
-					webDB.clickAnElement(DirectGrnPageLocators.GrnDetailsBtn(i - 21), ElementType.Xpath);
+					webDB.javaScriptClickAnElement(DirectGrnPageLocators.GrnDetailsBtn(i - 21), ElementType.Xpath);
 					logs.logging("INFO", "Details Button Is Clicked");
 					commonFunc.hardWait(500);
 					flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineDetailsNew, ElementType.Xpath);

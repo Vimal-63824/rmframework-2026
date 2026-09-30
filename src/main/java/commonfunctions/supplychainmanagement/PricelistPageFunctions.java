@@ -225,11 +225,8 @@ public class PricelistPageFunctions {
 		clickUnitLov(commonFunc.getDataFromTestDataSheet("Unit_100"));
 		commonFunc.expandFindTable();
 		clickItemLov(commonFunc.getDataFromTestDataSheet("SimItem_ID"));
-		commonFunc.expandFindTable();
 		clickSupplierLov(commonFunc.getDataFromTestDataSheet("DomSupplier_ID"));
-		commonFunc.expandFindTable();
 		clickFindEffectiveFromDate(commonFunc.getDataFromTestDataSheet("Efffrom_Date"));
-		commonFunc.expandFindTable();
 		clickFindEffectiveToDate(commonFunc.getDataFromTestDataSheet("Effto_Date"));
 		commonFunc.expandFindTable();
 		verifyStatusInFindPage();
@@ -1124,6 +1121,7 @@ public class PricelistPageFunctions {
 			if (flag) {
 				webDB.clickAnElement(PricelistPageLocators.FindSearchButton, ElementType.Xpath);
 				logs.logging("INFO", "Find Search Button is clicked");
+				commonFunc.expandFindTable();
 				flag = webDB.waitForElement(PricelistPageLocators.FindClearButton, ElementType.Xpath);
 				if (flag) {
 					webDB.clickAnElement(PricelistPageLocators.FindClearButton, ElementType.Xpath);
@@ -1153,6 +1151,7 @@ public class PricelistPageFunctions {
 			if (flag) {
 				webDB.clickAnElement(PricelistPageLocators.FindSearchButton, ElementType.Xpath);
 				logs.logging("INFO", "Find Search Button is clicked");
+				commonFunc.expandFindTable();
 				flag = webDB.waitForElement(PricelistPageLocators.FindClearButton, ElementType.Xpath);
 				if (flag) {
 					webDB.clickAnElement(PricelistPageLocators.FindClearButton, ElementType.Xpath);

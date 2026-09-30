@@ -2028,7 +2028,7 @@ public class RfqPageFunctions {
 //				commonFunc.getDataFromTestDataSheet("SendTextInput"));
 		verifyAmendFilterSearchSOB(RfqLocators.RFQ_Status, commonFunc.getDataFromTestDataSheet("ApproveStatus"), "Status",
 				commonFunc.getDataFromTestDataSheet("HeaderSearchType"),
-				commonFunc.getDataFromTestDataSheet("LovButton"));
+				commonFunc.getDataFromTestDataSheet("SelectType"));
 		commonFunc.logoutUser();
 
 	}
