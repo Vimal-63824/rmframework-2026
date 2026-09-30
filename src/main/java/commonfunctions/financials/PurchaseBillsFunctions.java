@@ -2650,12 +2650,16 @@ public class PurchaseBillsFunctions {
 	 * @author Kowshik-RMITS
 	 */
 	public void clickViewButton() {
-		flag = webDB.waitForElement(PurchaseBillsLocators.ViewButton, ElementType.CssSelector);
+		flag = webDB.waitForElement(PurchaseBillsLocators.ExpandButtoninBankPayment, ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(PurchaseBillsLocators.ViewButton, ElementType.CssSelector);
-			flag = webDB.waitForElement(PurchaseBillsLocators.ViewButtonFrame, ElementType.Xpath);
+			webDB.clickAnElement(PurchaseBillsLocators.ExpandButtoninBankPayment, ElementType.Xpath);
+			flag = webDB.waitForElement(PurchaseBillsLocators.ViewButton, ElementType.Xpath);
 			if (flag) {
-				logs.logging("INFO", "Bank Payment Line Wise View Button Is Clicked Successfully");
+				webDB.clickAnElement(PurchaseBillsLocators.ViewButton, ElementType.Xpath);
+				flag = webDB.waitForElement(PurchaseBillsLocators.ViewButtonFrame, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Bank Payment Line Wise View Button Is Clicked Successfully");
+				}
 			}
 		}
 		assertTrue(flag);
@@ -2676,10 +2680,11 @@ public class PurchaseBillsFunctions {
 //				System.getProperty("KowshikUserName"));
 		commonFunc.navigateToFinancialPaymentReceipt();
 		BPFunc.clickAddButtonInPaymentsRecipts();
-		BPFunc.createBankPaymentEntry(commonFunc.getDataFromTestDataSheet("BankDocMode"), BankName, Today,
+		BPFunc.createBankPaymentEntryPurchaseBillsk(commonFunc.getDataFromTestDataSheet("BankDocMode"), BankName, Today,
 				commonFunc.getDataFromTestDataSheet("BankPayMode"),
 				commonFunc.getDataFromTestDataSheet("BankRefNumber"), Today,
-				commonFunc.getDataFromTestDataSheet("BankPrefix"), Currency);
+				commonFunc.getDataFromTestDataSheet("BankPrefix"), Currency,
+				commonFunc.getDataFromTestDataSheet("Refdoc"));
 		BPFunc.getBankPaymentOrReceiptDocumentNumber();
 		BPFunc.checkBPDocumentStatusWithDB(commonFunc.getDataFromTestDataSheet("Draft"),
 				VariableHandler.getBankPaymentOrReceiptDocNumber());
@@ -2725,11 +2730,11 @@ public class PurchaseBillsFunctions {
 		if (BillsBank.equals("000")) {
 			BillsBank = "10";
 		}
-		webDB.moveToElement(PurchaseBillsLocators.Payment_LineDetails_Btn, ElementType.Xpath);
-		webDB.clickAnElement(PurchaseBillsLocators.Payment_LineDetails_Btn, ElementType.Xpath);
-		flag = webDB.waitForElement(PurchaseBillsLocators.Payment_ViewButton, ElementType.Xpath);
-		if (flag) {
-			webDB.clickAnElement(PurchaseBillsLocators.Payment_ViewButton, ElementType.Xpath);
+//		webDB.moveToElement(PurchaseBillsLocators.Payment_LineDetails_Btn, ElementType.Xpath);
+//		webDB.clickAnElement(PurchaseBillsLocators.Payment_LineDetails_Btn, ElementType.Xpath);
+//		flag = webDB.waitForElement(PurchaseBillsLocators.Payment_ViewButton, ElementType.Xpath);
+//		if (flag) {
+//			webDB.clickAnElement(PurchaseBillsLocators.Payment_ViewButton, ElementType.Xpath);
 			commonFunc.hardWait(1000);
 			flag = webDB.waitForElement(PurchaseBillsLocators.ViewButtonFrame, ElementType.Xpath);
 			if (flag) {
@@ -2754,6 +2759,7 @@ public class PurchaseBillsFunctions {
 							logs.logging("INFO", "Successfully Inserted a Adjustment Amount");
 							flag = webDB.waitForElement(PurchaseBillsLocators.SaveButtonView, ElementType.Xpath);
 							if (flag) {
+								commonFunc.hardWait(2000);
 								webDB.clickAnElement(PurchaseBillsLocators.SaveButtonView, ElementType.Xpath);
 								webDB.switchToDefaultContent();
 								commonFunc.hardWait(500);
@@ -2771,7 +2777,7 @@ public class PurchaseBillsFunctions {
 				}
 
 			}
-		}
+//		}
 		assertTrue(flag);
 	}
 

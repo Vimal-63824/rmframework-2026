@@ -281,7 +281,7 @@ public class PurchaseBillsLocators {
 	/** @locatorType Xpath */
 	public static final String PendingPurchaseBill = "//button[@data-testid='PendingBills']";
 	/** @locatorType Xpath */
-	public static final String ViewButton = "#ig_line_ig_grid_vc > div.a-GV-bdy > div.a-GV-w-scroll > table > tbody > tr > td:nth-child(9) > a";
+	public static final String ViewButton = "//a[@data-action='VIEW']";
 	/** @locatorType Xpath */
 	public static final String ViewButtonFrame = "//*[@id='apex_dialog_1']/iframe";
 	/** @locatorType Xpath */
@@ -291,13 +291,13 @@ public class PurchaseBillsLocators {
 	/** @locatorType Xpath */
 	public static final String PayAmt = "//input[@id='C1241009465375988566']";//TODO
 	/** @locatorType Xpath */
-	public static final String SaveButtonView = "//button[@id='B1144948769391115711']";//TODO
+	public static final String SaveButtonView = "//button[@id='B1253817144204452317']";//TODO
 	/** @locatorType Xpath */
-	public static final String CloseButton = "//*[@id=\"t_PageBody\"]/div[11]/div[1]/button/span";
+	public static final String CloseButton = "//*[@id='t_PageBody']/div[12]/div[1]/button/span";
 	/** @locatorType Xpath */
-	public static final String BillDocField = "//*[@id=\"ig_line1_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[2]";//TODO
+	public static final String BillDocField = "//*[@id='ig_line1_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[2]";//TODO
 	/** @locatorType Xpath */
-	public static final String PayamountField = "//*[@id=\"ig_line1_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[4]";//TODO
+	public static final String PayamountField = "//*[@id='ig_line1_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[4]";//TODO
 	/** @locatorType Xpath */
 	public static final String AdjButton = "//label[text()='Adjustments']";
 	/** @locatorType Xpath */
@@ -428,5 +428,7 @@ public class PurchaseBillsLocators {
 	public static final String Payment_LineDetails_Btn = "//table[@data-testid='R1088051364275366746_Result_Data']/tbody/tr/td[1]/a/span";
 	/** @locatorType Xpath */
 	public static final String Payment_ViewButton = "//span[@class='fa fa-code-group']";
+	/** @locatorType Xpath */
+	public static final String ExpandButtoninBankPayment = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[1]/a";
 
 }
