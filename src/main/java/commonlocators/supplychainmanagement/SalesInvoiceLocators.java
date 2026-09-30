@@ -561,7 +561,7 @@ public class SalesInvoiceLocators {
 	/** @Locator XPATH */
 	public static final String GE_Pend_SelectAll = "(//input[@id='check_all'])[1]";
 	/** @Locator XPATH */
-	public static final String GE_Pend_Curr_ProcQty = "//*[@id=\"2397415601543505368_orig\"]/tbody/tr[2]/td[14]";//TODO
+	public static final String GE_Pend_Curr_ProcQty = "//*[@id=\"2397415601543505368_orig\"]/tbody/tr[2]/td[14]";// TODO
 	/** @Locator XPATH */
 	public static final String GE_Pend_LS_Tab = "//span[@class='fa fa-balance-scale']";
 	/** @Locator XPATH */
@@ -837,7 +837,7 @@ public class SalesInvoiceLocators {
 	/** @Locator XPATH */
 	public static final String RW_Pend_SCO_Search_Btn = "//button[@data-testid='RW_SCO_Search_Btn']";
 	/** @Locator XPATH */
-	public static final String RW_SCO_Get_Rej_Qty = "//*[@id=\"ig_line_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[4]";
+	public static final String RW_SCO_Get_Rej_Qty = "//*[@id=\"ig_line_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[5]";
 	/** @Locator XPATH */
 	public static final String RW_SCO_InsideOutside_Qty = "//*[@id=\"ig_line_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[8]";
 	/** @Locator XPATH */
@@ -853,7 +853,7 @@ public class SalesInvoiceLocators {
 	/** @Locator XPATH */
 	public static final String RW_Pend_GRN_Lov_Btn = "//input[@data-testid='RW_SCO_GRN_lov']/following-sibling::button";
 	/** @Locator XPATH */
-	public static final String Rw_SCO_Inside_QtyField = "//*[@id=\"ig_line_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr[1]/td[7]";
+	public static final String Rw_SCO_Inside_QtyField = "//*[@id=\"ig_line_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[8]";
 	/** @Locator XPATH */
 	public static final String Rw_SCO_Inside_QtyField_Input = "//input[@data-testid='Rework_Prim_IS_Field']";
 	/** @Locator XPATH */
@@ -954,11 +954,11 @@ public class SalesInvoiceLocators {
 	/** @Locator XPATH */
 	public static final String SI_ShowMore = "//button[@data-testid='SHOW_MORE']";
 	/** @Locator XPATH */
-	public static final String SI_detail_Button = "//*[text()='Details']";
+	public static final String SI_detail_Button = "//span[@class='fa fa fa-indent']";
 	/** @Locator XPATH */
 	public static final String SI_detail_Promotional = "//div[@aria-label='Tax Details']//button";
 	/** @Locator XPATH */
-	public static final String SI_linedetail_Button = "//*[@id=\"ig_line_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[1]/a/span";
+	public static final String SI_linedetail_Button = "//table[@data-testid='ig_line_ig_report_settings_Result_Data']/tbody/tr/td[1]/a/span";
 	/** @Locator XPATH */
 	public static final String SI_Include_Charge = "//button[@data-testid='INC_CHARGE']";
 	/** @Locator XPATH */
