@@ -169,6 +169,89 @@ public class BankPaymentFunctions {
 		}
 		assertTrue(flag);
 	}
+	
+	/**
+	 * This Method Is Used to Create A Bank Payment Entry In The Payments / Receipts
+	 * Screen
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @param DocumentMode
+	 * @param BankName
+	 * @param VoucherDate
+	 * @param PayMode
+	 * @param ReferenceNumber
+	 * @param ReferenceDate
+	 * @param Prefix
+	 * @param TransCurcy
+	 */
+	public void createBankPaymentEntryPurchaseBillsk (String DocumentMode, String BankName, String VoucherDate, String PayMode,
+			String ReferenceNumber, String ReferenceDate, String Prefix, String TransCurcy ,String Refdoc) {
+		flag = webDB.waitForElement(BankPaymentLocators.BankModeDropDown, ElementType.Xpath);
+		if (flag) {
+			webDB.selectDropDownByText(BankPaymentLocators.BankModeDropDown, DocumentMode, ElementType.Xpath);
+			logs.logging("INFO", "Document Mode Changed Successfully to " + DocumentMode);
+			commonFunc.searchAndSelectValueInFilters(BankPaymentLocators.BankLovbutton, BankName);
+			commonFunc.hardWait(2000);
+			flag = webDB.waitForElement(BankPaymentLocators.BankVoucherDateinputField, ElementType.Xpath);
+			if (flag) {
+				webDB.clearTextField(BankPaymentLocators.BankVoucherDateinputField, ElementType.Xpath);
+				webDB.sendTextToAnElement(BankPaymentLocators.BankVoucherDateinputField, VoucherDate,
+						ElementType.Xpath);
+				flag = webDB.waitForElement(BankPaymentLocators.BankPayModeDropDown, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Bank Voucher Date Is Inserted Successfully");
+					webDB.selectDropDownByText(BankPaymentLocators.BankPayModeDropDown, PayMode, ElementType.Xpath);
+					logs.logging("INFO", "Payment Mode Changed Sucessfully To " + PayMode);
+					flag = webDB.waitForElement(BankPaymentLocators.BankRefDateInputField, ElementType.Xpath);
+					if (flag) {
+						webDB.clearTextField(BankPaymentLocators.BankRefDateInputField, ElementType.Xpath);
+						webDB.sendTextToAnElement(BankPaymentLocators.BankRefDateInputField, ReferenceDate,
+								ElementType.Xpath);
+						logs.logging("INFO", "Reference Date Is Inserted Successfully");
+						commonFunc.searchAndSelectValueInFilters(BankPaymentLocators.BankPrefixLovButton, Prefix);
+						commonFunc.searchAndSelectValueInFilters(BankPaymentLocators.BankTransCurrencyLovButton,
+								TransCurcy);
+						if (!PayMode.equals("Cheque")) {
+							flag = webDB.waitForElement(BankPaymentLocators.BankRefInputField, ElementType.Xpath);
+							if (flag) {
+								webDB.clearTextField(BankPaymentLocators.BankRefInputField, ElementType.Xpath);
+								webDB.sendTextToAnElement(BankPaymentLocators.BankRefInputField, ReferenceNumber,
+										ElementType.Xpath);
+							}
+						} else {
+							flag = webDB.waitForElement(BankPaymentLocators.BankpaymentChequeLovButton,
+									ElementType.Xpath);
+							if (flag) {
+								webDB.clickAnElement(BankPaymentLocators.BankpaymentChequeLovButton, ElementType.Xpath);
+								commonFunc.hardWait(500);
+								commonFunc.checkRefreshCellsDisappear();
+								webDB.pressDownArrowKey();
+								webDB.pressDownArrowKey();
+								webDB.pressEnterKey();
+							}
+						}
+						flag = webDB.waitForElement(BankPaymentLocators.RefdocNO, ElementType.Xpath);
+						if(flag) {
+							webDB.sendTextToAnElement(BankPaymentLocators.RefdocNO, Refdoc, ElementType.Xpath);
+	
+						flag = webDB.waitForElement(BankPaymentLocators.BankSaveButton, ElementType.Xpath);
+						if (flag) {
+							webDB.clickAnElement(BankPaymentLocators.BankSaveButton, ElementType.Xpath);
+							commonFunc.checkRefreshCellsDisappear();
+							flag = webDB.waitForElement(BankPaymentLocators.BankPostButton, ElementType.Xpath);
+							if (flag) {
+								logs.logging("INFO",
+										"Save Button Is Clicked And Bank Payment Document is Created Successfully");
+							}}
+						}
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+	
+	
 
 	/**
 	 * This Method is Used To Get the BankPayment Document Number
@@ -264,19 +347,19 @@ public class BankPaymentFunctions {
 	 * @param CPCcode
 	 */
 	public void addBankPaymentLineDetails(String GLAccount, String CPCcode) {
-		flag = webDB.waitForElement(BankPaymentLocators.BankLineGLAccountField, ElementType.Xpath);
+		flag = webDB.waitForElement(BankPaymentLocators.BankPaymentDataLocatorsGlaccount(), ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(BankPaymentLocators.BankLineGLAccountField, ElementType.Xpath);
+			webDB.clickAnElement(BankPaymentLocators.BankPaymentDataLocatorsGlaccount(), ElementType.Xpath);
 			commonFunc.searchAndSelectValueInFilters(BankPaymentLocators.BankLineGLAccountLovButton, GLAccount);
 			commonFunc.hardWait(100);
 			webDB.pressTabKey();
 			commonFunc.hardWait(200);
 			commonFunc.checkRefreshCellsDisappear();
-			flag = webDB.waitForElement(BankPaymentLocators.BankLineCPCField, ElementType.Xpath);
+			flag = webDB.waitForElement(BankPaymentLocators.BankPaymentDataLocatorsCpcDesc(), ElementType.Xpath);
 			if (flag) {
-				String GetTextCPC = webDB.getTextFromElement(BankPaymentLocators.BankLineCPCField, ElementType.Xpath);
+				String GetTextCPC = webDB.getTextFromElement(BankPaymentLocators.BankPaymentDataLocatorsCpcDesc(), ElementType.Xpath);
 				if (!GetTextCPC.equals(CPCcode)) {
-					webDB.clickAnElement(BankPaymentLocators.BankLineCPCField, ElementType.Xpath);
+					webDB.clickAnElement(BankPaymentLocators.BankPaymentDataLocatorsCpcDesc(), ElementType.Xpath);
 					commonFunc.searchAndSelectValueInFilters(BankPaymentLocators.BankLineCPCLovButton, CPCcode);
 				}
 //				commonFunc.checkRefreshCellsDisappear();
@@ -297,7 +380,7 @@ public class BankPaymentFunctions {
 			webDB.clickAnElement(BankPaymentLocators.BankLineWiseSaveButton, ElementType.Xpath);
 			commonFunc.hardWait(1500);
 			commonFunc.checkRefreshCellsDisappear();
-			flag = webDB.waitForElement(BankPaymentLocators.BankLineWiseDeleteButton, ElementType.CssSelector);
+			//flag = webDB.waitForElement(BankPaymentLocators.BankLineWiseDeleteButton, ElementType.CssSelector);
 			if (flag) {
 				logs.logging("INFO", "Bank Payment Line Wise Save button Is clicked Successfully");
 				commonFunc.hardWait(500);

@@ -2091,6 +2091,7 @@
 	"RC-ItemType": "Rate Contract",
 	"PL-ItemType": "Price List",
 	"CustomerScheduleAmendmentCloseShort":"Amended",
-	"customerScdhlDraftStatus":"Draft" 
+	"customerScdhlDraftStatus":"Draft" ,
+	"Refdoc" : "200200"
 	
 }

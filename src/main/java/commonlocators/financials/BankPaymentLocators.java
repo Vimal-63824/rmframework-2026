@@ -334,7 +334,23 @@ public class BankPaymentLocators {
 		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(BPAddLineTable, "GL Acct. Desc.");
 	}
 	
+	/** @locatorType Xpath */
+	public static final String RefdocNO  = "//input[@data-testid='P341310009_BTRANS_TRANS_REF_NO1']";
+	
+			
+	/** @locatorType Xpath */
+	public static final String BankPaymentTableLocators  = "(//table[@data-testid='R1196919739088703352_Result_Data'])[2]";		
+	
+	/** @locatorType Xpath */
+	public static final String BankPaymentDataLocatorsGlaccount() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(BankPaymentTableLocators, "GL Acct. Desc.");
+	}
+	
+	/** @locatorType Xpath */
+	public static final String BankPaymentDataLocatorsCpcDesc() {
+		return CommonFunctions.checkAndReturnIndexForLocatorWithHeaderValue(BankPaymentTableLocators, "CPC Desc.");
 	
 	
+	}
 
 }
