@@ -450,12 +450,16 @@ public class ShareOfBusinessFunctions {
 		if (Type.equals(commonFunc.getDataFromTestDataSheet("HeaderSearchType"))) {
 			clickSearchButton();
 			commonFunc.hardWait(3000);
+		commonFunc.expandFindTable();
 			verifyAmendTableValue(i, Value);
 		} else if (Type.equals(commonFunc.getDataFromTestDataSheet("LineSearchType"))) {
 			clickLineSearchButton();
 			commonFunc.hardWait(3000);
+			commonFunc.expandFindTable();
 			verifyLineAmendTableValue(i, Value);
+			
 		}
+
 		clearSearchFilter();
 	}
 

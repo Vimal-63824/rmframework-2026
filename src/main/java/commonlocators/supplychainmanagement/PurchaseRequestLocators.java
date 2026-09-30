@@ -140,7 +140,7 @@ public class PurchaseRequestLocators {
 	/** @locatorType Xpath */
 	public static final String PRCloseShort_Reference = "//input[@id='P1615131122011_PCH_REF']";
 	/** @locatorType Xpath */
-	public static final String PRCloseShort_TickIcon = "//button[@data-testid='Create' and @id='B2010164271553681647']";
+	public static final String PRCloseShort_TickIcon = "//button[@data-testid='Create' and @id='B2119043161417288330']";
 	/** @locatorType Xpath */
 	public static final String PRCloseShort_DocNoText = "//input[contains(@id,'PCH_DOC_NO')]";
 	/** @locatorType Xpath */

@@ -1140,6 +1140,7 @@ public class GateEntryPageFunctions {
 			commonFunc.hardWait(3000);
 			verifyLineAmendTableValue(i, Value);
 		}
+		commonFunc.expandFindTable();
 		clearSearchFilter();
 	}
 

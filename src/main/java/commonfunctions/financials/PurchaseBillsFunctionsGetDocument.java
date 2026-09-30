@@ -396,11 +396,11 @@ public class PurchaseBillsFunctionsGetDocument {
 			if (flag) {
 				webDB.clickAnElement(PurchaseBillsLocatorsGetDocument.GetDocumentSearchbutton, ElementType.Xpath);
 				logs.logging("INFO", "Search SuccessFully ");
-				flag = webDB.waitForElement(PurchaseBillsLocatorsGetDocument.GetDocumentSearchbutton,
-						ElementType.Xpath);
-				if (flag) {
-					webDB.clickAnElement(PurchaseBillsLocatorsGetDocument.GetDocumentSearchbutton, ElementType.Xpath);
-					logs.logging("INFO", "Search SuccessFully ");
+//				flag = webDB.waitForElement(PurchaseBillsLocatorsGetDocument.GetDocumentSearchbutton,
+//						ElementType.Xpath);
+//				if (flag) {
+//					webDB.clickAnElement(PurchaseBillsLocatorsGetDocument.GetDocumentSearchbutton, ElementType.Xpath);
+//					logs.logging("INFO", "Search SuccessFully ");
 					commonFunc.checkRefreshCellsDisappear();
 					flag = webDB.waitForElement(PurchaseBillsLocatorsGetDocument.GetDocumentSelectAllButton,
 							ElementType.Xpath);
@@ -423,7 +423,7 @@ public class PurchaseBillsFunctionsGetDocument {
 							}
 						}
 					}
-				}
+				
 			}
 		}
 		assertTrue(flag);

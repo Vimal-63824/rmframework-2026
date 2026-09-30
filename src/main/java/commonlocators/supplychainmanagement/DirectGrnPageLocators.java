@@ -119,13 +119,13 @@ public class DirectGrnPageLocators {
 	/** @locatorType Xpath */
 	public static final String DefectQtyInput = "//input[@data-testid='TQDFCT_DFCT_QTY']";
 	/** @locatorType Xpath */
-	public static final String DefectQtyField = "//*[@id='defect_st_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[3]";
+	public static final String DefectQtyField = "//*[@id=\"defect_st_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[3]";
 	/** @locatorType Xpath */
 	public static final String DefectSave = "//button[@data-testid='Defect_SAVE']";
 	/** @locatorType Xpath */
 	public static final String DefectOverallSave = "//button[@data-testid='SAVE']";
 	/** @locatorType Xpath */
-	public static final String DefectPrimaryQty = "//*[@id='defect_st_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[4]";
+	public static final String DefectPrimaryQty = "//*[@id=\"defect_st_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[4]";
 	/** @locatorType Xpath */
 	public static final String GrnLineDetails = "//table[@class='a-GV-table']/tbody/tr/td[25]";
 	/** @locatorType Xpath */
@@ -156,7 +156,7 @@ public class DirectGrnPageLocators {
 
 	/** @locatorType Xpath */
 	public static final String GrnDetailsBtn(int i) {
-		return "//*[@id='add_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[" + i + "]/td[1]/a";
+		return "(//table[@data-testid='add_line_Result_Data'])[2]/tbody/tr["+ i +"]/td[1]/a";
 	}
 
 	/** @locatorType Xpath */
