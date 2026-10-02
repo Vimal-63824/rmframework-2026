@@ -839,7 +839,7 @@ public class SalesInvoiceLocators {
 	/** @Locator XPATH */
 	public static final String RW_SCO_Get_Rej_Qty = "//*[@id=\"ig_line_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[5]";
 	/** @Locator XPATH */
-	public static final String RW_SCO_InsideOutside_Qty = "//*[@id=\"ig_line_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[8]";
+	public static final String RW_SCO_InsideOutside_Qty = "//*[@id=\"ig_line_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr[1]/td[9]";
 	/** @Locator XPATH */
 	public static final String RW_SCO_InsideOutside_Qty_Input = "//input[@data-testid='Rework_Prim_OS_Field']";
 	/** @Locator XPATH */

@@ -23,11 +23,6 @@
 			<version>23.7.0.25.01</version>
 		</dependency>
 		<dependency>
-			<groupId>com.galaxy</groupId>
-			<artifactId>EzyAutomate</artifactId>
-			<version>1.27.0</version>
-		</dependency>
-		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi-ooxml</artifactId>
 			<version>5.2.5</version>
@@ -42,6 +37,11 @@
 			<artifactId>json-simple</artifactId>
 			<version>1.1.1</version>
 		</dependency>
+		    <dependency>
+        <groupId>com.roadmap</groupId>
+        <artifactId>automation-engine</artifactId>
+        <version>1.0.0</version>
+    </dependency>
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-java</artifactId>

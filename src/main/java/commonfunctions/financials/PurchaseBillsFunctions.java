@@ -8996,10 +8996,11 @@ public class PurchaseBillsFunctions {
 		SubcontractPurchasebillFunc.getSupplierGLAcctFromDB(Supplier);
 		commonFunc.navigateToFinancialPaymentReceipt();
 		BPFunc.clickAddButtonInPaymentsRecipts();
-		BPFunc.createBankPaymentEntry(commonFunc.getDataFromTestDataSheet("BankDocMode"), BankName, Today,
+		BPFunc.createBankPaymentEntryPurchaseBillsk(commonFunc.getDataFromTestDataSheet("BankDocMode"), BankName, Today,
 				commonFunc.getDataFromTestDataSheet("BankPayMode"),
 				commonFunc.getDataFromTestDataSheet("BankRefNumber"), Today,
-				commonFunc.getDataFromTestDataSheet("BankPrefix"), Currency);
+				commonFunc.getDataFromTestDataSheet("BankPrefix"), Currency,
+				commonFunc.getDataFromTestDataSheet("Refdoc"));
 		BPFunc.getBankPaymentOrReceiptDocumentNumber();
 		BPFunc.checkBPDocumentStatusWithDB(commonFunc.getDataFromTestDataSheet("Draft"),
 				VariableHandler.getBankPaymentOrReceiptDocNumber());
@@ -9023,7 +9024,7 @@ public class PurchaseBillsFunctions {
 			String AssesableValue = BankPayments[i][16];
 			if (!PartyName.equals("")) {
 				BPFunc.clickBPLineAddButton();
-				BPFunc.addBankPaymentLineDetailsGlaactAndCPC(VariableHandler.getSupGlAccount(), CPCCodeDesc);
+				BPFunc.addBankPaymentLineDetailsGLacct(VariableHandler.getSupGlAccount(), CPCCodeDesc);
 				BPFunc.clickLineWiseSaveButton();
 				clickViewButton();
 

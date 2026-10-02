@@ -255,7 +255,7 @@ public class PurchaseBillsLocators {
 	/** @locatorType Xpath */
 	public static final String StockTransferHsnLov = "//input[@data-testid='SUPLN_HSN_CODE']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String StockTransferQtyInput = "//input[@id='qty']";
+	public static final String StockTransferQtyInput = "//input[@data-testid='SUPLN_INV_QTY']";
 	/** @locatorType Xpath */
 	public static final String StockTransferTypeQtyField = "//*[@id=\"IN_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr[1]/td[9]";
 	/** @locatorType Xpath */
@@ -293,7 +293,7 @@ public class PurchaseBillsLocators {
 	/** @locatorType Xpath */
 	public static final String SaveButtonView = "//button[@id='B1253817144204452317']";//TODO
 	/** @locatorType Xpath */
-	public static final String CloseButton = "//*[@id='t_PageBody']/div[12]/div[1]/button/span";
+	public static final String CloseButton = "//*[@id=\"t_PageBody\"]/div[11]/div[1]/button/span";
 	/** @locatorType Xpath */
 	public static final String BillDocField = "//*[@id='ig_line1_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[2]";//TODO
 	/** @locatorType Xpath */

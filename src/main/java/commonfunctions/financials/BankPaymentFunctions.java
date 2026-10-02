@@ -10189,25 +10189,26 @@ public class BankPaymentFunctions {
 	/**
 	 * This Method Is Used To Add the Bank Payment Line Details
 	 * 
-	 * @author Vimal - RMITS
+	 * @author Harikrishna - RMITS
 	 * @param GLAccount
 	 * @param CPCcode
 	 */
-	public void addBankPaymentLineDetailsGlaactAndCPC(String GLAccount, String CPCcode) {
-		flag = webDB.waitForElement(BankPaymentLocators.BankLineGLAccountField, ElementType.Xpath);
+	public void addBankPaymentLineDetailsGLacct(String GLAccount, String CPCcode) {
+		flag = webDB.waitForElement(BankPaymentLocators.BankPaymentDataLocatorsGlaccount(), ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(BankPaymentLocators.BankLineGLAccountField, ElementType.Xpath);
+			webDB.clickAnElement(BankPaymentLocators.BankPaymentDataLocatorsGlaccount(), ElementType.Xpath);
 			commonFunc.searchAndSelectValueInFilters(BankPaymentLocators.BankLineGLAccountLovButton, GLAccount);
+			commonFunc.hardWait(100);
 			webDB.pressTabKey();
-//			commonFunc.hardWait(500);
-//			commonFunc.checkRefreshCellsDisappear();
-			flag = webDB.waitForElement(BankPaymentLocators.BankLineCPCField, ElementType.Xpath);
+			commonFunc.hardWait(200);
+			commonFunc.checkRefreshCellsDisappear();
+			flag = webDB.waitForElement(BankPaymentLocators.BankPaymentDataLocatorsCpcDesc(), ElementType.Xpath);
 			if (flag) {
-//				String GetTextCPC = webDB.getTextFromElement(BankPaymentLocators.BankLineCPCField, ElementType.Xpath);
-//				if (!GetTextCPC.equals(CPCcode)) {
-				webDB.clickAnElement(BankPaymentLocators.BankLineCPCField, ElementType.Xpath);
-				commonFunc.searchAndSelectValueInFilters(BankPaymentLocators.BankLineCPCLovButton, CPCcode);
-//				}
+				String GetTextCPC = webDB.getTextFromElement(BankPaymentLocators.BankPaymentDataLocatorsCpcDesc(), ElementType.Xpath);
+				if (!GetTextCPC.equals(CPCcode)) {
+					webDB.clickAnElement(BankPaymentLocators.BankPaymentDataLocatorsCpcDesc(), ElementType.Xpath);
+					commonFunc.searchAndSelectValueInFilters(BankPaymentLocators.BankLineCPCLovButton, CPCcode);
+				}
 //				commonFunc.checkRefreshCellsDisappear();
 				webDB.pressTabKey();
 			}

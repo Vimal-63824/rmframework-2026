@@ -160,17 +160,17 @@ public class PurchaseBillsGrnLocators {
 	/** @locatorType Xpath */
 	public static final String SCO_CheckBox = "(//input[@id='check_all'])[1]";
 	/** @locatorType Xpath */
-	public static final String PB_LineProcess_Button = "(//span[@class='fa fa-info'])[1]";
+	public static final String PB_LineProcess_Button = "(//span[@class='fa fa-cogs'])[1]";
 	/** @locatorType Xpath */
-	public static final String PB_ProcessFrame = "//iframe[@title='Supplier Bill - Process']";
+	public static final String PB_ProcessFrame = "//iframe[@title='Process']";
 	/** @locatorType Xpath */
-	public static final String PB_Process_TDS_Lov = "//*[@id='ig_line_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[28]";
+	public static final String PB_Process_TDS_Lov = "//*[@id=\"ig_line_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[28]";//TODO
 	/** @locatorType Xpath */
 	public static final String ProcessTDSLovButton = "//input[@data-testid='SDPLH_TDS_US_ID']/following-sibling::button";
 	/** @locatorType Xpath */
 	public static final String PB_Process_Save = "//button[@title='Save']";
 	/** @locatorType Xpath */
-	public static final String PB_Process_Close = "//button[@id='B2362517250755170401']";
+	public static final String PB_Process_Close = "//button[@id='B2374806761117793592']";//TODO
 	/** @locatorType Xpath */
 	public static final String PendingPayableSelectAll = "//input[@id='check_all']";
 	/** @locatorType Xpath */

@@ -15672,6 +15672,8 @@ public class SubcontractOrderFunctions {
 			String PR_Department) {
 		webDB.switchToFrame(SalesInvoiceLocators.Rework_Pend_Subcontract_Iframe, ElementType.Xpath);
 		commonFunc.hardWait(2000);
+		commonFunc.expandFindTable();
+		commonFunc.hardWait(2000);
 		commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.RW_Pend_GRN_Lov_Btn, CNdocno);
 		commonFunc.hardWait(2000);
 		webDB.switchToFrame(SalesInvoiceLocators.Rework_Pend_Subcontract_Iframe, ElementType.Xpath);
@@ -15723,6 +15725,7 @@ public class SubcontractOrderFunctions {
 									ElementType.Xpath)) {
 								webDB.clickAnElementWithoutException(SubcontractOrderLocators.OpenSCO_NoteAlert_Close,
 										ElementType.Xpath);
+								commonFunc.hardWait(2000);
 								String SCOdocno = webDB.getTextFromElement(SubcontractOrderLocators.SubcontractDocNO,
 										ElementType.Xpath);
 								logs.logging("INFO", "Get SCO DocNo Is: " + SCOdocno);
@@ -16313,6 +16316,7 @@ public class SubcontractOrderFunctions {
 		storeBatchQtyAndBtachCost();
 		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationLocalReg"));
 		processCalculationCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationLocalReg"));
+		clickingGenMRPbuttonRework();
 		clickingMRPDetailsTabVerificationWithBOMAgainst();
 		reworkProcessSourceAndTargetSFcode();
 		subcontractStandardTypeclickingIncludeChargesAndPostIcon();
@@ -16445,6 +16449,7 @@ public class SubcontractOrderFunctions {
 		storeBatchQtyAndBtachCost();
 		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationLocalReg"));
 		processCalculationCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationLocalReg"));
+		clickingGenMRPbuttonRework();
 		clickingMRPDetailsTabVerificationWithBOMAgainst();
 		reworkProcessSourceAndTargetSFcode();
 		subcontractStandardTypeclickingIncludeChargesAndPostIcon();
@@ -16710,6 +16715,7 @@ public class SubcontractOrderFunctions {
 		storeBatchQtyAndBtachCost();
 		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationLocalReg"));
 		processCalculationCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationLocalReg"));
+		clickingGenMRPbuttonRework();
 		clickingMRPDetailsTabVerificationWithBOMAgainst();
 		reworkProcessSourceAndTargetSFcode();
 		subcontractStandardTypeclickingIncludeChargesAndPostIcon();
@@ -16889,6 +16895,7 @@ public class SubcontractOrderFunctions {
 		storeBatchQtyAndBtachCost();
 		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationLocalReg"));
 		processCalculationCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationLocalReg"));
+		clickingGenMRPbuttonRework();
 		clickingMRPDetailsTabVerificationWithBOMAgainst();
 		reworkProcessSourceAndTargetSFcode();
 		subcontractStandardTypeclickingIncludeChargesAndPostIcon();
@@ -17005,6 +17012,7 @@ public class SubcontractOrderFunctions {
 		storeBatchQtyAndBtachCost();
 		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationLocalReg"));
 		processCalculationCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationLocalReg"));
+		clickingGenMRPbuttonRework();
 		clickingMRPDetailsTabVerificationWithBOMAgainst();
 		reworkProcessSourceAndTargetSFcode();
 		subcontractStandardTypeclickingIncludeChargesAndPostIcon();
@@ -18414,6 +18422,8 @@ public class SubcontractOrderFunctions {
 					flag = webDB.waitForElement(SubcontractOrderLocators.CloseButton, ElementType.Xpath);
 					if (flag) {
 						webDB.clickAnElement(SubcontractOrderLocators.CloseButton, ElementType.Xpath);
+						commonFunc.checkRefreshCellsDisappear();
+						commonFunc.hardWait(1000);
 						flag = webDB.waitForElement(SubcontractOrderLocators.SubcontractInclCostButton,
 								ElementType.Xpath);
 						if (flag) {
@@ -18454,6 +18464,28 @@ public class SubcontractOrderFunctions {
 						}
 					}
 				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Used For Clicking Gen. MRP Button
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void clickingGenMRPbuttonRework() {
+		commonFunc.hardWait(2000);
+		flag = webDB.waitForElement(SubcontractOrderLocators.SubcontractGenMRPBtn, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(SubcontractOrderLocators.SubcontractGenMRPBtn, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
+			commonFunc.hardWait(1000);
+			if (webDB.verifyIsElementDisplayed(SubcontractOrderLocators.OpenSCO_NoteAlert_Close, ElementType.Xpath)) {
+				webDB.clickAnElementWithoutException(SubcontractOrderLocators.OpenSCO_NoteAlert_Close,
+						ElementType.Xpath);
+				commonFunc.hardWait(2000);
+
 			}
 		}
 		assertTrue(flag);
